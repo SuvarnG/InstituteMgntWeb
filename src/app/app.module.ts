@@ -1,19 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
-// import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-nav/authorised-top-nav.component';
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
 import { AuthorisedSideNavComponent } from './layout/authorised/authorised-side-nav/authorised-side-nav.component';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
-import { ModalModule } from 'ngx-bootstrap';
-import { HttpClientModule} from '@angular/common/http';
 import { StudentslistService } from './student-list/studentslist.service';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { LeavelistService } from './leaves-list/leavelist.service';
@@ -27,23 +23,42 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ReactiveFormsModule } from '@angular/forms';
 import{ModalModule} from 'ngx-bootstrap';
 import { LeaveComponent } from './leave/leave.component';
-
+import { HomeComponent } from './home/home.component';
+import { sliderservice } from './sliderservice.service';
+import { SliderComponent } from './slider/slider.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { CoursesComponent } from './courses/courses.component';
+import { SocialactComponent } from './socialact/socialact.component';
+import { TestinomialsComponent } from './testinomials/testinomials.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    // DashboardComponent,
     AuthorisedTopNavComponent,
     AuthorisedSideNavTogglerComponent,
     AuthorisedLayoutComponent,
     AuthorisedSideNavComponent,
     StudentListComponent,
     CreateStudentComponent,
-    LeavesListComponent
+    LeavesListComponent,
     EnquiryComponent,
-    LeaveComponent
+    LeaveComponent,
+    HomeComponent,
+    SliderComponent,
+    NavigationBarComponent,
+    FooterComponent,
+    HeaderComponent,
+    ContactUsComponent,
+    AboutUsComponent,
+    CoursesComponent,
+    SocialactComponent,
+    TestinomialsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,11 +66,11 @@ import { LeaveComponent } from './leave/leave.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
   ],
-  providers: [StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService],
+  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
