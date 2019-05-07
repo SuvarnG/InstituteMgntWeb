@@ -13,6 +13,9 @@ import { TestinomialsComponent } from './testinomials/testinomials.component';
 import { SocialactComponent } from './socialact/socialact.component';
 import { HomeComponent } from './home/home.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
+import { StaffListComponent } from './staff-list/staff-list.component';
+import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
+import { ExpensesComponent } from './expenses/expenses.component';
 
 const routes: Routes = [
  {
@@ -81,7 +84,16 @@ const routes: Routes = [
   {
     path:'Courses',
     component:CoursesComponent
-  }
+  },
+  { path: 'StaffList',
+   component: StaffListComponent
+},
+{ path: 'Expenses',
+   component: ExpensesComponent
+},
+{ path: 'TeacherCourses',
+component: TeacherCoursesComponent
+}
 ];
 
 @NgModule({

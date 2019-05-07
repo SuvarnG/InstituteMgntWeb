@@ -34,6 +34,15 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { CoursesComponent } from './courses/courses.component';
 import { SocialactComponent } from './socialact/socialact.component';
 import { TestinomialsComponent } from './testinomials/testinomials.component';
+import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
+import { ReactiveFormsModule } from '@angular/forms';  
+import { ModalModule } from 'ngx-bootstrap';
+import { StaffListComponent } from './staff-list/staff-list.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { HttpClientModule} from '@angular/common/http';
+import { ExpenseService } from './expenses/expense.service';
+import { StaffListService } from './staff-list/staff-list.service';
+import { TeacherCoursesService } from './teacher-courses/teacher-courses.service';
 
 
 @NgModule({
@@ -58,7 +67,11 @@ import { TestinomialsComponent } from './testinomials/testinomials.component';
     AboutUsComponent,
     CoursesComponent,
     SocialactComponent,
-    TestinomialsComponent
+    TestinomialsComponent,
+     TeacherCoursesComponent,
+    StaffListComponent,
+    ExpensesComponent
+
   ],
   imports: [
     BrowserModule,
@@ -70,7 +83,8 @@ import { TestinomialsComponent } from './testinomials/testinomials.component';
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
   ],
-  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService],
+  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService, StaffListService,ExpenseService,TeacherCoursesService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
