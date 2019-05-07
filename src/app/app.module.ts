@@ -10,6 +10,15 @@ import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-na
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
 import { AuthorisedSideNavComponent } from './layout/authorised/authorised-side-nav/authorised-side-nav.component';
+import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
+import { ReactiveFormsModule } from '@angular/forms';  
+import { ModalModule } from 'ngx-bootstrap';
+import { StaffListComponent } from './staff-list/staff-list.component';
+import { ExpensesComponent } from './expenses/expenses.component';
+import { HttpClientModule} from '@angular/common/http';
+import { ExpenseService } from './expenses/expense.service';
+import { StaffListService } from './staff-list/staff-list.service';
+import { TeacherCoursesService } from './teacher-courses/teacher-courses.service';
 
 @NgModule({
   declarations: [
@@ -19,14 +28,21 @@ import { AuthorisedSideNavComponent } from './layout/authorised/authorised-side-
     AuthorisedTopNavComponent,
     AuthorisedSideNavTogglerComponent,
     AuthorisedLayoutComponent,
-    AuthorisedSideNavComponent
+    AuthorisedSideNavComponent,
+    TeacherCoursesComponent,
+    StaffListComponent,
+    ExpensesComponent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ModalModule.forRoot()
   ],
-  providers: [],
+  providers: [StaffListService,ExpenseService,TeacherCoursesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
