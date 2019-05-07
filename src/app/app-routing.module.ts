@@ -94,6 +94,7 @@ const routes: Routes = [
 { path: 'TeacherCourses',
 component: TeacherCoursesComponent
 }
+
 ];
 
 @NgModule({

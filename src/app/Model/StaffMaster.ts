@@ -32,4 +32,3 @@ export interface StaffMaster {
     CourseType:String
     Courses:String
     StaffName:string
-}

@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-nav/authorised-top-nav.component';
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
@@ -43,10 +44,19 @@ import { HttpClientModule} from '@angular/common/http';
 import { ExpenseService } from './expenses/expense.service';
 import { StaffListService } from './staff-list/staff-list.service';
 import { TeacherCoursesService } from './teacher-courses/teacher-courses.service';
+import { RoleComponent } from './role/role.component';
+import { BankComponent } from './bank/bank.component';
+import { BanktransactionComponent } from './banktransaction/banktransaction.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalModule } from 'ngx-bootstrap';
+import { HttpClientModule} from '@angular/common/http';
+import { RoleService } from './role/role.service';
+import { BankService } from './bank/bank.service';
+
 
 
 @NgModule({
-  declarations: [
+  declarations: [ 
     AppComponent,
     LoginComponent,
     AuthorisedTopNavComponent,
@@ -70,8 +80,10 @@ import { TeacherCoursesService } from './teacher-courses/teacher-courses.service
     TestinomialsComponent,
      TeacherCoursesComponent,
     StaffListComponent,
-    ExpensesComponent
-
+    ExpensesComponent,
+    RoleComponent,
+    BankComponent,
+    BanktransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -83,8 +95,8 @@ import { TeacherCoursesService } from './teacher-courses/teacher-courses.service
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
   ],
-  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService, StaffListService,ExpenseService,TeacherCoursesService],
-
+  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService, StaffListService,ExpenseService,TeacherCoursesService,RoleService,
+  BankService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
