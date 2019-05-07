@@ -1,0 +1,85 @@
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<html>
+  <body>
+    <form>
+      <fieldset>
+      
+
+<div >
+   
+  <div class="row col-md-10 col-md-offset-1 custyle">
+      
+    <label><b><h4>Student List</h4></b></label>
+    <a href="/CreateStudent" class="btn btn-primary float-right" (click)="AddNewStudent()"> Create New </a>
+   
+    <table border="1px" class="table table-striped custab">
+        
+      <thead>
+        <tr>
+        <th>
+          No.
+        </th>
+        <th>
+        Name Of Student
+      </th>
+      <th>
+        Course
+      </th>
+      <th>
+        Joining Date
+      </th>
+      <th>
+        Contact
+      </th>
+      <th>
+        Duration
+      </th>
+      <th>
+        Course Completed
+      </th>
+      <th>
+        Fees Paid
+      </th>
+      <th>
+        Fees Remaining
+      </th>
+      <th>
+        Discount
+      </th>
+      <th>
+        Remark
+      </th>
+      <th class="text-center" colspan="2">
+        Action
+      </th>
+    </tr>
+      </thead>
+      
+        <tr *ngFor = "let s of students">
+          <td>{{s.StudentId}}</td>
+          <td>{{s.FullName}}</td>
+          <td>{{s.Course}}</td>
+          <td>{{s.DateOfJoining}}</td>
+          <td>{{s.ContactNo}}</td>
+          <td>{{s.Duration}}</td>
+          <td>{{s.CourseCompleted === true ? "Completed":"Not Completed"}}</td>
+          <td>{{s.FeesPaid}}</td>
+          <td>{{s.RemainingFees}}</td>
+          <td>{{s.Discount}}</td>
+          <td>{{s.Remark}}</td>
+          <td><button type="button" class="btn btn-primary">Edit</button></td>
+          <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)">Delete</button></td>
+        </tr>
+      
+      </table>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</body>
+</html>
+

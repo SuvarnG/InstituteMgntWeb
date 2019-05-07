@@ -1,0 +1,550 @@
+<html>
+  <body>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+ <fieldset>
+   <label><b><h4>New Student Entry</h4></b></label>
+   <table>
+     <tbody>
+       <tr>
+          <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-2">
+                      <label for="fullName">Full Name</label>
+                  </div>
+                  <div class="col">
+                        <select id="inputGender" class="form-control" formControlName="gender" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                            <option value="Male" selected>MR.</option>
+                            <option value="Female">Mrs.</option>
+                            <option value="Female">Miss</option>
+                          </select>
+                          <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                            <div *ngIf="f.gender.errors.required"></div>
+                        </div>
+                    </div>
+                  <div class="col">
+                    <input type="text" class="form-control" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" placeholder="First Name" >
+                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" formControlName="middleName" [ngClass]="{ 'is-invalid': submitted && f.middleName.errors }" placeholder="Middle Name">
+                    <div *ngIf="submitted && f.middleName.errors" class="invalid-feedback">
+                        <div *ngIf="f.middleName.errors.required">Middle Name is required</div>
+                  </div>
+                  </div>
+                  <div class="col">
+                      <input type="text" class="form-control" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" placeholder="Last Name">
+                      <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                    </div>
+                    </div>
+                </div>              
+         </td>
+       </tr>
+       <tr>         
+           <td colspan="1">
+             <div class="form-row">            
+              <div class="form-group col-md-2"> 
+                <label for="inputAddress">Address:</label>
+              </div> 
+              <div class="form-group col-md-10">         
+                <input type="text" class="form-control" formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }" >
+                    <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
+                        <div *ngIf="f.Address1.errors.required">Address is required</div>
+                    </div>           
+                <input type="text" id="inputAddress2" class="form-control" formControlName="Address2">
+                <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
+                  <div *ngIf="f.Address2.errors.required">Address is required</div>
+              </div> 
+              </div>  
+              </div>
+           </td>           
+       </tr>
+       <!-- <tr>
+         <td colspan="1">
+            <label for="inputAddress2">Address 2</label>
+            <div class="col">
+                <input type="text" class="form-control" id="inputAddress2" placeholder="Address 1">
+              </div>
+         </td>
+       </tr> -->
+       <tr>
+         <td colspan="1">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <!-- <label for="inputCity">City</label>  -->
+                  <input type="text" class="form-control" id="inputCity" value="Pune" class="form-control" formControlName="city" [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                  <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                      <div *ngIf="f.city.errors.required">City is required</div>
+                  </div>
+                </div>
+                <div class="form-group col-md-4">
+                   <!-- <label for="inputState">State</label> -->
+                   <div  >
+                  <select id="inputState" class="form-control" formControlName="state" [ngClass]="{ 'is-invalid': submitted && f.state.errors }" >
+                    <option value="Maharashtra" selected>Maharashtra</option>
+                    <option value="Tamilnadu">Tamilnadu</option>
+                  </select>
+                  <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                    <div *ngIf="f.state.errors.required">Code is required</div>
+                </div>
+              </div>
+                </div>
+                <div class="form-group col-md-2">
+                  <!-- <label for="inputZip">Zip</label> -->
+                  <input type="number" class="form-control" class="form-control" formControlName="zipCode" [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }">
+                  <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+                      <div *ngIf="f.zipCode.errors.required">Code is required</div>
+                  </div>
+                </div>
+              </div>
+         </td>
+       </tr>
+       <tr>
+         <td colspan="1"> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label class="col-md-4 control-label">Date Of Birth</label> 
+                    <input type="date" id="birthDate" class="form-control" formControlName="dateOfBirth" [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }" >
+                    <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
+                        <div *ngIf="f.dateOfBirth.errors.required">Date of Birth is required</div>
+                    </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label for="inputBloodGroup">Blood Group</label>
+                       <select id="inputBloodGroup" class="form-control" formControlName="bloodgroup" [ngClass]="{ 'is-invalid': submitted && f.bloodgroup.errors }">
+                        
+                         <option selected>A+</option>
+                         <option>B+</option>
+                         <option>AB+</option>
+                         <option>O+</option>
+                         <option>A-</option>
+                         <option>B-</option>
+                         <option>O-</option>
+                         <option>AB-</option>
+                       </select>
+                     </div>
+                     <div *ngIf="submitted && f.bloodgroup.errors" class="invalid-feedback">
+                      <div *ngIf="f.bloodgroup.errors.required">Date of Birth is required</div>
+                  </div>
+            </div>
+         </td>
+       </tr>
+       <tr>
+         <td colspan="1">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <!-- <label for="inputContactNo">Contact No</label>  -->
+                  <input type="number" id="inputContactNo" class="form-control"  formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }" placeholder="Contact Number">
+                  <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
+                      <div *ngIf="f.ContactNo.errors.invalidNumber">Contact No must be a valid number</div>
+                  </div>
+                </div>
+                
+                <div class="form-group col-md-6">
+                  <!-- <label for="inputEmergencyContactNO">Emergency Contact No</label> -->
+                  <input type="number"  id="inputEmergencyContactNO" class="form-control" formControlName="EmergencyContactNo" [ngClass]="{ 'is-invalid': submitted && f.EmergencyContactNo.errors }" placeholder="Emergency Contact Number">
+                  <div *ngIf="submitted && f.EmergencyContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="f.EmergencyContactNo.errors.required">Emergency Contact Number is required</div>
+                      <div *ngIf="f.EmergencyContactNo.errors.invalidNumber">Emergency Contact No must be a valid number</div>
+                  </div>
+                </div>
+              </div>
+         </td>
+       </tr>
+      <tr>
+         <td colspan="1">
+            <div class="form-group" >
+                <!-- <label for="inputEmail" class="col-sm-2 col-form-label">Email</label> -->
+                  <input type="email" class="form-control" id="inputEmail" formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" placeholder="Email ID">
+                  <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                      <div *ngIf="f.Email.errors.required">Email is required</div>
+                      <div *ngIf="f.Email.errors.email">Email must be a valid email address</div>
+                  </div>
+                </div>
+         </td>
+       </tr>
+       <tr>
+         <td colspan="1">
+            <div class="form-group">
+              <div class="form-group col-md-12">
+                <input class="form-check-input" type="checkbox" id="gridCheck1">
+                <label class="form-check-label" for="gridCheck1" style="padding-left: 10px">
+                   Is Permanant address is same as current address
+                  </label>
+                </div>
+                </div>
+
+         </td>
+       </tr>
+
+       <tr>
+        <td colspan="1">
+          <div class="form-row">
+            <div class="form-group col-md-2">
+              <label for="inputAddress">Permanent Address:</label>
+            </div>
+            <div class="form-group col-md-10">               
+                <input type="text" class="form-control" id="PermanentAddress1" formControlName="PAddress1" [ngClass]="{ 'is-invalid': submitted && f.PAddress1.errors }">
+                  <div *ngIf="submitted && f.PAddress1.errors" class="invalid-feedback">
+                      <div *ngIf="f.PAddress1.errors.required">Address is required</div>
+                  </div>
+                <input type="text" class="form-control" id="PermanentAddress2" formControlName="PAddress2" [ngClass]="{ 'is-invalid': submitted && f.PAddress2.errors }">
+                <div *ngIf="submitted && f.PAddress2.errors" class="invalid-feedback">
+                  <div *ngIf="f.PAddress2.errors.required">Address is required</div>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- <tr>
+        <td colspan="1">
+           <label for="inputAddress2">Permanent Address 2</label>
+           <div class="form-group">
+               <input type="text" class="form-control" id="PermanentAddress2">
+             </div>
+        </td>
+      </tr> -->
+      <tr>
+        <td colspan="1">
+           <div class="form-row">
+               <div class="form-group col-md-6">
+                 <!-- <label for="inputCity">City</label>  -->
+                 <input type="text" class="form-control" id="inputCity" formControlName="Pcity"  value="Pune" [ngClass]="{ 'is-invalid': submitted && f.Pcity.errors }">
+                 <div *ngIf="submitted && f.Pcity.errors" class="invalid-feedback">
+                    <div *ngIf="f.Pcity.errors.required">City is required</div>
+                </div>
+               </div>
+               <div class="form-group col-md-4">
+                  <!-- <label for="inputState">State</label> -->
+                 <select id="inputState" class="form-control" formControlName="Pstate" [ngClass]="{ 'is-invalid': submitted && f.Pstate.errors }">
+                   <option selected>Maharashtra</option>
+                   <option>TamilNadu</option>
+                 </select>
+                 <div *ngIf="submitted && f.Pstate.errors" class="invalid-feedback">
+                  <div *ngIf="f.Pstate.errors.required">State is required</div>
+              </div>
+               </div>
+               <div class="form-group col-md-2">
+                 <!-- <label for="inputZip">Zip</label> -->
+                 <input type="number" class="form-control" formControlName="PzipCode" id="inputZip" [ngClass]="{ 'is-invalid': submitted && f.PzipCode.errors }">
+                 <div *ngIf="submitted && f.PzipCode.errors" class="invalid-feedback">
+                    <div *ngIf="f.PzipCode.errors.required">PinCode is required</div>
+                </div>
+               </div>
+             </div>
+        </td>
+      </tr>
+
+   
+        <tr>
+            <td colspan="1">
+        <label for="inpuIsCV"> Is Document Submitted? </label>
+              <div class="form-control" formControlName="IsDocumentSubmitted?">
+                  <input type="radio" class="custom-control-input" id="defaultInline1" name="inlineDefaultRadiosExample" (click)="ShowUpload()" >
+                  <label class="custom-control-label" for="defaultInline1">Yes</label>
+                  </div>
+                  <div class="form-control" formControlName="IsDocumentSubmitted?">
+                  <input type="radio" class="custom-control-input" id="defaultInline2" name="inlineDefaultRadiosExample" (click)="HideUpload()" checked>
+                  <label class="custom-control-label" for="defaultInline2">No</label>
+                  
+           </div>
+           <div *ngIf="showSelected">
+            <input type="file" name="file" />
+        </div>
+        </td>
+        </tr>
+        <!-- <tr>
+            <td colspan="1">
+               <label for="PayingFeesNow">Is Document Submitted?</label>
+               <div class="form-group">
+                  <input type="radio" name="Document" value="Yes" (click)="ShowUpload()">Yes
+                  <input type="radio" name="Document" value="No" (click)="HideUpload()" checked>No
+                    <div *ngIf="IsVisible">
+                        <input type="file" name="file" />
+                    </div>
+                 </div>
+            </td>
+          </tr> -->
+          <tr>
+              <td colspan="1">
+                 <label for="PayingFeesNow">Paying Fees Now?</label>
+                 <div class="form-control" formControlName="payingFeesNow">
+                    <input  type="radio" name="Fees" value="Yes">Yes
+                    <input type="radio" name="Fees" value="No" checked>No
+                   </div>
+              </td>
+            </tr>
+                  <!-- Button (Double) -->
+                  <tr>
+                      <td colspan="1">
+                          <div class="form-group">              
+                              <div class="col-md-6" >
+                                  <button name="button1id" class="btn btn-success" id="CreateStudent" (click)="CreateNewStudent();openModal(template)">Save</button>
+                               &nbsp;                                
+                                  <button name="button2id" class="btn btn-danger" id="CancelStudent">Cancel</button>
+                                </div>   
+                                <!-- <div class="col-md-6" #elseBlock>
+                                  <button name="button1id" class="btn btn-success" id="CreateStudent" (click)="CreateNewStudent()">Save</button>
+                               &nbsp;                                
+                                  <button name="button2id" class="btn btn-danger" id="CancelStudent">Cancel</button>
+                                </div>                               -->
+                         </div>
+                      </td>
+                  </tr>
+     </tbody>
+   </table>
+ </fieldset>
+ <fieldset>
+
+ </fieldset>
+  </form>
+  </body>
+</html>
+
+
+<ng-template #template>
+    <!-- <div class="modal-header">
+      <h4 class="modal-title pull-left">Paying Fees</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Just a modal with a bunch of words inside, nothing serious.
+    </div> -->
+    <html>
+        <body>
+          <form [formGroup]="registerStudentCourse" (ngSubmit)="onSubmitStudentCourse()">
+       <fieldset>
+         <div>
+           <table>
+              <tbody>
+              <tr>
+                <td colspan="1">
+               <label for="CourseType">Course Type</label>
+                   <div class="row">
+                       <div class="col">
+                        <select class="form-control" formControlName="CourseType" [ngClass]="{ 'is-invalid': submitted && g.CourseType.errors }" (change)="selectUser($event);GetCourseNameFromCourseType()">
+                          <option *ngFor = "let course of CreateNewStudentService.listCourseType" [value]="course.CourseTypeId">
+                              {{course.CourseTypeName}}
+                          </option>
+                          <!-- <option value="1">11th Science</option>
+                          <option value="2">12th Science</option> -->
+                        </select>
+                        <div *ngIf="submitted && g.CourseType.errors" class="invalid-feedback">
+                          <div *ngIf="g.CourseType.errors.required">Course Type is required</div>
+                      </div>
+                       </div>
+                       
+                       <!-- <div></div>
+                       <div></div> -->
+                   </div>              
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1"><label for="CourseName">Course Name</label>
+               <div class="form-group">               
+                  <select class="form-control" formControlName="CourseName" [ngClass]="{ 'is-invalid': submitted && g.CourseName.errors }">
+                      <option *ngFor = "let course of CreateNewStudentService.listCourses" [value]="course.CourseId">
+                        {{course.CourseName}}</option>
+                     
+                    </select>
+                    <div *ngIf="submitted && g.CourseName.errors" class="invalid-feedback">
+                      <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
+                  </div>
+                 </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+               <label for="FeesAmount">Fees Amount</label>
+               <div class="form-group">
+                   <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount" [ngClass]="{ 'is-invalid': submitted && g.FeesAmount.errors }">
+                   <div *ngIf="submitted && g.FeesAmount.errors" class="invalid-feedback">
+                    <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
+                </div>
+                 </div>
+            </td>
+          </tr>
+          <tr>
+              <td colspan="1">
+                 <label for="AnyDiscount">Any Discount in %?</label>
+                 <div class="form-group">
+                     <input type="number" class="form-control" id="Discount" formControlName="AnyDiscount" [ngClass]="{ 'is-invalid': submitted && g.AnyDiscount.errors }">
+                     <div *ngIf="submitted && g.AnyDiscount.errors" class="invalid-feedback">
+                      <div *ngIf="g.AnyDiscount.errors.required">Any Discount in % is required</div>
+                  </div>
+                   </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                 <label for="DiscountedAmount">New Discounted Amount</label>
+                 <div class="form-group">
+                     <input type="number" class="form-control" id="DiscountedAmount" formControlName="NewDiscountedAmount" [ngClass]="{ 'is-invalid': submitted && g.NewDiscountedAmount.errors }">
+                     <div *ngIf="submitted && g.NewDiscountedAmount.errors" class="invalid-feedback">
+                      <div *ngIf="g.NewDiscountedAmount.errors.required">New Discounted Amount is required</div>
+                  </div>
+                   </div>
+              </td>
+            </tr>
+          <tr>
+              <td colspan="1">
+                 <label for="DateofPayment">Date of Payment</label>
+                 <div class="form-group">
+                    <input type="date" id="birthDate" class="form-control"  placeholder="Date of Payment" formControlName="DateofPayment" [ngClass]="{ 'is-invalid': submitted && g.DateofPayment.errors }">
+                    <div *ngIf="submitted && g.DateofPayment.errors" class="invalid-feedback">
+                      <div *ngIf="g.DateofPayment.errors.required">Date of Payment is required</div>
+                  </div>
+                   </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="1"><label for="FeesTakenby">Fees Taken By</label>
+                 <div class="form-group">               
+                    <select class="form-control" formControlName="FeesTakenBy" [ngClass]="{ 'is-invalid': submitted && g.FeesTakenBy.errors }">
+                        <option *ngFor = "let user of CreateNewStudentService.listUsers" [value]="user.Id">
+                          {{user.FirstName}} {{user.LastName}}
+                        </option>
+                      
+                      </select>
+                      <div *ngIf="submitted && g.FeesTakenBy.errors" class="invalid-feedback">
+                        <div *ngIf="g.FeesTakenBy.errors.required">Fees Taken by is required</div>
+                    </div>
+                   </div>
+              </td>
+            </tr>
+
+             <!-- Button (Double) -->
+             <tr>
+              <td colspan="1">
+                  <div class="form-group">
+      
+                        <div class="form-row">
+                          <button name="button1id" class="btn btn-success" id="SubmitFees" (click)="CreateStudentCourse();openModal2(template2)">Save</button>
+                          &nbsp;
+                          <button name="button2id" class="btn btn-danger" id="CancelFees" (click)="modalRef.hide()">Cancel</button>
+                        </div>
+                 </div>
+               </td>
+             </tr>
+          </tbody>
+          </table>
+        </div>
+      </fieldset>
+    </form>
+    </body>
+  </html>
+  </ng-template>
+
+
+<ng-template #template2>
+  <html>
+    <body>
+      <form [formGroup]="registerStudentLogin" (ngSubmit)="onSubmitStudentLogin()">
+        <fieldset>
+          <div>
+            <table>
+             <tbody>
+                <tr>
+                    <td colspan="1">
+                      <label for="fullName">Full Name</label>
+                          <div class="row">
+                              <div class="col">
+                                  <select id="inputGender" class="form-control">
+                                      <option selected>MR.</option>
+                                      <option>Ms.</option>
+                                      <option>Miss</option>
+                                    </select>
+                              </div>
+                            <div class="col">
+                              <input type="text" class="form-control" placeholder="First name" formControlName="FirstName" [ngClass]="{ 'is-invalid': submitted && e.FirstName.errors }">
+                              <div *ngIf="submitted && e.FirstName.errors" class="invalid-feedback">
+                                <div *ngIf="e.FirstName.errors.required"></div>
+                            </div>
+                            </div>
+                            
+                            <!-- <div class="col">
+                              <input type="text" class="form-control" placeholder="Middle name">
+                            </div> -->
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Last name" formControlName="Lastname" [ngClass]="{ 'is-invalid': submitted && e.Lastname.errors }">
+                              </div>
+                              <div *ngIf="submitted && e.Lastname.errors" class="invalid-feedback">
+                                <div *ngIf="e.Lastname.errors.required"></div>
+                            </div>
+                          </div>              
+                   </td>
+                 </tr>
+                 <tr>
+                        <td colspan="1">
+                           <label for="EmailID">Email ID</label>
+                           <div class="form-group">
+                               <input type="text" class="form-control" id="Email" formControlName="EMailId" [ngClass]="{ 'is-invalid': submitted && e.EMailId.errors }">
+                             </div>
+                             <div *ngIf="submitted && e.EMailId.errors" class="invalid-feedback">
+                              <div *ngIf="e.EMailId.errors.required"></div>
+                          </div>
+                        </td>
+                 </tr>
+             
+                  <tr>
+                      <td colspan="1">
+                          <label for="inputAddress2">Role</label>
+                            <div class="form-group">
+                              <Select class="form-control" formControlName="Role" [ngClass]="{ 'is-invalid': submitted && e.Role.errors }" (change)="selectRole($event)">
+                                  <option *ngFor="let roles of CreateNewStudentService.listRoles" [value]="roles.roleID">
+                                    {{roles.RoleName}}
+                                  </option>
+                              </Select>
+                              <div *ngIf="submitted && e.Role.errors" class="invalid-feedback">
+                                <div *ngIf="e.Role.errors.required"></div>
+                            </div>
+                            </div>
+                      </td>
+                  </tr>
+                  <tr>
+                    <td colspan="1">
+                       <label for="inputAddress2">Create Password</label>
+                       <div class="form-group">
+                           <input type="text" class="form-control" id="CreatePassword"  formControlName="Password" [ngClass]="{ 'is-invalid': submitted && e.Password.errors }">
+                         </div>
+                         <div *ngIf="submitted && e.Password.errors" class="invalid-feedback">
+                          <div *ngIf="e.Password.errors.required"></div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td colspan="1">
+                        <label for="inputAddress2">Verify Password</label>
+                            <div class="form-group">
+                            <input type="text" class="form-control" id="VerifyPassword" formControlName="VerifyPassword" [ngClass]="{ 'is-invalid': submitted && e.VerifyPassword.errors }">
+                            </div>
+                            <div *ngIf="submitted && e.VerifyPassword.errors" class="invalid-feedback">
+                              <div *ngIf="e.VerifyPassword.errors.required"></div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td colspan="1">
+                          <div class="form-group">              
+                                <div class="col-md-6">
+                                  <button name="button1id" class="btn btn-success" id="CreateStudent" (click)="CreateStudentLogin()">Save</button>
+                                  &nbsp;
+                                  <button name="button2id" class="btn btn-danger" id="CancelStudent" (click)="modalRef.hide()">Cancel</button>
+                              </div>
+                         </div>
+                       </td>
+                     </tr>
+             </tbody>
+            </table>
+          </div>
+        </fieldset>
+      </form>
+    </body>
+  </html>
+</ng-template>
