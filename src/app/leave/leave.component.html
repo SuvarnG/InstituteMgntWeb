@@ -1,0 +1,112 @@
+<div class="">
+    <button type="button" class="btn btn-primary" (click)="Leave(template)"> Leave </button>
+    </div>
+    
+<div class="container" style="margin-top:50px">
+  
+    <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">StudentName</th>
+            <th scope="col">CourseName</th>
+            <th scope="col">LeaveType</th>
+            <!-- <th rowspan="12">Leave</th> -->
+            <th scope="col">Reason</th>
+            <th scope="col">Comment</th>
+            <th scope="col">IsFollowUpDate</th>
+            <button type="button" class="btn btn-primary">Edit</button>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of LeaveTran">
+            <td>{{item.id}}</td>
+            <td>{{item.FirstName+" "+item.MiddleName+" "+item.LastName}}</td>
+            <!-- <td>{{item.FirstName }}</td>
+            <td>{{item.MiddleName}}</td>
+            <td>{{item.LastName}}</td> -->
+            <!-- <td>{{item.StudentName}}</td> -->
+            <td>{{item.Course}}</td>
+            <td>{{item.LeaveType}}</td>
+            <td>{{item.Reason}}</td>
+            <td>{{item.Comment}}</td>
+            <td>{{item.NeedFollowupDate}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <ng-template #template>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">LeaveForm</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">&times;</span>
+            </button> 
+          </div>
+   <div class="modal-body">
+     <form [formGroup]="LeaveForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+       <div class="form-group col-md-12">
+      <input type="text" id="studentName" formControlName="studentName" class="form-control" placeholder="studentName"[ngClass]="{ 'is-invalid': submitted && f.studentName.errors }"/> 
+      <div *ngIf="submitted && f.studentName.errors" class="invalid-feedback">
+      <div *ngIf="f.studentName.errors.required"> Student Name is required</div>
+      </div>
+      </div>
+      </div>
+
+     <div class="form-row">
+      <div class="form-group col-md-12">
+     <input type="text" id="courseName" formControlName="courseName" class="form-control" placeholder="courseName"[ngClass]="{ 'is-invalid': submitted && f.courseName.errors }"/> 
+    <div *ngIf="submitted && f.courseName.errors" class="invalid-feedback">
+       <div *ngIf="f.courseName.errors.required">Course Name is required</div>
+      </div>
+    </div>
+     </div>
+
+       <div class="form-row">
+      <div class="form-group col-md-12">
+      <input type="text" id="leaves" formControlName="leaves" class="form-control" placeholder="leaves"[ngClass]="{ 'is-invalid': submitted && f.leaves.errors }"/> 
+   <div *ngIf="submitted && f.leaves.errors" class="invalid-feedback">
+   <div *ngIf="f.leaves.errors.required"> leaves is required</div>
+   </div>    
+    </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+          <input type="text" id="from" formControlName="from" class="form-control" placeholder="from"/> 
+      </div>
+
+      <div class="form-group col-md-4">
+          <input type="text" id="To" formControlName="To" class="form-control" placeholder="To"/> 
+      </div>
+
+      <div class="form-group col-md-4">
+          <input type="text" id="Days" formControlName="days" class="form-control" placeholder="days"/> 
+      </div>
+ </div>
+
+ <div class="form-row">
+   <div class="form-group col-md-6">
+      <input type="text" id="Reason" formControlName="reason" class="form-control" placeholder="reason"/> 
+   </div>
+   <div class="form-group col-md-6">
+      <input type="text" id="IsFollowUpDate" formControlName="IsFollowUpDate" class="form-control" placeholder="IsFollowUpDate"/> 
+   </div>
+
+ </div>
+ 
+ <div class="form-row">
+   <div class="form-group col-md-12">
+      <textarea class="form-control rounded-0" id="comment" rows="3" placeholder="Comment"></textarea>
+   <!-- <input type="text" id="Comment" formControlName="Comment" class="form-control" placeholder="Comment"/>  -->
+      
+</div>
+</div>
+<div text-align:top>
+<div class="form-group">
+  <button class="btn btn-primary">Submit</button>
+             </div> 
+            </div>
+</form>
+     </div>
+    </ng-template>
