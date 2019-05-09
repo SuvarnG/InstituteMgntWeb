@@ -10,6 +10,7 @@ export interface Students{
     RemainingFees:number,
     Discount:number,
     Remark:string,
+    CourseCompletedDate:Date;
 
     FirstName:string,
     MiddleName:string,
@@ -67,11 +68,11 @@ export interface FeesTransaction{
     DateOfPayment:Date;
     FeesPaid:number;
     FeesTakenBy:string;
-    // CourseCompleted:boolean;
-    // Discount:number;
-    // TotalFees:number;
-    // Remark:string;
-    // IsActive:boolean;
+    CourseCompleted:boolean;
+    Discount:number;
+    TotalFees:number;
+    Remark:string;
+    IsActive:boolean;
 }
 
 export interface User{
@@ -104,4 +105,11 @@ export interface Users{
 export interface Roles{
     roleID:number;
     RoleName:string;
+}
+
+export interface RecentStudent{
+    StudentId:number;
+    FirstName:string;
+    LastName:string;
+    EmailId:string;
 }

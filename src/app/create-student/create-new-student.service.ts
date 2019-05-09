@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles } from '../Models/Students';
+import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent } from '../Models/Students';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,9 +15,11 @@ export class CreateNewStudentService {
   public listCourses:Courses[];
   public listUsers:Users[];
   public listRoles:Roles[];
+  public listRecentStudent: RecentStudent[]
+  public NewStudId:unknown;
 
   private Url = environment.APIBASEURL + 'Student/CreateStudent';
-  private FeesUrl=environment.APIBASEURL+'Bank/SaveFeesTransaction';
+  private FeesUrl=environment.APIBASEURL+'Student/SaveOrUpdateFeesTransactionForStudent';
   private StudentLoginUrl=environment.APIBASEURL+'Login/CreateNewUser';
   private GetAllCourseTypeUrl=environment.APIBASEURL+'Course/GetAllCourseType'
 
@@ -25,7 +27,8 @@ export class CreateNewStudentService {
 
   CreateNewStudent(students:CreateStudent){
     debugger;
-    return this.http.post<CreateStudent>(this.Url,students,httpOptions)
+    return this.http.post<CreateStudent>(this.Url,students,httpOptions).toPromise().then(result=>this.NewStudId = result as unknown);
+    
   }
 
   CreateStudentCourse(feesTransaction:FeesTransaction){
@@ -36,6 +39,12 @@ export class CreateNewStudentService {
   CreateStudentLogin(user:User){
     debugger;
     return this.http.post<User>(this.StudentLoginUrl,user,httpOptions)
+  }
+
+  GetRecentlyCreatedStudent(){
+    // return this.http.get<CourseType[]>(this.GetAllCourseTypeUrl,httpOptions)
+    debugger;
+    this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]) 
   }
 
   GetAllCourseType(){

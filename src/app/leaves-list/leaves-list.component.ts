@@ -18,6 +18,7 @@ export class LeavesListComponent implements OnInit {
   modalRef: BsModalRef;
   submitted = false;
   registerUpdateLeave:FormGroup;
+  registerCreateLeave:FormGroup;
   public Leaves=[];
   public UpdateLeaves=[];
 
@@ -33,10 +34,18 @@ export class LeavesListComponent implements OnInit {
 
     },
     );
+
+    this.registerCreateLeave = this.formBuilder.group({
+      LeaveName:['',Validators.required]
+
+    },
+    );
     
   }
 
   get m() {return this.registerUpdateLeave.controls}
+
+  get n() {return this.registerCreateLeave.controls}
 
   GetAllLeaves(){
     this.LeavelistService.GetAllLeaves().subscribe(res=>this.Leaves=res)
@@ -57,6 +66,9 @@ export class LeavesListComponent implements OnInit {
 
   UpdateNewLeave(template: TemplateRef<any>,LeaveId,LeaveType) {
     debugger;
+
+   
+
     let body = {     
       LeaveId:LeaveId,
       LeaveType:LeaveType     
@@ -67,6 +79,7 @@ export class LeavesListComponent implements OnInit {
   };
 
   onSubmitUpdate(){
+    debugger;
     this.submitted=true;
   
     //stop here if form is invalid
@@ -78,10 +91,25 @@ export class LeavesListComponent implements OnInit {
 
   CreateLeave(leaveName:string){
 
+    this.submitted=true;
+  
+    //stop here if form is invalid
+    if(this.registerCreateLeave.invalid){
+      return;
+    }
+
     this.LeavelistService.CreateLeave(leaveName).subscribe(data=>{this.GetAllLeaves(),this.modalRef.hide()})
   }
 
   UpdateLeave(leaves:Leaves){
+
+    this.submitted=true;
+  
+    //stop here if form is invalid
+    if(this.registerUpdateLeave.invalid){
+      return;
+    }
+
     let body:Leaves={
       LeaveId:this.registerUpdateLeave.controls.LeaveId.value,
       LeaveType:this.registerUpdateLeave.controls.LeaveType.value

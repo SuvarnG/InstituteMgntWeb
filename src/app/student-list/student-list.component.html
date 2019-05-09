@@ -35,7 +35,7 @@
         Contact
       </th>
       <th>
-        Duration
+        Course Completed Date
       </th>
       <th>
         Course Completed
@@ -62,16 +62,23 @@
           <td>{{s.StudentId}}</td>
           <td>{{s.FullName}}</td>
           <td>{{s.Course}}</td>
-          <td>{{s.DateOfJoining}}</td>
+          <td>{{s.DateOfJoining | date:'mediumDate'}}</td>
           <td>{{s.ContactNo}}</td>
-          <td>{{s.Duration}}</td>
+          <td>{{s.CourseCompletedDate | date:'mediumDate'}}</td>
           <td>{{s.CourseCompleted === true ? "Completed":"Not Completed"}}</td>
           <td>{{s.FeesPaid}}</td>
           <td>{{s.RemainingFees}}</td>
           <td>{{s.Discount}}</td>
           <td>{{s.Remark}}</td>
-          <td><button type="button" class="btn btn-primary">Edit</button></td>
+          <div *ngIf="s.CourseCompleted === true; else loading">
+          <td><button type="button" class="btn btn-primary" >Edit</button></td>
           <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)">Delete</button></td>
+        </div>
+        <ng-template #loading>
+            <div><td><button type="button" class="btn btn-primary" disabled>Edit</button></td>
+              <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)" disabled>Delete</button></td>
+            </div>            
+           </ng-template>
         </tr>
       
       </table>

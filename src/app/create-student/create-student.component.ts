@@ -1,11 +1,13 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { AbstractControl } from '@angular/forms'
 import { CreateNewStudentService } from './create-new-student.service';
 
-import { Students,CreateStudent,FeesTransaction,User, CourseType,Courses } from '../Models/Students';
+import { Students,CreateStudent,FeesTransaction,User, CourseType,Courses,RecentStudent } from '../Models/Students';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { template } from '@angular/core/src/render3';
+import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 
 
 @Component({
@@ -18,11 +20,38 @@ export class CreateStudentComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   showSelected:Boolean=false;
-  registerStudentCourse:FormGroup;
-  registerStudentLogin:FormGroup;
+  // registerStudentCourse:FormGroup;
+  // registerStudentLogin:FormGroup;
   selectedUserValue:number;
   selectedRoleValue:number;
+  selectedPayingFeesNow:string="No";
+  NewStudentid:number;
+  newRecentStudent:RecentStudent[];
+ 
   //public listCourseType: CourseType[];
+  // public template: TemplateRef<any>
+
+  public registerStudentCourse = new FormGroup ({
+    StudentID: new FormControl(['',Validators.required]),
+    CourseType:new FormControl(['',Validators.required]),
+    CourseName:new FormControl(['',Validators.required]),
+    FeesAmount:new FormControl(['',Validators.required]),
+    AnyDiscount:new FormControl(['',Validators.required]),
+    NewDiscountedAmount:new FormControl(['',Validators.required]),
+    DateofPayment:new FormControl(['',Validators.required]),
+    FeesTakenBy:new FormControl(['',Validators.required]),
+  });
+
+  public registerStudentLogin:FormGroup=  new FormGroup({
+    FirstName:new FormControl(['',Validators.required]),
+    Lastname:new FormControl(['',Validators.required]),
+    EMailId:new FormControl(['',Validators.required]),
+    Role:new FormControl(['',Validators.required]),
+    Password:new FormControl(['',Validators.required]),
+    VerifyPassword:new FormControl(['',Validators.required]),
+
+  });
+
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, 
               private CreateNewStudentService:CreateNewStudentService
@@ -64,6 +93,7 @@ export class CreateStudentComponent implements OnInit {
       
   );
   this.registerStudentCourse=this.formBuilder.group({
+    StudentID:['',Validators.required],
     CourseType:['',Validators.required],
     CourseName:['',Validators.required],
     FeesAmount:['',Validators.required],
@@ -73,6 +103,8 @@ export class CreateStudentComponent implements OnInit {
     FeesTakenBy:['',Validators.required]
   },
   );
+
+ 
 
   this.registerStudentLogin=this.formBuilder.group({
     FirstName:['',Validators.required],
@@ -86,27 +118,31 @@ export class CreateStudentComponent implements OnInit {
 
   }
 
-  openModal(template: TemplateRef<any>) {
-   debugger;
-    this.modalRef = this.modalService.show(template);
-    this.CreateNewStudentService.GetAllCourseType();
-    this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
-    this.CreateNewStudentService.GetUsersListForFeesTaken();
+  selectAddress(event:any){
+    if(event.currentTarget.checked==true){
+      this.registerForm.controls.PAddress1.setValue(this.registerForm.controls.Address1.value)
+      this.registerForm.controls.PAddress2.setValue(this.registerForm.controls.Address2.value)
+      this.registerForm.controls.Pcity.setValue(this.registerForm.controls.city.value)
+      this.registerForm.controls.Pstate.setValue(this.registerForm.controls.state.value)
+      this.registerForm.controls.PzipCode.setValue(this.registerForm.controls.zipCode.value)
+
+    }
+    else{
+      this.registerForm.controls.PAddress1.reset();
+      this.registerForm.controls.PAddress2.reset();
+      this.registerForm.controls.Pcity.reset();
+      this.registerForm.controls.Pstate.reset();
+      this.registerForm.controls.PzipCode.reset();
+    }
   }
 
-  openModal2(template: TemplateRef<any>) {
-    debugger;
-     this.modalRef = this.modalService.show(template);
-     this.CreateNewStudentService.GetRolesListForDropDown();
-   }
 
-  get f() { return this.registerForm.controls; }
-
-  get g() {return this.registerStudentCourse.controls;}
-
-  get e() {return this.registerStudentLogin.controls}
+  getToday(): string {
+    return new Date().toISOString().split('T')[0]
+ }
 
   onSubmit() {
+    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -114,19 +150,108 @@ export class CreateStudentComponent implements OnInit {
         return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-}
+    this.modalService.show(this.openModal)
 
-onSubmitStudentCourse() {
-  this.submitted = true;
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
 
-  // stop here if form is invalid
-  if (this.registerStudentCourse.invalid) {
-      return;
+
   }
+    
+  
+  openModal(template: TemplateRef<any>) {
+   debugger;
+   this.submitted = true;
+   if (this.registerForm.invalid) { 
+     return
+    }
 
-  alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerStudentCourse.value))
-}
+    //Create Student Function
+    let body: CreateStudent = {
+      Gender:this.registerForm.controls.gender.value,
+      FirstName: this.registerForm.controls.firstName.value,
+      MiddleName: this.registerForm.controls.middleName.value,
+      LastName: this.registerForm.controls.lastName.value,
+      Address1:this.registerForm.controls.Address1.value,
+      Address2:this.registerForm.controls.Address2.value,
+      City:this.registerForm.controls.city.value,
+      State:this.registerForm.controls.state.value,
+      STDCode:this.registerForm.controls.zipCode.value,
+      DOB:this.registerForm.controls.dateOfBirth.value,
+      BloodGroup:this.registerForm.controls.bloodgroup.value,
+      ContactNo:this.registerForm.controls.ContactNo.value,
+      EmergencyNo:this.registerForm.controls.EmergencyContactNo.value,
+      EmailId:this.registerForm.controls.Email.value,
+     
+      PAddress1:this.registerForm.controls.PAddress1.value,
+      PAddress2:this.registerForm.controls.PAddress2.value,
+      PCity:this.registerForm.controls.Pcity.value,
+      PState:this.registerForm.controls.Pstate.value,
+      PSTDCode:this.registerForm.controls.PzipCode.value,
+  
+      IsDocumentSubmitted:true,
+      PayingFees:true
+    };
+  
+  
+    this.CreateNewStudentService.CreateNewStudent(body)
+   
+    
+
+    this.CreateNewStudentService.GetRecentlyCreatedStudent();
+
+
+    //Open Popup function
+   if (this.selectedPayingFeesNow=="Yes") {
+    this.modalRef = this.modalService.show(template);
+    this.CreateNewStudentService.GetAllCourseType();
+    this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
+    this.CreateNewStudentService.GetUsersListForFeesTaken();
+ 
+  }
+  } 
+
+
+
+  openModal2(template: TemplateRef<any>) {
+    debugger;
+
+    this.submitted = true;
+    if (this.registerStudentCourse.invalid) { 
+      return
+     }
+
+     this.modalRef = this.modalService.show(template);
+     this.CreateNewStudentService.GetRolesListForDropDown();
+   }
+
+
+  get f() { return this.registerForm.controls; }
+
+  get g() {return this.registerStudentCourse.controls;}
+
+  get e() {return this.registerStudentLogin.controls}
+
+//   onSubmit() {
+//     this.submitted = true;
+
+//     // stop here if form is invalid
+//     if (this.registerForm.invalid) {
+//         return;
+//     }
+
+//     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+// }
+
+// onSubmitStudentCourse() {
+//   this.submitted = true;
+
+//   // stop here if form is invalid
+//   if (this.registerStudentCourse.invalid) {
+//       return;
+//   }
+
+  // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerStudentCourse.value))
+//}
 
 onSubmitStudentLogin(){
   this.submitted=true;
@@ -135,7 +260,7 @@ onSubmitStudentLogin(){
   if(this.registerStudentLogin.invalid){
     return;
   }
-  alert('Success!! \n\n' + JSON.stringify(this.registerStudentLogin.value))
+  // alert('Success!! \n\n' + JSON.stringify(this.registerStudentLogin.value))
 }
 
 
@@ -188,27 +313,37 @@ CreateNewStudent(student:CreateStudent){
   };
 
 
-  this.CreateNewStudentService.CreateNewStudent(body).subscribe()
+  // // this.CreateNewStudentService.CreateNewStudent(body).subscribe(data=>{
+  // //   this.CreateNewStudentService.GetRecentlyCreatedStudent();
+  // }
+
+  // );
+ 
+  // this.CreateNewStudentService.GetRecentlyCreatedStudent();
 }
 
-CreateStudentCourse(feesTransaction:FeesTransaction){
 
+
+CreateStudentCourse(feesTransaction:FeesTransaction){
+  debugger;
+  // this.CreateNewStudentService.GetRecentlyCreatedStudent()
   let body : FeesTransaction = {
     Id:0,
     CourseId:this.registerStudentCourse.controls.CourseName.value,
-    StudentId:1,
+    StudentId:this.registerStudentCourse.controls.StudentID.value,
     DateOfPayment:this.registerStudentCourse.controls.DateofPayment.value,
     FeesPaid:this.registerStudentCourse.controls.FeesAmount.value,
     FeesTakenBy:this.registerStudentCourse.controls.FeesTakenBy.value,
-    // CourseCompleted:false,
-    // Discount:this.registerStudentCourse.controls.Discount.value,
-    // TotalFees:5000,
-    // Remark:'remark',
-    // IsActive:true
+    CourseCompleted:false,
+    Discount:this.registerStudentCourse.controls.AnyDiscount.value,
+    TotalFees:5000,
+    Remark:'remark',
+    IsActive:true
 
   };
 
       this.CreateNewStudentService.CreateStudentCourse(body).subscribe();
+      this.CreateNewStudentService.GetRecentlyCreatedStudent();
 
 }
 
@@ -241,6 +376,11 @@ selectUser(event)
  selectRole(event){
    debugger;
    this.selectedRoleValue = event.target.value;
+ }
+
+ selectPayingFeesNow(event){
+   debugger;
+   this.selectedPayingFeesNow=event.target.value;
  }
 
  GetCourseNameFromCourseType(courses:Courses){
