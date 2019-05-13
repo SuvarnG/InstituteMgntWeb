@@ -24,7 +24,7 @@ export class FeesTransactionService {
 
 
   GetAllCourseType(){
-
+    debugger;
     this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
   }
 

@@ -30,7 +30,6 @@ export class CreateStudentComponent implements OnInit {
   selectedRoleValue: number;
   selectedStudentIdValue: number;
   selectedCourseFeesValue: number;
-  //selectedCreatedBy:number;
   selectedStudentFirstName: string;
   selectedStudentLastName: string;
   selectedStudentEmail: string;
@@ -308,7 +307,10 @@ export class CreateStudentComponent implements OnInit {
 
     //Open Popup function
     if(this.registerForm.controls.payingFeesNow.value){
-      this.modalRef = this.modalService.show(template);
+      this.modalRef = this.modalService.show(template,{
+        animated: true,
+        backdrop: 'static'
+      });
       this.CreateNewStudentService.GetAllCourseType();
      // this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
       this.CreateNewStudentService.GetUsersListForFeesTaken();
@@ -325,8 +327,11 @@ export class CreateStudentComponent implements OnInit {
       return
     }
 
-    this.modalRef = this.modalService.show(template);
-    this.CreateNewStudentService.GetRolesListForDropDown();
+    this.modalRef = this.modalService.show(template,{
+      animated: true,
+      backdrop: 'static'
+    });
+    this.CreateNewStudentService.GetRolesList();
   }
 
 
@@ -457,10 +462,13 @@ export class CreateStudentComponent implements OnInit {
     };
 
     if (confirm("Do you want to submit?")) {
+      this.modalRef.hide();
       this.CreateNewStudentService.CreateStudentCourse(body).subscribe();
       this.CreateNewStudentService.GetRecentlyCreatedStudent();
     }
   }
+
+
 
   CreateStudentLogin(user: User) {
     debugger;
@@ -489,9 +497,10 @@ export class CreateStudentComponent implements OnInit {
     else
     {
     if (confirm("Are you sure to create a login?")) {
-      this.CreateNewStudentService.CreateStudentLogin(body).subscribe((data) => {
-        //this.router.navigate(['/StudentList']);
-      });
+      this.CreateNewStudentService.CreateStudentLogin(body).subscribe((data) => 
+        {this.modalRef.hide(),
+        this.router.navigateByUrl('/StudentList') });
+      
     }
   }
 }

@@ -72,9 +72,9 @@ public StudentId:number;
     this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
   }
 
-  GetRolesListForDropDown(){
+  GetRolesList(){
     debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetRolesListForDropDown').toPromise().then(result=>this.listRoles=result as Roles[])
+    this.http.get(environment.APIBASEURL+'Student/GetRolesList').toPromise().then(result=>this.listRoles=result as Roles[])
   }
 
   postFile(fileToUpload: File): Observable<boolean> {

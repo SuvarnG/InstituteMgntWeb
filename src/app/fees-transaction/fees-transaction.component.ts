@@ -16,6 +16,7 @@ export class FeesTransactionComponent implements OnInit {
   constructor(private FeesTransactionService:FeesTransactionService) { }
 
   ngOnInit() {
+    
   }
 
 

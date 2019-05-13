@@ -234,7 +234,7 @@
               <div class="form-row">
                 <div class="form-group col-md-6">
                   <!-- <label for="inputCity">City</label>  -->
-                  <input type="text" class="form-control" id="inputCity" placeholder="City" formControlName="Pcity"
+                  <input type="text" class="form-control" id="inputPCity" placeholder="City" formControlName="Pcity"
                     value="Pune" [ngClass]="{ 'is-invalid': submitted && f.Pcity.errors }">
                   <div *ngIf="submitted && f.Pcity.errors" class="invalid-feedback">
                     <div *ngIf="f.Pcity.errors.required">City is required</div>
@@ -349,7 +349,7 @@
   <body>
     <form [formGroup]="registerStudentCourse" (ngSubmit)="openModal2(template2)">
       <fieldset>
-        <div>
+        <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
           <table>
             <tbody>
 
@@ -551,7 +551,7 @@
                 <td colspan="1">
                   <label for="DateofPayment">Date of Payment</label>
                   <div class="form-group">
-                    <input type="date" id="birthDate" class="form-control" placeholder="Date of Payment"
+                    <input type="date" id="DateofPayment" class="form-control" placeholder="Date of Payment"
                       formControlName="DateofPayment" [ngClass]="{ 'is-invalid': submitStudentFees && g.DateofPayment.errors }">
                     <div *ngIf="submitStudentFees && g.DateofPayment.errors" class="invalid-feedback">
                       <div *ngIf="g.DateofPayment.errors.required">Date of Payment is required</div>
@@ -621,7 +621,7 @@
   <body>
     <form [formGroup]="registerStudentLogin" (ngSubmit)="onSubmitStudentLogin()">
       <fieldset>
-        <div>
+        <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
           <table>
             <tbody>
 
