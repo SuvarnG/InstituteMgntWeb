@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Expenses } from '../Model/Expenses';
+import { Expenses ,ExpenseMaster} from '../Model/Expenses';
  import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../Model/User';
@@ -21,6 +21,7 @@ export class ExpenseService {
 private deleteUrl=environment.APIBASEURL + 'Expenses/DeleteExpense/';
 private editUrl=environment.APIBASEURL + 'Expenses/UpdateExpense_Tran/';
 listUser:User[]; 
+listExpenseType:ExpenseMaster[];
   constructor(private http: HttpClient) { }
 
   private handleError<T> (operation = 'operation', result?: T) {
@@ -35,8 +36,9 @@ listUser:User[];
   }
 
  expensesList() {
-   return this.http.get<Expenses>(this.Url, httpOptions)
+   return this.http.get<Expenses[]>(this.Url, httpOptions)
     .pipe(map(Expenses => {
+      console.log(Expenses);
       return Expenses;
     }));
    }
@@ -72,5 +74,9 @@ listUser:User[];
 
   UserList(){
     this.http.get(environment.APIBASEURL + 'Expenses/GetAllUsers').toPromise().then(result=>this.listUser = result as User[])  
+  }
+
+  GetAllExpenseType(){
+    this.http.get(environment.APIBASEURL + 'Expenses/GetAll').toPromise().then(result=>this.listExpenseType = result as ExpenseMaster[])
   }
 }

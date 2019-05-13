@@ -15,7 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { StaffListComponent } from './staff-list/staff-list.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
-import { ExpensesComponent } from './expenses/expenses.component';
+import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
+import { ExpenseMasterComponent } from './expense-master/expense-master.component';
 
 const routes: Routes = [
  {
@@ -93,6 +94,10 @@ const routes: Routes = [
 },
 { path: 'TeacherCourses',
 component: TeacherCoursesComponent
+},
+
+{ path: 'ExpenseMaster',
+component: ExpenseMasterComponent
 }
 
 ];

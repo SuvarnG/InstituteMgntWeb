@@ -32,3 +32,10 @@ export interface StaffMaster {
     CourseType:String
     Courses:String
     StaffName:string
+}
+
+export interface TeacherCourse{
+    TeacherID:number
+    CourseType:String
+    Courses:string
+}

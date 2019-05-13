@@ -3,8 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-nav/authorised-top-nav.component';
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
@@ -21,7 +20,6 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import{EnquiryService} from './enquiry/enquiry.service';
 import{LeaveService} from './leave/leave.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ReactiveFormsModule } from '@angular/forms';
 import{ModalModule} from 'ngx-bootstrap';
 import { LeaveComponent } from './leave/leave.component';
 import { HomeComponent } from './home/home.component';
@@ -36,23 +34,20 @@ import { CoursesComponent } from './courses/courses.component';
 import { SocialactComponent } from './socialact/socialact.component';
 import { TestinomialsComponent } from './testinomials/testinomials.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
-import { ReactiveFormsModule } from '@angular/forms';  
-import { ModalModule } from 'ngx-bootstrap';
 import { StaffListComponent } from './staff-list/staff-list.component';
-import { ExpensesComponent } from './expenses/expenses.component';
-import { HttpClientModule} from '@angular/common/http';
-import { ExpenseService } from './expenses/expense.service';
+import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
+import { ExpenseService } from './ExpenseTransaction/expense.service';
 import { StaffListService } from './staff-list/staff-list.service';
 import { TeacherCoursesService } from './teacher-courses/teacher-courses.service';
 import { RoleComponent } from './role/role.component';
 import { BankComponent } from './bank/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ModalModule } from 'ngx-bootstrap';
-import { HttpClientModule} from '@angular/common/http';
 import { RoleService } from './role/role.service';
 import { BankService } from './bank/bank.service';
-
+import {DatePipe} from '@angular/common';
+import { ExpenseMasterComponent } from './expense-master/expense-master.component';
+import { ExpenseMasterService } from './expense-master/expense-master.service';
 
 
 @NgModule({
@@ -83,7 +78,8 @@ import { BankService } from './bank/bank.service';
     ExpensesComponent,
     RoleComponent,
     BankComponent,
-    BanktransactionComponent
+    BanktransactionComponent,
+    ExpenseMasterComponent
   ],
   imports: [
     BrowserModule,
@@ -95,8 +91,23 @@ import { BankService } from './bank/bank.service';
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
   ],
-  providers: [sliderservice, StudentslistService,LeavelistService,CreateNewStudentService,LoginService,EnquiryService,LeaveService, StaffListService,ExpenseService,TeacherCoursesService,RoleService,
-  BankService],
+  providers: 
+  [sliderservice, 
+    StudentslistService,
+    LeavelistService,
+    CreateNewStudentService,
+    LoginService,
+    EnquiryService,
+    LeaveService, 
+    StaffListService,
+    ExpenseService,
+    TeacherCoursesService,
+    RoleService,
+  BankService,
+  ExpenseMasterService,
+  DatePipe
+],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

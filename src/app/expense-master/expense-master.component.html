@@ -1,0 +1,85 @@
+<html>
+  <body>
+    <fieldset>
+      <legend><h3>Expense List</h3></legend>
+      <button type="button" class="btn btn-primary btn-xs" (click)="ShowCreateExpenseTemplate(CreateExpenseTemplate)">AddNewExpense</button>
+    <table border="1px" class="table table-striped">
+      <thead>
+        <th>No</th>
+        <th>Expenses</th>
+        <th>Operations</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let expense of expenses; let i=index">
+          <td>{{i+1}}</td>
+          <td>{{expense.Expenses}}</td>
+          <td>
+             <button type="btn" class='btn btn-info btn-xs' (click)="EditExpense(EditExpenseTemplate,expense)"><span class="glyphicon glyphicon-edit"></span> Edit</button>
+&nbsp;&nbsp;&nbsp;&nbsp;
+             <button type="btn" class="btn btn-primary" (click)="DeleteExpense(expense.ExpenseId)"><span class="glyphicon glyphicon-remove"></span> Del</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+
+  <ng-template #CreateExpenseTemplate >
+      <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
+         <form [formGroup]="CreateExpenseForm" (ngSubmit)="onSubmitCreateExpense()" >
+           <div class="modal-header">
+               <h4 class="modal-title pull-left">Create Expense</h4>
+               <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div> <div class="modal-body">
+<table>
+  <tr>
+    <td>
+      <label for="expense">Expense Name</label>
+      <input type="text" id="expense" formControlName="expense" [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
+      <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
+          <div *ngIf="f.expense.errors.required">Expense No is required</div>
+    </div>
+    </td>
+  </tr>
+</table>
+             </div>
+             <div class="modal-footer">
+                <button type="button" type="submit" id="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+              </div>
+            </form>
+            </div>
+   </ng-template> 
+
+   <ng-template #EditExpenseTemplate >
+      <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
+         <form [formGroup]="EditExpenseForm" (ngSubmit)="onSubmitEditExpense()" >
+           <div class="modal-header">
+               <h4 class="modal-title pull-left">Create Expense</h4>
+               <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+             </div> <div class="modal-body">
+<table>
+  <tr>
+    <td>
+      <label for="expense">Expense Name</label>
+      <input type="text" id="expense" formControlName="expense" [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
+      <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
+          <div *ngIf="f.expense.errors.required">Expense No is required</div>
+    </div>
+    </td>
+  </tr>
+</table>
+             </div>
+             <div class="modal-footer">
+                <button type="button" type="submit" id="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+              </div>
+            </form>
+            </div>
+   </ng-template> 
+
+  </body>
+</html>
