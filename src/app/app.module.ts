@@ -48,6 +48,8 @@ import { BankService } from './bank/bank.service';
 import {DatePipe} from '@angular/common';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';
 import { ExpenseMasterService } from './expense-master/expense-master.service';
+import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
+import { FeesTransactionService } from './fees-transaction/fees-transaction.service';
 
 
 @NgModule({
@@ -79,7 +81,8 @@ import { ExpenseMasterService } from './expense-master/expense-master.service';
     RoleComponent,
     BankComponent,
     BanktransactionComponent,
-    ExpenseMasterComponent
+    ExpenseMasterComponent,
+    FeesTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -105,6 +108,7 @@ import { ExpenseMasterService } from './expense-master/expense-master.service';
     RoleService,
   BankService,
   ExpenseMasterService,
+  FeesTransactionService,
   DatePipe
 ],
 

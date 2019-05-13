@@ -17,6 +17,7 @@ import { StaffListComponent } from './staff-list/staff-list.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
 import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';
+import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
 
 const routes: Routes = [
  {
@@ -98,6 +99,10 @@ component: TeacherCoursesComponent
 
 { path: 'ExpenseMaster',
 component: ExpenseMasterComponent
+},
+
+{ path: 'FeesTransaction',
+component: FeesTransactionComponent
 }
 
 ];

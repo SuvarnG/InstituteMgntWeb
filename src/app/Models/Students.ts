@@ -33,6 +33,31 @@ export interface Students{
     IsDocumentSubmitted:boolean
 }
 
+export interface UpdateStudent{
+    StudentId:number,
+    FirstName:string,
+    MiddleName:string,
+    LastName:string,
+    Address1:string,
+    Address2:string,
+    City:string,
+    State:string,
+    STDCode:string,
+    PAddress1:string,
+    PAddress2:string,
+    PCity:string,
+    PState:string,
+    PSTDCode:string,
+    Gender:string,
+    EmailId:string,
+    BloodGroup:string,
+    DOB:Date,
+    EmergencyNo:string,
+    IsDocumentSubmitted:boolean
+    //DateOfJoining:Date,
+    ContactNo:string,
+}
+
 export interface CreateStudent{
     // StudentId:number,
 
@@ -59,24 +84,29 @@ export interface CreateStudent{
     EmergencyNo:string,
     IsDocumentSubmitted:boolean,
     PayingFees:boolean
+    //PayingFees:string
 }
 
 export interface FeesTransaction{
     Id:number;
     CourseId:number;
     StudentId:number;
+    CourseFees:number;
     DateOfPayment:Date;
     FeesPaid:number;
     FeesTakenBy:string;
     CourseCompleted:boolean;
     Discount:number;
+    NewDiscountedAmount:number;
     TotalFees:number;
     Remark:string;
     IsActive:boolean;
 }
 
 export interface User{
+
     Id:number;
+   // StudentId:number;
     FirstName:string;
     LastName:string;
     Email:string;
@@ -94,6 +124,12 @@ export interface CourseType{
 export interface Courses{
     CourseId:number;
     CourseName:string;
+    Fees:number;
+}
+
+export interface CourseFees{
+    CourseId:number;
+    Fees:number;
 }
 
 export interface Users{

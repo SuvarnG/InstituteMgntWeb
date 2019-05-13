@@ -1,7 +1,9 @@
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { from, Observable, } from 'rxjs';
+import { map } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent } from '../Models/Students';
+import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Models/Students';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,11 +15,12 @@ const httpOptions = {
 export class CreateNewStudentService {
   public listCourseType: CourseType[];
   public listCourses:Courses[];
+  public listCourseFees:CourseFees[];
   public listUsers:Users[];
   public listRoles:Roles[];
   public listRecentStudent: RecentStudent[]
   public NewStudId:unknown;
-
+public StudentId:number;
   private Url = environment.APIBASEURL + 'Student/CreateStudent';
   private FeesUrl=environment.APIBASEURL+'Student/SaveOrUpdateFeesTransactionForStudent';
   private StudentLoginUrl=environment.APIBASEURL+'Login/CreateNewUser';
@@ -27,7 +30,7 @@ export class CreateNewStudentService {
 
   CreateNewStudent(students:CreateStudent){
     debugger;
-    return this.http.post<CreateStudent>(this.Url,students,httpOptions).toPromise().then(result=>this.NewStudId = result as unknown);
+    return this.http.post<CreateStudent>(this.Url,students,httpOptions) //.toPromise().then(result=>this.NewStudId = result as unknown);
     
   }
 
@@ -44,7 +47,8 @@ export class CreateNewStudentService {
   GetRecentlyCreatedStudent(){
     // return this.http.get<CourseType[]>(this.GetAllCourseTypeUrl,httpOptions)
     debugger;
-    this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]) 
+    this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]
+    ) 
   }
 
   GetAllCourseType(){
@@ -58,6 +62,11 @@ export class CreateNewStudentService {
     this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
   }
 
+  GetCourseFeesFromCourseName(id){
+    debugger;
+    this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
+  }
+
   GetUsersListForFeesTaken(){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
@@ -67,4 +76,15 @@ export class CreateNewStudentService {
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetRolesListForDropDown').toPromise().then(result=>this.listRoles=result as Roles[])
   }
+
+  postFile(fileToUpload: File): Observable<boolean> {
+    debugger;
+    const endpoint = 'http://localhost:50076/api/Student/UploadFile'
+    const formData: FormData = new FormData();
+    formData.append('fileKey', fileToUpload, fileToUpload.name);
+    return this.http.post(endpoint, formData, httpOptions)
+      .pipe(map(() => { return true; }))
+}
+
+
 }
