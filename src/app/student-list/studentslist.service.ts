@@ -20,15 +20,15 @@ export class StudentslistService {
 
   constructor(private http: HttpClient) { }
 
-  GetAllStudents(){
+  getAllStudents(){
     return this.http.get<Students[]>(this.Url,httpOptions)
   }
 
-  DeleteStudent(id:number){
+  deleteStudent(id:number){
     return this.http.post<void>(this.DeleteStdnt + "/"+id,httpOptions)
   }
 
-  EditStudent(student:UpdateStudent){
+  editStudent(student:UpdateStudent){
     debugger;
     return this.http.post<UpdateStudent>(this.EditStnt,student,httpOptions)
   }

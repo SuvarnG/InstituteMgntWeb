@@ -41,29 +41,8 @@ export class CreateStudentComponent implements OnInit {
 
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
-    private CreateNewStudentService: CreateNewStudentService,
-    private router: Router
-
-  ) {
-
-    // this.registerStudentCourse=this.formBuilder.group({
-    //   StudentID:['',Validators.required],
-    //   CourseType:['',Validators.required],
-    //   CourseName:['',Validators.required],
-    //   CourseFees:['',Validators.required],
-    //   Fees:['',Validators.required],
-    //   FeesAmount:['',Validators.required],
-    //   AnyDiscount:['',Validators.required],
-    //   NewDiscountedAmount:['',Validators.required],
-    //   DateofPayment:['',Validators.required],
-    //   FeesTakenBy:['',Validators.required],
-    //   Remark:['',Validators.required]
-    // },
-    // );
-
-  }
-
-
+              private CreateNewStudentService: CreateNewStudentService,
+              private router: Router) { }
 
 
   ngOnInit() {
@@ -86,14 +65,10 @@ export class CreateStudentComponent implements OnInit {
       dateOfBirth: ['', Validators.required],
       bloodgroup: ['', Validators.required],
       ContactNo: ['', [Validators.required, this.phoneNumberValidator]],
-      // ContactNo:['',Validators.required],
       EmergencyContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       Email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
       payingFeesNow: ['', Validators.required]
-      // PAddress1:['',Validators.required],
-      // PCity:['',Validators.required],
-
     });
 
 
@@ -104,7 +79,6 @@ export class CreateStudentComponent implements OnInit {
       CourseType: ['', Validators.required],
       CourseName: ['', Validators.required],
       CourseFees: ['', Validators.required],
-      // Fees:['',Validators.required],
       FeesAmount: ['', Validators.required],
       AnyDiscount: ['', Validators.required],
       NewDiscountedAmount: ['', Validators.required],
@@ -113,22 +87,6 @@ export class CreateStudentComponent implements OnInit {
       Remark: ['', Validators.required]
     },
     );
-
-    // this.registerStudentCourse=this.formBuilder.group({
-    //   StudentID:[''],
-    //   CourseType:[''],
-    //   CourseName:[''],
-    //   CourseFees:[''],
-    //   Fees:[''],
-    //   FeesAmount:[''],
-    //   AnyDiscount:[''],
-    //   NewDiscountedAmount:[''],
-    //   DateofPayment:[''],
-    //   FeesTakenBy:[''],
-    //   Remark:['']
-    // },
-    // );
-
 
 
     this.registerStudentLogin = this.formBuilder.group({
@@ -139,29 +97,7 @@ export class CreateStudentComponent implements OnInit {
       Password: ['', Validators.required],
       VerifyPassword: ['', Validators.required],
       CreatedBy: ['', Validators.required]
-      //StudentID:['',Validators.required]
-    },
-
-    )
-
-    // this.registerStudentLogin=this.formBuilder.group({
-    //   FirstName:['',Validators.required],
-    //   Lastname:['',Validators.required],
-    //   EMailId:['',Validators.required],
-    //   Role:['',Validators.required],
-    //   CreatedBy:['',Validators.required],
-    //   Password:['',Validators.required],
-    //   VerifyPassword:['',[Validators.required,this.matchValidator]]
-    //   //StudentID:['',Validators.required]
-    //   // passwords:this.formBuilder.group({
-    //   //   Password:['',Validators.required],
-    //   //   VerifyPassword:['',Validators.required]
-    //   // },{validator:this.matchValidator})
-    // }, 
-
-    // )
-
-
+    },);
 
   }
 
@@ -188,23 +124,6 @@ export class CreateStudentComponent implements OnInit {
     return new Date().toISOString().split('T')[0]
   }
 
-  // onSubmit() {
-  //   debugger;
-  //   this.submitted = true;
-
-  //   // stop here if form is invalid
-  //   if (this.registerForm.invalid) {
-  //     return;
-  //   }
-
-  //   this.modalService.show(this.openModal)
-
-  //   // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-
-
-  // }
-
-
 
   matchValidator(group: FormGroup) {
     debugger;
@@ -219,21 +138,6 @@ export class CreateStudentComponent implements OnInit {
       mismatch: true
     }
   }
-
-
-  // MatchPassword(AC: AbstractControl){
-  //    debugger;
-  //   let password=this.registerStudentLogin.controls.Password.value;
-  //   let verifyPassword=this.registerStudentLogin.controls.VerifyPassword.value;
-
-  //   if(password!=verifyPassword){
-  //     AC.get('verifyPassword').setErrors({MatchPassword:true})
-  //   }
-  //   else{
-  //     return null;
-  //   }
-
-  // }
 
 
   openModal(template: TemplateRef<any>) {
@@ -259,21 +163,19 @@ export class CreateStudentComponent implements OnInit {
       ContactNo: this.registerForm.controls.ContactNo.value,
       EmergencyNo: this.registerForm.controls.EmergencyContactNo.value,
       EmailId: this.registerForm.controls.Email.value,
-
       PAddress1: this.registerForm.controls.PAddress1.value,
       PAddress2: this.registerForm.controls.PAddress2.value,
       PCity: this.registerForm.controls.Pcity.value,
       PState: this.registerForm.controls.Pstate.value,
       PSTDCode: this.registerForm.controls.PzipCode.value,
-
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       PayingFees: this.registerForm.controls.payingFeesNow.value
     };
 
 
-    this.CreateNewStudentService.CreateNewStudent(body).subscribe(data =>
+    this.CreateNewStudentService.createNewStudent(body).subscribe(data =>
       // do something, if upload success
-      this.CreateNewStudentService.GetRecentlyCreatedStudent()
+      this.CreateNewStudentService.getRecentlyCreatedStudent()
     );
 
 
@@ -287,9 +189,9 @@ export class CreateStudentComponent implements OnInit {
         animated: true,
         backdrop: 'static'
       });
-      this.CreateNewStudentService.GetAllCourseType();
+      this.CreateNewStudentService.getAllCourseType();
      // this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
-      this.CreateNewStudentService.GetUsersListForFeesTaken();
+      this.CreateNewStudentService.getUsersListForFeesTaken();
     }
   }
 
@@ -307,7 +209,7 @@ export class CreateStudentComponent implements OnInit {
       animated: true,
       backdrop: 'static'
     });
-    this.CreateNewStudentService.GetRolesList();
+    this.CreateNewStudentService.getRolesList();
   }
 
 
@@ -361,17 +263,17 @@ export class CreateStudentComponent implements OnInit {
       : { invalidNumber: { valid: false, value: control.value } }
   }
 
-  ShowUpload() {
+  showUpload() {
 
     this.showSelected = true;
   }
 
-  HideUpload() {
+  hideUpload() {
     this.showSelected = false;
   }
 
 
-  CreateNewStudent(student: CreateStudent) {
+  createNewStudent(student: CreateStudent) {
     debugger;
     let body: CreateStudent = {
       Gender: this.registerForm.controls.gender.value,
@@ -411,7 +313,7 @@ export class CreateStudentComponent implements OnInit {
 
 
 
-  CreateStudentCourse(feesTransaction: FeesTransaction) {
+  createStudentCourse(feesTransaction: FeesTransaction) {
     debugger;
     this.submitStudentFees = true;
     if (this.registerStudentCourse.invalid) {
@@ -439,14 +341,14 @@ export class CreateStudentComponent implements OnInit {
 
     if (confirm("Do you want to submit?")) {
       this.modalRef.hide();
-      this.CreateNewStudentService.CreateStudentCourse(body).subscribe();
-      this.CreateNewStudentService.GetRecentlyCreatedStudent();
+      this.CreateNewStudentService.createStudentCourse(body).subscribe();
+      this.CreateNewStudentService.getRecentlyCreatedStudent();
     }
   }
 
 
 
-  CreateStudentLogin(user: User) {
+  createStudentLogin(user: User) {
     debugger;
 
     this.submitStudentLogin = true;
@@ -473,7 +375,7 @@ export class CreateStudentComponent implements OnInit {
     else
     {
     if (confirm("Are you sure to create a login?")) {
-      this.CreateNewStudentService.CreateStudentLogin(body).subscribe((data) => 
+      this.CreateNewStudentService.createStudentLogin(body).subscribe((data) => 
         {this.modalRef.hide(),
         this.router.navigateByUrl('/StudentList') });
       
@@ -545,23 +447,23 @@ export class CreateStudentComponent implements OnInit {
     this.selectedPayingFeesNow = event.target.value;
   }
 
-  GetCourseNameFromCourseType(courses: Courses) {
+  getCourseNameFromCourseType(courses: Courses) {
     debugger;
     //  let body= {
     //   CourseId:this.selectedUserValue
     //   }
-    this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue)
+    this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue)
 
   }
 
-  GetCourseFeesFromCourseName(courses: Courses) {
+  getCourseFeesFromCourseName(courses: Courses) {
     debugger;
 
-    this.CreateNewStudentService.GetCourseFeesFromCourseName(this.selectedFeesValue)
+    this.CreateNewStudentService.getCourseFeesFromCourseName(this.selectedFeesValue)
 
   }
 
-  CalculateDiscountedAmount() {
+  calculateDiscountedAmount() {
     debugger;
     this.CalculatedDiscountedAmount = ((this.registerStudentCourse.controls.CourseFees.value) - ((this.registerStudentCourse.controls.AnyDiscount.value / 100) * this.registerStudentCourse.controls.CourseFees.value))
     this.registerStudentCourse.controls.NewDiscountedAmount.setValue(this.CalculatedDiscountedAmount)

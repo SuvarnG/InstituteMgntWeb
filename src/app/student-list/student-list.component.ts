@@ -29,36 +29,10 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl='/create-student';
-    this.GetAllStudents();
+    this.getAllStudents();
 
 
     this.registerUpdateStudent =this.formBuilder.group({
-
-      // Gender:[],
-      // FirstName:[],
-      // MiddleName:[],
-      // LastName:[],
-      // DOB:[],
-      // BloodGroup:[],
-      // ContactNo:[],
-      // EmergencyNo:[],
-      // Address1:[],
-      // Address2:[],
-      // City:[],
-      // State:[],
-      // P_Address1:[],
-      // P_Address2:[],
-      // P_City:[],
-      // P_State:[],
-      // P_STDCode:[],
-      // P_ContactNo:[],
-      // CourseType:[],
-      // //Courses:[],
-      // Photo:[],
-      // Email:[],
-      // ZipCode:[],
-      // IsDocumentSubmitted:[],
-
 
       Gender:['',Validators.required],
       FirstName:['',Validators.required],
@@ -77,38 +51,34 @@ export class StudentListComponent implements OnInit {
       P_City:['',Validators.required],
       P_State:['',Validators.required],
       P_STDCode:['',Validators.required],
-      //P_ContactNo:['',Validators.required],
-      //CourseType:['',Validators.required],
-      //Courses:[],
       //Photo:['',Validators.required],
       Email:['',Validators.required],
       ZipCode:['',Validators.required],
       IsDocumentSubmitted:[],
-
 
     })
 
 
   }
 
-  AddNewStudent(){
+  addNewStudent(){
     this.router.navigate([this.returnUrl]);
   }
 
-  GetAllStudents(){
+  getAllStudents(){
     debugger;
-    this.StudentslistService.GetAllStudents().subscribe(res=>this.students=res);
-    }
+    this.StudentslistService.getAllStudents().subscribe(res=>this.students=res);
+  }
 
-    DeleteStudent(id:number){
-      debugger;
-      if(confirm("Are you sure to delete ")){
-      this.StudentslistService.DeleteStudent(id).subscribe(data=>this.GetAllStudents())}
+  deleteStudent(id:number){
+    debugger;
+    if(confirm("Are you sure to delete ")){
+    this.StudentslistService.deleteStudent(id).subscribe(data=>this.GetAllStudents())}
 
-    }
+  }
 
 
-    OpenEditStudentPopup(editStudent:TemplateRef<any>, s){
+  openEditStudentPopup(editStudent:TemplateRef<any>, s){
       debugger;
 
       this.studentID=s.StudentId,
@@ -176,18 +146,18 @@ export class StudentListComponent implements OnInit {
       }
 
       if(confirm("Do you want to Save Changes?")){
-      this.StudentslistService.EditStudent(body).subscribe(data=>{this.GetAllStudents(),this.modalRef.hide()})
+      this.StudentslistService.editStudent(body).subscribe(data=>{this.GetAllStudents(),this.modalRef.hide()})
     }
 
       
     }
 
-    ShowUpload() {
+    showUpload() {
 
       this.showSelected = true;
     }
   
-    HideUpload() {
+    hideUpload() {
       this.showSelected = false;
     }
 

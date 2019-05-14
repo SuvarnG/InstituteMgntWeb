@@ -8,7 +8,7 @@
   <html>
 
   <body>
-    <form [formGroup]="registerFeesTransaction" (ngSubmit)="CreateStudentCourse()">
+    <form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
       <h4>Fees Transaction</h4>
       <div class="row">
         <div class="col-md-6">
@@ -23,7 +23,7 @@
                     <div class="col">
                       <select class="form-control" formControlName="CourseType"
                         [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseType.errors }"
-                        (change)="selectUser($event);GetCourseNameFromCourseType()">
+                        (change)="selectUser($event);getCourseNameFromCourseType()">
                         <option *ngFor="let course of FeesTransactionService.listCourseType"
                           [value]="course.CourseTypeId">
                           {{course.CourseTypeName}}
@@ -42,7 +42,7 @@
                   <div class="form-group">
                     <select class="form-control" formControlName="CourseName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
-                      (change)="selectFees($event);GetCourseFeesFromCourseName();GetStudentListFromCourseName()">
+                      (change)="selectFees($event);getCourseFeesFromCourseName();getStudentListFromCourseName()">
                       <option *ngFor="let course of FeesTransactionService.listCourses" [value]="course.CourseId">
                         {{course.CourseName}}</option>
 

@@ -20,53 +20,48 @@ export class CreateNewStudentService {
   public listRoles:Roles[];
   public listRecentStudent: RecentStudent[]
   public NewStudId:unknown;
-public StudentId:number;
+  public StudentId:number;
   private Url = environment.APIBASEURL + 'Student/CreateStudent';
   private FeesUrl=environment.APIBASEURL+'Student/SaveOrUpdateFeesTransactionForStudent';
   private StudentLoginUrl=environment.APIBASEURL+'Login/CreateNewUser';
-  private GetAllCourseTypeUrl=environment.APIBASEURL+'Course/GetAllCourseType'
+  private GetAllCourseTypeUrl=environment.APIBASEURL+'Course/GetAllCourseType';
 
   constructor(private http: HttpClient) { }
 
-  CreateNewStudent(students:CreateStudent){
-    return this.http.post<CreateStudent>(this.Url,students,httpOptions) //.toPromise().then(result=>this.NewStudId = result as unknown);
-    
+  createNewStudent(students:CreateStudent){
+    return this.http.post<CreateStudent>(this.Url,students,httpOptions) //.toPromise().then(result=>this.NewStudId = result as unknown);    
   }
 
-  CreateStudentCourse(feesTransaction:FeesTransaction){
+  createStudentCourse(feesTransaction:FeesTransaction){
     return this.http.post<FeesTransaction>(this.FeesUrl,feesTransaction,httpOptions)
   }
 
-  CreateStudentLogin(user:User){
+  createStudentLogin(user:User){
     return this.http.post<User>(this.StudentLoginUrl,user,httpOptions)
   }
 
-  GetRecentlyCreatedStudent(){
+  getRecentlyCreatedStudent(){
     this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]
     ) 
   }
 
-  GetAllCourseType(){
+  getAllCourseType(){
     this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
   }
 
-  GetCourseNameFromCourseType(id){
-    debugger;
+  getCourseNameFromCourseType(id){
     this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
   }
 
-  GetCourseFeesFromCourseName(id){
-    debugger;
+  getCourseFeesFromCourseName(id){
     this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
   }
 
-  GetUsersListForFeesTaken(){
-    debugger;
+  getUsersListForFeesTaken(){
     this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
   }
 
-  GetRolesList(){
-    debugger;
+  getRolesList(){
     this.http.get(environment.APIBASEURL+'Student/GetRolesList').toPromise().then(result=>this.listRoles=result as Roles[])
   }
 

@@ -25,33 +25,33 @@ export class FeesTransactionService {
 
 
 
-  GetAllCourseType(){
+  getAllCourseType(){
     debugger;
     this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
   }
 
-  GetCourseNameFromCourseType(id){
+  getCourseNameFromCourseType(id){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
   }
 
-  GetCourseFeesFromCourseName(id){
+  getCourseFeesFromCourseName(id){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
   }
 
-  GetStudentListFromCourseName(id){
+  getStudentListFromCourseName(id){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id).toPromise().then(result=>this.listStudents=result as Students[] )
   }
 
-  GetUsersListForFeesTaken(){
+  getUsersListForFeesTaken(){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
   }
 
-  CreateStudentCourse(feesTransactions:FeesTransactions){
+  createStudentCourse(feesTransactions:FeesTransactions){
     debugger;
-    this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,httpOptions).subscribe()
+    return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,httpOptions)//.subscribe()
   }
 }

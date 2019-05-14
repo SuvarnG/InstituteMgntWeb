@@ -90,7 +90,7 @@
     <!-- <label><b><h4>Student List</h4></b></label> -->
     <!-- <a href="/CreateStudent" class="fas fa-plus-square" (click)="AddNewStudent()"> Create New </a> -->
 
-    <a href="/CreateStudent" class="btn btn-success float-right" title="Create New" (click)="AddNewStudent()"><span class="fas fa-plus-square"></span> </a>
+    <a href="/CreateStudent" class="btn btn-success float-right" title="Create New" (click)="addNewStudent()"><span class="fas fa-plus-square"></span> </a>
     <table border="1px" class="table table-striped custab">
         
       <thead>
@@ -150,12 +150,12 @@
           <td>{{s.Discount}}</td>
           <td>{{s.Remark}}</td>
           <div *ngIf="s.CourseCompleted === false; else loading">
-          <td><span class="btn btn-success"><button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="OpenEditStudentPopup(editStudent, s)" ></button></span></td>
-          <td><span class="btn btn-danger"><button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="DeleteStudent(s.StudentId)"></button></span></td>
+          <td><span class="btn btn-success"><button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="openEditStudentPopup(editStudent, s)" ></button></span></td>
+          <td><span class="btn btn-danger"><button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="deleteStudent(s.StudentId)"></button></span></td>
         </div>
         <ng-template #loading>
             <div><td><button type="button" class="fas fa-edit" disabled>Edit</button></td> 
-              <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)" disabled>Delete</button></td>
+              <td><button type="button" class="btn btn-primary" (click)="deleteStudent(s.StudentId)" disabled>Delete</button></td>
             </div>            
            </ng-template>
         </tr>
@@ -420,11 +420,11 @@
                               <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
                               <div class="form-control" >
                                 <input type="radio" formControlName="IsDocumentSubmitted" [value]="true" name="IsDocumentSubmitted"
-                                  (click)="ShowUpload()">Yes                
+                                  (click)="showUpload()">Yes                
                               </div>
                               <div class="form-control" >
                                 <input type="radio" formControlName="IsDocumentSubmitted" [value]="false" name="IsDocumentSubmitted"
-                                  (click)="HideUpload()">No           
+                                  (click)="hideUpload()">No           
                               </div>
                               <div *ngIf="showSelected">
                                 <input type="file" id="file" (change)="handleFileInput($event.target.files)" />

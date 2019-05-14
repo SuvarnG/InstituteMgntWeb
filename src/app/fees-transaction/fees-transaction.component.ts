@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FeesTransactionService } from './fees-transaction.service';
 import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Models/Students';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,12 +16,12 @@ export class FeesTransactionComponent implements OnInit {
   registerFeesTransaction:FormGroup;
 
 
-  constructor(private FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder) { }
+  constructor(private FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder,
+              private router:Router) { }
 
   ngOnInit() {
-    debugger;
-    this.FeesTransactionService.GetAllCourseType();
-    this.FeesTransactionService.GetUsersListForFeesTaken();
+    this.FeesTransactionService.getAllCourseType();
+    this.FeesTransactionService.getUsersListForFeesTaken();
 
     this.registerFeesTransaction=this.formBuilder.group({
       CourseType:['',Validators.required],
@@ -31,42 +32,33 @@ export class FeesTransactionComponent implements OnInit {
       DateofPayment:['',Validators.required],
       FeesTakenBy:['',Validators.required]
     })
-
-
-    
+   
   }
 
   get g() { return this.registerFeesTransaction.controls; }
 
   selectUser(event) {
-    debugger;
     this.selectedUserValue = event.target.value;
   }
 
   selectFees(event) {
-    debugger;
     this.selectedFeesValue = event.target.value;
   }
 
-  GetCourseNameFromCourseType(courses: Courses) {
-    debugger;
-    this.FeesTransactionService.GetCourseNameFromCourseType(this.selectedUserValue)
+  getCourseNameFromCourseType(courses: Courses) {
+    this.FeesTransactionService.getCourseNameFromCourseType(this.selectedUserValue)
   }
 
-  GetStudentListFromCourseName(student:Students){
-    debugger;
-    this.FeesTransactionService.GetStudentListFromCourseName(this.selectedFeesValue)
+  getStudentListFromCourseName(student: Students) {
+    this.FeesTransactionService.getStudentListFromCourseName(this.selectedFeesValue)
   }
 
-  GetCourseFeesFromCourseName(courses: Courses) {
-    debugger;
-
-    this.FeesTransactionService.GetCourseFeesFromCourseName(this.selectedFeesValue)
+  getCourseFeesFromCourseName(courses: Courses) {
+    this.FeesTransactionService.getCourseFeesFromCourseName(this.selectedFeesValue)
 
   }
 
-  CreateStudentCourse(feesTransactions: FeesTransactions) {
-    debugger;
+  createStudentCourse(feesTransactions: FeesTransactions) {
 
       let body: FeesTransactions={
 
@@ -81,7 +73,8 @@ export class FeesTransactionComponent implements OnInit {
       }
     
       if (confirm("Do you want to submit?")) {
-      this.FeesTransactionService.CreateStudentCourse(body)
+      this.FeesTransactionService.createStudentCourse(body).subscribe(data=>{this.ngOnInit()});
+     
       };
      
     
