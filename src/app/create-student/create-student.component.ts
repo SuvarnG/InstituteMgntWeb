@@ -39,30 +39,6 @@ export class CreateStudentComponent implements OnInit {
   newRecentStudent: RecentStudent[];
   fileToUpload: File = null;
 
- // public listCourseType: CourseType[];
-  // public template: TemplateRef<any>
-
-  // public registerStudentCourse = new FormGroup ({
-  //   StudentID: new FormControl(['',Validators.required]),
-  //   CourseType:new FormControl(['',Validators.required]),
-  //   CourseName:new FormControl(['',Validators.required]),
-  //   FeesAmount:new FormControl(['',Validators.required]),
-  //   AnyDiscount:new FormControl(['',Validators.required]),
-  //   NewDiscountedAmount:new FormControl(['',Validators.required]),
-  //   DateofPayment:new FormControl(['',Validators.required]),
-  //   FeesTakenBy:new FormControl(['',Validators.required]),
-  // });
-
-  // public registerStudentLogin:FormGroup=  new FormGroup({
-  //   FirstName:new FormControl(['',Validators.required]),
-  //   Lastname:new FormControl(['',Validators.required]),
-  //   EMailId:new FormControl(['',Validators.required]),
-  //   Role:new FormControl(['',Validators.required]),
-  //   Password:new FormControl(['',Validators.required]),
-  //   VerifyPassword:new FormControl(['',Validators.required]),
-
-  // });
-
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
     private CreateNewStudentService: CreateNewStudentService,

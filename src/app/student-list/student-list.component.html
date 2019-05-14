@@ -65,12 +65,17 @@
   </div> -->
 
 
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
 
 
+<app-authorised-top-nav></app-authorised-top-nav>
 
+<div class="row">
+  <div class="col-md-2">
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
-
-
+<div class="col-md-10">
 
 <html>
   <body>
@@ -78,13 +83,14 @@
       <fieldset>
       
 
-<div >
+<div id="box">
    
-  <div class="row col-md-10 col-md-offset-1 custyle">
+  <div>
       
-    <label><b><h4>Student List</h4></b></label>
-    <a href="/CreateStudent" class="btn btn-primary float-right" (click)="AddNewStudent()"> Create New </a>
-   
+    <!-- <label><b><h4>Student List</h4></b></label> -->
+    <!-- <a href="/CreateStudent" class="fas fa-plus-square" (click)="AddNewStudent()"> Create New </a> -->
+
+    <a href="/CreateStudent" class="btn btn-success float-right" title="Create New" (click)="AddNewStudent()"><span class="fas fa-plus-square"></span> </a>
     <table border="1px" class="table table-striped custab">
         
       <thead>
@@ -93,7 +99,7 @@
           No.
         </th>
         <th>
-        Name Of Student
+       Student Name
       </th>
       <th>
         Course
@@ -108,16 +114,19 @@
         Course Completed Date
       </th>
       <th>
-        Course Completed
+        Course Status
       </th>
       <th>
         Fees Paid
+        (Rs)
       </th>
       <th>
         Fees Remaining
+        (Rs)
       </th>
-      <th>
+      <th class="discount">
         Discount
+        (%)
       </th>
       <th>
         Remark
@@ -141,11 +150,11 @@
           <td>{{s.Discount}}</td>
           <td>{{s.Remark}}</td>
           <div *ngIf="s.CourseCompleted === false; else loading">
-          <td><button type="button" class="btn btn-primary" (click)="OpenEditStudentPopup(editStudent, s)" >Edit</button></td>
-          <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)">Delete</button></td>
+          <td><span class="btn btn-success"><button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="OpenEditStudentPopup(editStudent, s)" ></button></span></td>
+          <td><span class="btn btn-danger"><button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="DeleteStudent(s.StudentId)"></button></span></td>
         </div>
         <ng-template #loading>
-            <div><td><button type="button" class="btn btn-primary" disabled>Edit</button></td>
+            <div><td><button type="button" class="fas fa-edit" disabled>Edit</button></td> 
               <td><button type="button" class="btn btn-primary" (click)="DeleteStudent(s.StudentId)" disabled>Delete</button></td>
             </div>            
            </ng-template>
@@ -159,7 +168,7 @@
 </form>
 </body>
 </html>
- 
+</div>
 
 
 

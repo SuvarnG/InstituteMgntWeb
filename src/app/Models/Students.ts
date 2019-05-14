@@ -103,6 +103,16 @@ export interface FeesTransaction{
     IsActive:boolean;
 }
 
+export interface FeesTransactions{
+    Id:number;
+    CourseId:number;
+    StudentId:number;
+    //CourseFees:number;
+    DateOfPayment:Date;
+    FeesPaid:number;
+    FeesTakenBy:string;
+}
+
 export interface User{
 
     Id:number;

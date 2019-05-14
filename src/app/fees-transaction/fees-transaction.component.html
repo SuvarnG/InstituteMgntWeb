@@ -1,203 +1,163 @@
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
   <html>
 
-    <body>
-      <form [formGroup]="registerFeesTransaction" (ngSubmit)="CreateStudentCourse()">
-        <fieldset>
-          <div>
-            <table>
-              <tbody>
-  
-  
-                <!-- <tr>
-                  <td colspan="1">
-                    <label for="StudentID">StudentID</label>
-                    <div class="form-group">
-                      <select class="form-control" formControlName="StudentID"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.StudentID.errors }" (change)="selectStudentId($event)">
-                        <option *ngFor="let student of CreateNewStudentService.listRecentStudent"
-                          [value]=" student.StudentId">
-                          {{student.StudentId}}
+  <body>
+    <form [formGroup]="registerFeesTransaction" (ngSubmit)="CreateStudentCourse()">
+      <h4>Fees Transaction</h4>
+      <div class="row">
+        <div class="col-md-6">
+
+          <table>
+            <tbody>
+
+              <tr>
+                <td colspan="1">
+                  <label for="CourseType">Course Type</label>
+                  <div class="row">
+                    <div class="col">
+                      <select class="form-control" formControlName="CourseType"
+                        [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseType.errors }"
+                        (change)="selectUser($event);GetCourseNameFromCourseType()">
+                        <option *ngFor="let course of FeesTransactionService.listCourseType"
+                          [value]="course.CourseTypeId">
+                          {{course.CourseTypeName}}
                         </option>
                       </select>
-                      <div *ngIf="submitStudentFees && g.StudentID.errors" class="invalid-feedback">
-                        <div *ngIf="g.StudentID.errors.required"></div>
+                      <div *ngIf="submitFeesTransaction && g.CourseType.errors" class="invalid-feedback">
+                        <div *ngIf="g.CourseType.errors.required">Course Type is required</div>
                       </div>
                     </div>
-                  </td>
-                </tr> -->
-  
-  
-  
-                <!-- <tr>
-                        <td colspan="1" *ngFor = "let student of CreateNewStudentService.listRecentStudent">
-                           <label for="StudentID">StudentID</label>
-                           <div class="form-group">
-                               <input type="number" class="form-control" value="{{student.StudentId}}" formControlName="StudentID" [ngClass]="{ 'is-invalid': submitted && g.StudentID.errors }" (change)="selectStudentId($event)" >
-                               <div *ngIf="submitted && g.StudentID.errors" class="invalid-feedback">
-                                <div *ngIf="g.StudentID.errors.required"></div>
-                            </div>
-                             </div>
-                        </td>
-                      </tr> -->
-  
-  
-                <!-- <tr>
-                        <td colspan="1" *ngFor = "let student of CreateNewStudentService.listRecentStudent" [value]="student.StudentId">
-                       <label for="StudentID">Student ID</label>
-                           <div class="row">
-                               <div class="col">
-                                 {{student.StudentId}}
-                               </div>
-                           </div>              
-                    </td>
-                  </tr> -->
-  
-  
-  
-                <tr>
-                  <td colspan="1">
-                    <label for="CourseType">Course Type</label>
-                    <div class="row">
-                      <div class="col">
-                        <select class="form-control" formControlName="CourseType"
-                          [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseType.errors }"
-                          (change)="selectUser($event);GetCourseNameFromCourseType()">
-                          <option *ngFor="let course of CreateNewStudentService.listCourseType"
-                            [value]="course.CourseTypeId">
-                            {{course.CourseTypeName}}
-                          </option>
-                        </select>
-                        <div *ngIf="submitStudentFees && g.CourseType.errors" class="invalid-feedback">
-                          <div *ngIf="g.CourseType.errors.required">Course Type is required</div>
-                        </div>
-                      </div>
-  
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1"><label for="CourseName">Course Name</label>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="CourseName"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
+                      (change)="selectFees($event);GetCourseFeesFromCourseName();GetStudentListFromCourseName()">
+                      <option *ngFor="let course of FeesTransactionService.listCourses" [value]="course.CourseId">
+                        {{course.CourseName}}</option>
+
+                    </select>
+                    <div *ngIf="submitFeesTransaction && g.CourseName.errors" class="invalid-feedback">
+                      <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
                     </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="1"><label for="CourseName">Course Name</label>
-                    <div class="form-group">
-                      <select class="form-control" formControlName="CourseName"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseName.errors }"
-                        (change)="selectFees($event);GetCourseFeesFromCourseName()">
-                        <option *ngFor="let course of CreateNewStudentService.listCourses" [value]="course.CourseId">
-                          {{course.CourseName}}</option>
-  
-                      </select>
-                      <div *ngIf="submitStudentFees && g.CourseName.errors" class="invalid-feedback">
-                        <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="1">
+                  <label for="StudentID">Course Fees</label>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="CourseFees"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }">
+                      <option *ngFor="let course of FeesTransactionService.listCourseFees" [value]="course.Fees">
+                        {{course.Fees}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
+                      <div *ngIf="g.CourseFees.errors.required"></div>
                     </div>
-                  </td>
-                </tr>
-  
-                <tr>
-                  <td colspan="1">
-                    <label for="StudentID">Course Fees</label>
-                    <div class="form-group">
-                      <select class="form-control" formControlName="CourseFees"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseFees.errors }"
-                        (change)="selectCourseFees($event)">
-                        <option *ngFor="let course of CreateNewStudentService.listCourseFees" [value]="course.Fees">
-                          {{course.Fees}}
-                        </option>
-                      </select>
-                      <div *ngIf="submitStudentFees && g.CourseFees.errors" class="invalid-feedback">
-                        <div *ngIf="g.CourseFees.errors.required"></div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="1">
+                  <label for="StudentID">Student Name</label>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="StudentID"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }">
+                      <option *ngFor="let student of FeesTransactionService.listStudents" [value]=" student.StudentId">
+                        {{student.FullName}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitFeesTransaction && g.StudentID.errors" class="invalid-feedback">
+                      <div *ngIf="g.StudentID.errors.required"></div>
                     </div>
-                  </td>
-                </tr>
-  
-  
-                      <tr>
-                  <td colspan="1">
-                    <label for="StudentID">StudentID</label>
-                    <div class="form-group">
-                      <select class="form-control" formControlName="StudentID"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.StudentID.errors }" (change)="selectStudentId($event)">
-                        <option *ngFor="let student of CreateNewStudentService.listRecentStudent"
-                          [value]=" student.StudentId">
-                          {{student.StudentId}}
-                        </option>
-                      </select>
-                      <div *ngIf="submitStudentFees && g.StudentID.errors" class="invalid-feedback">
-                        <div *ngIf="g.StudentID.errors.required"></div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-md-6">
+          <table>
+            <tbody>
+              <tr>
+                <td colspan="1">
+                  <label for="FeesAmount">Fees Amount Paying?</label>
+                  <div class="form-group">
+                    <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
+                    <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
+                      <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
                     </div>
-                  </td>
-                </tr> 
-  
-  
-                <tr>
-                  <td colspan="1">
-                    <label for="FeesAmount">Fees Amount Paying?</label>
-                    <div class="form-group">
-                      <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.FeesAmount.errors }">
-                      <div *ngIf="submitStudentFees && g.FeesAmount.errors" class="invalid-feedback">
-                        <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="1">
+                  <label for="DateofPayment">Date of Payment</label>
+                  <div class="form-group">
+                    <input type="date" id="birthDate" class="form-control" placeholder="Date of Payment"
+                      formControlName="DateofPayment"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.DateofPayment.errors }">
+                    <div *ngIf="submitFeesTransaction && g.DateofPayment.errors" class="invalid-feedback">
+                      <div *ngIf="g.DateofPayment.errors.required">Date of Payment is required</div>
                     </div>
-                  </td>
-                </tr>
-  
-  
-                <tr>
-                  <td colspan="1">
-                    <label for="DateofPayment">Date of Payment</label>
-                    <div class="form-group">
-                      <input type="date" id="birthDate" class="form-control" placeholder="Date of Payment"
-                        formControlName="DateofPayment" [ngClass]="{ 'is-invalid': submitStudentFees && g.DateofPayment.errors }">
-                      <div *ngIf="submitStudentFees && g.DateofPayment.errors" class="invalid-feedback">
-                        <div *ngIf="g.DateofPayment.errors.required">Date of Payment is required</div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+
+
+              <tr>
+                <td colspan="1">
+                  <label for="FeesTakenby">Fees Taken By</label>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="FeesTakenBy"
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesTakenBy.errors }">
+                      <option *ngFor="let user of FeesTransactionService.listUsers" [value]="user.Id">
+                        {{user.FirstName}} {{user.LastName}}
+                      </option>
+
+                    </select>
+                    <div *ngIf="submitFeesTransaction && g.FeesTakenBy.errors" class="invalid-feedback">
+                      <div *ngIf="g.FeesTakenBy.errors.required">Fees Taken by is required</div>
                     </div>
-                  </td>
-                </tr>
-  
-  
-                <tr>
-                  <td colspan="1"><label for="FeesTakenby">Fees Taken By</label>
-                    <div class="form-group">
-                      <select class="form-control" formControlName="FeesTakenBy"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.FeesTakenBy.errors }">
-                        <option *ngFor="let user of CreateNewStudentService.listUsers" [value]="user.Id">
-                          {{user.FirstName}} {{user.LastName}}
-                        </option>
-  
-                      </select>
-                      <div *ngIf="submitStudentFees && g.FeesTakenBy.errors" class="invalid-feedback">
-                        <div *ngIf="g.FeesTakenBy.errors.required">Fees Taken by is required</div>
-                      </div>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td colspan="1">
+                  <div class="form-group">
+                    <label for="FeesTakenby"></label>
+                    <div class="form-row">
+                      <button name="button1id" class="btn btn-success" id="SubmitFees">Save</button>
+                      &nbsp;
                     </div>
-                  </td>
-                </tr>
-  
-                <!-- Button (Double) -->
-                <tr>
-                  <td colspan="1">
-                    <div class="form-group">
-  
-                      <div class="form-row">
-                        <button name="button1id" class="btn btn-success" id="SubmitFees"
-                          (click)="CreateStudentCourse()">Save</button>
-                        &nbsp;
-                        <!-- <button name="button2id" class="btn btn-danger" id="CancelFees" (click)="modalRef.hide(template)">Cancel</button> -->
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </fieldset>
-      </form>
-    </body>
-  
-    </html>
-  
-  
-  
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </body>
+
+  </html>
+</div>
