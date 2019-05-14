@@ -1,17 +1,21 @@
-<html>
-<head>
-</head>
-<body>
-  <form>
-    <h3>Expenses</h3>
-    
-<div>
-        <button type="button" class="btn btn-primary pull-right" id="btnAddNewExpense" (click)="AddNewExpense(addExpense)">AddNewExpense</button>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
+        <button type="button" class="btn btn-success pull-right" id="btnAddNewExpense" (click)="AddNewExpense(addExpense)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
+          <span class="fa fa-plus-square" aria-hidden="true"></span></button>
 <div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>No</th>
                 <th>Expense Type</th> 
                 <th>Date</th>
                 <th>Paid By Whom</th>
@@ -20,13 +24,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let e of expenses; let i=index">
-                <td>{{i+1}}</td>
                 <td>{{e.ExpenseType}}</td> 
                 <td>{{e.Date | date:'mediumDate'}}</td>
                 <td>{{e.PaidByWhom}}</td>
                 <td>{{e.Paid}}</td>
                 <td class="text-center"> 
-                         <button type="btn" class="btn btn-primary" (click)="Edit(editExpense,e)"><span class="glyphicon glyphicon-edit"></span> Edit</button> 
+                         <button type="btn" class="btn btn-success" (click)="Edit(editExpense,e)" data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
+                           <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button> 
                 </td>
                  <!-- <td> 
                      <button type="btn" class="btn btn-primary" (click)="Delete(e.ExpenseId)"><span class="glyphicon glyphicon-remove"></span> Del</button>
@@ -34,9 +38,8 @@
             </tr>  
         </tbody>
     </table>
-</div> 
-</div> 
-</form>
+  </div>
+
 <ng-template #editExpense>
   <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()" >
     <div class="modal-header">
@@ -244,5 +247,3 @@
           </div>
         </form>
         </ng-template>
-</body>
-</html>

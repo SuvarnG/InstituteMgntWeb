@@ -34,7 +34,10 @@ expensId:Number;
 ShowCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
 
   this.CreateExpenseForm.controls.expense.reset();
-  this.modalRef = this.modalService.show(CreateExpenseTemplate);
+  this.modalRef = this.modalService.show(CreateExpenseTemplate, {
+    animated: true,
+    backdrop: 'static'
+  });
 }
 onSubmitCreateExpense()
 {
@@ -65,7 +68,10 @@ EditExpense(EditExpenseTemplate: TemplateRef<any>,expense)
     expense:expense.Expenses
   }
   this.EditExpenseForm.patchValue(body);
-  this.modalRef = this.modalService.show(EditExpenseTemplate);
+  this.modalRef = this.modalService.show(EditExpenseTemplate, {
+    animated: true,
+    backdrop: 'static'
+  });
 }
 
 onSubmitEditExpense()

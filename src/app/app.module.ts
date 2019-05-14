@@ -50,8 +50,14 @@ import { ExpenseMasterComponent } from './expense-master/expense-master.componen
 import { ExpenseMasterService } from './expense-master/expense-master.service';
 import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
 import { FeesTransactionService } from './fees-transaction/fees-transaction.service';
+import { BranchComponent } from './branch/branch.component';
+import { Routes } from '@angular/router';
+import { BranchService } from './branch/branch.service';
 
 
+const appRoutes: Routes = [
+  { path: 'TeacherCourses', component: TeacherCoursesComponent }];
+  
 @NgModule({
   declarations: [ 
     AppComponent,
@@ -82,7 +88,8 @@ import { FeesTransactionService } from './fees-transaction/fees-transaction.serv
     BankComponent,
     BanktransactionComponent,
     ExpenseMasterComponent,
-    FeesTransactionComponent
+    FeesTransactionComponent,
+    BranchComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,7 +116,8 @@ import { FeesTransactionService } from './fees-transaction/fees-transaction.serv
   BankService,
   ExpenseMasterService,
   FeesTransactionService,
-  DatePipe
+  DatePipe,
+  BranchService
 ],
 
   bootstrap: [AppComponent]

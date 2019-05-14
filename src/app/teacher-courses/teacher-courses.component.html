@@ -1,6 +1,5 @@
-<html>  
-  <body>
-    <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(template)">
+
+    <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
  <fieldset>
    <legend>Personal Info</legend>
    <table class="table">
@@ -326,7 +325,7 @@
 </p>
 </form>
 
- <ng-template #template>
+ <ng-template #courseTemplate>
     <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)" >
     <div class="modal-header">
       <h4 class="modal-title pull-left">Teacher Course Details</h4>
@@ -499,6 +498,3 @@
         </form>
         </div>
     </ng-template>
-
-   </body>
-</html>

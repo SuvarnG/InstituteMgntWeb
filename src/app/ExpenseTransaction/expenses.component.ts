@@ -64,7 +64,10 @@ export class ExpensesComponent implements OnInit {
     debugger;
     this.ExpenseService.UserList();
     this.ExpenseService.GetAllExpenseType();
-    this.modalRef = this.modalService.show(addExpense);
+    this.modalRef = this.modalService.show(addExpense, {
+      animated: true,
+      backdrop: 'static'
+    });
   }
 
   Delete(expenseID) 
@@ -118,7 +121,10 @@ export class ExpensesComponent implements OnInit {
       ExpenseId:e.ExpenseId
     });
    // this.editExpenseForm.patchValue(body); 
-    this.modalRef = this.modalService.show(editExpense);
+    this.modalRef = this.modalService.show(editExpense, {
+      animated: true,
+      backdrop: 'static'
+    });
     this.ExpenseService.GetAllExpenseType();
     this.ExpenseService.UserList();
   }

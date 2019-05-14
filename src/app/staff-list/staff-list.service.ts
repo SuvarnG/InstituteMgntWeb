@@ -37,7 +37,7 @@ export class StaffListService {
  
 getAllTeachers(){
   debugger;
-return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher',httpOptions)
+return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetTeacher',httpOptions)
 .pipe(map(StaffMaster=>{
   console.log(StaffMaster);
   return StaffMaster;

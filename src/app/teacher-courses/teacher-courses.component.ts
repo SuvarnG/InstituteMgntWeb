@@ -96,7 +96,7 @@ this.staffLoginForm=this.formBuilder.group({
         return;
       }
       else{
-        if(this.registerStaffForm.controls.IsFixedPayment.value=="true"){
+        if(this.registerStaffForm.controls.IsFixedPayment.value=="false"){
           this.teacherCoursesService.GetAllCourseType();
          // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
           this.modalRef = this.modalService.show(template); 
