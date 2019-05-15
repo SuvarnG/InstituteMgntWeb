@@ -83,7 +83,8 @@ export interface CreateStudent{
     DOB:Date,
     EmergencyNo:string,
     IsDocumentSubmitted:boolean,
-    PayingFees:boolean
+    PayingFees:boolean,
+    Photo:string
     //PayingFees:string
 }
 

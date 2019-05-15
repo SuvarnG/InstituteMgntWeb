@@ -25,6 +25,7 @@ export class CreateNewStudentService {
   private FeesUrl=environment.APIBASEURL+'Student/SaveOrUpdateFeesTransactionForStudent';
   private StudentLoginUrl=environment.APIBASEURL+'Login/CreateNewUser';
   private GetAllCourseTypeUrl=environment.APIBASEURL+'Course/GetAllCourseType';
+  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
 
   constructor(private http: HttpClient) { }
 
@@ -65,14 +66,44 @@ export class CreateNewStudentService {
     this.http.get(environment.APIBASEURL+'Student/GetRolesList').toPromise().then(result=>this.listRoles=result as Roles[])
   }
 
-  postFile(fileToUpload: File): Observable<boolean> {
+//   postFile(formData){
+//     debugger;
+//     //const endpoint = this.uploadUrl     //'http://localhost:50076/api/Upload/PostUserImage'
+//     //const formData = new FormData();
+//     //formData.append('Files', fileToUpload.name);
+//     return this.http.post<any>(this.uploadUrl, formData, httpOptions)
+//       .pipe(map(() => { return true; }))
+// }
+
+
+postFile(formData)
+  {
     debugger;
-    const endpoint = 'http://localhost:50076/api/Student/UploadFile'
-    const formData: FormData = new FormData();
-    formData.append('fileKey', fileToUpload, fileToUpload.name);
-    return this.http.post(endpoint, formData, httpOptions)
-      .pipe(map(() => { return true; }))
-}
+    return this.http.post<any>(this.uploadUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
+
+  postPhoto(formData)
+  {
+    debugger;
+    return this.http.post<any>(this.uploadUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    });
+  }
+
+// postFile(fileToUpload: File): Observable<boolean> {
+//       debugger;
+//       let formData: FormData = new FormData();
+//       formData.append('file', fileToUpload);
+
+//      this.http.put(this.uploadUrl , formData) .subscribe(data => {console.log(data);},
+//     error => {
+//         console.log(error);});
+//   }
 
 
 }

@@ -65,7 +65,7 @@
                       </option>
                     </select>
                     <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
-                      <div *ngIf="g.CourseFees.errors.required"></div>
+                      <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
                     </div>
                   </div>
                 </td>
@@ -82,7 +82,7 @@
                       </option>
                     </select>
                     <div *ngIf="submitFeesTransaction && g.StudentID.errors" class="invalid-feedback">
-                      <div *ngIf="g.StudentID.errors.required"></div>
+                      <div *ngIf="g.StudentID.errors.required">Student Name Required</div>
                     </div>
                   </div>
                 </td>

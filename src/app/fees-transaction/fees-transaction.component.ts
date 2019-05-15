@@ -14,6 +14,7 @@ export class FeesTransactionComponent implements OnInit {
   selectedUserValue:number;
   selectedFeesValue:number;
   registerFeesTransaction:FormGroup;
+  submitFeesTransaction:boolean;
 
 
   constructor(private FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder,
@@ -27,7 +28,7 @@ export class FeesTransactionComponent implements OnInit {
       CourseType:['',Validators.required],
       CourseName:['',Validators.required],
       CourseFees:['',Validators.required],
-      StudentID:[],
+      StudentID:['',Validators.required],
       FeesAmount:['',Validators.required],
       DateofPayment:['',Validators.required],
       FeesTakenBy:['',Validators.required]
@@ -60,6 +61,12 @@ export class FeesTransactionComponent implements OnInit {
 
   createStudentCourse(feesTransactions: FeesTransactions) {
 
+    debugger;
+    this.submitFeesTransaction=true;
+    if(this.registerFeesTransaction.invalid){
+      return
+    }
+
       let body: FeesTransactions={
 
         Id:0,
@@ -73,7 +80,14 @@ export class FeesTransactionComponent implements OnInit {
       }
     
       if (confirm("Do you want to submit?")) {
-      this.FeesTransactionService.createStudentCourse(body).subscribe(data=>{this.ngOnInit()});
+      this.FeesTransactionService.createStudentCourse(body).subscribe(data=>{
+              this.router.navigateByUrl('/FeesTransaction')
+      });
+      // this.registerFeesTransaction.controls.CourseName.reset();
+      // this.registerFeesTransaction.controls.StudentID.reset();
+      // this.registerFeesTransaction.controls.DateofPayment.reset();
+      // this.registerFeesTransaction.controls.FeesAmount.reset();
+      // this.registerFeesTransaction.controls.FeesTakenBy.reset()
      
       };
      

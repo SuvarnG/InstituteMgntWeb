@@ -161,6 +161,10 @@ export class StudentListComponent implements OnInit {
       this.showSelected = false;
     }
 
+    printPage(){
+      window.print();
+    }
+
     get f() {return this.registerUpdateStudent.controls}
 
 

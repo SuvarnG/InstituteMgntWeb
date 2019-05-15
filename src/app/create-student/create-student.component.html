@@ -7,7 +7,7 @@
 
   <div class="col-md-10">
 
-
+<div id="v-scroll">
   <html>
     <body>
       <form [formGroup]="registerForm" (ngSubmit)="openModal(template)">
@@ -275,6 +275,21 @@
               </tr>
 
 
+
+              <tr>
+                  <td colspan="1">
+                    <label for="IsDocumentSubmitted"> Upload Photo </label>
+                    <div> 
+                        <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
+                        id="Documents" [ngClass]="{ 'is-invalid': submitted && f.Photo.errors }">
+                        <button type="button" (click)="onUploadPhoto()">Upload</button>
+                    </div>
+                  </td>
+                </tr>
+
+              
+
+
               <tr>
                 <td colspan="1">
                   <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
@@ -287,8 +302,13 @@
                       (click)="hideUpload()" [checked]="true">No
                   </div>
                   <div *ngIf="showSelected">
-                    <input type="file" id="file" (change)="handleFileInput($event.target.files)" />
-                    <input type="button" value="Upload" (click)="uploadFileToActivity()">
+
+                      <input type="file" formControlName="Documents" (change)="handleFileInput($event)"
+                      id="Documents" [ngClass]="{ 'is-invalid': submitted && f.Documents.errors }">
+                      <button type="button" (click)="onUploadFile()">Upload</button>
+
+                    <!-- <input type="file" id="file" formControlName="Documents"  (change)="handleFileInput($event)" />
+                    <input type="button" (click)="onUploadFile()"> -->
                   </div>
                 </td>
               </tr>
@@ -343,7 +363,7 @@
 
     </html>
   </div>
-
+</div>
   <ng-template #template>
     <!-- <div class="modal-header">
       <h4 class="modal-title pull-left">Paying Fees</h4>

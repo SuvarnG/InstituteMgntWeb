@@ -68,7 +68,9 @@ export class CreateStudentComponent implements OnInit {
       EmergencyContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       Email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
-      payingFeesNow: ['', Validators.required]
+      payingFeesNow: ['', Validators.required],
+      Documents:[],
+      Photo:[]
     });
 
 
@@ -168,6 +170,7 @@ export class CreateStudentComponent implements OnInit {
       PCity: this.registerForm.controls.Pcity.value,
       PState: this.registerForm.controls.Pstate.value,
       PSTDCode: this.registerForm.controls.PzipCode.value,
+      Photo:this.registerForm.controls.Photo.value.name,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       PayingFees: this.registerForm.controls.payingFeesNow.value
     };
@@ -273,43 +276,43 @@ export class CreateStudentComponent implements OnInit {
   }
 
 
-  createNewStudent(student: CreateStudent) {
-    debugger;
-    let body: CreateStudent = {
-      Gender: this.registerForm.controls.gender.value,
-      FirstName: this.registerForm.controls.firstName.value,
-      MiddleName: this.registerForm.controls.middleName.value,
-      LastName: this.registerForm.controls.lastName.value,
-      Address1: this.registerForm.controls.Address1.value,
-      Address2: this.registerForm.controls.Address2.value,
-      City: this.registerForm.controls.city.value,
-      State: this.registerForm.controls.state.value,
-      STDCode: this.registerForm.controls.zipCode.value,
-      DOB: this.registerForm.controls.dateOfBirth.value,
-      BloodGroup: this.registerForm.controls.bloodgroup.value,
-      ContactNo: this.registerForm.controls.ContactNo.value,
-      EmergencyNo: this.registerForm.controls.EmergencyContactNo.value,
-      EmailId: this.registerForm.controls.Email.value,
+  // createNewStudent(student: CreateStudent) {
+  //   debugger;
+  //   let body: CreateStudent = {
+  //     Gender: this.registerForm.controls.gender.value,
+  //     FirstName: this.registerForm.controls.firstName.value,
+  //     MiddleName: this.registerForm.controls.middleName.value,
+  //     LastName: this.registerForm.controls.lastName.value,
+  //     Address1: this.registerForm.controls.Address1.value,
+  //     Address2: this.registerForm.controls.Address2.value,
+  //     City: this.registerForm.controls.city.value,
+  //     State: this.registerForm.controls.state.value,
+  //     STDCode: this.registerForm.controls.zipCode.value,
+  //     DOB: this.registerForm.controls.dateOfBirth.value,
+  //     BloodGroup: this.registerForm.controls.bloodgroup.value,
+  //     ContactNo: this.registerForm.controls.ContactNo.value,
+  //     EmergencyNo: this.registerForm.controls.EmergencyContactNo.value,
+  //     EmailId: this.registerForm.controls.Email.value,
 
-      PAddress1: this.registerForm.controls.PAddress1.value,
-      PAddress2: this.registerForm.controls.PAddress2.value,
-      PCity: this.registerForm.controls.Pcity.value,
-      PState: this.registerForm.controls.Pstate.value,
-      PSTDCode: this.registerForm.controls.PzipCode.value,
+  //     PAddress1: this.registerForm.controls.PAddress1.value,
+  //     PAddress2: this.registerForm.controls.PAddress2.value,
+  //     PCity: this.registerForm.controls.Pcity.value,
+  //     PState: this.registerForm.controls.Pstate.value,
+  //     PSTDCode: this.registerForm.controls.PzipCode.value,
 
-      IsDocumentSubmitted: true,
-      PayingFees: this.registerForm.controls.payingFeesNow.value
-    };
+  //     IsDocumentSubmitted: true,
+  //     PayingFees: this.registerForm.controls.payingFeesNow.value
+  //   };
 
 
-    // // this.CreateNewStudentService.CreateNewStudent(body).subscribe(data=>{
-    // //   this.CreateNewStudentService.GetRecentlyCreatedStudent();
-    // }
+  //   // // this.CreateNewStudentService.CreateNewStudent(body).subscribe(data=>{
+  //   // //   this.CreateNewStudentService.GetRecentlyCreatedStudent();
+  //   // }
 
-    // );
+  //   // );
 
-    // this.CreateNewStudentService.GetRecentlyCreatedStudent();
-  }
+  //   // this.CreateNewStudentService.GetRecentlyCreatedStudent();
+  // }
 
 
 
@@ -388,19 +391,74 @@ export class CreateStudentComponent implements OnInit {
   //   this.CreateNewStudentService.GetAllCourseType().subscribe(data=>this.listCourseType=data)
   // }
 
-  handleFileInput(files: FileList) {
+  // handleFileInput(files: FileList) {
+  //   debugger;
+  //   this.fileToUpload = files.item(0);
+  // }
+
+
+  // onFileChange(event) {
+  //   debugger;
+  //   let reader = new FileReader();
+  //   if(event.target.files && event.target.files.length > 0) {
+  //     let file = event.target.files[0];
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.registerForm.setValue({
+  //         filename: file.name,
+  //         filetype: file.type
+  //        // value: reader.result.split(',')[1]
+  //       })
+  //     };
+  //   }
+  // }
+
+  // uploadFileToActivity() {
+  //   debugger;
+  //   this.CreateNewStudentService.postFile(this.fileToUpload).subscribe(data => {
+  //     // do something, if upload success
+  //   }, error => {
+  //     console.log(error);
+  //   });
+  // }
+
+
+  handleFileInput(event:any){
     debugger;
-    this.fileToUpload = files.item(0);
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.registerForm.get('Documents').setValue(file);
+    }
   }
 
-  uploadFileToActivity() {
+  handlePhotoInput(event:any){
     debugger;
-    this.CreateNewStudentService.postFile(this.fileToUpload).subscribe(data => {
-      // do something, if upload success
-    }, error => {
-      console.log(error);
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.registerForm.get('Photo').setValue(file);
+    }
+  }
+
+  onUploadFile()
+  {
+    debugger;
+    const formData = new FormData();
+    formData.append('profile',this.registerForm.get('Documents').value)//this.registerForm.get('Documents').value);
+    this.CreateNewStudentService.postFile(formData).subscribe(res=>{
+          console.log(res);        
     });
   }
+
+  onUploadPhoto()
+  {
+    debugger;
+    const formData = new FormData();
+    formData.append('profile',this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
+    this.CreateNewStudentService.postPhoto(formData).subscribe(res=>{
+          console.log(res);        
+    });
+  }
+
 
   selectStudentId(event) {
     debugger;

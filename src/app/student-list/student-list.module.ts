@@ -5,6 +5,7 @@ import { AuthorisedTopNavComponent } from '../layout/authorised/authorised-top-n
 import { AuthorisedLayoutComponent } from '../layout/authorised/authorised-layout/authorised-layout.component';
 
 
+
 @NgModule({
   declarations: [AuthorisedSideNavComponent,
                 AuthorisedTopNavComponent,
