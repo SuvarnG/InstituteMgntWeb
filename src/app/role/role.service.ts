@@ -18,6 +18,7 @@ export class RoleService {
   private Url = environment.APIBASEURL + 'Role/GetAll';
   private deleteUrl = environment.APIBASEURL + 'Role/DeleteRole/';
   private createUrl = environment.APIBASEURL + 'Role/CreateRole';
+  private UpdateUrl = environment.APIBASEURL + 'Role/UpdateRole';
 
   constructor(private http: HttpClient) { }
 
@@ -48,6 +49,14 @@ CreateRole(RoleName:string):Observable<Roles>{
       tap(_ => console.log(`created role RoleName=${RoleName}`))
     
   );
+}  
+
+EditRole(role):Observable<Roles>{
+   
+  return this.http.post<Roles>(this.UpdateUrl,role, httpOptions).pipe(
+    tap((role:Roles)=>console.log('Update RoleID=${role.rOleId}'))
+  
+);
 }  
 }
 

@@ -1,6 +1,6 @@
 <div class="container">
   <h2>Roles
-    <button type="submit" class="btn btn-primary" style="margin-left:780px" (click)="openModal(template)">Add</button>
+    <button type="submit" class="btn btn-primary" style="margin-left:780px" (click)="openModal(template)" data-target="#myupdate" data-toggle="modal">Add</button>
   </h2>
   <table class="table table-bordered">
     <thead>
@@ -19,7 +19,7 @@
         <td>{{r.RoleName}}</td>
         <!-- <td>{{r.IsActive}}</td> -->
         <td>
-          <button type="submit" style="margin-right:5px" class="btn btn-primary" (click)="openModal(template)">Edit</button>
+          <button type="submit" style="margin-right:5px" class="btn btn-primary" (click)="EditRole(editTemplate,r)">Edit</button>
           <button type="submit"  class="btn btn-primary"  (click)="Delete(r.roleID)">Delete</button></td>
       </tr>
     </tbody>
@@ -32,7 +32,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Modal</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -45,7 +45,33 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">Save</button>
-        <button class="btn btn-primary">Cancel</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+<ng-template #editTemplate>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit Role</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="role">Role : </label>
+      <input type="text" class="form-control" formControlName="role"
+        [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
+      <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+        <div *ngIf="f.role.errors.required">First </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="margin:5px" (click)="UpdateRole(RoleName.value)">Save</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
     </div>
   </form>

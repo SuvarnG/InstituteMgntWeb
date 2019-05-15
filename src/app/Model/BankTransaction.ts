@@ -1,13 +1,10 @@
 export interface BankTransaction{
-    //ID:Number,
+    ID:Number,
     BankName:string,
-    AccountNumber:string,
+    AccountNo:string,
     TransactionType:string,
     Date:Date,
     Amount:string,
-    FirstName: string,
-    MiddleName:string,
-    LastName:string,
-    ByWhom:string,
+    TransactionBy:string
     
 }

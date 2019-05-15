@@ -20,6 +20,9 @@ export class RoleComponent {
   registerForm: FormGroup;
   submitted = false;
   public roles: Roles[];
+  public ID:number;
+
+
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private RoleService: RoleService,
     private route: ActivatedRoute) { }
@@ -43,7 +46,7 @@ export class RoleComponent {
       return;
     }
 
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
   }
 
 
@@ -55,13 +58,20 @@ export class RoleComponent {
     });
   }
 
-  ListModal(template1: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template1, {
-      animated: true,
-      backdrop: 'static'
-    });
+  // openModal1(template1: TemplateRef<any>) {
+  //   this.modalRef = this.modalService.show(template1, {
+  //     animated: true,
+  //     backdrop: 'static'
+  //   });
+  // }
 
-  }
+  // ListModal(template1: TemplateRef<any>) {
+  //   this.modalRef = this.modalService.show(template1, {
+  //     animated: true,
+  //     backdrop: 'static'
+  //   });
+
+  // }
 
   getRoles() {
     this.RoleService.roleList().subscribe(res => this.roles = res);
@@ -69,10 +79,10 @@ export class RoleComponent {
   }
 
 
-  Delete(roleID){
-    var ans = confirm("Do you want to delete Role with Id: " + roleID);  
-    if (ans) {  
-      this.RoleService.deleteRole(roleID).subscribe(data=>{
+  Delete(roleID) {
+    var ans = confirm("Do you want to delete Role with Id: " + roleID);
+    if (ans) {
+      this.RoleService.deleteRole(roleID).subscribe(data => {
         this.getRoles();
       }, error => console.error(error))
     }
@@ -80,10 +90,36 @@ export class RoleComponent {
 
 
 
-   CreateRole(RoleName:string){
-this.RoleService.CreateRole(RoleName).subscribe(data=>{
-  this.getRoles();
-},error => console.error(error))
-   }
+  CreateRole(RoleName: string) {
+    this.RoleService.CreateRole(RoleName).subscribe(data => {
+      this.modalRef.hide();
+      this.getRoles();
+    }, error => console.error(error))
   }
+
+  EditRole(editTemplate: TemplateRef<any>,role){
+    debugger;
+this.ID=role.roleID;
+    let body={
+      role:role.RoleName
+    }
+    this.registerForm.patchValue(body);
+    this.modalRef = this.modalService.show(editTemplate, {
+      animated: true,
+      backdrop: 'static'
+    });
+  }
+  UpdateRole() {
+    debugger;
+    let body={
+      RoleName:this.registerForm.controls.role.value,
+      roleId:this.ID
+    }
+    this.RoleService.EditRole(body).subscribe(data => {
+      this.modalRef.hide();
+      this.getRoles();
+     }, error => console.error(error))
+  }
+
+}
 

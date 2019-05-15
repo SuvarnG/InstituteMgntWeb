@@ -53,7 +53,7 @@ import { FeesTransactionService } from './fees-transaction/fees-transaction.serv
 import { BranchComponent } from './branch/branch.component';
 import { Routes } from '@angular/router';
 import { BranchService } from './branch/branch.service';
-
+import { BanktransactionService } from './banktransaction/banktransaction.service';
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
@@ -117,7 +117,8 @@ const appRoutes: Routes = [
   ExpenseMasterService,
   FeesTransactionService,
   DatePipe,
-  BranchService
+  BranchService,
+  BanktransactionService
 ],
 
   bootstrap: [AppComponent]

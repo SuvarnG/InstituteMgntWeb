@@ -1,13 +1,7 @@
 export interface Bank{
-   // ID: number,
-    BankName:string,
-    AccountNumber:string,
+     BankName:string,
+    AccountNo:string,
     AccountType:string,
-    //IsActive:boolean
+    IFSC_Code:string
+  
 }
-// export interface CreateBankAccount{
-//     BankName:string,
-//     AccountNumber:string,
-//     AccountType:string,
-//     IsActive:boolean
-// }

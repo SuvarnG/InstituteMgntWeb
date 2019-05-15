@@ -1,140 +1,168 @@
-                
-
-           <div class="container">
-              <h2>Bank  
-              <button type="submit"  class="btn btn-primary" style="margin-left:800px" (click)="openModal(template)">Add</button> </h2>    
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <!-- <th>BankId</th> -->
-                    <th>Name</th>
-                    <th>Account Number</th>
-                    <th>Type</th>
-                    <!-- <th>IsActive</th> -->
-                    <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let b of banks">
-                      <!-- <td>{{b.ID}}</td> -->
-                      <td>{{b.BankName}}</td>
-                      <td>{{b.AccountNo}}</td>
-                    <td>{{b.AccountType}}</td>
-                    <!-- <td>{{b.IsActive}}</td> -->
-                    <td>
-                    <button type="submit" style="margin-right:5px" class="btn btn-primary" (click)="openModal1(template1)">Edit</button>
-                    <button type="submit"  class="btn btn-primary" (click)="Delete(b.ID)">Delete</button></td>
-                  
-                  </tr>
-                  </tbody>
-                </table>
-              </div>
-
-
-
-
-
-              <ng-template #template>
-                  <div class="modal-header">
-                    <h4 class="modal-title pull-left">New</h4>
-                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                      
-                      <div class="form-group">
-                          <label for="BankName" class="control-label-col-sm-2">Bank Name :  </label> 
-                          <input type="text" class="form-control" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
-                          f.BankName.errors }">
-                          <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
-                              <div *ngIf="f.BankName.errors.required">Please Enter Bank Name</div>
-                          </div>
-                        </div>
-                  
-                    
-                    <div class="form-group">
-                    <label for="AccountNo">Account Number :  </label>
-                    
-                    <input type="text" class="form-control" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
-                    f.AccountNo.errors }">
-                    <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
-                        <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
-                    
-                    <div *ngIf="f.AccountNo.errors.minlength">Account Number must be at least 6 characters</div>
-                  </div></div>
-            
-
-
-                    <div class="form-group">
-                        <label for="ReAccountNo" >Re-Enter Account Number :  </label>
-                        
-                        <input type="password" class="form-control" formControlName="ReAccountNo" [ngClass]="{ 'is-invalid': submitted &&
-                        f.ReAccountNo.errors }">
-                        <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
-                            <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
-                            <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
-                        </div>
-                      </div>
-                
+<div class="container">
+  <h2>Bank
+    <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="openModal(template)">Add</button>
+  </h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
         
-                    <div class="form-group">
-                    <label for="Type">Type :  </label>
-                    <input type="text" class="form-control" formControlName="Type" [ngClass]="{ 'is-invalid': submitted &&
-                    f.Type.errors }">
-                    <div *ngIf="submitted && f.Type.errors" class="invalid-feedback">
-                        <div *ngIf="f.Type.errors.required">Please Enter Type </div>
-                    </div>
-                  </div>
+        <th>Name</th>
+        <th>Account Number</th>
+        <th>AccountType</th>
+        <th>IFSC_Code</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of banks">
+         <td>{{b.BankName}}</td>
+        <td>{{b.AccountNo}}</td>
+        <td>{{b.AccountType}}</td>
+        <td>{{b.IFSC_Code}}</td>
+        <td>
+          <button type="submit" style="margin-right:5px" class="btn btn-default"
+            (click)="EditAccNo(editTemplate,b)"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="submit" class="btn btn-default" (click)="Delete(b.ID)"><i style='font-size:24px' class="fa fa-trash" aria-hidden="true"></i></button></td>
 
-                        <!-- <div class="radio">
-                            <label class="control-label-col-sm-2">Is Active :  </label><br>
-                            <label><input type="radio" name="optradio" checked> Yes</label>
-                          </div>
-                          <div class="radio">
-                            <label><input type="radio" name="optradio"> No</label>
-                          </div>
-                           -->
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="registerForm"  (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="BankName" class="control-label-col-sm-2">Bank Name : </label>
+        <input type="text" class="form-control" formControlName="BankName" value="" [ngClass]="{ 'is-invalid': submitted &&
+                          f.BankName.errors }" placeholder="Enter Bank name">
+        <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
+          <div *ngIf="f.BankName.errors.required">Please Enter Bank Name</div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <label for="AccountNo">Enter Account Number : </label>
+
+        <input type="text" class="form-control" formControlName="AccountNo"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
+                           f.AccountNo.errors }" placeholder="Enter Account Number">
+        <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
+          <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
+          <div *ngIf="f.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ReAccountNo">Re-Enter Account Number : </label>
+
+        <input type="password" class="form-control" formControlName="ReAccountNo"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
+                        f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
+        <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
+          <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
+          <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
+        </div>
+      </div>
+
+  <div class="radio">
+        <label class="control-label-col-sm-2">Account Type : </label><br>
+        <label><input type="radio" name="AccountType" formControlName="AccountType"  value="Saving" checked>Saving</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="AccountType"  formControlName="AccountType" value="Current">Current</label>
+      </div>
+
+      
+      <div *ngIf="submitted && f.AccountType.errors" class="invalid-feedback">
+        <div *ngIf="f.AccountType.errors.required">Please Enter IFSC Code </div>
+      </div>
+
+      <div class="form-group">
+          <label for="IFSC_Code">IFSC_Code : </label>
+          <input type="text" class="form-control" formControlName="IFSC_Code" [ngClass]="{ 'is-invalid': submitted &&
+                      f.IFSC_Code.errors }" placeholder="Enter IFSC Code">
+          <div *ngIf="submitted && f.IFSC_Code.errors" class="invalid-feedback">
+            <div *ngIf="f.IFSC_Code.errors.required">Please Enter IFSC Code </div>
+          </div>
+        </div>
+      
+
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" id="submit">save</button>
+        <button type="submit" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="registerForm" (ngSubmit)="UpdateAccNo()">
+          <div class="form-group">
+          <label for="BankName">Bank Name : </label>
+          <input type="text" class="form-control" formControlName="BankName" name="BankName" disabled>
+        </div>
+      <div class="form-group">
+        <label for="AccountNo">Enter Account Number : </label>
+
+        <input type="text" class="form-control" formControlName="AccountNo"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
+                                     f.AccountNo.errors }" placeholder="Enter Account Number">
+        <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
+          <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
+          <div *ngIf="f.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="ReAccountNo">Re-Enter Account Number : </label>
+
+        <input type="password" class="form-control" formControlName="ReAccountNo"
+          onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
+                                  f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
+        <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
+          <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
+          <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
+        </div>
+      </div>
+
+        <div class="radio">
+          <label class="control-label-col-sm-2">Account Type : </label><br>
+          <label><input type="radio" name="AccountType" formControlName="AccountType" value="Saving">Saving</label>
+        </div>
+        <div class="radio">
+          <label><input type="radio" name="AccountType"  formControlName="AccountType" value="Current">Current</label>
+        </div>
         
-                          <div class="form-group">
-                              <button class="btn btn-primary" (click)="Submit()" >save</button> 
-                       <!-- <button type="submit" class="btn btn-primary">Cancel</button> </form> -->
-                  </div>
-                  </form>
-                </div>
-                </ng-template>
 
+        <div class="form-group">
+            <label for="IFSC_Code">IFSCCode : </label>
+            <input type="text" class="form-control" formControlName="IFSC_Code" name="IFSC_Code" disabled >
+          </div>
+  
 
-
-                <ng-template #template1>
-                    <div class="modal-header">
-                      <h4 class="modal-title pull-left">New</h4>
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                        
-                            <div class="form-group">
-                                <label for="AccountNo">Account Number :  </label>
-                                
-                                <input type="text" class="form-control" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
-                                f.AccountNo.errors }">
-                                <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
-                                    <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
-                                
-                                <div *ngIf="f.AccountNo.errors.minlength">Account Number must be at least 6 characters</div>
-                              </div></div>
-                              <div class="form-group">
-                                  <button class="btn btn-primary">save</button> 
-                             </div>
-                        </form>
-                      </div>
-                      </ng-template>
-        
-          
-        
-
-     
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

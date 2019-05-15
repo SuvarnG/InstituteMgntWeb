@@ -19,6 +19,10 @@ import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';
 import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
 import { BranchComponent } from './branch/branch.component';
+import { RoleComponent } from './role/role.component';
+import { BankComponent } from './bank/bank.component';
+import { BanktransactionComponent } from './banktransaction/banktransaction.component';
+
 
 const routes: Routes = [
  {
@@ -108,6 +112,20 @@ component: FeesTransactionComponent
 
 { path: 'Branch',
 component: BranchComponent
+},
+
+{
+  path: 'role',
+  component: RoleComponent
+},
+
+{
+  path: 'BankTransaction',
+  component: BanktransactionComponent
+},
+{
+  path: 'Bank',
+  component: BankComponent
 }
 
 ];

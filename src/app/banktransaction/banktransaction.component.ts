@@ -5,6 +5,10 @@ import { BanktransactionService } from './banktransaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StaffMaster } from '../Model/StaffMaster';
 
+import { BankNames } from '../Model/BankNames';
+import { Accountnumbers } from '../Model/AccountNumber';
+import { BankTransaction } from '../Model/BankTransaction';
+
 @Component({
   selector: 'app-banktransaction',
   templateUrl: './banktransaction.component.html',
@@ -12,18 +16,35 @@ import { StaffMaster } from '../Model/StaffMaster';
 })
 export class BanktransactionComponent {
   modalRef: BsModalRef;
-  registerForm: FormGroup;
+  CreateFormGroup: FormGroup;
+  UpdateFormGroup: FormGroup;
   submitted = false;
   returnUrl: string;
   public banktransactions = [];
   public staffMasters: StaffMaster[];
+  bankName: string;
+  public banknames: BankNames[];
+  public listaccno: BankTransaction[];
+  public accountnumbers: Accountnumbers[];
+public bankTransactionId:number;
+
+
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private BanktransactionService: BanktransactionService,
     private route: ActivatedRoute) { }
 
-  openModal(template: TemplateRef<any>) {
+  AddBank(template: TemplateRef<any>) {
+    debugger;
+    this.getBankTransaction();
+    this.CreateFormGroup.controls.ID.reset,
+    this.CreateFormGroup.controls.BankName.reset,
+     this.CreateFormGroup.controls.AccountNo.reset,
+      this.CreateFormGroup.controls.TransactionType.reset,
+     this.CreateFormGroup.controls.Date.reset,
+     this.CreateFormGroup.controls.Amount.reset,
+      this.CreateFormGroup.controls.TransactionBy.reset
 
-   // this.BanktransactionService.TransactionByWhom();
+    this.getBankList();
     this.modalRef = this.modalService.show(template, {
       animated: true,
       backdrop: 'static'
@@ -33,7 +54,6 @@ export class BanktransactionComponent {
 
   openModal1(template1: TemplateRef<any>) {
 
-    //  this.BanktransactionService.TransactionByWhom().subscribe(res=>this.staffMaster=res);
     this.modalRef = this.modalService.show(template1, {
       animated: true,
       backdrop: 'static'
@@ -42,60 +62,127 @@ export class BanktransactionComponent {
   }
 
   ngOnInit() {
-    this.registerForm = this.formBuilder.group({
+    this.CreateFormGroup = this.formBuilder.group({
+      ID:[],
       BankName: ['', Validators.required],
       AccountNo: ['', Validators.required],
-      // TransactionType: ['', Validators.required],
+      TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
-      // ByWhom: ['', Validators.required],
+      
+      TransactionBy: ['', Validators.required],
       Date: ['', Validators.required]
     });
     this.getBankTransaction();
     this.getStaffList();
+
+
+    this.UpdateFormGroup=this.formBuilder.group({
+      ID:[],
+      BankName: ['', Validators.required],
+      AccountNo: ['', Validators.required],
+      TransactionType: ['',Validators.required],
+      Amount: ['', Validators.required],
+      TransactionBy: ['', Validators.required],
+      Date: ['', Validators.required]
+    });
+    
+    
   }
   getStaffList() {
-    this.BanktransactionService.GetStaffList().subscribe(res =>{ this.staffMasters = res;console.log(this.staffMasters)});
+    this.BanktransactionService.GetStaffList().subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
   }
 
-  // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  getBankList() {
+    debugger;
+    this.BanktransactionService.GetBankList().subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
+  }
+
+ 
+  get f() { return this.CreateFormGroup.controls; }
+  get fu() { return this.UpdateFormGroup.controls; }
 
   onSubmit() {
+    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.CreateFormGroup.invalid) {
       return;
     }
-
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-  }
+    else{
+      let body = {
+        ID: 0,   
+        BankName: this.CreateFormGroup.controls.BankName.value,
+        AccountNo: this.CreateFormGroup.controls.AccountNo.value,
+        TransactionType: this.CreateFormGroup.controls.TransactionType.value,
+        Date: this.CreateFormGroup.controls.Date.value,
+        Amount: this.CreateFormGroup.controls.Amount.value,
+        TransactionBy: this.CreateFormGroup.controls.TransactionBy.value,
+      };
+  
+      this.BanktransactionService.banktransaction(body).subscribe((data) => {
+        this.modalRef.hide();
+        this.getBankTransaction();
+       
+      })
+    }
+    }
+  
 
   getBankTransaction() {
-
+    debugger;
     this.BanktransactionService.banktransactionList().subscribe(res => this.banktransactions = res);
     console.log(JSON.stringify(this.banktransactions));
   }
 
-  Submit() {
+  
+  getAccountNumber(event: any) {
+    debugger;
 
+    this.BanktransactionService.GetAccountNumber(event.target.value).subscribe(res => { this.listaccno = res; console.log("test", this.listaccno) });
+
+  }
+
+  Edit(editTemplate: TemplateRef<any>, banktransaction) {
+    debugger;
+    this.bankTransactionId=banktransaction.ID;
+    let selectedBank = {
+      ID:banktransaction.ID,
+      BankName: banktransaction.BankName,
+      AccountNo: banktransaction.AccountNo,
+      TransactionType: banktransaction.TransactionType,
+    }
+    this.UpdateFormGroup.patchValue(selectedBank);
+    this.modalRef = this.modalService.show(editTemplate, {
+      animated: true,
+      backdrop: 'static'
+    });
+  }
+
+  Update() {
+    debugger;
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.UpdateFormGroup.invalid) {
+      return;
+    }
+    debugger;
+    console.log(this.fu)
     let body = {
-
-      BankName: this.registerForm.controls.BankName.value,
-      AccountNumber: this.registerForm.controls.AccountNo.value,
-      TransactionType: this.registerForm.controls.TransactionType.value,
-      Date: this.registerForm.controls.Date.value,
-      Amount: this.registerForm.controls.Amount.value,
-      FirstName: this.registerForm.controls.FirstName.value,
-      MiddleName: this.registerForm.controls.MiddleName.value,
-      LastName: this.registerForm.controls.LastName.value,
-      ByWhom: ''
-      // IsActive :this.registerForm.controls.IsActive.value
-    };
-
-    this.BanktransactionService.banktransaction(body).subscribe((data) => {
-      this.router.navigate(['/BankTransaction']);
-    })
+      ID:this.bankTransactionId,
+      BankName: this.UpdateFormGroup.controls.BankName.value,
+      AccountNo: this.UpdateFormGroup.controls.AccountNo.value,
+      TransactionType: this.UpdateFormGroup.controls.TransactionType.value,
+      Amount: this.UpdateFormGroup.controls.Amount.value,     
+      TransactionBy: this.UpdateFormGroup.controls.TransactionBy.value,     
+      Date: this.UpdateFormGroup.controls.Date.value,
+    }
+    this.BanktransactionService.Edit(body).subscribe(data => {
+      this.modalRef.hide();
+      this.getBankTransaction();
+    }, error => console.error(error))
   }
 }
+
 
