@@ -1,4 +1,5 @@
 export interface EnquiryList{
+    ID:Number;
     CourseTypeId: Number,
     FirstName: string,
     MiddleName: string,
@@ -9,10 +10,9 @@ export interface EnquiryList{
     DateOfEnquiry:Date,
     IsFollowupNeeded:Number,
     NeedFollowupDate: Date,
-    Remark:string
-    
-    
-}
+    Remark:string,
+    Course:string;
+    }
 
 export interface CourseTypeMaster
 {
@@ -20,7 +20,7 @@ CourseTypeID:Number,
 CourseTypeName:string
 }
 
-export interface CourseTypeMaster{
+export interface CourseNameMaster{
     CourseID:Number,
-    CourseName:string
+    Course:string
 }
