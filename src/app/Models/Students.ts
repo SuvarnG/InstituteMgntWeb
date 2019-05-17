@@ -141,6 +141,7 @@ export interface Courses{
 export interface CourseFees{
     CourseId:number;
     Fees:number;
+    TotalFees:number;
 }
 
 export interface Users{

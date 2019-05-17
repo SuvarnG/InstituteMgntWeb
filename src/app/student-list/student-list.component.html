@@ -9,7 +9,7 @@
   </div>
 <div class="col-md-10">
 <!----------------------------------------------------------------------->
-<html>
+<!-- <html>
   <body>
     <form>
       <fieldset>
@@ -96,15 +96,16 @@
 </body>
 </html>
 </div>
+</div> -->
 <!------------------------------------------------------------------------------------->
 
 
 
-<!-- <div class="container" >
-  <h2>Students Information Cards</h2> -->
+ <!-- <div class="container" >
+  <h2>Students Information Cards</h2> 
   
-  <!-- <div class="card-deck"> -->
-    <!-- <table>
+   <div class="card-deck"> 
+     <table>
       <tbody>
         <tr *ngFor = "let s of students">
           <td colspan="3">
@@ -133,12 +134,67 @@
   </td>
   </tr>
   </tbody>
-  </table> -->
-<!-- </div> -->
-</div>
+  </table> 
+</div> 
+ </div> -->
 
 
+<!------------------------------------------------------------------------------------->
 
+<!-- <div class="card" style="width: 18rem;" *ngFor = "let s of students">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{s.FullName}}</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
+
+  
+  <button class="btn btn-secondary mb1 black bg-yellow float-right" title="Print" (click)="printPage()"><span
+      class="fas fa-print"></span></button>&nbsp;
+  <a routerLink="/CreateStudent" class="btn btn-success float-right" title="Create New"><span
+      class="fas fa-plus-square"></span> </a>
+      &nbsp;
+      <input type="text" class="float-right" placeholder="Search" [(ngModel)]="filter">
+      <!-- <input type="search" class="float-right" placeholder="Search"> -->
+  <h4>Students Information</h4>
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }" >
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-6">
+              <img class="img-circle" src="../../assets/images/MaleStudent.jpg" width="50px" height="50px"
+                alt="Card image cap">
+            </div>
+            <div class="col-sm-6">
+              <h5 class="card-title">{{s.FullName}}</h5>
+            </div>
+          </div>
+          <p class="card-text">Course: {{s.Course}}</p>
+          <p class="card-text">Contact No: {{s.ContactNo}}</p>
+          <p class="card-text">Status: {{s.CourseCompleted === true ? "Completed":"Not Completed"}}</p>
+          <div class="row">
+            <div class="col-sm-6">
+                
+            </div>
+            <div class="col-sm-6">
+                <button type="button" class="fas fa-info" value="Details" title="Student Details" (click)="openStudentDetailsPopup(StudentDetails, s)" ></button>
+                &nbsp;
+                <button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="openEditStudentPopup(editStudent, s)" ></button>
+                &nbsp;
+                <button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="deleteStudent(s.StudentId)"></button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="pagination">  
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+      </ul>
 
 
 
@@ -461,4 +517,225 @@
             </div>
   
        </ng-template> 
+
+
+
+
+
+       <ng-template #StudentDetails >
+          <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
+                <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()" >
+                  <div class="modal-header">
+                      <h4 class="modal-title pull-left">Student Details</h4>
+                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <table class="table">
+                          <tr>
+                              <td colspan="1">
+                              <div class="form-row"> 
+                                  <div class="form-group col-md-6"> 
+                                          <label for="Gender">Gender</label>
+                                      </div>
+                                      <div class="form-group col-md-6"> 
+                                          <input type="text" class="form-control" formControlName="Gender" disabled>
+                                        </div>
+                                       
+                              </div>
+                              </td>
+                          </tr>
+          
+                          <tr>
+                            <td colspan="1">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6"> 
+                                    <label for="firstName">Firstname</label> 
+                                    </div>       
+                                        <div class="form-group col-md-6">         
+                                    <input type="text" class="form-control" formControlName="FirstName" disabled>
+                                      </div>
+                                   
+                                  </div>
+                                 
+                                  <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                      <label for="middleName">Middlename</label> 
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                    <input type="text" class="form-control" formControlName="MiddleName" disabled >
+                                      </div>
+                                   
+                                  </div>         
+                                  <div class="form-row">
+                                      <div class="form-group col-md-6">
+                                      <label for="lastName">Lastname</label> 
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                      <input type="text" class="form-control"  formControlName="LastName" disabled>
+                                      </div>
+                                      
+                                    </div>                                      
+                           </td>
+                          </tr>
+                          <tr>
+                              <td colspan="1"> 
+                                 <div class="form-row">
+                                     <div class="form-group col-md-6">
+                                         <label class="col-md-6 control-label">DateOfBirth</label> 
+                                         <input type="date" id="DOB" class="form-control" formControlName="DOB" disabled>
+                                         
+                                        </div>
+                                         <div class="form-group col-md-6">
+                                         <label for="BloodGroup">Blood Group</label>
+                                            <select id="BloodGroup" class="form-control"  formControlName="BloodGroup" disabled>
+                                              <option>A+</option>
+                                              <option>B+</option>
+                                              <option>AB+</option>
+                                              <option>O+</option>
+                                              <option>A-</option>
+                                              <option>B-</option>
+                                              <option>O-</option>
+                                              <option>AB-</option>
+                                            </select>
+                                          </div>
+                                 </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td colspan="1">
+                                 <div class="form-row">
+                                     <div class="form-group col-md-6">
+                                        <label class="col-md-6 control-label">ContactNo</label> 
+                                       <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No" class="form-control" disabled >
+                                     </div>
+                                     
+                                     <div class="form-group col-md-6">
+                                        <label class="col-md-6 control-label">EmergencyNo</label> 
+                                       <input type="number"  id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No" class="form-control" disabled >
+                                     </div>
+                                   </div>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                   <div class="form-row">
+                                       <div class="form-group col-md-2">
+                                  <label for="inputAddress">Address</label>    
+                                  </div>
+                                  <div class="form-group col-md-10">      
+                                       <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" disabled>                     
+                                             <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2" disabled>
+                                             </div>
+                                     </div>
+                                </td>
+                              </tr> 
+                              <tr>
+                                  <td colspan="1">
+                                     <div class="form-row">
+                                         <div class="form-group col-md-4">
+                                            <label class="col-md-4 control-label">City</label> 
+                                           <input type="text" class="form-control" id="City" formControlName="City" disabled>
+                                         </div>
+                         
+                                         <div class="form-group col-md-4">
+                                            <label class="col-md-4 control-label">State</label> 
+                                           <select id="State" class="form-control" formControlName="State" disabled>
+                                             <option>Maharashtra</option>
+                                           </select>
+                                         </div>
+                                         <div class="form-group col-md-4">
+                                            <label class="col-md-2 control-label">ZipCode</label> 
+                                           <input type="number" class="form-control" id="STD" formControlName="ZipCode" disabled>
+                                         </div>
+                                       </div>
+                                  </td>
+                                </tr>
+                          <tr>
+                              <tr>
+                                  <td colspan="1">
+                                      <div class="form-row"> 
+                                          <div class="form-group col-md-2"> 
+                                    <label for="inputPaddress">Permanent Address</label>  
+                                          </div> 
+                                        <div class="form-group col-md-10">          
+                                         <input type="text" class="form-control" id="P_Address1" placeholder="Address 1" formControlName="P_Address1" disabled>
+                                         <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2" formControlName="P_Address2" disabled>
+                                        </div>
+                                       </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="1">
+                                       <div class="form-row">
+                                           <div class="form-group col-md-4">
+                                              <label class="col-md-4 control-label">P_City</label> 
+                                             <input type="text" class="form-control" id="P_City" formControlName="P_City" disabled>
+                                           </div>
+                           
+                                           <div class="form-group col-md-4">
+                                              <label class="col-md-4 control-label">P_State</label> 
+                                             <select id="P_State" class="form-control" formControlName="P_State" disabled>
+                                               <option selected>Select State...</option>
+                                               <option>Maharashtra</option>
+                                             </select>
+                                           </div>
+                                           <div class="form-group col-md-4">
+                                              <label class="col-md-4 control-label">P_STDCode</label> 
+                                             <input type="number" class="form-control" id="P_STDCode" formControlName="P_STDCode" disabled>
+                                            </div>
+                                           
+                                         </div>
+                                    </td>
+                                  </tr>
+        
+        
+                                  <tr>
+                                    <td colspan="1">
+                                       <div class="form-row"> 
+                                       <div class="form-group col-md-6">
+                                           <label class="col-md-6 control-label">Email</label> 
+                                       </div>
+                                       <div class="form-group col-md-6">
+                                           <input type="email" class="form-control" id="Email" formControlName="Email" disabled>  
+                                    </div>
+                                   
+                                    </div>
+                                   </td>
+                                  </tr>
+                                 
+        
+                                  <tr>
+                                    <td colspan="1">
+                                      <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
+                                      <div class="form-control" >
+                                        <input type="radio" formControlName="IsDocumentSubmitted" [value]="true" name="IsDocumentSubmitted"
+                                          (click)="showUpload()" disabled>Yes                
+                                      </div>
+                                      <div class="form-control" >
+                                        <input type="radio" formControlName="IsDocumentSubmitted" [value]="false" name="IsDocumentSubmitted"
+                                          (click)="hideUpload()" disabled>No           
+                                      </div>
+                                      <div *ngIf="showSelected">
+                                        <input type="file" id="file" (change)="handleFileInput($event.target.files)" />
+                                        <input type="button" value="Upload" (click)="uploadFileToActivity()">
+                                      </div>
+                                    </td>
+                                  </tr>
+                         
+                           
+                         </table>
+                    </div>
+                     <div class="modal-footer">
+                       
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+                      </div>
+                    </form>
+                    </div>
+          
+               </ng-template> 
+        
+
+
 

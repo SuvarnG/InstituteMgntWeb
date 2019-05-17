@@ -11,6 +11,13 @@
     text-align: left;
 }
 
+#v-scroll{
+
+    height: 700px;
+    margin: auto;
+    overflow-y: auto;
+}
+
 .discount{
     width: 5px;
 }

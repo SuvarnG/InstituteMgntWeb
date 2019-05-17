@@ -8,6 +8,8 @@ import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-na
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
 import { AuthorisedSideNavComponent } from './layout/authorised/authorised-side-nav/authorised-side-nav.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
 import { StudentslistService } from './student-list/studentslist.service';
@@ -97,6 +99,8 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),

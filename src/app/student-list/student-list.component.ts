@@ -5,7 +5,6 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import {Students,UpdateStudent} from '../Models/Students'
-//import { template } from '@angular/core/src/render3';
 
 
 @Component({
@@ -61,9 +60,9 @@ export class StudentListComponent implements OnInit {
 
   }
 
-  addNewStudent(){
-    this.router.navigate([this.returnUrl]);
-  }
+  // addNewStudent(){
+  //   this.router.navigate([this.returnUrl]);
+  // }
 
   getAllStudents(){
     debugger;
@@ -73,7 +72,7 @@ export class StudentListComponent implements OnInit {
   deleteStudent(id:number){
     debugger;
     if(confirm("Are you sure to delete ")){
-    this.StudentslistService.deleteStudent(id).subscribe(data=>this.GetAllStudents())}
+    this.StudentslistService.deleteStudent(id).subscribe(data=>this.getAllStudents())}
 
   }
 
@@ -137,7 +136,7 @@ export class StudentListComponent implements OnInit {
         PState:this.registerUpdateStudent.controls.P_State.value,
         PSTDCode:this.registerUpdateStudent.controls.P_STDCode.value,
         BloodGroup:this.registerUpdateStudent.controls.BloodGroup.value,
-        // //Course:this.registerUpdateStudent.controls.StudentId.value,
+        //Course:this.registerUpdateStudent.controls.StudentId.value,
         // DateOfJoining:this.registerUpdateStudent.controls.DateOfJoining.value,
         ContactNo:this.registerUpdateStudent.controls.ContactNo.value,
         EmergencyNo:this.registerUpdateStudent.controls.EmergencyNo.value,
@@ -146,10 +145,43 @@ export class StudentListComponent implements OnInit {
       }
 
       if(confirm("Do you want to Save Changes?")){
-      this.StudentslistService.editStudent(body).subscribe(data=>{this.GetAllStudents(),this.modalRef.hide()})
+      this.StudentslistService.editStudent(body).subscribe(data=>{this.getAllStudents(),this.modalRef.hide()})
     }
 
       
+    }
+
+    openStudentDetailsPopup(studentDetails:TemplateRef<any>, s){
+      debugger;
+
+      this.studentID=s.StudentId,
+      this.registerUpdateStudent.patchValue({
+        StudentId:s.StudentId,
+        Gender:s.Gender,
+        FirstName:s.FirstName,
+        MiddleName:s.MiddleName,
+        LastName:s.LastName,
+        Address1:s.Address1,
+        Address2:s.Address2,
+        City:s.City,
+        State:s.State,
+        ZipCode:s.STDCode,
+        DOB:formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
+        P_Address1:s.PAddress1,
+        P_Address2:s.PAddress2,
+        P_City:s.PCity,
+        P_State:s.PState,
+        P_STDCode:s.PSTDCode,
+        BloodGroup:s.BloodGroup,
+        //Course:s.Course,
+        //DateOfJoining:s.DateOfJoining,
+        ContactNo:s.ContactNo,
+        EmergencyNo:s.EmergencyNo,
+        Email:s.EmailId,
+        IsDocumentSubmitted:s.IsDocumentSubmitted
+      })
+
+      this.modalRef=this.modalService.show(studentDetails)
     }
 
     showUpload() {

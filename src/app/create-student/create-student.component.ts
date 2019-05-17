@@ -181,11 +181,6 @@ export class CreateStudentComponent implements OnInit {
       this.CreateNewStudentService.getRecentlyCreatedStudent()
     );
 
-
-
-    //this.CreateNewStudentService.GetRecentlyCreatedStudent();
-
-
     //Open Popup function
     if(this.registerForm.controls.payingFeesNow.value){
       this.modalRef = this.modalService.show(template,{
@@ -222,27 +217,6 @@ export class CreateStudentComponent implements OnInit {
 
   get e() { return this.registerStudentLogin.controls }
 
-  //   onSubmit() {
-  //     this.submitted = true;
-
-  //     // stop here if form is invalid
-  //     if (this.registerForm.invalid) {
-  //         return;
-  //     }
-
-  //     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
-  // }
-
-  // onSubmitStudentCourse() {
-  //   this.submitted = true;
-
-  //   // stop here if form is invalid
-  //   if (this.registerStudentCourse.invalid) {
-  //       return;
-  //   }
-
-  // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerStudentCourse.value))
-  //}
 
   onSubmitStudentLogin() {
     debugger;
@@ -252,7 +226,6 @@ export class CreateStudentComponent implements OnInit {
     if (this.registerStudentLogin.invalid) {
       return;
     }
-    // alert('Success!! \n\n' + JSON.stringify(this.registerStudentLogin.value))
   }
 
 
@@ -267,52 +240,12 @@ export class CreateStudentComponent implements OnInit {
   }
 
   showUpload() {
-
     this.showSelected = true;
   }
 
   hideUpload() {
     this.showSelected = false;
   }
-
-
-  // createNewStudent(student: CreateStudent) {
-  //   debugger;
-  //   let body: CreateStudent = {
-  //     Gender: this.registerForm.controls.gender.value,
-  //     FirstName: this.registerForm.controls.firstName.value,
-  //     MiddleName: this.registerForm.controls.middleName.value,
-  //     LastName: this.registerForm.controls.lastName.value,
-  //     Address1: this.registerForm.controls.Address1.value,
-  //     Address2: this.registerForm.controls.Address2.value,
-  //     City: this.registerForm.controls.city.value,
-  //     State: this.registerForm.controls.state.value,
-  //     STDCode: this.registerForm.controls.zipCode.value,
-  //     DOB: this.registerForm.controls.dateOfBirth.value,
-  //     BloodGroup: this.registerForm.controls.bloodgroup.value,
-  //     ContactNo: this.registerForm.controls.ContactNo.value,
-  //     EmergencyNo: this.registerForm.controls.EmergencyContactNo.value,
-  //     EmailId: this.registerForm.controls.Email.value,
-
-  //     PAddress1: this.registerForm.controls.PAddress1.value,
-  //     PAddress2: this.registerForm.controls.PAddress2.value,
-  //     PCity: this.registerForm.controls.Pcity.value,
-  //     PState: this.registerForm.controls.Pstate.value,
-  //     PSTDCode: this.registerForm.controls.PzipCode.value,
-
-  //     IsDocumentSubmitted: true,
-  //     PayingFees: this.registerForm.controls.payingFeesNow.value
-  //   };
-
-
-  //   // // this.CreateNewStudentService.CreateNewStudent(body).subscribe(data=>{
-  //   // //   this.CreateNewStudentService.GetRecentlyCreatedStudent();
-  //   // }
-
-  //   // );
-
-  //   // this.CreateNewStudentService.GetRecentlyCreatedStudent();
-  // }
 
 
 
@@ -323,7 +256,6 @@ export class CreateStudentComponent implements OnInit {
       return
     }
 
-    // this.CreateNewStudentService.GetRecentlyCreatedStudent()
     let body: FeesTransaction = {
       Id: 0,
       CourseId: this.registerStudentCourse.controls.CourseName.value,
@@ -386,41 +318,6 @@ export class CreateStudentComponent implements OnInit {
   }
 }
 
-  // GetAllCourseType(){
-  //   debugger;
-  //   this.CreateNewStudentService.GetAllCourseType().subscribe(data=>this.listCourseType=data)
-  // }
-
-  // handleFileInput(files: FileList) {
-  //   debugger;
-  //   this.fileToUpload = files.item(0);
-  // }
-
-
-  // onFileChange(event) {
-  //   debugger;
-  //   let reader = new FileReader();
-  //   if(event.target.files && event.target.files.length > 0) {
-  //     let file = event.target.files[0];
-  //     reader.readAsDataURL(file);
-  //     reader.onload = () => {
-  //       this.registerForm.setValue({
-  //         filename: file.name,
-  //         filetype: file.type
-  //        // value: reader.result.split(',')[1]
-  //       })
-  //     };
-  //   }
-  // }
-
-  // uploadFileToActivity() {
-  //   debugger;
-  //   this.CreateNewStudentService.postFile(this.fileToUpload).subscribe(data => {
-  //     // do something, if upload success
-  //   }, error => {
-  //     console.log(error);
-  //   });
-  // }
 
 
   handleFileInput(event:any){
@@ -507,9 +404,6 @@ export class CreateStudentComponent implements OnInit {
 
   getCourseNameFromCourseType(courses: Courses) {
     debugger;
-    //  let body= {
-    //   CourseId:this.selectedUserValue
-    //   }
     this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue)
 
   }
