@@ -14,7 +14,7 @@ const httpOptions = {
 export class BankService {
   private Url = environment.APIBASEURL + 'Bank/GetAll';
   private deleteUrl = environment.APIBASEURL + 'Bank/InactiveBank/';
-  private CreateUrl = environment.APIBASEURL + 'Bank/CreateBank';
+  private CreateUrl = environment.APIBASEURL + 'Bank/CreateBankAccount';
   private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBank';
 
   constructor(private http: HttpClient) { }
@@ -44,7 +44,7 @@ export class BankService {
   EditAccNo(bank): Observable<Bank> {
 
     return this.http.post<Bank>(this.UpdateUrl, bank, httpOptions).pipe(
-      tap((bank: Bank) => console.log('Update BankId=${bank.BankId}'))
+      tap((bank: Bank) => console.log('Update BankAccountId=${bank.BankAccountId}'))
 
     );
   }

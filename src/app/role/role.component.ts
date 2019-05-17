@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-// import { stringify } from '@angular/core/src/render3/util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { RoleService } from './role.service';
 import { Roles } from '../Model/Roles';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-role',
@@ -21,13 +21,23 @@ export class RoleComponent {
   submitted = false;
   public roles: Roles[];
   public ID:number;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private RoleService: RoleService,
     private route: ActivatedRoute) { }
 
+    ngOnDestroy(): void {
+      this.dtTrigger.unsubscribe();
+    }
+
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+    };
     this.registerForm = this.formBuilder.group({
       role: ['', Validators.required]
 
@@ -45,8 +55,6 @@ export class RoleComponent {
     if (this.registerForm.invalid) {
       return;
     }
-
-    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
   }
 
 
@@ -58,26 +66,14 @@ export class RoleComponent {
     });
   }
 
-  // openModal1(template1: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template1, {
-  //     animated: true,
-  //     backdrop: 'static'
-  //   });
-  // }
-
-  // ListModal(template1: TemplateRef<any>) {
-  //   this.modalRef = this.modalService.show(template1, {
-  //     animated: true,
-  //     backdrop: 'static'
-  //   });
-
-  // }
-
   getRoles() {
-    this.RoleService.roleList().subscribe(res => this.roles = res);
-    console.log(JSON.stringify(this.roles));
-  }
+    this.RoleService.roleList().subscribe(res =>{
+      this.roles = res;
+      this.dtTrigger.next();
+    //console.log(JSON.stringify(this.roles));
+  });
 
+  }
 
   Delete(roleID) {
     var ans = confirm("Do you want to delete Role with Id: " + roleID);

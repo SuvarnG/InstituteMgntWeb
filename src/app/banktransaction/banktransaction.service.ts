@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { BankNames } from '../Model/BankNames';
 import { Accountnumbers } from '../Model/AccountNumber';
 
+
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
@@ -34,7 +35,7 @@ export class BanktransactionService {
 
 
   GetStaffList() {
-    return this.http.get(environment.APIBASEURL + 'Teacher/GetTeacher').pipe(map(data => data as StaffMaster[]))
+    return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
   }
 
   GetBankList() {
@@ -45,11 +46,6 @@ export class BanktransactionService {
 
     return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo/' + BankName).pipe(map(data => data as BankTransaction[]))
 
-    // return this.http.get(environment.APIBASEURL+'Bank/GetAccoNo/'+BankName
-    // ).pipe
-    // (map(data=>{
-    //   return data as BankTransaction[]
-    // }));
   }
 
   banktransaction(banktransaction: BankTransaction) {

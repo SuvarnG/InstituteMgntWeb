@@ -1,8 +1,20 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
+
 <div class="container">
-  <h2>Bank
+  <h2>Bank Account
     <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="openModal(template)">Add</button>
   </h2>
-  <table class="table table-bordered">
+  <!-- <table class="table table-bordered"> -->
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
         
@@ -28,6 +40,8 @@
     </tbody>
   </table>
 </div>
+</div>
+
 
 <ng-template #template>
   <div class="modal-header">
@@ -75,7 +89,7 @@
 
   <div class="radio">
         <label class="control-label-col-sm-2">Account Type : </label><br>
-        <label><input type="radio" name="AccountType" formControlName="AccountType"  value="Saving" checked>Saving</label>
+        <label><input type="radio" name="AccountType" formControlName="AccountType"  value="Saving" >Saving</label>
       </div>
       <div class="radio">
         <label><input type="radio" name="AccountType"  formControlName="AccountType" value="Current">Current</label>

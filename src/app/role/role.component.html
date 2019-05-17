@@ -1,8 +1,23 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
+
+
+
 <div class="container">
   <h2>Roles
-    <button type="submit" class="btn btn-primary" style="margin-left:780px" (click)="openModal(template)" data-target="#myupdate" data-toggle="modal">Add</button>
+    <button type="submit" class="btn btn-primary" style="margin-left:840px" 
+    (click)="openModal(template)" data-target="#myupdate" data-toggle="modal">Add</button>
   </h2>
-  <table class="table table-bordered">
+  <!-- <table class="table table-bordered"> -->
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
         <th>Role ID</th>
@@ -19,14 +34,15 @@
         <td>{{r.RoleName}}</td>
         <!-- <td>{{r.IsActive}}</td> -->
         <td>
-          <button type="submit" style="margin-right:5px" class="btn btn-primary" (click)="EditRole(editTemplate,r)">Edit</button>
-          <button type="submit"  class="btn btn-primary"  (click)="Delete(r.roleID)">Delete</button></td>
+          <button type="submit" style="margin-right:5px" class="btn btn-default" 
+          (click)="EditRole(editTemplate,r)"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="submit"  class="btn btn-default"  (click)="Delete(r.roleID)"><i style='font-size:24px' class="fa fa-trash" aria-hidden="true"></i></button></td>
       </tr>
     </tbody>
   </table>
 </div>
 
-
+</div>
 
 <ng-template #template>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -41,7 +57,7 @@
       <input type="text" class="form-control" formControlName="role"
         [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
       <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-        <div *ngIf="f.role.errors.required">First Name is required</div>
+        <div *ngIf="f.role.errors.required">Name is required</div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">Save</button>
@@ -67,7 +83,7 @@
       <input type="text" class="form-control" formControlName="role"
         [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
       <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-        <div *ngIf="f.role.errors.required">First </div>
+        <div *ngIf="f.role.errors.required">Name Required </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" style="margin:5px" (click)="UpdateRole(RoleName.value)">Save</button>

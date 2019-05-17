@@ -20,7 +20,7 @@ import { ExpenseMasterComponent } from './expense-master/expense-master.componen
 import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
 import { BranchComponent } from './branch/branch.component';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bank/bank.component';
+import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
 
 

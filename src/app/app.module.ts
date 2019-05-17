@@ -42,11 +42,11 @@ import { ExpenseService } from './ExpenseTransaction/expense.service';
 import { StaffListService } from './staff/staff-list.service';
 import { TeacherCoursesService } from './teacher-courses/teacher-courses.service';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bank/bank.component';
+import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
-import { BankService } from './bank/bank.service';
+import { BankService } from './bankaccount/bank.service';
 import {DatePipe} from '@angular/common';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';
 import { ExpenseMasterService } from './expense-master/expense-master.service';
@@ -56,6 +56,7 @@ import { BranchComponent } from './branch/branch.component';
 import { Routes } from '@angular/router';
 import { BranchService } from './branch/branch.service';
 import { BanktransactionService } from './banktransaction/banktransaction.service';
+import { DataTablesModule } from 'angular-datatables';
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
@@ -104,6 +105,7 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
+    DataTablesModule
   ],
   providers: 
   [sliderservice, 

@@ -1,20 +1,27 @@
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BanktransactionService } from './banktransaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StaffMaster } from '../Model/StaffMaster';
-
+import { map } from 'rxjs/operators';
 import { BankNames } from '../Model/BankNames';
 import { Accountnumbers } from '../Model/AccountNumber';
 import { BankTransaction } from '../Model/BankTransaction';
+import { Subject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+//import { Http, Response } from '@angular/http';
+
+
 
 @Component({
   selector: 'app-banktransaction',
   templateUrl: './banktransaction.component.html',
   styleUrls: ['./banktransaction.component.css']
 })
-export class BanktransactionComponent {
+export class BanktransactionComponent implements OnDestroy, OnInit {
+
+
   modalRef: BsModalRef;
   CreateFormGroup: FormGroup;
   UpdateFormGroup: FormGroup;
@@ -26,22 +33,30 @@ export class BanktransactionComponent {
   public banknames: BankNames[];
   public listaccno: BankTransaction[];
   public accountnumbers: Accountnumbers[];
-public bankTransactionId:number;
+  public bankTransactionId: number;
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
+
+  constructor(private http: HttpClient, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private BanktransactionService: BanktransactionService,
     private route: ActivatedRoute) { }
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
 
   AddBank(template: TemplateRef<any>) {
     debugger;
     this.getBankTransaction();
     this.CreateFormGroup.controls.ID.reset,
-    this.CreateFormGroup.controls.BankName.reset,
-     this.CreateFormGroup.controls.AccountNo.reset,
+      this.CreateFormGroup.controls.BankName.reset,
+      this.CreateFormGroup.controls.AccountNo.reset,
       this.CreateFormGroup.controls.TransactionType.reset,
-     this.CreateFormGroup.controls.Date.reset,
-     this.CreateFormGroup.controls.Amount.reset,
+      this.CreateFormGroup.controls.Date.reset,
+      this.CreateFormGroup.controls.Amount.reset,
       this.CreateFormGroup.controls.TransactionBy.reset
 
     this.getBankList();
@@ -52,42 +67,44 @@ public bankTransactionId:number;
 
   }
 
-  openModal1(template1: TemplateRef<any>) {
-
-    this.modalRef = this.modalService.show(template1, {
-      animated: true,
-      backdrop: 'static'
-    });
-
-  }
 
   ngOnInit() {
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 5
+
+    };
+
+
     this.CreateFormGroup = this.formBuilder.group({
-      ID:[],
+      ID: [],
       BankName: ['', Validators.required],
       AccountNo: ['', Validators.required],
       TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
-      
+
       TransactionBy: ['', Validators.required],
       Date: ['', Validators.required]
     });
+
     this.getBankTransaction();
     this.getStaffList();
 
 
-    this.UpdateFormGroup=this.formBuilder.group({
-      ID:[],
+    this.UpdateFormGroup = this.formBuilder.group({
+      ID: [],
       BankName: ['', Validators.required],
       AccountNo: ['', Validators.required],
-      TransactionType: ['',Validators.required],
+      TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
       TransactionBy: ['', Validators.required],
       Date: ['', Validators.required]
     });
-    
-    
+
+
   }
+
+
   getStaffList() {
     this.BanktransactionService.GetStaffList().subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
   }
@@ -97,7 +114,7 @@ public bankTransactionId:number;
     this.BanktransactionService.GetBankList().subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
   }
 
- 
+
   get f() { return this.CreateFormGroup.controls; }
   get fu() { return this.UpdateFormGroup.controls; }
 
@@ -109,9 +126,9 @@ public bankTransactionId:number;
     if (this.CreateFormGroup.invalid) {
       return;
     }
-    else{
+    else {
       let body = {
-        ID: 0,   
+        ID: 0,
         BankName: this.CreateFormGroup.controls.BankName.value,
         AccountNo: this.CreateFormGroup.controls.AccountNo.value,
         TransactionType: this.CreateFormGroup.controls.TransactionType.value,
@@ -119,23 +136,26 @@ public bankTransactionId:number;
         Amount: this.CreateFormGroup.controls.Amount.value,
         TransactionBy: this.CreateFormGroup.controls.TransactionBy.value,
       };
-  
+
       this.BanktransactionService.banktransaction(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBankTransaction();
-       
+
       })
     }
-    }
-  
+  }
+
 
   getBankTransaction() {
     debugger;
-    this.BanktransactionService.banktransactionList().subscribe(res => this.banktransactions = res);
-    console.log(JSON.stringify(this.banktransactions));
+    this.BanktransactionService.banktransactionList().subscribe(res => {
+      this.banktransactions = res;
+      this.dtTrigger.next();
+    });
+    //console.log(JSON.stringify(this.banktransactions));
   }
 
-  
+
   getAccountNumber(event: any) {
     debugger;
 
@@ -145,9 +165,9 @@ public bankTransactionId:number;
 
   Edit(editTemplate: TemplateRef<any>, banktransaction) {
     debugger;
-    this.bankTransactionId=banktransaction.ID;
+    this.bankTransactionId = banktransaction.ID;
     let selectedBank = {
-      ID:banktransaction.ID,
+      ID: banktransaction.ID,
       BankName: banktransaction.BankName,
       AccountNo: banktransaction.AccountNo,
       TransactionType: banktransaction.TransactionType,
@@ -170,12 +190,12 @@ public bankTransactionId:number;
     debugger;
     console.log(this.fu)
     let body = {
-      ID:this.bankTransactionId,
+      ID: this.bankTransactionId,
       BankName: this.UpdateFormGroup.controls.BankName.value,
       AccountNo: this.UpdateFormGroup.controls.AccountNo.value,
       TransactionType: this.UpdateFormGroup.controls.TransactionType.value,
-      Amount: this.UpdateFormGroup.controls.Amount.value,     
-      TransactionBy: this.UpdateFormGroup.controls.TransactionBy.value,     
+      Amount: this.UpdateFormGroup.controls.Amount.value,
+      TransactionBy: this.UpdateFormGroup.controls.TransactionBy.value,
       Date: this.UpdateFormGroup.controls.Date.value,
     }
     this.BanktransactionService.Edit(body).subscribe(data => {

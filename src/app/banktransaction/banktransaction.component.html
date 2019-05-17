@@ -1,8 +1,20 @@
+
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
 <div class="container">
   <h2>Bank Transaction
     <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="AddBank(template)">Add</button>
   </h2>
-  <table class="table table-bordered">
+  <!-- <table class="table table-bordered"> -->
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
         <th>Id</th>
@@ -36,7 +48,7 @@
     </tbody>
   </table>
 </div>
-
+</div>
 
 <ng-template #template>
   <div class="modal-header">
