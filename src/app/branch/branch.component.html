@@ -28,7 +28,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let branch of Branch">
+      <tr *ngFor="let branch of branch">
         <td>{{branch.BranchName}}</td>
         <td>{{branch.Address}}</td>
         <td>{{branch.ContactNo}}</td>
@@ -36,7 +36,7 @@
           <button type="submit" style="margin-right:5px" class="btn btn-success"
             (click)="openPopupForEdit(EditBranchTemplate,branch)" data-toggle="tooltip" data-placement="bottom" title="Edit Branch">
             <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
-          <button type="submit" class="btn btn-danger" (click)="Delete(branch.ID)" data-toggle="tooltip" data-placement="bottom" title="Delete Branch">
+          <button type="submit" class="btn btn-danger" (click)="delete(branch.BranchId)" data-toggle="tooltip" data-placement="bottom" title="Delete Branch">
             <span class="fa fa-times" aria-hidden="true"></span>
           </button></td>
       </tr>
@@ -48,7 +48,7 @@
 
 <!-- New Branch template -->
 <ng-template #NewBranchTemplate>
-    <form [formGroup]="CreateBranchForm" (ngSubmit)="onSubmitCreateBranch()">
+    <form [formGroup]="createBrachForm" (ngSubmit)="onSubmitCreateBranch()">
   <div class="modal-header">
     <h4 class="modal-title pull-left">New Branch</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -89,7 +89,7 @@
 
 <!-- Edit Branch template -->
 <ng-template #EditBranchTemplate>
-    <form [formGroup]="EditBranchForm" (ngSubmit)="onSubmitEditBranch()">
+    <form [formGroup]="editBranchForm" (ngSubmit)="onSubmitEditBranch()">
   <div class="modal-header">
     <h4 class="modal-title pull-left">Edit Branch</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

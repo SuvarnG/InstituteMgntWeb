@@ -10,7 +10,7 @@
 </div>
 
 <div class="col-md-10">
-      <button type="button" class="btn btn-success pull-right" (click)="ShowCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
+      <button type="button" class="btn btn-success pull-right" (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
          <span class="fa fa-plus-square" aria-hidden="true"></span></button>
     <table  class="table table-striped">
       <thead>
@@ -23,10 +23,10 @@
           <!-- <td>{{i+1}}</td> -->
           <td>{{expense.Expenses}}</td>
           <td>
-             <button type="btn" class='btn btn-success' (click)="EditExpense(EditExpenseTemplate,expense)"  data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
+             <button type="btn" class='btn btn-success' (click)="editExpense(EditExpenseTemplate,expense)"  data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
                 <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
 &nbsp;&nbsp;&nbsp;&nbsp;
-             <button type="btn" class="btn btn-danger" (click)="DeleteExpense(expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
+             <button type="btn" class="btn btn-danger" (click)="deleteExpense(expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
                 <span class="fa fa-times" aria-hidden="true"></span></button>
           </td>
         </tr>
@@ -35,7 +35,7 @@
   </div>
   <ng-template #CreateExpenseTemplate >
       <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
-         <form [formGroup]="CreateExpenseForm" (ngSubmit)="onSubmitCreateExpense()" >
+         <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense()" >
            <div class="modal-header">
                <h4 class="modal-title pull-left">Create Expense</h4>
                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -64,7 +64,7 @@
 
    <ng-template #EditExpenseTemplate >
       <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
-         <form [formGroup]="EditExpenseForm" (ngSubmit)="onSubmitEditExpense()" >
+         <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEditExpense()" >
            <div class="modal-header">
                <h4 class="modal-title pull-left">Create Expense</h4>
                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

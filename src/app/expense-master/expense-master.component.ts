@@ -11,29 +11,29 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ExpenseMasterComponent implements OnInit {
 expenses:ExpenseMaster[];
 modalRef: BsModalRef;
-CreateExpenseForm:FormGroup;
-EditExpenseForm:FormGroup;
+createExpenseForm:FormGroup;
+editExpenseForm:FormGroup;
 errorMessage:string;
 expensId:Number;
-  constructor(private fb:FormBuilder,private ExpenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
+  constructor(private fb:FormBuilder,private expenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
 
   ngOnInit() {
-    this.CreateExpenseForm=this.fb.group({
+    this.createExpenseForm=this.fb.group({
       expense:['', [Validators.required]],
     }),
-    this.EditExpenseForm=this.fb.group({
+    this.editExpenseForm=this.fb.group({
       expense:['', [Validators.required]],
     }),
-    this.GetAllExpense();
+    this.getAllExpense();
   }
-  GetAllExpense(){
+  getAllExpense(){
   debugger;
-  this.ExpenseMasterService.GetAllExpenses().subscribe(res=>this.expenses=res);
+  this.expenseMasterService.getAllExpenses().subscribe(res=>this.expenses=res);
 }
 
-ShowCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
+showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
 
-  this.CreateExpenseForm.controls.expense.reset();
+  this.createExpenseForm.controls.expense.reset();
   this.modalRef = this.modalService.show(CreateExpenseTemplate, {
     animated: true,
     backdrop: 'static'
@@ -43,31 +43,31 @@ onSubmitCreateExpense()
 {
   debugger;
   let body={
-    Expenses:this.CreateExpenseForm.controls.expense.value
+    Expenses:this.createExpenseForm.controls.expense.value
   }
-  this.ExpenseMasterService.CreateNewExpense(body)  
+  this.expenseMasterService.createNewExpense(body)  
   .subscribe((data) => {  
     this.modalRef.hide();
-    this.GetAllExpense();
+    this.getAllExpense();
   }, error => this.errorMessage = error) 
 
 }
-DeleteExpense(id:any){
+deleteExpense(id:any){
   var ans = confirm("Do you want to delete customer with Id: " + id);  
   if (ans) {  
-      this.ExpenseMasterService.DeleteExpense(id).subscribe(data => {  
-          this.GetAllExpense();  
+      this.expenseMasterService.deleteExpense(id).subscribe(data => {  
+          this.getAllExpense();  
       }, error => console.error(error))  
   }  
 }
 
-EditExpense(EditExpenseTemplate: TemplateRef<any>,expense)
+editExpense(EditExpenseTemplate: TemplateRef<any>,expense)
 {
   this.expensId=expense.ExpenseId;
   let body={
     expense:expense.Expenses
   }
-  this.EditExpenseForm.patchValue(body);
+  this.editExpenseForm.patchValue(body);
   this.modalRef = this.modalService.show(EditExpenseTemplate, {
     animated: true,
     backdrop: 'static'
@@ -78,13 +78,13 @@ onSubmitEditExpense()
 {
   debugger;
   let body={
-    Expenses:this.EditExpenseForm.controls.expense.value,
+    Expenses:this.editExpenseForm.controls.expense.value,
     ExpenseId:this.expensId
   }
-  this.ExpenseMasterService.EditExpense(body)  
+  this.expenseMasterService.editExpense(body)  
   .subscribe((data) => {  
     this.modalRef.hide();
-    this.GetAllExpense();   
+    this.getAllExpense();   
   }, error => this.errorMessage = error)
 }
 }

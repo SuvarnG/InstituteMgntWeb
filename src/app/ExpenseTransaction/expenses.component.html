@@ -1,249 +1,261 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="row">
   <div class="col-md-2">
-  <!-- Add left navigation componant -->
-  <app-authorised-side-nav></app-authorised-side-nav>
-</div>
-
-<div class="col-md-10">
-        <button type="button" class="btn btn-success pull-right" id="btnAddNewExpense" (click)="AddNewExpense(addExpense)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
-          <span class="fa fa-plus-square" aria-hidden="true"></span></button>
-<div class="table-responsive">
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Expense Type</th> 
-                <th>Date</th>
-                <th>Paid By Whom</th>
-                <th>Amount Paid</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let e of expenses; let i=index">
-                <td>{{e.ExpenseType}}</td> 
-                <td>{{e.Date | date:'mediumDate'}}</td>
-                <td>{{e.PaidByWhom}}</td>
-                <td>{{e.Paid}}</td>
-                <td class="text-center"> 
-                         <button type="btn" class="btn btn-success" (click)="Edit(editExpense,e)" data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
-                           <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button> 
-                </td>
-                 <!-- <td> 
-                     <button type="btn" class="btn btn-primary" (click)="Delete(e.ExpenseId)"><span class="glyphicon glyphicon-remove"></span> Del</button>
-                </td> -->
-            </tr>  
-        </tbody>
-    </table>
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-<ng-template #editExpense>
-  <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()" >
-    <div class="modal-header">
-        <h4 class="modal-title pull-left">Update Expense</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <table class="table">
+  <div class="col-md-10">
+    <button type="button" class="btn btn-success pull-right" id="btnAddNewExpense" (click)="addNewExpense(addExpense)"
+      data-toggle="tooltip" data-placement="bottom" title="Add Expense">
+      <span class="fa fa-plus-square" aria-hidden="true"></span></button>
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Expense Type</th>
+            <th>Date</th>
+            <th>Paid By Whom</th>
+            <th>Amount Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of expenses; let i=index">
+            <td>{{e.ExpenseType}}</td>
+            <td>{{e.Date | date:'mediumDate'}}</td>
+            <td>{{e.PaidByWhom}}</td>
+            <td>{{e.Paid}}</td>
+            <td class="text-center">
+              <button type="btn" class="btn btn-success" (click)="edit(editExpense,e)" data-toggle="tooltip"
+                data-placement="bottom" title="Edit Expense">
+                <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <ng-template #editExpense>
+      <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">Update Expense</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
             <tr>
               <td colspan="1">
-                 <div class="form-row"> 
-                 <div class="form-group col-md-6">
-                     <label class="col-md-6 control-label">ExpenseType</label> 
-                 </div>
-                 <div class="form-group col-md-6">
-                     <select name="ExpenseType" class="form-control" formControlName="ExpenseType"  [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">  
-                        <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">  
-                            {{expense.Expenses}}   
-                        </option>  
-                    </select> 
-                    </div>
-                    <div *ngIf="submitted && form.ExpenseType.errors">
-                        <div *ngIf="form.ExpenseType.errors.required">ExpenseType is required</div>
-                      </div>
-              </div>
-             </td>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6 control-label">ExpenseType</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <select name="ExpenseType" class="form-control" formControlName="ExpenseType"
+                      [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+                      <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
+                        {{expense.Expenses}}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="submitted && form.ExpenseType.errors">
+                    <div *ngIf="form.ExpenseType.errors.required">ExpenseType is required</div>
+                  </div>
+                </div>
+              </td>
             </tr>
             <tr>
-             <td colspan="1">
-                <div class="form-row"> 
-                <div class="form-group col-md-6">
-                    <label class="col-md-6 control-label">AmountPaid</label> 
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6 control-label">AmountPaid</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
+                      placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
+                  </div>
+                  <div *ngIf="submitted && form.AmountPaid.errors">
+                    <div *ngIf="form.AmountPaid.errors.required">AmountPaid is required</div>
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">  
-             </div>
-             <div *ngIf="submitted && form.AmountPaid.errors">
-                <div *ngIf="form.AmountPaid.errors.required">AmountPaid is required</div>
-              </div>
-             </div>
-            </td>
-           </tr>
-           <tr>
-             <td colspan="1">
-                <div class="form-row"> 
-                <div class="form-group col-md-6">
-                    <label class="col-md-6 control-label">Date</label> 
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6 control-label">Date</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="Date" formControlName="Date"
+                      [ngClass]="{'is-invalid': submitted && form.Date.errors }">
+                  </div>
+                  <div *ngIf="submitted && form.Date.errors">
+                    <div *ngIf="form.Date.errors.required">Date is required</div>
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="Date" formControlName="Date" [ngClass]="{'is-invalid': submitted && form.Date.errors }">  
-             </div>
-             <div *ngIf="submitted && form.Date.errors">
-                <div *ngIf="form.Date.errors.required">Date is required</div>
-              </div>
-             </div>
-            </td>
-           </tr>
-           <tr>
-             <td colspan="1">
-                <div class="form-row"> 
-                <div class="form-group col-md-6">
-                    <label class="col-md-6 control-label">PaidByWhom</label> 
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6 control-label">PaidByWhom</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
+                      (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && form.PaidByWhom.errors} ">
+                      <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">
+                        {{user.FirstName+' '+user.LastName}}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="submitted && form.PaidByWhom.errors">
+                    <div *ngIf="form.PaidByWhom.errors.required">Paid By Whom is required</div>
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"  (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && form.PaidByWhom.errors} ">  
-                            <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">  
-                                {{user.FirstName+' '+user.LastName}}   
-                            </option>  
-                        </select> 
-             </div>
-             <div *ngIf="submitted && form.PaidByWhom.errors">
-                <div *ngIf="form.PaidByWhom.errors.required">Paid By Whom is required</div>
-              </div>
-             </div>
-            </td>
-           </tr>
-           <tr>
-             <td colspan="1">
-                <div class="form-row"> 
-                <div class="form-group col-md-6">
-                    <label class="col-md-6 control-label">Remark</label> 
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6 control-label">Remark</label>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <input type="text" class="form-control" id="Remark" formControlName="Remark"
+                      [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
+                  </div>
+                  <div *ngIf="submitted && form.Remark.errors">
+                    <div *ngIf="form.Remark.errors.required">Remark is required</div>
+                  </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="Remark" formControlName="Remark" [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">   
-             </div>
-             <div *ngIf="submitted && form.Remark.errors">
-                <div *ngIf="form.Remark.errors.required">Remark is required</div>
-              </div>
-             </div>
-            </td>
-           </tr>
-           </table>
-      </div>
-       <div class="modal-footer">
-          <button type="button"  type="submit" id="submit" class="btn btn-primary">Save</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
         </div>
-  </form>
+      </form>
     </ng-template>
 
     <ng-template #addExpense>
-        <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()" >
+      <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
         <div class="modal-header">
-            <h4 class="modal-title pull-left">Add Expense</h4>
-            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            
-            <table class="table table-striped">
-                <tr>
-                  <td colspan="1">
-                     <div class="form-row"> 
-                     <div class="form-group col-md-4">
-                         <label class="col-md-4 control-label">ExpenseType</label> 
-                     </div>
-                     <div class="form-group col-md-5">
-                         <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"  [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">  
-                            <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">  
-                                {{expense.Expenses}}   
-                            </option>  
-                        </select> 
-                        <div *ngIf="submitted && f.ExpenseType.errors">
-                            <div *ngIf="f.ExpenseType.errors.required">*</div>
-                          </div>
-                        </div>
-                      
+          <h4 class="modal-title pull-left">Add Expense</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <table class="table table-striped">
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="col-md-4 control-label">ExpenseType</label>
                   </div>
-                 </td>
-                </tr>
-                <tr>
-                 <td colspan="1">
-                    <div class="form-row"> 
-                    <div class="form-group col-md-4">
-                        <label class="col-md-4 control-label">AmountPaid</label> 
+                  <div class="form-group col-md-5">
+                    <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"
+                      [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
+                      <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
+                        {{expense.Expenses}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && f.ExpenseType.errors">
+                      <div *ngIf="f.ExpenseType.errors.required">*</div>
                     </div>
-                    <div class="form-group col-md-5">
-                        <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">  
-                 </div>
-                 <div *ngIf="submitted && f.AmountPaid.errors">
+                  </div>
+
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="col-md-4 control-label">AmountPaid</label>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
+                      placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
+                  </div>
+                  <div *ngIf="submitted && f.AmountPaid.errors">
                     <div *ngIf="f.AmountPaid.errors.required">*</div>
                   </div>
-                 </div>
-                </td>
-               </tr>
-               <tr>
-                 <td colspan="1">
-                    <div class="form-row"> 
-                    <div class="form-group col-md-4">
-                        <label class="col-md-4 control-label">Date</label> 
-                    </div>
-                    <div class="form-group col-md-5">
-                        <input type="date" class="form-control" id="Date" formControlName="Date" [ngClass]="{'is-invalid': submitted && f.Date.errors }">  
-                 </div>
-                 <div *ngIf="submitted && f.Date.errors">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="col-md-4 control-label">Date</label>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <input type="date" class="form-control" id="Date" formControlName="Date"
+                      [ngClass]="{'is-invalid': submitted && f.Date.errors }">
+                  </div>
+                  <div *ngIf="submitted && f.Date.errors">
                     <div *ngIf="f.Date.errors.required">*</div>
                   </div>
-                 </div>
-                </td>
-               </tr>
-               <tr>
-                 <td colspan="1">
-                    <div class="form-row"> 
-                    <div class="form-group col-md-4">
-                        <label class="col-md-4 control-label">PaidByWhom</label> 
-                    </div>
-                    <div class="form-group col-md-5"> 
-                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom" (change)="selectUser($event)"
-                    [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">   
-                            <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">  
-                                {{user.FirstName+' '+user.LastName}}   
-                            </option>  
-                        </select> 
-                 </div>
-                 <div *ngIf="submitted && f.PaidByWhom.errors">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="col-md-4 control-label">PaidByWhom</label>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
+                      (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
+                      <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">
+                        {{user.FirstName+' '+user.LastName}}
+                      </option>
+                    </select>
+                  </div>
+                  <div *ngIf="submitted && f.PaidByWhom.errors">
                     <div *ngIf="f.PaidByWhom.errors.required">*</div>
                   </div>
-                 </div>
-                </td>
-               </tr>
-               <tr>
-                 <td colspan="1">
-                    <div class="form-row"> 
-                    <div class="form-group col-md-4">
-                        <label class="col-md-4 control-label">Remark</label> 
-                    </div>
-                    <div class="form-group col-md-5">
-                        <input type="text" class="form-control" id="Remark" formControlName="Remark" [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">   
-                 </div>
-                 <div *ngIf="submitted && f.Remark.errors">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="1">
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="col-md-4 control-label">Remark</label>
+                  </div>
+                  <div class="form-group col-md-5">
+                    <input type="text" class="form-control" id="Remark" formControlName="Remark"
+                      [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
+                  </div>
+                  <div *ngIf="submitted && f.Remark.errors">
                     <div *ngIf="f.Remark.errors.required">*</div>
                   </div>
-                 </div>
-                </td>
-               </tr>
-               </table>
-      
-           <div class="modal-footer">
-              <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
-            </div>
+                </div>
+              </td>
+            </tr>
+          </table>
+
+          <div class="modal-footer">
+            <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"
+              (click)="modalRef.hide()">Close</button>
           </div>
-        </form>
-        </ng-template>
+        </div>
+      </form>
+    </ng-template>

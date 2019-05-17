@@ -1,60 +1,79 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="row">
   <div class="col-md-2">
-  <!-- Add left navigation componant -->
-  <app-authorised-side-nav></app-authorised-side-nav>
-</div>
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
-<div class="col-md-10">
-      <a href="/TeacherCourses" class="btn btn-success pull-right" (click)="AddNewStaff()" data-toggle="tooltip" data-placement="bottom" title="Add Staff">
-        <span class="fa fa-plus-square" aria-hidden="true"></span></a>
-           
-      <table border="1px" class="table table-striped ">
-        <thead>
-          <tr>
-            <th>
-              Staff Name
-            </th>
-            <th>
-              Joining Date
-            </th>
-            <th>
-              Contact
-            </th>
-            <th>
-              Email
-            </th>
-            <th>
-              Date of Leaving
-            </th>
-            <th>
-              Leaving Reason
-            </th>
-            <th class="text-center" colspan="2"> </th>
-          </tr>
-        </thead>
+  <div class="col-md-10 overflow-auto">
+    <div class="col">
+      <div class="row">
+        <a routerLink="/TeacherCourses" class="btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom"
+          title="Add Staff">
+          <span class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></span></a>&nbsp;
 
-        <tr *ngFor="let t of staffMaster">
-          <td><button type="btn" class="btn  btn-link"
-              (click)="GetCourses(ShowCourses,t.StaffId)"><span>{{t.Name}}</span></button></td>
-          <td>{{t.DateOfJoining | date:'mediumDate'}}</td>
-          <td>{{t.ContactNo}}</td>
-          <td>{{t.Email}}</td>
-          <td>{{t.DateOfLeaving | date:'mediumDate'}}</td>
-          <td>{{t.LeavingReason}}</td>
-          <td>
-             <button type="btn" class='btn btn-success' (click)="Edit(editStaff,t)" data-toggle="tooltip" data-placement="bottom" title="Edit Staff">
-               <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
-          <td> <button type="btn" class="btn btn-danger" (click)="Delete(t.StaffId)" data-toggle="tooltip" data-placement="bottom" title="Delete Staff">
-            <span class="fa fa-times" aria-hidden="true"></span></button>
-          </td>
-        </tr>
-      </table>
-</div>
+        <button type="btn" class="btn btn-sm pull-right" (click)="printPage()" data-toggle="tooltip"
+          data-placement="bottom" title="Print">
+          <span class="fa fa-print fa-2x" aria-hidden="true"></span></button>
+      </div>
+      <div class="row">
+        <div class="card ml-1" style="width: 18rem;"
+          *ngFor="let t of staffMaster | paginate: { itemsPerPage: 6, currentPage: p }">
+          <div class="card-body">
+            <h5 class="card-title">
+              <button type="btn" class="btn btn-sm pull-right" (click)="edit(editStaff,t)" data-toggle="tooltip"
+                data-placement="bottom" title="Edit Expense">
+                <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+              &nbsp;
+              <button type="btn" class="btn btn-sm pull-right" (click)="delete(t.StaffId)" data-toggle="tooltip"
+                data-placement="bottom" title="Delete Staff">
+                <span class="fa fa-times" aria-hidden="true"></span></button>
+            </h5>
+            <div class="card-text">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <div style="display:-webkit-inline-box">
+                    <!-- thumbnailUrl -->
+                    <!-- <div *ngIf="t.Photo">
+                    <img [src]="t.Photo" class="img-circle" width="50" height="50">
+                  </div> -->
+                    <!-- Avtar -->
+                    <div *ngIf="t.Photo">
+                      <div *ngIf="t.Gender && t.Gender=='Male'">
+                        <img src="../../assets/images/MProfile.jpg" class="img-circle" width="50" height="50">
+                      </div>
+                      <div *ngIf="t.Gender && t.Gender=='Female'">
+                        <img src="../../assets/images/FProfile.png" class="img-circle" width="50" height="50">
+                      </div>
+                    </div>
+                    <h4>
+                      <a type="btn" class="btn  btn-link" (click)="getStaffDetails(showStaff,t)">
+                        <span>{{t.FirstName+' '+t.LastName}}</span>
+                      </a>
+                    </h4>
+                  </div>
+                </li>
+                <li class="list-group-item"><i class="fa fa-mobile" aria-hidden="true"></i><span
+                    style="padding:5px">{{t.ContactNo}}</span>
+                </li>
+                <li class="list-group-item">
+                  <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
+                  <span style="padding: 5px">{{t.Email}}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ul class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </ul>
+  </div>
 </div>
 <ng-template #editStaff>
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
@@ -318,7 +337,7 @@
                 <div class="form-group col-md-6">
                   <select id="CourseType" class="form-control" formControlName="CourseType"
                     (change)="selectCourse($event)" [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
-                    <option *ngFor="let courseType of StaffListService.listCourseType"
+                    <option *ngFor="let courseType of staffListService.listCourseType"
                       [value]="courseType.CourseTypeId">
                       {{courseType.CourseTypeName}}
                     </option>
@@ -340,7 +359,7 @@
                   <select id="Courses" class="form-control" formControlName="Courses"
                     (change)="selectCourseName($event)" [disabled]="disabled"
                     [ngClass]="{ 'is-invalid': submitted && f.Courses.errors }">
-                    <option *ngFor="let courselist of StaffListService.listCourses" [value]="courselist.CourseName">
+                    <option *ngFor="let courselist of staffListService.listCourses" [value]="courselist.CourseName">
                       {{courselist.CourseName}}</option>
                   </select>
                 </div>
@@ -442,7 +461,7 @@
     </form>
   </div>
 </ng-template>
-<ng-template #ShowCourses>
+<ng-template #showCourses>
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Course List</h4>
@@ -451,7 +470,6 @@
       </button>
     </div>
     <div class="modal-body">
-      <!-- <form [formGroup]="ShowCoursesForm" (ngSubmit)="onSubmit()" > -->
       <table class="table table-striped">
         <thead>
           <th>No</th>
@@ -459,16 +477,14 @@
           <th>CounrseName</th>
         </thead>
         <tbody>
-          <tr *ngFor="let c of StaffListService.listTeacherCourse; let i = index">
+          <tr *ngFor="let c of staffListService.listTeacherCourse; let i = index">
             <td>{{i+1}}</td>
             <td>{{c.CourseType}}</td>
             <td>{{c.Courses}}</td>
           </tr>
         </tbody>
       </table>
-      <!-- </form> -->
       <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-primary" type="submit" id="submit" (click)="Save()">Save</button> -->
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
       </div>
     </div>
@@ -476,3 +492,276 @@
 </ng-template>
 
 
+<ng-template #showStaff>
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Staff Details</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="showStaffDetailsForm">
+        <table class="table">
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="Gender">Gender</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" formControlName="Gender" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="firstName">Firstname</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" formControlName="FirstName" disabled>
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="middleName">Middlename</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" formControlName="MiddleName" disabled>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="lastName">Lastname</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" formControlName="LastName" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">DateOfBirth</label>
+                  <input type="text" id="DOB" class="form-control" formControlName="DOB" disabled>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="BloodGroup">Blood Group</label>
+                  <input type="text" id="BloodGroup" class="form-control" formControlName="BloodGroup" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">ContactNo</label>
+                  <input type="text" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
+                    class="form-control" disabled>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">EmergencyNo</label>
+                  <input type="text" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
+                    class="form-control" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label for="inputAddress">Address</label>
+                </div>
+                <div class="form-group col-md-10">
+                  <input type="text" class="form-control" id="Address1" placeholder="Address 1"
+                    formControlName="Address1" disabled>
+
+                  <input type="text" class="form-control" id="Address2" formControlName="Address2"
+                    placeholder="Address 2" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label class="col-md-4 control-label">City</label>
+                  <input type="text" class="form-control" id="City" formControlName="City" disabled>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label class="col-md-4 control-label">State</label>
+                  <input type="text" id="State" class="form-control" formControlName="State" disabled>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label class="col-md-2 control-label">STD</label>
+                  <input type="text" class="form-control" id="STD" formControlName="STDCode" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-2">
+                  <label for="inputPaddress">Address</label>
+                </div>
+                <div class="form-group col-md-10">
+                  <input type="text" class="form-control" id="P_Address1" placeholder="Address 1"
+                    formControlName="P_Address1" disabled>
+                  <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2"
+                    formControlName="P_Address2" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-4">
+                  <label class="col-md-4 control-label">P_City</label>
+                  <input type="text" class="form-control" id="P_City" formControlName="P_City" disabled>
+                </div>
+
+                <div class="form-group col-md-4">
+                  <label class="col-md-4 control-label">P_State</label>
+                  <input type="text" id="P_State" class="form-control" formControlName="P_State" disabled>
+                </div>
+                <div class="form-group col-md-4">
+                  <label class="col-md-4 control-label">P_STDCode</label>
+                  <input type="text" class="form-control" id="P_STDCode" formControlName="P_STDCode" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputPaddress">P_ContactNo</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="P_ContactNo" formControlName="P_ContactNo" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">CourseType</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" id="CourseType" class="form-control" formControlName="CourseType" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">Courses</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" id="Courses" class="form-control" formControlName="Courses" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="Photo">Photo</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="Photo" formControlName="Photo" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">Email</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="Email" formControlName="Email" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">PreviousWorkName</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName"
+                    disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">PreviousExperience</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
+                    disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">DateOfLeaving</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="DateOfLeaving" formControlName="DateOfLeaving" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">LeavingReason</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="LeavingReason" formControlName="LeavingReason" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+    </div>
+  </div>
+</ng-template>

@@ -13,7 +13,7 @@ import { TestinomialsComponent } from './testinomials/testinomials.component';
 import { SocialactComponent } from './socialact/socialact.component';
 import { HomeComponent } from './home/home.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
-import { StaffListComponent } from './staff-list/staff-list.component';
+import { StaffListComponent } from './staff/staff-list.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
 import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';

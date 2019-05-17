@@ -12,22 +12,22 @@ import { BranchService } from './branch.service';
 })
 export class BranchComponent implements OnInit {
   modalRef: BsModalRef;
-  CreateBranchForm: FormGroup;
+  createBrachForm: FormGroup;
   submitted = false;
   returnUrl: string;
   errorMessage:string;
-  Branch:Branch[];
-  EditBranchForm:FormGroup;
+  branch:Branch[];
+  editBranchForm:FormGroup;
   branchID:number;
-  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private router: Router,private BranchService:BranchService) { }
+  constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private router: Router,private branchService:BranchService) { }
 
   ngOnInit() {
-    this.CreateBranchForm = this.formBuilder.group({
+    this.createBrachForm = this.formBuilder.group({
       BranchName: ['', Validators.required],
       Address: ['', [Validators.required,Validators.minLength(6)]],
       ContactNo: ['', Validators.required]
     });
-    this.EditBranchForm=this.formBuilder.group({
+    this.editBranchForm=this.formBuilder.group({
       BranchName: ['', Validators.required],
       Address: ['', [Validators.required,Validators.minLength(6)]],
       ContactNo: ['', Validators.required]
@@ -36,7 +36,7 @@ export class BranchComponent implements OnInit {
   }
 getBranchList(){
   debugger;
-  this.BranchService.getBranches().subscribe(res=>this.Branch=res);
+  this.branchService.getBranches().subscribe(res=>this.branch=res);
 }
 
   openPopupForNew(NewBranchTemplate: TemplateRef<any>){
@@ -54,7 +54,7 @@ getBranchList(){
       Address:branch.Address,
       ContactNo:branch.ContactNo
     } 
-    this.EditBranchForm.patchValue(body);
+    this.editBranchForm.patchValue(body);
     this.modalRef = this.modalService.show(EditBranchTemplate, {
       animated: true,
       backdrop: 'static'
@@ -63,18 +63,18 @@ getBranchList(){
   onSubmitCreateBranch()
   {
     debugger;
-    if (this.CreateBranchForm.invalid==true) {
+    if (this.createBrachForm.invalid==true) {
       this.submitted = true;
       return;
      }
      else{
       this.submitted = false;
       let body ={
-        BranchName:this.CreateBranchForm.controls.BranchName.value,
-        Address:this.CreateBranchForm.controls.Address.value,
-        ContactNo:this.CreateBranchForm.controls.ContactNo.value
+        BranchName:this.createBrachForm.controls.BranchName.value,
+        Address:this.createBrachForm.controls.Address.value,
+        ContactNo:this.createBrachForm.controls.ContactNo.value
       };
-  this.BranchService.CreateNewBranch(body).subscribe((data) => {  
+  this.branchService.createNewBranch(body).subscribe((data) => {  
     this.modalRef.hide();
     this.getBranchList();
   }, error => this.errorMessage = error) 
@@ -85,12 +85,12 @@ onSubmitEditBranch(){
   debugger;
  let body={
    BranchId:this.branchID,
-  BranchName:this.EditBranchForm.controls.BranchName.value,
-  Address:this.EditBranchForm.controls.Address.value,
-  ContactNo:this.EditBranchForm.controls.ContactNo.value
+  BranchName:this.editBranchForm.controls.BranchName.value,
+  Address:this.editBranchForm.controls.Address.value,
+  ContactNo:this.editBranchForm.controls.ContactNo.value
  } 
 
- this.BranchService.EditBranch(body)  
+ this.branchService.editBranch(body)  
  .subscribe((data) => {  
    this.modalRef.hide();
    this.getBranchList();   
@@ -99,6 +99,16 @@ onSubmitEditBranch(){
 
 get f()
 { 
-  return this.CreateBranchForm.controls; 
+  return this.createBrachForm.controls; 
+}
+delete(id:number) {
+  debugger;
+  console.log(id);
+  var ans = confirm("Do you want to delete customer with Id: " + id);
+  if (ans) {
+    this.branchService.deleteBranch(id).subscribe(data => {
+      this.getBranchList();
+    }, error => console.error(error))
+  }
 }
 }

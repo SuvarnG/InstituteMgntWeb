@@ -1,10 +1,9 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StaffListService } from './staff-list.service';
-import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StaffMaster } from '../Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
-import { validateConfig } from '@angular/router/src/config';
 import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-staff-list',
@@ -15,14 +14,15 @@ export class StaffListComponent implements OnInit {
   returnUrl: string;
   public staffMaster: StaffMaster[];
   staffForm: FormGroup;
+  showStaffDetailsForm:FormGroup;
   modalRef: BsModalRef;
-  TeacherId: Number;
+  teacherId: Number;
   errorMessage: any;
   selectedCourseTypeValue: number;
   selectedCourseName: string;
   submitted = false;
-
-  constructor(private datePipe: DatePipe, private StaffListService: StaffListService,
+staffInfo:StaffMaster;
+  constructor(private datePipe: DatePipe, private staffListService: StaffListService,
     private modalService: BsModalService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -58,23 +58,46 @@ export class StaffListComponent implements OnInit {
       BloodGroup: ['', Validators.required]
     });
 
-    this.getAllTeacher();
-  }
-  AddNewStaff() {
-    // this.router.navigate([this.returnUrl]);
-  }
-  getAllTeacher() {
-    debugger;
-    this.StaffListService.getAllTeachers().subscribe(res => this.staffMaster = res);
+this.showStaffDetailsForm=this.fb.group({
+      Gender: [],
+      CourseType: [],
+      ContactNo: [],
+      Email: [],
+      PreviousExperience: [],
+      DateOfLeaving: [],
+      Courses: [],
+      LeavingReason: [],
+      FirstName: [],
+      LastName: [],
+      MiddleName: [],
+      DOB: [],
+      Photo: [],
+      Address1: [],
+      Address2: [],
+      City: [],
+      State: [],
+      STDCode: [],
+      P_Address1: [],
+      P_Address2: [],
+      P_City: [],
+      P_State: [],
+      P_STDCode: [],
+      P_ContactNo: [],
+      EmergencyNo: [],
+      PreviousWorkName: [],
+      BloodGroup: []
+});
+    this.getAllStaff();
   }
 
+  getAllStaff() {
+    this.staffListService.getAllStaff().subscribe(res => this.staffMaster = res);
+  }
   get f() {
     return this.staffForm.controls;
   }
 
   onSubmitEditStaff() {
-    debugger;
-    console.log(this.staffForm);
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -87,7 +110,7 @@ export class StaffListComponent implements OnInit {
         CourseType: this.staffForm.controls.CourseType.value,
         ContactNo: this.staffForm.controls.ContactNo.value,
         Email: this.staffForm.controls.Email.value,
-        StaffId: this.TeacherId,
+        StaffId: this.teacherId,
         PreviousExperience: this.staffForm.controls.PreviousExperience.value,
         Courses: this.staffForm.controls.Courses.value,
         DateOfLeaving: this.staffForm.controls.DateOfLeaving.value,
@@ -112,72 +135,18 @@ export class StaffListComponent implements OnInit {
         PreviousWorkName: this.staffForm.controls.PreviousWorkName.value,
         BloodGroup: this.staffForm.controls.BloodGroup.value
       }
-      this.StaffListService.updateStaff(body)
+      this.staffListService.updateStaff(body)
         .subscribe((data) => {
           this.modalRef.hide();
           alert("Staff updated successfully");
-          this.getAllTeacher();
+          this.getAllStaff();
           this.router.navigate(['/StaffList']);
         }, error => this.errorMessage = error)
     }
   }
-  // Update(){
-  //   debugger;
-  // if (this.staffForm.invalid==true)
-  //  {
-  //       this.submitted = true;
-  //       return;
-  //      }
-  //      else
-  //      {
-  //       this.submitted = false;
-
-  //   let body ={
-  //     Gender:this.staffForm.controls.Gender.value,
-  //     Name:this.staffForm.controls.Name.value,
-  //     CourseType: this.staffForm.controls.CourseType.value,
-  //     ContactNo: this.staffForm.controls.ContactNo.value,
-  //     Email:this.staffForm.controls.Email.value,
-  //     StaffId:this.TeacherId,
-  //     PreviousExperience:this.staffForm.controls.PreviousExperience.value,
-  //     Courses:this.staffForm.controls.Courses.value,
-  //     DateOfLeaving:this.staffForm.controls.DateOfLeaving.value,
-  //     LeavingReason:this.staffForm.controls.LeavingReason.value,
-  //     FirstName:this.staffForm.controls.FirstName.value,
-  //     MiddleName:this.staffForm.controls.MiddleName.value,
-  //     LastName:this.staffForm.controls.LastName.value,
-  //     DOB:this.staffForm.controls.DOB.value,
-  //     Photo:this.staffForm.controls.Photo.value,
-  //     Address1:this.staffForm.controls.Address1.value,
-  //     Address2:this.staffForm.controls.Address2.value,
-  //     City:this.staffForm.controls.City.value,
-  //     State:this.staffForm.controls.State.value,
-  //     STDCode:this.staffForm.controls.STDCode.value,
-  //     P_Address1:this.staffForm.controls.P_Address1.value,
-  //     P_Address2:this.staffForm.controls.P_Address2.value,
-  //     P_City:this.staffForm.controls.P_City.value,
-  //     P_State:this.staffForm.controls.P_State.value,	
-  //     P_STDCode:this.staffForm.controls.P_STDCode.value,
-  //     P_ContactNo:this.staffForm.controls.P_ContactNo.value,
-  //     EmergencyNo:this.staffForm.controls.EmergencyNo.value,
-  //     PreviousWorkName:this.staffForm.controls.PreviousWorkName.value,
-  //     IsCv:this.staffForm.controls.IsCv.value,
-  //     IsFixedPayment:this.staffForm.controls.IsFixedPayment.value,
-  //     BloodGroup:this.staffForm.controls.BloodGroup.value
-  //   }
-  //   this.StaffListService.updateStaff(body)  
-  //   .subscribe((data) => { 
-  //     this.modalRef.hide();
-  //       this.getAllTeacher(); 
-  //       this.router.navigate(['/StaffList']);  
-  //   }, error => this.errorMessage = error)
-  // }
-  // }
-
-
-  Edit(editStaff: TemplateRef<any>, teacher) {
-    debugger;
-    this.TeacherId = teacher.StaffId;
+  
+  edit(editStaff: TemplateRef<any>, teacher) {
+    this.teacherId = teacher.StaffId;
     let body = {
       Gender: teacher.Gender,
       StaffId: teacher.StaffId,
@@ -206,47 +175,80 @@ export class StaffListComponent implements OnInit {
       P_City: teacher.P_City,
       P_State: teacher.P_State,
       P_STDCode: teacher.P_STDCode,
-      P_ContactNo: teacher.P_ContactNo,
-      //IsCv:teacher.IsCv,
-      //sFixedPayment:teacher.IsFixedPayment,
+      P_ContactNo: teacher.P_ContactNo
     }
-    console.log(teacher.DateOfLeaving);
     this.staffForm.patchValue(body);
     this.modalRef = this.modalService.show(editStaff, {
       animated: true,
       backdrop: 'static'
     });
-    this.StaffListService.GetAllCourseType();
+    this.staffListService.getAllCourseType();
     if (teacher.CourseType != null) {
-      this.StaffListService.GetCourseName(Number(teacher.CourseType));
+      this.staffListService.getCourseName(Number(teacher.CourseType));
     }
   }
 
-  Delete(staffID) {
+  delete(staffID) {
     var ans = confirm("Do you want to delete customer with Id: " + staffID);
     if (ans) {
-      this.StaffListService.deleteStaff(staffID).subscribe(data => {
+      this.staffListService.deleteStaff(staffID).subscribe(data => {
         alert("Staff deleted successfully");
-        this.getAllTeacher();
+        this.getAllStaff();
       }, error => console.error(error))
     }
   }
 
   selectCourse(event) {
-    debugger;
     this.selectedCourseTypeValue = event.target.value;
-    this.StaffListService.GetCourseName(this.selectedCourseTypeValue);
+    this.staffListService.getCourseName(this.selectedCourseTypeValue);
   }
   selectCourseName(event) {
     this.selectedCourseName = event.target.value;
   }
 
-  GetCourses(showCourses: TemplateRef<any>, id: number) {
+  getStaffDetails(showStaff: TemplateRef<any>, teacher) {
     debugger;
-    this.StaffListService.GetTeacherCourses(id);
-    this.modalRef = this.modalService.show(showCourses, {
+   // this.staffListService.getTeacherCourses(id);
+   this.teacherId=teacher.StaffId;
+   let body = {
+    Gender: teacher.Gender,
+    StaffId: teacher.StaffId,
+    FirstName: teacher.FirstName,
+    MiddleName: teacher.MiddleName,
+    LastName: teacher.LastName,
+    DOB: teacher.DOB,
+    BloodGroup: teacher.BloodGroup,
+    Email: teacher.Email,
+    ContactNo: teacher.ContactNo,
+    EmergencyNo: teacher.EmergencyNo,
+    CourseType: teacher.CourseType,
+    Courses: teacher.Courses,
+    PreviousWorkName: teacher.PreviousWorkName,
+    PreviousExperience: teacher.PreviousExperience,
+    DateOfLeaving:teacher.DateOfLeaving,
+    LeavingReason: teacher.LeavingReason,
+    Photo: teacher.Photo,
+    Address1: teacher.Address1,
+    Address2: teacher.Address2,
+    City: teacher.City,
+    State: teacher.State,
+    STDCode: teacher.STDCode,
+    P_Address1: teacher.P_Address1,
+    P_Address2: teacher.P_Address2,
+    P_City: teacher.P_City,
+    P_State: teacher.P_State,
+    P_STDCode: teacher.P_STDCode,
+    P_ContactNo: teacher.P_ContactNo
+  }
+  this.showStaffDetailsForm.patchValue(body);
+   this.staffListService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
+    this.modalRef = this.modalService.show(showStaff, {
       animated: true,
       backdrop: 'static'
     });
+  }
+
+  printPage(){
+    window.print();
   }
 }

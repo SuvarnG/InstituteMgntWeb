@@ -26,12 +26,16 @@ export class BranchService {
     }));
   }
 
-  CreateNewBranch(branch):Observable<Branch>{
+  createNewBranch(branch):Observable<Branch>{
  debugger;
    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/CreateBranch', branch,httpOptions)
   }
 
-EditBranch(branch):Observable<Branch>{
+editBranch(branch):Observable<Branch>{
   return this.http.post<Branch>(environment.APIBASEURL + 'Branch/UpdateBranch', branch,httpOptions)
+}
+
+deleteBranch(id):Observable<Branch>{
+  return this.http.post<Branch>(environment.APIBASEURL + 'Branch/DeleteBranch/'+id, httpOptions)
 }
 }

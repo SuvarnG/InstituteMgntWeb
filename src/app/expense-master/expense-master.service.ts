@@ -29,7 +29,7 @@ export class ExpenseMasterService {
     };
   }
 
-GetAllExpenses()
+getAllExpenses()
 {
   debugger;
   return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions)
@@ -39,7 +39,7 @@ GetAllExpenses()
   }));
 }
 
-CreateNewExpense(expense)
+createNewExpense(expense)
 {
   debugger;
    return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/CreateExpenses', expense,httpOptions)  
@@ -48,7 +48,7 @@ CreateNewExpense(expense)
      catchError(this.handleError<ExpenseMaster>('expense'))
    );
 }
-DeleteExpense(id): Observable<ExpenseMaster>
+deleteExpense(id): Observable<ExpenseMaster>
 {
   debugger;
   return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/DeleteExpense/'+id, httpOptions).pipe(
@@ -56,7 +56,7 @@ DeleteExpense(id): Observable<ExpenseMaster>
     catchError(this.handleError<ExpenseMaster>('id'))
   );
 }
- EditExpense(expense): Observable<ExpenseMaster>{
+ editExpense(expense): Observable<ExpenseMaster>{
   return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/UpdateExpenses', expense,httpOptions)  
   .pipe(
     tap((expense: ExpenseMaster) => console.log(`added expenseid=${expense.ExpenseId}`)),
