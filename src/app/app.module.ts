@@ -16,7 +16,6 @@ import { StudentslistService } from './student-list/studentslist.service';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { LeavelistService } from './leaves-list/leavelist.service';
 import { CreateNewStudentService } from './create-student/create-new-student.service';
-import { HttpClientModule} from '@angular/common/http';
 import {LoginService} from './login/login.service';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import{EnquiryService} from './enquiry/enquiry.service';
@@ -57,6 +56,10 @@ import { Routes } from '@angular/router';
 import { BranchService } from './branch/branch.service';
 import { BanktransactionService } from './banktransaction/banktransaction.service';
 import { DataTablesModule } from 'angular-datatables';
+import { HttpClientModule } from '@angular/common/http';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { RouterModule } from '@angular/router'
+import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
@@ -105,7 +108,10 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
     DatepickerModule.forRoot(),
-    DataTablesModule
+    DataTablesModule,
+    RouterModule,
+    NgProgressModule.forRoot(),
+    NgProgressRouterModule
   ],
   providers: 
   [sliderservice, 
@@ -124,7 +130,7 @@ const appRoutes: Routes = [
   FeesTransactionService,
   DatePipe,
   BranchService,
-  BanktransactionService
+  BanktransactionService,
 ],
 
   bootstrap: [AppComponent]

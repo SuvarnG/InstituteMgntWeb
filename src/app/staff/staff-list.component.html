@@ -10,7 +10,7 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-  <div class="col-md-10 overflow-auto">
+  <div class="col-md-10">
     <div class="col">
       <div class="row">
         <a routerLink="/TeacherCourses" class="btn btn-sm pull-right" data-toggle="tooltip" data-placement="bottom"
@@ -20,10 +20,12 @@
         <button type="btn" class="btn btn-sm pull-right" (click)="printPage()" data-toggle="tooltip"
           data-placement="bottom" title="Print">
           <span class="fa fa-print fa-2x" aria-hidden="true"></span></button>
+
+          <input type="text" class="pull-right" placeholder="Search" [(ngModel)]="filter">
       </div>
       <div class="row">
-        <div class="card ml-1" style="width: 18rem;"
-          *ngFor="let t of staffMaster | paginate: { itemsPerPage: 6, currentPage: p }">
+        <div class="card ml-4 shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;"
+          *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
           <div class="card-body">
             <h5 class="card-title">
               <button type="btn" class="btn btn-sm pull-right" (click)="edit(editStaff,t)" data-toggle="tooltip"
