@@ -37,7 +37,7 @@ export class LeaveService {
   }
 
   GetCoursName() {
-    return this.http.get(environment.APIBASEURL + 'Course/GetAll'
+    return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses'
     ).pipe
       (map(data => {
         return data as CourseType[]
@@ -45,7 +45,7 @@ export class LeaveService {
   }
 
   GetStudentName(id) {
-    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetSudentsByCourse/' + id
+    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id
     ).pipe
       (map(data => {
         return data as Students[]

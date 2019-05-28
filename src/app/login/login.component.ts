@@ -10,8 +10,10 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  Email: string='riya@gmail.com';
-  Password: string='riya1996';
+    Email: string='riya@gmail.com';
+   Password: string='riya1996';
+  //   username: string;
+  //  password: string;
   returnUrl: string;
 
   errorMessage: string;
@@ -20,25 +22,27 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-    sessionStorage.setItem('Email', 'password');
-    sessionStorage.clear();
+   // sessionStorage.setItem('username', 'password');
+   // sessionStorage.clear();
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/authorised-layout';
 
 
   }
 
   LoginUser() {
-        this.LoginService.login(this.Email, this.Password)
-
+    this.LoginService.login(this.Email, this.Password)
       .pipe(first())
       .subscribe(data => {
         console.log('User after login:' + JSON.stringify(data));
-        if (data && data.Email)
+        if (data && data.access_token)
           this.router.navigate([this.returnUrl]);
         else
         this.errorMessage='Invalid Email or Password!'
       });
   }
-  
- 
+
+  // getUserEmail() {
+  //   const userObject = this.LoginService.getLoggedInUser();
+  //   this.Email = userObject.Email;
+  // }
 }

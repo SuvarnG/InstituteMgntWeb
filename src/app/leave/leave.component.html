@@ -1,3 +1,13 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
+
+  <div class="col-md-10 overflow-auto">
 <!-- Create button layout -->
 <div class="">
   <button type="button" class="btn btn-primary" (click)="OpenCreateModal(CreateTemplate)"> Apply For Leave </button>
@@ -41,7 +51,7 @@
     </tbody>
   </table>
 </div>
-
+</div>
 <!-- Create leave modal -->
 <ng-template #CreateTemplate>
   <div class="modal-header">

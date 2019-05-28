@@ -1,10 +1,11 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EnquiryService } from './enquiry.service';
 import { EnquiryList, CourseNameMaster, CourseTypeMaster } from '../models/EnquiryList';
 import { createEnquiry } from '../models/createEnquiry';
 import { validateConfig } from '@angular/router/src/config';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-enquiry',
@@ -12,7 +13,9 @@ import { validateConfig } from '@angular/router/src/config';
   styleUrls: ['./enquiry.component.css']
 })
 
-export class EnquiryComponent implements OnInit {
+export class EnquiryComponent implements  OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   EnquiryForm: FormGroup;
   UpdateEnquiryFormGroup: FormGroup;
   submitted = false;
@@ -77,22 +80,25 @@ export class EnquiryComponent implements OnInit {
   get fu() { return this.UpdateEnquiryFormGroup.controls; }
 
   public OpenEnquiryModel(CreateEnquiryModal: TemplateRef<any>) {
-    debugger;
+    //debugger;
     if (!this.listCourseType) {
       this.GetCourseTypeList();
     }
-    this.modalRef = this.modalService.show(CreateEnquiryModal);
+    this.modalRef = this.modalService.show(CreateEnquiryModal,{
+      backdrop: 'static'
+    });
   }
 
   getEnquiryList() {
     this.enquiryService.getEnquiry().subscribe(res => {
       this.enquiries = res;
       console.log(JSON.stringify(this.enquiries));
+      
     });
   }
 
   CreateNewEnquiry() {
-    debugger;
+    //debugger;
     console.log(this.EnquiryForm);
     this.submitted = true;
     // stop here if form is invalid
@@ -119,20 +125,24 @@ export class EnquiryComponent implements OnInit {
   }
 
   selectCourseTypeName(event) {
-    debugger;
+    //debugger;
     this.CourseTypeId = event.target.value;
   }
 
   selectCourseNameForCourseType(event) {
-    debugger;
+    //debugger;
     this.GetCourseNameList(event.target.value);
   }
 
 
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
-    debugger;
-    this.modalRef = this.modalService.show(editEnquiryModal);
+    
+    //debugger;
+    this.modalRef = this.modalService.show(editEnquiryModal,{
+      backdrop: 'static'
+      });
+    
    this.GetCourseTypeList();
     this.UpdateEnquiryFormGroup.patchValue({
       ID: editItem.ID,
@@ -150,7 +160,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   UpdateEnquiry() {
-    debugger;
+    //debugger;
     console.log(this.fu);
     this.submitted = true;
     if (this.UpdateEnquiryFormGroup.invalid) {
@@ -175,7 +185,7 @@ export class EnquiryComponent implements OnInit {
 
 
   private GetCourseTypeList() {
-    debugger;
+    //debugger;
     this.enquiryService.GetCourseTypeList().subscribe(res => {
       this.listCourseType = res;
       console.log(JSON.stringify(this.listCourseType));
@@ -183,7 +193,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   private GetCourseNameList(id: number) {
-    debugger;
+    //debugger;
     this.enquiryService.GetCourseNameList(id).subscribe(res => {
       this.listCourseName = res;
       console.log(JSON.stringify(this.listCourseName))

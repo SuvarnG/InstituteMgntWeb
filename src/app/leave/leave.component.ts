@@ -72,7 +72,7 @@ export class LeaveComponent implements OnInit {
     if (this.CreateLeaveFormGroup.invalid) {
       return;
     }
-    debugger;
+   // debugger;
     let req = {
       LeaveType: this.fc.LeaveName.value,
       Course: this.fc.CourseName.value,
@@ -88,6 +88,7 @@ export class LeaveComponent implements OnInit {
     }
     this.LeaveService.CreateLeave(req).subscribe(res => {
       this.modalRef.hide()
+      
       this.getLeaveList();
       console.log(JSON.stringify(res));
     });
@@ -102,7 +103,7 @@ export class LeaveComponent implements OnInit {
   }
 
   getStudentName(event) {
-    debugger;
+    //debugger;
     this.LeaveService.GetStudentName(event.target.value).subscribe(res => {
       this.students = res;
       console.log(JSON.stringify(this.students));
@@ -110,7 +111,7 @@ export class LeaveComponent implements OnInit {
   }
 
   getCourseNameByType() {
-    debugger;
+    //debugger;
     this.LeaveService.GetCourseNameByType().subscribe(res => {
       this.leaves = res;
       console.log(JSON.stringify(this.leaves));
@@ -119,12 +120,19 @@ export class LeaveComponent implements OnInit {
 
 
   OpenCreateModal(createTemplate: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(createTemplate);
+  
+    this.modalRef = this.modalService.show(createTemplate,{
+      backdrop: 'static'
+    });
+    
   }
 
   // <!-- Edit leave modal -->
   UpdateCreateModal(EditTemplate: TemplateRef<any>, editItem: LeaveTransaction) {
-    this.modalRef = this.modalService.show(EditTemplate);
+    this.modalRef = this.modalService.show(EditTemplate,{
+        backdrop: 'static'
+      });
+    
 
     debugger;
     this.UpdateLeaveFormGroup.patchValue({
@@ -145,7 +153,7 @@ export class LeaveComponent implements OnInit {
   }
 
   UpdateLeave() {
-    debugger;
+    //debugger;
     console.log(this.fu);
     this.submitted = true;
     if (this.UpdateLeaveFormGroup.invalid) {

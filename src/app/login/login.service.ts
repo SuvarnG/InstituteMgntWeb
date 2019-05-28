@@ -17,26 +17,30 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-  private Url = environment.APIBASEURL + 'Login/Login';
+  private Url = environment.Host + 'token';
 
   constructor(private http: HttpClient) { }
 
-  login(email: string, password: string) {
-    // const body= new HttpParams()
-    // .set('Email',Email)
-    // .set('password',password);
-    let body: Auth = {
-      Email: email,
-      Password: password
-    };
-
-    return this.http.post<User>(this.Url, body, httpOptions
-    ).pipe(map(user => {
-      if (user && user.Email) {
-        sessionStorage.setItem('CurrentUser', JSON.stringify(user));
-      }
-      return user;
+  login(username: string, password: string) {
+     const body= new HttpParams()
+     .set('grant_type', 'password')
+     .set('username',username)
+     .set('password',password);
+    return this.http.post<Auth>(this.Url, body
+    ).pipe(map(auth => {
+      if (auth && auth.access_token) {
+        
+        // store user details and jwt token in session storage to keep user logged in between page refreshes
+        sessionStorage.setItem('CurrentUser', JSON.stringify(auth));
+        }
+      return auth;
     }));
   }
+
+//   getLoggedInUser() {
+//     debugger;
+//     const user = JSON.parse(sessionStorage.getItem('CurrentUser'));
+//     return user;
+// }
 
 }
