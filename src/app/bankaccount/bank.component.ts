@@ -49,7 +49,8 @@ export class BankComponent implements OnDestroy, OnInit {
       AccountNo: ['', [Validators.required, Validators.minLength(12)]],
       ReAccountNo: ['', Validators.required],
       IFSC_Code: ['', Validators.required],
-      AccountType: ['', Validators.required]
+      AccountType: ['', Validators.required],
+      User: ['', Validators.required],
     }, {
         validator: MustMatch('AccountNo', 'ReAccountNo')
       });
@@ -75,6 +76,8 @@ export class BankComponent implements OnDestroy, OnInit {
         AccountNo: this.registerForm.controls.AccountNo.value,
         AccountType: this.registerForm.controls.AccountType.value,
         IFSC_Code: this.registerForm.controls.IFSC_Code.value,
+       // UserId: this.registerForm.controls.UserId.value,
+       User:"staff"
 
       };
       this.BankService.Bank(body).subscribe((data) => {
@@ -85,8 +88,8 @@ export class BankComponent implements OnDestroy, OnInit {
     }
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {
+  AddBankAccNo(Addtemplate: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
     });
@@ -104,6 +107,7 @@ export class BankComponent implements OnDestroy, OnInit {
   }
 
   Delete(ID) {
+    debugger;
     var ans = confirm("Do you want to delete BankId : " + ID);
     if (ans) {
       this.BankService.Delete(ID).subscribe(data => {
@@ -118,7 +122,9 @@ export class BankComponent implements OnDestroy, OnInit {
       ID: bank.ID,
       BankName: bank.BankName,
       AccountType: bank.AccountType,
-      IFSC_Code: bank.IFSC_Code
+      IFSC_Code: bank.IFSC_Code,
+      UserId:"staff"
+      
     }
     this.registerForm.patchValue(selectedBank);
     this.modalRef = this.modalService.show(editTemplate, {
@@ -142,7 +148,8 @@ export class BankComponent implements OnDestroy, OnInit {
       ID: this.registerForm.controls.ID.value,
       BankName: this.registerForm.controls.BankName.value,
       AccountType: this.registerForm.controls.AccountType.value,
-      IFSC_Code: this.registerForm.controls.IFSC_Code.value
+      IFSC_Code: this.registerForm.controls.IFSC_Code.value,
+      UserId:this.registerForm.controls.UserId.value,
 
     }
     this.BankService.EditAccNo(body).subscribe(data => {

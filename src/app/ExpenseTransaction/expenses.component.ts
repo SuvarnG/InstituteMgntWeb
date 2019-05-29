@@ -38,7 +38,9 @@ export class ExpensesComponent implements OnInit {
       AmountPaid: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       PaidByWhom: ['', [Validators.required]],
-      Remark: ['', [Validators.required]]
+      Remark: ['', [Validators.required]],
+      ExpenseId:[],
+      PaidByName:[]
     })
 
     this.editExpenseForm = this.fb.group({
@@ -46,9 +48,15 @@ export class ExpensesComponent implements OnInit {
       AmountPaid: ['', [Validators.required]],
       Date: ['', [Validators.required]],
       PaidByWhom: ['', [Validators.required]],
-      Remark: ['', [Validators.required]]
+      Remark: ['', [Validators.required]],
+      ExpenseId:[],
+      //Expenses: ['', [Validators.required]],
+      Id:[],
+      PaidByName:[]
     })
     this.getAllExpenseTransction();
+    this.ExpenseService.getAllExpenseType();
+    this.ExpenseService.userList();
   }
 
   getAllExpenseTransction() {
@@ -83,7 +91,9 @@ export class ExpensesComponent implements OnInit {
       let body = {
         ExpenseType: this.expenseForm.controls.ExpenseType.value,
         Paid: this.expenseForm.controls.AmountPaid.value,
-        PaidByWhom: this.selectedUserValue,
+       // PaidByWhom: this.selectedUserValue,
+       PaidByWhom: this.expenseForm.controls.PaidByWhom.value,
+       PaidByName:this.expenseForm.controls.PaidByName.value,
         Date: this.expenseForm.controls.Date.value,
         Remark: this.expenseForm.controls.Remark.value
       }
@@ -96,27 +106,35 @@ export class ExpensesComponent implements OnInit {
   }
 
   edit(editExpense: TemplateRef<any>, e) {
+    debugger;
+   
     this.id = e.Id;
     this.expenseId = e.ExpenseId;
-
-    this.editExpenseForm.patchValue({
+    
+    
+      let selectedexpense={
       ExpenseType: e.ExpenseType,
       AmountPaid: e.Paid,
       PaidByWhom: e.PaidByWhom,
       Date: e.Date,
       Remark: e.Remark,
       Id: e.Id,
-      ExpenseId: e.ExpenseId
-    });
+      ExpenseId: e.ExpenseId,
+      PaidByName:e.PaidByName
+      }
+      this.editExpenseForm.patchValue(selectedexpense);
+     
+   
     this.modalRef = this.modalService.show(editExpense, {
       animated: true,
       backdrop: 'static'
     });
-    this.ExpenseService.getAllExpenseType();
-    this.ExpenseService.userList();
+   
+    
   }
 
   onSubmitEdit() {
+    debugger;
     if (this.editExpenseForm.invalid == true) {
       this.submitted = true;
       return;
@@ -126,13 +144,16 @@ export class ExpensesComponent implements OnInit {
       let body = {
         ExpenseType: this.editExpenseForm.controls.ExpenseType.value,
         Paid: this.editExpenseForm.controls.AmountPaid.value,
-        PaidByWhom: this.selectedUserValue,
+       // PaidByWhom: this.selectedUserValue,
+        PaidByWhom: this.editExpenseForm.controls.PaidByWhom.value,
+        PaidByName:this.editExpenseForm.controls.PaidByName.value,
         Date: this.editExpenseForm.controls.Date.value,
         Remark: this.editExpenseForm.controls.Remark.value,
-        Id: this.id,
-        ExpenseId: this.expenseId
+        Id: this.editExpenseForm.controls.Id.value,
+        ExpenseId: this.editExpenseForm.controls.ExpenseId.value,
+       // Expenses: this.editExpenseForm.controls.Expenses.value,
       }
-      this.ExpenseService.updateExpense(body)
+       this.ExpenseService.updateExpense(body)
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllExpenseTransction();

@@ -8,7 +8,7 @@ import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-na
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
 import { AuthorisedSideNavComponent } from './layout/authorised/authorised-side-nav/authorised-side-nav.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StudentListComponent } from './student-list/student-list.component';
 import { CreateStudentComponent } from './create-student/create-student.component';
@@ -16,12 +16,12 @@ import { StudentslistService } from './student-list/studentslist.service';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { LeavelistService } from './leaves-list/leavelist.service';
 import { CreateNewStudentService } from './create-student/create-new-student.service';
-import {LoginService} from './login/login.service';
+import { LoginService } from './login/login.service';
 import { EnquiryComponent } from './enquiry/enquiry.component';
-import{EnquiryService} from './enquiry/enquiry.service';
-import{LeaveService} from './leave/leave.service';
+import { EnquiryService } from './enquiry/enquiry.service';
+import { LeaveService } from './leave/leave.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import{ModalModule} from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap';
 import { LeaveComponent } from './leave/leave.component';
 import { HomeComponent } from './home/home.component';
 import { sliderservice } from './sliderservice.service';
@@ -46,7 +46,7 @@ import { BanktransactionComponent } from './banktransaction/banktransaction.comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
 import { BankService } from './bankaccount/bank.service';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { ExpenseMasterComponent } from './expense-master/expense-master.component';
 import { ExpenseMasterService } from './expense-master/expense-master.service';
 import { FeesTransactionComponent } from './fees-transaction/fees-transaction.component';
@@ -63,9 +63,9 @@ import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
-  
+
 @NgModule({
-  declarations: [ 
+  declarations: [
     AppComponent,
     LoginComponent,
     AuthorisedTopNavComponent,
@@ -87,7 +87,7 @@ const appRoutes: Routes = [
     CoursesComponent,
     SocialactComponent,
     TestinomialsComponent,
-     TeacherCoursesComponent,
+    TeacherCoursesComponent,
     StaffListComponent,
     ExpensesComponent,
     RoleComponent,
@@ -96,6 +96,7 @@ const appRoutes: Routes = [
     ExpenseMasterComponent,
     FeesTransactionComponent,
     BranchComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -113,25 +114,25 @@ const appRoutes: Routes = [
     NgProgressModule.forRoot(),
     NgProgressRouterModule
   ],
-  providers: 
-  [sliderservice, 
-    StudentslistService,
-    LeavelistService,
-    CreateNewStudentService,
-    LoginService,
-    EnquiryService,
-    LeaveService, 
-    StaffListService,
-    ExpenseService,
-    TeacherCoursesService,
-    RoleService,
-  BankService,
-  ExpenseMasterService,
-  FeesTransactionService,
-  DatePipe,
-  BranchService,
-  BanktransactionService,
-],
+  providers:
+    [sliderservice,
+      StudentslistService,
+      LeavelistService,
+      CreateNewStudentService,
+      LoginService,
+      EnquiryService,
+      LeaveService,
+      StaffListService,
+      ExpenseService,
+      TeacherCoursesService,
+      RoleService,
+      BankService,
+      ExpenseMasterService,
+      FeesTransactionService,
+      DatePipe,
+      BranchService,
+      BanktransactionService,
+    ],
 
   bootstrap: [AppComponent]
 })

@@ -3,11 +3,12 @@ export interface Expenses {
     ExpenseId:number,
     expenseType:string,
     AmountPaid: number,
-    PaidByWhom: string,
+    PaidByWhom: number,
     Email: string,
     Date: Date,
     Remark:string,
-    Expenses:string
+    Expenses:string,
+    PaidByName:string
 }
 
 export interface ExpenseMaster{

@@ -79,10 +79,11 @@ export class FeesTransactionComponent implements OnInit {
   // }
 
 
-  openFeesTransactionHistory(template:TemplateRef<any>){
-    debugger;
-    this.modalRef=this.modalService.show(template)
-  }
+  // openFeesTransactionHistory(template:TemplateRef<any>){
+  //   debugger;
+  //   this.modalRef=this.modalService.show(template)
+  // }
+
 
   createStudentCourse(feesTransactions: FeesTransactions) {
 

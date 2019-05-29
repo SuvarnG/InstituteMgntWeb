@@ -15,7 +15,7 @@ export class BankService {
   private Url = environment.APIBASEURL + 'Bank/GetAll';
   private deleteUrl = environment.APIBASEURL + 'Bank/InactiveBank/';
   private CreateUrl = environment.APIBASEURL + 'Bank/CreateBankAccount';
-  private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBank';
+  private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBankAccount';
 
   constructor(private http: HttpClient) { }
 

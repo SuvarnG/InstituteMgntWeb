@@ -1,43 +1,43 @@
 <nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
   <div>
     <ul class="navbar-nav" >
-      <li class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'|| currentRole==='Receptionist'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'|| currentRole==='Receptionist'">
           <a class="nav-link" routerLink="/FeesTransaction">Fees Payment</a>
         </li>
-      <li class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin' || currentRole==='Receptionist'|| currentRole==='Teacher'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin' || currentRole==='Receptionist'|| currentRole==='Teacher'">
         <a class="nav-link" routerLink="/Enquiry">Enquiry</a>
       </li>
-      <li class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'">
         <a class="nav-link" routerLink="/StudentList">Student</a>
       </li>    
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link"  routerLink="/Expenses">Daily Expenses</a>
         </li>
-        <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
             <a class="nav-link" routerLink="/BankTransaction">Bank Transaction</a>
        </li>
-        <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'|| currentRole==='SuperAdmin'|| currentRole==='Receptionist'">
-            <a class="nav-link" routerLink="#">Apply Leave</a>
+        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'|| currentRole==='SuperAdmin'|| currentRole==='Receptionist'">
+            <a class="nav-link" routerLink="/Leave">Apply Leave</a>
           </li>
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/Leave">Leaves</a>
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/LeaveList">Leaves</a>
       </li>    
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/StaffList">Staff</a>
         </li>
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="#">Courses</a>
       </li>
-      <li class="nav-item" *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/role">Role</a>
       </li>
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/Bank">Bank Account</a>
       </li>
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/Branch">Branch</a>
       </li>     
-      <li class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
           <a class="nav-link" routerLink="/ExpenseMaster">Expenses</a>
         </li>
     </ul>

@@ -78,7 +78,7 @@
                   <div class="form-group">
                     <select class="form-control" formControlName="StudentID"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
-                      (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();openFeesTransactionHistory(feesTransactionHistory)">
+                      (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
                       <option *ngFor="let student of FeesTransactionService.listStudents" [value]=" student.StudentId">
                         {{student.FullName}}
                       </option>
@@ -94,8 +94,8 @@
               <tr>
                 <td colspan="1">
                   <label for="CourseFees">Course Fees For Student</label>
-                  <div class="form-group">
-                    <select class="form-control" formControlName="CourseFees"
+                   <div class="form-group">
+                   <select class="form-control" formControlName="CourseFees"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }">
                       <option *ngFor="let course of FeesTransactionService.listCourseFees" [value]="course.TotalFees">
                         {{course.TotalFees}}
@@ -105,9 +105,21 @@
                       <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
                     </div>
                   </div>
+                 
                 </td>
               </tr>
 
+              <tr>
+                  <td colspan="1">
+              <label for="RemainingFees">Remaining Fees</label>
+              <div class="form-group">
+                  <input type="text" class="form-control" id="" formControlName=""
+                    [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
+                    <!-- <input type="button" *ngFor="let fees of FeesTransactionService.listFeesTransactions" value="Add" (click)="calculateTotalPaidFees(fees.FeesPaid)"> -->
+                  
+                  </div>
+                  </td>
+              </tr>
 
             </tbody>
           </table>
@@ -135,7 +147,7 @@
 
               <tr>
                 <td colspan="1">
-                  <label for="FeesAmount">Fees Amount Paying?</label>
+                  <label for="FeesAmount">Fees Amount Paying</label>
                   <div class="form-group">
                     <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
@@ -195,6 +207,8 @@
                 </td>
               </tr>
 
+              
+
               <tr>
                 <td colspan="1">
                   <div class="form-group">
@@ -211,15 +225,38 @@
         </div>
       </div>
     </form>
-  </body>
+  
 
-  </html>
+<div class="container" style="margin-top:50px">
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <th>InstallmentDate</th>
+    <th>PaidAmount</th>
+    <th>FeesTakenBy</th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let fees of FeesTransactionService.listFeesTransactions">
+      
+    <td>{{fees.DateOfPayment}}</td>
+    <td>{{fees.FeesPaid}}</td>
+    <td>{{fees.FeesTakenBy}}</td>
+  </tr>
+  
+</tbody>
+</table>
 </div>
 
+</body>
 
-<ng-template #feesTransactionHistory >
+</html>
+</div>
+<!-- <ng-template #feesTransactionHistory  >
 
-    <div class="modal-header">
+    <div class="modal-header" >
+
+      <h1>bujbj</h1>
         <h4 class="modal-title pull-left">Installment Date</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
           <span aria-hidden="true">&times;</span>
@@ -244,4 +281,4 @@
           </tr>
 
   </div>
-</ng-template>
+</ng-template> -->

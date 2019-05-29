@@ -29,7 +29,7 @@
           <tr *ngFor="let e of expenses; let i=index">
             <td>{{e.ExpenseType}}</td>
             <td>{{e.Date | date:'mediumDate'}}</td>
-            <td>{{e.PaidByWhom}}</td>
+            <td>{{e.PaidByName}}</td>
             <td>{{e.Paid}}</td>
             <td class="text-center">
               <button type="btn" class="btn btn-success" (click)="edit(editExpense,e)" data-toggle="tooltip"
@@ -60,9 +60,11 @@
                   </div>
                   <div class="form-group col-md-6">
                     <select name="ExpenseType" class="form-control" formControlName="ExpenseType"
-                      [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+                      [value]="form.ExpenseId.value" [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+                      <option [value]="null">Select Name</option>
                       <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
                         {{expense.Expenses}}
+                        <!-- {{expense.ExpenseType}} -->
                       </option>
                     </select>
                   </div>
@@ -95,7 +97,7 @@
                     <label class="col-md-6 control-label">Date</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="text" class="form-control" id="Date" formControlName="Date"
+                    <input type="date | date:'shortDate'" class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && form.Date.errors }">
                   </div>
                   <div *ngIf="submitted && form.Date.errors">
@@ -111,15 +113,15 @@
                     <label class="col-md-6 control-label">PaidByWhom</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
-                      (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && form.PaidByWhom.errors} ">
+                    <select name="PaidByName" class="form-control" formControlName="PaidByName"
+                      [value]="form.PaidByWhom.value" [ngClass]="{'is-invalid': submitted && form.PaidByName.errors} ">
                       <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">
                         {{user.FirstName+' '+user.LastName}}
                       </option>
                     </select>
                   </div>
-                  <div *ngIf="submitted && form.PaidByWhom.errors">
-                    <div *ngIf="form.PaidByWhom.errors.required">Paid By Whom is required</div>
+                  <div *ngIf="submitted && form.PaidByName.errors">
+                    <div *ngIf="form.PaidByName.errors.required">Paid By Whom is required</div>
                   </div>
                 </div>
               </td>

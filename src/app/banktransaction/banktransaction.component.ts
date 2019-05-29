@@ -12,16 +12,12 @@ import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 //import { Http, Response } from '@angular/http';
 
-
-
 @Component({
   selector: 'app-banktransaction',
   templateUrl: './banktransaction.component.html',
   styleUrls: ['./banktransaction.component.css']
 })
 export class BanktransactionComponent implements OnDestroy, OnInit {
-
-
   modalRef: BsModalRef;
   CreateFormGroup: FormGroup;
   UpdateFormGroup: FormGroup;
@@ -38,9 +34,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-
-
-  constructor(private http: HttpClient, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
+ constructor(private http: HttpClient, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private BanktransactionService: BanktransactionService,
     private route: ActivatedRoute) { }
 
@@ -48,10 +42,10 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
     this.dtTrigger.unsubscribe();
   }
 
-  AddBank(template: TemplateRef<any>) {
+  AddBank(Addtemplate: TemplateRef<any>) {
     debugger;
     this.getBankTransaction();
-    this.CreateFormGroup.controls.ID.reset,
+     this.CreateFormGroup.controls.ID.reset,
       this.CreateFormGroup.controls.BankName.reset,
       this.CreateFormGroup.controls.AccountNo.reset,
       this.CreateFormGroup.controls.TransactionType.reset,
@@ -60,23 +54,21 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       this.CreateFormGroup.controls.TransactionBy.reset
 
     this.getBankList();
-    this.modalRef = this.modalService.show(template, {
+    this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
     });
 
   }
 
-
-  ngOnInit() {
+ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 5
 
     };
 
-
-    this.CreateFormGroup = this.formBuilder.group({
+  this.CreateFormGroup = this.formBuilder.group({
       ID: [],
       BankName: ['', Validators.required],
       AccountNo: ['', Validators.required],
@@ -98,11 +90,11 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
       TransactionBy: ['', Validators.required],
+      TransactionById:[],
       Date: ['', Validators.required]
     });
 
-
-  }
+ }
 
 
   getStaffList() {
@@ -110,7 +102,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   }
 
   getBankList() {
-    debugger;
+    
     this.BanktransactionService.GetBankList().subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
   }
 
@@ -171,6 +163,10 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       BankName: banktransaction.BankName,
       AccountNo: banktransaction.AccountNo,
       TransactionType: banktransaction.TransactionType,
+      Amount:banktransaction.Amount,
+      TransactionBy:banktransaction.TransactionBy,
+      TransactionById:banktransaction.TransactionById,
+      Date:banktransaction.Date
     }
     this.UpdateFormGroup.patchValue(selectedBank);
     this.modalRef = this.modalService.show(editTemplate, {

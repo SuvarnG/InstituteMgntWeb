@@ -48,7 +48,7 @@ export class FeesTransactionService {
 
   getStudentListFromCourseName(id){
     debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id).toPromise().then(result=>this.listStudents=result as Students[] )
+    this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse/' + id).toPromise().then(result=>this.listStudents=result as Students[] )
   }
 
   getTotalFeesForStudentCourse(id){

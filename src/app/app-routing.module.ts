@@ -65,6 +65,10 @@ const routes: Routes = [
     component:LeaveComponent
   },
   {
+    path:'LeaveList',
+    component:LeavesListComponent
+  },
+  {
     path:'StudentList',
     component:StudentListComponent
   },
