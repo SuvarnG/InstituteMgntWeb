@@ -45,7 +45,7 @@
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
                       <option *ngFor="let course of FeesTransactionService.listCourses" [value]="course.CourseId">
-                        {{course.CourseName}}</option>
+                        {{course.FullName}}</option>
 
                     </select>
                     <div *ngIf="submitFeesTransaction && g.CourseName.errors" class="invalid-feedback">

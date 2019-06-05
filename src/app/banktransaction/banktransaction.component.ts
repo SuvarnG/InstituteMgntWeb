@@ -53,7 +53,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       this.CreateFormGroup.controls.Amount.reset,
       this.CreateFormGroup.controls.TransactionBy.reset
 
-    this.getBankList();
+    //this.getBankList();
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
@@ -63,6 +63,8 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
 
 ngOnInit() {
     this.dtOptions = {
+      retrieve: true,
+      paging: false,
       pagingType: 'full_numbers',
       pageLength: 5
 
@@ -77,10 +79,11 @@ ngOnInit() {
 
       TransactionBy: ['', Validators.required],
       Date: ['', Validators.required]
-    });
-
+    })
     this.getBankTransaction();
-    this.getStaffList();
+    this.getBankList();
+     this.getStaffList();
+    
 
 
     this.UpdateFormGroup = this.formBuilder.group({
@@ -92,8 +95,8 @@ ngOnInit() {
       TransactionBy: ['', Validators.required],
       TransactionById:[],
       Date: ['', Validators.required]
-    });
-
+    })
+    
  }
 
 
@@ -132,6 +135,7 @@ ngOnInit() {
       this.BanktransactionService.banktransaction(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBankTransaction();
+        this.submitted = false;
 
       })
     }
@@ -198,6 +202,10 @@ ngOnInit() {
       this.modalRef.hide();
       this.getBankTransaction();
     }, error => console.error(error))
+  }
+  clearForm()
+  {
+    this.CreateFormGroup.reset()
   }
 }
 

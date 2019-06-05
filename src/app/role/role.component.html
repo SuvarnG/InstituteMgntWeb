@@ -14,7 +14,7 @@
 <div class="container">
   <h2>Roles
     <button type="submit" class="btn btn-primary" style="margin-left:840px" 
-    (click)="openModal(template)" data-target="#myupdate" data-toggle="modal">Add</button>
+    (click)="openModal(template)" data-target="#myupdate" data-toggle="modal" (click)="clearForm()">Add</button>
   </h2>
   <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -47,7 +47,7 @@
 <ng-template #template>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Modal</h4>
+      <h4 class="modal-title pull-left">Role</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
         <span aria-hidden="true">&times;</span>
       </button>

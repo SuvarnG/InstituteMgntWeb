@@ -1,12 +1,310 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
 
-<app-header></app-header>
-<div style="height:10px;"></div>
+<div class="row">
+  <div class="col-md-2">
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
-<app-navigation-bar></app-navigation-bar>
+<div class="container">
+  <h2>Courses
+    <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="AddCourses(Addtemplate)"
+      (click)="clearForm()">Add</button>
+  </h2>
+  <table class="table table-bordered">
+    <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
+    <thead>
+      <tr>
+        <!-- <th>No</th> -->
+        <th>CourseId</th>
+        <!-- <th>CourseTypeId</th> -->
+        <th>CourseType Name</th>
+        <th>Short Name</th>
+        <th>Full Name</th>
+        <th>Is Percentage</th>
+        <th>Fees</th>
+        <th>Duration (In Days)</th>
+        <!-- <th>Is Active</th> -->
+        <th>Percentage</th>
+        <th></th>
 
-<div style="height:20px;"></div>
-<p>
-    courses works!
-</p>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of course">
+        <!-- <td>{{i+1}}</td> -->
+        <td>{{c.CourseId}}</td>
+        <!-- <td>{{c.CourseTypeId}}</td> -->
+        <td>{{c.CourseTypeName}}</td>
+        <td>{{c.ShortName}}</td>
+        <td>{{c.FullName}}</td>
+        <td>{{c.IsPercentage}}</td>
+        <td>{{c.Fees}}</td>
+        <td>{{c.Duration}}</td>
+        <!-- <td>{{c.IsActive}}</td> -->
+        <td>{{c.Percentage}}</td>
+        <td>
+          <button type="submit" style="margin-right:5px" class="btn btn-default" (click)="Edit(editTemplate,c)"><i
+              style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="submit" class="btn btn-default" (click)="Delete(c.CourseId)"><i style='font-size:24px'
+              class="fa fa-trash" aria-hidden="true"></i></button></td>
 
-<app-footer></app-footer>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Create model -->
+
+<ng-template #Addtemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="CourseTypeId">Enter course type name : </label>
+        <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId" [value]="null"
+          [ngClass]="{ 'is-invalid': submitted &&
+          f.CourseTypeId.errors }">
+          <option [value]="null">Select CourseType Name</option>
+          <option *ngFor="let course of coursetype" [value]="course.CourseTypeId">
+            {{course.CourseTypeName}}
+          </option>
+        </select>
+
+        <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
+          <div *ngIf="f.CourseTypeId.errors.required">Please Enter Name</div>
+        </div>
+      </div>
+      <!-- (change)="getShortName($event)" -->
+
+
+      <!-- <div class="form-group">
+          <label for="ShortName">Enter short name : </label>
+
+          <select name="ShortName" id="ShortName" [value]="null" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
+        f.ShortName.errors }">
+        <option [value]="null">Select short name</option>
+            <option *ngFor="let shortname of shortname" [value]="shortname.CourseTypeId">
+              {{shortname.ShortName}}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.ShortName.errors" class="invalid-feedback">
+            <div *ngIf="f.ShortName.errors.required">Please </div>
+           
+          </div>
+        </div> -->
+      <div class="form-group">
+        <label for="ShortName">Enter ShortName : </label>
+
+        <input type="text" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
+                        f.ShortName.errors }" placeholder="">
+        <div *ngIf="submitted && f.ShortName.errors" class="invalid-feedback">
+          <div *ngIf="f.ShortName.errors.required">Please </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="FullName">Enter FullName : </label>
+
+        <input type="text" class="form-control" formControlName="FullName" [ngClass]="{ 'is-invalid': submitted &&
+                        f.FullName.errors }" placeholder="">
+        <div *ngIf="submitted && f.FullName.errors" class="invalid-feedback">
+          <div *ngIf="f.FullName.errors.required">Please </div>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="IsPercentage" class="control-label-col-sm-2">IsPercentage: </label>
+        <input type="text" class="form-control" formControlName="IsPercentage" value="" [ngClass]="{ 'is-invalid': submitted &&
+                            f.IsPercentage.errors }" placeholder="">
+        <div *ngIf="submitted && f.IsPercentage.errors" class="invalid-feedback">
+          <div *ngIf="f.IsPercentage.errors.required">Please </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="form-group">
+        <label for="Fees">Fees : </label>
+        <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
+                      f.Fees.errors }" placeholder="">
+        <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
+          <div *ngIf="f.Fees.errors.required">Please </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Duration">Duration : </label>
+        <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
+                        f.Duration.errors }" placeholder="">
+        <div *ngIf="submitted && f.Duration.errors" class="invalid-feedback">
+          <div *ngIf="f.Duration.errors.required">Please </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Percentage">Percentage : </label>
+        <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
+                        f.Percentage.errors }" placeholder="">
+        <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
+          <div *ngIf="f.Percentage.errors.required"> </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" id="submit">save</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+</ng-template>
+
+
+<!-- Edit Course Model -->
+
+<ng-template #editTemplate>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Courses</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update()">
+
+      <div class="form-group">
+        <label for="CourseTypeId">Enter course type  : </label>
+        <select name="CourseTypeId" id="CourseTypeId" class="form-control" 
+          formControlName="CourseTypeId" (change)="getShortName($event.target.value)" [value]="CourseTypeId.value" [ngClass]="{ 'is-invalid': submitted &&
+        fu.CourseTypeId.errors }">
+          <option [value]="null">Select CourseType Name</option>
+          <option *ngFor="let course of coursetype" [value]="course.CourseTypeId">
+            {{course.CourseTypeName}}
+          </option>
+        </select>
+
+        <div *ngIf="submitted && fu.CourseTypeId.errors" class="invalid-feedback">
+          <div *ngIf="fu.CourseTypeId.errors.required">Please Enter Name</div>
+        </div>
+      </div>
+      <!-- [value]="CourseTypeId.value" -->
+      <div class="form-group">
+        <label for="ShortName">Enter Course  name :</label>
+
+        <select name="ShortName" id="ShortName" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
+        fu.ShortName.errors }" (change)="getFullName($event.target.value)" [value]="CourseId.value">
+         
+          <option *ngFor="let course of courses" [value]="course.CourseId">
+            {{course.ShortName}}
+          </option>
+        </select>
+        <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback">
+          <div *ngIf="fu.ShortName.errors.required">Please </div>
+
+        </div>
+        <div class="lable"  *ngIf="selectedCourse" >{{selectedCourse.FullName}}</div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="CourseId">Enter short name :{{fu.CourseId.value}}</label>
+
+        <select name="CourseId" id="CourseId" class="form-control" formControlName="CourseId" [ngClass]="{ 'is-invalid': submitted &&
+        fu.CourseId.errors }" (change)="getFullName($event)" value="fu.CourseId.value">
+         
+          <option *ngFor="let course of courses" [value]="course.CourseId">
+            {{course.ShortName}}
+          </option>
+        </select>
+        <div *ngIf="submitted && fu.CourseId.errors" class="invalid-feedback">
+          <div *ngIf="fu.CourseId.errors.required">Please </div>
+
+        </div>
+        <div class="lable"  *ngIf="selectedCourse" >{{selectedCourse.FullName}}</div>
+      </div> -->
+
+
+
+      <!-- <div class="form-group">
+        <label for="FullName">Enter FullName : </label>
+
+        <select name="FullName" id="FullName" class="form-control" formControlName="FullName" [ngClass]="{ 'is-invalid': submitted &&
+        fu.FullName.errors }">
+          
+          <option *ngFor="let name of fullname" [value]="name.ShortName">
+            {{name.FullName}}
+          </option>
+        </select>
+        <div *ngIf="submitted && fu.FullName.errors" class="invalid-feedback">
+          <div *ngIf="fu.FullName.errors.required">Please </div>
+
+        </div>
+      </div> -->
+
+
+      <!-- <div class="form-group">
+        <label for="FullName">Enter FullName : </label>
+
+        <input type="text" class="form-control" formControlName="FullName"
+           [ngClass]="{ 'is-invalid': submitted &&
+                      fu.FullName.errors }" placeholder="">
+        <div *ngIf="submitted && fu.FullName.errors" class="invalid-feedback">
+          <div *ngIf="fu.FullName.errors.required">Please </div>
+          
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label for="IsPercentage" class="control-label-col-sm-2">IsPercentage: </label>
+        <input type="text" class="form-control" formControlName="IsPercentage" value="" [ngClass]="{ 'is-invalid': submitted &&
+                        fu.IsPercentage.errors }" placeholder="">
+        <div *ngIf="submitted && fu.IsPercentage.errors" class="invalid-feedback">
+          <div *ngIf="fu.IsPercentage.errors.required">Please </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Fees">Fees : </label>
+        <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
+                    fu.Fees.errors }" placeholder="">
+        <div *ngIf="submitted && fu.Fees.errors" class="invalid-feedback">
+          <div *ngIf="fu.Fees.errors.required">Please </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Duration">Duration : </label>
+        <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
+                    fu.Duration.errors }" placeholder="">
+        <div *ngIf="submitted && fu.Duration.errors" class="invalid-feedback">
+          <div *ngIf="fu.Duration.errors.required">Please </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Percentage">Percentage : </label>
+        <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
+                    fu.Percentage.errors }" placeholder="">
+        <div *ngIf="submitted && fu.Percentage.errors" class="invalid-feedback">
+          <div *ngIf="fu.Percentage.errors.required"> </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+
+    </form>
+  </div>
+</ng-template>

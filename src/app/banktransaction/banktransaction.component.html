@@ -11,7 +11,7 @@
     <div class="container">
       <h2>Bank Transaction
         <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="AddBank(Addtemplate)"
-          data-toggle="tooltip" title="Add" data-placement="bottom">Add</button>
+          data-toggle="tooltip" title="Add" data-placement="bottom" (click)="clearForm()">Add</button>
       </h2>
       <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -66,10 +66,10 @@
         <div class="form-group">
           <label for="BankName">Bank Name</label>
 
-          <select name="BankName" id="BankName" class="form-control" (change)="getAccountNumber($event)"
-            formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
+          <select name="BankName" id="BankName"  class="form-control" (change)="getAccountNumber($event)"
+            formControlName="BankName" [value]="null" [ngClass]="{ 'is-invalid': submitted &&
           f.BankName.errors }">
-            <option>Select Bank Name</option>
+            <option [value]="null">Select Bank Name</option>
             <option *ngFor="let bank of banknames" [value]="bank.BankName">
               {{bank.BankName}}
             </option>
@@ -82,8 +82,9 @@
 
         <div class="form-group">
           <label for="AccountNo">Account Number</label>
-          <select name="AccountNo" id="AccountNo" class="form-control" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
-        f.AccountNo.errors }">>
+          <select name="AccountNo" id="AccountNo" [value]="null" class="form-control" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
+        f.AccountNo.errors }">
+        <option [value]="null">Select Account Number</option>
             <option *ngFor="let accno of listaccno" [value]="accno.AccountNo">
               {{accno.AccountNo}}
             </option>
@@ -115,10 +116,10 @@
 
         <div class="form-group">
           <label for="TransactionBy">Transaction By</label>
-          <select name="TransactionBy" id="TransactionBy" class="form-control" formControlName="TransactionBy"
+          <select name="TransactionBy" id="TransactionBy" [value]="null" class="form-control" formControlName="TransactionBy"
             [ngClass]="{ 'is-invalid': submitted &&
         f.TransactionBy.errors }">
-            <option>Select Name</option>
+            <option [value]="null">Select Name</option>
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
               <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
               <span>{{' '+ staff.LastName}}</span>

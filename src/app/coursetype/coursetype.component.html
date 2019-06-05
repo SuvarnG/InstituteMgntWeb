@@ -1,0 +1,85 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
+<div class="container">
+  <h2>Course Type
+    <button type="submit" class="btn btn-primary" style="margin-left:840px" 
+     data-target="#myupdate" data-toggle="modal" (click)="CreateNewCourse(addtemplate)" (click)="clearForm()">Add</button>
+  </h2>
+  <table class="table table-bordered">
+      <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
+    <thead>
+      <tr>
+        <th>CourseType ID</th>
+        <th>CourseType Name</th>
+        <th></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of courseType">
+        <td>
+          {{c.CourseTypeId}}
+        </td>
+        <td>{{c.CourseTypeName}}</td>
+        <td>
+          <button type="submit" style="margin-right:5px" class="btn btn-default"(click)="EditCourseType(editTemplate,c)" >
+            <i style='font-size:24px' class='far'>&#xf044;</i></button>
+          
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #addtemplate>
+  <form [formGroup]="createregisterForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="CourseTypeName">CourseTypeName : </label>
+      <input type="text" class="form-control" formControlName="CourseTypeName"
+        [ngClass]="{ 'is-invalid': submitted && f.CourseTypeName.errors }" #CourseTypeName  >
+      <div *ngIf="submitted && f.CourseTypeName.errors" class="invalid-feedback">
+        <div *ngIf="f.CourseTypeName.errors.required">Name is required</div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="margin:5px" (click)="CreateCourseName(CourseTypeName.value)">Save</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+<ng-template #editTemplate>
+  <form [formGroup]="editregisterForm" (ngSubmit)="UpdateCourseType()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit CourseTypeName</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="CourseTypeName">CourseTypeName : </label>
+      <input type="text" class="form-control" formControlName="CourseTypeName"
+        [ngClass]="{ 'is-invalid': submitted && fu.CourseTypeName.errors }" #CourseTypeName  >
+      <div *ngIf="submitted && fu.CourseTypeName.errors" class="invalid-feedback">
+        <div *ngIf="fu.CourseTypeName.errors.required">Name Required </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="margin:5px" (click)="UpdateCourseType(CourseTypeName.value)">Save</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+  
+</ng-template>

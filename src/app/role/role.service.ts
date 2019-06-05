@@ -23,6 +23,7 @@ export class RoleService {
   constructor(private http: HttpClient) { }
 
   roleList() {
+    debugger;
     return this.http.get<Roles[]>(this.Url, httpOptions)
       .pipe(map(role => {
         return role;

@@ -55,6 +55,7 @@ export class RoleComponent {
     if (this.registerForm.invalid) {
       return;
     }
+    this.submitted = false;
   }
 
 
@@ -115,6 +116,10 @@ this.ID=role.roleID;
       this.modalRef.hide();
       this.getRoles();
      }, error => console.error(error))
+  }
+  clearForm()
+  {
+    this.registerForm.reset()
   }
 
 }

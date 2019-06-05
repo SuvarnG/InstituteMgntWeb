@@ -39,6 +39,8 @@ export class BankComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
       this.dtOptions = {
+        retrieve: true,
+        paging: false,
         pagingType: 'full_numbers',
         pageLength: 5
   
@@ -50,7 +52,7 @@ export class BankComponent implements OnDestroy, OnInit {
       ReAccountNo: ['', Validators.required],
       IFSC_Code: ['', Validators.required],
       AccountType: ['', Validators.required],
-      User: ['', Validators.required],
+      //User: ['', Validators.required],
     }, {
         validator: MustMatch('AccountNo', 'ReAccountNo')
       });
@@ -77,18 +79,20 @@ export class BankComponent implements OnDestroy, OnInit {
         AccountType: this.registerForm.controls.AccountType.value,
         IFSC_Code: this.registerForm.controls.IFSC_Code.value,
        // UserId: this.registerForm.controls.UserId.value,
-       User:"staff"
+       //User:"staff"
 
       };
       this.BankService.Bank(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBanks();
+        this.submitted = false;
 
       })
     }
   }
 
   AddBankAccNo(Addtemplate: TemplateRef<any>) {
+    debugger;
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
@@ -106,9 +110,9 @@ export class BankComponent implements OnDestroy, OnInit {
 //    console.log(JSON.stringify(this.banks));
   }
 
-  Delete(ID) {
+  Delete(ID,BankName) {
     debugger;
-    var ans = confirm("Do you want to delete BankId : " + ID);
+    var ans = confirm("Do you want to delete this Bank : " + BankName);
     if (ans) {
       this.BankService.Delete(ID).subscribe(data => {
         this.getBanks();
@@ -121,9 +125,10 @@ export class BankComponent implements OnDestroy, OnInit {
     let selectedBank = {
       ID: bank.ID,
       BankName: bank.BankName,
+      AccountNo:bank.AccountNo,
       AccountType: bank.AccountType,
       IFSC_Code: bank.IFSC_Code,
-      UserId:"staff"
+     // UserId:"staff"
       
     }
     this.registerForm.patchValue(selectedBank);
@@ -149,13 +154,17 @@ export class BankComponent implements OnDestroy, OnInit {
       BankName: this.registerForm.controls.BankName.value,
       AccountType: this.registerForm.controls.AccountType.value,
       IFSC_Code: this.registerForm.controls.IFSC_Code.value,
-      UserId:this.registerForm.controls.UserId.value,
+      //UserId:this.registerForm.controls.UserId.value,
 
     }
     this.BankService.EditAccNo(body).subscribe(data => {
       this.modalRef.hide();
       this.getBanks();
     }, error => console.error(error))
+  }
+  clearForm() {
+    this.registerForm.reset()
+      
   }
 }
 

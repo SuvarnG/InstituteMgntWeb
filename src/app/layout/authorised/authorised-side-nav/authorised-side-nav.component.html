@@ -26,7 +26,7 @@
         <a class="nav-link" routerLink="/StaffList">Staff</a>
         </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="#">Courses</a>
+        <a class="nav-link" routerLink="/Courses">Courses</a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/role">Role</a>
@@ -40,6 +40,10 @@
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
           <a class="nav-link" routerLink="/ExpenseMaster">Expenses</a>
         </li>
+        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+          <a class="nav-link" routerLink="/coursetype">Course Type</a>
+        </li>
+        
     </ul>
   </div>
 </nav>
