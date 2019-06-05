@@ -1,0 +1,41 @@
+export interface StaffMaster {
+    StaffId:Number	
+    FirstName:String
+    MiddleName:String
+    LastName:String
+    Email:String
+    BloodGroup:String
+    Gender:String
+    Photo:String
+    DOB:Date
+    DOJ:Date
+    DOL:Date
+    LeavingReason:String
+    Address1:String
+    Address2:String
+    City:String
+    State:String
+    STDCode:Number
+    ContactNo:Number
+    P_Address1:String
+    P_Address2:String
+    P_City:String
+    P_State:String	
+    P_STDCode:Number
+    P_ContactNo:Number
+    EmergencyNo:Number
+    PreviousExperience:String
+    PreviousWorkName:String
+    IsCv:Boolean
+    IsFixedPayment:Number
+    IsActive:Boolean
+    CourseType:String
+    Courses:String
+    StaffName:string
+}
+
+export interface TeacherCourse{
+    TeacherID:number
+    CourseType:String
+    Courses:string
+}

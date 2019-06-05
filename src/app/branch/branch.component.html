@@ -1,0 +1,129 @@
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
+  <h2>Branch
+    <button type="submit" class="btn btn-success" style="margin-left:800px"
+      (click)="openPopupForNew(NewBranchTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Branch">
+      <span class="fa fa-plus-square" aria-hidden="true"></span>
+  </button>
+  </h2>
+
+  <!-- Branch List -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Branch Name</th>
+        <th>Address</th>
+        <th>Contact Number</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let branches of branch">
+        <td>{{branches.BranchName}}</td>
+        <td>{{branches.Address}}</td>
+        <td>{{branches.ContactNo}}</td>
+        <td>
+          <button type="submit" style="margin-right:5px" class="btn btn-success"
+            (click)="openPopupForEdit(EditBranchTemplate,branches)" data-toggle="tooltip" data-placement="bottom" title="Edit Branch">
+            <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+          <button type="submit" class="btn btn-danger" (click)="delete(branches.BranchId,branches.BranchName)" data-toggle="tooltip" data-placement="bottom" title="Delete Branch">
+            <span class="fa fa-times" aria-hidden="true"></span>
+          </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- New Branch template -->
+<ng-template #NewBranchTemplate>
+    <form [formGroup]="createBrachForm" (ngSubmit)="onSubmitCreateBranch()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">New Branch</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+        <label for="BranchName" class="control-label-col-sm-2">Branch Name : </label>
+        <input type="text" class="form-control" formControlName="BranchName"
+          [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
+        <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
+          <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Address">Branch Address : </label>
+        <input type="text" class="form-control" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
+                    f.Address.errors }">
+        <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+          <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ContactNo">Contact Number </label>
+        <input type="text" class="form-control" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
+                    f.ContactNo.errors }">
+        <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+          <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" id="submit">save</button>
+      </div>
+  </div>
+</form>
+</ng-template>
+
+<!-- Edit Branch template -->
+<ng-template #EditBranchTemplate>
+    <form [formGroup]="editBranchForm" (ngSubmit)="onSubmitEditBranch()">
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit Branch</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <div class="form-group">
+        <label for="BranchName" class="control-label-col-sm-2">Branch Name : </label>
+        <input type="text" class="form-control" formControlName="BranchName"
+          [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
+        <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
+          <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="Address">Branch Address : </label>
+        <input type="text" class="form-control" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
+                    f.Address.errors }">
+        <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+          <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ContactNo">Contact Number </label>
+        <input type="text" class="form-control" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
+                    f.ContactNo.errors }">
+        <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+          <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit" id="submit">save</button>
+      </div>
+  </div>
+</form>
+</ng-template>

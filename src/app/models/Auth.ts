@@ -1,4 +1,10 @@
 export interface Auth {
-    Email: string,
-    Password: string,
+    username: string;
+    password: string;
+    grant_type:string;
+    userId:number;
+    friendlyName:string;
+    lastLogin:Date;
+    roles:string;
+    access_token: string;
 }

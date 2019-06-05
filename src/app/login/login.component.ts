@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, Validators, FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -10,35 +10,44 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  Email: string='riya@gmail.com';
-  Password: string='riya1996';
   returnUrl: string;
+  errorMessage: any;
+  submitted: boolean;
+  loginForm: any;
 
-  errorMessage: string;
   constructor(private router: Router,
     private LoginService: LoginService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    sessionStorage.setItem('Email', 'password');
-    sessionStorage.clear();
+
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/authorised-layout';
-
-
   }
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
 
   LoginUser() {
-        this.LoginService.login(this.Email, this.Password)
-
+    this.submitted = true;
+    debugger;
+    this.LoginService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {
         console.log('User after login:' + JSON.stringify(data));
-        if (data && data.Email)
+        if (data && data.access_token)
           this.router.navigate([this.returnUrl]);
-        else
-        this.errorMessage='Invalid Email or Password!'
-      });
+      },
+        error => {
+          this.errorMessage = 'Invalid Email or Password!'
+        });
   }
+
   
- 
+
 }

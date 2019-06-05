@@ -6,9 +6,12 @@ export interface User {
         Password: string,
         // Contact: number,
         RoleId: number,
+        Role: string,
         CreatedDate: Date,
         CreatedBy: number,
         UpdatedDate: Date,
         UpdatedBy: Number,
-        IsActive: boolean
+        IsActive: boolean,
+        access_token: string
+
 }

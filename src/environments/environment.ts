@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   name:'dev',
-  APIBASEURL: 'http://localhost:50076/api/'
+  Host:'http://localhost:50076/',
+  APIBASEURL:'http://localhost:50076/api/'
 };
 
 /*

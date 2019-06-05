@@ -6,11 +6,23 @@
     LastName: string,
     Address: string,
     City: string,
-    CourseTypeName: string,
+    //CourseTypeId: number,
     DateOfEnquiry:Date,
-    IsFollowupNeeded:Number,
+    //IsFollowupNeeded:Number,
     NeedFollowupDate: Date,
-    Remark:string
+    Remark:string,
+    //CourseName:string,
+    CourseId:Number
     
-    
+}
+
+export interface CourseTypeMaster
+{
+CourseTypeID:Number,
+CourseTypeName:string
+}
+
+export interface CourseNameMaster{
+    CourseID:Number,
+    CourseName:string
 }
