@@ -1,10 +1,17 @@
 export interface Expenses {
     Id: Number,
     ExpenseId:number,
-    ExpenseType:string,
-    Paid: number,
-    PaidByWhom: string,
+    expenseType:string,
+    AmountPaid: number,
+    PaidByWhom: number,
     Email: string,
     Date: Date,
-    Comment:string
+    Remark:string,
+    Expenses:string,
+    PaidByName:string
+}
+
+export interface ExpenseMaster{
+    ExpenseId:Number,
+    Expenses:string
 }

@@ -1,0 +1,94 @@
+<!-- Add top navigation componant -->
+<app-authorised-top-nav></app-authorised-top-nav>
+
+<div class="row">
+  <div class="col-md-2">
+  <!-- Add left navigation componant -->
+  <app-authorised-side-nav></app-authorised-side-nav>
+</div>
+
+<div class="col-md-10">
+
+
+
+<div class="container">
+  <h2>Roles
+    <button type="submit" class="btn btn-primary" style="margin-left:840px" 
+    (click)="openModal(template)" data-target="#myupdate" data-toggle="modal" (click)="clearForm()">Add</button>
+  </h2>
+  <!-- <table class="table table-bordered"> -->
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+    <thead>
+      <tr>
+        <th>Role ID</th>
+        <th>Role Name</th>
+        <th></th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of roles">
+        <td>
+          {{r.roleID}}
+        </td>
+        <td>{{r.RoleName}}</td>
+        <!-- <td>{{r.IsActive}}</td> -->
+        <td>
+          <button type="submit" style="margin-right:5px" class="btn btn-default" 
+          (click)="EditRole(editTemplate,r)"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="submit"  class="btn btn-default"  (click)="Delete(r.roleID,r.RoleName)"><i style='font-size:24px' class="fa fa-trash" aria-hidden="true"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>
+
+<ng-template #template>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Role</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="role">Role : </label>
+      <input type="text" class="form-control" formControlName="role"
+        [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
+      <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+        <div *ngIf="f.role.errors.required">Name is required</div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">Save</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>
+
+
+
+
+<ng-template #editTemplate>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit Role</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <label for="role">Role : </label>
+      <input type="text" class="form-control" formControlName="role"
+        [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
+      <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+        <div *ngIf="f.role.errors.required">Name Required </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" style="margin:5px" (click)="UpdateRole(RoleName.value)">Save</button>
+        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
+      </div>
+    </div>
+  </form>
+</ng-template>

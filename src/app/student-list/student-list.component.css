@@ -1,0 +1,24 @@
+#box {
+    /* max-width: 20em; */
+    height: 700px;
+    /* width: 1200px; */
+    /* padding: 1em; */
+    margin: auto;
+    /* border: 0.062em solid #999; */
+    /* background-color: #fff; */
+    overflow-y: auto;
+    /* direction: rtl; */
+    text-align: left;
+}
+
+#v-scroll{
+
+    height: 700px;
+    margin: auto;
+    overflow-y: auto;
+}
+
+.discount{
+    width: 5px;
+}
+
