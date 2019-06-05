@@ -28,15 +28,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let branch of branch">
-        <td>{{branch.BranchName}}</td>
-        <td>{{branch.Address}}</td>
-        <td>{{branch.ContactNo}}</td>
+      <tr *ngFor="let branches of branch">
+        <td>{{branches.BranchName}}</td>
+        <td>{{branches.Address}}</td>
+        <td>{{branches.ContactNo}}</td>
         <td>
           <button type="submit" style="margin-right:5px" class="btn btn-success"
-            (click)="openPopupForEdit(EditBranchTemplate,branch)" data-toggle="tooltip" data-placement="bottom" title="Edit Branch">
+            (click)="openPopupForEdit(EditBranchTemplate,branches)" data-toggle="tooltip" data-placement="bottom" title="Edit Branch">
             <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
-          <button type="submit" class="btn btn-danger" (click)="delete(branch.BranchId)" data-toggle="tooltip" data-placement="bottom" title="Delete Branch">
+          <button type="submit" class="btn btn-danger" (click)="delete(branches.BranchId,branches.BranchName)" data-toggle="tooltip" data-placement="bottom" title="Delete Branch">
             <span class="fa fa-times" aria-hidden="true"></span>
           </button></td>
       </tr>

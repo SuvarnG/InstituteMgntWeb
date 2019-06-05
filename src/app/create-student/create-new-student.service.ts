@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { from, Observable, } from 'rxjs';
 import { map } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
-import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Models/Students';
+import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees,ThumbnailUrl } from '../Models/Students';
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +22,8 @@ export class CreateNewStudentService {
   public listRecentStudent: RecentStudent[]
   public NewStudId:unknown;
   public StudentId:number;
+  public thumbnailUrl:any='../../assets/images/MProfile.jpg';
+
   private Url = environment.APIBASEURL + 'Student/CreateStudent';
   private FeesUrl=environment.APIBASEURL+'Student/SaveOrUpdateFeesTransactionForStudent';
   private StudentLoginUrl=environment.APIBASEURL+'Login/CreateNewUser';
@@ -30,6 +33,7 @@ export class CreateNewStudentService {
   constructor(private http: HttpClient) { }
 
   createNewStudent(students:CreateStudent){
+    debugger
     return this.http.post<CreateStudent>(this.Url,students,httpOptions) //.toPromise().then(result=>this.NewStudId = result as unknown);    
   }
 
@@ -77,14 +81,44 @@ postFile(formData)
   }
 
 
+  // postPhoto(formData)
+  // {
+  //   debugger;
+  //   return this.http.post<any>(this.uploadUrl, formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   });
+  // }
+
+  // postPhoto(formData)
+  // {
+  //   debugger;
+  //   return this.http.post<any>(this.uploadUrl, formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   }).toPromise().then(result=>this.thumbnailUrl=result).catch();
+  // }
+
   postPhoto(formData)
   {
     debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
-    });
+    }).subscribe(
+      res=>{
+        debugger;
+          
+          if(res['type']==4){
+           this.thumbnailUrl='Http://'+ res['body']['Message'];
+           
+          }
+                        
+      }
+    )
   }
+
+
 
 
 }

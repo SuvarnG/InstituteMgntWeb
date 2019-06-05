@@ -50,7 +50,7 @@ export class StudentListComponent implements OnInit {
       P_City:['',Validators.required],
       P_State:['',Validators.required],
       P_STDCode:['',Validators.required],
-      //Photo:['',Validators.required],
+      //Photo:[''],
       Email:['',Validators.required],
       ZipCode:['',Validators.required],
       IsDocumentSubmitted:[],
@@ -101,6 +101,7 @@ export class StudentListComponent implements OnInit {
         BloodGroup:s.BloodGroup,
         //Course:s.Course,
         //DateOfJoining:s.DateOfJoining,
+        Photo:s.Photo,
         ContactNo:s.ContactNo,
         EmergencyNo:s.EmergencyNo,
         Email:s.EmailId,
@@ -142,6 +143,7 @@ export class StudentListComponent implements OnInit {
         EmergencyNo:this.registerUpdateStudent.controls.EmergencyNo.value,
         EmailId:this.registerUpdateStudent.controls.Email.value,
         IsDocumentSubmitted:this.registerUpdateStudent.controls.IsDocumentSubmitted.value,
+        //Photo:this.registerUpdateStudent.controls.Photo.value
       }
 
       if(confirm("Do you want to Save Changes?")){
@@ -175,6 +177,7 @@ export class StudentListComponent implements OnInit {
         BloodGroup:s.BloodGroup,
         //Course:s.Course,
         //DateOfJoining:s.DateOfJoining,
+        Photo:s.Photo,
         ContactNo:s.ContactNo,
         EmergencyNo:s.EmergencyNo,
         Email:s.EmailId,

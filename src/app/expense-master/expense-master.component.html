@@ -26,7 +26,7 @@
              <button type="btn" class='btn btn-success' (click)="editExpense(EditExpenseTemplate,expense)"  data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
                 <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
 &nbsp;&nbsp;&nbsp;&nbsp;
-             <button type="btn" class="btn btn-danger" (click)="deleteExpense(expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
+             <button type="btn" class="btn btn-danger" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
                 <span class="fa fa-times" aria-hidden="true"></span></button>
           </td>
         </tr>

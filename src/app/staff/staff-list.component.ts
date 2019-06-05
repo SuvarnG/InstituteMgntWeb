@@ -188,8 +188,8 @@ this.showStaffDetailsForm=this.fb.group({
     }
   }
 
-  delete(staffID) {
-    var ans = confirm("Do you want to delete customer with Id: " + staffID);
+  delete(staffID,firstName,lastName) {
+    var ans = confirm("Do you want to delete this staff: " + firstName + ' ' + lastName);
     if (ans) {
       this.staffListService.deleteStaff(staffID).subscribe(data => {
         alert("Staff deleted successfully");

@@ -37,17 +37,17 @@ export class TeacherCoursesComponent implements OnInit {
       DateOfJoining: ['', Validators.required],
       ContactNo: ['', Validators.required],
       Email: ['', Validators.required],
-      PreviousExperience: [],
+      PreviousExperience: [''],
       DateOfLeaving: [],
       LeavingReason: [],
       DOB: ['', Validators.required],
-      Photo: [],
-      Address1: ['', Validators.required],
+      Photo: [''],
+      Address1: ['Kondhwa', Validators.required],
       Address2: [],
       gridCheck1: [],
-      City: ['', Validators.required],
-      State: ['', Validators.required],
-      STDCode: ['', Validators.required],
+      City: ['Pune', Validators.required],
+      State: ['Maharashtra', Validators.required],
+      STDCode: ['411048', Validators.required],
       P_Address1: ['', Validators.required],
       P_Address2: [],
       P_City: ['', Validators.required],
@@ -55,7 +55,7 @@ export class TeacherCoursesComponent implements OnInit {
       P_STDCode: ['', Validators.required],
       P_ContactNo: ['', Validators.required],
       EmergencyNo: ['', Validators.required],
-      PreviousWorkName: [],
+      PreviousWorkName: [''],
       IsCv: [],
       IsFixedPayment: [],
       Document:[],
@@ -80,6 +80,7 @@ export class TeacherCoursesComponent implements OnInit {
   }
   get f() { return this.registerStaffForm.controls; }
   get login() { return this.staffLoginForm.controls; }
+
   onSubmit(template: TemplateRef<any>) {
     debugger;
     // stop here if form is invalid

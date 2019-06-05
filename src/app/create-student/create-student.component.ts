@@ -9,6 +9,7 @@ import { template } from '@angular/core/src/render3';
 import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
+import {DomSanitizer} from '@angular/platform-browser';
 
 
 @Component({
@@ -40,9 +41,11 @@ export class CreateStudentComponent implements OnInit {
   fileToUpload: File = null;
 
 
+
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
               private CreateNewStudentService: CreateNewStudentService,
-              private router: Router) { }
+              private router: Router,
+              private _DomSanitizationService:DomSanitizer) { }
 
 
   ngOnInit() {
@@ -51,13 +54,13 @@ export class CreateStudentComponent implements OnInit {
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
-      Address1: ['', Validators.required],
-      Address2: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required],
-      zipCode: ['', Validators.required],
+      Address1: ['Kondhwa', Validators.required],
+      Address2: [],
+      city: ['Pune', Validators.required],
+      state: ['Maharashtra', Validators.required],
+      zipCode: ['411048', Validators.required],
       PAddress1: ['', Validators.required],
-      PAddress2: ['', Validators.required],
+      PAddress2: [],
       Pcity: ['', Validators.required],
       Pstate: ['', Validators.required],
       PzipCode: ['', Validators.required],
@@ -67,10 +70,11 @@ export class CreateStudentComponent implements OnInit {
       ContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       EmergencyContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       Email: ['', [Validators.required, Validators.email]],
-      gender: ['', Validators.required],
+      gender: ['Male', Validators.required],
       payingFeesNow: ['', Validators.required],
       Documents:[],
-      Photo:[]
+      Photo:['../../assets/images/MProfile.jpg'],
+      NewImage:['']
     });
 
 
@@ -170,7 +174,8 @@ export class CreateStudentComponent implements OnInit {
       PCity: this.registerForm.controls.Pcity.value,
       PState: this.registerForm.controls.Pstate.value,
       PSTDCode: this.registerForm.controls.PzipCode.value,
-      Photo:this.registerForm.controls.Photo.value.name,
+      //Photo:this.registerForm.controls.NewImage.value,
+      Photo:this.CreateNewStudentService.thumbnailUrl,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       PayingFees: this.registerForm.controls.payingFeesNow.value
     };
@@ -346,16 +351,24 @@ export class CreateStudentComponent implements OnInit {
     });
   }
 
+  // onUploadPhoto()
+  // {
+  //   debugger;
+  //   const formData = new FormData();
+  //   formData.append('profile',this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
+  //   this.CreateNewStudentService.postPhoto(formData).subscribe(res=>{
+  //         console.log(res);        
+  //   });
+  // }
+
+
   onUploadPhoto()
   {
     debugger;
     const formData = new FormData();
     formData.append('profile',this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
-    this.CreateNewStudentService.postPhoto(formData).subscribe(res=>{
-          console.log(res);        
-    });
+    this.CreateNewStudentService.postPhoto(formData)
   }
-
 
   selectStudentId(event) {
     debugger;

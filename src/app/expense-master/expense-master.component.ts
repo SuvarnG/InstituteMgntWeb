@@ -52,8 +52,9 @@ onSubmitCreateExpense()
   }, error => this.errorMessage = error) 
 
 }
-deleteExpense(id:any){
-  var ans = confirm("Do you want to delete customer with Id: " + id);  
+deleteExpense(expenseName:any,id:any){
+  debugger;
+  var ans = confirm("Do you want to delete the expense: " + expenseName);  
   if (ans) {  
       this.expenseMasterService.deleteExpense(id).subscribe(data => {  
           this.getAllExpense();  

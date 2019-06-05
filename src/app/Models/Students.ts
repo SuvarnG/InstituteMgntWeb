@@ -30,7 +30,8 @@ export interface Students{
     BloodGroup:string,
     DOB:Date,
     EmergencyNo:string,
-    IsDocumentSubmitted:boolean
+    IsDocumentSubmitted:boolean,
+    Photo:string
 }
 
 export interface UpdateStudent{
@@ -56,6 +57,7 @@ export interface UpdateStudent{
     IsDocumentSubmitted:boolean
     //DateOfJoining:Date,
     ContactNo:string,
+    //Photo:string
 }
 
 export interface CreateStudent{
@@ -160,4 +162,8 @@ export interface RecentStudent{
     FirstName:string;
     LastName:string;
     EmailId:string;
+}
+
+export interface ThumbnailUrl{
+    Message:string;
 }

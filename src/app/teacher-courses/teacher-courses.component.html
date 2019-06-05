@@ -71,10 +71,10 @@
       </div>
 
       <div class="form-group col-md-4">
-        <select id="State" class="form-control" [value]="null" formControlName="State"
+        <select id="State" class="form-control" formControlName="State"
           [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
-          <option [value]="null">Select State...</option>
-          <option>Maharashtra</option>
+          <!-- <option [value]="null">Select State...</option> -->
+          <option value="Maharashtra" >Maharashtra</option>
         </select>
         <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
           <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>

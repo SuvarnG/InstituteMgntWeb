@@ -35,6 +35,8 @@ export class RoleComponent {
 
   ngOnInit() {
     this.dtOptions = {
+      retrieve:true,
+      paging:false,
       pagingType: 'full_numbers',
       pageLength: 5
     };
@@ -76,8 +78,8 @@ export class RoleComponent {
 
   }
 
-  Delete(roleID) {
-    var ans = confirm("Do you want to delete Role with Id: " + roleID);
+  Delete(roleID:number,roleName:any) {
+    var ans = confirm("Do you want to delete this Role: " + roleName);
     if (ans) {
       this.RoleService.deleteRole(roleID).subscribe(data => {
         this.getRoles();

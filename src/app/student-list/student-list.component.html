@@ -165,7 +165,9 @@
         <div class="card-body">
           <div class="row">
             <div class="col-sm-6">
-              <img class="img-circle" src="../../assets/images/MaleStudent.jpg" width="50px" height="50px"
+               <!-- <img class="img-circle" src="../../assets/images/MProfile.jpg" width="50px" height="50px"
+                alt="Card image cap">  -->
+              <img class="img-circle" src="{{s.Photo}}" width="70px" height="70px"
                 alt="Card image cap">
             </div>
             <div class="col-sm-6">
@@ -439,6 +441,17 @@
                             </div>
                            </td>
                           </tr>
+
+                          <!-- <tr>
+                            <td colspan="1">
+                              <label for="IsDocumentSubmitted"> Upload Photo </label>
+                              <div> 
+                                  <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
+                                  id="Documents" [ngClass]="{ 'is-invalid': submitted && f.Photo.errors }">
+                                  <button type="button" (click)="onUploadPhoto()">Upload</button>
+                              </div>
+                            </td>
+                          </tr> -->
                          
 
                           <tr>
@@ -723,6 +736,21 @@
                                       </div>
                                     </td>
                                   </tr>
+
+
+                                  <!-- <tr>
+                                    <td colspan="1">
+                                      <label for="UploadPhoto"> Photo Preview: </label>
+                                      <div > 
+                                         
+                                       
+                                          <img class="img-circle" formControlName="Photo" src="Photo" width="50px" height="50px"
+                                          >
+                                          
+                                         
+                                      </div>
+                                    </td>
+                                  </tr> -->
                          
                            
                          </table>

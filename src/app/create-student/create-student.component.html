@@ -72,9 +72,9 @@
                       </div>
                       <input type="text" id="inputAddress2" class="form-control" placeholder="Address"
                         formControlName="Address2">
-                      <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
+                      <!-- <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
                         <div *ngIf="f.Address2.errors.required">Address is required</div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </td>
@@ -225,9 +225,9 @@
                       </div>
                       <input type="text" class="form-control" id="PermanentAddress2" placeholder="Address"
                         formControlName="PAddress2" [ngClass]="{ 'is-invalid': submitted && f.PAddress2.errors }">
-                      <div *ngIf="submitted && f.PAddress2.errors" class="invalid-feedback">
+                      <!-- <div *ngIf="submitted && f.PAddress2.errors" class="invalid-feedback">
                         <div *ngIf="f.PAddress2.errors.required">Address is required</div>
-                      </div>
+                      </div> -->
                     </div>
                   </div>
                 </td>
@@ -281,11 +281,24 @@
                     <label for="IsDocumentSubmitted"> Upload Photo </label>
                     <div> 
                         <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
-                        id="Documents" [ngClass]="{ 'is-invalid': submitted && f.Photo.errors }">
+                        id="Documents" >
                         <button type="button" (click)="onUploadPhoto()">Upload</button>
                     </div>
                   </td>
                 </tr>
+
+                <tr>
+                    <td colspan="1">
+                      <label for="UploadPhoto"> Photo Preview: </label>
+                      <div > 
+                         
+                          <img class="img-circle" [src]=_DomSanitizationService.bypassSecurityTrustUrl(CreateNewStudentService.thumbnailUrl) width="50px" height="50px"
+                           >
+                           {{CreateNewStudentService.thumbnailUrl}}
+                         
+                      </div>
+                    </td>
+                  </tr>
 
               
 

@@ -83,6 +83,12 @@ getBranchList(){
 
 onSubmitEditBranch(){
   debugger;
+
+  if (this.editBranchForm.invalid==true) {
+    this.submitted = true;
+    return;
+   }
+
  let body={
    BranchId:this.branchID,
   BranchName:this.editBranchForm.controls.BranchName.value,
@@ -101,10 +107,10 @@ get f()
 { 
   return this.createBrachForm.controls; 
 }
-delete(id:number) {
+delete(id:number,branchName:any) {
   debugger;
   console.log(id);
-  var ans = confirm("Do you want to delete customer with Id: " + id);
+  var ans = confirm("Do you want to delete this Branch: " + branchName);
   if (ans) {
     this.branchService.deleteBranch(id).subscribe(data => {
       this.getBranchList();

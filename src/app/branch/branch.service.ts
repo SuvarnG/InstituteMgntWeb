@@ -16,14 +16,21 @@ export class BranchService {
 
   constructor(private http: HttpClient) { }
 
-  getBranches()
+  // getBranches()
+  // {
+  //   debugger;
+  //   return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll',httpOptions)
+  //   .pipe(map(Branch=>{
+  //     console.log(Branch);
+  //     return Branch;
+  //   }));
+  // }
+
+   getBranches()
   {
     debugger;
     return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll',httpOptions)
-    .pipe(map(Branch=>{
-      console.log(Branch);
-      return Branch;
-    }));
+    ;
   }
 
   createNewBranch(branch):Observable<Branch>{
@@ -32,6 +39,7 @@ export class BranchService {
   }
 
 editBranch(branch):Observable<Branch>{
+  debugger;
   return this.http.post<Branch>(environment.APIBASEURL + 'Branch/UpdateBranch', branch,httpOptions)
 }
 
