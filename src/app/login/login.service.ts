@@ -7,17 +7,18 @@ import { User } from '../models/User';
 import { Auth } from '../models/Auth';
 import { Utils } from '../Utils';
 
-
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+ const httpOptions = {
+  headers: new HttpHeaders({
+     'Content-Type': 'application/json',
+   })
+ };
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
   private Url = environment.Host + 'token';
+  isAuthenticated: any;
 
   constructor(private http: HttpClient) { }
 
@@ -37,10 +38,6 @@ export class LoginService {
     }));
   }
 
-//   getLoggedInUser() {
-//     debugger;
-//     const user = JSON.parse(sessionStorage.getItem('CurrentUser'));
-//     return user;
-// }
+
 
 }

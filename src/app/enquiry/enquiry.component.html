@@ -12,8 +12,7 @@
 <!-- Create button layout -->
 <div class="float-right">
   <button type="button" class="btn btn-primary" style="margin-left:780px"
-    (click)="showPostForm=true;OpenEnquiryModel(CreateEnquiryModal)">
-    Enquiry</button>
+    (click)="showPostForm=true;OpenEnquiryModel(CreateEnquiryModal)">Enquiry</button>
 </div>
 
 <!-- Enquiry table -->
@@ -24,8 +23,8 @@
       <tr>
         <th scope="col">StudentName</th>
         <th scope="col">Course Type</th>
-        <th scope="col">Enquiry Date</th>
-        <td scope="col">Followup Date</td>
+        <th scope="col">DateOfEnquiry</th>
+        <!-- <td scope="col">NeedFollowupDate</td> -->
         <th scope="col">Remark</th>
         <div class="float-right"></div>
       </tr>
@@ -34,8 +33,8 @@
       <tr *ngFor="let e of enquiries">
         <td>{{e.FirstName+" "+e.MiddleName+" "+e.LastName}}</td>
         <td>{{e.CourseTypeName}}</td>
-        <td>{{e.DateOfEnquiry}}</td>
-        <td>{{e.NeedFollowupDate}}</td>
+        <td>{{e.DateOfEnquiry|date:'mediumDate'}}</td>
+        <!-- <td>{{e.NeedFollowupDate}}</td> -->
         <td>{{e.Remark}}</td>
         <td>
           <button type="button" style="margin-left:15px" class="btn btn-primary"
@@ -71,7 +70,7 @@
           <input type="text" formControlName="MiddleName" class="form-control" placeholder="MiddleName"
             [ngClass]="{'is-invalid': submitted && f.MiddleName.errors }" />
           <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
-            <div *ngIf="f.MiddleName.errors.required">Middle Name Name is required</div>
+            <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
           </div>
         </div>
 
@@ -137,12 +136,12 @@
       <div class="from-row">
         <div class="form-group col-md-6">
           <label>Enquiry Date</label>
-          <input type="date" class="form-control" formControlName="DateOfEnquiry"
-            [ngClass]="{ 'is-invalid': submitted && f.DateOfEnquiry.errors }">
+           <input  class="form-control" formControlName="DateOfEnquiry"
+          [ngClass]="{ 'is-invalid': submitted && f.DateOfEnquiry.errors }">
           <div *ngIf="submitted && f.DateOfEnquiry.errors" class="invalid-feedback">
             <div *ngIf="f.DateOfEnquiry.errors.required"> Invalid date</div>
+          </div> 
           </div>
-        </div>
       </div>
       <div class="row">
         <div class="col-md-6">
@@ -152,7 +151,8 @@
 
         <div class="form-group col-md-6" *ngIf="f.IsFollowupNeeded.value">
           <label>NeedFollowupDate</label>
-          <input type="date" class="form-control" formControlName="NeedFollowupDate">
+          <input type="date" class="form-control" formControlName="NeedFollowupDate"
+          [min]="'2019/05/31'| date:'yyyy-MM-dd'">
         </div>
 
       </div>
@@ -262,7 +262,7 @@
         <div class="from-row">
           <div class="form-group col-md-6">
             <label>Enquiry Date</label>
-            <input type="date" class="form-control" formControlName="DateOfEnquiry"
+            <input class="form-control" formControlName="DateOfEnquiry"
               [ngClass]="{ 'is-invalid': submitted && fu.DateOfEnquiry.errors }">
             <div *ngIf="submitted && fu.DateOfEnquiry.errors" class="invalid-feedback">
               <div *ngIf="fu.DateOfEnquiry.errors.required"> Invalid date</div>

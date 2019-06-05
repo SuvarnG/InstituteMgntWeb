@@ -5,10 +5,18 @@ import { EnquiryList, CourseTypeMaster, CourseNameMaster } from '../models/Enqui
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { createEnquiry } from '../models/createEnquiry';
+import { Utils } from '../Utils';
+
+
+// const httpOptions = {
+// headers: new HttpHeaders({ 'Authorization': 'Bearer'+ Utils.GetAccessToken() })
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  })
+ };
 
 @Injectable({
   providedIn: 'root'
@@ -25,19 +33,20 @@ export class EnquiryService {
     return this.http.get<EnquiryList[]>(this.Url, httpOptions
     ).pipe(map(data => data as EnquiryList[]));
   }
-  createEnquires(Enquiry: createEnquiry){
-    return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry',Enquiry,httpOptions);
+  createEnquires(Enquiry: createEnquiry) {
+    return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry', Enquiry, httpOptions);
   }
-  
-   GetCourseTypeList() {
-    return this.http.get<CourseTypeMaster[]>(environment.APIBASEURL + 'Course/GetAllCourseType');//.toPromise().then(result => this.listCourseType = result as CourseTypeMaster[])
+
+  GetCourseTypeList() {
+    return this.http.get<CourseTypeMaster[]>(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions);//.toPromise().then(result => this.listCourseType = result as CourseTypeMaster[])
   }
 
   GetCourseNameList(id) {
-   return this.http.get< CourseNameMaster[]>(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id);//.toPromise().then(result => this.listCourseName = result as CourseNameMaster[])
+    let headers = new Headers();
+    return this.http.get<CourseNameMaster[]>(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id, httpOptions);//.toPromise().then(result => this.listCourseName = result as CourseNameMaster[])
   }
 
-  EnquiryUpdate(enquiries:createEnquiry){
+  EnquiryUpdate(enquiries: createEnquiry) {
     return this.http.post(environment.APIBASEURL + 'Enquiry/UpdateEnquiry', enquiries, httpOptions);
   }
 }

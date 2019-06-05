@@ -5,6 +5,7 @@ import { ExpenseService } from './expense.service';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Expenses } from '../Model/Expenses';
 import { User } from '../Model/User';
+import { StaffMaster } from '../Model/StaffMaster';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class ExpensesComponent implements OnInit {
   editExpenseForm: FormGroup;
   public listUser: User[];
   public expenses: Expenses[];
+  public staffMasters: StaffMaster[];
   selectedUserValue: Number;
   submitted = false;
 
@@ -36,7 +38,7 @@ export class ExpensesComponent implements OnInit {
     this.expenseForm = this.fb.group({
       ExpenseType: ['', [Validators.required]],
       AmountPaid: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
+      Date: [new Date().toDateString(), [Validators.required]],
       PaidByWhom: ['', [Validators.required]],
       Remark: ['', [Validators.required]],
       ExpenseId:[],
@@ -56,7 +58,8 @@ export class ExpensesComponent implements OnInit {
     })
     this.getAllExpenseTransction();
     this.ExpenseService.getAllExpenseType();
-    this.ExpenseService.userList();
+    this.getStaffList();
+    //this.ExpenseService.userList();
   }
 
   getAllExpenseTransction() {
@@ -64,7 +67,7 @@ export class ExpensesComponent implements OnInit {
   }
 
   addNewExpense(addExpense: TemplateRef<any>) {
-    this.ExpenseService.userList();
+    //this.ExpenseService.userList();
     this.ExpenseService.getAllExpenseType();
     this.modalRef = this.modalService.show(addExpense, {
       animated: true,
@@ -116,7 +119,7 @@ export class ExpensesComponent implements OnInit {
       ExpenseType: e.ExpenseType,
       AmountPaid: e.Paid,
       PaidByWhom: e.PaidByWhom,
-      Date: e.Date,
+      Date: new Date(e.Date).toDateString(),
       Remark: e.Remark,
       Id: e.Id,
       ExpenseId: e.ExpenseId,
@@ -171,5 +174,10 @@ export class ExpensesComponent implements OnInit {
   selectUser(event) {
     debugger;
     this.selectedUserValue = event.target.value;
+  }
+
+
+  getStaffList() {
+    this.ExpenseService.GetStaffList().subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
   }
 }

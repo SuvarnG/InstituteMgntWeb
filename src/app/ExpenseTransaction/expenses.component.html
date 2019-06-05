@@ -97,7 +97,7 @@
                     <label class="col-md-6 control-label">Date</label>
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="date | date:'shortDate'" class="form-control" id="Date" formControlName="Date"
+                    <input class="form-control" formControlName="Date"  
                       [ngClass]="{'is-invalid': submitted && form.Date.errors }">
                   </div>
                   <div *ngIf="submitted && form.Date.errors">
@@ -115,8 +115,10 @@
                   <div class="form-group col-md-6">
                     <select name="PaidByName" class="form-control" formControlName="PaidByName"
                       [value]="form.PaidByWhom.value" [ngClass]="{'is-invalid': submitted && form.PaidByName.errors} ">
-                      <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">
-                        {{user.FirstName+' '+user.LastName}}
+                      <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
+                        <!-- {{user.FirstName+' '+user.LastName}} -->
+                        <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
+                        <span>{{' '+ staff.LastName}}</span>
                       </option>
                     </select>
                   </div>
@@ -206,7 +208,7 @@
                     <label class="col-md-4 control-label">Date</label>
                   </div>
                   <div class="form-group col-md-5">
-                    <input type="date" class="form-control" id="Date" formControlName="Date"
+                    <input  class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && f.Date.errors }">
                   </div>
                   <div *ngIf="submitted && f.Date.errors">
@@ -224,8 +226,10 @@
                   <div class="form-group col-md-5">
                     <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
                       (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
-                      <option *ngFor="let user of ExpenseService.listUser" [value]="user.Id">
-                        {{user.FirstName+' '+user.LastName}}
+                      <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
+                        <!-- {{user.FirstName+' '+user.LastName}} -->
+                        <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
+                        <span>{{' '+ staff.LastName}}</span>
                       </option>
                     </select>
                   </div>

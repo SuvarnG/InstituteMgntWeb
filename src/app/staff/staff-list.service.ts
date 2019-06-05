@@ -20,6 +20,7 @@ export class StaffListService {
   listCourseType: CourseType[];
   listCourses: Courses[];
   listTeacherCourse: TeacherCourse[];
+  staffList: any;
 
   constructor(private http: HttpClient) { }
 

@@ -6,13 +6,21 @@ import { Leaves } from '../Models/leaves';
 import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
 import { Students, CourseType } from '../../app/models/Students'
 import { Observable } from 'rxjs';
+import { Utils } from '../Utils';
 //import { leave } from '@angular/core/src/profile/wtf_impl';
 
 
 
+// const httpOptions = {
+//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+// };
+
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  })
+ };
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +53,7 @@ export class LeaveService {
   }
 
   GetStudentName(id) {
-    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id
+    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id , httpOptions
     ).pipe
       (map(data => {
         return data as Students[]

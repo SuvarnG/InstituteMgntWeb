@@ -21,12 +21,17 @@ export class Utils {
     }
 
     public static GetAccessToken(): string {
-        return this.GetCurrentUser().access_token;
+        //console.log(`Token:${this.GetCurrentUser().access_token}`);
+        let user = this.GetCurrentUser();
+        return user ? user.access_token : null;
     }
 
+    // public static GetUserRole(): string {
+    //     return this.GetCurrentUser().roles;
+    // }
     public static GetUserRole(): string {
-        return this.GetCurrentUser().roles;
+        let user = this.GetCurrentUser();
+        return user ? user.roles : null;
     }
-
 
 }

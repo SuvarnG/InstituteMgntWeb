@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./authorised-top-nav.component.css']
 })
 export class AuthorisedTopNavComponent implements OnInit {
+  _cookieService: any;
 
   constructor(private router: Router,) { }
 
@@ -13,9 +14,12 @@ export class AuthorisedTopNavComponent implements OnInit {
   }
 
   Logout(){
+    debugger;
     console.log(1);
     sessionStorage.removeItem('CurrentUser');
-    this.router.navigate(['']);
+    this.router.navigate(['/Login']);
   }
+
+  
 
 }

@@ -5,6 +5,7 @@ import { Expenses, ExpenseMaster } from '../Model/Expenses';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../Model/User';
+import { StaffMaster } from '../Model/StaffMaster';
 // import { from, Observable } from 'rxjs';
 
 
@@ -21,6 +22,7 @@ export class ExpenseService {
   private deleteUrl = environment.APIBASEURL + 'Expenses/DeleteExpense/';
   private editUrl = environment.APIBASEURL + 'Expenses/UpdateExpense_Tran/';
   listUser: User[];
+  public listStaff: StaffMaster[];
   listExpenseType: ExpenseMaster[];
   constructor(private http: HttpClient) { }
 
@@ -64,6 +66,7 @@ export class ExpenseService {
   }
 
   updateExpense(expense): Observable<Expenses> {
+    debugger;
     return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/UpdateExpense_Tran', expense, httpOptions)
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
@@ -71,8 +74,8 @@ export class ExpenseService {
       );
   }
 
-  userList() {
-    this.http.get(environment.APIBASEURL + 'Expenses/GetAllUsers').toPromise().then(result => this.listUser = result as User[])
+  GetStaffList() {
+    return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
   }
 
   getAllExpenseType() {

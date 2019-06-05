@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef} from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EnquiryService } from './enquiry.service';
@@ -13,7 +13,7 @@ import { Subject } from 'rxjs';
   styleUrls: ['./enquiry.component.css']
 })
 
-export class EnquiryComponent implements  OnInit {
+export class EnquiryComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   EnquiryForm: FormGroup;
@@ -29,6 +29,10 @@ export class EnquiryComponent implements  OnInit {
   ID: any;
   listCourseType: CourseTypeMaster[];
   listCourseName: any;
+  minDate: Date;
+  maxDate: Date;
+
+
 
   //IsFollowUpNeeded: boolean = false;
   //public listCourseType: CourseTypeMaster[];
@@ -44,15 +48,14 @@ export class EnquiryComponent implements  OnInit {
       FirstName: ['', Validators.required],
       MiddleName: ['', Validators.required],
       LastName: ['', Validators.required],
-      Address: ['', Validators.required],
-      City: ['', Validators.required],
-      DateOfEnquiry: ['', Validators.required],
+      Address: ['Kondhwa', Validators.required],
+      City: ['Pune', Validators.required],
+      DateOfEnquiry: [new Date().toDateString(), Validators.required],
       IsFollowupNeeded: [],
       //CourseName:['',Validators.required],
       NeedFollowupDate: [],
       Remark: ['', Validators.required],
       CourseTypeId: ['', Validators.required],
-
     });
 
     this.UpdateEnquiryFormGroup = this.formBuilder.group({
@@ -63,7 +66,7 @@ export class EnquiryComponent implements  OnInit {
       LastName: ['', Validators.required],
       Address: ['', Validators.required],
       City: ['', Validators.required],
-      DateOfEnquiry: ['', Validators.required],
+      DateOfEnquiry: [new Date().toString(), Validators.required],
       IsFollowupNeeded: [],
       NeedFollowupDate: [],
       Remark: ['', Validators.required],
@@ -80,11 +83,12 @@ export class EnquiryComponent implements  OnInit {
   get fu() { return this.UpdateEnquiryFormGroup.controls; }
 
   public OpenEnquiryModel(CreateEnquiryModal: TemplateRef<any>) {
+
     //debugger;
     if (!this.listCourseType) {
       this.GetCourseTypeList();
     }
-    this.modalRef = this.modalService.show(CreateEnquiryModal,{
+    this.modalRef = this.modalService.show(CreateEnquiryModal, {
       backdrop: 'static'
     });
   }
@@ -93,7 +97,7 @@ export class EnquiryComponent implements  OnInit {
     this.enquiryService.getEnquiry().subscribe(res => {
       this.enquiries = res;
       console.log(JSON.stringify(this.enquiries));
-      
+
     });
   }
 
@@ -121,8 +125,11 @@ export class EnquiryComponent implements  OnInit {
     this.enquiryService.createEnquires(req).subscribe(data => {
       this.modalRef.hide()
       this.getEnquiryList();
+      this.EnquiryForm.reset();
+      this.submitted = false;
     });
   }
+
 
   selectCourseTypeName(event) {
     //debugger;
@@ -137,13 +144,13 @@ export class EnquiryComponent implements  OnInit {
 
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
-    
+
     //debugger;
-    this.modalRef = this.modalService.show(editEnquiryModal,{
+    this.modalRef = this.modalService.show(editEnquiryModal, {
       backdrop: 'static'
-      });
-    
-   this.GetCourseTypeList();
+    });
+
+    this.GetCourseTypeList();
     this.UpdateEnquiryFormGroup.patchValue({
       ID: editItem.ID,
       FirstName: editItem.FirstName,
@@ -151,11 +158,11 @@ export class EnquiryComponent implements  OnInit {
       LastName: editItem.LastName,
       Address: editItem.Address,
       City: editItem.City,
-      DateOfEnquiry: editItem.DateOfEnquiry,
-     // IsFollowupNeeded: editItem.NeedFollowupDate ? true : false,
+      DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
+      // IsFollowupNeeded: editItem.NeedFollowupDate ? true : false,
       NeedFollowupDate: editItem.NeedFollowupDate,
       Remark: editItem.Remark,
-      CourseId:editItem.CourseId
+      CourseId: editItem.CourseId
     })
   }
 
@@ -179,7 +186,7 @@ export class EnquiryComponent implements  OnInit {
       Remark: this.fu.Remark.value,
       CourseId: this.fu.CourseId.value
     }
-    
+
     this.enquiryService.EnquiryUpdate(res).subscribe(data => { this.getEnquiryList(), this.modalRef.hide() })
   }
 
@@ -200,5 +207,6 @@ export class EnquiryComponent implements  OnInit {
     });
 
   }
+
 }
 

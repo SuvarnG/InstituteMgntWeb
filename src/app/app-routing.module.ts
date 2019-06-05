@@ -27,10 +27,10 @@ import { BanktransactionComponent } from './banktransaction/banktransaction.comp
 const routes: Routes = [
  {
     path:'',
-    component:HomeComponent,
+    component:LoginComponent,
     pathMatch:'full'
   },
-    
+
   {    
     path: 'Login',    
     component: LoginComponent,    
