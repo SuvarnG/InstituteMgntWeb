@@ -1,10 +1,11 @@
 import { Component, OnInit,TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentslistService } from './studentslist.service';
-import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalService, BsModalRef, ModalContainerComponent,ModalOptions } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import {Students,UpdateStudent} from '../Models/Students'
+
 
 
 @Component({
@@ -19,6 +20,7 @@ export class StudentListComponent implements OnInit {
   studentID:number;
   submitted:boolean;
   registerUpdateStudent:FormGroup;
+  ModalOptions:ModalOptions
   
   public students=[];
 
@@ -184,8 +186,15 @@ export class StudentListComponent implements OnInit {
         IsDocumentSubmitted:s.IsDocumentSubmitted
       })
 
-      this.modalRef=this.modalService.show(studentDetails)
+      this.modalRef=this.modalService.show(studentDetails,{class: 'modal-xl'})
     }
+
+
+    // openStudentDetailsPopup(myModal:TemplateRef<any>){
+    //   debugger;
+
+    //   this.modalRef=this.modalService.show(myModal)
+    // }
 
     showUpload() {
 

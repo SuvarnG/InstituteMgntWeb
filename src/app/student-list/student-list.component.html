@@ -1,6 +1,6 @@
 
 
-<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
+ <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
 
 <app-authorised-top-nav></app-authorised-top-nav>
 <div class="row">
@@ -534,20 +534,20 @@
 
 
 
-
-       <ng-template #StudentDetails >
-          <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
+       <ng-template #StudentDetails role="modal-dialog modal-xl">
+          <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >             
                 <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()" >
-                  <div class="modal-header">
+                   
+                  <div class="modal-header" >
                       <h4 class="modal-title pull-left">Student Details</h4>
                       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body">
-                      <table class="table">
-                          <tr>
-                              <td colspan="1">
+                    <div class="modal-body">                      
+                        <div class="form-row">
+                          <div class="form-group col-md-6">
+                              
                               <div class="form-row"> 
                                   <div class="form-group col-md-6"> 
                                           <label for="Gender">Gender</label>
@@ -557,11 +557,11 @@
                                         </div>
                                        
                               </div>
-                              </td>
-                          </tr>
+                            
+                        
           
-                          <tr>
-                            <td colspan="1">
+                          
+                            
                                 <div class="form-row">
                                     <div class="form-group col-md-6"> 
                                     <label for="firstName">Firstname</label> 
@@ -590,10 +590,8 @@
                                       </div>
                                       
                                     </div>                                      
-                           </td>
-                          </tr>
-                          <tr>
-                              <td colspan="1"> 
+
+                             
                                  <div class="form-row">
                                      <div class="form-group col-md-6">
                                          <label class="col-md-6 control-label">DateOfBirth</label> 
@@ -614,10 +612,8 @@
                                             </select>
                                           </div>
                                  </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td colspan="1">
+                             
+                          
                                  <div class="form-row">
                                      <div class="form-group col-md-6">
                                         <label class="col-md-6 control-label">ContactNo</label> 
@@ -629,11 +625,19 @@
                                        <input type="number"  id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No" class="form-control" disabled >
                                      </div>
                                    </div>
-                              </td>
-                            </tr>
-                            <tr>
-                                <td colspan="1">
-                                   <div class="form-row">
+
+                                   <div class="form-row"> 
+                                      <div class="form-group col-md-6">
+                                          <label class="col-md-6 control-label">Email</label> 
+                                      </div>
+                                      <div class="form-group col-md-6">
+                                          <input type="email" class="form-control" id="Email" formControlName="Email" disabled>  
+                                   </div>
+                                  
+                                   </div>
+                      
+                       
+                                   <!-- <div class="form-row">
                                        <div class="form-group col-md-2">
                                   <label for="inputAddress">Address</label>    
                                   </div>
@@ -641,11 +645,21 @@
                                        <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" disabled>                     
                                              <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2" disabled>
                                              </div>
+                                     </div> -->
                                      </div>
-                                </td>
-                              </tr> 
-                              <tr>
-                                  <td colspan="1">
+                                     
+                                     <div class="form-group col-md-6">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-2">
+                                       <label for="inputAddress">Address</label>    
+                                       </div>
+                                       <div class="form-group col-md-10">      
+                                            <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" disabled>                     
+                                                  <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2" disabled>
+                                                  </div>
+                                          </div>
+
                                      <div class="form-row">
                                          <div class="form-group col-md-4">
                                             <label class="col-md-4 control-label">City</label> 
@@ -663,11 +677,7 @@
                                            <input type="number" class="form-control" id="STD" formControlName="ZipCode" disabled>
                                          </div>
                                        </div>
-                                  </td>
-                                </tr>
-                          <tr>
-                              <tr>
-                                  <td colspan="1">
+                               
                                       <div class="form-row"> 
                                           <div class="form-group col-md-2"> 
                                     <label for="inputPaddress">Permanent Address</label>  
@@ -677,10 +687,7 @@
                                          <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2" formControlName="P_Address2" disabled>
                                         </div>
                                        </div>
-                                  </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="1">
+                                
                                        <div class="form-row">
                                            <div class="form-group col-md-4">
                                               <label class="col-md-4 control-label">P_City</label> 
@@ -700,13 +707,8 @@
                                             </div>
                                            
                                          </div>
-                                    </td>
-                                  </tr>
-        
-        
-                                  <tr>
-                                    <td colspan="1">
-                                       <div class="form-row"> 
+                                  
+                                       <!-- <div class="form-row"> 
                                        <div class="form-group col-md-6">
                                            <label class="col-md-6 control-label">Email</label> 
                                        </div>
@@ -714,28 +716,19 @@
                                            <input type="email" class="form-control" id="Email" formControlName="Email" disabled>  
                                     </div>
                                    
-                                    </div>
-                                   </td>
-                                  </tr>
-                                 
-        
-                                  <tr>
-                                    <td colspan="1">
+                                    </div> -->
+                                  
                                       <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
                                       <div class="form-control" >
                                         <input type="radio" formControlName="IsDocumentSubmitted" [value]="true" name="IsDocumentSubmitted"
-                                          (click)="showUpload()" disabled>Yes                
+                                          disabled>Yes                
                                       </div>
                                       <div class="form-control" >
                                         <input type="radio" formControlName="IsDocumentSubmitted" [value]="false" name="IsDocumentSubmitted"
-                                          (click)="hideUpload()" disabled>No           
+                                          disabled>No           
                                       </div>
-                                      <div *ngIf="showSelected">
-                                        <input type="file" id="file" (change)="handleFileInput($event.target.files)" />
-                                        <input type="button" value="Upload" (click)="uploadFileToActivity()">
-                                      </div>
-                                    </td>
-                                  </tr>
+
+                                  
 
 
                                   <!-- <tr>
@@ -753,16 +746,19 @@
                                   </tr> -->
                          
                            
-                         </table>
+                        
+                    </div>
                     </div>
                      <div class="modal-footer">
                        
                         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
                       </div>
-                    </form>
                     </div>
-          
-               </ng-template> 
+                    </form>
+                  </div>
+    
+         
+    </ng-template> 
         
 
 

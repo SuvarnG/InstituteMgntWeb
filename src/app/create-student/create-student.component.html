@@ -280,9 +280,15 @@
                   <td colspan="1">
                     <label for="IsDocumentSubmitted"> Upload Photo </label>
                     <div> 
-                        <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
-                        id="Documents" >
+
+                        <input name="file" type="file" (change)="handlePhotoInput($event)"
+                         >
+                         <input type="hidden" name="fileHidden" formControlName="Photo"/>
                         <button type="button" (click)="onUploadPhoto()">Upload</button>
+
+                        <!-- <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
+                         id="Documents">
+                        <button type="button" (click)="onUploadPhoto()">Upload</button> -->
                     </div>
                   </td>
                 </tr>
@@ -292,9 +298,11 @@
                       <label for="UploadPhoto"> Photo Preview: </label>
                       <div > 
                          
+                         <!-- <img class="img-circle" [src]=CreateNewStudentService.thumbnailUrl width="50px" height="50px"
+                          >  -->
                           <img class="img-circle" [src]=_DomSanitizationService.bypassSecurityTrustUrl(CreateNewStudentService.thumbnailUrl) width="50px" height="50px"
                            >
-                           {{CreateNewStudentService.thumbnailUrl}}
+                           <!-- {{CreateNewStudentService.thumbnailUrl}} -->
                          
                       </div>
                     </td>
@@ -392,7 +400,7 @@
     <body>
       <form [formGroup]="registerStudentCourse" (ngSubmit)="openModal2(template2)">
         <fieldset>
-          <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+          <div  data-keyboard="false" data-backdrop="static" aria-hidden="true">
             <table>
               <tbody>
 
