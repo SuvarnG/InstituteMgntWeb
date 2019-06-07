@@ -3,6 +3,7 @@ import { CoursesService } from './courses.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CourseType, Course } from '../Model/CourseType';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -21,11 +22,19 @@ export class CoursesComponent implements OnInit {
   public ID: number;
   public coursetype: CourseType[];
   public courses: Course[];
-  public fullname: Course[]
+  public fullname: Course[];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
 
   constructor(private modalService: BsModalService, private CoursesService: CoursesService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      // retrieve: true,
+      // paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 4
+    };
     this.createForm = this.formBuilder.group({
       CourseId: [],
       CourseTypeId: ['', Validators.required],
@@ -62,6 +71,7 @@ export class CoursesComponent implements OnInit {
     debugger;
     this.CoursesService.courseList().subscribe(res => {
       this.course = res;
+      this.dtTrigger.next();
     });
     //    console.log(JSON.stringify(this.banks));
   }

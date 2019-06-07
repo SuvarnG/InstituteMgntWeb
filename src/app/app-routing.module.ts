@@ -22,7 +22,7 @@ import { BranchComponent } from './branch/branch.component';
 import { RoleComponent } from './role/role.component';
 import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
-
+import { CoursetypeComponent } from './coursetype/coursetype.component';
 
 const routes: Routes = [
  {
@@ -130,7 +130,11 @@ component: BranchComponent
 {
   path: 'Bank',
   component: BankComponent
-}
+},
+{
+  path: 'coursetype',
+  component: CoursetypeComponent
+},
 
 ];
 

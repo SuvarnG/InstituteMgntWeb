@@ -6,34 +6,39 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
-<div class="container">
-  <h2>Course Type
-    <button type="submit" class="btn btn-primary" style="margin-left:840px" 
-     data-target="#myupdate" data-toggle="modal" (click)="CreateNewCourse(addtemplate)" (click)="clearForm()">Add</button>
-  </h2>
-  <table class="table table-bordered">
-      <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
+  <div class="col-md-10">
+      <div style="margin-top: 10px">
+  
+    <button type="submit" class="btn btn-primary" style="float: right;" 
+     data-target="#myupdate" data-toggle="modal" (click)="CreateNewCourse(addtemplate)"
+     data-toggle="tooltip" data-placement="bottom" title="Add" (click)="clearForm()">Add</button>
+  </div>
+  <!-- <table class="table table-bordered"> -->
+      <div style="margin-top:80px">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
-        <th>CourseType ID</th>
+        <th>No.</th>
         <th>CourseType Name</th>
         <th></th>
         
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of courseType">
-        <td>
-          {{c.CourseTypeId}}
-        </td>
+      <tr *ngFor="let c of courseType;index as i">
+        <td>{{i+1}}</td>
+          <!-- {{c.CourseTypeId}} -->
+        
         <td>{{c.CourseTypeName}}</td>
         <td>
-          <button type="submit" style="margin-right:5px" class="btn btn-default"(click)="EditCourseType(editTemplate,c)" >
-            <i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="submit" style="margin-right:5px" class="btn btn-default" 
+          data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="EditCourseType(editTemplate,c)" >
+          <i style='font-size:18px' class="fas fa-pencil-alt"></i></button>
           
       </tr>
     </tbody>
   </table>
+</div>
 </div>
 
 <ng-template #addtemplate>

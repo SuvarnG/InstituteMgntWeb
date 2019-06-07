@@ -8,13 +8,12 @@
   </div>
 
   <div class="col-md-10">
-
-    <div class="container">
-      <h2>Bank Account
-        <button type="submit" class="btn btn-primary" style="margin-left:800px"
-          (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add</button>
-      </h2>
+      <div style="margin-top: 10px">
+          <button type="submit" class="btn btn-primary" style="float: right;"data-toggle="tooltip" data-placement="bottom" title="Add"
+          (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add Account Number </button>
+          </div>
       <!-- <table class="table table-bordered"> -->
+          <div style="margin-top:80px">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
@@ -34,22 +33,25 @@
             <td>{{b.AccountType}}</td>
             <td>{{b.IFSC_Code}}</td>
             <td>
-              <button type="submit" style="margin-right:5px" class="btn btn-default"
-                (click)="EditAccNo(editTemplate,b)"><i style='font-size:24px' class='far'>&#xf044;</i></button>
-              <button type="submit" class="btn btn-default" (click)="Delete(b.ID,b.BankName)"><i style='font-size:24px'
-                  class="fa fa-trash" aria-hidden="true"></i></button></td>
+              <button type="submit" style="margin-right:5px" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit "
+                (click)="EditAccNo(editTemplate,b)"><i class="fas fa-pencil-alt"></i></button>
+              <button type="submit" class="btn btn-default" (click)="Delete(b.ID,b.BankName)"
+                  data-toggle="tooltip" data-placement="bottom" title="Delete">
+                  <i style='font-size:20px'class="fa fa-trash" aria-hidden="true"></i>
+                </button></td>
 
           </tr>
         </tbody>
       </table>
-    </div>
+      </div>
+    
   </div>
 
   <!-- Create bankaccount modal -->
 
   <ng-template #Addtemplate>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">New</h4>
+      <h4 class="modal-title pull-left">Add Bank Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -90,7 +92,7 @@
             <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
           </div>
         </div>
-
+<div>
         <div class="radio">
           <label class="control-label-col-sm-2">Account Type : </label><br>
           <label><input type="radio" name="AccountType" formControlName="AccountType" value="Saving">Saving</label>
@@ -98,11 +100,16 @@
         <div class="radio">
           <label><input type="radio" name="AccountType" formControlName="AccountType" value="Current">Current</label>
         </div>
-
-
         <div *ngIf="submitted && f.AccountType.errors" class="invalid-feedback">
+            <div *ngIf="f.AccountType.errors.required">Please</div>
+            
+          </div>
+      </div>
+
+
+        <!-- <div *ngIf="submitted && f.AccountType.errors" class="invalid-feedback">
           <div *ngIf="f.AccountType.errors.required">Please Enter IFSC Code </div>
-        </div>
+        </div> -->
 
         <div class="form-group">
           <label for="IFSC_Code">IFSC_Code : </label>
@@ -115,8 +122,8 @@
 
 
         <div class="form-group">
-          <button class="btn btn-primary" type="submit" id="submit">save</button>
-          <button type="button" class="btn btn-primary" style="margin-left: 5px"
+          <button class="btn btn-primary" type="submit" id="submit" >save</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 5px" 
             (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
@@ -129,7 +136,7 @@
 
   <ng-template #editTemplate>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Edit</h4>
+      <h4 class="modal-title pull-left">Edit Bank Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>

@@ -4,6 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Branch } from '../Model/Branch';
 import { BranchService } from './branch.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-branch',
@@ -19,9 +20,18 @@ export class BranchComponent implements OnInit {
   branch:Branch[];
   editBranchForm:FormGroup;
   branchID:number;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   constructor(private modalService: BsModalService,private formBuilder: FormBuilder, private router: Router,private branchService:BranchService) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      retrieve: true,
+     // paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 4
+
+    };
     this.createBrachForm = this.formBuilder.group({
       BranchName: ['', Validators.required],
       Address: ['', [Validators.required,Validators.minLength(6)]],
@@ -36,7 +46,10 @@ export class BranchComponent implements OnInit {
   }
 getBranchList(){
   debugger;
-  this.branchService.getBranches().subscribe(res=>this.branch=res);
+  this.branchService.getBranches().subscribe(res=> {
+    this.branch=res;
+  this.dtTrigger.next();
+});
 }
 
   openPopupForNew(NewBranchTemplate: TemplateRef<any>){

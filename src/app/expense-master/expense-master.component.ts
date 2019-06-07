@@ -3,6 +3,7 @@ import { ExpenseMasterService } from './expense-master.service';
 import {ExpenseMaster} from '../Model/Expenses';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 @Component({
   selector: 'app-expense-master',
   templateUrl: './expense-master.component.html',
@@ -15,9 +16,18 @@ createExpenseForm:FormGroup;
 editExpenseForm:FormGroup;
 errorMessage:string;
 expensId:Number;
+dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   constructor(private fb:FormBuilder,private expenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      // retrieve: true,
+      // paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 4
+
+    };
     this.createExpenseForm=this.fb.group({
       expense:['', [Validators.required]],
     }),
@@ -28,8 +38,11 @@ expensId:Number;
   }
   getAllExpense(){
   debugger;
-  this.expenseMasterService.getAllExpenses().subscribe(res=>this.expenses=res);
-}
+  this.expenseMasterService.getAllExpenses().subscribe(res=> {
+    this.expenses=res;
+    this.dtTrigger.next();
+});
+  }
 
 showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
 

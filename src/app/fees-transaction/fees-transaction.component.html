@@ -96,7 +96,7 @@
                   <label for="CourseFees">Course Fees For Student</label>
                    <div class="form-group">
                    <select class="form-control" formControlName="CourseFees"
-                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }">
+                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }" (change)="selectStudent($event);calculateRemainingFees()">
                       <option *ngFor="let course of FeesTransactionService.listCourseFees" [value]="course.TotalFees">
                         {{course.TotalFees}}
                       </option>
@@ -109,17 +109,30 @@
                 </td>
               </tr>
 
+
+              
+              <tr>
+                <td colspan="1">
+                    <label for="RemainingFees">Remaining Fees</label>
+                      <div class="form-group">
+                        <input type="text" class="form-control" formControlName="RemainingFees" disabled>
+                      </div>
+                </td>
+            </tr>
+
+<!-- 
               <tr>
                   <td colspan="1">
               <label for="RemainingFees">Remaining Fees</label>
-              <div class="form-group">
-                  <input type="text" class="form-control" id="" formControlName=""
-                    [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
-                    <!-- <input type="button" *ngFor="let fees of FeesTransactionService.listFeesTransactions" value="Add" (click)="calculateTotalPaidFees(fees.FeesPaid)"> -->
+              
+               <div class="form-group">
+                  <input type="text" class="form-control" id="RemainingFees" formControlName="RemainingFees"
+                    [ngClass]="{ 'is-invalid': submitFeesTransaction && g.RemainingFees.errors }" disabled>
+                    
                   
-                  </div>
+                  </div> 
                   </td>
-              </tr>
+              </tr> -->
 
             </tbody>
           </table>
@@ -239,7 +252,7 @@
 <tbody>
   <tr *ngFor="let fees of FeesTransactionService.listFeesTransactions">
       
-    <td>{{fees.DateOfPayment}}</td>
+    <td>{{fees.DateOfPayment | date}}</td>
     <td>{{fees.FeesPaid}}</td>
     <td>{{fees.FeesTakenBy}}</td>
   </tr>

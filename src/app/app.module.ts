@@ -62,6 +62,7 @@ import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
 
+
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
 
@@ -114,7 +115,8 @@ const appRoutes: Routes = [
     DataTablesModule,
     RouterModule,
     NgProgressModule.forRoot(),
-    NgProgressRouterModule
+    NgProgressRouterModule,
+    
   ],
   providers:
     [sliderservice,

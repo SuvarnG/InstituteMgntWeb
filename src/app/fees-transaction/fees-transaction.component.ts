@@ -15,6 +15,7 @@ export class FeesTransactionComponent implements OnInit {
   selectedUserValue:number;
   selectedFeesValue:number;
   selectedStudentId:number;
+  remainingFees:number;
   registerFeesTransaction:FormGroup;
   submitFeesTransaction:boolean;
   modalRef:BsModalRef
@@ -36,6 +37,7 @@ export class FeesTransactionComponent implements OnInit {
       FeesAmount:['',Validators.required],
       DateofPayment:['',Validators.required],
       FeesTakenBy:['',Validators.required],
+      RemainingFees:[]
       //TotalPaidAmount:['',Validators.required]
     })
    
@@ -124,6 +126,23 @@ export class FeesTransactionComponent implements OnInit {
   calculateTotalPaidFees(fees:number){
     debugger;
      this.registerFeesTransaction.controls.TotalPaidAmount.setValue(fees+this.registerFeesTransaction.controls.FeesAmount.value)  
+  }
+
+  calculateRemainingFees(){
+    debugger;
+    let sum = 0;
+    for (var i = 0; i < this.FeesTransactionService.listFeesTransactions.length; i++) {
+      console.log(this.FeesTransactionService.listFeesTransactions[i]['FeesPaid']);
+        sum += this.FeesTransactionService.listFeesTransactions[i]['FeesPaid'];
+    }
+
+    console.log(sum)
+
+    this.remainingFees = (this.registerFeesTransaction.controls.CourseFees.value-sum)
+
+    console.log(this.remainingFees)
+
+    this.registerFeesTransaction.controls.RemainingFees.setValue(this.remainingFees)
   }
 
 }

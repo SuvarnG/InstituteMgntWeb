@@ -10,29 +10,37 @@
 </div>
 
 <div class="col-md-10">
-      <button type="button" class="btn btn-success pull-right" (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
-         <span class="fa fa-plus-square" aria-hidden="true"></span></button>
-    <table  class="table table-striped">
+    <div style="margin-top: 10px">
+      <button type="button" class="btn btn-primary" style="float: right;" (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
+         Add Expenses</button>
+         </div>
+    <!-- <table  class="table table-striped"> -->
+        <div style="margin-top:80px">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
       <thead>
+        <tr>
         <!-- <th>No</th> -->
         <th>Expenses</th>
         <th></th>
+      </tr>
       </thead>
       <tbody>
         <tr *ngFor="let expense of expenses; let i=index">
           <!-- <td>{{i+1}}</td> -->
           <td>{{expense.Expenses}}</td>
           <td>
-             <button type="btn" class='btn btn-success' (click)="editExpense(EditExpenseTemplate,expense)"  data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
-                <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+             <button type="btn" class='btn btn-default' (click)="editExpense(EditExpenseTemplate,expense)"  data-toggle="tooltip" data-placement="bottom" title="Edit Expense">
+                <i style='font-size:18px' class="fas fa-pencil-alt"></i></button>
 &nbsp;&nbsp;&nbsp;&nbsp;
-             <button type="btn" class="btn btn-danger" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
-                <span class="fa fa-times" aria-hidden="true"></span></button>
+             <button type="btn" class="btn btn-default" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)"  data-toggle="tooltip" data-placement="bottom" title="Delete Expense">
+                <i style='font-size:22px'class="fa fa-trash" aria-hidden="true"></i></button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  </div>
+  
   <ng-template #CreateExpenseTemplate >
       <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
          <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense()" >

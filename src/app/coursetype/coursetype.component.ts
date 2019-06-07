@@ -3,6 +3,7 @@ import { CoursetypeService } from './coursetype.service';
 import { CourseType } from '../Models/Students';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-coursetype',
@@ -15,14 +16,23 @@ export class CoursetypeComponent  {
   editregisterForm:FormGroup;
   submitted = false;
   returnUrl: string;
- 
   public ID:number;
   public courseType: CourseType[];
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+
 
   constructor(private CoursetypeService: CoursetypeService,private modalService: BsModalService, 
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      // retrieve: true,
+      // paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 4
+
+    };
     this.getCourseType();
 
     this.createregisterForm = this.formBuilder.group({
@@ -40,7 +50,10 @@ export class CoursetypeComponent  {
   get fu() { return this.editregisterForm.controls; }
 //GetCourseType
   getCourseType(){
-    this.CoursetypeService.CourseTypeList().subscribe(res=>this.courseType=res)
+    this.CoursetypeService.CourseTypeList().subscribe(res=> {
+      this.courseType=res;
+      this.dtTrigger.next();
+    });
   }
 
   //Create CourseType
