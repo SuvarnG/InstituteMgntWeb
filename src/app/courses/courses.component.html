@@ -126,25 +126,30 @@
       </div>
 
       <div class="form-group">
-        <label for="IsPercentage" class="control-label-col-sm-2">Is Percentage </label>
-        <input type="text" class="form-control" formControlName="IsPercentage" value="" [ngClass]="{ 'is-invalid': submitted &&
-                            f.IsPercentage.errors }" placeholder="">
-        <div *ngIf="submitted && f.IsPercentage.errors" class="invalid-feedback">
-          <div *ngIf="f.IsPercentage.errors.required">required </div>
+          <label for="Fees">Fees  </label>
+          <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
+                        f.Fees.errors }" placeholder="">
+          <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
+            <div *ngIf="f.Fees.errors.required">Please Enter Fees </div>
+          </div>
         </div>
-      </div>
-
-
-
-
+      
       <div class="form-group">
-        <label for="Fees">Fees  </label>
-        <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
-                      f.Fees.errors }" placeholder="">
-        <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
-          <div *ngIf="f.Fees.errors.required">Please Enter Fees </div>
-        </div>
-      </div>
+      <input type="checkbox" formControlName="IsPercentage" (click)="calculateIsPercentage()">
+                  IsPercentage?
+         </div>
+           
+           <div class="form-group" *ngIf="f.IsPercentage.value">
+                <label for="Percentage">Percentage : </label>
+               <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
+                                  f.Percentage.errors }" placeholder="">
+                  <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
+                
+            <div *ngIf="f.Percentage.errors.required">required </div>
+               </div>
+           </div>
+            </div>
+        
 
       <div class="form-group">
         <label for="Duration">Duration  </label>
@@ -154,16 +159,6 @@
           <div *ngIf="f.Duration.errors.required">Please Enter Duration </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <label for="Percentage">Percentage : </label>
-        <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
-                        f.Percentage.errors }" placeholder="">
-        <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
-          <div *ngIf="f.Percentage.errors.required">required </div>
-        </div>
-      </div>
-
 
       <div class="form-group">
         <button class="btn btn-primary" type="submit" id="submit">submit</button>

@@ -23,6 +23,7 @@ export class CoursesComponent implements OnInit {
   public coursetype: CourseType[];
   public courses: Course[];
   public fullname: Course[];
+  CalculateIsPercentage:number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -30,7 +31,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit() {
     this.dtOptions = {
-      // retrieve: true,
+       retrieve: true,
       // paging: false,
       pagingType: 'full_numbers',
       pageLength: 4
@@ -41,11 +42,11 @@ export class CoursesComponent implements OnInit {
       // CourseTypeName:['', Validators.required],
       ShortName: ['', Validators.required],
       FullName: ['', Validators.required],
-      IsPercentage: ['', Validators.required],
+      IsPercentage: [],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
       // IsActive: ['', Validators.required],
-      Percentage: ['', Validators.required],
+      Percentage: [],
 
     })
     this.getCourses();
@@ -205,5 +206,12 @@ export class CoursesComponent implements OnInit {
       //console.log('courses' +JSON.stringify())
       this.getCourses();
     }, error => console.error(error))
+  }
+  calculateIsPercentage()
+  {
+    debugger;
+   this.CalculateIsPercentage = ((this.createForm.controls.Fees.value/2)/100)
+   this.createForm.controls.Percentage.setValue(this.CalculateIsPercentage)
+
   }
 }
