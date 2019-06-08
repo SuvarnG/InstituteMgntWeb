@@ -12,7 +12,7 @@ import { from } from 'rxjs';
 export class AuthorisedSideNavComponent implements OnInit {
 
   constructor(public sideNavService: AuthorisedSideNavService) { }
-private currentRole:string; 
+public currentRole:string; 
   ngOnInit() {
     this.checkStaff();
  }

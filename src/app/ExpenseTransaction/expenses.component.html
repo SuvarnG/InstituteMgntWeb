@@ -9,14 +9,18 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
+  <div class="col-md-10 overflow-auto">
+   
 
-  <div class="col-md-10">
-    <button type="button" class="btn btn-success pull-right" id="btnAddNewExpense" (click)="addNewExpense(addExpense)"
-      data-toggle="tooltip" data-placement="bottom" title="Add Expense">
-      <span class="fa fa-plus-square" aria-hidden="true"></span></button>
+    <div class="float-right" style="margin-top: 20px">
+     <button type="button" class="btn btn-primary"  style="margin-left:100px" 
+     (click)="addNewExpense(addExpense)">Add Expenses</button>
+     </div>
+     <div class="container" style="margin-top:100px">
 
-    <div class="table-responsive">
-      <table class="table table-striped">
+    <!-- <div class="table-responsive"> -->
+      <!-- <table class="table table-striped"> -->
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
             <th>Expense Type</th>
@@ -33,13 +37,14 @@
             <td>{{e.PaidByName}}</td>
             <td>{{e.Paid}}</td>
             <td class="text-center">
-              <button type="btn" class="btn btn-success" (click)="edit(editExpense,e)" data-toggle="tooltip"
-                data-placement="bottom" title="Edit Expense">
-                <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
+              <button type="btn" class="btn btn-default" 
+              data-toggle="tooltip" title="Edit" data-placement="bottom"
+               (click)="edit(editExpense,e)"><i class="fas fa-pencil-alt"></i></button>
             </td>
           </tr>
         </tbody>
       </table>
+     </div>
     </div>
 
 
@@ -52,14 +57,14 @@
           </button>
         </div>
         <div class="modal-body">
-          <table class="table">
+          <table >
             <tr>
               <td colspan="1">
                 <div class="form-row">
                   <div class="form-group col-md-6">
                     <label class="col-md-6 control-label">ExpenseType</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <select name="ExpenseType" class="form-control" formControlName="ExpenseType"
                       [value]="form.ExpenseId.value" [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
                       <option [value]="null">Select Name</option>
@@ -81,7 +86,7 @@
                   <div class="form-group col-md-6">
                     <label class="col-md-6 control-label">AmountPaid</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
                       placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
                   </div>
@@ -97,7 +102,7 @@
                   <div class="form-group col-md-6">
                     <label class="col-md-6 control-label">Date</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <input class="form-control" formControlName="Date"  
                       [ngClass]="{'is-invalid': submitted && form.Date.errors }">
                   </div>
@@ -113,7 +118,7 @@
                   <div class="form-group col-md-6">
                     <label class="col-md-6 control-label">PaidByWhom</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <select name="PaidByName" class="form-control" formControlName="PaidByName"
                       [value]="form.PaidByWhom.value" [ngClass]="{'is-invalid': submitted && form.PaidByName.errors} ">
                       <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
@@ -135,7 +140,7 @@
                   <div class="form-group col-md-6">
                     <label class="col-md-6 control-label">Remark</label>
                   </div>
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-12">
                     <input type="text" class="form-control" id="Remark" formControlName="Remark"
                       [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
                   </div>
@@ -147,9 +152,9 @@
             </tr>
           </table>
         </div>
-        <div class="modal-footer">
-          <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+        <div class="form-group">
+          <button type="button" type="submit" id="submit" class="btn btn-primary">submit</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </ng-template>
@@ -164,14 +169,14 @@
         </div>
         <div class="modal-body">
 
-          <table class="table table-striped">
+          <table>
             <tr>
               <td colspan="1">
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="col-md-4 control-label">ExpenseType</label>
                   </div>
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-12">
                     <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"
                       [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
                       <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
@@ -189,10 +194,10 @@
             <tr>
               <td colspan="1">
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="col-md-4 control-label">AmountPaid</label>
                   </div>
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-12">
                     <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
                       placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
                   </div>
@@ -205,10 +210,10 @@
             <tr>
               <td colspan="1">
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="col-md-4 control-label">Date</label>
                   </div>
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-12">
                     <input  class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && f.Date.errors }">
                   </div>
@@ -221,10 +226,10 @@
             <tr>
               <td colspan="1">
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="col-md-4 control-label">PaidByWhom</label>
                   </div>
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-12">
                     <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
                       (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
                       <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
@@ -243,10 +248,10 @@
             <tr>
               <td colspan="1">
                 <div class="form-row">
-                  <div class="form-group col-md-4">
+                  <div class="form-group col-md-6">
                     <label class="col-md-4 control-label">Remark</label>
                   </div>
-                  <div class="form-group col-md-5">
+                  <div class="form-group col-md-12">
                     <input type="text" class="form-control" id="Remark" formControlName="Remark"
                       [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
                   </div>
@@ -258,10 +263,10 @@
             </tr>
           </table>
 
-          <div class="modal-footer">
-            <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal"
-              (click)="modalRef.hide()">Close</button>
+          <div class="form-group">
+            <button type="button" type="submit" id="submit" class="btn btn-primary">submit</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal"
+              (click)="modalRef.hide()">Cancel</button>
           </div>
         </div>
       </form>

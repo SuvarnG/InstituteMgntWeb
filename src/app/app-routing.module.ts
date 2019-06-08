@@ -24,6 +24,7 @@ import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
 
+
 const routes: Routes = [
  {
     path:'',

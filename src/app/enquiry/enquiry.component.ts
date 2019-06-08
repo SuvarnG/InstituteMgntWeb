@@ -32,15 +32,17 @@ export class EnquiryComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
-
-
-  //IsFollowUpNeeded: boolean = false;
-  //public listCourseType: CourseTypeMaster[];
-  //public  listCourseName: CourseNameMaster[];
-
   constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private enquiryService: EnquiryService) { }
 
   ngOnInit() {
+
+    this.dtOptions = {
+      retrieve: true,
+      //paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 5
+
+    };
     this.myDateValue = new Date();
     this.EnquiryForm = this.formBuilder.group({
       ID: 0,
@@ -97,7 +99,7 @@ export class EnquiryComponent implements OnInit {
     this.enquiryService.getEnquiry().subscribe(res => {
       this.enquiries = res;
       console.log(JSON.stringify(this.enquiries));
-
+      this.dtTrigger.next();
     });
   }
 

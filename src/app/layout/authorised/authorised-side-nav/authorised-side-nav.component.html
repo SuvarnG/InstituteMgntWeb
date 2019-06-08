@@ -1,7 +1,7 @@
 <nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
   <div>
     <ul class="navbar-nav" >
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'|| currentRole==='Receptionist'">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'|| currentRole==='Receptionist'">
           <a class="nav-link" routerLink="/FeesTransaction">Fees Payment</a>
         </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin' || currentRole==='Receptionist'|| currentRole==='Teacher'">

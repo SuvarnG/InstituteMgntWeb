@@ -9,7 +9,7 @@
   <div class="col-md-10">
       <div style="margin-top: 10px">
   <button type="submit" class="btn btn-primary" style="float: right;"(click)="AddCourses(Addtemplate)"
-      (click)="clearForm()" data-toggle="tooltip" data-placement="bottom" title="Add">Add Courses</button>
+      (click)="clearForm()" data-toggle="tooltip" data-placement="bottom" title="Add">Add New Courses</button>
 </div>
   <!-- <table class="table table-bordered"> -->
       <div style="margin-top:80px">
@@ -62,7 +62,7 @@
 
 <ng-template #Addtemplate>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Add Course</h4>
+    <h4 class="modal-title pull-left">Add New Course</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -166,7 +166,7 @@
 
 
       <div class="form-group">
-        <button class="btn btn-primary" type="submit" id="submit">save</button>
+        <button class="btn btn-primary" type="submit" id="submit">submit</button>
         <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
       </div>
     </form>
@@ -179,7 +179,7 @@
 
 <ng-template #editTemplate>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Courses</h4>
+    <h4 class="modal-title pull-left">Edit Courses</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -305,7 +305,8 @@
 
 
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Save</button>
+        <button class="btn btn-primary" type="submit">submit</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
       </div>
 
     </form>

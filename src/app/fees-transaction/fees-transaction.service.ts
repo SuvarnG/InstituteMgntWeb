@@ -51,7 +51,7 @@ export class FeesTransactionService {
     this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse/' + id).toPromise().then(result=>this.listStudents=result as Students[] )
   }
 
-  getTotalFeesForStudentCourse(id){
+  getTotalFeesForStudentCourse(id:number){
     debugger;
     this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
   }

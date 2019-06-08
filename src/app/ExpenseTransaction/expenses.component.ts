@@ -6,6 +6,7 @@ import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angula
 import { Expenses } from '../Model/Expenses';
 import { User } from '../Model/User';
 import { StaffMaster } from '../Model/StaffMaster';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -17,6 +18,8 @@ import { StaffMaster } from '../Model/StaffMaster';
   name: 'dateFormat'
 })
 export class ExpensesComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   expenseForm: FormGroup;
   id: number;
   expenseId: number;
@@ -35,6 +38,14 @@ export class ExpensesComponent implements OnInit {
     private route: ActivatedRoute, private fb: FormBuilder) { }
 
   ngOnInit() {
+
+     this.dtOptions = {
+       retrieve: true,
+       //paging: false,
+       pagingType: 'full_numbers',
+       pageLength: 5
+
+     };
     this.expenseForm = this.fb.group({
       ExpenseType: ['', [Validators.required]],
       AmountPaid: ['', [Validators.required]],
@@ -63,8 +74,11 @@ export class ExpensesComponent implements OnInit {
   }
 
   getAllExpenseTransction() {
-    this.ExpenseService.expensesList().subscribe(res => this.expenses = res);
-  }
+    this.ExpenseService.expensesList().subscribe(res =>
+      { this.expenses = res;
+    this.dtTrigger.next();
+  });
+}
 
   addNewExpense(addExpense: TemplateRef<any>) {
     //this.ExpenseService.userList();

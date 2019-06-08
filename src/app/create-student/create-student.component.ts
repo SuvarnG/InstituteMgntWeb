@@ -43,9 +43,9 @@ export class CreateStudentComponent implements OnInit {
 
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
-              private CreateNewStudentService: CreateNewStudentService,
+              public CreateNewStudentService: CreateNewStudentService,
               private router: Router,
-              private _DomSanitizationService:DomSanitizer) { }
+              public _DomSanitizationService:DomSanitizer) { }
 
 
   ngOnInit() {

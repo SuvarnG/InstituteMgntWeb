@@ -21,7 +21,7 @@ export class FeesTransactionComponent implements OnInit {
   modalRef:BsModalRef
 
 
-  constructor(private FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder,
+  constructor(public FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder,
               private router:Router, private modalService:BsModalService) { }
 
   ngOnInit() {
@@ -62,15 +62,15 @@ export class FeesTransactionComponent implements OnInit {
   //   this.FeesTransactionService.getCourseNameFromCourseType(this.selectedUserValue)
   // }
 
-  getStudentListFromCourseName(student: Students) {
+  getStudentListFromCourseName() {
     this.FeesTransactionService.getStudentListFromCourseName(this.selectedFeesValue)
   }
 
-  getTotalFeesForStudentCourse(courseFees:CourseFees){
+  getTotalFeesForStudentCourse(){
     this.FeesTransactionService.getTotalFeesForStudentCourse(this.selectedStudentId)
   }
 
-  getFeesTransactionDetails(feesTransactions: FeesTransactions) {
+  getFeesTransactionDetails() {
     debugger;
     this.FeesTransactionService.getFeesTransactionDetails(this.selectedStudentId)
   }
@@ -87,7 +87,7 @@ export class FeesTransactionComponent implements OnInit {
   // }
 
 
-  createStudentCourse(feesTransactions: FeesTransactions) {
+  createStudentCourse() {
 
     debugger;
     this.submitFeesTransaction=true;

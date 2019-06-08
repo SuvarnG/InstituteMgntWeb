@@ -21,6 +21,8 @@ export class StaffListComponent implements OnInit {
   selectedCourseTypeValue: number;
   selectedCourseName: string;
   submitted = false;
+  filter:any;
+  p:any;
 staffInfo:StaffMaster;
   constructor(private datePipe: DatePipe, private staffListService: StaffListService,
     private modalService: BsModalService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }

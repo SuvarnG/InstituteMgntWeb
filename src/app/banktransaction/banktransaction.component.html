@@ -8,11 +8,13 @@
   </div>
 
   <div class="col-md-10">
-    <div class="container">
-      <h2>Bank Transaction
-        <button type="submit" class="btn btn-primary" style="margin-left:800px" (click)="AddBank(Addtemplate)"
-          data-toggle="tooltip" title="Add" data-placement="bottom" (click)="clearForm()">Add</button>
-      </h2>
+    
+        <div class="float-right" style="margin-top: 20px">
+            <button type="button" class="btn btn-primary" style="margin-left:100px"
+              (click)="AddBank(Addtemplate)" (click)="clearForm()">Add Transaction Details</button>
+          </div>
+       <div style="margin-top:100px">
+
       <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
@@ -42,14 +44,14 @@
 
             <td>
               <button type="submit" style="margin-right:5px" class="btn btn-default" (click)="Edit(editTemplate,bt)"
-                data-toggle="tooltip" title="Edit" data-placement="bottom"><i style='font-size:24px'
-                  class='far'>&#xf044;</i></button>
+                data-toggle="tooltip" title="Edit" data-placement="bottom"><i class="fas fa-pencil-alt"></i></button>
             </td>
 
           </tr>
         </tbody>
       </table>
-    </div>
+      </div>
+      
   </div>
 
   <!-- Create banktransaction modal -->
@@ -141,7 +143,8 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary" type="submit" id="submit">Save</button>
+          <button class="btn btn-primary" type="submit" id="submit">submit</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
@@ -220,7 +223,8 @@
         </div>
 
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">Save</button>
+          <button class="btn btn-primary" type="submit">submit</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
         </div>
       
       </form>

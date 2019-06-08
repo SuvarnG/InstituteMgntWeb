@@ -61,6 +61,14 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { ExpenseTransactionModule } from './ExpenseTransaction/expense-transaction.module';
+import { BranchModule } from './branch/branch.module';
+import { CreateStudentModule } from './create-student/create-student.module';
+import { ExpenseMasterModule } from './expense-master/expense-master.module';
+import { FeesTransactionModule } from './fees-transaction/fees-transaction/fees-transaction.module';
+import { SidenavLayoutModule } from './layout/authorised/sidenav-layout/sidenav-layout.module';
+import { StaffListModule } from './staff/staff-list/staff-list.module';
+import { StudentListModule } from './student-list/student-list.module';
 
 
 const appRoutes: Routes = [
@@ -99,7 +107,7 @@ const appRoutes: Routes = [
     FeesTransactionComponent,
     BranchComponent,
     CoursetypeComponent,
-    
+
   ],
   imports: [
     BrowserModule,
@@ -116,7 +124,14 @@ const appRoutes: Routes = [
     RouterModule,
     NgProgressModule.forRoot(),
     NgProgressRouterModule,
-    
+    ExpenseTransactionModule,
+    BranchModule,
+    CreateStudentModule,
+    ExpenseMasterModule,
+    FeesTransactionModule,
+    SidenavLayoutModule,
+    StudentListModule,
+    StaffListModule
   ],
   providers:
     [sliderservice,

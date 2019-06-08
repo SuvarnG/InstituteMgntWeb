@@ -1,5 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-authorised-layout',
@@ -13,4 +13,4 @@ export class AuthorisedLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
-}
+  }

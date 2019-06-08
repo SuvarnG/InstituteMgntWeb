@@ -6,6 +6,7 @@ import { validateConfig } from '@angular/router/src/config';
 import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
 import { UpdateLeaves, Leaves } from '../Models/leaves';
 import { CourseType, Students } from '../Models/Students';
+import { Subject } from 'rxjs';
 //import { createEnquiry } from '../models/createEnquiry';
 //import { leave } from '@angular/core/src/profile/wtf_impl';
 
@@ -15,6 +16,8 @@ import { CourseType, Students } from '../Models/Students';
   styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   submitted = false;
   modalRef: any;
   leaveTran: LeaveTransaction[];
@@ -26,6 +29,13 @@ export class LeaveComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private LeaveService: LeaveService) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      //retrieve: true,
+      //paging: false,
+      pagingType: 'full_numbers',
+      pageLength: 5
+
+    };
     this.CreateLeaveFormGroup = this.formBuilder.group({
       CourseName: [],
       Reason: ['', Validators.required],
@@ -60,7 +70,10 @@ export class LeaveComponent implements OnInit {
 
 
   getLeaveList() {
-    this.LeaveService.getLeave().subscribe(res => this.leaveTran = res);
+    this.LeaveService.getLeave().subscribe(res => {
+      this.leaveTran = res
+    this.dtTrigger.next()
+    });
     console.log(JSON.stringify(this.leaveTran));
   }
 
@@ -103,7 +116,7 @@ export class LeaveComponent implements OnInit {
   }
 
   getStudentName(event) {
-    //debugger;
+    debugger;
     this.LeaveService.GetStudentName(event.target.value).subscribe(res => {
       this.students = res;
       console.log(JSON.stringify(this.students));

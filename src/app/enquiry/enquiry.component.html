@@ -10,23 +10,25 @@
   <div class="col-md-10 overflow-auto">
 
 <!-- Create button layout -->
-<div class="float-right">
-  <button type="button" class="btn btn-primary" style="margin-left:780px"
-    (click)="showPostForm=true;OpenEnquiryModel(CreateEnquiryModal)">Enquiry</button>
+<div class="float-right" style="margin-top: 20px">
+  <button type="button" class="btn btn-primary" style="margin-left:100px"
+    (click)="OpenEnquiryModel(CreateEnquiryModal)">Add New Enquiry</button>
 </div>
 
 <!-- Enquiry table -->
-<div class="container" style="margin-top:50px">
+<div class="container" style="margin-top:100px">
   
-  <table class="table table-bordered">
+  <!-- <table class="table table-bordered"> -->
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
-        <th scope="col">StudentName</th>
+        <th scope="col">Student Name</th>
         <th scope="col">Course Type</th>
         <th scope="col">DateOfEnquiry</th>
         <!-- <td scope="col">NeedFollowupDate</td> -->
         <th scope="col">Remark</th>
         <div class="float-right"></div>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -37,19 +39,20 @@
         <!-- <td>{{e.NeedFollowupDate}}</td> -->
         <td>{{e.Remark}}</td>
         <td>
-          <button type="button" style="margin-left:15px" class="btn btn-primary"
-            (click)="UpdateEnquiryModal(EditTemplate,e)"><i style='font-size:24px' class='far'>&#xf044;</i></button>
+          <button type="button"  class="btn btn-default"
+          data-toggle="tooltip" title="Edit" data-placement="bottom"
+            (click)="UpdateEnquiryModal(EditTemplate,e)"><i class="fas fa-pencil-alt"></i></button>
         </td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> 
 </div>
 
 <!-- Create Enquiry modal -->
 <ng-template #CreateEnquiryModal>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">EnquiryForm</h4>
+    <h4 class="modal-title pull-left">Add New Enquiry</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -165,6 +168,7 @@
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">Submit</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
       </div>
     </form>
   </div>
@@ -175,7 +179,7 @@
 <!-- Edit Enquiry modal -->
 <ng-template #EditTemplate>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">UpdateEnquiryForm</h4>
+      <h4 class="modal-title pull-left">Edit Enquiry Form</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -289,7 +293,8 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">Update</button>
+          <button class="btn btn-primary" type="submit">Submit</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>

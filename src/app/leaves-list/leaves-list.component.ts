@@ -6,6 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Leaves,UpdateLeaves } from '../Models/leaves';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { idLocale } from 'ngx-bootstrap';
+import { Subject } from 'rxjs';
 
 
 
@@ -15,6 +16,8 @@ import { idLocale } from 'ngx-bootstrap';
   styleUrls: ['./leaves-list.component.css']
 })
 export class LeavesListComponent implements OnInit {
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
   modalRef: BsModalRef;
   submitted = false;
   registerUpdateLeave:FormGroup;
@@ -26,6 +29,13 @@ export class LeavesListComponent implements OnInit {
     private router: Router,private route: ActivatedRoute,private modalService: BsModalService) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      //   //retrieve: true,
+      //   //paging: false,
+         pagingType: 'full_numbers',
+         pageLength: 5
+  
+       };
     this.GetAllLeaves();
 
     this.registerUpdateLeave = this.formBuilder.group({
@@ -48,7 +58,10 @@ export class LeavesListComponent implements OnInit {
   get n() {return this.registerCreateLeave.controls}
 
   GetAllLeaves(){
-    this.LeavelistService.GetAllLeaves().subscribe(res=>this.Leaves=res)
+    this.LeavelistService.GetAllLeaves().subscribe(res=>
+      {this.Leaves=res
+    this.dtTrigger.next();
+      });
   }
 
   DeleteLeaveType(id:number){

@@ -45,7 +45,7 @@ export class LeaveService {
   }
 
   GetCoursName() {
-    return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses'
+    return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses',httpOptions
     ).pipe
       (map(data => {
         return data as CourseType[]
