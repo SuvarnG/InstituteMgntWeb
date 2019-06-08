@@ -8,6 +8,7 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 <div class="col-md-10">
+
 <!----------------------------------------------------------------------->
 <!-- <html>
   <body>
@@ -150,18 +151,30 @@
     </div>
   </div> -->
 
-  
-  <button class="btn btn-secondary mb1 black bg-yellow float-right" title="Print" (click)="printPage()"><span
-      class="fas fa-print"></span></button>&nbsp;
-  <a routerLink="/CreateStudent" class="btn btn-success float-right" title="Create New"><span
-      class="fas fa-plus-square"></span> </a>
-      &nbsp;
-      <input type="text" class="float-right" placeholder="Search" [(ngModel)]="filter">
+   <div style="margin-top: 10px">
+   
+      <input type="text" placeholder="Search" [(ngModel)]="filter" style="margin-left: 900px">
+    
+  <button class="btn btn-secondary mb1 black bg-yellow" title="Print" style="margin-left: 10px" (click)="printPage()"><span
+      class="fas fa-print"></span></button>
+    
+   
+  <a routerLink="/CreateStudent" class="btn btn-primary" title="Create New" style="margin-left: 10px">Add Student</a>
+
+     
+     
+ 
+ 
+  </div>
+      
       <!-- <input type="search" class="float-right" placeholder="Search"> -->
-  <h4>Students Information</h4>
+ 
+      <h2>Students Information</h2>  
+  <div style="margin-top:35px"> 
+  
   <div class="row">
     <div class="col-sm-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }" >
-      <div class="card">
+      <div class="card bg-light" >
         <div class="card-body">
           <div class="row">
             <div class="col-sm-6">
@@ -193,11 +206,17 @@
         </div>
       </div>
     </div>
+ 
   </div>
+  </div>
+ 
+
   <ul class="pagination">  
       <pagination-controls (pageChange)="p = $event"></pagination-controls>  
       </ul>
-
+    </div>
+    </div>
+    
 
 
 
