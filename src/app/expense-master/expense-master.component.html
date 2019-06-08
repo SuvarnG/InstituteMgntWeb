@@ -62,9 +62,9 @@
   </tr>
 </table>
              </div>
-             <div class="modal-footer">
-                <button type="button" type="submit" id="submit" class="btn btn-primary" >Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+             <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
               </div>
             </form>
             </div>
@@ -74,7 +74,7 @@
       <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
          <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEditExpense()" >
            <div class="modal-header">
-               <h4 class="modal-title pull-left">Create Expense</h4>
+               <h4 class="modal-title pull-left">Edit Expense</h4>
                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                  <span aria-hidden="true">&times;</span>
                </button>
@@ -91,9 +91,9 @@
   </tr>
 </table>
              </div>
-             <div class="modal-footer">
-                <button type="button" type="submit" id="submit" class="btn btn-primary" >Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+             <div class="form-group">
+                <button class="btn btn-primary" type="submit">Submit</button>
+                <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
               </div>
             </form>
             </div>

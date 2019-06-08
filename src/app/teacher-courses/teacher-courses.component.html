@@ -286,9 +286,10 @@
     </div>
   </div>
   </fieldset>
-  <p class="p">
-    <button class="btn btn-primary" type="submit" id="submit">Submit form</button>
-  </p>
+  <div class="form-group">
+    <button class="btn btn-primary" type="submit" style="margin:5px">Submit</button>
+    <button type="button" class="btn btn-primary"  (click)="modalRef.hide()">Cancel</button>
+  </div>
 </form>
 </div>
 </div>

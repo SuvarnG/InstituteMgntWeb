@@ -59,7 +59,7 @@
         <div *ngIf="f.role.errors.required">Name is required</div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">Save</button>
+        <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">submit</button>
         <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
     </div>
@@ -85,7 +85,7 @@
         <div *ngIf="f.role.errors.required">Name Required </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" style="margin:5px" (click)="UpdateRole(RoleName.value)">Save</button>
+        <button class="btn btn-primary" style="margin:5px" (click)="UpdateRole(RoleName.value)">submit</button>
         <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
     </div>

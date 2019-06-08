@@ -10,7 +10,7 @@
   <div class="col-md-10">
       <div style="margin-top: 10px">
           <button type="submit" class="btn btn-primary" style="float: right;"data-toggle="tooltip" data-placement="bottom" title="Add"
-          (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add Account Number </button>
+          (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add Bank Details </button>
           </div>
       <!-- <table class="table table-bordered"> -->
           <div style="margin-top:80px">
@@ -122,7 +122,7 @@
 
 
         <div class="form-group">
-          <button class="btn btn-primary" type="submit" id="submit" >save</button>
+          <button class="btn btn-primary" type="submit" id="submit" >submit</button>
           <button type="button" class="btn btn-primary" style="margin-left: 5px" 
             (click)="modalRef.hide()">Cancel</button>
         </div>
@@ -187,7 +187,9 @@
 
 
         <div class="form-group">
-          <button class="btn btn-primary" type="submit">save</button>
+          <button class="btn btn-primary" type="submit">submit</button>
+          <button type="button" class="btn btn-primary" style="margin-left: 5px" 
+            (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
