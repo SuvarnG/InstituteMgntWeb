@@ -1,3 +1,5 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
@@ -43,7 +45,8 @@
         <td>{{c.Fees}}</td>
         <td>{{c.Duration}}</td>
         <!-- <td>{{c.IsActive}}</td> -->
-        <td>{{c.Percentage}}</td>
+        <td>
+           <i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}></i> 
         <td>
           <button type="submit" style="margin-right:5px" class="btn btn-default"
           data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="Edit(editTemplate,c)">
@@ -146,7 +149,7 @@
                   <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
                 
             <div *ngIf="f.Percentage.errors.required">required </div>
-               </div>
+               
            </div>
             </div>
         

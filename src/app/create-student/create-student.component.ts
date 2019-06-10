@@ -282,47 +282,47 @@ export class CreateStudentComponent implements OnInit {
 
     if (confirm("Do you want to submit?")) {
       this.modalRef.hide();
-      this.CreateNewStudentService.createStudentCourse(body).subscribe();
-      this.CreateNewStudentService.getRecentlyCreatedStudent();
+      this.CreateNewStudentService.createStudentCourse(body).subscribe(data=>{this.router.navigateByUrl('/StudentList')});
+      //this.CreateNewStudentService.getRecentlyCreatedStudent();
     }
   }
 
 
 
-  createStudentLogin(user: User) {
-    debugger;
+//   createStudentLogin(user: User) {
+//     debugger;
 
-    this.submitStudentLogin = true;
-    if (this.registerStudentLogin.invalid) {
-      return
-    }
+//     this.submitStudentLogin = true;
+//     if (this.registerStudentLogin.invalid) {
+//       return
+//     }
 
-    let body: User = {
-      Id: 0,
-      //StudentId:this.registerStudentLogin.controls.StudentID.value,
-      FirstName: this.selectedStudentFirstName,
-      LastName: this.selectedStudentLastName,
-      Email: this.selectedStudentEmail,
-      Password: this.registerStudentLogin.controls.VerifyPassword.value,
-      RoleId: this.selectedRoleValue,
-      CreatedBy: this.registerStudentLogin.controls.CreatedBy.value
+//     let body: User = {
+//       Id: 0,
+//       //StudentId:this.registerStudentLogin.controls.StudentID.value,
+//       FirstName: this.selectedStudentFirstName,
+//       LastName: this.selectedStudentLastName,
+//       Email: this.selectedStudentEmail,
+//       Password: this.registerStudentLogin.controls.VerifyPassword.value,
+//       RoleId: this.selectedRoleValue,
+//       CreatedBy: this.registerStudentLogin.controls.CreatedBy.value
 
-    };
+//     };
 
-    if(this.registerStudentLogin.controls.Password.value!=this.registerStudentLogin.controls.VerifyPassword.value)
-    {
-      alert("Password did not matched..Please verify password")
-    }
-    else
-    {
-    if (confirm("Are you sure to create a login?")) {
-      this.CreateNewStudentService.createStudentLogin(body).subscribe((data) => 
-        {this.modalRef.hide(),
-        this.router.navigateByUrl('/StudentList') });
+//     if(this.registerStudentLogin.controls.Password.value!=this.registerStudentLogin.controls.VerifyPassword.value)
+//     {
+//       alert("Password did not matched..Please verify password")
+//     }
+//     else
+//     {
+//     if (confirm("Are you sure to create a login?")) {
+//       this.CreateNewStudentService.createStudentLogin(body).subscribe((data) => 
+//         {this.modalRef.hide(),
+//         this.router.navigateByUrl('/StudentList') });
       
-    }
-  }
-}
+//     }
+//   }
+// }
 
 
 

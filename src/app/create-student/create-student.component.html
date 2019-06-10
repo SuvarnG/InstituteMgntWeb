@@ -398,7 +398,7 @@
     <html>
 
     <body>
-      <form [formGroup]="registerStudentCourse" (ngSubmit)="openModal2(template2)">
+      <form [formGroup]="registerStudentCourse" (ngSubmit)="createStudentCourse()">
         <fieldset>
           <div  data-keyboard="false" data-backdrop="static" aria-hidden="true">
             <table>
@@ -513,7 +513,7 @@
                     <label for="AnyDiscount">Any Discount in %?</label>
                     <div class="form-group">
                       <input type="number" class="form-control" id="Discount" formControlName="AnyDiscount"
-                        [ngClass]="{ 'is-invalid': submitStudentFees && g.AnyDiscount.errors }">
+                        [ngClass]="{ 'is-invalid': submitStudentFees && g.AnyDiscount.errors }" >
                       <div *ngIf="submitStudentFees && g.AnyDiscount.errors" class="invalid-feedback">
                         <div *ngIf="g.AnyDiscount.errors.required">Any Discount in % is required</div>
                       </div>
@@ -524,10 +524,10 @@
 
                 <tr>
                   <td colspan="1">
-                    <div class="form-group">
+                    <div>
 
                       <div class="form-row">
-                        <button name="button2id" class="btn btn-success" id="CalculateNewFees"
+                        <button type="button" name="button2id" class="btn btn-success" id="CalculateNewFees"
                           (click)="calculateDiscountedAmount()">Calculate Discounted Amount</button>
                         &nbsp;
 
@@ -616,8 +616,7 @@
                     <div class="form-group">
 
                       <div class="form-row">
-                        <button name="button1id" class="btn btn-success" id="SubmitFees"
-                          (click)="createStudentCourse()">Save</button>
+                        <button name="button1id" type="submit" class="btn btn-success" id="SubmitFees">Save</button>
                         &nbsp;
                         <!-- <button name="button2id" class="btn btn-danger" id="CancelFees" (click)="modalRef.hide(template)">Cancel</button> -->
                       </div>
@@ -635,7 +634,7 @@
   </ng-template>
 
 
-  <ng-template #template2>
+  <!-- <ng-template #template2>
     <html>
 
     <body>
@@ -645,30 +644,10 @@
             <table>
               <tbody>
 
-                <!-- <tr>
-                    <td colspan="1" *ngFor = "let student of CreateNewStudentService.listRecentStudent" >
-                       <label for="StudentID">StudentID</label>
-                       <div class="form-group">
-                           <input type="number" class="form-control" value="{{student.StudentId}}" formControlName="StudentID" [ngClass]="{ 'is-invalid': submitted && e.StudentID.errors }" >
-                           <div *ngIf="submitted && e.StudentID.errors" class="invalid-feedback">
-                            <div *ngIf="e.StudentID.errors.required"></div>
-                        </div>
-                         </div>
-                    </td>
-                  </tr> -->
-
                 <tr>
                   <td colspan="1" *ngFor="let student of CreateNewStudentService.listRecentStudent">
                     <label for="fullName">Full Name</label>
                     <div class="row">
-                      <!-- <div class="col">
-                                  <select id="inputGender" class="form-control">
-                                      <option selected>MR.</option>
-                                      <option>Ms.</option>
-                                      <option>Miss</option>
-                                    </select>
-                              </div> -->
-
 
                       <div class="col">
                         <select class="form-control" formControlName="FirstName"
@@ -685,13 +664,6 @@
                       </div>
 
 
-                      <!-- <div class="col" >
-                              <input type="text" class="form-control" placeholder="First name" value="{{student.FirstName}}" formControlName="FirstName" [ngClass]="{ 'is-invalid': submitted && e.FirstName.errors }">
-                              <div *ngIf="submitted && e.FirstName.errors" class="invalid-feedback">
-                                <div *ngIf="e.FirstName.errors.required"></div>
-                            </div>
-                            </div> -->
-
                       <div class="col">
                         <select class="form-control" formControlName="Lastname"
                           [ngClass]="{ 'is-invalid': submitStudentLogin && e.Lastname.errors }"
@@ -705,13 +677,6 @@
                           <div *ngIf="e.Lastname.errors.required"></div>
                         </div>
                       </div>
-
-                      <!-- <div class="col">
-                                <input type="text" class="form-control" placeholder="Last name" value="{{student.LastName}}" formControlName="Lastname" [ngClass]="{ 'is-invalid': submitted && e.Lastname.errors }">
-                              </div>
-                              <div *ngIf="submitted && e.Lastname.errors" class="invalid-feedback">
-                                <div *ngIf="e.Lastname.errors.required"></div>
-                            </div> -->
                     </div>
                   </td>
                 </tr>
@@ -736,38 +701,6 @@
                   </td>
                 </tr>
 
-
-
-                <!-- <tr>
-                        <td colspan="1" *ngFor = "let student of CreateNewStudentService.listRecentStudent">
-                           <label for="EmailID">Email ID</label>
-                           <div class="form-group">
-                               <input type="text" class="form-control" id="Email" value="{{student.EmailId}}" formControlName="EMailId" [ngClass]="{ 'is-invalid': submitted && e.EMailId.errors }">
-                             </div>
-                             <div *ngIf="submitted && e.EMailId.errors" class="invalid-feedback">
-                              <div *ngIf="e.EMailId.errors.required"></div>
-                          </div>
-                        </td>
-                 </tr> -->
-
-                <!-- <tr>
-                      <td colspan="1">
-                          <label for="inputAddress2">Role</label>
-                            <div class="form-group">
-                              <Select class="form-control" formControlName="Role" [ngClass]="{ 'is-invalid': submitted && e.Role.errors }" (change)="selectRole($event)">
-                                  <option *ngFor="let roles of CreateNewStudentService.listRoles" [value]="roles.roleID">
-                                    {{roles.RoleName}}
-                                  </option>
-                              </Select>
-                              <div *ngIf="submitted && e.Role.errors" class="invalid-feedback">
-                                <div *ngIf="e.Role.errors.required"></div>
-                            </div>
-                            </div>
-                      </td>
-                  </tr> -->
-
-
-
                 <tr>
                   <td colspan="1">
                     <label for="Role">Role</label>
@@ -784,9 +717,6 @@
                     </div>
                   </td>
                 </tr>
-
-
-
 
                 <tr>
                   <td colspan="1">
@@ -811,9 +741,6 @@
                       <div *ngIf="e.VerifyPassword.errors.required">Confirm Password required</div>
                       <div *ngIf="e.VerifyPassword.errors.mismatch">Password not matched</div>
 
-                      <!-- <div *ngIf="e.passwords?.errors?.mismatch">
-                                The two passwords aren't the same
-                              </div> -->
                     </div>
                   </td>
                 </tr>
@@ -858,4 +785,4 @@
     </body>
 
     </html>
-  </ng-template>
+  </ng-template> -->
