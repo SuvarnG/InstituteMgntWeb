@@ -41,12 +41,12 @@
         <td>{{c.CourseTypeName}}</td>
         <td>{{c.ShortName}}</td>
         <td>{{c.FullName}}</td>
-        <td>{{c.IsPercentage}}</td>
+        <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i> </td>
         <td>{{c.Fees}}</td>
         <td>{{c.Duration}}</td>
         <!-- <td>{{c.IsActive}}</td> -->
         <td>
-           <i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}></i> 
+           {{c.Percentage}}
         <td>
           <button type="submit" style="margin-right:5px" class="btn btn-default"
           data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="Edit(editTemplate,c)">
