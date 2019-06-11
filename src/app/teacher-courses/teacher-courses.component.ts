@@ -1,8 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, MaxLengthValidator } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherCoursesService } from './teacher-courses.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
+
 
 @Component({
   selector: 'app-teacher-courses',
@@ -21,12 +24,13 @@ export class TeacherCoursesComponent implements OnInit {
   public selectedCourseTypeValue: Number;
   public selectedCourseNameValue: string;
   disabled: boolean = true;
- newEmail: string;
+  newEmail: string;
   FName: string;
   LName: string;
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private router: Router,private teacherCoursesService: TeacherCoursesService) { }
+    private router: Router,private teacherCoursesService: TeacherCoursesService,
+    public _DomSanitizationService:DomSanitizer) { }
 
   ngOnInit() {
     this.registerStaffForm = this.formBuilder.group({
@@ -42,6 +46,7 @@ export class TeacherCoursesComponent implements OnInit {
       LeavingReason: [],
       DOB: ['', Validators.required],
       Photo: [''],
+      //NewPhoto:[],
       Address1: ['Kondhwa', Validators.required],
       Address2: [],
       gridCheck1: [],
@@ -110,7 +115,8 @@ export class TeacherCoursesComponent implements OnInit {
         DateOfLeaving: this.registerStaffForm.controls.DateOfLeaving.value,
         LeavingReason: this.registerStaffForm.controls.LeavingReason.value,
         DOB: this.registerStaffForm.controls.DOB.value,
-        Photo: this.registerStaffForm.controls.Photo.value.name,
+        //Photo: this.registerStaffForm.controls.Photo.value.name,
+        Photo:this.teacherCoursesService.thumbnailUrl,
         Address1: this.registerStaffForm.controls.Address1.value,
         Address2: this.registerStaffForm.controls.Address2.value,
         City: this.registerStaffForm.controls.City.value,
@@ -131,10 +137,12 @@ export class TeacherCoursesComponent implements OnInit {
         .subscribe((data) => { 
         }, error => this.errorMessage = error)
       alert("Success");
+      
     }
 
   }
   openModal(template: TemplateRef<any>) {
+    debugger;
     if (this.registerStaffForm.controls.IsFixedPayment.value == true) {
       this.teacherCoursesService.getAllCourseType();
       // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
@@ -217,6 +225,7 @@ export class TeacherCoursesComponent implements OnInit {
   }
 
   onStaffLogin() {
+    debugger;
     if (this.staffLoginForm.controls.Password.value != this.staffLoginForm.controls.VerifyPassword.value) {
       alert("Re-type Password");
     }
@@ -226,7 +235,15 @@ export class TeacherCoursesComponent implements OnInit {
         LastName: this.staffLoginForm.controls.LastName.value,
         Email: this.staffLoginForm.controls.Email.value,
         RoleId: this.staffLoginForm.controls.Role.value,
-        Password: this.staffLoginForm.controls.Password.value
+        Password: this.staffLoginForm.controls.Password.value,
+        Address:'Wanawadi',
+        CreatedBy:'1',
+        Contact:'111111111111',
+        Gender:'Male',
+        LastLoginTime:'2019-06-11 08:43:25.650',
+        IsActive:true,
+        Photo:this.teacherCoursesService.thumbnailUrl
+
       }
       this.teacherCoursesService.addStaffInUsers(body)
         .subscribe((data) => {
@@ -246,15 +263,25 @@ export class TeacherCoursesComponent implements OnInit {
     }
   }
 
+  // onUploadPhoto()
+  // {
+  //   debugger;
+  //   const formData = new FormData();
+  //   formData.append('profile', this.registerStaffForm.get('Photo').value);
+  //   this.teacherCoursesService.uploadPhoto(formData).subscribe(res=>{
+  //         console.log(res);            
+  //   });
+  //   alert("Photo uploaded successfully");  
+  // }
+
+
   onUploadPhoto()
   {
     debugger;
     const formData = new FormData();
     formData.append('profile', this.registerStaffForm.get('Photo').value);
-    this.teacherCoursesService.uploadPhoto(formData).subscribe(res=>{
-          console.log(res);            
-    });
-    alert("Photo uploaded successfully");  
+    this.teacherCoursesService.postPhoto(formData);
+    
   }
 
   onFileSelected(event:any)

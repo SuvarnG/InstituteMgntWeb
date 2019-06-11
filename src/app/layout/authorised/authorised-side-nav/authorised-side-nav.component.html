@@ -1,6 +1,19 @@
 <nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
   <div>
     <ul class="navbar-nav" >
+      <li>
+        <div class="row">
+          <div class="col-md-4">
+          <img class="img-circle" src="{{users.Photo}}" width="70px" height="70px" alt="Card image cap">                
+        </div>
+        <div class="col-md-8">
+        {{users.friendlyName}}
+        
+        {{users.roles}}
+      </div>
+      </div>
+
+      </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'|| currentRole==='Receptionist'">
           <a class="nav-link" routerLink="/FeesTransaction">Fees Payment</a>
         </li>

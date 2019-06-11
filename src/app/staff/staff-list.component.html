@@ -47,14 +47,22 @@
                     <img [src]="t.Photo" class="img-circle" width="50" height="50">
                   </div> -->
                     <!-- Avtar -->
-                    <div *ngIf="t.Photo">
+
+
+
+
+                    <div >                     
+                      <img src="{{t.Photo}}" class="img-circle" width="50" height="50">
+                    </div>
+                    <!-- <div *ngIf="t.Photo">
                       <div *ngIf="t.Gender && t.Gender=='Male'">
                         <img src="../../assets/images/MProfile.jpg" class="img-circle" width="50" height="50">
                       </div>
                       <div *ngIf="t.Gender && t.Gender=='Female'">
                         <img src="../../assets/images/FProfile.png" class="img-circle" width="50" height="50">
                       </div>
-                    </div>
+                      <img src="{{t.Photo}}" class="img-circle" width="50" height="50">
+                    </div> -->
                     <h4>
                       <a type="btn" class="btn  btn-link" (click)="getStaffDetails(showStaff,t)">
                         <span>{{t.FirstName+' '+t.LastName}}</span>

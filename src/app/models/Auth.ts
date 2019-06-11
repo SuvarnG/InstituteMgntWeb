@@ -8,4 +8,5 @@ export interface Auth {
     lastLogin:Date;
     roles:string;
     access_token: string;
+    Photo:string
 }

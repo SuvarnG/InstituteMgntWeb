@@ -17,8 +17,10 @@ export class TeacherCoursesService {
   listCourseType: CourseType[];
   listCourses: Courses[];
   roleList: Roles[];
+  public thumbnailUrl:any='../../assets/images/MProfile.jpg';
   public Url = environment.APIBASEURL + 'Teacher/CreateTeacher';
   apiUrl=environment.APIBASEURL +'Upload/PostUserImage';
+  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
 
   constructor(private http: HttpClient) { }
 
@@ -32,13 +34,17 @@ export class TeacherCoursesService {
       return of(result as T);
     };
   }
-  uploadPhoto(formData)
-  {
-    return this.http.post<any>(this.apiUrl, formData, {
-      reportProgress: true,
-      observe: 'events'
-    });
-  }
+
+
+  // uploadPhoto(formData)
+  // {
+  //   return this.http.post<any>(this.apiUrl, formData, {
+  //     reportProgress: true,
+  //     observe: 'events'
+  //   });
+  // }
+
+
   uploadFile(formData)
   {
     return this.http.post<any>(environment.APIBASEURL +'Upload/PostFile', formData, {
@@ -87,4 +93,25 @@ export class TeacherCoursesService {
         catchError(this.handleError<User>('user'))
       );
   }
+
+
+  postPhoto(formData)
+  {
+    debugger;
+    return this.http.post<any>(this.uploadUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    }).subscribe(
+      res=>{
+        debugger;
+          
+          if(res['type']==4){
+           this.thumbnailUrl='Http://'+ res['body']['Message'];
+           
+          }
+                        
+      }
+    )
+  }
+
 }

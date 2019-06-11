@@ -210,9 +210,25 @@
     <legend>Professional Info</legend>
     <div class="form-row">
       <div class=" col-md-6">
-        <input type="file" formControlName="Photo" (change)="onImageSelected($event)" id="Photo">
+        <input type="file" (change)="onImageSelected($event)" id="Photo">
+
+        <input type="hidden" name="fileHidden" formControlName="Photo"/>
+
         <button type="button" (click)="onUploadPhoto()">UploadPhoto</button>
       </div>
+
+
+      
+
+          <label for="UploadPhoto"> Photo Preview: </label>
+          <div > 
+              &nbsp;
+              <img class="img-circle" [src]=_DomSanitizationService.bypassSecurityTrustUrl(teacherCoursesService.thumbnailUrl) width="50px" height="50px"
+               >
+               <!-- {{teacherCoursesService.thumbnailUrl}} -->
+             
+          </div>
+      
 
     <div class="col-md-6">
       <div>
@@ -255,7 +271,7 @@
     </div>
     <div class="custom-control custom-radio custom-control-inline">
       <input type="radio" class="custom-control-input" id="inputIsFixedPayemnt2" value="false" name="IsFixedPayment"
-        formControlName="IsFixedPayment">
+        formControlName="IsFixedPayment" >
       <label class="custom-control-label" for="inputIsFixedPayemnt2">No</label>
     </div>
   </div>

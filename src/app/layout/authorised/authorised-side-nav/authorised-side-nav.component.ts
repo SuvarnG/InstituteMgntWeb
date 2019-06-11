@@ -13,6 +13,7 @@ export class AuthorisedSideNavComponent implements OnInit {
 
   constructor(public sideNavService: AuthorisedSideNavService) { }
 public currentRole:string; 
+
   ngOnInit() {
     this.checkStaff();
  }
@@ -22,6 +23,11 @@ public currentRole:string;
     this.currentRole = Utils.GetUserRole();
     console.log(JSON.stringify(this.currentRole));
   }
-    
 
+//   get users(): any {
+//     return sessionStorage.getItem('CurrentUser');
+// }
+
+users = sessionStorage.getItem('CurrentUser')? JSON.parse(sessionStorage.getItem('CurrentUser')):[];
+    
 }
