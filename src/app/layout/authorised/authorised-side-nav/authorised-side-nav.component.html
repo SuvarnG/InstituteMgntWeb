@@ -4,12 +4,12 @@
       <li>
         <div class="row">
           <div class="col-md-4">
-          <img class="img-circle" src="{{users.Photo}}" width="70px" height="70px" alt="Card image cap">                
+          <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap" (click)="changeUserImage(ChangeUserImage)">                
         </div>
         <div class="col-md-8">
-        {{users.friendlyName}}
+        {{user.friendlyName}}
         
-        {{users.roles}}
+        {{user.roles}}
       </div>
       </div>
 
@@ -60,3 +60,53 @@
     </ul>
   </div>
 </nav>
+
+
+<ng-template #ChangeUserImage>
+  <!-- <div class="container">
+<div class="modal">
+  <div class="modal-body">
+  <div class="row">
+    <div>
+      <input type="file" value="UserImage">
+      <input type="button" value="Change">
+    </div>
+
+  </div>
+</div>
+</div>
+</div> -->
+<div>
+<form  [formGroup]="userImageUploadForm" (ngSubmit)="submitUserImage()">
+<div class="modal-header" >
+    <h5 class="modal-title">Upload New Image</h5>
+    
+  </div>
+  <div class="modal-body">
+    <div>
+      <input type="hidden" value="{{users.userId}}" formControlName="Id">
+    </div>
+      <div class="row">
+          <div style="margin-left:10px ">
+              <input name="file" type="file" (change)="handlePhotoInput($event)">
+                  <input type="hidden" name="fileHidden" formControlName="Photo"/>
+              <button type="button" (click)="onUploadPhoto()">Upload</button>
+          </div>      
+      </div>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-2" >
+            Photo Preview:
+          </div>
+          <div class="col-md-4">
+              <img class="img-circle" [src]="_DomSanitizer.bypassSecurityTrustUrl(AuthorisedSideNavComponent.newThumbnailUrl)" width="50px" height="50px"
+              >
+          </div>
+      </div>
+      <div class="modal-footer float-right" style="margin-top: 5px">
+        <input type="submit" class="btn btn-primary pull-right" value="Submit">
+      </div>
+  </div>
+</form>
+</div>
+
+</ng-template>

@@ -13,5 +13,6 @@ export interface User {
         UpdatedBy: Number,
         IsActive: boolean,
         access_token: string
-
+        Photo:string
 }
+

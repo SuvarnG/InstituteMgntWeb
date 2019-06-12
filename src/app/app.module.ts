@@ -69,6 +69,7 @@ import { FeesTransactionModule } from './fees-transaction/fees-transaction/fees-
 import { SidenavLayoutModule } from './layout/authorised/sidenav-layout/sidenav-layout.module';
 import { StaffListModule } from './staff/staff-list/staff-list.module';
 import { StudentListModule } from './student-list/student-list.module';
+import { AuthorizedSideNavService } from './layout/authorised/authorised-side-nav/authorized-side-nav.service';
 
 
 const appRoutes: Routes = [
@@ -151,6 +152,7 @@ const appRoutes: Routes = [
       DatePipe,
       BranchService,
       BanktransactionService,
+      AuthorizedSideNavService
     ],
 
   bootstrap: [AppComponent]

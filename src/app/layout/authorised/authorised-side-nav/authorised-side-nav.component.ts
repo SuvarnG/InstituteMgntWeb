@@ -2,7 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AuthorisedSideNavService } from '../services/authorised-side-nav.service';
 import { Utils} from '../../../Utils';
 import { from } from 'rxjs';
-
+import { BsModalService,BsModalRef } from 'ngx-bootstrap';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AuthorizedSideNavService } from './authorized-side-nav.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { utils } from 'protractor';
+import { userInfo } from 'os';
 
 @Component({
   selector: 'app-authorised-side-nav',
@@ -11,13 +16,30 @@ import { from } from 'rxjs';
 })
 export class AuthorisedSideNavComponent implements OnInit {
 
-  constructor(public sideNavService: AuthorisedSideNavService) { }
-public currentRole:string; 
+  public newThumbnailUrl:any='../../assets/images/MProfile.jpg';
+  public currentRole:string;
+
+constructor(public sideNavService: AuthorisedSideNavService, private modalService:BsModalService,
+              private formBuilder: FormBuilder, public AuthorizedSideNavService:AuthorizedSideNavService,
+              public _DomSanitizer:DomSanitizer) { }
+
+ 
+  userImageUploadForm:FormGroup
+  modalRef: BsModalRef
+  
 
   ngOnInit() {
+
     this.checkStaff();
+  
+    this.userImageUploadForm = this.formBuilder.group({
+          Photo:[],
+          Id:[]
+    })
  }
 
+ public user=Utils.GetCurrentUser();
+ //public photo=this.user.Photo;
   checkStaff(){
     debugger;
     this.currentRole = Utils.GetUserRole();
@@ -28,6 +50,61 @@ public currentRole:string;
 //     return sessionStorage.getItem('CurrentUser');
 // }
 
-users = sessionStorage.getItem('CurrentUser')? JSON.parse(sessionStorage.getItem('CurrentUser')):[];
+changeUserImage(template:any){
+  if(confirm('Do you want to change Your Image?')){
+    debugger;
+   this.modalRef=this.modalService.show(template);
+
+  } 
+}
+
+handlePhotoInput(event:any){
+  debugger;
+  if (event.target.files.length) {
+    const file = event.target.files[0];
+    this.userImageUploadForm.get('Photo').setValue(file);
+  }
+}
+
+
+onUploadPhoto()
+  {
+    debugger;
+    const formData = new FormData();
+    formData.append('profile',this.userImageUploadForm.get('Photo').value)//this.registerForm.get('Documents').value);
+    this.AuthorizedSideNavService.postPhoto(formData).subscribe(
+      res=>{
+        debugger;
+          
+          if(res['type']==4){
+           this.newThumbnailUrl='Http://'+ res['body']['Message'];
+           
+          }
+                        
+      }
+    )
+   
+  }
+
+  submitUserImage(){
+    if(this.userImageUploadForm.invalid){
+        return;
+    }
+    debugger;
+    let body={
+        Photo:this.newThumbnailUrl,
+        Id:this.user.userId
+
+    }
+
+    this.AuthorizedSideNavService.submitUserImage(body).subscribe(data=>{      
+    });
+    this.user.Photo=this.newThumbnailUrl
+    this.modalRef.hide();
+    //sessionStorage.setItem('Photo',this.AuthorizedSideNavService.thumbnailUrl)
+  }
+
+
+
     
 }
