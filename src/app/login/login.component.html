@@ -1,11 +1,25 @@
 <app-header></app-header>
-<div style="height:10px;"></div>
+<!-- <div style="height:10px;"></div> -->
 
 <app-navigation-bar></app-navigation-bar>
 
-<div style="height:20px;"></div>
+<!-- <div style="height:20px;"></div> -->
+<div class="row">
+  <div class="col-md-4">
+  <img src="assets/images/Logo.jpg" style="height: 150px;width:150px">
+</div>
+<div class="col-md-8 ">
+  <h2  style="font-size:50px; color:slateblue; margin-top:30px;font-family: cursive ">
+    Aditya Academy
+</h2>
+</div>
+</div>
 
-<div class="container" style="padding-top:60px;">
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-10">
+
+<div class="container" style="padding-top:20px;">
   <div class="row">
     <div class="col-md-6 mx-auto">
       <div class="card-group">
@@ -43,16 +57,57 @@
                   <button type="submit" class="btn btn-primary" style="margin-left:15px ">Login</button>
                 </div>
                 <div class="col-6 text-right">
-                  <button type="button" class="btn btn-link px-0">Forgot password?</button>
+                  <button type="button" class="btn btn-link px-0" (click)="showForgotPasswordTemplate(template)">Forgot
+                    password?</button>
                 </div>
               </div>
 
             </form>
           </div>
         </div>
+        </div>
+      </div>
       </div>
     </div>
   </div>
 </div>
 
 <app-footer></app-footer>
+
+
+
+<!-- Create Forgotpassword modal -->
+ <ng-template #template>
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="forgotPasswordForm" >
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Forgot Password?</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td>
+              <label>Confirmed Email</label>
+              <input type="text" class="form-control" formControlName="Email" style="margin-left: 20px" placeholder="Enter Email Address"
+                size="30" [ngClass]="{ 'is-invalid': submitted && n.Email.errors }" >
+               <div *ngIf="submitted && n.Email.errors" class="invalid-feedback">
+         <div *ngIf="n.Email.errors.required">Email is required</div>
+   </div> 
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" (click)="ResetPassword()">Reset</button>
+          <!-- <button type="button" class="btn btn-primary" style="margin-left: 5px"
+            (click)="modalRef.hide()">Cancel</button> -->
+        </div>
+      </div>
+    </form>
+  </div>
+
+</ng-template> 

@@ -6,4 +6,8 @@ export interface User {
     RoleId:Number,
     Password:string
   
+}export interface Resetpassword{
+    Id: Number,
+    Email:string
 }
+

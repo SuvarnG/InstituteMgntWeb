@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { User } from '../models/User';
 import { Auth } from '../models/Auth';
 import { Utils } from '../Utils';
+import { Resetpassword } from '../Model/User';
 
  const httpOptions = {
   headers: new HttpHeaders({
@@ -34,6 +35,15 @@ export class LoginService {
         sessionStorage.setItem('CurrentUser', JSON.stringify(auth));
         }
        return auth;
+    }));
+  }
+
+  resetPassword(email:string){
+    debugger;
+    return this.http.get<boolean>(environment.APIBASEURL + 'Login/ResetPasswordRequest/'+ email+'/', httpOptions
+    ).pipe
+    (map(data=>{
+      return data as boolean;
     }));
   }
 
