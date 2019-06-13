@@ -215,13 +215,13 @@
 
         <div class="form-group">
           <label for="Date" class="control-label-col-sm-2">TransactionDate : </label>
-          <input type="text" class="form-control" formControlName="Date" [ngClass]="{ 'is-invalid': submitted &&
+          <input class="form-control" formControlName="Date" [ngClass]="{ 'is-invalid': submitted &&
         fu.Date.errors }">
           <div *ngIf="submitted && fu.Date.errors" class="invalid-feedback">
             <div *ngIf="fu.Date.errors.required">Please Enter Date</div>
           </div>
         </div>
-
+        
         <div class="form-group">
           <button class="btn btn-primary" type="submit">submit</button>
           <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>

@@ -94,7 +94,7 @@ ngOnInit() {
       Amount: ['', Validators.required],
       TransactionBy: ['', Validators.required],
       TransactionById:[],
-      Date: ['', Validators.required]
+      Date: [new Date().toString(), Validators.required]
     })
     
  }
@@ -170,7 +170,7 @@ ngOnInit() {
       Amount:banktransaction.Amount,
       TransactionBy:banktransaction.TransactionBy,
       TransactionById:banktransaction.TransactionById,
-      Date:banktransaction.Date
+      Date:new Date(banktransaction.Date).toDateString(),
     }
     this.UpdateFormGroup.patchValue(selectedBank);
     this.modalRef = this.modalService.show(editTemplate, {
