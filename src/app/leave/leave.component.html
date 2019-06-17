@@ -9,7 +9,7 @@
 
   <div class="col-md-10 overflow-auto">
 <!-- Create button layout -->
-<div class="float-right" style="margin-top: 20px">
+<div class="float-right" style="margin-top: 20px;margin-right: 20px">
   <button type="button" class="btn btn-primary" style="margin-left:100px"
   (click)="OpenCreateModal(CreateTemplate)"> Apply For Leave </button>
 </div>
@@ -21,15 +21,15 @@
     <thead>
       <tr>
         <!-- <th scope="col">ID</th> -->
-        <th scope="col">CourseName</th>
-        <th scope="col">StudentName</th>
-        <th scope="col">LeaveTypeName</th>
+        <th scope="col">Course</th>
+        <th scope="col">Student</th>
+        <th scope="col">Leave Type </th>
         <th scope="col">Reason</th>
         <th scope="col">Comment</th>
-        <th scope="col">IsFollowUpDate</th>
-        <th scope="col">FromDate</th>
-        <th scope="col">ToDate</th>
-        <th scope="col">TotalDays</th>
+        <th scope="col">Is Follow UpDate</th>
+        <th scope="col">From Date</th>
+        <th scope="col">To Date</th>
+        <th scope="col">Total Days</th>
         <div class="float-right">
           <th></th>
         </div>
@@ -78,7 +78,7 @@
         </div>
 
         <div class="form-group col-md-8">
-          <label for="LeaveType">StudentName</label>
+          <label for="LeaveType">Student Name</label>
           <select name="StudentName" class="form-control"  [value]="null" formControlName="StudentName">
             <option [value]="null">--select student--</option>
             <option *ngFor="let student of students" [value]="student.StudentId">
@@ -91,7 +91,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="LeaveName">LeaveName</label>
+          <label for="LeaveName">Leave</label>
           <select name="LeaveName" class="form-control" formControlName="LeaveName">
             <option *ngFor="let l of leaves" [value]="l.LeaveId">
               {{l.LeaveType}}
@@ -100,7 +100,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="NeedFollowupDate">NeedFollowupDate</label>
+          <label for="NeedFollowupDate">Need Followup Date</label>
           <input type="date" formControlName="NeedFollowupDate" class="form-control" placeholder="NeedFollowupDate"
             [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
           <div *ngIf="submitted && fc.NeedFollowupDate.errors" class="invalid-feedback">
@@ -112,7 +112,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="FromDate">FromDate</label>
+          <label for="FromDate">From Date</label>
           <input type="date" formControlName="FromDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && fc.FromDate.errors }" />
           <div *ngIf="submitted && fc.FromDate.errors" class="invalid-feedback">
@@ -121,7 +121,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="ToDate">ToDate</label>
+          <label for="ToDate">To Date</label>
           <input type="date" formControlName="ToDate" class="form-control"
             [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
           <div *ngIf="submitted && fc.ToDate.errors" class="invalid-feedback">
@@ -186,7 +186,7 @@
         </div>
 
         <div class="form-group col-md-8">
-          <label for="LeaveType">StudentName</label>
+          <label for="LeaveType">Student Name</label>
           <select name="StudentName" class="form-control"  [value]="null" formControlName="StudentName">
             <option [value]="null">--select student--</option>
             <option *ngFor="let student of students" [value]="student.StudentId">
@@ -198,7 +198,7 @@
       </div>
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="LeaveName">LeaveName</label>
+          <label for="LeaveName">Leave</label>
           <select name="LeaveName" class="form-control" formControlName="LeaveName">
             <option *ngFor="let l of leaves" [value]="l.LeaveId">
               {{l.LeaveType}}
@@ -207,7 +207,7 @@
         </div>
 
         <div class="form-group col-md-4">
-          <label for="NeedFollowupDate">NeedFollowupDate</label>
+          <label for="NeedFollowupDate">Need Followup Date</label>
           <input type="date" formControlName="NeedFollowupDate" class="form-control" placeholder="NeedFollowupDate"
             [ngClass]="{'is-invalid': submitted && fu.NeedFollowupDate.errors}" />
           <div *ngIf="submitted && fu.NeedFollowupDate.errors" class="invalid-feedback">
@@ -219,7 +219,7 @@
 
       <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="FromDate">FromDate</label>
+          <label for="FromDate">From Date</label>
           <input type="date" formControlName="FromDate" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && fu.FromDate.errors }" />
           <div *ngIf="submitted && fu.FromDate.errors" class="invalid-feedback">
@@ -228,7 +228,7 @@
         </div>
 
         <div class="form-group col-md-6">
-          <label for="ToDate">ToDate</label>
+          <label for="ToDate">To Date</label>
           <input type="date" formControlName="ToDate" class="form-control"
             [ngClass]="{'is-invalid': submitted && fu.ToDate.errors}" />
           <div *ngIf="submitted && fu.ToDate.errors" class="invalid-feedback">

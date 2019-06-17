@@ -1,62 +1,66 @@
 <nav id="sidebar" class="navbar-dark bg-dark" [ngClass]="{'hidden': sideNavService.hideSideNav }">
   <div>
-    <ul class="navbar-nav" >
+    <ul class="navbar-nav">
       <li>
         <div class="row">
           <div class="col-md-4">
-          <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap" (click)="changeUserImage(ChangeUserImage)">                
+            <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap"
+              (click)="changeUserImage(ChangeUserImage)">
+          </div>
+          <div class="col-md-8">
+            {{user.friendlyName}}
+
+            {{user.roles}}
+          </div>
         </div>
-        <div class="col-md-8">
-        {{user.friendlyName}}
-        
-        {{user.roles}}
-      </div>
-      </div>
 
       </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'|| currentRole==='Receptionist'">
-          <a class="nav-link" routerLink="/FeesTransaction">Fees Payment</a>
-        </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin' || currentRole==='Receptionist'|| currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Enquiry">Enquiry</a>
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/StaffList">Staff</a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'">
         <a class="nav-link" routerLink="/StudentList">Student</a>
-      </li>    
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-        <a class="nav-link"  routerLink="/Expenses">Daily Expenses</a>
-        </li>
-        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-            <a class="nav-link" routerLink="/BankTransaction">Bank Transaction</a>
-       </li>
-        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'|| currentRole==='SuperAdmin'|| currentRole==='Receptionist'">
-            <a class="nav-link" routerLink="/Leave">Apply Leave</a>
-          </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/LeaveList">Leaves</a>
-      </li>    
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/StaffList">Staff</a>
-        </li>
+      </li>
+      <li routerLinkActive="active current" class="nav-item"
+        *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin' || currentRole==='Receptionist'|| currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/Enquiry">Enquiry</a>
+      </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/Courses">Courses</a>
       </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/role">Role</a>
-      </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/Expenses">Daily Expenses</a>
+      </li>
+      <li routerLinkActive="active current" class="nav-item"
+        *ngIf="currentRole==='Admin'|| currentRole==='Teacher'|| currentRole==='SuperAdmin'|| currentRole==='Receptionist'">
+        <a class="nav-link" routerLink="/Leave">Apply Leave</a>
+      </li>
+      <li routerLinkActive="active current" class="nav-item"
+        *ngIf="currentRole==='SuperAdmin'|| currentRole==='Admin'|| currentRole==='Receptionist'">
+        <a class="nav-link" routerLink="/FeesTransaction">Fees Payment</a>
+      </li>
+ <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/BankTransaction">Bank Transaction</a>
+      </li>
+     <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/LeaveList">Leaves</a>
+      </li>
+     <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/Bank">Bank Account</a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/Branch">Branch</a>
-      </li>     
+      </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-          <a class="nav-link" routerLink="/ExpenseMaster">Expenses</a>
-        </li>
-        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
-          <a class="nav-link" routerLink="/coursetype">Course Type</a>
-        </li>
-        
+        <a class="nav-link" routerLink="/ExpenseMaster">Expenses</a>
+      </li>
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/coursetype">Course Type</a>
+      </li>
+      <li routerLinkActive="active current" class="nav-item"
+        *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/role">Role</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -76,37 +80,38 @@
 </div>
 </div>
 </div> -->
-<div>
-<form  [formGroup]="userImageUploadForm" (ngSubmit)="submitUserImage()">
-<div class="modal-header" >
-    <h5 class="modal-title">Upload New Image</h5>
-    
-  </div>
-  <div class="modal-body">
-    <div>
-      <input type="hidden" value="{{users.userId}}" formControlName="Id">
-    </div>
-      <div class="row">
-          <div style="margin-left:10px ">
-              <input name="file" type="file" (change)="handlePhotoInput($event)">
-                  <input type="hidden" name="fileHidden" formControlName="Photo"/>
-              <button type="button" (click)="onUploadPhoto()">Upload</button>
-          </div>      
+  <div>
+    <form [formGroup]="userImageUploadForm" (ngSubmit)="submitUserImage()">
+      <div class="modal-header">
+        <h5 class="modal-title">Upload New Image</h5>
+
       </div>
-      <div class="row" style="margin-top: 10px">
-        <div class="col-md-2" >
+      <div class="modal-body">
+        <div>
+          <input type="hidden" value="{{users.userId}}" formControlName="Id">
+        </div>
+        <div class="row">
+          <div style="margin-left:10px ">
+            <input name="file" type="file" (change)="handlePhotoInput($event)">
+            <input type="hidden" name="fileHidden" formControlName="Photo" />
+            <button type="button" (click)="onUploadPhoto()">Upload</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+          <div class="col-md-2">
             Photo Preview:
           </div>
           <div class="col-md-4">
-              <img class="img-circle" [src]="_DomSanitizer.bypassSecurityTrustUrl(AuthorisedSideNavComponent.newThumbnailUrl)" width="50px" height="50px"
-              >
+            <img class="img-circle"
+              [src]="_DomSanitizer.bypassSecurityTrustUrl(AuthorisedSideNavComponent.newThumbnailUrl)" width="50px"
+              height="50px">
           </div>
+        </div>
+        <div class="modal-footer float-right" style="margin-top: 5px">
+          <input type="submit" class="btn btn-primary pull-right" value="Submit">
+        </div>
       </div>
-      <div class="modal-footer float-right" style="margin-top: 5px">
-        <input type="submit" class="btn btn-primary pull-right" value="Submit">
-      </div>
+    </form>
   </div>
-</form>
-</div>
 
 </ng-template>

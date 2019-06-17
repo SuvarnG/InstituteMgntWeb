@@ -85,10 +85,19 @@ export class CoursesComponent implements OnInit {
   }
   getShortName(courseTypeId: number) {
     debugger;
-    this.CoursesService.GetShortName(courseTypeId).subscribe(res => { this.courses = res; console.log("test", this.courses) });
+    this.CoursesService.GetShortName(courseTypeId).subscribe(res => { 
+      this.courses = res; console.log("test", this.courses) 
+    });
 
   }
+  // getShortName(event:any) {
+  //   debugger;
+  //   this.CoursesService.GetShortName(event.target.value).subscribe(res => { 
+  //     this.courses = res; console.log("test", this.courses) 
+  //   });
 
+  // }
+  
   getFullName(courseId: number) {
     debugger;
     this.selectedCourse = this.courses.find(x => x.CourseId ==  courseId);
@@ -98,11 +107,11 @@ export class CoursesComponent implements OnInit {
       
   }
 
-  Delete(CourseId,FullName) {
+  Delete(ID,FullName) {
     debugger;
-    var ans = confirm("Do you want to delete CourseId : " + CourseId);
+    var ans = confirm("Do you want to delete this course : " + ID);
     if (ans) {
-      this.CoursesService.Delete(CourseId).subscribe(data => {
+      this.CoursesService.Delete(ID).subscribe(data => {
         this.getCourses();
       }, error => console.error(error))
     }

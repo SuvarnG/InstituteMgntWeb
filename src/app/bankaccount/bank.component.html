@@ -8,7 +8,7 @@
   </div>
 
   <div class="col-md-10">
-      <div style="margin-top: 10px">
+      <div style="margin-top: 10px;margin-right: 20px">
           <button type="submit" class="btn btn-primary" style="float: right;"data-toggle="tooltip" data-placement="bottom" title="Add"
           (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add Bank Details </button>
           </div>
@@ -20,7 +20,7 @@
             <!-- <th>No</th> -->
             <th>Name</th>
             <th>Account Number</th>
-            <th>AccountType</th>
+            <th>Account Type</th>
             <th>IFSC_Code</th>
             <th></th>
           </tr>
@@ -70,7 +70,7 @@
 
 
         <div class="form-group">
-          <label for="AccountNo">Enter Account Number : </label>
+          <label for="AccountNo">Account Number : </label>
 
           <input type="text" class="form-control" formControlName="AccountNo"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
@@ -148,7 +148,7 @@
           <input type="text" class="form-control" formControlName="BankName" name="BankName" disabled>
         </div>
         <div class="form-group">
-          <label for="AccountNo">Enter Account Number : </label>
+          <label for="AccountNo">Account Number : </label>
 
           <input type="text" class="form-control" formControlName="AccountNo"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&

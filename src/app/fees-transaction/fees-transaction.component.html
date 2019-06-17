@@ -9,38 +9,18 @@
 
   <body>
     <form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
-      <h4>Fees Transaction</h4>
-      <div class="row">
-        <div class="col-md-6">
+      
+      <div class="row" >
+        <div class="col-md-6" style="margin-top: 30px">
 
           <table>
             <tbody>
 
-              <!-- <tr>
-                <td colspan="1">
-                  <label for="CourseType">Course Type</label>
-                  <div class="row">
-                    <div class="col">
-                      <select class="form-control" formControlName="CourseType"
-                        [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseType.errors }"
-                        (change)="selectUser($event);getCourseNameFromCourseType()">
-                        <option *ngFor="let course of FeesTransactionService.listCourseType"
-                          [value]="course.CourseTypeId">
-                          {{course.CourseTypeName}}
-                        </option>
-                      </select>
-                      <div *ngIf="submitFeesTransaction && g.CourseType.errors" class="invalid-feedback">
-                        <div *ngIf="g.CourseType.errors.required">Course Type is required</div>
-                      </div>
-                    </div>
-
-                  </div>
-                </td>
-              </tr> -->
-
+             
               <tr>
                 <td colspan="1"><label for="CourseName">Course Name</label>
                   <div class="form-group">
+                      
                     <select class="form-control" formControlName="CourseName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
@@ -55,22 +35,7 @@
                 </td>
               </tr>
 
-              <!-- <tr>
-                <td colspan="1">
-                  <label for="StudentID">Course Fees</label>
-                  <div class="form-group">
-                    <select class="form-control" formControlName="CourseFees"
-                      [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }">
-                      <option *ngFor="let course of FeesTransactionService.listCourseFees" [value]="course.Fees">
-                        {{course.Fees}}
-                      </option>
-                    </select>
-                    <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
-                      <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
-                    </div>
-                  </div>
-                </td>
-              </tr> -->
+              
 
               <tr>
                 <td colspan="1">
@@ -120,42 +85,16 @@
                 </td>
             </tr>
 
-<!-- 
-              <tr>
-                  <td colspan="1">
-              <label for="RemainingFees">Remaining Fees</label>
-              
-               <div class="form-group">
-                  <input type="text" class="form-control" id="RemainingFees" formControlName="RemainingFees"
-                    [ngClass]="{ 'is-invalid': submitFeesTransaction && g.RemainingFees.errors }" disabled>
-                    
-                  
-                  </div> 
-                  </td>
-              </tr> -->
 
             </tbody>
           </table>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top: 30px">
           <table>
             <tbody>
 
-                <!-- <tr>
-                    <td colspan="1">
-                     
-                      <div class="form-group" *ngFor="let fees of FeesTransactionService.listFeesTransactions">
-                          <label for="FeesAmount">Already Paid Amount</label>
-                        <input type="number" class="form-control" formControlName="PaidAmount"
-                         [value]="fees.FeesPaid"
-                          [ngClass]="{ 'is-invalid': submitFeesTransaction && g.PaidAmount.errors }" disabled>
-                        <div *ngIf="submitFeesTransaction && g.PaidAmount.errors" class="invalid-feedback">
-                          <div *ngIf="g.PaidAmount.errors.required">Fees Amount is required</div>
-                        </div>
-                      </div>
-                    </td>
-                  </tr> -->
+                
 
 
               <tr>
@@ -173,18 +112,7 @@
               </tr>
 
 
-              <!-- <tr>
-                  <td colspan="1">
-                    <label for="FeesAmount">Total Paid Amount</label>
-                    <div class="form-group">
-                      <input type="number" class="form-control" id="FeesAmount" formControlName="TotalPaidAmount"
-                        [ngClass]="{ 'is-invalid': submitFeesTransaction && g.TotalPaidAmount.errors }" disabled>
-                      <div *ngIf="submitFeesTransaction && g.TotalPaidAmount.errors" class="invalid-feedback">
-                        <div *ngIf="g.TotalPaidAmount.errors.required">Fees Amount is required</div>
-                      </div>
-                    </div>
-                  </td>
-                </tr> -->
+             
 
 
               <tr>
@@ -242,6 +170,7 @@
 
 <div class="container" style="margin-top:50px">
 <table class="table table-bordered">
+    <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
   <thead>
   <tr>
     <th>InstallmentDate</th>

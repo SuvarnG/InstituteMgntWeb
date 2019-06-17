@@ -10,7 +10,7 @@
 </div>
 
 <div class="col-md-10">
-    <div style="margin-top: 10px">
+    <div style="margin-top: 10px;margin-right: 20px">
       <button type="button" class="btn btn-primary" style="float: right;" (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom" title="Add Expense">
          Add Expenses</button>
          </div>
@@ -49,23 +49,22 @@
                <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
                  <span aria-hidden="true">&times;</span>
                </button>
-             </div> <div class="modal-body">
-<table>
-  <tr>
-    <td>
+             </div> 
+             <div class="modal-body">
+                <div class="form-group">
       <label for="expense">Expense Name</label>
-      <input type="text" id="expense" formControlName="expense" [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
+      <input type="text" id="expense" class="form-control" formControlName="expense" [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
       <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
           <div *ngIf="f.expense.errors.required">Expense No is required</div>
     </div>
-    </td>
-  </tr>
-</table>
+   
+  
              </div>
              <div class="form-group">
                 <button class="btn btn-primary" type="submit">Submit</button>
                 <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
               </div>
+            </div>
             </form>
             </div>
    </ng-template> 

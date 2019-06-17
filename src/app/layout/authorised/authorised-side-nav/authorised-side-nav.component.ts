@@ -104,7 +104,7 @@ onUploadPhoto()
     //sessionStorage.setItem('Photo',this.AuthorizedSideNavService.thumbnailUrl)
   }
 
-
+  
 
     
 }

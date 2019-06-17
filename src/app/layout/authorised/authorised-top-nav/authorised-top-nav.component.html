@@ -2,11 +2,22 @@
   <app-authorised-side-nav-toggler></app-authorised-side-nav-toggler>
   <!-- <button type="button"  (click)="Logout()"><i class="fas fa-sign-out-alt"></i></button>  -->
   <h3 style="color: white;font-family: cursive">Aditya Academy</h3>
-  <span (click)="Logout()"><i class="fas fa-sign-out-alt" style="font-size:30px;color:white;"
-    data-toggle="tooltip" title="LogOut" data-placement="bottom"></i>
-   </span>
-  
-  <!-- <div class="text-primary">
-    <h3>LogOut</h3>
-    </div> -->
+
+  <!-- <div class="inline">
+  <span>
+    <div ngbDropdown class="nav-item dropdown">
+      <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="dropdown01">
+        <i class="fa fa-cog setting-icon" aria-hidden="true" data-toggle="tooltip" title="Setting" data-placement="bottom"></i></a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div></div>
+       -->
+      
+  <span><i class="fa fa-cog setting-icon" aria-hidden="true" data-toggle="tooltip" title="Setting"
+      data-placement="bottom"></i>
+    <span (click)="Logout()"><i class="fas fa-sign-out-alt logout-icon" aria-hidden="true" data-toggle="tooltip"
+        title="LogOut" data-placement="bottom"></i>
+    </span></span>
 </nav>

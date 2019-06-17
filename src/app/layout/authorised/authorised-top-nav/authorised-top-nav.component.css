@@ -1,0 +1,13 @@
+
+.setting-icon{
+    font-size:20px;
+    color:white;
+    margin-right: 10px;
+    cursor: pointer
+}
+.logout-icon{
+    font-size:20px;
+    color:white;
+    margin-left: 10px;
+    cursor: pointer
+}

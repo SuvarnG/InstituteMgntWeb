@@ -7,7 +7,7 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
   <div class="col-md-10">
-      <div style="margin-top: 10px">
+      <div style="margin-top: 10px;margin-right: 20px">
   
     <button type="submit" class="btn btn-primary" style="float: right;" 
      data-target="#myupdate" data-toggle="modal" (click)="CreateNewCourse(addtemplate)"
@@ -51,11 +51,13 @@
       </button>
     </div>
     <div class="modal-body">
+        <div class="form-group">
       <label for="CourseTypeName">CourseTypeName : </label>
       <input type="text" class="form-control" formControlName="CourseTypeName"
         [ngClass]="{ 'is-invalid': submitted && f.CourseTypeName.errors }" #CourseTypeName  >
       <div *ngIf="submitted && f.CourseTypeName.errors" class="invalid-feedback">
         <div *ngIf="f.CourseTypeName.errors.required">Name is required</div>
+      </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" style="margin:5px" (click)="CreateCourseName(CourseTypeName.value)">submit</button>

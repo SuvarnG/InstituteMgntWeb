@@ -8,7 +8,7 @@
 </div>
 
 <div class="col-md-10">
- <div style="margin-top: 10px">
+ <div style="margin-top: 10px;margin-right: 20px">
     <button type="submit" class="btn btn-primary"  style="float: right;"
     (click)="openModal(template)" data-target="#myupdate" data-toggle="modal"
     data-toggle="tooltip" data-placement="bottom" title="Add" (click)="clearForm()">Add Roles</button>
@@ -52,11 +52,13 @@
       </button>
     </div>
     <div class="modal-body">
+        <div class="form-group">
       <label for="role">Role : </label>
       <input type="text" class="form-control" formControlName="role"
         [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
       <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
         <div *ngIf="f.role.errors.required">Name is required</div>
+      </div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" style="margin:5px" (click)="CreateRole(RoleName.value)">submit</button>
