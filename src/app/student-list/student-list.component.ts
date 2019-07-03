@@ -20,7 +20,8 @@ export class StudentListComponent implements OnInit {
   studentID:number;
   submitted:boolean;
   registerUpdateStudent:FormGroup;
-  ModalOptions:ModalOptions
+  ModalOptions:ModalOptions;
+  showSelected:boolean;
   
   public students=[];
 

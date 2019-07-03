@@ -4,10 +4,13 @@ import { from, Observable, } from 'rxjs';
 import { map } from "rxjs/operators";
 import { environment } from 'src/environments/environment';
 import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees,ThumbnailUrl } from '../Models/Students';
+import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders(
+    { 'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`})
 };
 
 @Injectable({
@@ -110,8 +113,8 @@ postFile(formData)
         debugger;
           
           if(res['type']==4){
-           this.thumbnailUrl='Http://'+ res['body']['Message'];
-           
+          //  this.thumbnailUrl='Http://'+ res['body']['Message'];
+           this.thumbnailUrl= res['body']['Message'];
           }
                         
       }

@@ -271,6 +271,8 @@ export class CreateStudentComponent implements OnInit {
       DateOfPayment: this.registerStudentCourse.controls.DateofPayment.value,
       FeesPaid: this.registerStudentCourse.controls.FeesAmount.value,
       FeesTakenBy: this.registerStudentCourse.controls.FeesTakenBy.value,
+      BranchId:1,
+      InstituteId:1,
       //FeesTakenBy:sessionStorage.setItem('CurrentUser', JSON.stringify(auth)),
       CourseCompleted: false,
       Discount: this.registerStudentCourse.controls.AnyDiscount.value,

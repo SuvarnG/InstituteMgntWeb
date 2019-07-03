@@ -104,6 +104,8 @@ export interface FeesTransaction{
     TotalFees:number;
     Remark:string;
     IsActive:boolean;
+    BranchId:number;
+    InstituteId:number;
 }
 
 export interface FeesTransactions{
