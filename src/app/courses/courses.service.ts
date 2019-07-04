@@ -8,8 +8,8 @@ import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' 
-//'Authorization':`Bearer ${Utils.GetAccessToken()}`
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+            'Authorization':`Bearer ${Utils.GetAccessToken()}`
 })
 
 };
@@ -26,9 +26,9 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   //For displaying all entries
-  courseList() {
+  courseList(InstituteId:number, BranchId:number) {
     debugger;
-    return this.http.get<Course[]>(this.Url, httpOptions);
+    return this.http.get<Course[]>(this.Url+'/'+InstituteId+'/'+BranchId, httpOptions);
 }
 // Delete(CourseId): Observable<Course> {
 

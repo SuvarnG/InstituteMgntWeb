@@ -9,6 +9,7 @@ import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
 import { UpdateLeaves, Leaves } from '../Models/leaves';
 import { CourseType, Students } from '../Models/Students';
 import { Subject } from 'rxjs';
+import { Utils } from '../Utils';
 //import { createEnquiry } from '../models/createEnquiry';
 //import { leave } from '@angular/core/src/profile/wtf_impl';
 
@@ -113,8 +114,11 @@ export class LeaveComponent implements OnInit {
 
   }
 
+  public user = Utils.GetCurrentUser();
+
   getCourseName() {
-    this.coursesService.courseList().subscribe(res => {
+    
+    this.coursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
       this.Courses = res;
       console.log(JSON.stringify(this.Courses));
     });

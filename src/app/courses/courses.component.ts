@@ -5,6 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CourseType, Course } from '../Model/CourseType';
 import { Subject } from 'rxjs';
+import { Utils } from '../Utils';
 
 
 @Component({
@@ -54,7 +55,7 @@ export class CoursesComponent implements OnInit {
       Percentage: [],
 
     })
-    this.getCourses();
+    this.getCourses(this.user.InstituteId,this.user.BranchId);
     this.getCourseTypeList();
 
 
@@ -72,10 +73,11 @@ export class CoursesComponent implements OnInit {
     })
   }
 
+  public user = Utils.GetCurrentUser();
 
-  getCourses() {
+  getCourses(InstituteId:number,BranchId:number) {
     debugger;
-    this.CoursesService.courseList().subscribe(res => {
+    this.CoursesService.courseList(InstituteId,BranchId).subscribe(res => {
       this.course = res;
       this.dtTrigger.next();
     });
@@ -117,7 +119,7 @@ export class CoursesComponent implements OnInit {
     var ans = confirm("Do you want to delete this course : " + ID);
     if (ans) {
       this.CoursesService.Delete(ID).subscribe(data => {
-        this.getCourses();
+        this.getCourses(this.user.InstituteId,this.user.BranchId);
       }, error => console.error(error))
     }
   }
@@ -155,14 +157,14 @@ export class CoursesComponent implements OnInit {
         Duration: this.createForm.controls.Duration.value,
         // IsActive: this.createForm.controls.IsActive.value,
         Percentage: this.createForm.controls.Percentage.value,
-        BranchId:1,
-        InstituteId:1
+        BranchId:this.user.BranchId,
+        InstituteId:this.user.InstituteId
 
       };
       this.CoursesService.createCourse(body).subscribe((data) => {
         this.modalRef.hide();
         this.submitted=false;
-        this.getCourses();
+        this.getCourses(this.user.InstituteId,this.user.BranchId);
 
       })
     }
@@ -219,7 +221,7 @@ export class CoursesComponent implements OnInit {
     this.CoursesService.Edit(body).subscribe(data => {
       this.modalRef.hide();
       //console.log('courses' +JSON.stringify())
-      this.getCourses();
+      this.getCourses(this.user.InstituteId,this.user.BranchId);
     }, error => console.error(error))
   }
   calculateIsPercentage()
