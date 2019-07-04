@@ -8,7 +8,8 @@ export interface Expenses {
     Date: Date,
     Remark:string,
     Expenses:string,
-    PaidByName:string
+    PaidByName:string,
+    BranchId:number
 }
 
 export interface ExpenseMaster{

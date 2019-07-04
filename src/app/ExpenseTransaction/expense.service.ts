@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Expenses, ExpenseMaster } from '../Model/Expenses';
-import { map, tap, catchError } from 'rxjs/operators';
+import { map, tap, catchError, debounceTime } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../Model/User';
 import { StaffMaster } from '../Model/StaffMaster';
+import { Utils } from '../Utils';
 // import { from, Observable } from 'rxjs';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`}) 
 };
 
 @Injectable({
@@ -37,8 +39,9 @@ export class ExpenseService {
     };
   }
 
-  expensesList() {
-    return this.http.get<Expenses[]>(this.Url, httpOptions)
+  expensesList(BranchId:number) {
+    debugger;
+    return this.http.get<Expenses[]>( environment.APIBASEURL + 'Expenses/GetAll_tran'+'/'+BranchId, httpOptions)
       .pipe(map(Expenses => {
         console.log(Expenses);
         return Expenses;
@@ -74,11 +77,11 @@ export class ExpenseService {
       );
   }
 
-  GetStaffList() {
-    return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
-  }
+  // GetStaffList() {
+  //   return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
+  // }
 
-  getAllExpenseType() {
-    this.http.get(environment.APIBASEURL + 'Expenses/GetAll').toPromise().then(result => this.listExpenseType = result as ExpenseMaster[])
-  }
-}
+//   getAllExpenseType() {
+//     this.http.get(environment.APIBASEURL + 'Expenses/GetAll').toPromise().then(result => this.listExpenseType = result as ExpenseMaster[])
+//   }
+ }

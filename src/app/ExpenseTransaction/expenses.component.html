@@ -140,7 +140,7 @@
           <label for="ExpenseType">Expense Type</label>
           <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"
             [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
-            <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
+            <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
               {{expense.Expenses}}
             </option>
           </select>

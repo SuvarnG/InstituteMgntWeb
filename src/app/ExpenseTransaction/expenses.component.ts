@@ -1,3 +1,6 @@
+import { ExpenseMaster } from './../Model/Expenses';
+import { ExpenseMasterService } from './../expense-master/expense-master.service';
+import { StaffListService } from './../staff/staff-list.service';
 import { Component, OnInit, TemplateRef, Pipe } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -7,6 +10,7 @@ import { Expenses } from '../Model/Expenses';
 import { User } from '../Model/User';
 import { StaffMaster } from '../Model/StaffMaster';
 import { Subject } from 'rxjs';
+import { Utils } from '../Utils';
 
 
 @Component({
@@ -32,10 +36,16 @@ export class ExpensesComponent implements OnInit {
   public staffMasters: StaffMaster[];
   selectedUserValue: Number;
   submitted = false;
+  expenseMaster:ExpenseMaster[];
 
-  constructor(private modalService: BsModalService, private router: Router,
+  constructor(
+    private modalService: BsModalService,
+    private router: Router,
     private ExpenseService: ExpenseService,
-    private route: ActivatedRoute, private fb: FormBuilder) { }
+    private route: ActivatedRoute, 
+    private fb: FormBuilder,
+    private staffListService:StaffListService,
+    private expenseMasterService:ExpenseMasterService) { }
 
   ngOnInit() {
 
@@ -67,14 +77,21 @@ export class ExpensesComponent implements OnInit {
       Id:[],
       PaidByName:[]
     })
-    this.getAllExpenseTransction();
-    this.ExpenseService.getAllExpenseType();
+    this.getAllExpenseTransction(this.user.BranchId);
+    this.expenseMasterService.getAllExpenses().subscribe(res=>
+      {
+        this.expenseMaster=res
+      });
     this.getStaffList();
     //this.ExpenseService.userList();
   }
 
-  getAllExpenseTransction() {
-    this.ExpenseService.expensesList().subscribe(res =>
+  public user=Utils.GetCurrentUser();
+  
+  getAllExpenseTransction(BranchId:number) {
+    debugger;
+    BranchId=this.user.BranchId;
+    this.ExpenseService.expensesList(BranchId).subscribe(res =>
       { this.expenses = res;
     this.dtTrigger.next();
   });
@@ -82,7 +99,10 @@ export class ExpensesComponent implements OnInit {
 
   addNewExpense(addExpense: TemplateRef<any>) {
     //this.ExpenseService.userList();
-    this.ExpenseService.getAllExpenseType();
+    this.expenseMasterService.getAllExpenses().subscribe(res=>
+      {
+        this.expenseMaster=res
+      });;
     this.modalRef = this.modalService.show(addExpense, {
       animated: true,
       backdrop: 'static'
@@ -93,7 +113,7 @@ export class ExpensesComponent implements OnInit {
     var ans = confirm("Do you want to delete customer with Id: " + expenseID);
     if (ans) {
       this.ExpenseService.deleteExpense(expenseID).subscribe(data => {
-        this.getAllExpenseTransction();
+        this.getAllExpenseTransction(this.user.BranchId);
       }, error => console.error(error))
     }
   }
@@ -112,12 +132,13 @@ export class ExpensesComponent implements OnInit {
        PaidByWhom: this.expenseForm.controls.PaidByWhom.value,
        PaidByName:this.expenseForm.controls.PaidByName.value,
         Date: this.expenseForm.controls.Date.value,
-        Remark: this.expenseForm.controls.Remark.value
+        Remark: this.expenseForm.controls.Remark.value,
+        BranchId:this.user.BranchId
       }
       this.ExpenseService.saveExpense(body)
         .subscribe((data) => {
           this.modalRef.hide();
-          this.getAllExpenseTransction();
+          this.getAllExpenseTransction(this.user.BranchId);
         }, error => this.errorMessage = error)
     }
   }
@@ -173,7 +194,7 @@ export class ExpensesComponent implements OnInit {
        this.ExpenseService.updateExpense(body)
         .subscribe((data) => {
           this.modalRef.hide();
-          this.getAllExpenseTransction();
+          this.getAllExpenseTransction(this.user.BranchId);
         }, error => this.errorMessage = error)
     }
   }
@@ -190,8 +211,7 @@ export class ExpensesComponent implements OnInit {
     this.selectedUserValue = event.target.value;
   }
 
-
   getStaffList() {
-    this.ExpenseService.GetStaffList().subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
+    this.staffListService.getAllStaff(this.user.InstituteId,this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
   }
 }

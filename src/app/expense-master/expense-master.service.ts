@@ -4,9 +4,11 @@ import { environment } from 'src/environments/environment';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import {ExpenseMaster} from '../Model/Expenses';
+import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}` })
 };
 
 
@@ -32,11 +34,12 @@ export class ExpenseMasterService {
 getAllExpenses()
 {
   debugger;
-  return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions)
-  .pipe(map(ExpenseMaster=>{
-    console.log(ExpenseMaster);
-    return ExpenseMaster;
-  }));
+  // return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions)
+  // .pipe(map(ExpenseMaster=>{
+  //   console.log(ExpenseMaster);
+  //   return ExpenseMaster;
+  // }));
+  return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions).pipe(map(data => data as ExpenseMaster[]))
 }
 
 createNewExpense(expense)
