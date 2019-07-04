@@ -1,3 +1,4 @@
+import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { CoursesService } from './courses.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -27,7 +28,11 @@ export class CoursesComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
-  constructor(private modalService: BsModalService, private CoursesService: CoursesService, private formBuilder: FormBuilder) { }
+  constructor(
+    private modalService: BsModalService, 
+    private CoursesService: CoursesService, 
+    private formBuilder: FormBuilder,
+    private coursetypeService:CoursetypeService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -79,7 +84,7 @@ export class CoursesComponent implements OnInit {
 
   getCourseTypeList() {
     debugger;
-    this.CoursesService.GetCourseTypeList().subscribe(res => {
+    this.coursetypeService.CourseTypeList().subscribe(res => {
       this.coursetype = res; console.log("test", this.coursetype)
     });
   }
@@ -150,7 +155,8 @@ export class CoursesComponent implements OnInit {
         Duration: this.createForm.controls.Duration.value,
         // IsActive: this.createForm.controls.IsActive.value,
         Percentage: this.createForm.controls.Percentage.value,
-
+        BranchId:1,
+        InstituteId:1
 
       };
       this.CoursesService.createCourse(body).subscribe((data) => {

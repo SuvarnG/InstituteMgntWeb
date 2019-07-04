@@ -37,14 +37,14 @@ export class EnquiryService {
     return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry', Enquiry, httpOptions);
   }
 
-  GetCourseTypeList() {
-    return this.http.get<CourseTypeMaster[]>(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions);//.toPromise().then(result => this.listCourseType = result as CourseTypeMaster[])
-  }
+  // GetCourseTypeList() {
+  //   return this.http.get<CourseTypeMaster[]>(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions);//.toPromise().then(result => this.listCourseType = result as CourseTypeMaster[])
+  // }
 
-  GetCourseNameList(id) {
-    let headers = new Headers();
-    return this.http.get<CourseNameMaster[]>(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id, httpOptions);//.toPromise().then(result => this.listCourseName = result as CourseNameMaster[])
-  }
+  // GetCourseNameList(id) {
+  //   let headers = new Headers();
+  //   return this.http.get<CourseNameMaster[]>(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id, httpOptions);//.toPromise().then(result => this.listCourseName = result as CourseNameMaster[])
+  // }
 
   EnquiryUpdate(enquiries: createEnquiry) {
     return this.http.post(environment.APIBASEURL + 'Enquiry/UpdateEnquiry', enquiries, httpOptions);

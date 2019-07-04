@@ -12,7 +12,9 @@ export interface User {
         UpdatedDate: Date,
         UpdatedBy: Number,
         IsActive: boolean,
-        access_token: string
-        Photo:string
+        access_token: string,
+        Photo:string,
+        BranchId:number,
+        InstituteId:number
 }
 

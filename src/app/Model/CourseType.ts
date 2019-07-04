@@ -17,6 +17,8 @@ export interface Course{
     //IsActive:boolean,
     Percentage:number,
    // CourseTypeName:string
+   BranchId:number,
+   InstituteId:number
 
     
 }

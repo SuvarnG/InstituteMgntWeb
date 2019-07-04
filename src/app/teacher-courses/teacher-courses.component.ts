@@ -1,3 +1,7 @@
+import { Courses, CourseType } from './../Models/Students';
+import { CreateNewStudentService } from './../create-student/create-new-student.service';
+import { Course } from './../Model/CourseType';
+import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormArray, MaxLengthValidator } from '@angular/forms';
@@ -5,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherCoursesService } from './teacher-courses.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
+import {Roles } from '../Models/Students';
 
 
 @Component({
@@ -27,10 +32,19 @@ export class TeacherCoursesComponent implements OnInit {
   newEmail: string;
   FName: string;
   LName: string;
+  courseNameList:Courses[];
+  courseTypeList:CourseType[];
+  roles:Roles[];
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private router: Router,private teacherCoursesService: TeacherCoursesService,
-    public _DomSanitizationService:DomSanitizer) { }
+
+  constructor(private modalService: BsModalService,
+     private formBuilder: FormBuilder, 
+     private route: ActivatedRoute,
+    private router: Router,
+    private teacherCoursesService: TeacherCoursesService,
+    public _DomSanitizationService:DomSanitizer,
+    private coursetypeService:CoursetypeService,
+    private createNewStudentService:CreateNewStudentService) { }
 
   ngOnInit() {
     this.registerStaffForm = this.formBuilder.group({
@@ -65,7 +79,7 @@ export class TeacherCoursesComponent implements OnInit {
       IsFixedPayment: [],
       Document:[],
       BloodGroup: ['', Validators.required],
-      courses: this.formBuilder.array([
+      coursesArray: this.formBuilder.array([
         this.addNewRowForm()
       ])
     });
@@ -95,7 +109,9 @@ export class TeacherCoursesComponent implements OnInit {
     }
     else {
       if (this.registerStaffForm.controls.IsFixedPayment.value == "false") {
-        this.teacherCoursesService.getAllCourseType();
+        this.coursetypeService.CourseTypeList().subscribe(res=>{
+          this.courseTypeList=res
+        });
         // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
         this.modalRef = this.modalService.show(template);
       }
@@ -144,7 +160,7 @@ export class TeacherCoursesComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     debugger;
     if (this.registerStaffForm.controls.IsFixedPayment.value == true) {
-      this.teacherCoursesService.getAllCourseType();
+      this.coursetypeService.CourseTypeList();
       // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
       this.modalRef = this.modalService.show(template);
     }
@@ -163,11 +179,11 @@ export class TeacherCoursesComponent implements OnInit {
 
   addNewRow(): void {
     this.disabled = !this.disabled;
-    (<FormArray>this.registerStaffForm.get('courses')).push(this.addNewRowForm());
+    (<FormArray>this.registerStaffForm.get('coursesArray')).push(this.addNewRowForm());
   }
 
   removeCourse(courseGroupIndex: number): void {
-    (<FormArray>this.registerStaffForm.get('courses')).removeAt(courseGroupIndex);
+    (<FormArray>this.registerStaffForm.get('coursesArray')).removeAt(courseGroupIndex);
   }
 
   addNewRowForm(): FormGroup {
@@ -178,7 +194,9 @@ export class TeacherCoursesComponent implements OnInit {
   }
   selectCourseType(event) {
     this.selectedCourseTypeValue = event.target.value;
-    this.teacherCoursesService.getCourseName(this.selectedCourseTypeValue);
+    this.createNewStudentService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res=>{
+      this.courseNameList=res
+    });
   }
   selectCourseName(event) {
     this.selectedCourseNameValue = event.target.value;
@@ -219,7 +237,9 @@ export class TeacherCoursesComponent implements OnInit {
           Email: this.newEmail
         }
         this.staffLoginForm.patchValue(body);
-        this.teacherCoursesService.getRoleList();
+        this.teacherCoursesService.getRoleList().subscribe(res=>{
+          this.roles=res
+        });
         this.modalRef = this.modalService.show(staffLoginTemplate);
       }, error => this.errorMessage = error)
   }
@@ -242,7 +262,9 @@ export class TeacherCoursesComponent implements OnInit {
         Gender:'Male',
         LastLoginTime:'2019-06-11 08:43:25.650',
         IsActive:true,
-        Photo:this.teacherCoursesService.thumbnailUrl
+        Photo:this.teacherCoursesService.thumbnailUrl,
+        BranchId:1,
+        InstituteId:1
 
       }
       this.teacherCoursesService.addStaffInUsers(body)

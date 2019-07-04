@@ -1,3 +1,5 @@
+import { Course } from './../Model/CourseType';
+import { CoursesService } from './../courses/courses.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -21,12 +23,15 @@ export class LeaveComponent implements OnInit {
   submitted = false;
   modalRef: any;
   leaveTran: LeaveTransaction[];
-  Courses: CourseType[];
+  Courses: Course[];
   students: Students[];
   leaves: LeaveType[];
   CreateLeaveFormGroup: FormGroup;
   UpdateLeaveFormGroup: FormGroup;
-  constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private LeaveService: LeaveService) { }
+  constructor(private formBuilder: FormBuilder,
+     private modalService: BsModalService, 
+     private LeaveService: LeaveService,
+     private coursesService:CoursesService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -109,7 +114,7 @@ export class LeaveComponent implements OnInit {
   }
 
   getCourseName() {
-    this.LeaveService.GetCoursName().subscribe(res => {
+    this.coursesService.courseList().subscribe(res => {
       this.Courses = res;
       console.log(JSON.stringify(this.Courses));
     });

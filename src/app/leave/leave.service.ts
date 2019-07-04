@@ -44,13 +44,13 @@ export class LeaveService {
     return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, httpOptions);
   }
 
-  GetCoursName() {
-    return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses',httpOptions
-    ).pipe
-      (map(data => {
-        return data as CourseType[]
-      }));
-  }
+  // GetCoursName() {
+  //   return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses',httpOptions
+  //   ).pipe
+  //     (map(data => {
+  //       return data as CourseType[]
+  //     }));
+  // }
 
   GetStudentName(id) {
     return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id , httpOptions

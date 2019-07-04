@@ -27,6 +27,7 @@ export class CoursesService {
 
   //For displaying all entries
   courseList() {
+    debugger;
     return this.http.get<Course[]>(this.Url, httpOptions);
 }
 // Delete(CourseId): Observable<Course> {
@@ -47,9 +48,9 @@ createCourse(course: Course) {
 }
 
 //for displaying course type
-GetCourseTypeList() {
-  return this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions).pipe(map(data => data as CourseType[]))
-}
+// GetCourseTypeList() {
+//   return this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions).pipe(map(data => data as CourseType[]))
+// }
 
 
 GetShortName(CourseTypeId) {

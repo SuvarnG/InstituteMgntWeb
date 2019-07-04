@@ -12,6 +12,7 @@ export interface EnquiryList{
     NeedFollowupDate: Date,
     Remark:string,
     Course:string;
+    BranchId:number;
     }
 
 export interface CourseTypeMaster

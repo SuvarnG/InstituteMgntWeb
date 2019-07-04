@@ -4,9 +4,11 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { CourseType } from '../Model/CourseType';
 import { Observable } from 'rxjs';
+import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}` })
 };
 
 @Injectable({

@@ -332,14 +332,14 @@
         <tbody>
           <tr>
             <td colspan="1" style="padding:10 px">
-              <div formArrayName="courses"
-                *ngFor="let course of registerStaffForm.get('courses').controls; let i=index">
+              <div formArrayName="coursesArray"
+                *ngFor="let course of registerStaffForm.get('coursesArray').controls; let i=index">
                 <div fromGroupName="i">
                   <div class="form-row">
                     <div class="form-group col-md-6">
                       <select id="CourseType" class="form-control" formControlName="CourseType"
                         (change)="selectCourseType($event)">
-                        <option *ngFor="let courseType of teacherCoursesService.listCourseType"
+                        <option *ngFor="let courseType of  courseTypeList"
                           [value]="courseType.CourseTypeId">
                           {{courseType.CourseTypeName}}
                         </option>
@@ -348,7 +348,7 @@
                     <div class="form-group col-md-6">
                       <select id="CourseName" class="form-control" formControlName="CourseName"
                         (change)="selectCourseName($event)" [disabled]="disabled">
-                        <option *ngFor="let courselist of teacherCoursesService.listCourses"
+                        <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>
                       </select>
@@ -357,7 +357,7 @@
                       <button type="button" class="btn btn-primary btn-sm" id="btnAdd"
                         (click)="addNewRow()">Add</button>
                     </div>
-                    <div class="form-group col-md-2" *ngIf="registerStaffForm.get('courses').length>1">
+                    <div class="form-group col-md-2" *ngIf="registerStaffForm.get('coursesArray').length>1">
                       <button type="button" class="btn btn-danger btn-sm" id="btnDelete"
                         (click)="removeCourse(i)">Del</button>
                     </div>
@@ -370,7 +370,7 @@
       </table>
     </div>
     <div class="modal-footer">
-      <button type="submit" id="submit" class="btn btn-primary">Save</button>
+      <button type="submit" id="submitCourse" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
     </div>
   </form>
@@ -438,7 +438,7 @@
                 <div class="form-group col-md-6">
                   <select class="form-control" formControlName="Role"
                     [ngClass]="{ 'is-invalid': submitted && login.Role.errors }" (change)="selectRole($event)">
-                    <option *ngFor="let rolelist of teacherCoursesService.roleList" [value]="rolelist.roleID">
+                    <option *ngFor="let rolelist of roles" [value]="rolelist.roleID">
                       {{rolelist.RoleName}} </option>
                   </select>
                   <div *ngIf="submitted && login.Role.errors" class="invalid-feedback">
@@ -486,7 +486,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" type="submit" id="submit" class="btn btn-primary">Save</button>
+        <button type="button" type="submit" id="submitLogin" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
       </div>
     </form>

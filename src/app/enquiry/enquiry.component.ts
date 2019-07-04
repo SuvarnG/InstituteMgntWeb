@@ -1,3 +1,4 @@
+import { Courses } from './../Models/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -6,6 +7,9 @@ import { EnquiryList, CourseNameMaster, CourseTypeMaster } from '../models/Enqui
 import { createEnquiry } from '../models/createEnquiry';
 import { validateConfig } from '@angular/router/src/config';
 import { Subject } from 'rxjs';
+import { CoursetypeService } from './../coursetype/coursetype.service';
+import { CourseType } from '../Models/Students';
+import { CreateNewStudentService } from './../create-student/create-new-student.service';
 
 @Component({
   selector: 'app-enquiry',
@@ -28,11 +32,17 @@ export class EnquiryComponent implements OnInit {
   CourseId: Number;
   ID: any;
   listCourseType: CourseTypeMaster[];
-  listCourseName: any;
+  listCourseName: Courses[];
   minDate: Date;
   maxDate: Date;
-
-  constructor(private formBuilder: FormBuilder, private modalService: BsModalService, private enquiryService: EnquiryService) { }
+ courseType: CourseType[];
+  
+  constructor(
+    private formBuilder: FormBuilder, 
+    private modalService: BsModalService, 
+    private enquiryService: EnquiryService,
+    private coursetypeService:CoursetypeService,
+    private createNewStudentService:CreateNewStudentService) { }
 
   ngOnInit() {
 
@@ -123,6 +133,7 @@ export class EnquiryComponent implements OnInit {
       Remark: this.EnquiryForm.controls.Remark.value,
       DateOfEnquiry: this.EnquiryForm.controls.DateOfEnquiry.value,
       CourseId: this.EnquiryForm.controls.CourseId.value,
+      BranchId:1
     };
     this.enquiryService.createEnquires(req).subscribe(data => {
       this.modalRef.hide()
@@ -194,19 +205,23 @@ export class EnquiryComponent implements OnInit {
 
 
   private GetCourseTypeList() {
-    //debugger;
-    this.enquiryService.GetCourseTypeList().subscribe(res => {
-      this.listCourseType = res;
-      console.log(JSON.stringify(this.listCourseType));
+    debugger;
+    this.coursetypeService.CourseTypeList().subscribe(res => {
+      this.courseType = res;
+      console.log(JSON.stringify(this.courseType));
     });
   }
 
   private GetCourseNameList(id: number) {
-    //debugger;
-    this.enquiryService.GetCourseNameList(id).subscribe(res => {
-      this.listCourseName = res;
-      console.log(JSON.stringify(this.listCourseName))
-    });
+    debugger;
+    this.createNewStudentService.getCourseNameFromCourseType(id).subscribe(res => {
+      this.listCourseName = res; 
+      console.log("test", this.listCourseName)
+    });;
+    // .subscribe(res => {
+    //   this.listCourseName = res;
+    //   console.log(JSON.stringify(this.listCourseName))
+    // });
 
   }
 

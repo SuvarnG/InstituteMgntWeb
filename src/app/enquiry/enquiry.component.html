@@ -113,8 +113,8 @@
           <select name="CourseTypeId" class="form-control" formControlName="CourseTypeId"
             (change)="selectCourseNameForCourseType($event)"
             [ngClass]="{'is-invalid': submitted && f.CourseTypeId.errors} ">
-            <option *ngFor="let courseType of listCourseType" [value]="courseType.CourseTypeId">
-              {{courseType.CourseTypeName}}
+            <option *ngFor="let cType of courseType" [value]="cType.CourseTypeId">
+              {{cType.CourseTypeName}}
             </option>
           </select>
         </div>

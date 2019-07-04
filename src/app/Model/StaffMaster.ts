@@ -24,7 +24,7 @@ export interface StaffMaster {
     P_STDCode:Number
     P_ContactNo:Number
     EmergencyNo:Number
-    PreviousExperience:String
+    PreviousExperience:number
     PreviousWorkName:String
     IsCv:Boolean
     IsFixedPayment:Number

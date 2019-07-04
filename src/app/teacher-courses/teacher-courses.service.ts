@@ -6,9 +6,12 @@ import { StaffMaster, TeacherCourse } from '../Model/StaffMaster';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Courses, CourseType, Roles } from '../Models/Students';
 import { User } from '../Models/User';
+import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`}
+  )
 };
 @Injectable({
   providedIn: 'root'
@@ -61,15 +64,15 @@ export class TeacherCoursesService {
         catchError(this.handleError<StaffMaster>('staffMaster'))
       );
   }
-  getAllCourseType() {
-    debugger;
-    this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result => this.listCourseType = result as CourseType[])
-  }
+  // getAllCourseType() {
+  //   debugger;
+  //   this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result => this.listCourseType = result as CourseType[])
+  // }
 
-  getCourseName(id) {
-    debugger;
-    this.http.get(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id).toPromise().then(result => this.listCourses = result as Courses[])
-  }
+  // getCourseName(id) {
+  //   debugger;
+  //   this.http.get(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id).toPromise().then(result => this.listCourses = result as Courses[])
+  // }
 
   addTeacherCourses(teacherCourse) {
     debugger;
@@ -82,7 +85,8 @@ export class TeacherCoursesService {
 
   getRoleList() {
     debugger;
-    this.http.get(environment.APIBASEURL + 'Student/GetRolesList').toPromise().then(result => this.roleList = result as Roles[])
+   // this.http.get(environment.APIBASEURL + 'Student/GetRolesList').toPromise().then(result => this.roleList = result as Roles[])
+    return this.http.get(environment.APIBASEURL+'Student/GetRolesList',httpOptions).pipe(map(data => data as Roles[]))
   }
 
   addStaffInUsers(user) {
