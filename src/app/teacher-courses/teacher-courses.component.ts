@@ -10,6 +10,7 @@ import { TeacherCoursesService } from './teacher-courses.service';
 import {DomSanitizer} from '@angular/platform-browser';
 import { getDate } from 'ngx-bootstrap/chronos/utils/date-getters';
 import {Roles } from '../Models/Students';
+import { Utils } from '../Utils';
 
 
 @Component({
@@ -147,7 +148,9 @@ export class TeacherCoursesComponent implements OnInit {
         EmergencyNo: this.registerStaffForm.controls.EmergencyNo.value,
         PreviousWorkName: this.registerStaffForm.controls.PreviousWorkName.value,
         IsCv: this.registerStaffForm.controls.IsCv.value,
-        IsFixedPayment: this.registerStaffForm.controls.IsFixedPayment.value
+        IsFixedPayment: this.registerStaffForm.controls.IsFixedPayment.value,
+        BranchId:this.user.BranchId,
+        InstituteId:this.user.InstituteId
       }
       this.teacherCoursesService.saveStaff(body)
         .subscribe((data) => { 
@@ -244,6 +247,8 @@ export class TeacherCoursesComponent implements OnInit {
       }, error => this.errorMessage = error)
   }
 
+  public user=Utils.GetCurrentUser();
+  
   onStaffLogin() {
     debugger;
     if (this.staffLoginForm.controls.Password.value != this.staffLoginForm.controls.VerifyPassword.value) {
@@ -263,8 +268,8 @@ export class TeacherCoursesComponent implements OnInit {
         LastLoginTime:'2019-06-11 08:43:25.650',
         IsActive:true,
         Photo:this.teacherCoursesService.thumbnailUrl,
-        BranchId:1,
-        InstituteId:1
+        BranchId:this.user.BranchId,
+        InstituteId:this.user.InstituteId
 
       }
       this.teacherCoursesService.addStaffInUsers(body)

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StaffMaster } from '../Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { Utils } from '../Utils';
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
@@ -89,11 +90,15 @@ this.showStaffDetailsForm=this.fb.group({
       PreviousWorkName: [],
       BloodGroup: []
 });
-    this.getAllStaff();
+    this.getAllStaff(this.user.InstituteId,this.user.BranchId);
   }
+  public user=Utils.GetCurrentUser();
 
-  getAllStaff() {
-    this.staffListService.getAllStaff().subscribe(res => this.staffMaster = res);
+
+  getAllStaff(InstituteId:number,BranchId:number) {
+    InstituteId=this.user.InstituteId;
+    BranchId=this.user.BranchId;
+    this.staffListService.getAllStaff(InstituteId,BranchId).subscribe(res => this.staffMaster = res);
   }
   get f() {
     return this.staffForm.controls;
@@ -141,7 +146,7 @@ this.showStaffDetailsForm=this.fb.group({
         .subscribe((data) => {
           this.modalRef.hide();
           alert("Staff updated successfully");
-          this.getAllStaff();
+          this.getAllStaff(this.user.InstituteId,this.user.BranchId);
           this.router.navigate(['/StaffList']);
         }, error => this.errorMessage = error)
     }
@@ -195,7 +200,7 @@ this.showStaffDetailsForm=this.fb.group({
     if (ans) {
       this.staffListService.deleteStaff(staffID).subscribe(data => {
         alert("Staff deleted successfully");
-        this.getAllStaff();
+        this.getAllStaff(this.user.InstituteId,this.user.BranchId);
       }, error => console.error(error))
     }
   }

@@ -5,11 +5,14 @@ import { StaffMaster, TeacherCourse } from 'src/app/Model/StaffMaster';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CourseType, Courses } from '../Models/Students';
+import { Utils } from '../Utils';
 
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`
+ })
 };
 @Injectable({
   providedIn: 'root'
@@ -35,9 +38,9 @@ export class StaffListService {
     };
   }
 
-  getAllStaff() {
+  getAllStaff(InstituteId:number,BranchId:number) {
     debugger;
-    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher', httpOptions)
+    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher'+'/'+InstituteId+'/'+BranchId, httpOptions)
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
         return StaffMaster;
