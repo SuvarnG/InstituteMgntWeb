@@ -5,6 +5,7 @@ import { BsModalService, BsModalRef, ModalContainerComponent,ModalOptions } from
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import {Students,UpdateStudent} from '../Models/Students'
+import { Utils } from '../Utils';
 
 
 
@@ -31,7 +32,7 @@ export class StudentListComponent implements OnInit {
 
   ngOnInit() {
     this.returnUrl='/create-student';
-    this.getAllStudents();
+    this.getAllStudents(this.user.InstituteId,this.user.BranchId);
 
 
     this.registerUpdateStudent =this.formBuilder.group({
@@ -67,17 +68,24 @@ export class StudentListComponent implements OnInit {
   //   this.router.navigate([this.returnUrl]);
   // }
 
-  getAllStudents(){
+  getAllStudents(InstituteId:number,BranchId:number){
     debugger;
-    this.StudentslistService.getAllStudents().subscribe(res=>{
+    InstituteId:this.user.InstituteId;
+    BranchId:this.user.BranchId;
+    this.StudentslistService.getAllStudents(InstituteId,BranchId).subscribe(res=>{
       this.students=res
     });
   }
 
+  public user=Utils.GetCurrentUser();
+
   deleteStudent(id:number){
     debugger;
     if(confirm("Are you sure to delete ")){
-    this.StudentslistService.deleteStudent(id).subscribe(data=>this.getAllStudents())}
+    this.StudentslistService.deleteStudent(id).subscribe(data=>{
+      this.getAllStudents(this.user.InstituteId,this.user.BranchId);
+    })
+  }
 
   }
 
@@ -152,7 +160,7 @@ export class StudentListComponent implements OnInit {
       }
 
       if(confirm("Do you want to Save Changes?")){
-      this.StudentslistService.editStudent(body).subscribe(data=>{this.getAllStudents(),this.modalRef.hide()})
+      this.StudentslistService.editStudent(body).subscribe(data=>{this.getAllStudents(this.user.InstituteId,this.user.BranchId),this.modalRef.hide()})
     }
 
       

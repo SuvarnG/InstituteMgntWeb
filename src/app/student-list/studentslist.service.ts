@@ -23,8 +23,8 @@ export class StudentslistService {
 
   constructor(private http: HttpClient) { }
 
-  getAllStudents(){
-    return this.http.get<Students[]>(this.Url,httpOptions).pipe(map(data => data as Students[]))
+  getAllStudents(InstituteId:number,BranchId:number){
+    return this.http.get<Students[]>(this.Url+'/'+ InstituteId +'/'+ BranchId,httpOptions).pipe(map(data => data as Students[]))
   }
 
   deleteStudent(id:number){

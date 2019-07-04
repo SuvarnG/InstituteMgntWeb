@@ -94,6 +94,7 @@ export interface FeesTransaction{
     CourseFees:number;
     DateOfPayment:Date;
     FeesPaid:number;
+    PendingFees:number;
     FeesTakenBy:string;
     CourseCompleted:boolean;
     Discount:number;

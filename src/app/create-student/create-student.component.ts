@@ -12,6 +12,7 @@ import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_di
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Utils } from '../Utils';
 
 
 @Component({
@@ -264,6 +265,7 @@ export class CreateStudentComponent implements OnInit {
     this.showSelected = false;
   }
 
+  public user=Utils.GetCurrentUser();
 
 
   createStudentCourse(feesTransaction: FeesTransaction) {
@@ -283,8 +285,9 @@ export class CreateStudentComponent implements OnInit {
       DateOfPayment: this.registerStudentCourse.controls.DateofPayment.value,
       FeesPaid: this.registerStudentCourse.controls.FeesAmount.value,
       FeesTakenBy: this.registerStudentCourse.controls.FeesTakenBy.value,
-      BranchId:1,
-      InstituteId:1,
+      PendingFees:(Number(this.registerStudentCourse.controls.NewDiscountedAmount.value)-Number(this.registerStudentCourse.controls.FeesAmount.value)),
+      BranchId:this.user.BranchId,
+      InstituteId:this.user.InstituteId,
       //FeesTakenBy:sessionStorage.setItem('CurrentUser', JSON.stringify(auth)),
       CourseCompleted: false,
       Discount: this.registerStudentCourse.controls.AnyDiscount.value,
