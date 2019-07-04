@@ -1,3 +1,7 @@
+import { StaffListService } from './../staff/staff-list.service';
+import { Bank } from './../Model/Bank';
+import { BankService } from './../bankaccount/bank.service';
+import { Utils } from './../Utils';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -26,7 +30,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   public banktransactions = [];
   public staffMasters: StaffMaster[];
   bankName: string;
-  public banknames: BankNames[];
+  public banknames: Bank[];
   public listaccno: BankTransaction[];
   public accountnumbers: Accountnumbers[];
   public bankTransactionId: number;
@@ -34,9 +38,14 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
- constructor(private http: HttpClient, private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
-    private BanktransactionService: BanktransactionService,
-    private route: ActivatedRoute) { }
+ constructor(private http: HttpClient,
+   private modalService: BsModalService, 
+   private formBuilder: FormBuilder, 
+   private router: Router,
+  private BanktransactionService: BanktransactionService,
+  private route: ActivatedRoute,
+  private bankService:BankService,
+  private staffListService:StaffListService) { }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
@@ -44,7 +53,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
 
   AddBank(Addtemplate: TemplateRef<any>) {
     debugger;
-    this.getBankTransaction();
+    this.getBankTransaction(this.user.BranchId);
      this.CreateFormGroup.controls.ID.reset,
       this.CreateFormGroup.controls.BankName.reset,
       this.CreateFormGroup.controls.AccountNo.reset,
@@ -80,7 +89,7 @@ ngOnInit() {
       TransactionBy: ['', Validators.required],
       Date: ['', Validators.required]
     })
-    this.getBankTransaction();
+    this.getBankTransaction(this.user.BranchId);
     this.getBankList();
      this.getStaffList();
     
@@ -101,18 +110,20 @@ ngOnInit() {
 
 
   getStaffList() {
-    this.BanktransactionService.GetStaffList().subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
+    this.staffListService.getAllStaff(this.user.InstituteId,this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
   }
 
   getBankList() {
     
-    this.BanktransactionService.GetBankList().subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
+    this.bankService.bankList(this.user.InstituteId).subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
   }
 
 
   get f() { return this.CreateFormGroup.controls; }
   get fu() { return this.UpdateFormGroup.controls; }
 
+  public user=Utils.GetCurrentUser();
+  
   onSubmit() {
     debugger;
     this.submitted = true;
@@ -130,11 +141,12 @@ ngOnInit() {
         Date: this.CreateFormGroup.controls.Date.value,
         Amount: this.CreateFormGroup.controls.Amount.value,
         TransactionBy: this.CreateFormGroup.controls.TransactionBy.value,
+        BranchId:this.user.BranchId
       };
 
       this.BanktransactionService.banktransaction(body).subscribe((data) => {
         this.modalRef.hide();
-        this.getBankTransaction();
+        this.getBankTransaction(this.user.BranchId);
         this.submitted = false;
 
       })
@@ -142,9 +154,10 @@ ngOnInit() {
   }
 
 
-  getBankTransaction() {
+  getBankTransaction(BranchId:number) {
     debugger;
-    this.BanktransactionService.banktransactionList().subscribe(res => {
+    BranchId=this.user.BranchId;
+    this.BanktransactionService.banktransactionList(BranchId).subscribe(res => {
       this.banktransactions = res;
       this.dtTrigger.next();
     });
@@ -200,7 +213,7 @@ ngOnInit() {
     }
     this.BanktransactionService.Edit(body).subscribe(data => {
       this.modalRef.hide();
-      this.getBankTransaction();
+      this.getBankTransaction(this.user.BranchId);
     }, error => console.error(error))
   }
   clearForm()

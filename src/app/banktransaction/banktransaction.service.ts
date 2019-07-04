@@ -7,17 +7,18 @@ import { StaffMaster } from '../Model/StaffMaster';
 import { Observable } from 'rxjs';
 import { BankNames } from '../Model/BankNames';
 import { Accountnumbers } from '../Model/AccountNumber';
+import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`})
 };
 
 @Injectable({
   providedIn: 'root'
 })
 export class BanktransactionService {
-  private Url = environment.APIBASEURL + 'Bank/GetAllBankTrn';
   private CreateUrl = environment.APIBASEURL + 'Bank/CreateBankTrn';
   private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBankTrn';
 
@@ -26,25 +27,25 @@ export class BanktransactionService {
   public bankname: BankNames[];
   constructor(private http: HttpClient) { }
 
-  banktransactionList() {
-    return this.http.get<BankTransaction[]>(this.Url, httpOptions)
+  banktransactionList(BranchId:number) {
+    return this.http.get<BankTransaction[]>(environment.APIBASEURL + 'Bank/GetAllBankTrn'+'/'+BranchId, httpOptions)
       .pipe(map(banktransaction => {
         return banktransaction;
       }));
   }
 
 
-  GetStaffList() {
-    return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
-  }
+  // GetStaffList() {
+  //   return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
+  // }
 
-  GetBankList() {
-    return this.http.get(environment.APIBASEURL + 'Bank/GetAll').pipe(map(data => data as BankNames[]))
-  }
+  // GetBankList() {
+  //   return this.http.get(environment.APIBASEURL + 'Bank/GetAll').pipe(map(data => data as BankNames[]))
+  // }
 
   GetAccountNumber(BankName) {
-
-    return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo/' + BankName).pipe(map(data => data as BankTransaction[]))
+debugger;
+    return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo'+'/' + BankName,httpOptions).pipe(map(data => data as BankTransaction[]))
 
   }
 

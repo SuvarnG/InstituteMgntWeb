@@ -3,16 +3,17 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Bank } from '../Model/Bank'
 import { map, tap, catchError } from 'rxjs/operators'; import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`})
 };
 
 @Injectable({
   providedIn: 'root'
 })
 export class BankService {
-  private Url = environment.APIBASEURL + 'Bank/GetAll';
   private deleteUrl = environment.APIBASEURL + 'Bank/InactiveBank/';
   private CreateUrl = environment.APIBASEURL + 'Bank/CreateBankAccount';
   private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBankAccount';
@@ -22,11 +23,15 @@ export class BankService {
 
 
 
-  bankList() {
-    return this.http.get<Bank[]>(this.Url, httpOptions)
-      .pipe(map(bank => {
-        return bank;
-      }));
+  bankList(InstituteId:number) {
+    debugger;
+    // return this.http.get<Bank[]>( environment.APIBASEURL + 'Bank/GetAll'+'/'+InstituteId, httpOptions)
+    //   .pipe(map(bank => {
+    //     return bank;
+    //   }));
+
+
+      return this.http.get(environment.APIBASEURL+ 'Bank/GetAll'+'/'+InstituteId,httpOptions).pipe(map(data => data as Bank[]))
   }
 
   Delete(ID): Observable<Bank> {

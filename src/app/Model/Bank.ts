@@ -3,6 +3,7 @@ export interface Bank{
     AccountNo:string,
     AccountType:string,
     IFSC_Code:string,
+    InstituteId:number
   // User:string
   
 }

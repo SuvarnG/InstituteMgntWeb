@@ -1,3 +1,4 @@
+import { Utils } from './../Utils';
 import { Component, OnInit, TemplateRef, Input,OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { BankService } from './bank.service';
@@ -57,11 +58,13 @@ export class BankComponent implements OnDestroy, OnInit {
         validator: MustMatch('AccountNo', 'ReAccountNo')
       });
 
-    this.getBanks();
+    this.getBanks(this.user.InstituteId);
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+
+  public user=Utils.GetCurrentUser();
 
   onSubmit() {
     debugger;
@@ -78,13 +81,14 @@ export class BankComponent implements OnDestroy, OnInit {
         AccountNo: this.registerForm.controls.AccountNo.value,
         AccountType: this.registerForm.controls.AccountType.value,
         IFSC_Code: this.registerForm.controls.IFSC_Code.value,
+        InstituteId:this.user.InstituteId
        // UserId: this.registerForm.controls.UserId.value,
        //User:"staff"
 
       };
       this.BankService.Bank(body).subscribe((data) => {
         this.modalRef.hide();
-        this.getBanks();
+        this.getBanks(this.user.InstituteId);
         this.submitted = false;
 
       })
@@ -101,9 +105,9 @@ export class BankComponent implements OnDestroy, OnInit {
 
   }
 
-  getBanks() {
-
-    this.BankService.bankList().subscribe(res => {
+  getBanks(InstituteId:number) {
+InstituteId=this.user.InstituteId;
+    this.BankService.bankList(InstituteId).subscribe(res => {
       this.banks = res;
       this.dtTrigger.next();
     });
@@ -115,7 +119,7 @@ export class BankComponent implements OnDestroy, OnInit {
     var ans = confirm("Do you want to delete this Bank : " + BankName);
     if (ans) {
       this.BankService.Delete(ID).subscribe(data => {
-        this.getBanks();
+        this.getBanks(this.user.InstituteId);
       }, error => console.error(error))
     }
   }
@@ -159,7 +163,7 @@ export class BankComponent implements OnDestroy, OnInit {
     }
     this.BankService.EditAccNo(body).subscribe(data => {
       this.modalRef.hide();
-      this.getBanks();
+      this.getBanks(this.user.InstituteId);
     }, error => console.error(error))
   }
   clearForm() {
