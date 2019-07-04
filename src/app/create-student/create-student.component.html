@@ -412,7 +412,7 @@
                       <select class="form-control" formControlName="StudentID"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.StudentID.errors }"
                         (change)="selectStudentId($event)">
-                        <option *ngFor="let student of CreateNewStudentService.listRecentStudent"
+                        <option *ngFor="let student of getRecentStudent"
                           [value]=" student.StudentId">
                           {{student.StudentId}}
                         </option>
@@ -460,7 +460,7 @@
                         <select class="form-control" formControlName="CourseType"
                           [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseType.errors }"
                           (change)="selectUser($event);getCourseNameFromCourseType()">
-                          <option *ngFor="let course of CreateNewStudentService.listCourseType"
+                          <option *ngFor="let course of courseTypeList"
                             [value]="course.CourseTypeId">
                             {{course.CourseTypeName}}
                           </option>
@@ -479,7 +479,7 @@
                       <select class="form-control" formControlName="CourseName"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseName.errors }"
                         (change)="selectFees($event);getCourseFeesFromCourseName()">
-                        <option *ngFor="let course of CreateNewStudentService.listCourses" [value]="course.CourseId">
+                        <option *ngFor="let course of courses" [value]="course.CourseId">
                           {{course.CourseName}}</option>
 
                       </select>
@@ -497,7 +497,7 @@
                       <select class="form-control" formControlName="CourseFees"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseFees.errors }"
                         (change)="selectCourseFees($event)">
-                        <option *ngFor="let course of CreateNewStudentService.listCourseFees" [value]="course.Fees">
+                        <option *ngFor="let course of courseFees" [value]="course.Fees">
                           {{course.Fees}}
                         </option>
                       </select>
@@ -598,7 +598,7 @@
                     <div class="form-group">
                       <select class="form-control" formControlName="FeesTakenBy"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.FeesTakenBy.errors }">
-                        <option *ngFor="let user of CreateNewStudentService.listUsers" [value]="user.Id">
+                        <option *ngFor="let user of users" [value]="user.Id">
                           {{user.FirstName}} {{user.LastName}}
                         </option>
 

@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Students, UpdateStudent } from '../Models/Students';
 import { Utils } from '../Utils';
-
+import { map } from "rxjs/operators";
 
 
 const httpOptions = {
@@ -24,7 +24,7 @@ export class StudentslistService {
   constructor(private http: HttpClient) { }
 
   getAllStudents(){
-    return this.http.get<Students[]>(this.Url,httpOptions)
+    return this.http.get<Students[]>(this.Url,httpOptions).pipe(map(data => data as Students[]))
   }
 
   deleteStudent(id:number){

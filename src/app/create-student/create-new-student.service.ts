@@ -8,9 +8,9 @@ import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders(
-    { 'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Utils.GetAccessToken()}`})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`
+})
 };
 
 @Injectable({
@@ -49,28 +49,37 @@ export class CreateNewStudentService {
   }
 
   getRecentlyCreatedStudent(){
-    this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]
-    ) 
+    return this.http.get(environment.APIBASEURL+'Student/GetRecentlyCreatedStudent',httpOptions).pipe(map(data => data as RecentStudent[]))
+
+    //this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]) 
   }
 
-  getAllCourseType(){
-    this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
-  }
+  // getAllCourseType(){
+  //   this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
+  // }
 
   getCourseNameFromCourseType(id){
-    this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
+    debugger;
+   // this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
+  
+    return this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id,httpOptions).pipe(map(data => data as Courses[]))
   }
 
   getCourseFeesFromCourseName(id){
-    this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
+    //this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
+  
+  
+    return this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
   }
 
   getUsersListForFeesTaken(){
-    this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
+    //this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
+    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',httpOptions).pipe(map(data => data as Users[]))
+ 
   }
 
   getRolesList(){
-    this.http.get(environment.APIBASEURL+'Student/GetRolesList').toPromise().then(result=>this.listRoles=result as Roles[])
+    this.http.get(environment.APIBASEURL+'Student/GetRolesList').toPromise().then(result=>this.listRoles=result as Roles[]) 
   }
 
 
@@ -113,15 +122,11 @@ postFile(formData)
         debugger;
           
           if(res['type']==4){
-          //  this.thumbnailUrl='Http://'+ res['body']['Message'];
-           this.thumbnailUrl= res['body']['Message'];
+           this.thumbnailUrl='Http://'+ res['body']['Message'];
+           
           }
                         
       }
     )
   }
-
-
-
-
 }

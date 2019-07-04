@@ -19,6 +19,11 @@ export class FeesTransactionComponent implements OnInit {
   registerFeesTransaction:FormGroup;
   submitFeesTransaction:boolean;
   modalRef:BsModalRef
+  studentList:Students[];
+  courseFees:CourseFees[];
+feesTransaction:FeesTransactions[];
+users:Users[];
+studentId:number;
 
 
   constructor(public FeesTransactionService:FeesTransactionService,private formBuilder: FormBuilder,
@@ -26,7 +31,7 @@ export class FeesTransactionComponent implements OnInit {
 
   ngOnInit() {
     this.FeesTransactionService.GetAllCourses();
-    this.FeesTransactionService.getUsersListForFeesTaken();
+   this.getUsersListForFeesTaken();
 
     this.registerFeesTransaction=this.formBuilder.group({
       //CourseType:['',Validators.required],
@@ -58,21 +63,34 @@ export class FeesTransactionComponent implements OnInit {
     this.selectedStudentId = event.target.value;
   }
 
+  getUsersListForFeesTaken(){
+    this.FeesTransactionService.getUsersListForFeesTaken().subscribe(res=>{
+      this.users=res
+    })
+  }
+
+
   // getCourseNameFromCourseType(courses: Courses) {
   //   this.FeesTransactionService.getCourseNameFromCourseType(this.selectedUserValue)
   // }
 
   getStudentListFromCourseName() {
-    this.FeesTransactionService.getStudentListFromCourseName(this.selectedFeesValue)
+    this.FeesTransactionService.getStudentListFromCourseName(this.selectedFeesValue).subscribe(res=>{
+this.studentList=res
+    })
   }
 
   getTotalFeesForStudentCourse(){
-    this.FeesTransactionService.getTotalFeesForStudentCourse(this.selectedStudentId)
+    this.FeesTransactionService.getTotalFeesForStudentCourse(this.selectedStudentId).subscribe(res=>{
+      this.courseFees=res
+    })
   }
 
   getFeesTransactionDetails() {
     debugger;
-    this.FeesTransactionService.getFeesTransactionDetails(this.selectedStudentId)
+    this.FeesTransactionService.getFeesTransactionDetails(this.selectedStudentId).subscribe(res=>{
+      this.feesTransaction=res
+    })
   }
 
   // getCourseFeesFromCourseName(courses: Courses) {
@@ -95,6 +113,8 @@ export class FeesTransactionComponent implements OnInit {
       return
     }
 
+    this.studentId=this.registerFeesTransaction.controls.StudentID.value;
+
       let body: FeesTransactions={
 
         Id:0,
@@ -105,12 +125,17 @@ export class FeesTransactionComponent implements OnInit {
         DateOfPayment:this.registerFeesTransaction.controls.DateofPayment.value,
         //FeesPaid:this.registerFeesTransaction.controls.TotalPaidAmount.value,
         FeesPaid:this.registerFeesTransaction.controls.FeesAmount.value,
-        FeesTakenBy:this.registerFeesTransaction.controls.FeesTakenBy.value
+        FeesTakenBy:this.registerFeesTransaction.controls.FeesTakenBy.value,
+        PendingFees:Number(this.registerFeesTransaction.controls.RemainingFees.value)-Number(this.registerFeesTransaction.controls.FeesAmount.value)
+
       }
     
       if (confirm("Do you want to submit?")) {
       this.FeesTransactionService.createStudentCourse(body).subscribe(data=>{
-              this.router.navigateByUrl('/FeesTransaction')
+              this.router.navigateByUrl('/FeesTransaction');
+              this.FeesTransactionService.getFeesTransactionDetails(this.studentId).subscribe(res=>{
+                this.feesTransaction=res
+              })
       });
       // this.registerFeesTransaction.controls.CourseName.reset();
       // this.registerFeesTransaction.controls.StudentID.reset();
@@ -131,9 +156,9 @@ export class FeesTransactionComponent implements OnInit {
   calculateRemainingFees(){
     debugger;
     let sum = 0;
-    for (var i = 0; i < this.FeesTransactionService.listFeesTransactions.length; i++) {
-      console.log(this.FeesTransactionService.listFeesTransactions[i]['FeesPaid']);
-        sum += this.FeesTransactionService.listFeesTransactions[i]['FeesPaid'];
+    for (var i = 0; i < this.feesTransaction.length; i++) {
+      console.log(this.feesTransaction[i]['FeesPaid']);
+        sum +=this.feesTransaction[i]['FeesPaid'];
     }
 
     console.log(sum)

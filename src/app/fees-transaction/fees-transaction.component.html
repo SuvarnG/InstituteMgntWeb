@@ -14,9 +14,7 @@
         <div class="col-md-6" style="margin-top: 30px">
 
           <table>
-            <tbody>
-
-             
+            <tbody>             
               <tr>
                 <td colspan="1"><label for="CourseName">Course Name</label>
                   <div class="form-group">
@@ -34,9 +32,6 @@
                   </div>
                 </td>
               </tr>
-
-              
-
               <tr>
                 <td colspan="1">
                   <label for="StudentID">Student Name</label>
@@ -44,7 +39,7 @@
                     <select class="form-control" formControlName="StudentID"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
                       (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
-                      <option *ngFor="let student of FeesTransactionService.listStudents" [value]=" student.StudentId">
+                      <option *ngFor="let student of studentList" [value]=" student.StudentId">
                         {{student.FullName}}
                       </option>
                     </select>
@@ -54,28 +49,22 @@
                   </div>
                 </td>
               </tr>
-
-
               <tr>
                 <td colspan="1">
                   <label for="CourseFees">Course Fees For Student</label>
                    <div class="form-group">
                    <select class="form-control" formControlName="CourseFees"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }" (change)="selectStudent($event);calculateRemainingFees()">
-                      <option *ngFor="let course of FeesTransactionService.listCourseFees" [value]="course.TotalFees">
+                      <option *ngFor="let course of courseFees" [value]="course.TotalFees">
                         {{course.TotalFees}}
                       </option>
                     </select>
                     <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
                       <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
                     </div>
-                  </div>
-                 
+                  </div>                
                 </td>
-              </tr>
-
-
-              
+              </tr>             
               <tr>
                 <td colspan="1">
                     <label for="RemainingFees">Remaining Fees</label>
@@ -84,8 +73,6 @@
                       </div>
                 </td>
             </tr>
-
-
             </tbody>
           </table>
         </div>
@@ -93,10 +80,6 @@
         <div class="col-md-6" style="margin-top: 30px">
           <table>
             <tbody>
-
-                
-
-
               <tr>
                 <td colspan="1">
                   <label for="FeesAmount">Fees Amount Paying</label>
@@ -109,12 +92,7 @@
                     </div>
                   </div>
                 </td>
-              </tr>
-
-
-             
-
-
+              </tr>          
               <tr>
                 <td colspan="1">
                   <label for="DateofPayment">Date of Payment</label>
@@ -128,28 +106,22 @@
                   </div>
                 </td>
               </tr>
-
-
               <tr>
                 <td colspan="1">
                   <label for="FeesTakenby">Fees Taken By</label>
                   <div class="form-group">
                     <select class="form-control" formControlName="FeesTakenBy"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesTakenBy.errors }">
-                      <option *ngFor="let user of FeesTransactionService.listUsers" [value]="user.Id">
+                      <option *ngFor="let user of users" [value]="user.Id">
                         {{user.FirstName}} {{user.LastName}}
                       </option>
-
                     </select>
                     <div *ngIf="submitFeesTransaction && g.FeesTakenBy.errors" class="invalid-feedback">
                       <div *ngIf="g.FeesTakenBy.errors.required">Fees Taken by is required</div>
                     </div>
                   </div>
                 </td>
-              </tr>
-
-              
-
+              </tr>            
               <tr>
                 <td colspan="1">
                   <div class="form-group">
@@ -179,7 +151,7 @@
   </tr>
 </thead>
 <tbody>
-  <tr *ngFor="let fees of FeesTransactionService.listFeesTransactions">
+  <tr *ngFor="let fees of feesTransaction">
       
     <td>{{fees.DateOfPayment | date}}</td>
     <td>{{fees.FeesPaid}}</td>

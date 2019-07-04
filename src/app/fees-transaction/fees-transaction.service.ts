@@ -1,13 +1,16 @@
+import { Utils } from './../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Models/Students';
+import { map } from 'rxjs/operators';
 
 
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+  'Authorization': `Bearer ${Utils.GetAccessToken()}` })
 };
 
 @Injectable({
@@ -47,23 +50,30 @@ export class FeesTransactionService {
   // }
 
   getStudentListFromCourseName(id){
-    debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse/' + id).toPromise().then(result=>this.listStudents=result as Students[] )
+    //debugger;
+    //this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse/' + id).toPromise().then(result=>this.listStudents=result as Students[] )
+    return this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id,httpOptions).pipe(map(data => data as Students[]))
+ 
   }
 
   getTotalFeesForStudentCourse(id:number){
-    debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
+    //debugger;
+    //this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
+ 
+    return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
   }
 
   getFeesTransactionDetails(id){
-    debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id).toPromise().then(result=>this.listFeesTransactions=result as FeesTransactions[] )
+    //debugger;
+   // this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id).toPromise().then(result=>this.listFeesTransactions=result as FeesTransactions[] )
+ 
+    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,httpOptions).pipe(map(data => data as FeesTransactions[]))
   }
 
   getUsersListForFeesTaken(){
     debugger;
-    this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
+   // this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
+    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',httpOptions).pipe(map(data => data as Users[]))
   }
 
   createStudentCourse(feesTransactions:FeesTransactions){

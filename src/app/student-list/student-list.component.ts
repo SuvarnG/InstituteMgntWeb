@@ -22,8 +22,8 @@ export class StudentListComponent implements OnInit {
   registerUpdateStudent:FormGroup;
   ModalOptions:ModalOptions;
   showSelected:boolean;
-  
-  public students=[];
+
+  students:Students[];
 
   constructor(private modalService: BsModalService,private router: Router,
     private StudentslistService:StudentslistService, private formBuilder:FormBuilder,
@@ -69,7 +69,9 @@ export class StudentListComponent implements OnInit {
 
   getAllStudents(){
     debugger;
-    this.StudentslistService.getAllStudents().subscribe(res=>this.students=res);
+    this.StudentslistService.getAllStudents().subscribe(res=>{
+      this.students=res
+    });
   }
 
   deleteStudent(id:number){

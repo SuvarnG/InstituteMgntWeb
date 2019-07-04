@@ -1,92 +1,89 @@
 export interface Students{
-    StudentId:number,
-    FullName:string,
-    Course:string,
-    DateOfJoining:Date,
-    ContactNo:string,
-    Duration:number,
-    CourseCompleted:boolean,
-    FeesPaid:number,
-    RemainingFees:number,
-    Discount:number,
-    Remark:string,
+    StudentId:number;
+    FullName:string;
+    Course:string;
+    DateOfJoining:Date;
+    ContactNo:string;
+    Duration:number;
+    CourseCompleted:boolean;
+    FeesPaid:number;
+    RemainingFees:number;
+    Discount:number;
+    Remark:string;
     CourseCompletedDate:Date;
 
-    FirstName:string,
-    MiddleName:string,
-    LastName:string,
-    Address1:string,
-    Address2:string,
-    City:string,
-    State:string,
-    STDCode:string,
-    PAddress1:string,
-    PAddress2:string,
-    PCity:string,
-    PState:string,
-    PSTDCode:string,
-    Gender:string,
-    EmailId:string,
-    BloodGroup:string,
-    DOB:Date,
-    EmergencyNo:string,
-    IsDocumentSubmitted:boolean,
-    Photo:string
+    FirstName:string;
+    MiddleName:string;
+    LastName:string;
+    Address1:string;
+    Address2:string;
+    City:string;
+    State:string;
+    STDCode:string;
+    PAddress1:string;
+    PAddress2:string;
+    PCity:string;
+    PState:string;
+    PSTDCode:string;
+    Gender:string;
+    EmailId:string;
+    BloodGroup:string;
+    DOB:Date;
+    EmergencyNo:string;
+    IsDocumentSubmitted:boolean;
+    Photo:string;
 }
 
 export interface UpdateStudent{
-    StudentId:number,
-    FirstName:string,
-    MiddleName:string,
-    LastName:string,
-    Address1:string,
-    Address2:string,
-    City:string,
-    State:string,
-    STDCode:string,
-    PAddress1:string,
-    PAddress2:string,
-    PCity:string,
-    PState:string,
-    PSTDCode:string,
-    Gender:string,
-    EmailId:string,
-    BloodGroup:string,
-    DOB:Date,
-    EmergencyNo:string,
-    IsDocumentSubmitted:boolean
+    StudentId:number;
+    FirstName:string;
+    MiddleName:string;
+    LastName:string;
+    Address1:string;
+    Address2:string;
+    City:string;
+    State:string;
+    STDCode:string;
+    PAddress1:string;
+    PAddress2:string;
+    PCity:string;
+    PState:string;
+    PSTDCode:string;
+    Gender:string;
+    EmailId:string;
+    BloodGroup:string;
+    DOB:Date;
+    EmergencyNo:string;
+    IsDocumentSubmitted:boolean;
     //DateOfJoining:Date,
-    ContactNo:string,
+    ContactNo:string;
     //Photo:string
 }
 
 export interface CreateStudent{
     // StudentId:number,
-
-   
-    ContactNo:string,
-
-    FirstName:string,
-    MiddleName:string,
-    LastName:string,
-    Address1:string,
-    Address2:string,
-    City:string,
-    State:string,
-    STDCode:string,
-    PAddress1:string,
-    PAddress2:string,
-    PCity:string,
-    PState:string,
-    PSTDCode:string,
-    Gender:string,
-    EmailId:string,
-    BloodGroup:string,
-    DOB:Date,
-    EmergencyNo:string,
-    IsDocumentSubmitted:boolean,
-    PayingFees:boolean,
-    Photo:string
+    ContactNo:string;
+    FirstName:string;
+    MiddleName:string;
+    LastName:string;
+    Address1:string;
+    Address2:string;
+    City:string;
+    State:string;
+    STDCode:string;
+    PAddress1:string;
+    PAddress2:string;
+    PCity:string;
+    PState:string;
+    PSTDCode:string;
+    Gender:string;
+    EmailId:string;
+    BloodGroup:string;
+    DOB:Date;
+    EmergencyNo:string;
+    IsDocumentSubmitted:boolean;
+    PayingFees:boolean;
+    Photo:string;
     //PayingFees:string
 }
 
@@ -116,6 +113,7 @@ export interface FeesTransactions{
     DateOfPayment:Date;
     FeesPaid:number;
     FeesTakenBy:string;
+    PendingFees:number;
 }
 
 export interface User{
@@ -130,7 +128,6 @@ export interface User{
     CreatedBy:number;
 
 }
-
 export interface CourseType{
     CourseTypeName:string;
     CourseTypeId:number;

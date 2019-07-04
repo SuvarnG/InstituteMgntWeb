@@ -1,3 +1,5 @@
+import { CourseFees, Users } from './../Models/Students';
+import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -9,7 +11,7 @@ import { template } from '@angular/core/src/render3';
 import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
-import {DomSanitizer} from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -21,8 +23,8 @@ export class CreateStudentComponent implements OnInit {
   modalRef: BsModalRef;
   registerForm: FormGroup;
   submitted = false;
-  submitStudentFees=false;
-  submitStudentLogin=false;
+  submitStudentFees = false;
+  submitStudentLogin = false;
   showSelected: Boolean = false;
   registerStudentCourse: FormGroup;
   registerStudentLogin: FormGroup;
@@ -39,13 +41,17 @@ export class CreateStudentComponent implements OnInit {
   NewStudentid: number;
   newRecentStudent: RecentStudent[];
   fileToUpload: File = null;
-
-
+  courseFees: CourseFees[];
+  getRecentStudent: RecentStudent[];
+  users: Users[];
+  courses:Courses[];
+  courseTypeList:CourseType[];
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
-              public CreateNewStudentService: CreateNewStudentService,
-              private router: Router,
-              public _DomSanitizationService:DomSanitizer) { }
+    public CreateNewStudentService: CreateNewStudentService,
+    private router: Router,
+    public _DomSanitizationService: DomSanitizer,
+    private coursetypeService: CoursetypeService) { }
 
 
   ngOnInit() {
@@ -72,9 +78,9 @@ export class CreateStudentComponent implements OnInit {
       Email: ['', [Validators.required, Validators.email]],
       gender: ['Male', Validators.required],
       payingFeesNow: ['', Validators.required],
-      Documents:[],
-      Photo:['../../assets/images/MProfile.jpg'],
-      NewImage:['']
+      Documents: [],
+      Photo: ['../../assets/images/MProfile.jpg'],
+      NewImage: ['']
     });
 
 
@@ -103,7 +109,7 @@ export class CreateStudentComponent implements OnInit {
       Password: ['', Validators.required],
       VerifyPassword: ['', Validators.required],
       CreatedBy: ['', Validators.required]
-    },);
+    });
 
   }
 
@@ -175,7 +181,7 @@ export class CreateStudentComponent implements OnInit {
       PState: this.registerForm.controls.Pstate.value,
       PSTDCode: this.registerForm.controls.PzipCode.value,
       //Photo:this.registerForm.controls.NewImage.value,
-      Photo:this.CreateNewStudentService.thumbnailUrl,
+      Photo: this.CreateNewStudentService.thumbnailUrl,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       PayingFees: this.registerForm.controls.payingFeesNow.value
     };
@@ -183,18 +189,24 @@ export class CreateStudentComponent implements OnInit {
 
     this.CreateNewStudentService.createNewStudent(body).subscribe(data =>
       // do something, if upload success
-      this.CreateNewStudentService.getRecentlyCreatedStudent()
+      this.CreateNewStudentService.getRecentlyCreatedStudent().subscribe(res => {
+        this.getRecentStudent = res
+      })
     );
 
     //Open Popup function
-    if(this.registerForm.controls.payingFeesNow.value){
-      this.modalRef = this.modalService.show(template,{
+    if (this.registerForm.controls.payingFeesNow.value) {
+      this.modalRef = this.modalService.show(template, {
         animated: true,
         backdrop: 'static'
       });
-      this.CreateNewStudentService.getAllCourseType();
-     // this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
-      this.CreateNewStudentService.getUsersListForFeesTaken();
+      this.coursetypeService.CourseTypeList().subscribe(res=>{
+        this.courseTypeList=res
+      });
+      // this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);
+      this.CreateNewStudentService.getUsersListForFeesTaken().subscribe(res => {
+        this.users = res
+      });
     }
   }
 
@@ -208,7 +220,7 @@ export class CreateStudentComponent implements OnInit {
       return
     }
 
-    this.modalRef = this.modalService.show(template,{
+    this.modalRef = this.modalService.show(template, {
       animated: true,
       backdrop: 'static'
     });
@@ -284,51 +296,51 @@ export class CreateStudentComponent implements OnInit {
 
     if (confirm("Do you want to submit?")) {
       this.modalRef.hide();
-      this.CreateNewStudentService.createStudentCourse(body).subscribe(data=>{this.router.navigateByUrl('/StudentList')});
+      this.CreateNewStudentService.createStudentCourse(body).subscribe(data => { this.router.navigateByUrl('/StudentList') });
       //this.CreateNewStudentService.getRecentlyCreatedStudent();
     }
   }
 
 
 
-//   createStudentLogin(user: User) {
-//     debugger;
+  //   createStudentLogin(user: User) {
+  //     debugger;
 
-//     this.submitStudentLogin = true;
-//     if (this.registerStudentLogin.invalid) {
-//       return
-//     }
+  //     this.submitStudentLogin = true;
+  //     if (this.registerStudentLogin.invalid) {
+  //       return
+  //     }
 
-//     let body: User = {
-//       Id: 0,
-//       //StudentId:this.registerStudentLogin.controls.StudentID.value,
-//       FirstName: this.selectedStudentFirstName,
-//       LastName: this.selectedStudentLastName,
-//       Email: this.selectedStudentEmail,
-//       Password: this.registerStudentLogin.controls.VerifyPassword.value,
-//       RoleId: this.selectedRoleValue,
-//       CreatedBy: this.registerStudentLogin.controls.CreatedBy.value
+  //     let body: User = {
+  //       Id: 0,
+  //       //StudentId:this.registerStudentLogin.controls.StudentID.value,
+  //       FirstName: this.selectedStudentFirstName,
+  //       LastName: this.selectedStudentLastName,
+  //       Email: this.selectedStudentEmail,
+  //       Password: this.registerStudentLogin.controls.VerifyPassword.value,
+  //       RoleId: this.selectedRoleValue,
+  //       CreatedBy: this.registerStudentLogin.controls.CreatedBy.value
 
-//     };
+  //     };
 
-//     if(this.registerStudentLogin.controls.Password.value!=this.registerStudentLogin.controls.VerifyPassword.value)
-//     {
-//       alert("Password did not matched..Please verify password")
-//     }
-//     else
-//     {
-//     if (confirm("Are you sure to create a login?")) {
-//       this.CreateNewStudentService.createStudentLogin(body).subscribe((data) => 
-//         {this.modalRef.hide(),
-//         this.router.navigateByUrl('/StudentList') });
-      
-//     }
-//   }
-// }
+  //     if(this.registerStudentLogin.controls.Password.value!=this.registerStudentLogin.controls.VerifyPassword.value)
+  //     {
+  //       alert("Password did not matched..Please verify password")
+  //     }
+  //     else
+  //     {
+  //     if (confirm("Are you sure to create a login?")) {
+  //       this.CreateNewStudentService.createStudentLogin(body).subscribe((data) => 
+  //         {this.modalRef.hide(),
+  //         this.router.navigateByUrl('/StudentList') });
+
+  //     }
+  //   }
+  // }
 
 
 
-  handleFileInput(event:any){
+  handleFileInput(event: any) {
     debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
@@ -336,7 +348,7 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
-  handlePhotoInput(event:any){
+  handlePhotoInput(event: any) {
     debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
@@ -344,13 +356,12 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
-  onUploadFile()
-  {
+  onUploadFile() {
     debugger;
     const formData = new FormData();
-    formData.append('profile',this.registerForm.get('Documents').value)//this.registerForm.get('Documents').value);
-    this.CreateNewStudentService.postFile(formData).subscribe(res=>{
-          console.log(res);        
+    formData.append('profile', this.registerForm.get('Documents').value)//this.registerForm.get('Documents').value);
+    this.CreateNewStudentService.postFile(formData).subscribe(res => {
+      console.log(res);
     });
   }
 
@@ -365,11 +376,10 @@ export class CreateStudentComponent implements OnInit {
   // }
 
 
-  onUploadPhoto()
-  {
+  onUploadPhoto() {
     debugger;
     const formData = new FormData();
-    formData.append('profile',this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
+    formData.append('profile', this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
     this.CreateNewStudentService.postPhoto(formData)
   }
 
@@ -420,14 +430,18 @@ export class CreateStudentComponent implements OnInit {
 
   getCourseNameFromCourseType(courses: Courses) {
     debugger;
-    this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue)
+    this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue).subscribe(res=>{
+      this.courses=res
+    })
 
   }
 
   getCourseFeesFromCourseName(courses: Courses) {
     debugger;
 
-    this.CreateNewStudentService.getCourseFeesFromCourseName(this.selectedFeesValue)
+    this.CreateNewStudentService.getCourseFeesFromCourseName(this.selectedFeesValue).subscribe(res => {
+      this.courseFees = res
+    })
 
   }
 
