@@ -9,8 +9,10 @@ import { User } from '../Models/User';
 import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  'Authorization': `Bearer ${Utils.GetAccessToken()}`}
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  }
   )
 };
 @Injectable({
@@ -20,10 +22,10 @@ export class TeacherCoursesService {
   listCourseType: CourseType[];
   listCourses: Courses[];
   roleList: Roles[];
-  public thumbnailUrl:any='../../assets/images/MProfile.jpg';
+  public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
   public Url = environment.APIBASEURL + 'Teacher/CreateTeacher';
-  apiUrl=environment.APIBASEURL +'Upload/PostUserImage';
-  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
+  apiUrl = environment.APIBASEURL + 'Upload/PostUserImage';
+  private uploadUrl = environment.APIBASEURL + 'Upload/PostUserImage'
 
   constructor(private http: HttpClient) { }
 
@@ -31,7 +33,7 @@ export class TeacherCoursesService {
     return (error: any): Observable<T> => {
 
       // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error); 
 
       // Let the app keep running by returning an empty result.
       return of(result as T);
@@ -48,34 +50,22 @@ export class TeacherCoursesService {
   // }
 
 
-  uploadFile(formData)
-  {
-    return this.http.post<any>(environment.APIBASEURL +'Upload/PostFile', formData, {
+  uploadFile(formData) {
+    return this.http.post<any>(environment.APIBASEURL + 'Upload/PostFile', formData, {
       reportProgress: true,
       observe: 'events'
     });
   }
 
   saveStaff(staffMaster): Observable<StaffMaster> {
-    debugger;
     return this.http.post<StaffMaster>(environment.APIBASEURL + 'Teacher/CreateTeacher', staffMaster, httpOptions)
       .pipe(
         tap((staffMaster: StaffMaster) => console.log('added id=${staffMaster.StaffId}')),
         catchError(this.handleError<StaffMaster>('staffMaster'))
       );
   }
-  // getAllCourseType() {
-  //   debugger;
-  //   this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result => this.listCourseType = result as CourseType[])
-  // }
-
-  // getCourseName(id) {
-  //   debugger;
-  //   this.http.get(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id).toPromise().then(result => this.listCourses = result as Courses[])
-  // }
-
+ 
   addTeacherCourses(teacherCourse) {
-    debugger;
     return this.http.post<TeacherCourse>(environment.APIBASEURL + 'Teacher/AddTeacherCourses', teacherCourse, httpOptions)
       .pipe(
         tap((teacherCourse: TeacherCourse) => console.log('added id=${teacherCourse.TeacherId}')),
@@ -84,13 +74,10 @@ export class TeacherCoursesService {
   }
 
   getRoleList() {
-    debugger;
-   // this.http.get(environment.APIBASEURL + 'Student/GetRolesList').toPromise().then(result => this.roleList = result as Roles[])
-    return this.http.get(environment.APIBASEURL+'Student/GetRolesList',httpOptions).pipe(map(data => data as Roles[]))
+    return this.http.get(environment.APIBASEURL + 'Student/GetRolesList', httpOptions).pipe(map(data => data as Roles[]))
   }
 
   addStaffInUsers(user) {
-    debugger;
     return this.http.post<User>(environment.APIBASEURL + 'Login/CreateNewUser', user, httpOptions)
       .pipe(
         tap((user: User) => console.log('added id=${user.Id}')),
@@ -98,24 +85,19 @@ export class TeacherCoursesService {
       );
   }
 
-
-  postPhoto(formData)
-  {
+  postPhoto(formData) {
     debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
     }).subscribe(
-      res=>{
+      res => {
         debugger;
-          
-          if(res['type']==4){
-           this.thumbnailUrl='Http://'+ res['body']['Message'];
-           
-          }
-                        
+
+        if (res['type'] == 4) {
+          this.thumbnailUrl = 'Http://' + res['body']['Message'];
+        }
       }
     )
   }
-
 }

@@ -22,7 +22,7 @@
                     <select class="form-control" formControlName="CourseName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <option *ngFor="let course of FeesTransactionService.listCourses" [value]="course.CourseId">
+                      <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 
                     </select>
