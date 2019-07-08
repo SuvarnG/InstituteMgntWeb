@@ -49,3 +49,11 @@ body{
 .btn-dark:hover{border:2px solid black !important;
 background-color: white !important;
 color: black !important;}
+
+.icon:hover {
+  fill: #009999;
+}
+
+.icon-red:hover{
+fill: red;
+}

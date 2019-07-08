@@ -187,7 +187,8 @@ this.showStaffDetailsForm=this.fb.group({
     this.staffForm.patchValue(body);
     this.modalRef = this.modalService.show(editStaff, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
     this.staffListService.getAllCourseType();
     if (teacher.CourseType != null) {
@@ -251,7 +252,8 @@ this.showStaffDetailsForm=this.fb.group({
    this.staffListService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
     this.modalRef = this.modalService.show(showStaff, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      // class: 'modal-xl'
     });
   }
 
