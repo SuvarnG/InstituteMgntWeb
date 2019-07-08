@@ -10,7 +10,7 @@
       <div style="margin-top: 10px;margin-right: 20px">
   
     <button type="submit" class="btn btn-primary" style="float: right;" 
-     data-target="#myupdate" data-toggle="modal" (click)="CreateNewCourse(addtemplate)"
+     data-target="#myupdate" data-toggle="modal" (click)="createNewCourse(addtemplate)"
      data-toggle="tooltip" data-placement="bottom" title="Add" (click)="clearForm()">Add Course
      Type</button>
   </div>
@@ -28,14 +28,11 @@
     <tbody>
       <tr *ngFor="let c of courseType;index as i">
         <td>{{i+1}}</td>
-          <!-- {{c.CourseTypeId}} -->
-        
         <td>{{c.CourseTypeName}}</td>
         <td>
           <button type="submit" style="margin-right:5px" class="btn btn-default" 
-          data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="EditCourseType(editTemplate,c)" >
-          <i style='font-size:18px' class="fas fa-pencil-alt"></i></button>
-          
+          data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="editCourseType(editTemplate,c)" >
+          <i style='font-size:18px' class="fas fa-pencil-alt"></i></button>         
       </tr>
     </tbody>
   </table>
@@ -60,7 +57,7 @@
       </div>
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" style="margin:5px" (click)="CreateCourseName(CourseTypeName.value)">submit</button>
+        <button class="btn btn-primary" style="margin:5px" (click)="createCourseName(CourseTypeName.value)">submit</button>
         <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
     </div>
@@ -69,7 +66,7 @@
 
 
 <ng-template #editTemplate>
-  <form [formGroup]="editregisterForm" (ngSubmit)="UpdateCourseType()">
+  <form [formGroup]="editregisterForm" (ngSubmit)="updateCourseType()">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Edit Course Type</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >

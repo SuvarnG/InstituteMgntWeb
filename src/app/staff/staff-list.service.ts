@@ -39,7 +39,6 @@ export class StaffListService {
   }
 
   getAllStaff(InstituteId:number,BranchId:number) {
-    debugger;
     return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher'+'/'+InstituteId+'/'+BranchId, httpOptions)
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
@@ -48,7 +47,6 @@ export class StaffListService {
 
   }
   getStaffDetails(id){
-    debugger;
     return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher/'+id, httpOptions)
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
@@ -63,8 +61,8 @@ export class StaffListService {
       );
   }
 
-  deleteStaff(id): Observable<StaffMaster> {
-    return this.http.post<StaffMaster>(this.deleteUrl + id, httpOptions).pipe(
+  deleteStaff(id:number) {
+    return this.http.post<StaffMaster>(this.deleteUrl + id,null, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<StaffMaster>('deleteStaff'))
     );
@@ -74,12 +72,10 @@ export class StaffListService {
   }
 
   getAllCourseType() {
-    debugger;
     this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result => this.listCourseType = result as CourseType[])
   }
 
   getCourseName(id) {
-    debugger;
     this.http.get(environment.APIBASEURL + 'Student/GetCourseNameFromCourseType' + '/' + id).toPromise().then(result => this.listCourses = result as Courses[])
   }
 

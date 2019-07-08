@@ -34,19 +34,19 @@ export class BankService {
       return this.http.get(environment.APIBASEURL+ 'Bank/GetAll'+'/'+InstituteId,httpOptions).pipe(map(data => data as Bank[]))
   }
 
-  Delete(ID): Observable<Bank> {
+  delete(ID): Observable<Bank> {
 
-    return this.http.post<Bank>(this.deleteUrl + ID, httpOptions).pipe(
+    return this.http.post<Bank>(this.deleteUrl + ID,null, httpOptions).pipe(
       tap(_ => console.log(`deleted Bank id=${ID}`))
     );
   }
 
-  Bank(bank: Bank) {
+  bank(bank: Bank) {
     return this.http.post<Bank>(this.CreateUrl, bank, httpOptions).pipe(map(bank => { return bank }))
   }
 
 
-  EditAccNo(bank): Observable<Bank> {
+  editAccNo(bank): Observable<Bank> {
 
     return this.http.post<Bank>(this.UpdateUrl, bank, httpOptions).pipe(
       tap((bank: Bank) => console.log('Update BankAccountId=${bank.BankAccountId}'))

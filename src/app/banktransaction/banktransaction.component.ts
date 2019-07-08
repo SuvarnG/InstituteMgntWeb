@@ -14,7 +14,7 @@ import { Accountnumbers } from '../Model/AccountNumber';
 import { BankTransaction } from '../Model/BankTransaction';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-//import { Http, Response } from '@angular/http';
+
 
 @Component({
   selector: 'app-banktransaction',
@@ -34,7 +34,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   public listaccno: BankTransaction[];
   public accountnumbers: Accountnumbers[];
   public bankTransactionId: number;
-
+  TransactionBy:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -51,8 +51,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
     this.dtTrigger.unsubscribe();
   }
 
-  AddBank(Addtemplate: TemplateRef<any>) {
-    debugger;
+  addBank(Addtemplate: TemplateRef<any>) {
     this.getBankTransaction(this.user.BranchId);
      this.CreateFormGroup.controls.ID.reset,
       this.CreateFormGroup.controls.BankName.reset,
@@ -62,7 +61,6 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       this.CreateFormGroup.controls.Amount.reset,
       this.CreateFormGroup.controls.TransactionBy.reset
 
-    //this.getBankList();
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
@@ -125,7 +123,6 @@ ngOnInit() {
   public user=Utils.GetCurrentUser();
   
   onSubmit() {
-    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -155,25 +152,21 @@ ngOnInit() {
 
 
   getBankTransaction(BranchId:number) {
-    debugger;
     BranchId=this.user.BranchId;
     this.BanktransactionService.banktransactionList(BranchId).subscribe(res => {
       this.banktransactions = res;
       this.dtTrigger.next();
     });
-    //console.log(JSON.stringify(this.banktransactions));
   }
 
 
   getAccountNumber(event: any) {
-    debugger;
-
-    this.BanktransactionService.GetAccountNumber(event.target.value).subscribe(res => { this.listaccno = res; console.log("test", this.listaccno) });
+    this.BanktransactionService.getAccountNumber(event.target.value).subscribe(res => { this.listaccno = res; console.log("test", this.listaccno) });
 
   }
 
-  Edit(editTemplate: TemplateRef<any>, banktransaction) {
-    debugger;
+  edit(editTemplate: TemplateRef<any>, banktransaction) {
+    this.TransactionBy=banktransaction.TransactionById;
     this.bankTransactionId = banktransaction.ID;
     let selectedBank = {
       ID: banktransaction.ID,
@@ -192,26 +185,23 @@ ngOnInit() {
     });
   }
 
-  Update() {
-    debugger;
+  update() {
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.UpdateFormGroup.invalid) {
       return;
     }
-    debugger;
-    console.log(this.fu)
     let body = {
       ID: this.bankTransactionId,
       BankName: this.UpdateFormGroup.controls.BankName.value,
       AccountNo: this.UpdateFormGroup.controls.AccountNo.value,
       TransactionType: this.UpdateFormGroup.controls.TransactionType.value,
       Amount: this.UpdateFormGroup.controls.Amount.value,
-      TransactionBy: this.UpdateFormGroup.controls.TransactionBy.value,
+      TransactionBy:this.TransactionBy,// this.UpdateFormGroup.controls.TransactionBy.value,
       Date: this.UpdateFormGroup.controls.Date.value,
+      BranchId:this.user.BranchId
     }
-    this.BanktransactionService.Edit(body).subscribe(data => {
+    this.BanktransactionService.edit(body).subscribe(data => {
       this.modalRef.hide();
       this.getBankTransaction(this.user.BranchId);
     }, error => console.error(error))
@@ -220,6 +210,7 @@ ngOnInit() {
   {
     this.CreateFormGroup.reset()
   }
+
 }
 
 

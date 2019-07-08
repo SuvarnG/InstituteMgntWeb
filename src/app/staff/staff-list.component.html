@@ -226,10 +226,7 @@
                   </div>
 
                   <input type="text" class="form-control" id="Address2" formControlName="Address2"
-                    placeholder="Address 2" [ngClass]="{ 'is-invalid': submitted && f.Address2.errors }">
-                  <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address2.errors.required">Address is required</div>
-                  </div>
+                    placeholder="Address 2">
                 </div>
               </div>
             </td>
@@ -281,10 +278,7 @@
                     <div *ngIf="f.P_Address1.errors.required">CourseType is required</div>
                   </div>
                   <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2"
-                    formControlName="P_Address2" [ngClass]="{'is-invalid': submitted && f.P_Address2.errors} ">
-                  <div *ngIf="submitted && f.P_Address2.errors">
-                    <div *ngIf="f.P_Address2.errors.required">CourseType is required</div>
-                  </div>
+                    formControlName="P_Address2">
                 </div>
               </div>
             </td>
@@ -349,7 +343,7 @@
                 <div class="form-group col-md-6">
                   <select id="CourseType" class="form-control" formControlName="CourseType"
                     (change)="selectCourse($event)" [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
-                    <option *ngFor="let courseType of staffListService.listCourseType"
+                    <option *ngFor="let courseType of courseTypeList"
                       [value]="courseType.CourseTypeId">
                       {{courseType.CourseTypeName}}
                     </option>
@@ -371,7 +365,7 @@
                   <select id="Courses" class="form-control" formControlName="Courses"
                     (change)="selectCourseName($event)" [disabled]="disabled"
                     [ngClass]="{ 'is-invalid': submitted && f.Courses.errors }">
-                    <option *ngFor="let courselist of staffListService.listCourses" [value]="courselist.CourseName">
+                    <option *ngFor="let courselist of courseNameList" [value]="courselist.CourseName">
                       {{courselist.CourseName}}</option>
                   </select>
                 </div>
@@ -411,6 +405,22 @@
                 </div>
                 <div *ngIf="submitted && f.Email.errors">
                   <div *ngIf="f.Email.errors.required">Email is required</div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">Date Of Joining</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="date" class="form-control" id="DOJ" formControlName="DOJ"
+                    [ngClass]="{'is-invalid': submitted && f.DOJ.errors} ">
+                </div>
+                <div *ngIf="submitted && f.DOJ.errors">
+                  <div *ngIf="f.DOJ.errors.required">DOJ is required</div>
                 </div>
               </div>
             </td>
@@ -504,7 +514,7 @@
 </ng-template>
 
 
-<ng-template #showStaff>
+<ng-template #showStaff role="modal-dialog modal-xl">
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Staff Details</h4>
@@ -715,6 +725,18 @@
                 </div>
                 <div class="form-group col-md-6">
                   <input type="text" class="form-control" id="Email" formControlName="Email" disabled>
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="1">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label class="col-md-6 control-label">DOJ</label>
+                </div>
+                <div class="form-group col-md-6">
+                  <input type="text" class="form-control" id="DOJ" formControlName="DOJ" disabled>
                 </div>
               </div>
             </td>

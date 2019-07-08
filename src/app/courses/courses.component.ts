@@ -25,37 +25,34 @@ export class CoursesComponent implements OnInit {
   public coursetype: CourseType[];
   public courses: Course[];
   public fullname: Course[];
-  CalculateIsPercentage:number;
+  CalculateIsPercentage: number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
   constructor(
-    private modalService: BsModalService, 
-    private CoursesService: CoursesService, 
+    private modalService: BsModalService,
+    private CoursesService: CoursesService,
     private formBuilder: FormBuilder,
-    private coursetypeService:CoursetypeService) { }
+    private coursetypeService: CoursetypeService) { }
 
   ngOnInit() {
     this.dtOptions = {
-       retrieve: true,
-      // paging: false,
+      retrieve: true,
       pagingType: 'full_numbers',
       pageLength: 4
     };
     this.createForm = this.formBuilder.group({
       CourseId: [],
       CourseTypeId: ['', Validators.required],
-      // CourseTypeName:['', Validators.required],
       ShortName: ['', Validators.required],
       FullName: ['', Validators.required],
       IsPercentage: [],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
-      // IsActive: ['', Validators.required],
       Percentage: [],
 
     })
-    this.getCourses(this.user.InstituteId,this.user.BranchId);
+    this.getCourses(this.user.InstituteId, this.user.BranchId);
     this.getCourseTypeList();
 
 
@@ -68,67 +65,49 @@ export class CoursesComponent implements OnInit {
       IsPercentage: ['', Validators.required],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
-      // IsActive: ['', Validators.required],
       Percentage: ['', Validators.required],
     })
   }
 
   public user = Utils.GetCurrentUser();
 
-  getCourses(InstituteId:number,BranchId:number) {
-    debugger;
-    this.CoursesService.courseList(InstituteId,BranchId).subscribe(res => {
+  getCourses(InstituteId: number, BranchId: number) {
+    this.CoursesService.courseList(InstituteId, BranchId).subscribe(res => {
       this.course = res;
       this.dtTrigger.next();
     });
-    //    console.log(JSON.stringify(this.banks));
   }
 
   getCourseTypeList() {
-    debugger;
-    this.coursetypeService.CourseTypeList().subscribe(res => {
+    this.coursetypeService.courseTypeList().subscribe(res => {
       this.coursetype = res; console.log("test", this.coursetype)
     });
   }
   getShortName(courseTypeId: number) {
-    debugger;
-    this.CoursesService.GetShortName(courseTypeId).subscribe(res => { 
-      this.courses = res; console.log("test", this.courses) 
+    this.CoursesService.getShortName(courseTypeId).subscribe(res => {
+      this.courses = res; console.log("test", this.courses)
     });
 
   }
-  // getShortName(event:any) {
-  //   debugger;
-  //   this.CoursesService.GetShortName(event.target.value).subscribe(res => { 
-  //     this.courses = res; console.log("test", this.courses) 
-  //   });
 
-  // }
-  
   getFullName(courseId: number) {
-    debugger;
-    this.selectedCourse = this.courses.find(x => x.CourseId ==  courseId);
+    this.selectedCourse = this.courses.find(x => x.CourseId == courseId);
   }
   clearForm() {
     this.createForm.reset()
-      
   }
 
-  Delete(ID,FullName) {
-    debugger;
+  Delete(ID, FullName) {
     var ans = confirm("Do you want to delete this course : " + ID);
     if (ans) {
-      this.CoursesService.Delete(ID).subscribe(data => {
-        this.getCourses(this.user.InstituteId,this.user.BranchId);
+      this.CoursesService.delete(ID).subscribe(data => {
+        this.getCourses(this.user.InstituteId, this.user.BranchId);
       }, error => console.error(error))
     }
   }
 
   AddCourses(Addtemplate: TemplateRef<any>) {
-    debugger;
-    // this.getCourseTypeList();
     this.modalRef = this.modalService.show(Addtemplate, {
-
       animated: true,
       backdrop: 'static'
     });
@@ -138,7 +117,6 @@ export class CoursesComponent implements OnInit {
   get fu() { return this.UpdateFormGroup.controls; }
 
   onSubmit() {
-    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -149,64 +127,40 @@ export class CoursesComponent implements OnInit {
       let body = {
         CourseId: this.createForm.controls.CourseId.value,
         CourseTypeId: this.createForm.controls.CourseTypeId.value,
-        //CourseTypeName:this.createForm.controls.CourseTypeName.value,
         ShortName: this.createForm.controls.ShortName.value,
         FullName: this.createForm.controls.FullName.value,
         IsPercentage: this.createForm.controls.IsPercentage.value,
         Fees: this.createForm.controls.Fees.value,
         Duration: this.createForm.controls.Duration.value,
-        // IsActive: this.createForm.controls.IsActive.value,
         Percentage: this.createForm.controls.Percentage.value,
-        BranchId:this.user.BranchId,
-        InstituteId:this.user.InstituteId
+        BranchId: this.user.BranchId,
+        InstituteId: this.user.InstituteId
 
       };
       this.CoursesService.createCourse(body).subscribe((data) => {
         this.modalRef.hide();
-        this.submitted=false;
-        this.getCourses(this.user.InstituteId,this.user.BranchId);
-
+        this.submitted = false;
+        this.getCourses(this.user.InstituteId, this.user.BranchId);
       })
     }
-
   }
-  Edit(editTemplate: TemplateRef<any>, course) {
-    debugger;
-    this.getShortName(course.CourseTypeId);
- this.getFullName(course.CourseId);
-    // let selectedCourse = {
-    //   CourseId: courses.CourseId,
-    //   CourseTypeId: courses.CourseTypeId,
-    //   CourseTypeName: courses.CourseTypeName,
-    //   ShortName: courses.ShortName,
-    //   FullName: courses.FullName,
-    //   IsPercentage: courses.IsPercentage,
-    //   Fees: courses.Fees,
-    //   Duration: courses.Duration,
-    //   // IsActive: courses.value,
-    //   Percentage: courses.Percentage,
-    // }
-    this.UpdateFormGroup.patchValue(course);
 
-    
+  Edit(editTemplate: TemplateRef<any>, course) {
+    this.getShortName(course.CourseTypeId);
+    this.getFullName(course.CourseId);
+    this.UpdateFormGroup.patchValue(course);
     this.modalRef = this.modalService.show(editTemplate, {
-      
       animated: true,
       backdrop: 'static'
-     
     });
   }
 
   Update() {
-    debugger;
     this.submitted = true;
-
     // stop here if form is invalid
     if (this.UpdateFormGroup.invalid) {
       return;
     }
-    debugger;
-    console.log(this.fu)
     let body = {
       CourseId: this.UpdateFormGroup.controls.CourseId.value,
       CourseTypeId: this.UpdateFormGroup.controls.CourseTypeId.value,
@@ -218,17 +172,14 @@ export class CoursesComponent implements OnInit {
       Duration: this.UpdateFormGroup.controls.Duration.value,
       Percentage: this.UpdateFormGroup.controls.Percentage.value,
     }
-    this.CoursesService.Edit(body).subscribe(data => {
+    this.CoursesService.edit(body).subscribe(data => {
       this.modalRef.hide();
-      //console.log('courses' +JSON.stringify())
-      this.getCourses(this.user.InstituteId,this.user.BranchId);
+      this.getCourses(this.user.InstituteId, this.user.BranchId);
     }, error => console.error(error))
   }
-  calculateIsPercentage()
-  {
-    debugger;
-   this.CalculateIsPercentage = ((this.createForm.controls.Fees.value/2)/100)
-   this.createForm.controls.Percentage.setValue(this.CalculateIsPercentage)
 
+  calculateIsPercentage() {
+    this.CalculateIsPercentage = ((this.createForm.controls.Fees.value / 2) / 100)
+    this.createForm.controls.Percentage.setValue(this.CalculateIsPercentage)
   }
 }

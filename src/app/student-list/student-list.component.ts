@@ -23,11 +23,12 @@ export class StudentListComponent implements OnInit {
   registerUpdateStudent:FormGroup;
   ModalOptions:ModalOptions;
   showSelected:boolean;
-
   students:Students[];
 
-  constructor(private modalService: BsModalService,private router: Router,
-    private StudentslistService:StudentslistService, private formBuilder:FormBuilder,
+  constructor(private modalService: BsModalService,
+    private router: Router,
+    private StudentslistService:StudentslistService,
+     private formBuilder:FormBuilder,
     private route:ActivatedRoute) { }
 
   ngOnInit() {
@@ -36,7 +37,6 @@ export class StudentListComponent implements OnInit {
 
 
     this.registerUpdateStudent =this.formBuilder.group({
-
       Gender:['',Validators.required],
       FirstName:['',Validators.required],
       MiddleName:['',Validators.required],
@@ -54,22 +54,14 @@ export class StudentListComponent implements OnInit {
       P_City:['',Validators.required],
       P_State:['',Validators.required],
       P_STDCode:['',Validators.required],
-      //Photo:[''],
       Email:['',Validators.required],
       ZipCode:['',Validators.required],
       IsDocumentSubmitted:[],
 
     })
-
-
   }
 
-  // addNewStudent(){
-  //   this.router.navigate([this.returnUrl]);
-  // }
-
   getAllStudents(InstituteId:number,BranchId:number){
-    debugger;
     InstituteId:this.user.InstituteId;
     BranchId:this.user.BranchId;
     this.StudentslistService.getAllStudents(InstituteId,BranchId).subscribe(res=>{
@@ -80,19 +72,14 @@ export class StudentListComponent implements OnInit {
   public user=Utils.GetCurrentUser();
 
   deleteStudent(id:number){
-    debugger;
     if(confirm("Are you sure to delete ")){
     this.StudentslistService.deleteStudent(id).subscribe(data=>{
       this.getAllStudents(this.user.InstituteId,this.user.BranchId);
     })
   }
-
   }
 
-
   openEditStudentPopup(editStudent:TemplateRef<any>, s){
-      debugger;
-
       this.studentID=s.StudentId,
       this.registerUpdateStudent.patchValue({
         StudentId:s.StudentId,
@@ -112,8 +99,6 @@ export class StudentListComponent implements OnInit {
         P_State:s.PState,
         P_STDCode:s.PSTDCode,
         BloodGroup:s.BloodGroup,
-        //Course:s.Course,
-        //DateOfJoining:s.DateOfJoining,
         Photo:s.Photo,
         ContactNo:s.ContactNo,
         EmergencyNo:s.EmergencyNo,
@@ -125,8 +110,6 @@ export class StudentListComponent implements OnInit {
     }
 
     onSubmitEditStudent(){
-      debugger;
-
       this.submitted=true;
       if(this.registerUpdateStudent.invalid){
         return
@@ -150,25 +133,18 @@ export class StudentListComponent implements OnInit {
         PState:this.registerUpdateStudent.controls.P_State.value,
         PSTDCode:this.registerUpdateStudent.controls.P_STDCode.value,
         BloodGroup:this.registerUpdateStudent.controls.BloodGroup.value,
-        //Course:this.registerUpdateStudent.controls.StudentId.value,
-        // DateOfJoining:this.registerUpdateStudent.controls.DateOfJoining.value,
         ContactNo:this.registerUpdateStudent.controls.ContactNo.value,
         EmergencyNo:this.registerUpdateStudent.controls.EmergencyNo.value,
         EmailId:this.registerUpdateStudent.controls.Email.value,
         IsDocumentSubmitted:this.registerUpdateStudent.controls.IsDocumentSubmitted.value,
-        //Photo:this.registerUpdateStudent.controls.Photo.value
       }
-
       if(confirm("Do you want to Save Changes?")){
       this.StudentslistService.editStudent(body).subscribe(data=>{this.getAllStudents(this.user.InstituteId,this.user.BranchId),this.modalRef.hide()})
     }
-
-      
+     
     }
 
     openStudentDetailsPopup(studentDetails:TemplateRef<any>, s){
-      debugger;
-
       this.studentID=s.StudentId,
       this.registerUpdateStudent.patchValue({
         StudentId:s.StudentId,
@@ -188,8 +164,6 @@ export class StudentListComponent implements OnInit {
         P_State:s.PState,
         P_STDCode:s.PSTDCode,
         BloodGroup:s.BloodGroup,
-        //Course:s.Course,
-        //DateOfJoining:s.DateOfJoining,
         Photo:s.Photo,
         ContactNo:s.ContactNo,
         EmergencyNo:s.EmergencyNo,
@@ -200,15 +174,7 @@ export class StudentListComponent implements OnInit {
       this.modalRef=this.modalService.show(studentDetails,{class: 'modal-xl'})
     }
 
-
-    // openStudentDetailsPopup(myModal:TemplateRef<any>){
-    //   debugger;
-
-    //   this.modalRef=this.modalService.show(myModal)
-    // }
-
     showUpload() {
-
       this.showSelected = true;
     }
   
