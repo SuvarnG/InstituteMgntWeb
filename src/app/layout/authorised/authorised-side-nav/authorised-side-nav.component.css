@@ -4,13 +4,14 @@
      
     #sidebar {
     min-width: 200px;
-    max-width: 200px;
+    max-width: 250px;
     min-height: 100vh;
     color: #fff;
     transition: all 0.3s;
     font-weight: 300;
     font-size: 1rem;
     line-height: 1.5;
+    border-right: 2px solid black;
     
     }
      
@@ -64,7 +65,7 @@
       width: 100%;
       background-color: #c2c2d6;
       color: black;
-      border-radius: 10px 0px 0px 10px;
+      /* border-radius: 10px 0px 0px 10px; */
       
     }  
     
@@ -73,10 +74,20 @@
       padding: 15px;
       display: block;
       width: 100%;
-      background-color: white;
-      color: black;
-      border-radius: 10px 0px 0px 10px;
+      background-color: black;
+      color:white;
+      /* border-radius: 10px 0px 0px 10px; */
        } 
+
+       .nav-link{
+        color: black;
+        font-weight:normal;
+        font-size:20px;
+        border-bottom: 1px solid black;
+        
+       }
+
+       
        
        
     

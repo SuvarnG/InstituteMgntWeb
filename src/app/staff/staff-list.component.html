@@ -4,39 +4,77 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="row" >
+  <div class="col-md-2 d-none d-lg-block d-md-block">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
-
-  <div class="col-md-10" style="margin-top: 20px">
-    <div class="col">
-      <div class="row"  style="float: right;margin-top: 0px" >
-        <a routerLink="/TeacherCourses" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="bottom"
-          title="Add Staff">
+  <!--  -->
+    <div class="col-md-10 col-11 col-sm-11 col-xs-11">
+        <!-- <div class="row" >
+        <div class="col-md-10 ml-5 mt-4 mb-n2 ">
+      <a routerLink="/TeacherCourses" class="ml-5 pt-1" data-toggle="tooltip" data-placement="bottom"
+      title="home" style="font-weight:normal;font-size:18px;color: black">
+      Home</a>&nbsp;
+      <i class="fa fa-angle-double-right" aria-hidden="true" style="font-size:20px"></i>
+      <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom"
+      title="staff" style="font-weight:normal;font-size:18px;color: black">
+      Staff</a>&nbsp;
+    </div> 
+  </div> -->
+    
+    <div class="row mr-0 justify-content-center">
+        
+     <div class="col-md-12 col-12 col-sm-12 col-xs-12"> 
+         <div class="box ml-n2 mt-2">
+            <div class="row mb-4">
+                <div class="col-md-10 mt-4 ">
+              <a routerLink="/TeacherCourses" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
+              title="home" style="font-weight:normal;font-size:18px;color: black">
+              Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true" style="font-size:20px"></i>
+              <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom"
+              title="staff" style="font-weight:normal;font-size:18px;color: black">
+              Staff</a>&nbsp;
+            </div> 
+           
+          </div> <hr>
+        <!-- <div> --> 
+         <!-- <hr width="120%">  -->
+      <div class="row m-3">
+        <div class="col-md-3  py-1">
+        <h2 class="h1 font-weight-medium  mt-3" >Staff</h2>
+       </div>
+        <div class="col-md-5 px-5 py-1 ">
+        <input type="text"  placeholder="Search" [(ngModel)]="filter" class=" mt-3 py-2 px-3 border-0 rounded-0 shadow-sm">
+      </div>
+      <div class="col-md-4 px-2 py-1">
+        <a routerLink="/TeacherCourses" class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
+          title="Add Staff" >
           Add Staff</a>&nbsp;
+        </div> 
+        <!-- <button type="submit" class="btn btn-info btn-lg btn-block py-1 px-5 rounded-0 f-20 ml-3"  >Login</button> -->
 
         <!-- <button type="btn" class="btn btn-sm pull-right" (click)="printPage()" data-toggle="tooltip"
           data-placement="bottom" title="Print">
           <span class="fa fa-print fa-2x" aria-hidden="true"></span></button> -->
 
-          <input type="text" class="pull-right" placeholder="Search" [(ngModel)]="filter">
+          <!-- <input type="text" class="pull-left" placeholder="Search" [(ngModel)]="filter"> -->
       </div>
-      <!-- <h2>Staff Information</h2> -->
-      <div class="row" style="margin-top: 30px">
-      
-        <div class="card ml-4 shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;"
+       
+      <div class="row p-4 justify-content-around">
+   
+        <div class="card shadow px-2 mb-5 bg-white rounded" style="width: 24rem;"
           *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
           <div class="card-body">
             <h5 class="card-title">
-              <button type="btn" class="btn btn-sm pull-right" (click)="edit(editStaff,t)" data-toggle="tooltip"
+              <!-- <button type="btn" class="btn btn-sm pull-right" (click)="edit(editStaff,t)" data-toggle="tooltip"
                 data-placement="bottom" title="Edit Expense">
                 <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
               &nbsp;
               <button type="btn" class="btn btn-sm pull-right" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
                 data-placement="bottom" title="Delete Staff">
-                <span class="fa fa-times" aria-hidden="true"></span></button>
+                <span class="fa fa-times" aria-hidden="true"></span></button> -->
             </h5>
             <div class="card-text">
               <ul class="list-group list-group-flush">
@@ -49,11 +87,26 @@
                     <!-- Avtar -->
 
 
-
-
-                    <div >                     
-                      <img src="{{t.Photo}}" class="img-circle" width="50" height="50">
-                    </div>
+<table  class="mb-2">
+  <tr>
+    <td>
+        <div>                     
+             <img src="{{t.Photo}}" class="img-circle" width="80" height="80"> 
+          </div>
+    </td>
+    <td>
+        <h6>
+            <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)" style="font-weight:bold;font-size:22px">
+              <span>{{t.FirstName+' '+t.LastName}}</span>
+            </a>
+            <span style="padding:10px;font-weight: normal" class="ml-2">{{t.ContactNo}}</span><br>
+            <span style="padding:10px;margin-top: 20px" class="ml-2">{{t.Email}}</span>
+          </h6>
+          
+    </td>
+  </tr>
+</table>
+                    
                     <!-- <div *ngIf="t.Photo">
                       <div *ngIf="t.Gender && t.Gender=='Male'">
                         <img src="../../assets/images/MProfile.jpg" class="img-circle" width="50" height="50">
@@ -63,30 +116,50 @@
                       </div>
                       <img src="{{t.Photo}}" class="img-circle" width="50" height="50">
                     </div> -->
-                    <h4>
-                      <a type="btn" class="btn  btn-link" (click)="getStaffDetails(showStaff,t)">
-                        <span>{{t.FirstName+' '+t.LastName}}</span>
-                      </a>
-                    </h4>
+                    
                   </div>
                 </li>
-                <li class="list-group-item"><i class="fa fa-mobile" aria-hidden="true"></i><span
+                <!-- <li class="list-group-item"><i class="fa fa-mobile" aria-hidden="true"></i><span
                     style="padding:5px">{{t.ContactNo}}</span>
-                </li>
-                <li class="list-group-item">
-                  <i class="fa fa-envelope-open-o" aria-hidden="true"></i>
-                  <span style="padding: 5px">{{t.Email}}</span></li>
+                </li> -->
+                <hr>
+                <div class="row justify-content-center">
+                  <div class="col-md-4 mb-2">
+                      <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="edit(editStaff,t)" data-toggle="tooltip"
+                      data-placement="bottom" title="Edit Expense">
+                      <span class="fa fa-eye icon-md"  aria-hidden="true" ></span></button>
+                   </div>   
+                   <div class="col-md-4 mb-2">
+                      <button type="btn" class="btn btn-sm icon mt-n3  mb-n2" (click)="edit(editStaff,t)" data-toggle="tooltip"
+                      data-placement="bottom" title="Edit Expense">
+                      <span class="fa fa-pencil-square-o icon-md"   aria-hidden="true" ></span></button>
+                    &nbsp;
+                    </div>
+                    <div class="col-md-4 mb-2">
+                    <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
+                      data-placement="bottom" title="Delete Staff">
+                      <span class="fa fa-trash-o icon-md"  aria-hidden="true" ></span></button>
+                    
+                  
+                </div>  
+              </div>
               </ul>
             </div>
           </div>
         </div>
+   
       </div>
-    </div>
+    <!-- </div> -->
     <ul class="pagination">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </ul>
-  </div>
+  <!-- </div> -->
+
 </div>
+</div>
+ </div> 
+ </div>
+<!-- </div> -->
 <ng-template #editStaff>
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
     <form [formGroup]="staffForm" (ngSubmit)="onSubmitEditStaff()">
@@ -503,10 +576,11 @@
   </div>
 </ng-template>
 
-
+<!--Showing staff Detail-->
 <ng-template #showStaff>
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-    <div class="modal-header">
+      <div class="modal-dialog modal-xl">
+    <div class="modal-header ">
       <h4 class="modal-title pull-left">Staff Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
@@ -775,5 +849,6 @@
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
     </div>
+  </div>
   </div>
 </ng-template>
