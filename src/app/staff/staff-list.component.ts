@@ -1,3 +1,6 @@
+import { CourseType, Course } from './../Model/CourseType';
+import { CoursetypeService } from './../coursetype/coursetype.service';
+import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StaffListService } from './staff-list.service';
@@ -6,6 +9,9 @@ import { StaffMaster } from '../Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Utils } from '../Utils';
+import { Courses } from '../Models/Students';
+import {formatDate} from '@angular/common';
+
 @Component({
   selector: 'app-staff-list',
   templateUrl: './staff-list.component.html',
@@ -24,13 +30,22 @@ export class StaffListComponent implements OnInit {
   submitted = false;
   filter:any;
   p:any;
-staffInfo:StaffMaster;
-  constructor(private datePipe: DatePipe, private staffListService: StaffListService,
-    private modalService: BsModalService, private fb: FormBuilder, private router: Router, private route: ActivatedRoute) { }
+  staffInfo:StaffMaster;
+  courseTypeList:CourseType[];
+  courseNameList:Courses[];
+
+  constructor(private datePipe: DatePipe,
+     private staffListService: StaffListService,
+    private modalService: BsModalService, 
+    private fb: FormBuilder, 
+    private router: Router, 
+    private route: ActivatedRoute,
+    private createNewStudentService:CreateNewStudentService,
+    private coursetypeService:CoursetypeService) { }
 
   ngOnInit() {
+    debugger;
     this.returnUrl = '/teacher-courses';
-
     this.staffForm = this.fb.group({
       Gender: ['', Validators.required],
       CourseType: ['', Validators.required],
@@ -38,6 +53,7 @@ staffInfo:StaffMaster;
       Email: ['', Validators.required],
       PreviousExperience: ['', Validators.required],
       DateOfLeaving: ['', Validators.required],
+      DOJ:['', Validators.required],
       Courses: ['', Validators.required],
       LeavingReason: ['', Validators.required],
       FirstName: ['', Validators.required],
@@ -46,12 +62,12 @@ staffInfo:StaffMaster;
       DOB: ['', Validators.required],
       Photo: ['', Validators.required],
       Address1: ['', Validators.required],
-      Address2: ['', Validators.required],
+      Address2: [''],
       City: ['', Validators.required],
       State: ['', Validators.required],
       STDCode: ['', Validators.required],
       P_Address1: ['', Validators.required],
-      P_Address2: ['', Validators.required],
+      P_Address2: [''],
       P_City: ['', Validators.required],
       P_State: ['', Validators.required],
       P_STDCode: ['', Validators.required],
@@ -74,6 +90,7 @@ this.showStaffDetailsForm=this.fb.group({
       LastName: [],
       MiddleName: [],
       DOB: [],
+      DOJ:[],
       Photo: [],
       Address1: [],
       Address2: [],
@@ -125,7 +142,7 @@ this.showStaffDetailsForm=this.fb.group({
         FirstName: this.staffForm.controls.FirstName.value,
         MiddleName: this.staffForm.controls.MiddleName.value,
         LastName: this.staffForm.controls.LastName.value,
-        DOB: this.staffForm.controls.DOB.value,
+        DOB:formatDate( this.staffForm.controls.DOB.value, 'yyyy-MM-dd', 'en'),
         Photo: this.staffForm.controls.Photo.value,
         Address1: this.staffForm.controls.Address1.value,
         Address2: this.staffForm.controls.Address2.value,
@@ -140,7 +157,9 @@ this.showStaffDetailsForm=this.fb.group({
         P_ContactNo: this.staffForm.controls.P_ContactNo.value,
         EmergencyNo: this.staffForm.controls.EmergencyNo.value,
         PreviousWorkName: this.staffForm.controls.PreviousWorkName.value,
-        BloodGroup: this.staffForm.controls.BloodGroup.value
+        BloodGroup: this.staffForm.controls.BloodGroup.value,
+        DOJ:formatDate(this.staffForm.controls.DOJ.value, 'yyyy-MM-dd', 'en'),
+        DOL:formatDate(this.staffForm.controls.DateOfLeaving.value, 'yyyy-MM-dd', 'en'),
       }
       this.staffListService.updateStaff(body)
         .subscribe((data) => {
@@ -160,7 +179,7 @@ this.showStaffDetailsForm=this.fb.group({
       FirstName: teacher.FirstName,
       MiddleName: teacher.MiddleName,
       LastName: teacher.LastName,
-      DOB: this.datePipe.transform(teacher.DOB, "MM/dd/yyyy"),
+      DOB:formatDate(teacher.DOB, 'yyyy-MM-dd', 'en'),
       BloodGroup: teacher.BloodGroup,
       Email: teacher.Email,
       ContactNo: teacher.ContactNo,
@@ -169,7 +188,7 @@ this.showStaffDetailsForm=this.fb.group({
       Courses: teacher.Courses,
       PreviousWorkName: teacher.PreviousWorkName,
       PreviousExperience: teacher.PreviousExperience,
-      DateOfLeaving: this.datePipe.transform(teacher.DateOfLeaving, "MM/dd/yyyy"),
+      DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),
       LeavingReason: teacher.LeavingReason,
       Photo: teacher.Photo,
       Address1: teacher.Address1,
@@ -182,7 +201,8 @@ this.showStaffDetailsForm=this.fb.group({
       P_City: teacher.P_City,
       P_State: teacher.P_State,
       P_STDCode: teacher.P_STDCode,
-      P_ContactNo: teacher.P_ContactNo
+      P_ContactNo: teacher.P_ContactNo,
+     DOJ:formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en'),
     }
     this.staffForm.patchValue(body);
     this.modalRef = this.modalService.show(editStaff, {
@@ -190,9 +210,14 @@ this.showStaffDetailsForm=this.fb.group({
       backdrop: 'static',
       class: 'modal-xl'
     });
-    this.staffListService.getAllCourseType();
+    this.coursetypeService.courseTypeList().subscribe(res=>
+      {
+        this.courseTypeList=res
+      });
     if (teacher.CourseType != null) {
-      this.staffListService.getCourseName(Number(teacher.CourseType));
+      this.createNewStudentService.getCourseNameFromCourseType(Number(teacher.CourseType)).subscribe(res=>{
+        this.courseNameList=res
+      });
     }
   }
 
@@ -200,7 +225,7 @@ this.showStaffDetailsForm=this.fb.group({
     var ans = confirm("Do you want to delete this staff: " + firstName + ' ' + lastName);
     if (ans) {
       this.staffListService.deleteStaff(staffID).subscribe(data => {
-        alert("Staff deleted successfully");
+        //alert("Staff deleted successfully");
         this.getAllStaff(this.user.InstituteId,this.user.BranchId);
       }, error => console.error(error))
     }
@@ -208,15 +233,15 @@ this.showStaffDetailsForm=this.fb.group({
 
   selectCourse(event) {
     this.selectedCourseTypeValue = event.target.value;
-    this.staffListService.getCourseName(this.selectedCourseTypeValue);
+    this.createNewStudentService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res=>{
+      this.courseNameList=res
+    });
   }
   selectCourseName(event) {
     this.selectedCourseName = event.target.value;
   }
 
   getStaffDetails(showStaff: TemplateRef<any>, teacher) {
-    debugger;
-   // this.staffListService.getTeacherCourses(id);
    this.teacherId=teacher.StaffId;
    let body = {
     Gender: teacher.Gender,
@@ -224,7 +249,7 @@ this.showStaffDetailsForm=this.fb.group({
     FirstName: teacher.FirstName,
     MiddleName: teacher.MiddleName,
     LastName: teacher.LastName,
-    DOB: teacher.DOB,
+    DOB: formatDate(teacher.DOB, 'yyyy-MM-dd', 'en'),
     BloodGroup: teacher.BloodGroup,
     Email: teacher.Email,
     ContactNo: teacher.ContactNo,
@@ -233,7 +258,7 @@ this.showStaffDetailsForm=this.fb.group({
     Courses: teacher.Courses,
     PreviousWorkName: teacher.PreviousWorkName,
     PreviousExperience: teacher.PreviousExperience,
-    DateOfLeaving:teacher.DateOfLeaving,
+    DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),
     LeavingReason: teacher.LeavingReason,
     Photo: teacher.Photo,
     Address1: teacher.Address1,
@@ -246,11 +271,13 @@ this.showStaffDetailsForm=this.fb.group({
     P_City: teacher.P_City,
     P_State: teacher.P_State,
     P_STDCode: teacher.P_STDCode,
-    P_ContactNo: teacher.P_ContactNo
+    P_ContactNo: teacher.P_ContactNo,
+    DOJ:formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en')
   }
   this.showStaffDetailsForm.patchValue(body);
    this.staffListService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
     this.modalRef = this.modalService.show(showStaff, {
+      class: 'modal-xl',
       animated: true,
       backdrop: 'static',
       // class: 'modal-xl'

@@ -11,7 +11,7 @@
     
         <div class="float-right" style="margin-top: 20px;margin-right: 10px">
             <button type="button" class="btn btn-primary" style="margin-left:100px"
-              (click)="AddBank(Addtemplate)" (click)="clearForm()">Add Transaction Details</button>
+              (click)="addBank(Addtemplate)" (click)="clearForm()">Add Transaction Details</button>
           </div>
        <div style="margin-top:100px">
 
@@ -43,7 +43,7 @@
             <td>{{bt.Date | date:'mediumDate'}}</td>
 
             <td>
-              <button type="submit" style="margin-right:5px" class="btn btn-default" (click)="Edit(editTemplate,bt)"
+              <button type="submit" style="margin-right:5px" class="btn btn-default" (click)="edit(editTemplate,bt)"
                 data-toggle="tooltip" title="Edit" data-placement="bottom"><i class="fas fa-pencil-alt"></i></button>
             </td>
 
@@ -160,7 +160,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update()">
+      <form [formGroup]="UpdateFormGroup" (ngSubmit)="update()">
 
         <!-- <div class="form-group">
           <label for="ID">Bank ID : </label>
@@ -200,7 +200,7 @@
           <label for="TransactionBy">Transaction By</label>
           <select name="TransactionBy" id="TransactionBy" class="form-control" formControlName="TransactionBy"
             [value]="fu.TransactionById.value" [ngClass]="{ 'is-invalid': submitted &&
-        fu.TransactionBy.errors }">
+        fu.TransactionBy.errors }"   (change)="selectTransactionBy($event)">
             <option [value]="null">Select Name</option>
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
               <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>

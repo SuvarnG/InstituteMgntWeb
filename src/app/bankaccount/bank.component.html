@@ -10,7 +10,7 @@
   <div class="col-md-10">
       <div style="margin-top: 10px;margin-right: 20px">
           <button type="submit" class="btn btn-primary" style="float: right;"data-toggle="tooltip" data-placement="bottom" title="Add"
-          (click)="AddBankAccNo(Addtemplate)" (click)="clearForm()">Add Bank Details </button>
+          (click)="addBankAccNo(Addtemplate)" (click)="clearForm()">Add Bank Details </button>
           </div>
       <!-- <table class="table table-bordered"> -->
           <div style="margin-top:80px">
@@ -34,8 +34,8 @@
             <td>{{b.IFSC_Code}}</td>
             <td>
               <button type="submit" style="margin-right:5px" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Edit "
-                (click)="EditAccNo(editTemplate,b)"><i class="fas fa-pencil-alt"></i></button>
-              <button type="submit" class="btn btn-default" (click)="Delete(b.ID,b.BankName)"
+                (click)="editAccNo(editTemplate,b)"><i class="fas fa-pencil-alt"></i></button>
+              <button type="submit" class="btn btn-default" (click)="delete(b.ID,b.BankName)"
                   data-toggle="tooltip" data-placement="bottom" title="Delete">
                   <i style='font-size:20px'class="fa fa-trash" aria-hidden="true"></i>
                 </button></td>
@@ -133,7 +133,6 @@
 
   <!-- Edit bankaccount modal -->
 
-
   <ng-template #editTemplate>
     <div class="modal-header">
       <h4 class="modal-title pull-left">Edit Bank Details</h4>
@@ -142,7 +141,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="registerForm" (ngSubmit)="UpdateAccNo()">
+      <form [formGroup]="registerForm" (ngSubmit)="updateAccNo()">
         <div class="form-group">
           <label for="BankName">Bank Name : </label>
           <input type="text" class="form-control" formControlName="BankName" name="BankName" disabled>

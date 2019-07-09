@@ -11,7 +11,6 @@ const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json',
             'Authorization':`Bearer ${Utils.GetAccessToken()}`
 })
-
 };
 
 @Injectable({
@@ -30,16 +29,10 @@ export class CoursesService {
     debugger;
     return this.http.get<Course[]>(this.Url+'/'+InstituteId+'/'+BranchId, httpOptions);
 }
-// Delete(CourseId): Observable<Course> {
 
-//   return this.http.post<Course>(this.deleteUrl + CourseId, httpOptions).pipe(
-//     tap(_ => console.log(`deleted Course id=${CourseId}`))
-//   );
-// }
-Delete(ID): Observable<Course> {
-debugger;
-  return this.http.post<Course>(this.deleteUrl + ID, httpOptions).pipe(
-    tap(_ => console.log(`deleted Course id=${ID}`))
+delete(CourseId): Observable<Course> {
+  return this.http.post<Course>(this.deleteUrl+CourseId,null, httpOptions).pipe(
+    tap(_ => console.log(`deleted Course id=${CourseId}`))
   );
 }
 
@@ -47,23 +40,13 @@ createCourse(course: Course) {
   return this.http.post<Course>(this.CreateUrl, course, httpOptions).pipe(map(course => { return course }))
 }
 
-//for displaying course type
-// GetCourseTypeList() {
-//   return this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType',httpOptions).pipe(map(data => data as CourseType[]))
-// }
-
-
-GetShortName(CourseTypeId) {
-
+getShortName(CourseTypeId) {
   return this.http.get(environment.APIBASEURL + 'Course/GetCourseMaster/' + CourseTypeId,httpOptions).pipe(map(data => data as Course[]))
-
 }
 
-Edit(course): Observable<Course> {
-
+edit(course): Observable<Course> {
   return this.http.post<Course>(this.UpdateUrl, course, httpOptions).pipe(
     tap((course: Course) => console.log('Update CourseId=${course.CourseId}'))
-
   );
 }
 }

@@ -95,8 +95,6 @@ export class EnquiryComponent implements OnInit {
   get fu() { return this.UpdateEnquiryFormGroup.controls; }
 
   public OpenEnquiryModel(CreateEnquiryModal: TemplateRef<any>) {
-
-    //debugger;
     if (!this.listCourseType) {
       this.GetCourseTypeList();
     }
@@ -114,7 +112,6 @@ export class EnquiryComponent implements OnInit {
   }
 
   CreateNewEnquiry() {
-    //debugger;
     console.log(this.EnquiryForm);
     this.submitted = true;
     // stop here if form is invalid
@@ -145,12 +142,10 @@ export class EnquiryComponent implements OnInit {
 
 
   selectCourseTypeName(event) {
-    //debugger;
     this.CourseTypeId = event.target.value;
   }
 
   selectCourseNameForCourseType(event) {
-    //debugger;
     this.GetCourseNameList(event.target.value);
   }
 
@@ -158,7 +153,6 @@ export class EnquiryComponent implements OnInit {
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
 
-    //debugger;
     this.modalRef = this.modalService.show(editEnquiryModal, {
       backdrop: 'static'
     });
@@ -205,15 +199,13 @@ export class EnquiryComponent implements OnInit {
 
 
   private GetCourseTypeList() {
-    debugger;
-    this.coursetypeService.CourseTypeList().subscribe(res => {
+    this.coursetypeService.courseTypeList().subscribe(res => {
       this.courseType = res;
       console.log(JSON.stringify(this.courseType));
     });
   }
 
   private GetCourseNameList(id: number) {
-    debugger;
     this.createNewStudentService.getCourseNameFromCourseType(id).subscribe(res => {
       this.listCourseName = res; 
       console.log("test", this.listCourseName)

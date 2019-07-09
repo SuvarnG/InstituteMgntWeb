@@ -327,8 +327,10 @@
                   <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                     class="form-control border-0" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
               </div>
+
               <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
                   <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
+
                 </div>
     
           </div>
@@ -378,6 +380,7 @@
             <div class="form-row">          
                 <div class="form-group col-md-1">
                     <label class="mt-3 h6 text-muted">State:</label>
+
                   </div>
                   <div class="form-group col-md-2">
                       <select id="P_State" class="form-control border-0" formControlName="P_State"
@@ -601,8 +604,8 @@
   </div>
 </ng-template>
 
-<!--Showing staff Detail-->
 <ng-template #showStaff>
+
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
       <div class="modal-dialog modal-xl">
     <div class="modal-header ">
@@ -827,13 +830,6 @@
                         </div>
 
                     </div>  
-
-                    
-
-
-
-
-
 
                 </div>
               </div>
