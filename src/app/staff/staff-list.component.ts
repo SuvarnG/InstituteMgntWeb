@@ -207,7 +207,8 @@ this.showStaffDetailsForm=this.fb.group({
     this.staffForm.patchValue(body);
     this.modalRef = this.modalService.show(editStaff, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
     this.coursetypeService.courseTypeList().subscribe(res=>
       {
@@ -278,7 +279,8 @@ this.showStaffDetailsForm=this.fb.group({
     this.modalRef = this.modalService.show(showStaff, {
       class: 'modal-xl',
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      // class: 'modal-xl'
     });
   }
 

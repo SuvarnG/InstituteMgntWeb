@@ -11,3 +11,50 @@
     text-align: center;
 } */
 
+.body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    background-color: black;
+}
+.card {
+    width: 22rem;
+    min-height: 250px;
+   
+}
+
+.img {
+    border-radius: 50%;
+    
+}
+
+/* .btn-primary{
+    background-color: #009999;
+    border-color: #009999;
+    width: 50px;
+    font-size:28px;
+    font-weight: 600;
+} */
+
+/* .box{
+background-color: white;
+margin-top: 0px;
+  width: 1200px;
+  border: 1px solid #CCCCCC;
+  padding: 50px;
+  margin: 30px;
+  box-shadow: 2px 2px 2px 2px #CCCCCC;
+  
+} */
+
+/* .placeholder{
+    padding: 0px;
+} */
+
+.modal-lg {
+    max-width: 80%;
+}
+
+
+
+
+
+

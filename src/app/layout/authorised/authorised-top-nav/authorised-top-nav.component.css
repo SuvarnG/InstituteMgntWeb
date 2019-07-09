@@ -1,13 +1,20 @@
 
 .setting-icon{
     font-size:20px;
-    color:white;
+    color:black;
     margin-right: 10px;
     cursor: pointer
 }
 .logout-icon{
     font-size:20px;
-    color:white;
+    color:black;
     margin-left: 10px;
     cursor: pointer
 }
+
+.navbar{
+    min-height: 70px;
+    -webkit-box-shadow: 0 8px 6px -6px #cccccc;
+       -moz-box-shadow: 0 8px 6px -6px #cccccc;
+       box-shadow: 0 8px 6px -6px #cccccc;
+   }

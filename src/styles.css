@@ -6,10 +6,54 @@
 body{
     overflow-x: hidden;
     overflow-y: scroll;
+    font-family:'Trebuchet MS';
+    letter-spacing: 0.8px;
+    
   }
 
   .wrapper {
     display: flex;
     width: 100%;
     align-items: stretch;
+}
+
+.box{
+  background-color: white;
+  margin-top: 0px;
+   
+    
+}
+
+.f-20{
+  font-size : 20px !important;
+  font-weight: 400 !important;
+  letter-spacing: 2px;
+
+}
+
+.form-control{
+  background: transparent !important;
+  border-radius: 0px !important;
+  border: 0px !important;
+  font-size : 20px !important;
+  border-bottom: 1px solid #cccccc  !important;
+  font-size: 22px !important;
+}
+
+.icon-md{
+  font-size: 36px !important;
+}
+.btn-dark{
+  background-color:#212121 !important;
+}
+.btn-dark:hover{border:2px solid black !important;
+background-color: white !important;
+color: black !important;}
+
+.icon:hover {
+  fill: #009999;
+}
+
+.icon-red:hover{
+fill: red;
 }

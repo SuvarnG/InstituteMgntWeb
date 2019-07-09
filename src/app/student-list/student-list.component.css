@@ -22,3 +22,11 @@
     width: 5px;
 }
 
+.btn-primary{
+    background-color: #009999;
+    border-color: #009999;
+    width: 200px;
+    font-size:28px;
+    font-weight: 600;
+}
+
