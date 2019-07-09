@@ -7,13 +7,7 @@ import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
 import { Students, CourseType } from '../../app/models/Students'
 import { Observable } from 'rxjs';
 import { Utils } from '../Utils';
-//import { leave } from '@angular/core/src/profile/wtf_impl';
 
-
-
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -36,23 +30,15 @@ export class LeaveService {
     }));
   }
 
-  GetLeaveTypeList() {
+  getLeaveTypeList() {
     this.http.get<LeaveType[]>(environment.APIBASEURL + 'Leave/GetAll').pipe(map(data=>{return data as LeaveType[]}))//.toPromise().then(result => this.LeaveType = result as Leaves[])
   }
 
-  CreateLeave(leave: LeaveTransaction) {
+  createLeave(leave: LeaveTransaction) {
     return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, httpOptions);
   }
 
-  // GetCoursName() {
-  //   return this.http.get(environment.APIBASEURL + 'Course/GetAllCourses',httpOptions
-  //   ).pipe
-  //     (map(data => {
-  //       return data as CourseType[]
-  //     }));
-  // }
-
-  GetStudentName(id) {
+  getStudentName(id) {
     return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id , httpOptions
     ).pipe
       (map(data => {
@@ -60,7 +46,7 @@ export class LeaveService {
       }));
   }
 
-  GetCourseNameByType() {
+  getCourseNameByType() {
     return this.http.get(environment.APIBASEURL + 'Leave/GetAllLeaves'
     ).pipe
       (map(data => {
@@ -68,7 +54,7 @@ export class LeaveService {
       }));
   }
 
-  EditLeave(leave: LeaveTransaction) {
+  editLeave(leave: LeaveTransaction) {
     return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeaveTransaction', leave, httpOptions);
   }
 }

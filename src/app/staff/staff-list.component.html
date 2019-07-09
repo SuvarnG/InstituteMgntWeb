@@ -95,10 +95,8 @@
           </div>
     </td>
     <td>
-        <h6>
-            <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)" style="font-weight:bold;font-size:22px">
-              <span>{{t.FirstName+' '+t.LastName}}</span>
-            </a>
+        <h6>           
+            <span style="font-weight:bold;font-size:22px">{{t.FirstName+' '+t.LastName}}</span>
             <span style="padding:10px;font-weight: normal" class="ml-2">{{t.ContactNo}}</span><br>
             <span style="padding:10px;margin-top: 20px" class="ml-2">{{t.Email}}</span>
           </h6>
@@ -128,8 +126,8 @@
                       <!-- <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="edit(editStaff,t)" data-toggle="tooltip"
                       data-placement="bottom" title="Edit Expense">
                       <span class="fa fa-eye icon-md"  aria-hidden="true" ></span></button> -->
-                      <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
+                      <div class="icon-md mt-n4" (click)="getStaffDetails(showStaff,t)" data-toggle="tooltip"
+                      data-placement="bottom" title="View Staff">
                       <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                       viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="45px">
                    <g>
@@ -156,7 +154,7 @@
                       
                       <span class="fa fa-pencil-square-o icon-md"   aria-hidden="true" ></span></button> -->
                       <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
+                      data-placement="bottom" title="Edit Staff">
                       <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="30px">
 <g>
@@ -176,8 +174,8 @@
                      <!-- <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
                       data-placement="bottom" title="Delete Staff">
                       <span class="fa fa-trash-o icon-md"  aria-hidden="true" ></span></button>  -->
-                      <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
+                      <div class="icon-md mt-n4" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
+                      data-placement="bottom" title="Delete Staff">
                       <svg class="icon-red" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg>
                     </div>
                       
@@ -488,33 +486,27 @@
                 <div class="row">
                <div class="col-md-12 pb-4 px-4"> 
                    <div class="form-row">
-                      <div class="form-group col-md-4 px-3">
-                          <select id="CourseType" class="form-control border-0" [value]="null" formControlName="CourseType" 
-                            [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
-                            
-                            <option [value]="null">Select CourseType</option>
-                            <option value="goverment" >Goverment</option>
-                          </select>
-                          <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
-                            <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
-                          </div>
-                        </div>
-                 
-                        <div class="form-group col-md-4 px-3">
-                            <select id="Course" class="form-control border-0"  [value]="null" formControlName="Course" 
-                              [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
-                              <option [value]="null">Select Course</option>
-                              <option value="MSCIT" >MSCIT</option>
-                            </select>
-                            <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
-                              <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
+                            <div class="form-group col-md-2">
+                              <label  for="inputPaddress" class="mt-3 h6 text-muted"> CourseType :</label>
                             </div>
+                            <div class="form-group col-md-2">
+                                <input type="text" class="form-control border-0" id="CourseTypeName" formControlName="CourseTypeName" [ngClass]="{ 'is-invalid': submitted && f.CourseTypeName.errors }">
+                            </div> 
+                          <div *ngIf="submitted && f.CourseTypeName.errors" class="invalid-feedback">
+                            <div *ngIf="f.CourseTypeName.errors.required"> Please provide a valid CourseType.</div>
                           </div>
-                       
+                        <div class="form-group col-md-2">
+                          <label  for="inputPaddress" class="mt-3 h6 text-muted"> Course :</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" class="form-control border-0" id="CourseName" formControlName="CourseName" [ngClass]="{ 'is-invalid': submitted && f.CourseName.errors }">
+                        </div> 
+                      <div *ngIf="submitted && f.CourseName.errors" class="invalid-feedback">
+                        <div *ngIf="f.CourseName.errors.required"> Please provide a valid Course.</div>
+                      </div>
+                    </div>
                      </div>
-                  </div> 
-               </div>
-               
+                  </div>            
                </div>
                </div> 
                <hr>
@@ -531,12 +523,19 @@
                       </div>
                       <div class="form-group col-md-2">
                           <input type="text" class="form-control border-0" id="PreviousWorkName" formControlName="PreviousWorkName">
-                      </div>   
+                      </div>
+
+                      <div class="form-group col-md-2">
+                        <label  for="inputPaddress" class="mt-3 h6 text-muted"> DateOfJoining :</label>
+                      </div>
+                      <div class="form-group col-md-2">
+                          <input type="text" class="form-control border-0" id="DateOfJoining" formControlName="DateOfJoining">
+                      </div>
 
                       <div class="form-group col-md-2">
                           <label class="mt-3 h6 text-muted">DateOfLeaving:</label>
                         </div>
-                        <div class="form-group col-md-3">
+                        <div class="form-group col-md-2">
                             <input type="date" class="form-control border-0" id="DateOfLeaving" formControlName="DateOfLeaving">
                         </div>
 
@@ -807,6 +806,36 @@
             </div>
             <hr>
             <!--Fourth End-->
+            <div class="row">
+              <div class="col-md-12  mt-3 ">
+                     <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
+                 
+              <div class="row">
+             <div class="col-md-12 pb-4 px-4"> 
+                 <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label  for="inputCourseType" class="mt-3 h6 text-muted"> CourseType :</label>
+                      </div>
+                      <div class="form-group col-md-2">
+                          <input type="text" class="form-control border-0" id="CourseTypeName" formControlName="CourseTypeName"
+                      disabled>
+                      </div>  
+
+                      <div class="form-group col-md-2">
+                          <label  for="inputCourseName" class="mt-3 h6 text-muted"> CourseName :</label>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <input type="text" class="form-control border-0" id="CourseName" formControlName="CourseName"
+                        disabled>
+                        </div>                  
+                   </div>
+                </div> 
+             </div>
+             
+             </div>
+             </div> 
+
+
 
             <div class="row">
                 <div class="col-md-12 px-5">

@@ -10,6 +10,7 @@ import { UpdateLeaves, Leaves } from '../Models/leaves';
 import { CourseType, Students } from '../Models/Students';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
+import {formatDate} from '@angular/common';
 //import { createEnquiry } from '../models/createEnquiry';
 //import { leave } from '@angular/core/src/profile/wtf_impl';
 
@@ -29,6 +30,7 @@ export class LeaveComponent implements OnInit {
   leaves: LeaveType[];
   CreateLeaveFormGroup: FormGroup;
   UpdateLeaveFormGroup: FormGroup;
+
   constructor(private formBuilder: FormBuilder,
      private modalService: BsModalService, 
      private LeaveService: LeaveService,
@@ -36,8 +38,6 @@ export class LeaveComponent implements OnInit {
 
   ngOnInit() {
     this.dtOptions = {
-      //retrieve: true,
-      //paging: false,
       pagingType: 'full_numbers',
       pageLength: 5
 
@@ -83,15 +83,12 @@ export class LeaveComponent implements OnInit {
     console.log(JSON.stringify(this.leaveTran));
   }
 
-  CreateNewLeave() {
-    debugger;
-    console.log(this.fc);
+  createNewLeave() {
     this.submitted = true;
     // stop here if form is invalid
     if (this.CreateLeaveFormGroup.invalid) {
       return;
     }
-   // debugger;
     let req = {
       LeaveType: this.fc.LeaveName.value,
       Course: this.fc.CourseName.value,
@@ -105,9 +102,8 @@ export class LeaveComponent implements OnInit {
       CourseId: this.fc.CourseName.value,
       Id: 0,
     }
-    this.LeaveService.CreateLeave(req).subscribe(res => {
-      this.modalRef.hide()
-      
+    this.LeaveService.createLeave(req).subscribe(res => {
+      this.modalRef.hide()   
       this.getLeaveList();
       console.log(JSON.stringify(res));
     });
@@ -116,8 +112,7 @@ export class LeaveComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
-  getCourseName() {
-    
+  getCourseName() {   
     this.coursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
       this.Courses = res;
       console.log(JSON.stringify(this.Courses));
@@ -126,15 +121,14 @@ export class LeaveComponent implements OnInit {
 
   getStudentName(event) {
     debugger;
-    this.LeaveService.GetStudentName(event.target.value).subscribe(res => {
+    this.LeaveService.getStudentName(event.target.value).subscribe(res => {
       this.students = res;
       console.log(JSON.stringify(this.students));
     })
   }
 
   getCourseNameByType() {
-    //debugger;
-    this.LeaveService.GetCourseNameByType().subscribe(res => {
+    this.LeaveService.getCourseNameByType().subscribe(res => {
       this.leaves = res;
       console.log(JSON.stringify(this.leaves));
     });
@@ -142,7 +136,6 @@ export class LeaveComponent implements OnInit {
 
 
   OpenCreateModal(createTemplate: TemplateRef<any>) {
-  
     this.modalRef = this.modalService.show(createTemplate,{
       backdrop: 'static'
     });
@@ -150,32 +143,28 @@ export class LeaveComponent implements OnInit {
   }
 
   // <!-- Edit leave modal -->
-  UpdateCreateModal(EditTemplate: TemplateRef<any>, editItem: LeaveTransaction) {
+  updateCreateModal(EditTemplate: TemplateRef<any>, editItem: LeaveTransaction) {
+    debugger;
+    this.getCourseName();
+    this.getStudentName
     this.modalRef = this.modalService.show(EditTemplate,{
         backdrop: 'static'
       });
-    
-
-    debugger;
     this.UpdateLeaveFormGroup.patchValue({
       LeaveId: editItem.Id,
       CourseId: editItem.CourseId,
       StudentId: editItem.StudentId,
-      FullName: editItem.FullName,
+      StudentName: editItem.FullName,
       Reason: editItem.Reason,
       Comment: editItem.Comment,
-      NeedFollowupDate: editItem.NeedFollowupDate,
-      FromDate: editItem.FromDate,
-      ToDate: editItem.ToDate,
-      //Courses:editItem.Courses,
-      //StudentName: editItem.StudentName,
-      LeaveType: editItem.LeaveType
+      NeedFollowupDate:formatDate(editItem.NeedFollowupDate, 'yyyy-MM-dd', 'en'),
+      FromDate: formatDate(editItem.FromDate, 'yyyy-MM-dd', 'en'),
+      ToDate: formatDate(editItem.ToDate,'yyyy-MM-dd', 'en'),
+      LeaveName: editItem.LeaveType
     })
-    //this.modalRef = this.modalService.show(EditTemplate);
   }
 
-  UpdateLeave() {
-    //debugger;
+  updateLeave() {
     console.log(this.fu);
     this.submitted = true;
     if (this.UpdateLeaveFormGroup.invalid) {
@@ -195,7 +184,7 @@ export class LeaveComponent implements OnInit {
       CourseId: this.UpdateLeaveFormGroup.controls.StudentId.value
     }
     if (confirm("Do you want to Save Changes?")) {
-      this.LeaveService.EditLeave(req).subscribe(data => { this.getLeaveList(), this.modalRef.hide() })
+      this.LeaveService.editLeave(req).subscribe(data => { this.getLeaveList(), this.modalRef.hide() })
     }
   }
 }

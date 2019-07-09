@@ -180,7 +180,7 @@
             [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
             <option [value]="null">--select course--</option>
             <option *ngFor="let Course of Courses" [value]="Course.CourseId">
-              {{Course.CourseName}}
+              {{Course.ShortName}}
             </option>
           </select>
         </div>
