@@ -70,6 +70,13 @@ import { SidenavLayoutModule } from './layout/authorised/sidenav-layout/sidenav-
 import { StaffListModule } from './staff/staff-list/staff-list.module';
 import { StudentListModule } from './student-list/student-list.module';
 import { AuthorizedSideNavService } from './layout/authorised/authorised-side-nav/authorized-side-nav.service';
+import { ReportsComponent } from './reports/reports.component';
+import { saveAs } from 'file-saver';
+import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { FeesCollectionReportComponent } from './fees-collection-report/fees-collection-report.component';
+import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
+import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
+import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
 
 
 const appRoutes: Routes = [
@@ -108,7 +115,12 @@ const appRoutes: Routes = [
     FeesTransactionComponent,
     BranchComponent,
     CoursetypeComponent,
-
+    ReportsComponent,
+    ExpenseReportComponent,
+    FeesCollectionReportComponent,
+    EnquiryReportComponent,
+    StudentAdmissionsReportComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -132,7 +144,8 @@ const appRoutes: Routes = [
     FeesTransactionModule,
     SidenavLayoutModule,
     StudentListModule,
-    StaffListModule
+    StaffListModule,
+    PDFExportModule
   ],
   providers:
     [sliderservice,
