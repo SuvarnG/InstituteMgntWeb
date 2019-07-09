@@ -35,15 +35,7 @@ export class BanktransactionService {
   }
 
 
-  // GetStaffList() {
-  //   return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
-  // }
-
-  // GetBankList() {
-  //   return this.http.get(environment.APIBASEURL + 'Bank/GetAll').pipe(map(data => data as BankNames[]))
-  // }
-
-  GetAccountNumber(BankName) {
+  getAccountNumber(BankName) {
 debugger;
     return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo'+'/' + BankName,httpOptions).pipe(map(data => data as BankTransaction[]))
 
@@ -55,7 +47,7 @@ debugger;
   }
 
 
-  Edit(banktransaction): Observable<BankTransaction> {
+  edit(banktransaction): Observable<BankTransaction> {
 
     return this.http.post<BankTransaction>(this.UpdateUrl, banktransaction, httpOptions).pipe(
       tap((banktransaction: BankTransaction) => console.log('Update Id=${banktransaction.ID}'))

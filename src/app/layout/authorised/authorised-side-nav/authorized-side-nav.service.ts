@@ -1,3 +1,4 @@
+import { Utils } from './../../../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
+  'Authorization': `Bearer ${Utils.GetAccessToken()}`})
 };
 
 @Injectable({

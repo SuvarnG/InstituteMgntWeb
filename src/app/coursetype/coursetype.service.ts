@@ -21,16 +21,19 @@ export class CoursetypeService {
 
   constructor(private http: HttpClient) { }
   
-  CourseTypeList() {
-    debugger;
+  courseTypeList() {
     return this.http.get<CourseType[]>(this.Url, httpOptions);
       
   }
-  CreateCourseType(CourseTypeName:string){
-    return this.http.post<void>(this.CreateUrl + "/" + CourseTypeName,httpOptions)
+  createCourseType(CourseTypeName:string){
+    let body:CourseType={
+      CourseTypeId:0,
+      CourseTypeName:CourseTypeName
+    }
+   return this.http.post<void>(this.CreateUrl,body,httpOptions)
   }
 
-  EditCourseType(coursetype):Observable<CourseType>{
+  editCourseType(coursetype):Observable<CourseType>{
    
     return this.http.post<CourseType>(this.UpdateUrl,coursetype, httpOptions).pipe(
       tap((coursetype:CourseType)=>console.log('Update CourseTypeId=${coursetype.CourseTypeId}'))

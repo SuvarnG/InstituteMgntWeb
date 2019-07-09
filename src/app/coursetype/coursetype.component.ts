@@ -22,13 +22,12 @@ export class CoursetypeComponent  {
   dtTrigger: Subject<any> = new Subject();
 
 
-  constructor(private CoursetypeService: CoursetypeService,private modalService: BsModalService, 
+  constructor(private CoursetypeService: CoursetypeService,
+    private modalService: BsModalService, 
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.dtOptions = {
-      // retrieve: true,
-      // paging: false,
       pagingType: 'full_numbers',
       pageLength: 4
 
@@ -36,7 +35,6 @@ export class CoursetypeComponent  {
     this.getCourseType();
 
     this.createregisterForm = this.formBuilder.group({
-     // CourseTypeId:['',Validators.required],
       CourseTypeName:['',Validators.required]
 });
   this.editregisterForm = this.formBuilder.group({
@@ -48,17 +46,16 @@ export class CoursetypeComponent  {
 
   get f() { return this.createregisterForm.controls; }
   get fu() { return this.editregisterForm.controls; }
-//GetCourseType
+
   getCourseType(){
-    this.CoursetypeService.CourseTypeList().subscribe(res=> {
+    this.CoursetypeService.courseTypeList().subscribe(res=> {
       this.courseType=res;
       this.dtTrigger.next();
     });
   }
 
   //Create CourseType
-  CreateNewCourse(addtemplate: TemplateRef<any>) {
-    
+  createNewCourse(addtemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(addtemplate, {
       animated: true,
       backdrop: 'static'
@@ -67,7 +64,6 @@ export class CoursetypeComponent  {
   };
 
   onSubmit() {
-    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -76,42 +72,35 @@ export class CoursetypeComponent  {
     }
     this.submitted = false;
   }
-  CreateCourseName(CreateCourseName: string) {
-    this.CoursetypeService.CreateCourseType(CreateCourseName).subscribe(data => {
+  createCourseName(CreateCourseName: string) {
+    this.CoursetypeService.createCourseType(CreateCourseName).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
     }, error => console.error(error))
   }
 
 
-
-  EditCourseType(editTemplate: TemplateRef<any>,coursetype){
-    debugger;
-  //  this.ID=coursetype.CourseTypeId;
-  //   let body={
-  //     coursetype:coursetype.CourseTypeName
-  //   }
+  editCourseType(editTemplate: TemplateRef<any>,coursetype){
     this.editregisterForm.patchValue(coursetype);
     this.modalRef = this.modalService.show(editTemplate);
   }
-  UpdateCourseType() {
-    this.submitted=true;
-  
+
+  updateCourseType() {
+    this.submitted=true;  
     //stop here if form is invalid
     if(this.editregisterForm.invalid){
       return;
     }
-
-    debugger;
     let body={
       CourseTypeName:this.editregisterForm.controls.CourseTypeName.value,
       CourseTypeId:this.editregisterForm.controls.CourseTypeId.value,
     }
-    this.CoursetypeService.EditCourseType(body).subscribe(data => {
+    this.CoursetypeService.editCourseType(body).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
      }, error => console.error(error))
   }
+
   clearForm()
   {
     this.createregisterForm.reset()

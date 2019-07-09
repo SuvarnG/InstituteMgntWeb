@@ -201,7 +201,7 @@ export class CreateStudentComponent implements OnInit {
         animated: true,
         backdrop: 'static'
       });
-      this.coursetypeService.CourseTypeList().subscribe(res=>{
+      this.coursetypeService.courseTypeList().subscribe(res=>{
         this.courseTypeList=res
       });
       // this.CreateNewStudentService.GetCourseNameFromCourseType(this.selectedUserValue);

@@ -28,11 +28,10 @@ export class StudentslistService {
   }
 
   deleteStudent(id:number){
-    return this.http.post<void>(this.DeleteStdnt + "/"+id,httpOptions)
+    return this.http.post<void>(this.DeleteStdnt + "/"+id,null,httpOptions)
   }
 
   editStudent(student:UpdateStudent){
-    debugger;
     return this.http.post<UpdateStudent>(this.EditStnt,student,httpOptions)
   }
 }

@@ -106,7 +106,7 @@ export class TeacherCoursesComponent implements OnInit {
     }
     else {
       if (this.registerStaffForm.controls.IsFixedPayment.value == "false") {
-        this.coursetypeService.CourseTypeList().subscribe(res => {
+        this.coursetypeService.courseTypeList().subscribe(res => {
           this.courseTypeList = res
         });
         // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
@@ -159,7 +159,7 @@ export class TeacherCoursesComponent implements OnInit {
   openModal(template: TemplateRef<any>) {
     debugger;
     if (this.registerStaffForm.controls.IsFixedPayment.value == true) {
-      this.coursetypeService.CourseTypeList();
+      this.coursetypeService.courseTypeList();
       // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
       this.modalRef = this.modalService.show(template);
     }

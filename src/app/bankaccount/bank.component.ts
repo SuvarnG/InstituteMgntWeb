@@ -30,7 +30,9 @@ export class BankComponent implements OnDestroy, OnInit {
   dtTrigger: Subject<any> = new Subject();
 
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
+  constructor(private modalService: BsModalService, 
+    private formBuilder: FormBuilder, 
+    private router: Router,
     private BankService: BankService,
     private route: ActivatedRoute) { }
   
@@ -40,12 +42,11 @@ export class BankComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
       this.dtOptions = {
-        // retrieve: true,
-        // paging: false,
         pagingType: 'full_numbers',
         pageLength: 4
   
       };
+
     this.registerForm = this.formBuilder.group({
       ID: [],
       BankName: ['', Validators.required],
@@ -53,7 +54,6 @@ export class BankComponent implements OnDestroy, OnInit {
       ReAccountNo: ['', Validators.required],
       IFSC_Code: ['', Validators.required],
       AccountType: ['', Validators.required],
-      //User: ['', Validators.required],
     }, {
         validator: MustMatch('AccountNo', 'ReAccountNo')
       });
@@ -67,7 +67,6 @@ export class BankComponent implements OnDestroy, OnInit {
   public user=Utils.GetCurrentUser();
 
   onSubmit() {
-    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -82,11 +81,9 @@ export class BankComponent implements OnDestroy, OnInit {
         AccountType: this.registerForm.controls.AccountType.value,
         IFSC_Code: this.registerForm.controls.IFSC_Code.value,
         InstituteId:this.user.InstituteId
-       // UserId: this.registerForm.controls.UserId.value,
-       //User:"staff"
 
       };
-      this.BankService.Bank(body).subscribe((data) => {
+      this.BankService.bank(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBanks(this.user.InstituteId);
         this.submitted = false;
@@ -95,8 +92,7 @@ export class BankComponent implements OnDestroy, OnInit {
     }
   }
 
-  AddBankAccNo(Addtemplate: TemplateRef<any>) {
-    debugger;
+  addBankAccNo(Addtemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static'
@@ -111,46 +107,41 @@ InstituteId=this.user.InstituteId;
       this.banks = res;
       this.dtTrigger.next();
     });
-//    console.log(JSON.stringify(this.banks));
   }
 
-  Delete(ID,BankName) {
-    debugger;
+  delete(ID,BankName) {
     var ans = confirm("Do you want to delete this Bank : " + BankName);
     if (ans) {
-      this.BankService.Delete(ID).subscribe(data => {
+      this.BankService.delete(ID).subscribe(data => {
         this.getBanks(this.user.InstituteId);
       }, error => console.error(error))
     }
   }
 
-  EditAccNo(editTemplate: TemplateRef<any>, bank) {
-    debugger;
+  editAccNo(editTemplate: TemplateRef<any>, bank) {
     let selectedBank = {
       ID: bank.ID,
       BankName: bank.BankName,
       AccountNo:bank.AccountNo,
       AccountType: bank.AccountType,
-      IFSC_Code: bank.IFSC_Code,
-     // UserId:"staff"
-      
+      IFSC_Code: bank.IFSC_Code,   
     }
     this.registerForm.patchValue(selectedBank);
+    this.registerForm.controls.ReAccountNo.setValue(bank.AccountNo);
+    this.registerForm.controls.AccountNo.setValue(bank.AccountNo);
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
       backdrop: 'static'
     });
   }
 
-  UpdateAccNo() {
-    debugger;
+  updateAccNo() {
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
-    debugger;
     console.log(this.f)
     let body = {
       AccountNo: this.registerForm.controls.AccountNo.value,
@@ -158,10 +149,9 @@ InstituteId=this.user.InstituteId;
       BankName: this.registerForm.controls.BankName.value,
       AccountType: this.registerForm.controls.AccountType.value,
       IFSC_Code: this.registerForm.controls.IFSC_Code.value,
-      //UserId:this.registerForm.controls.UserId.value,
-
+      InstituteId:this.user.InstituteId
     }
-    this.BankService.EditAccNo(body).subscribe(data => {
+    this.BankService.editAccNo(body).subscribe(data => {
       this.modalRef.hide();
       this.getBanks(this.user.InstituteId);
     }, error => console.error(error))
