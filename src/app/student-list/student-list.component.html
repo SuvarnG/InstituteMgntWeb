@@ -1,806 +1,761 @@
-
-
- <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'>
 
 <app-authorised-top-nav></app-authorised-top-nav>
 <div class="row">
   <div class="col-md-2">
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
-  
-<div class="col-md-10">
+  <div class="col-md-10">
 
-<!----------------------------------------------------------------------->
-<!-- <html>
-  <body>
-    <form>
-      <fieldset>
-      <div id="box">
-        <div>
+    <div class="row justify-content-center">
 
-    <button class="btn btn-secondary mb1 black bg-yellow float-right" title="Print" (click)="printPage()"><span class="fas fa-print"></span></button>&nbsp;
-    <a href="/CreateStudent" class="btn btn-success float-right" title="Create New" (click)="addNewStudent()"><span class="fas fa-plus-square"></span> </a>
-    <table border="1px" class="table table-striped custab">
-        
-      <thead>
-        <tr>
-        <th>
-          No.
-        </th>
-        <th>
-       Student Name
-      </th>
-      <th>
-        Course
-      </th>
-      <th>
-        Joining Date
-      </th>
-      <th>
-        Contact
-      </th>
-      <th>
-        Course Completed Date
-      </th>
-      <th>
-        Course Status
-      </th>
-      <th>
-        Fees Paid
-        (Rs)
-      </th>
-      <th>
-        Fees Remaining
-        (Rs)
-      </th>
-      <th class="discount">
-        Discount
-        (%)
-      </th>
-      <th>
-        Remark
-      </th>
-      <th class="text-center" colspan="2">
-        Action
-      </th>
-    </tr>
-      </thead>
-      
-        <tr *ngFor = "let s of students">
-          <td>{{s.StudentId}}</td>
-          <td>{{s.FullName}}</td>
-          <td>{{s.Course}}</td>
-          <td>{{s.DateOfJoining | date:'mediumDate'}}</td>
-          <td>{{s.ContactNo}}</td>
-          <td>{{s.CourseCompletedDate | date:'mediumDate'}}</td>
-          <td>{{s.CourseCompleted === true ? "Completed":"Not Completed"}}</td>
-          <td>{{s.FeesPaid}}</td>
-          <td>{{s.RemainingFees}}</td>
-          <td>{{s.Discount}}</td>
-          <td>{{s.Remark}}</td>
-          <div *ngIf="s.CourseCompleted === false; else loading">
-          <td><span class="btn btn-success"><button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="openEditStudentPopup(editStudent, s)" ></button></span></td>
-          <td><span class="btn btn-danger"><button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="deleteStudent(s.StudentId)"></button></span></td>
-        </div>
-        <ng-template #loading>
-            <div><td><button type="button" class="fas fa-edit" disabled>Edit</button></td> 
-              <td><button type="button" class="btn btn-primary" (click)="deleteStudent(s.StudentId)" disabled>Delete</button></td>
-            </div>            
-           </ng-template>
-        </tr>
-      
-      </table>
-  </div>
-</div>
+      <div class="col-md-12 col-12 col-sm-12 col-xs-12">
+        <div class="box ml-n2 mt-2">
 
-</fieldset>
-</form>
-</body>
-</html>
-</div>
-</div> -->
-<!------------------------------------------------------------------------------------->
-
-
-
- <!-- <div class="container" >
-  <h2>Students Information Cards</h2> 
-  
-   <div class="card-deck"> 
-     <table>
-      <tbody>
-        <tr *ngFor = "let s of students">
-          <td colspan="3">
-              
-    <div class="card" >
-      <div class="form-row">
-        <div class="col-md-2">
-        <img class="card-img-top" src="img_avatar1.png" alt="Card image" style="width:100%">
-      </div>
-      <div class="col-md-4">
-        <p>Name: {{s.FullName}}</p>
-        <p>Course: {{s.Course}}</p>
-        <p>DateOfJoining: {{s.DateOfJoining | date:'mediumDate'}}</p>
-        <p>ContactNo: {{s.ContactNo}}</p>
-        <p>Course Completed Date: {{s.CourseCompletedDate | date:'mediumDate'}}</p>
-        <p>Course Completed: {{s.CourseCompleted === true ? "Completed":"Not Completed"}}</p>
-        <p>Fees Paid(Rs): {{s.FeesPaid}}</p>
-        <p>Remaining Fees: {{s.RemainingFees}}</p>
-        <p>Discount: {{s.Discount}}</p>
-        <p>Remark: {{s.Remark}}</p>
-      </div>
-       
-      </div>
-    </div>
- 
-  </td>
-  </tr>
-  </tbody>
-  </table> 
-</div> 
- </div> -->
-
-
-<!------------------------------------------------------------------------------------->
-
-<!-- <div class="card" style="width: 18rem;" *ngFor = "let s of students">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{s.FullName}}</h5>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
-    </div>
-  </div> -->
-
-   <!-- <div style="margin-top:50px">
-   
-    <h2 style="margin-left: 30px; font-weight:bold;font-family:'Trebuchet MS';font-size: 40px">Student</h2> -->
-   
-    <!-- <input type="text"  placeholder="Search" [(ngModel)]="filter" style="margin-left: 200px;width:300px; padding:20px "> -->
-  <!-- <button class="btn btn-secondary mb1 black bg-yellow float-right" title="Print" style="margin-right: 10px;" (click)="printPage()"><span
-      class="fas fa-print"></span></button> -->
-     
-     
-     
-  <!-- <a routerLink="/CreateStudent" class="btn btn-primary float-right" style="margin-right: 10px;" title="Create New" >Add Student</a> -->
-
-  
- 
-   <!-- <input type="text" placeholder="Search" class="float-right" style="margin-right: 10px; margin-top: 5px" [(ngModel)]="filter"  >  -->
-<!-- </div> -->
-     
-     
-<div class="row"  style=" margin-top:20px" >
-
-  <h2 style="margin-left: 30px; font-weight:bold;font-family:'Trebuchet MS';font-size: 40px">Student</h2>
-  <input type="text"  placeholder="Search" [(ngModel)]="filter" style="margin-left: 200px;width:300px; padding:20px ">
-  <a routerLink="/CreateStudent" class="btn btn-primary pull-right" data-toggle="tooltip" data-placement="bottom"
-    title="Add Staff" style="margin-left:50px;">
-    Add Student</a>&nbsp;
-    
-
-  <!-- <button type="btn" class="btn btn-sm pull-right" (click)="printPage()" data-toggle="tooltip"
-    data-placement="bottom" title="Print">
-    <span class="fa fa-print fa-2x" aria-hidden="true"></span></button> -->
-
-    <!-- <input type="text" class="pull-left" placeholder="Search" [(ngModel)]="filter"> -->
-</div>
- 
-
-      
-      <!-- <input type="search" class="float-right" placeholder="Search"> -->
- 
-      <!-- <h2>Students Information</h2>   -->
-
-  <div style="margin-top:50px"> 
-  
-  <div class="row">
-    <div class="col-sm-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }" >
-      <div class="card bg-light" >
-        <div class="card-body">
-          <div class="row">
-            <div class="col-sm-6">
-               <!-- <img class="img-circle" src="../../assets/images/MProfile.jpg" width="50px" height="50px"
-                alt="Card image cap">  -->
-              <img class="img-circle" src="{{s.Photo}}" width="70px" height="70px"
-                alt="Card image cap">
-            </div>
-            <div class="col-sm-6">
-              <h5 class="card-title">{{s.FullName}}</h5>
+          <div class="row mb-4 px-0">
+            <div class="col-md-10 mt-4 ">
+              <a routerLink="/TeacherCourses" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
+                title="home" style="font-weight:normal;font-size:18px;color: black">
+                Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true" style="font-size:20px"></i>
+              <a routerLink="/StudentList" data-toggle="tooltip" data-placement="bottom" title="student"
+                style="font-weight:normal;font-size:18px;color: black">
+                Student</a>&nbsp;
             </div>
           </div>
-          <p class="card-text">Course: {{s.Course}}</p>
-          <p class="card-text">Contact No: {{s.ContactNo}}</p>
-          <p class="card-text">Status: {{s.CourseCompleted === true ? "Completed":"Not Completed"}}</p>
-          <div class="row">
-            <div class="col-sm-6">
-                
+          <hr>
+          <div class="row m-3 ">
+            <div class="col-md-3  py-1">
+              <h2 class="h1 font-weight-medium  mt-3">Student</h2>
             </div>
-            <div class="col-sm-6">
-                <button type="button" class="fas fa-info" value="Details" title="Student Details" (click)="openStudentDetailsPopup(StudentDetails, s)" ></button>
-                &nbsp;
-                <button type="button" class="fas fa-edit" value="Edit" title="Edit" (click)="openEditStudentPopup(editStudent, s)" ></button>
-                &nbsp;
-                <button type="button" class="fas fa-times" value="Delete" title="Delete" (click)="deleteStudent(s.StudentId)"></button>
+            <div class="col-md-5 px-5 py-1 ">
+              <input type="text" placeholder="Search" [(ngModel)]="filter"
+                class=" mt-3 py-2 px-3 border-0 rounded-0 shadow-sm">
             </div>
-
+            <div class="col-md-4 px-2 pt-2 py-1 justify-content-end text-right">
+              <a routerLink="/CreateStudent"
+                class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
+                data-placement="bottom" title="Create New">
+                Add Student</a>&nbsp;
+            </div>
           </div>
         </div>
       </div>
     </div>
- 
-  </div>
-  </div>
- 
-
-  <ul class="pagination">  
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>  
-      </ul>
-    </div>
-    </div>
-    
 
 
 
-<ng-template #editStudent >
-  <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >
-        <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()" >
-          <div class="modal-header">
-              <h4 class="modal-title pull-left">Update Student</h4>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <table class="table">
-                  <tr>
-                      <td colspan="1">
-                      <div class="form-row"> 
-                          <div class="form-group col-md-6"> 
-                                  <label for="Gender">Gender</label>
-                              </div>
-                              <div class="form-group col-md-6"> 
-                                  <input type="text" class="form-control" formControlName="Gender" [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
-                                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
-                                    <div *ngIf="f.Gender.errors.required">Gender is required</div>
-                              </div>
-                                </div>
-                               
-                      </div>
-                      </td>
-                  </tr>
-  
-                  <tr>
-                    <td colspan="1">
-                        <div class="form-row">
-                            <div class="form-group col-md-6"> 
-                            <label for="firstName">Firstname</label> 
-                            </div>       
-                                <div class="form-group col-md-6">         
-                            <input type="text" class="form-control" formControlName="FirstName" [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
-                               <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-                                  <div *ngIf="f.FirstName.errors.required">First Name is required</div>
-                                </div>
-                              </div>
-                           
-                          </div>
-                         
-                          <div class="form-row">
-                              <div class="form-group col-md-6">
-                              <label for="middleName">Middlename</label> 
-                              </div>
-                              <div class="form-group col-md-6">
-                            <input type="text" class="form-control" formControlName="MiddleName" [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} " >
-                            <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
-                              <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
-                          </div>
-                              </div>
-                           
-                          </div>         
-                          <div class="form-row">
-                              <div class="form-group col-md-6">
-                              <label for="lastName">Lastname</label> 
-                              </div>
-                              <div class="form-group col-md-6">
-                              <input type="text" class="form-control"  formControlName="LastName" [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
-                              <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
-                                <div *ngIf="f.LastName.errors.required">Last Name is required</div>
-                            </div>
-                              </div>
-                              
-                            </div>                                      
-                   </td>
-                  </tr>
-                  <tr>
-                      <td colspan="1"> 
-                         <div class="form-row">
-                             <div class="form-group col-md-6">
-                                 <label class="col-md-6 control-label">DateOfBirth</label> 
-                                 <input type="date" id="DOB" class="form-control" formControlName="DOB" [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
-                                 
-                                 <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-                                    <div *ngIf="f.DOB.errors.required">DateOfBirth No is required</div>
-                              </div> 
-                                </div>
-                                 <div class="form-group col-md-6">
-                                 <label for="BloodGroup">Blood Group</label>
-                                    <select id="BloodGroup" class="form-control"  formControlName="BloodGroup" [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
-                                      <option>A+</option>
-                                      <option>B+</option>
-                                      <option>AB+</option>
-                                      <option>O+</option>
-                                      <option>A-</option>
-                                      <option>B-</option>
-                                      <option>O-</option>
-                                      <option>AB-</option>
-                                    </select>
-                                  </div>
-                                  <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
-                                      <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
-                                </div>
-                         </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td colspan="1">
-                         <div class="form-row">
-                             <div class="form-group col-md-6">
-                                <label class="col-md-6 control-label">ContactNo</label> 
-                               <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No" class="form-control"   [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }" >
-                               <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                                   <div *ngIf="f.ContactNo.errors.required">Contact No is required</div>
-                             </div>
-                             </div>
-                             
-                             <div class="form-group col-md-6">
-                                <label class="col-md-6 control-label">EmergencyNo</label> 
-                               <input type="number"  id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No" class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }" >
-                               <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
-                                   <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>                           
-                             </div>
-                             </div>
-                           </div>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td colspan="1">
-                           <div class="form-row">
-                               <div class="form-group col-md-2">
-                          <label for="inputAddress">Address</label>    
-                          </div>
-                          <div class="form-group col-md-10">      
-                               <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
-                                     <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
-                                         <div *ngIf="f.Address1.errors.required">Address is required</div>
-                                     </div>
-               
-                                     <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2"  [ngClass]="{ 'is-invalid': submitted && f.Address2.errors }">
-                                     <div *ngIf="submitted && f.Address2.errors" class="invalid-feedback">
-                                         <div *ngIf="f.Address2.errors.required">Address is required</div>
-                                     </div>
-                                     </div>
-                             </div>
-                        </td>
-                      </tr> 
-                      <tr>
-                          <td colspan="1">
-                             <div class="form-row">
-                                 <div class="form-group col-md-4">
-                                    <label class="col-md-4 control-label">City</label> 
-                                   <input type="text" class="form-control" id="City" formControlName="City"   [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
-                                   <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
-                                       <div *ngIf="f.City.errors.required"> Please provide a valid city.</div>
-                                   </div>
-                                 </div>
-                 
-                                 <div class="form-group col-md-4">
-                                    <label class="col-md-4 control-label">State</label> 
-                                   <select id="State" class="form-control" formControlName="State"  [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
-                                     <option>Maharashtra</option>
-                                   </select>
-                                   <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
-                                       <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
-                                   </div> 
-                                 </div>
-                                 <div class="form-group col-md-4">
-                                    <label class="col-md-2 control-label">ZipCode</label> 
-                                   <input type="number" class="form-control" id="STD" formControlName="ZipCode"   [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
-                                   <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
-                                       <div *ngIf="f.ZipCode.errors.required"> Please provide a valid STD Code.</div>
-                                   </div>
-                                 </div>
-                               </div>
-                          </td>
-                        </tr>
-                  <tr>
-                      <tr>
-                          <td colspan="1">
-                              <div class="form-row"> 
-                                  <div class="form-group col-md-2"> 
-                            <label for="inputPaddress">Permanent Address</label>  
-                                  </div> 
-                                <div class="form-group col-md-10">          
-                                 <input type="text" class="form-control" id="P_Address1" placeholder="Address 1" formControlName="P_Address1" [ngClass]="{'is-invalid': submitted && f.P_Address1.errors} ">
-                                 <div *ngIf="submitted && f.P_Address1.errors" class="invalid-feedback">
-                                    <div *ngIf="f.P_Address1.errors.required">Address is required</div>
-                                  </div>
-                                 <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2" formControlName="P_Address2" [ngClass]="{'is-invalid': submitted && f.P_Address2.errors} ">
-                                 <div *ngIf="submitted && f.P_Address2.errors" class="invalid-feedback">
-                                    <div *ngIf="f.P_Address2.errors.required">Address is required</div>
-                                  </div> 
-                                </div>
-                               </div>
-                          </td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">
-                               <div class="form-row">
-                                   <div class="form-group col-md-4">
-                                      <label class="col-md-4 control-label">P_City</label> 
-                                     <input type="text" class="form-control" id="P_City" formControlName="P_City" [ngClass]="{'is-invalid': submitted && f.P_City.errors} ">
-                                     <div *ngIf="submitted && f.P_City.errors" class="invalid-feedback">
-                                        <div *ngIf="f.P_City.errors.required">City is required</div>
-                                      </div>
-                                   </div>
-                   
-                                   <div class="form-group col-md-4">
-                                      <label class="col-md-4 control-label">P_State</label> 
-                                     <select id="P_State" class="form-control" formControlName="P_State" [ngClass]="{'is-invalid': submitted && f.P_State.errors} ">
-                                       <option selected>Select State...</option>
-                                       <option>Maharashtra</option>
-                                     </select>
-                                     <div *ngIf="submitted && f.P_State.errors" class="invalid-feedback">
-                                        <div *ngIf="f.P_State.errors.required">State is required</div>
-                                      </div>
-                                   </div>
-                                   <div class="form-group col-md-4">
-                                      <label class="col-md-4 control-label">P_STDCode</label> 
-                                     <input type="number" class="form-control" id="P_STDCode" formControlName="P_STDCode" [ngClass]="{'is-invalid': submitted && f.P_STDCode.errors} ">
-                                     <div *ngIf="submitted && f.P_STDCode.errors" class="invalid-feedback">
-                                        <div *ngIf="f.P_STDCode.errors.required">Code is required</div>
-                                      </div>
-                                    </div>
-                                   
-                                 </div>
-                            </td>
-                          </tr>
 
 
-                          <tr>
-                            <td colspan="1">
-                               <div class="form-row"> 
-                               <div class="form-group col-md-6">
-                                   <label class="col-md-6 control-label">Email</label> 
-                               </div>
-                               <div class="form-group col-md-6">
-                                   <input type="email" class="form-control" id="Email" formControlName="Email" [ngClass]="{'is-invalid': submitted && f.Email.errors} ">  
-                                   <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
-                                    <div *ngIf="f.Email.errors.required">Email is required</div>
-                                  </div> 
-                            </div>
-                           
-                            </div>
-                           </td>
-                          </tr>
+    <div class="row mt-3 px-3">
+      <div class="col-sm-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
+        <div class="card shadow px-2 mb-5 bg-white rounded-0" style="width: 24rem;">
+          <div class="card-body">
+            <div class="row border-bottom">
+              <div class="col-sm-4">
 
-                          <!-- <tr>
-                            <td colspan="1">
-                              <label for="IsDocumentSubmitted"> Upload Photo </label>
-                              <div> 
-                                  <input type="file" formControlName="Photo" (change)="handlePhotoInput($event)"
-                                  id="Documents" [ngClass]="{ 'is-invalid': submitted && f.Photo.errors }">
-                                  <button type="button" (click)="onUploadPhoto()">Upload</button>
-                              </div>
-                            </td>
-                          </tr> -->
-                         
-
-                          <tr>
-                            <td colspan="1">
-                              <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
-                              <div class="form-control" >
-                                <input type="radio" formControlName="IsDocumentSubmitted" [value]="true" name="IsDocumentSubmitted"
-                                  (click)="showUpload()">Yes                
-                              </div>
-                              <div class="form-control" >
-                                <input type="radio" formControlName="IsDocumentSubmitted" [value]="false" name="IsDocumentSubmitted"
-                                  (click)="hideUpload()">No           
-                              </div>
-                              <div *ngIf="showSelected">
-                                <input type="file" id="file" (change)="handleFileInput($event.target.files)" />
-                                <input type="button" value="Upload" (click)="uploadFileToActivity()">
-                              </div>
-                            </td>
-                          </tr>
-                 
-                    <!-- <tr>
-                      <td colspan="1">
-                         <div class="form-row"> 
-                         <div class="form-group col-md-6">
-                             <label class="col-md-6 control-label">PreviousWorkName</label> 
-                         </div>
-                         <div class="form-group col-md-6">
-                             <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName">   
-                      </div>
-                      </div>
-                     </td>
-                    </tr>
-                        <tr>
-                              <td colspan="1">
-                                 <div class="form-row"> 
-                                 <div class="form-group col-md-6">
-                                     <label class="col-md-6 control-label">PreviousExperience</label> 
-                                 </div>
-                                 <div class="form-group col-md-6">
-                                     <input type="number" class="form-control" id="PreviousExperience" formControlName="PreviousExperience">   
-                              </div>
-                              </div>
-                             </td>
-                            </tr>
-                            <tr>
-                                  <td colspan="1">
-                                     <div class="form-row"> 
-                                     <div class="form-group col-md-6">
-                                         <label class="col-md-6 control-label">DateOfLeaving</label> 
-                                     </div>
-                                     <div class="form-group col-md-6">
-                                         <input type="date" class="form-control"  id="DateOfLeaving" formControlName="DateOfLeaving">   
-                                  </div>
-                                  </div>
-                                 </td>
-                                </tr>
-                                <tr>
-                                  <td colspan="1">
-                                     <div class="form-row"> 
-                                     <div class="form-group col-md-6">
-                                         <label class="col-md-6 control-label">LeavingReason</label> 
-                                     </div>
-                                     <div class="form-group col-md-6">
-                                         <input type="text" class="form-control" id="LeavingReason" formControlName="LeavingReason"> 
-                                  </div>
-                                  </div>
-                                 </td>
-                                </tr> -->
-                 </table>
-            </div>
-             <div class="modal-footer">
-                <button type="button" type="submit" id="submit" class="btn btn-primary" >Save</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+                <img class="img-circle mr-4 mt-4" src="{{s.Photo}}" width="90px" height="90px" alt="Card image cap">
               </div>
-            </form>
-            </div>
-  
-       </ng-template> 
-
-
-
-
-       <ng-template #StudentDetails role="modal-dialog modal-xl">
-          <div data-keyboard="false" data-backdrop="static" aria-hidden="true" >             
-                <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()" >
-                   
-                  <div class="modal-header" >
-                      <h4 class="modal-title pull-left">Student Details</h4>
-                      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">                      
-                        <div class="form-row">
-                          <div class="form-group col-md-6">
-                              
-                              <div class="form-row"> 
-                                  <div class="form-group col-md-6"> 
-                                          <label for="Gender">Gender</label>
-                                      </div>
-                                      <div class="form-group col-md-6"> 
-                                          <input type="text" class="form-control" formControlName="Gender" disabled>
-                                        </div>
-                                       
-                              </div>
-                            
-                        
-          
-                          
-                            
-                                <div class="form-row">
-                                    <div class="form-group col-md-6"> 
-                                    <label for="firstName">Firstname</label> 
-                                    </div>       
-                                        <div class="form-group col-md-6">         
-                                    <input type="text" class="form-control" formControlName="FirstName" disabled>
-                                      </div>
-                                   
-                                  </div>
-                                 
-                                  <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                      <label for="middleName">Middlename</label> 
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" formControlName="MiddleName" disabled >
-                                      </div>
-                                   
-                                  </div>         
-                                  <div class="form-row">
-                                      <div class="form-group col-md-6">
-                                      <label for="lastName">Lastname</label> 
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                      <input type="text" class="form-control"  formControlName="LastName" disabled>
-                                      </div>
-                                      
-                                    </div>                                      
-
-                             
-                                 <div class="form-row">
-                                     <div class="form-group col-md-6">
-                                         <label class="col-md-6 control-label">DateOfBirth</label> 
-                                         <input type="date" id="DOB" class="form-control" formControlName="DOB" disabled>
-                                         
-                                        </div>
-                                         <div class="form-group col-md-6">
-                                         <label for="BloodGroup">Blood Group</label>
-                                            <select id="BloodGroup" class="form-control"  formControlName="BloodGroup" disabled>
-                                              <option>A+</option>
-                                              <option>B+</option>
-                                              <option>AB+</option>
-                                              <option>O+</option>
-                                              <option>A-</option>
-                                              <option>B-</option>
-                                              <option>O-</option>
-                                              <option>AB-</option>
-                                            </select>
-                                          </div>
-                                 </div>
-                             
-                          
-                                 <div class="form-row">
-                                     <div class="form-group col-md-6">
-                                        <label class="col-md-6 control-label">ContactNo</label> 
-                                       <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No" class="form-control" disabled >
-                                     </div>
-                                     
-                                     <div class="form-group col-md-6">
-                                        <label class="col-md-6 control-label">EmergencyNo</label> 
-                                       <input type="number"  id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No" class="form-control" disabled >
-                                     </div>
-                                   </div>
-
-                                   <div class="form-row"> 
-                                      <div class="form-group col-md-6">
-                                          <label class="col-md-6 control-label">Email</label> 
-                                      </div>
-                                      <div class="form-group col-md-6">
-                                          <input type="email" class="form-control" id="Email" formControlName="Email" disabled>  
-                                   </div>
-                                  
-                                   </div>
-                      
-                       
-                                   <!-- <div class="form-row">
-                                       <div class="form-group col-md-2">
-                                  <label for="inputAddress">Address</label>    
-                                  </div>
-                                  <div class="form-group col-md-10">      
-                                       <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" disabled>                     
-                                             <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2" disabled>
-                                             </div>
-                                     </div> -->
-                                     </div>
-                                     
-                                     <div class="form-group col-md-6">
-
-                                        <div class="form-row">
-                                            <div class="form-group col-md-2">
-                                       <label for="inputAddress">Address</label>    
-                                       </div>
-                                       <div class="form-group col-md-10">      
-                                            <input type="text" class="form-control" id="Address1" placeholder="Address 1" formControlName="Address1" disabled>                     
-                                                  <input type="text" class="form-control" id="Address2" formControlName="Address2" placeholder="Address 2" disabled>
-                                                  </div>
-                                          </div>
-
-                                     <div class="form-row">
-                                         <div class="form-group col-md-4">
-                                            <label class="col-md-4 control-label">City</label> 
-                                           <input type="text" class="form-control" id="City" formControlName="City" disabled>
-                                         </div>
-                         
-                                         <div class="form-group col-md-4">
-                                            <label class="col-md-4 control-label">State</label> 
-                                           <select id="State" class="form-control" formControlName="State" disabled>
-                                             <option>Maharashtra</option>
-                                           </select>
-                                         </div>
-                                         <div class="form-group col-md-4">
-                                            <label class="col-md-2 control-label">ZipCode</label> 
-                                           <input type="number" class="form-control" id="STD" formControlName="ZipCode" disabled>
-                                         </div>
-                                       </div>
-                               
-                                      <div class="form-row"> 
-                                          <div class="form-group col-md-2"> 
-                                    <label for="inputPaddress">Permanent Address</label>  
-                                          </div> 
-                                        <div class="form-group col-md-10">          
-                                         <input type="text" class="form-control" id="P_Address1" placeholder="Address 1" formControlName="P_Address1" disabled>
-                                         <input type="text" class="form-control" id=" P_Address2" placeholder="Address 2" formControlName="P_Address2" disabled>
-                                        </div>
-                                       </div>
-                                
-                                       <div class="form-row">
-                                           <div class="form-group col-md-4">
-                                              <label class="col-md-4 control-label">P_City</label> 
-                                             <input type="text" class="form-control" id="P_City" formControlName="P_City" disabled>
-                                           </div>
-                           
-                                           <div class="form-group col-md-4">
-                                              <label class="col-md-4 control-label">P_State</label> 
-                                             <select id="P_State" class="form-control" formControlName="P_State" disabled>
-                                               <option selected>Select State...</option>
-                                               <option>Maharashtra</option>
-                                             </select>
-                                           </div>
-                                           <div class="form-group col-md-4">
-                                              <label class="col-md-4 control-label">P_STDCode</label> 
-                                             <input type="number" class="form-control" id="P_STDCode" formControlName="P_STDCode" disabled>
-                                            </div>
-                                           
-                                         </div>
-                                  
-                                       <!-- <div class="form-row"> 
-                                       <div class="form-group col-md-6">
-                                           <label class="col-md-6 control-label">Email</label> 
-                                       </div>
-                                       <div class="form-group col-md-6">
-                                           <input type="email" class="form-control" id="Email" formControlName="Email" disabled>  
-                                    </div>
-                                   
-                                    </div> -->
-                                  
-                                      <label for="IsDocumentSubmitted"> Is Document Submitted? </label>
-                                      <div class="form-control" >
-                                        <input type="radio" formControlName="IsDocumentSubmitted" [value]="true" name="IsDocumentSubmitted"
-                                          disabled>Yes                
-                                      </div>
-                                      <div class="form-control" >
-                                        <input type="radio" formControlName="IsDocumentSubmitted" [value]="false" name="IsDocumentSubmitted"
-                                          disabled>No           
-                                      </div>
-
-                                  
-
-
-                                  <!-- <tr>
-                                    <td colspan="1">
-                                      <label for="UploadPhoto"> Photo Preview: </label>
-                                      <div > 
-                                         
-                                       
-                                          <img class="img-circle" formControlName="Photo" src="Photo" width="50px" height="50px"
-                                          >
-                                          
-                                         
-                                      </div>
-                                    </td>
-                                  </tr> -->
-                         
-                           
-                        
-                    </div>
-                    </div>
-                     <div class="modal-footer">
-                       
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
-                      </div>
-                    </div>
-                    </form>
+              <div class="col-sm-8">
+                <div class="row">
+                  <div class="col-sm-12 mt-4">
+                    <h5 class="card-title">{{s.FullName}}</h5>
                   </div>
-    
-         
-    </ng-template> 
-        
+                </div>
+
+                <div class="row justify-content-center pt-4">
+                  <div class="col-md-4 mb-2 mt-2">
+
+                    <div class="icon-sm mt-n4" (click)="openStudentDetailsPopup(StudentDetails, s)"
+                      data-toggle="tooltip" data-placement="bottom" title="View Student">
+                      <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512;" xml:space="preserve" width="45px">
+                        <g>
+                          <g>
+                            <path d="M508.177,245.995C503.607,240.897,393.682,121,256,121S8.394,240.897,3.823,245.995c-5.098,5.698-5.098,14.312,0,20.01
+                         C8.394,271.103,118.32,391,256,391s247.606-119.897,252.177-124.995C513.274,260.307,513.274,251.693,508.177,245.995z M256,361
+                         c-57.891,0-105-47.109-105-105s47.109-105,105-105s105,47.109,105,105S313.891,361,256,361z" />
+                          </g>
+                        </g>
+                        <g>
+                          <g>
+                            <path
+                              d="M271,226c0-15.09,7.491-28.365,18.887-36.53C279.661,184.235,268.255,181,256,181c-41.353,0-75,33.647-75,75
+                         c0,41.353,33.647,75,75,75c37.024,0,67.668-27.034,73.722-62.358C299.516,278.367,271,255.522,271,226z" />
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-4 mb-2 mt-3">
+
+                    <div class="icon-sm mt-n4" (click)="openEditStudentPopup(editStudent, s)" data-toggle="tooltip"
+                      data-placement="bottom" title="Edit Student">
+                      <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
+                        style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="30px">
+                        <g>
+                          <g>
+                            <g>
+                              <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
+                              <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+				C386.027,77.92,386.027,64.373,377.707,56.053z" />
+                            </g>
+                          </g>
+                        </g>
+                      </svg>
+                    </div>
+                    &nbsp;
+                  </div>
+                  <div class="col-md-4 mb-2 mt-3">
+
+                    <div class="icon-sm mt-n4" (click)="deleteStudent(s.StudentId)" data-toggle="tooltip"
+                      data-placement="bottom" title="Delete Student">
+                      <svg class="icon-red" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                        viewBox="0 0 24 24">
+                        <path
+                          d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
+                        </svg>
+                    </div>
+
+
+                  </div>
+                </div>
+
+              </div>
 
 
 
+            </div>
+
+
+            <div class="row">
+              <div class="col-sm-12 pt-2">
+                <p class="card-text"><b>Course : </b>{{s.Course}}</p>
+                <p class="card-text"><b>Contact No : </b>{{s.ContactNo}}</p>
+                <p class="card-text"><b>Status : </b>{{s.CourseCompleted === true ? "Completed":"Not Completed"}}</p>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-sm-6">
+      <button type="button" class="fas fa-info" value="Details" title="Student Details"
+        (click)="openStudentDetailsPopup(StudentDetails, s)"></button>
+      &nbsp;
+      <button type="button" class="fas fa-edit" value="Edit" title="Edit"
+        (click)="openEditStudentPopup(editStudent, s)"></button>
+      &nbsp;
+      <button type="button" class="fas fa-times" value="Delete" title="Delete"
+        (click)="deleteStudent(s.StudentId)"></button>
+    </div>
+
+
+
+    <ul class="pagination">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </ul>
+  </div>
+</div>
+
+
+
+
+<ng-template #editStudent role="modal-dialog modal-xl">
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left ml-4 h1">Update Student</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 px-5">
+            <div class="form-row pt-2">
+              <h4>Personal Details :</h4>
+            </div>
+            <div class="form-row pt-3">
+              <div class="form-group col-md-1">
+                <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" formControlName="FirstName"
+                  [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
+              </div>
+              <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+                <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" formControlName="MiddleName"
+                  [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
+              </div>
+              <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
+                <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" formControlName="LastName"
+                  [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
+                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                </div>
+                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 px-5">
+              <div class="form-row">
+                <div class="form-group col-md-1 p-0">
+                  <label for="Gender" class="mt-3 ml-3 h6 text-muted">Gender:</label>
+                </div>
+                <div class="form-group col-md-2">
+                  <input type="text" class="form-control border-0" formControlName="Gender"
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+
+                  </div>
+                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                    <div *ngIf="f.Gender.errors.required">Gender is required</div>
+                  </div>
+                </div>
+
+
+                <div class="form-group col-md-2">
+                  <label class="col-md-6 control-label" class="mt-3 h6 ml-5 text-muted">DateOfBirth :</label>
+
+                </div>
+                <div class="form-group col-md-3">
+                  <input type="date" id="DOB" class="form-control border-0" formControlName="DOB"
+                    [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
+                </div>
+                <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+                  <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
+                </div>
+
+
+
+                <div class="form-group col-md-2">
+                  <label for="BloodGroup" class="mt-3 h6 ml-5 text-muted">Blood Group :</label>
+
+                </div>
+                <div class="form-group col-md-1">
+                  <select id="BloodGroup" class="form-control border-0" formControlName="BloodGroup"
+                    [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
+                    <option>A+</option>
+                    <option>B+</option>
+                    <option>AB+</option>
+                    <option>O+</option>
+                    <option>A-</option>
+                    <option>B-</option>
+                    <option>O-</option>
+                    <option>AB-</option>
+                  </select>
+                </div>
+                <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
+                  <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!--First Edit End-->
+      <div class="row px-2">
+        <div class="col-md-12 px-5">
+          <div class="form-row py-1 pt-2">
+            <h4>Contact Info :</h4>
+          </div>
+          <div class="form-row  pt-3">
+            <div class="form-group col-md-2">
+              <label class="mt-3 h6 text-muted">Contact No :</label>
+            </div>
+            <div class="form-group col-md-3">
+              <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
+                class="form-control border-0" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
+            </div>
+            <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+              <div *ngIf="f.ContactNo.errors.required">Contact No is required</div>
+            </div>
+            <div class="form-group col-md-2">
+              <label class="mt-3 h6 text-muted">Emergency No :</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
+                class="form-control border-0" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
+            </div>
+
+            <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
+              <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row  px-2">
+        <div class="col-md-12 mt-3  px-5">
+          <div class="form-row mt-n1">
+            <div class="form-group col-md-2">
+              <label class="mt-3 h6 text-muted">Email ID :</label>
+            </div>
+            <div class="form-group col-md-6">
+              <input type="email" class="form-control border-0" id="Email" formControlName="Email"
+                [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
+            </div>
+            <div *ngIf="submitted && f.Email.errors">
+              <div *ngIf="f.Email.errors.required">Email is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!--Second Edit End-->
+      <div class="row  px-2">
+        <div class="col-md-12 px-5">
+          <div class="form-row py-1 pt-2">
+            <h4>Permanent Address :</h4> 
+          </div>
+          <div class="form-row pt-3">
+            <div class="form-group col-md-1">
+              <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control border-0" id="P_Address1" placeholder="Address 1"
+                formControlName="P_Address1" [ngClass]="{'is-invalid': submitted && f.P_Address1.errors} ">
+            </div>
+            <div *ngIf="submitted && f.P_Address1.errors">
+              <div *ngIf="f.P_Address1.errors.required">Address is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row px-2">
+        <div class="col-md-12 mt-3  px-5">
+          <div class="form-row mt-n1">
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted">State:</label>
+
+            </div>
+            <div class="form-group col-md-2">
+              <select id="P_State" class="form-control border-0" formControlName="P_State"
+                [ngClass]="{'is-invalid': submitted && f.P_State.errors} ">
+                <option selected>Select State...</option>
+                <option>Maharashtra</option>
+              </select>
+            </div>
+            <div *ngIf="submitted && f.P_State.errors">
+              <div *ngIf="f.P_State.errors.required">State is required</div>
+            </div>
+
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted ml-5">City:</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control border-0" id="P_City" formControlName="P_City"
+                [ngClass]="{'is-invalid': submitted && f.P_City.errors} ">
+            </div>
+            <div *ngIf="submitted && f.P_City.errors">
+              <div *ngIf="f.P_City.errors.required">City is required</div>
+            </div>
+
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted">PinCode:</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="number" class="form-control border-0" id="P_STDCode" formControlName="P_STDCode"
+                [ngClass]="{'is-invalid': submitted && f.P_STDCode.errors} ">
+            </div>
+            <div *ngIf="submitted && f.P_STDCode.errors">
+              <div *ngIf="f.P_STDCode.errors.required">PinCode is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+      <!--Third Edit End-->
+      <div class="row  px-2">
+        <div class="col-md-12 px-5">
+          <div class="form-row  py-1 pt-2">
+            <h4>Current Address :</h4>
+          </div>
+          <div class="form-row pt-3">
+            <div class="form-group col-md-1">
+              <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control border-0" id="Address1" placeholder="Address 1"
+                formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
+            </div>
+            <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
+              <div *ngIf="f.Address1.errors.required">Address is required</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row px-2">
+        <div class="col-md-12 mt-3  px-5">
+          <div class="form-row mt-n1">
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted">State:</label>
+            </div>
+            <div class="form-group col-md-2">
+              <select id="State" class="form-control border-0" formControlName="State"
+                [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
+                <option>Maharashtra</option>
+              </select>
+            </div>
+            <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+              <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
+            </div>
+
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted ml-5">City:</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="text" class="form-control border-0" id="City" formControlName="city"
+                [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+            </div>
+            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+              <div *ngIf="f.city.errors.required"> Please provide a valid city.</div>
+            </div>
+
+            <div class="form-group col-md-1">
+              <label class="mt-3 h6 text-muted">PinCode:</label>
+            </div>
+            <div class="form-group col-md-2">
+              <input type="number" class="form-control border-0" id="STD" formControlName="ZipCode"
+                [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
+            </div>
+            <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
+              <div *ngIf="f.ZipCode.errors.required"> Please provide a valid STD Code.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <!--Fourth Edit End-->
+      <div class="row  px-2">
+        <div class="col-md-12  mt-3 ">
+          <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">Course Details :</h4>
+
+          <div class="row  px-2">
+            <div class="col-md-12 pb-4 px-4">
+              <div class="form-row pt-3 p-2">
+                <div class="form-group col-md-2 px-3">
+                  <label class="mt-3 h6 text-muted">Course Type :</label>
+                </div>
+                <div class="form-group col-md-4 px-3">
+                  <input id="CourseType" class="form-control border-0" [value]="null" formControlName="CourseType"
+                    [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
+
+
+
+                  <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
+                    <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
+                  </div>
+                </div>
+                <div class="form-group col-md-2 px-3">
+                  <label class="mt-3 ml-1 h6 text-muted">Course Name :</label>
+                </div>
+                <div class="form-group col-md-4 px-3">
+                  <input id="Course" class="form-control border-0" [value]="null" formControlName="Course"
+                    [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
+
+
+                  <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
+                    <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+     
+      <!--fifth row end-->
+      <div class="modal-footer">
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #StudentDetails role="modal-dialog modal-xl">
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()">
+
+      <div class="modal-header">
+        <h2 class="modal-title pull-left">Student Details</h2>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-12 px-5">
+            <div class="form-row py-3">
+              <h4>Personal Details :</h4>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control text-dark border-0" formControlName="FirstName" disabled>
+
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control text-dark border-0 ml-n5" formControlName="MiddleName" disabled>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control text-dark border-0 ml-n5" formControlName="LastName" disabled>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3  px-5">
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label for="Gender" class="mt-3 h6 text-muted">Gender :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control text-dark border-0" formControlName="Gender" disabled>
+              </div>
+
+
+
+              <div class="form-group col-md-2">
+                <label class="col-md-6 control-label" class="mt-3 h6 ml-5 text-muted">DateOfBirth :</label>
+
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="DOB" class="form-control text-dark border-0" formControlName="DOB" disabled>
+              </div>
+
+
+
+              <div class="form-group col-md-2">
+                <label for="BloodGroup" class="mt-3 h6 ml-5 text-muted">Blood Group :</label>
+
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="BloodGroup" class="form-control text-dark border-0" formControlName="BloodGroup"
+                  disabled>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!--First End-->
+        <div class="row">
+          <div class="col-md-12 px-5">
+            <div class="form-row py-3">
+              <h4>Contact Details :</h4>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label class="mt-3 h6 text-muted">Contact No :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
+                  class="form-control border-0 ml-n5" disabled>
+
+              </div>
+              <div class="form-group col-md-2">
+                <label class="mt-3 h6 text-muted">Emergency No :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
+                  class="form-control border-0 ml-n5" disabled>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3  px-5">
+            <div class="form-row">
+              <div class="form-group col-md-2">
+                <label class="mt-3 h6 text-muted">Email ID :</label>
+              </div>
+              <div class="form-group col-md-6">
+                <input type="text" class="form-control border-0 ml-n5" id="Email" formControlName="Email" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!--Second End-->
+        <div class="row">
+          <div class="col-md-12 mt-3 ">
+            <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
+
+            <div class="row">
+              <div class="col-md-12 pb-4 px-4">
+                <div class="form-row">
+                  <div class="form-group col-md-2 px-3">
+                    <label class="mt-3 h6 text-muted">Course Type :</label>
+                  </div>
+                  <div class="form-group col-md-2 px-3">
+                    <input id="CourseType" class="form-control border-0" formControlName="CourseType "
+                      [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
+
+
+                    <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
+                      <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-2 px-3">
+                    <label class="mt-3 h6 text-muted">Course Name :</label>
+                  </div>
+                  <div class="form-group col-md-6 px-3">
+                    <input id="Course" class="form-control border-0" [value]="null" formControlName="Course"
+                      [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
+
+
+
+                  </div>
+                  <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
+                    <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <hr>
+        <!--fifth row end-->
+        <div class="row">
+          <div class="col-md-12 px-5">
+            <div class="form-row py-3">
+              <h4>Permanent Address :</h4>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="P_Address1" placeholder="Address 1"
+                  formControlName="P_Address1" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3  px-5">
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted">State:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="P_State" class="form-control border-0" formControlName="P_State" disabled>
+              </div>
+
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted ml-4">City:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="P_City" formControlName="P_City" disabled>
+              </div>
+
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted">PinCode:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="P_STDCode" formControlName="P_STDCode" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <!--Third End-->
+        <div class="row">
+          <div class="col-md-12 px-5">
+            <div class="form-row py-3">
+              <h4>Current Address :</h4>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="Address1" placeholder="Address 1"
+                  formControlName="Address1" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3  px-5">
+            <div class="form-row">
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted">State:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" id="State" class="form-control border-0" formControlName="State" disabled>
+              </div>
+
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted">City:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="City" formControlName="City" disabled>
+              </div>
+
+              <div class="form-group col-md-1">
+                <label class="mt-3 h6 text-muted">PinCode:</label>
+              </div>
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" id="STD" formControlName="ZipCode" disabled>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--Fourth End-->
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+
+      </div>
+    </form>
+  </div>
+
+
+</ng-template>
