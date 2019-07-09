@@ -55,21 +55,17 @@ export class TeacherCoursesComponent implements OnInit {
       Email: ['', Validators.required],
       PreviousExperience: [''],
       DateOfLeaving: [],
-      //LeavingReason: [],
       DOB: ['', Validators.required],
       Photo: [''],
       Address1: ['Kondhwa', Validators.required],
-      //Address2: [],
       gridCheck1: [],
       City: ['Pune', Validators.required],
       State: ['Maharashtra', Validators.required],
       STDCode: ['411048', Validators.required],
       P_Address1: ['', Validators.required],
-     // P_Address2: [],
       P_City: ['', Validators.required],
       P_State: ['', Validators.required],
       P_STDCode: ['', Validators.required],
-      //P_ContactNo: ['', Validators.required],
       EmergencyNo: ['', Validators.required],
       PreviousWorkName: [''],
       IsCv: [],
@@ -98,7 +94,6 @@ export class TeacherCoursesComponent implements OnInit {
   get login() { return this.staffLoginForm.controls; }
 
   onSubmit(template: TemplateRef<any>) {
-    debugger;
     // stop here if form is invalid
     if (this.registerStaffForm.invalid == true) {
       this.submitted = true;
@@ -109,7 +104,6 @@ export class TeacherCoursesComponent implements OnInit {
         this.coursetypeService.courseTypeList().subscribe(res => {
           this.CourseTypeList = res
         });
-        // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
         this.modalRef = this.modalService.show(template);
       }
       this.newEmail = this.registerStaffForm.controls.Email.value;
@@ -126,21 +120,16 @@ export class TeacherCoursesComponent implements OnInit {
         Email: this.registerStaffForm.controls.Email.value,
         PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
         DateOfLeaving: this.registerStaffForm.controls.DateOfLeaving.value,
-        //LeavingReason: this.registerStaffForm.controls.LeavingReason.value,
         DOB: this.registerStaffForm.controls.DOB.value,
-        //Photo: this.registerStaffForm.controls.Photo.value.name,
         Photo: this.teacherCoursesService.thumbnailUrl,
         Address1: this.registerStaffForm.controls.Address1.value,
-        //Address2: this.registerStaffForm.controls.Address2.value,
         City: this.registerStaffForm.controls.City.value,
         State: this.registerStaffForm.controls.State.value,
         STDCode: this.registerStaffForm.controls.STDCode.value,
         P_Address1: this.registerStaffForm.controls.P_Address1.value,
-       // P_Address2: this.registerStaffForm.controls.P_Address2.value,
         P_City: this.registerStaffForm.controls.P_City.value,
         P_State: this.registerStaffForm.controls.P_State.value,
         P_STDCode: this.registerStaffForm.controls.P_STDCode.value,
-       // P_ContactNo: this.registerStaffForm.controls.P_ContactNo.value,
         EmergencyNo: this.registerStaffForm.controls.EmergencyNo.value,
         PreviousWorkName: this.registerStaffForm.controls.PreviousWorkName.value,
         IsCv: this.registerStaffForm.controls.IsCv.value,
@@ -157,10 +146,8 @@ export class TeacherCoursesComponent implements OnInit {
 
   }
   openModal(template: TemplateRef<any>) {
-    debugger;
     if (this.registerStaffForm.controls.IsFixedPayment.value == true) {
       this.coursetypeService.courseTypeList();
-      // this.teacherCoursesService.GetCourseName(this.selectedCourseTypeValue);
       this.modalRef = this.modalService.show(template);
     }
   }
@@ -204,26 +191,21 @@ export class TeacherCoursesComponent implements OnInit {
   checkAll(event: any) {
     if (event.currentTarget.checked == true) {
       this.registerStaffForm.controls.P_Address1.setValue(this.registerStaffForm.controls.Address1.value),
-       // this.registerStaffForm.controls.P_Address2.setValue(this.registerStaffForm.controls.Address2.value),
         this.registerStaffForm.controls.P_City.setValue(this.registerStaffForm.controls.City.value),
         this.registerStaffForm.controls.P_State.setValue(this.registerStaffForm.controls.State.value),
         this.registerStaffForm.controls.P_STDCode.setValue(this.registerStaffForm.controls.STDCode.value)
-        //this.registerStaffForm.controls.P_ContactNo.setValue(this.registerStaffForm.controls.ContactNo.value)
 
     }
     else {
       this.registerStaffForm.controls.P_Address1.reset(),
-       // this.registerStaffForm.controls.P_Address2.reset(),
         this.registerStaffForm.controls.P_City.reset(),
         this.registerStaffForm.controls.P_State.reset(),
         this.registerStaffForm.controls.P_STDCode.reset()
-        //this.registerStaffForm.controls.P_ContactNo.reset()
     }
   }
 
 
   onAddCourses(staffLoginTemplate: TemplateRef<any>) {
-    debugger;
     let body = {
       CourseTypeId: this.selectedCourseTypeValue,
       CourseId: this.selectedCourseNameValue
@@ -247,7 +229,6 @@ export class TeacherCoursesComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   onStaffLogin() {
-    debugger;
     if (this.staffLoginForm.controls.Password.value != this.staffLoginForm.controls.VerifyPassword.value) {
       alert("Re-type Password");
     }
@@ -280,7 +261,6 @@ export class TeacherCoursesComponent implements OnInit {
   }
 
   onImageSelected(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       this.registerStaffForm.get('Photo').setValue(file);
@@ -289,7 +269,6 @@ export class TeacherCoursesComponent implements OnInit {
 
   // onUploadPhoto()
   // {
-  //   debugger;
   //   const formData = new FormData();
   //   formData.append('profile', this.registerStaffForm.get('Photo').value);
   //   this.teacherCoursesService.uploadPhoto(formData).subscribe(res=>{
@@ -300,7 +279,6 @@ export class TeacherCoursesComponent implements OnInit {
 
 
   onUploadPhoto() {
-    debugger;
     const formData = new FormData();
     formData.append('profile', this.registerStaffForm.get('Photo').value);
     this.teacherCoursesService.postPhoto(formData);
@@ -308,14 +286,12 @@ export class TeacherCoursesComponent implements OnInit {
   }
 
   onFileSelected(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       this.registerStaffForm.get('Document').setValue(file);
     }
   }
   onUploadFile() {
-    debugger;
     const formData = new FormData();
     formData.append('File', this.registerStaffForm.get('Document').value);
     this.teacherCoursesService.uploadFile(formData).subscribe(res => {

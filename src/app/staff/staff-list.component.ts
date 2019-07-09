@@ -54,23 +54,19 @@ export class StaffListComponent implements OnInit {
       DateOfLeaving: ['', Validators.required],
       DateOfJoining:['', Validators.required],
       CourseName: ['', Validators.required],
-      //LeavingReason: ['', Validators.required],
       FirstName: ['', Validators.required],
       LastName: ['', Validators.required],
       MiddleName: ['', Validators.required],
       DOB: ['', Validators.required],
       Photo: ['', Validators.required],
       Address1: ['', Validators.required],
-     // Address2: [''],
       City: ['', Validators.required],
       State: ['', Validators.required],
       STDCode: ['', Validators.required],
       P_Address1: ['', Validators.required],
-     // P_Address2: [''],
       P_City: ['', Validators.required],
       P_State: ['', Validators.required],
       P_STDCode: ['', Validators.required],
-      //P_ContactNo: ['', Validators.required],
       EmergencyNo: ['', Validators.required],
       PreviousWorkName: ['', Validators.required],
       BloodGroup: ['', Validators.required]
@@ -78,13 +74,10 @@ export class StaffListComponent implements OnInit {
 
 this.showStaffDetailsForm=this.fb.group({
       Gender: [],
-      //CourseType: [],
       ContactNo: [],
       Email: [],
       PreviousExperience: [],
       DateOfLeaving: [],
-      //Courses: [],
-      //LeavingReason: [],
       FirstName: [],
       LastName: [],
       MiddleName: [],
@@ -92,18 +85,15 @@ this.showStaffDetailsForm=this.fb.group({
       DOJ:[],
       Photo: [],
       Address1: [],
-      //Address2: [],
       City: [],
       CourseTypeName:[],
       CourseName:[],
       State: [],
       STDCode: [],
       P_Address1: [],
-     // P_Address2: [],
       P_City: [],
       P_State: [],
       P_STDCode: [],
-     // P_ContactNo: [],
       EmergencyNo: [],
       PreviousWorkName: [],
       BloodGroup: []
@@ -126,7 +116,6 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   onSubmitEditStaff() {
-    debugger;
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -144,23 +133,19 @@ this.showStaffDetailsForm=this.fb.group({
         CourseName: this.staffForm.controls.CourseName.value,
         DateOfLeaving: this.staffForm.controls.DateOfLeaving.value,
         DateOfJoining: this.staffForm.controls.DateOfJoining.value,
-       // LeavingReason: this.staffForm.controls.LeavingReason.value,
         FirstName: this.staffForm.controls.FirstName.value,
         MiddleName: this.staffForm.controls.MiddleName.value,
         LastName: this.staffForm.controls.LastName.value,
         DOB:formatDate( this.staffForm.controls.DOB.value, 'yyyy-MM-dd', 'en'),
         Photo: this.staffForm.controls.Photo.value,
         Address1: this.staffForm.controls.Address1.value,
-        //Address2: this.staffForm.controls.Address2.value,
         City: this.staffForm.controls.City.value,
         State: this.staffForm.controls.State.value,
         STDCode: this.staffForm.controls.STDCode.value,
         P_Address1: this.staffForm.controls.P_Address1.value,
-       // P_Address2: this.staffForm.controls.P_Address2.value,
         P_City: this.staffForm.controls.P_City.value,
         P_State: this.staffForm.controls.P_State.value,
         P_STDCode: this.staffForm.controls.P_STDCode.value,
-        //P_ContactNo: this.staffForm.controls.P_ContactNo.value,
         EmergencyNo: this.staffForm.controls.EmergencyNo.value,
         PreviousWorkName: this.staffForm.controls.PreviousWorkName.value,
         BloodGroup: this.staffForm.controls.BloodGroup.value,
@@ -197,19 +182,15 @@ this.showStaffDetailsForm=this.fb.group({
       PreviousWorkName: teacher.PreviousWorkName,
       PreviousExperience: teacher.PreviousExperience,
       DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),
-      //LeavingReason: teacher.LeavingReason,
       Photo: teacher.Photo,
       Address1: teacher.Address1,
-      //Address2: teacher.Address2,
       City: teacher.City,
       State: teacher.State,
       STDCode: teacher.STDCode,
       P_Address1: teacher.P_Address1,
-      //P_Address2: teacher.P_Address2,
       P_City: teacher.P_City,
       P_State: teacher.P_State,
       P_STDCode: teacher.P_STDCode,
-      //P_ContactNo: teacher.P_ContactNo,
       DateOfJoining:formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en'),
     }
     this.staffForm.patchValue(body);
@@ -233,7 +214,6 @@ this.showStaffDetailsForm=this.fb.group({
     var ans = confirm("Do you want to delete this staff: " + firstName + ' ' + lastName);
     if (ans) {
       this.staffListService.deleteStaff(staffID).subscribe(data => {
-        //alert("Staff deleted successfully");
         this.getAllStaff(this.user.InstituteId,this.user.BranchId);
       }, error => console.error(error))
     }
@@ -250,7 +230,6 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   getStaffDetails(showStaff: TemplateRef<any>, teacher) {
-    debugger;
    this.teacherId=teacher.StaffId;
    let body = {
     Gender: teacher.Gender,
@@ -270,19 +249,15 @@ this.showStaffDetailsForm=this.fb.group({
     PreviousWorkName: teacher.PreviousWorkName,
     PreviousExperience: teacher.PreviousExperience,
     DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),
-    //LeavingReason: teacher.LeavingReason,
     Photo: teacher.Photo,
     Address1: teacher.Address1,
-    //Address2: teacher.Address2,
     City: teacher.City,
     State: teacher.State,
     STDCode: teacher.STDCode,
     P_Address1: teacher.P_Address1,
-    //P_Address2: teacher.P_Address2,
     P_City: teacher.P_City,
     P_State: teacher.P_State,
     P_STDCode: teacher.P_STDCode,
-    //P_ContactNo: teacher.P_ContactNo,
     DOJ:formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en')
   }
   this.showStaffDetailsForm.patchValue(body);
@@ -291,7 +266,6 @@ this.showStaffDetailsForm=this.fb.group({
       class: 'modal-xl',
       animated: true,
       backdrop: 'static',
-      // class: 'modal-xl'
     });
   }
 
