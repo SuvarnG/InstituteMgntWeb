@@ -37,4 +37,9 @@ export class EnquiryReportService {
       const data: Blob = new Blob([buffer], {type: EXCEL_TYPE});
       FileSaver.saveAs(data, fileName + '_Report_' + new  Date().getTime() + EXCEL_EXTENSION);
     }
+
+    createEnquiryPDF(body){
+      debugger;
+      return this.httpClient.post(environment.APIBASEURL+'Enquiry/EnquiryPdf',body,httpOptions);
+    }
 }

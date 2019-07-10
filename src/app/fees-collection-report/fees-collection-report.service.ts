@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import { Utils } from '../Utils';
 import {FeesReport} from '../models/Students'
 import * as FileSaver from 'file-saver';
-//import {saveAs} from 'file-saver';
 import * as XLSX from 'xlsx';
 
 const httpOptions={

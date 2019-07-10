@@ -59,7 +59,7 @@
       </div>  -->
 
       <div class="col-lg-1">
-          <input type="button" (click)="pdf.saveAs('expenseTable_.pdf')" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
+          <input type="button" (click)="pdf.saveAs('expenseTable.pdf')" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
       </div> 
 
       <!-- <button class="btn btn-secondary"  (click)="pdf.saveAs('expenseTable_.pdf')">
@@ -74,9 +74,9 @@
 
  
       <div style="margin-top: 20px">
-        <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
+        <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
           <h4>Expense Report</h4>
-          <table class="expenseTable" style="border:1px solid black; width: 100%">
+          <table style="border:1px solid black; width: 100%">
             <tr style="border:1px solid black">
               <th>Branch Name</th>
               <th>Expense Name</th>
@@ -84,7 +84,7 @@
               <th>Date</th>
               <th>Paid By</th>
             </tr>
-            <tr *ngFor="let e of expenseReportList" style="border:1px solid black">
+            <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 25, currentPage: p }" style="border:1px solid black">
               <td>{{e.BranchName}}</td>
               <td>{{e.ExpenseName}}</td>
               <td>{{e.AmountPaid}}</td>
@@ -93,6 +93,9 @@
             </tr>
           </table>
         </kendo-pdf-export>
+        <ul class="pagination">  
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+            </ul>
       </div>
    
 

@@ -77,6 +77,7 @@ import { FeesCollectionReportComponent } from './fees-collection-report/fees-col
 import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
 import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
+import { ExportAsModule } from 'ngx-export-as';
 
 
 const appRoutes: Routes = [
@@ -145,7 +146,8 @@ const appRoutes: Routes = [
     SidenavLayoutModule,
     StudentListModule,
     StaffListModule,
-    PDFExportModule
+    PDFExportModule,
+    ExportAsModule
   ],
   providers:
     [sliderservice,

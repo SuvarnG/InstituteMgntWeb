@@ -4,7 +4,6 @@ import { environment } from 'src/environments/environment';
 import {ExpenseMaster,ExpenseReport,ExpenseReportList} from '../Model/Expenses'
 import { Utils } from '../Utils';
 import * as FileSaver from 'file-saver';
-//import {saveAs} from 'file-saver';
 import * as XLSX from 'xlsx';
 
 
@@ -28,8 +27,6 @@ export class ExpenseReportService {
     debugger;
       return this.httpClient.post<ExpenseReportList[]>(environment.APIBASEURL+'Expenses/GetExpenseReport',body,httpOptions)
   }
-
-  //var FileSaver = require('file-saver');
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);

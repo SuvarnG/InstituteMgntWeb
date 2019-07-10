@@ -74,9 +74,9 @@
 
  
       <div style="margin-top: 20px">
-        <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-          <h4>Enquiry Report</h4>
-          <table class="studentAdmissionTable" style="border:1px solid black; width: 100%">
+        <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
+          <h4>Student Admissions Report</h4>
+          <table style="border:1px solid black; width: 100%">
             <tr style="border:1px solid black">
               <th>Student Name</th>
               <th>Branch Name</th>
@@ -89,7 +89,7 @@
               <th>Total Fees</th>
               <th>Pending Fees</th>
             </tr>
-            <tr *ngFor="let s of studentAdmissionReportList" style="border:1px solid black">
+            <tr *ngFor="let s of studentAdmissionReportList | paginate: { itemsPerPage: 25, currentPage: p }" style="border:1px solid black">
               <td>{{s.StudentName}}</td>
               <td>{{s.BranchName}}</td>
               <td>{{s.CourseName}}</td>
@@ -103,6 +103,10 @@
             </tr>
           </table>
         </kendo-pdf-export>
+
+        <ul class="pagination">  
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>  
+            </ul>
       </div>
    
 

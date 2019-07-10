@@ -2,104 +2,113 @@
 
 <div class="row">
   <div class="col-md-2">
- 
-  <app-authorised-side-nav></app-authorised-side-nav>
-</div> 
+
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
 
-<div class="col-md-10">
+  <div class="col-md-10">
 
-  <form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
+    <form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
 
-    <h2>Enquiry Report</h2>
-    <div class="form-row">
-      <div class="col-lg-2">
+      <h2>Enquiry Report</h2>
+      <div class="form-row">
+        <div class="col-lg-2">
           <label>Branch Name:</label>
-          <select class="form-control"  formControlName="BranchName">
+          <select class="form-control" formControlName="BranchName">
             <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
           </select>
-      </div>
+        </div>
 
-      <div class="col-lg-2">
+        <div class="col-lg-2">
           <label>Course Name:</label>
           <select class="form-control" formControlName="CourseName">
-            <option *ngFor="let c of courseList" [value]="c.CourseId" >{{c.ShortName}}</option>
+            <option *ngFor="let c of courseList" [value]="c.CourseId">{{c.ShortName}}</option>
           </select>
-      </div>
+        </div>
 
-      <div class="col-lg-2">
+        <div class="col-lg-2">
           <label>From Date:</label>
-          <input type="date" class="form-control" formControlName="FromDate" [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
+          <input type="date" class="form-control" formControlName="FromDate"
+            [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
           <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
-              <div *ngIf="f.FromDate.errors.required">Date is required</div>
-            </div>
-      </div> 
+            <div *ngIf="f.FromDate.errors.required">Date is required</div>
+          </div>
+        </div>
 
-      <div class="col-lg-2">
+        <div class="col-lg-2">
           <label>To Date:</label>
-          <input type="date" class="form-control" formControlName="ToDate" [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
+          <input type="date" class="form-control" formControlName="ToDate"
+            [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
           <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
-              <div *ngIf="f.ToDate.errors.required">Date is required</div>
-            </div>
-      </div> 
+            <div *ngIf="f.ToDate.errors.required">Date is required</div>
+          </div>
+        </div>
 
-      
-      <div class="col-lg-1">
+
+        <div class="col-lg-1">
           <input type="submit" style="margin-top: 30px" value="Search" class="btn btn-primary">
-      </div> 
+        </div>
 
-      
-      <div class="col-lg-1">
-          <input type="button" class="btn btn-secondary" style="margin-top: 30px" value="Export Excel" (click)="exportAsXLSX()" >
-      </div> 
 
-      
-      <!-- <div class="col-lg-1">
+        <div class="col-lg-1">
+          <input type="button" class="btn btn-secondary" style="margin-top: 30px" value="Export Excel"
+            (click)="exportAsXLSX()">
+        </div>
+
+
+        <!-- <div class="col-lg-1">
           <input type="button" (click)="downloadPdf()" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
       </div>  -->
 
-      <div class="col-lg-1">
-          <input type="button" (click)="pdf.saveAs('enquiryTable_.pdf')" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
-      </div> 
+        <div class="col-lg-1">
+          <input type="button" (click)="pdf.saveAs('enquiryTable_.pdf')" value="Download PDF" class="btn btn-secondary"
+            style="margin-top: 30px">
+        </div>
 
-      <!-- <button class="btn btn-secondary"  (click)="pdf.saveAs('expenseTable_.pdf')">
+        <!-- <div class="col-lg-1">
+          <input type="button" (click)="createEnquiryPDF()" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
+      </div>  -->
+
+        <!-- <button class="btn btn-secondary"  (click)="pdf.saveAs('expenseTable_.pdf')">
           Save As PDF...
         </button> -->
 
 
 
 
-    </div>
-  </form>
-
- 
-      <div style="margin-top: 20px">
-        <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-          <h4>Enquiry Report</h4>
-          <table class="expenseTable" style="border:1px solid black; width: 100%">
-            <tr style="border:1px solid black">
-              <th>Branch Name</th>
-              <th>Enquirer Name</th>
-              <th>Course Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>Date Of Enquiry</th>
-            </tr>
-            <tr *ngFor="let e of enquiryReportList" style="border:1px solid black">
-              <td>{{e.BranchName}}</td>
-              <td>{{e.EnquirerName}}</td>
-              <td>{{e.CourseName}}</td>
-              <td>{{e.Address}}</td>
-              <td>{{e.City}}</td>
-              <td>{{e.DateOfEnquiry}}</td>
-            </tr>
-          </table>
-        </kendo-pdf-export>
       </div>
-   
-
-</div>
+    </form>
 
 
+    <div style="margin-top: 20px">
+      <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
+        <h4>Enquiry Report</h4>
+        <table style="border:1px solid black; width: 100%">
+          <tr style="border:1px solid black">
+            <th>Branch Name</th>
+            <th>Enquirer Name</th>
+            <th>Course Name</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>Date Of Enquiry</th>
+          </tr>
+          <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 25, currentPage: p }"
+            style="border:1px solid black">
+            <td>{{e.BranchName}}</td>
+            <td>{{e.EnquirerName}}</td>
+            <td>{{e.CourseName}}</td>
+            <td>{{e.Address}}</td>
+            <td>{{e.City}}</td>
+            <td>{{e.DateOfEnquiry}}</td>
+          </tr>
+        </table>
+      </kendo-pdf-export>
+
+      <ul class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </ul>
+    </div>
 
 
+  </div>

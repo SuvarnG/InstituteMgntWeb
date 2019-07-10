@@ -7,6 +7,7 @@ import {EnquiryReportInput,EnquiryReport} from '../models/EnquiryList'
 import { CoursesService } from '../courses/courses.service';
 import {Course} from '../model/CourseType'
 import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 @Component({
   selector: 'app-enquiry-report',
@@ -24,7 +25,8 @@ export class EnquiryReportComponent implements OnInit {
   constructor(private branchService:BranchService,
               private coursesService:CoursesService,
               private formBuilder:FormBuilder,
-              private enquiryReportService:EnquiryReportService) { }
+              private enquiryReportService:EnquiryReportService,
+              private exportAsService:ExportAsService) { }
 
   ngOnInit() {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res});
