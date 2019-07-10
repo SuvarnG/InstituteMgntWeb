@@ -109,7 +109,8 @@ export class CoursesComponent implements OnInit {
   AddCourses(Addtemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
 
   }
@@ -151,7 +152,8 @@ export class CoursesComponent implements OnInit {
     this.UpdateFormGroup.patchValue(course);
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 

@@ -155,7 +155,8 @@ export class EnquiryComponent implements OnInit {
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
 
     this.modalRef = this.modalService.show(editEnquiryModal, {
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
 
     this.GetCourseTypeList();
