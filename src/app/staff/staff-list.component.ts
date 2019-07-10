@@ -110,7 +110,6 @@ this.showStaffDetailsForm=this.fb.group({
     BranchId=this.user.BranchId;
     this.staffListService.getAllStaff(InstituteId,BranchId).subscribe(res => {
       this.staffMaster = res;
-      console.log(this.staffMaster);
     });
   }
   get f() {
@@ -118,7 +117,6 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   onSubmitEditStaff() {
-    debugger;
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -169,7 +167,6 @@ this.showStaffDetailsForm=this.fb.group({
   }
   
   edit(editStaff: TemplateRef<any>, teacher) {
-    debugger;
     this.teacherId = teacher.StaffId;
     let body = {
       Gender: teacher.Gender,
@@ -236,7 +233,6 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   getStaffDetails(showStaff: TemplateRef<any>, teacher) {
-    debugger;
    this.teacherId=teacher.StaffId;
    let body = {
     Gender: teacher.Gender,

@@ -213,9 +213,6 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
 })
   }
   onAddCourses(staffLoginTemplate: TemplateRef<any>) {
-    debugger;
-    console.log(this.courseForm);
-    console.log(this.registerStaffForm);
     this.IsFixedPayment= this.registerStaffForm.controls.IsFixedPayment.value;
     let body = {
       CourseTypeId: this.selectedCourseTypeValue,
@@ -231,9 +228,6 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
           Email: this.newEmail,
         }
         this.staffLoginForm.patchValue(body);
-      //  if(this.IsFixedPayment=="No") {
-      //   this.courseNameList
-      //  }
         this.teacherCoursesService.getRoleList().subscribe(res => {
           this.roles = res
         });

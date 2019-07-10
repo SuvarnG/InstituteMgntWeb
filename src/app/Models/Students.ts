@@ -110,7 +110,6 @@ export interface FeesTransactions{
     Id:number;
     CourseId:number;
     StudentId:number;
-    //CourseFees:number;
     DateOfPayment:Date;
     FeesPaid:number;
     FeesTakenBy:string;
@@ -120,7 +119,6 @@ export interface FeesTransactions{
 export interface User{
 
     Id:number;
-   // StudentId:number;
     FirstName:string;
     LastName:string;
     Email:string;
