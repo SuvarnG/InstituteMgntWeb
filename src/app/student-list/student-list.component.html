@@ -120,26 +120,16 @@
                           d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
                         </svg>
                     </div>
-
-
                   </div>
                 </div>
-
               </div>
-
-
-
             </div>
-
-
             <div class="row">
               <div class="col-sm-12 pt-2">
                 <p class="card-text"><b>Course : </b>{{s.Course}}</p>
                 <p class="card-text"><b>Contact No : </b>{{s.ContactNo}}</p>
                 <p class="card-text"><b>Status : </b>{{s.CourseCompleted === true ? "Completed":"Not Completed"}}</p>
               </div>
-
-
             </div>
           </div>
         </div>
@@ -157,16 +147,11 @@
         (click)="deleteStudent(s.StudentId)"></button>
     </div>
 
-
-
     <ul class="pagination">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </ul>
   </div>
 </div>
-
-
-
 
 <ng-template #editStudent role="modal-dialog modal-xl">
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
@@ -332,11 +317,11 @@
               <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="P_Address1" placeholder="Address 1"
-                formControlName="P_Address1" [ngClass]="{'is-invalid': submitted && f.P_Address1.errors} ">
+              <input type="text" class="form-control border-0" id="PAddress1"
+                formControlName="PAddress1" [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} ">
             </div>
-            <div *ngIf="submitted && f.P_Address1.errors">
-              <div *ngIf="f.P_Address1.errors.required">Address is required</div>
+            <div *ngIf="submitted && f.PAddress1.errors">
+              <div *ngIf="f.PAddress1.errors.required">Address is required</div>
             </div>
           </div>
         </div>
@@ -349,36 +334,36 @@
 
             </div>
             <div class="form-group col-md-2">
-              <select id="P_State" class="form-control border-0" formControlName="P_State"
-                [ngClass]="{'is-invalid': submitted && f.P_State.errors} ">
+              <select id="PState" class="form-control border-0" formControlName="PState"
+                [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
                 <option selected>Select State...</option>
                 <option>Maharashtra</option>
               </select>
             </div>
-            <div *ngIf="submitted && f.P_State.errors">
-              <div *ngIf="f.P_State.errors.required">State is required</div>
+            <div *ngIf="submitted && f.PState.errors">
+              <div *ngIf="f.PState.errors.required">State is required</div>
             </div>
 
             <div class="form-group col-md-1">
               <label class="mt-3 h6 text-muted ml-5">City:</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="P_City" formControlName="P_City"
-                [ngClass]="{'is-invalid': submitted && f.P_City.errors} ">
+              <input type="text" class="form-control border-0" id="PCity" formControlName="PCity"
+                [ngClass]="{'is-invalid': submitted && f.PCity.errors} ">
             </div>
-            <div *ngIf="submitted && f.P_City.errors">
-              <div *ngIf="f.P_City.errors.required">City is required</div>
+            <div *ngIf="submitted && f.PCity.errors">
+              <div *ngIf="f.PCity.errors.required">City is required</div>
             </div>
 
             <div class="form-group col-md-1">
               <label class="mt-3 h6 text-muted">PinCode:</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="number" class="form-control border-0" id="P_STDCode" formControlName="P_STDCode"
-                [ngClass]="{'is-invalid': submitted && f.P_STDCode.errors} ">
+              <input type="number" class="form-control border-0" id="PSTDCode" formControlName="PSTDCode"
+                [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} ">
             </div>
-            <div *ngIf="submitted && f.P_STDCode.errors">
-              <div *ngIf="f.P_STDCode.errors.required">PinCode is required</div>
+            <div *ngIf="submitted && f.PSTDCode.errors">
+              <div *ngIf="f.PSTDCode.errors.required">PinCode is required</div>
             </div>
           </div>
         </div>
@@ -425,7 +410,7 @@
               <label class="mt-3 h6 text-muted ml-5">City:</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="City" formControlName="city"
+              <input type="text" class="form-control border-0" id="City" formControlName="City"
                 [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
             </div>
             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
@@ -436,7 +421,7 @@
               <label class="mt-3 h6 text-muted">PinCode:</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="number" class="form-control border-0" id="STD" formControlName="ZipCode"
+              <input type="number" class="form-control border-0" id="ZipCode" formControlName="ZipCode"
                 [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
             </div>
             <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
@@ -458,11 +443,15 @@
                   <label class="mt-3 h6 text-muted">Course Type :</label>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input id="CourseType" class="form-control border-0" [value]="null" formControlName="CourseType"
-                    [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
-
-
-
+                    <select id="CourseType" class="form-control" formControlName="CourseType" name="CourseType"
+                    (change)="selectCourseType($event)" [value]="f.CourseType.value">
+                    <option *ngFor="let courseType of  CourseTypeList"
+                      [value]="courseType.CourseTypeId">
+                      {{courseType.CourseTypeName}}
+                    </option>
+                  </select>
+                  <!-- <input id="CourseType" class="form-control border-0" formControlName="CourseType"
+                    [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }"> -->
                   <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
                     <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
                   </div>
@@ -471,8 +460,14 @@
                   <label class="mt-3 ml-1 h6 text-muted">Course Name :</label>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input id="Course" class="form-control border-0" [value]="null" formControlName="Course"
-                    [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
+                    <select id="Course" class="form-control" formControlName="Course" name="Course"
+                      [value]="f.Course.value">
+                    <option *ngFor="let courselist of courseNameList"
+                      [value]="courselist.CourseId">
+                      {{courselist.CourseName}}</option>
+                  </select>
+                  <!-- <input id="Course" class="form-control border-0" formControlName="Course"
+                    [ngClass]="{ 'is-invalid': submitted && f.Course.errors }"> -->
 
 
                   <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
@@ -496,9 +491,6 @@
     </form>
   </div>
 </ng-template>
-
-
-
 
 <ng-template #StudentDetails role="modal-dialog modal-xl">
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
@@ -532,9 +524,6 @@
               </div>
 
             </div>
-
-
-
           </div>
         </div>
         <div class="row">
@@ -624,8 +613,8 @@
                     <label class="mt-3 h6 text-muted">Course Type :</label>
                   </div>
                   <div class="form-group col-md-2 px-3">
-                    <input id="CourseType" class="form-control border-0" formControlName="CourseType "
-                      [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
+                    <input id="CourseType" class="form-control border-0" formControlName="CourseType"
+                      [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }" disabled>
 
 
                     <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
@@ -639,11 +628,8 @@
                     <label class="mt-3 h6 text-muted">Course Name :</label>
                   </div>
                   <div class="form-group col-md-6 px-3">
-                    <input id="Course" class="form-control border-0" [value]="null" formControlName="Course"
-                      [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
-
-
-
+                    <input id="Course" class="form-control border-0" formControlName="Course"
+                      [ngClass]="{ 'is-invalid': submitted && f.Course.errors }" disabled>
                   </div>
                   <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
                     <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
@@ -667,8 +653,8 @@
                 <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
               </div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control border-0" id="P_Address1" placeholder="Address 1"
-                  formControlName="P_Address1" disabled>
+                <input type="text" class="form-control border-0" id="PAddress1" 
+                  formControlName="PAddress1" disabled>
               </div>
             </div>
           </div>
@@ -680,21 +666,21 @@
                 <label class="mt-3 h6 text-muted">State:</label>
               </div>
               <div class="form-group col-md-2">
-                <input type="text" id="P_State" class="form-control border-0" formControlName="P_State" disabled>
+                <input type="text" id="PState" class="form-control border-0" formControlName="PState" disabled>
               </div>
 
               <div class="form-group col-md-1">
                 <label class="mt-3 h6 text-muted ml-4">City:</label>
               </div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control border-0" id="P_City" formControlName="P_City" disabled>
+                <input type="text" class="form-control border-0" id="PCity" formControlName="PCity" disabled>
               </div>
 
               <div class="form-group col-md-1">
                 <label class="mt-3 h6 text-muted">PinCode:</label>
               </div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control border-0" id="P_STDCode" formControlName="P_STDCode" disabled>
+                <input type="text" class="form-control border-0" id="PSTDCode" formControlName="PSTDCode" disabled>
               </div>
             </div>
           </div>
@@ -738,7 +724,7 @@
                 <label class="mt-3 h6 text-muted">PinCode:</label>
               </div>
               <div class="form-group col-md-2">
-                <input type="text" class="form-control border-0" id="STD" formControlName="ZipCode" disabled>
+                <input type="text" class="form-control border-0" id="ZipCode" formControlName="ZipCode" disabled>
               </div>
             </div>
           </div>

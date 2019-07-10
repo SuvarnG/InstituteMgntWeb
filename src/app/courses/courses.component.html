@@ -205,7 +205,7 @@
       <div class="form-group">
         <label for="ShortName">Course  Name :</label>
        <select name="ShortName" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
-        fu.ShortName.errors }" (change)="getFullName($event.target.value)" [value]="CourseId.value">
+        fu.ShortName.errors }" (change)="getFullName($event.target.value)" [value]="ShortName.value">
          <option [value]="null">select Courses</option>
           <option *ngFor="let course of courses" [value]="course.CourseId">
             {{course.ShortName}}
