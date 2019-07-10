@@ -36,10 +36,12 @@ export interface StaffMaster {
     StaffName:string
     BranchId:number
     InstituteId:number
+    Salary:number
 }
 
 export interface TeacherCourse{
     TeacherID:number
     CourseTypeId:number
     CourseId:number
+    Salary:number
 }

@@ -54,6 +54,7 @@ export class StaffListComponent implements OnInit {
       DateOfLeaving: ['', Validators.required],
       DateOfJoining:['', Validators.required],
       CourseName: ['', Validators.required],
+      Salary:['', Validators.required],
       FirstName: ['', Validators.required],
       LastName: ['', Validators.required],
       MiddleName: ['', Validators.required],
@@ -88,6 +89,7 @@ this.showStaffDetailsForm=this.fb.group({
       City: [],
       CourseTypeName:[],
       CourseName:[],
+      Salary:[],
       State: [],
       STDCode: [],
       P_Address1: [],
@@ -116,6 +118,7 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   onSubmitEditStaff() {
+    debugger;
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -126,6 +129,7 @@ this.showStaffDetailsForm=this.fb.group({
       let body = {
         Gender: this.staffForm.controls.Gender.value,
         CourseTypeName: this.staffForm.controls.CourseTypeName.value,
+        Salary:this.staffForm.controls.Salary.value,
         ContactNo: this.staffForm.controls.ContactNo.value,
         Email: this.staffForm.controls.Email.value,
         StaffId: this.teacherId,
@@ -165,6 +169,7 @@ this.showStaffDetailsForm=this.fb.group({
   }
   
   edit(editStaff: TemplateRef<any>, teacher) {
+    debugger;
     this.teacherId = teacher.StaffId;
     let body = {
       Gender: teacher.Gender,
@@ -179,6 +184,7 @@ this.showStaffDetailsForm=this.fb.group({
       EmergencyNo: teacher.EmergencyNo,
       CourseTypeName: teacher.CourseTypeName,
       CourseName: teacher.CourseName,
+      Salary:teacher.Salary,
       PreviousWorkName: teacher.PreviousWorkName,
       PreviousExperience: teacher.PreviousExperience,
       DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),
@@ -230,6 +236,7 @@ this.showStaffDetailsForm=this.fb.group({
   }
 
   getStaffDetails(showStaff: TemplateRef<any>, teacher) {
+    debugger;
    this.teacherId=teacher.StaffId;
    let body = {
     Gender: teacher.Gender,
@@ -246,6 +253,7 @@ this.showStaffDetailsForm=this.fb.group({
     CourseId: teacher.CourseId,
     CourseTypeName:teacher.CourseTypeName,
     CourseName:teacher.CourseName,
+    Salary:teacher.Salary,
     PreviousWorkName: teacher.PreviousWorkName,
     PreviousExperience: teacher.PreviousExperience,
     DateOfLeaving: formatDate(teacher.DateOfLeaving, 'yyyy-MM-dd', 'en'),

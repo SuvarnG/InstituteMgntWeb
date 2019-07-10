@@ -138,6 +138,7 @@ export interface Courses{
     CourseId:number;
     CourseName:string;
     Fees:number;
+    Percentage:number;
 }
 
 export interface CourseFees{

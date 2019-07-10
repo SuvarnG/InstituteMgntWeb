@@ -1,4 +1,4 @@
-import { Courses, CourseType } from './../Models/Students';
+import { Courses, CourseType, CourseFees } from './../Models/Students';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -34,6 +34,9 @@ export class TeacherCoursesComponent implements OnInit {
   courseNameList: Courses[];
   CourseTypeList: CourseType[];
   roles: Roles[];
+IsFixedPayment:boolean;
+Salary:CourseFees[];
+
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder,
@@ -57,11 +60,11 @@ export class TeacherCoursesComponent implements OnInit {
       DateOfLeaving: [],
       DOB: ['', Validators.required],
       Photo: [''],
-      Address1: ['Kondhwa', Validators.required],
+      Address1: ['', Validators.required],
       gridCheck1: [],
-      City: ['Pune', Validators.required],
-      State: ['Maharashtra', Validators.required],
-      STDCode: ['411048', Validators.required],
+      City: ['', Validators.required],
+      State: ['', Validators.required],
+      STDCode: ['', Validators.required],
       P_Address1: ['', Validators.required],
       P_City: ['', Validators.required],
       P_State: ['', Validators.required],
@@ -72,14 +75,15 @@ export class TeacherCoursesComponent implements OnInit {
       IsFixedPayment: [],
       Document: [],
       BloodGroup: ['', Validators.required],
-      coursesArray: this.formBuilder.array([
-        this.addNewRowForm()
-      ])
+      // coursesArray: this.formBuilder.array([
+      //   this.addNewRowForm()
+      // ])
     });
 
     this.courseForm = this.formBuilder.group({
       CourseType: ['', Validators.required],
-      CourseName: ['', Validators.required]
+      CourseName: ['', Validators.required],
+      Salary:['']
     });
     this.staffLoginForm = this.formBuilder.group({
       FirstName: ['', Validators.required],
@@ -99,13 +103,11 @@ export class TeacherCoursesComponent implements OnInit {
       this.submitted = true;
       return;
     }
-    else {
-      if (this.registerStaffForm.controls.IsFixedPayment.value == "false") {
-        this.coursetypeService.courseTypeList().subscribe(res => {
-          this.CourseTypeList = res
-        });
+    else {     
+         this.coursetypeService.courseTypeList().subscribe(res => {
+           this.CourseTypeList = res
+         });
         this.modalRef = this.modalService.show(template);
-      }
       this.newEmail = this.registerStaffForm.controls.Email.value;
       this.FName = this.registerStaffForm.controls.FirstName.value;
       this.LName = this.registerStaffForm.controls.LastName.value;
@@ -175,7 +177,8 @@ export class TeacherCoursesComponent implements OnInit {
   addNewRowForm(): FormGroup {
     return this.formBuilder.group({
       CourseType: [],
-      CourseName: []
+      CourseName: [],
+      Salary:[]
     });
   }
   selectCourseType(event) {
@@ -204,11 +207,20 @@ export class TeacherCoursesComponent implements OnInit {
     }
   }
 
-
+  getSalaryFromCourseName(event){
+this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).subscribe(res=>{
+  this.Salary=res
+})
+  }
   onAddCourses(staffLoginTemplate: TemplateRef<any>) {
+    debugger;
+    console.log(this.courseForm);
+    console.log(this.registerStaffForm);
+    this.IsFixedPayment= this.registerStaffForm.controls.IsFixedPayment.value;
     let body = {
       CourseTypeId: this.selectedCourseTypeValue,
-      CourseId: this.selectedCourseNameValue
+      CourseId: this.selectedCourseNameValue,
+      Salary:this.courseForm.controls.Salary.value
     }
     this.teacherCoursesService.addTeacherCourses(body)
       .subscribe((data) => {
@@ -219,6 +231,9 @@ export class TeacherCoursesComponent implements OnInit {
           Email: this.newEmail,
         }
         this.staffLoginForm.patchValue(body);
+      //  if(this.IsFixedPayment=="No") {
+      //   this.courseNameList
+      //  }
         this.teacherCoursesService.getRoleList().subscribe(res => {
           this.roles = res
         });

@@ -405,22 +405,25 @@
       <table>
         <thead>
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <th>Course Type</th>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <th>Course Name</th>
             </div>
+            <div class="form-group col-md-4">
+                <th>Salary</th>
+              </div>
           </div>
         </thead>
         <tbody>
           <tr>
             <td colspan="1" style="padding:10 px">
-              <div formArrayName="coursesArray"
+              <!-- <div formArrayName="coursesArray"
                 *ngFor="let course of registerStaffForm.get('coursesArray').controls; let i=index">
-                <div fromGroupName="i">
+                <div fromGroupName="i"> -->
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <select id="CourseType" class="form-control" formControlName="CourseType"
                         (change)="selectCourseType($event)">
                         <option *ngFor="let courseType of  CourseTypeList"
@@ -429,14 +432,26 @@
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <select id="CourseName" class="form-control" formControlName="CourseName"
-                        (change)="selectCourseName($event)" [disabled]="disabled">
+                        (change)="selectCourseName($event); getSalaryFromCourseName($event)" [disabled]="disabled">
                         <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>
                       </select>
                     </div>
+                    <div class="form-group col-md-4" *ngIf="!IsFixedPayment;then  thenBlock else elseBlock">    
+                      </div>        
+                          <ng-template #thenBlock>
+                             <div *ngFor="let s of Salary"> 
+                               <input  type="text" id="Salary" class="form-control" formControlName="Salary" >
+                                 <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
+                             </div>
+                          </ng-template>
+                         
+                      <ng-template #elseBlock>
+                          <input  type="text" id="Salary" class="form-control" formControlName="Salary">
+                         </ng-template>
                     <!-- <div class="form-group col-md-2">
                       <button type="button" class="btn btn-primary btn-sm" id="btnAdd"
                         (click)="addNewRow()">Add</button>
@@ -446,8 +461,8 @@
                         (click)="removeCourse(i)">Del</button>
                     </div> -->
                   </div>
-                </div>
-              </div>
+                <!-- </div>
+              </div> -->
             </td>
           </tr>
         </tbody>
