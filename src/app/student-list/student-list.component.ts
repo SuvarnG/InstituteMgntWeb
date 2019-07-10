@@ -106,7 +106,7 @@ export class StudentListComponent implements OnInit {
         IsDocumentSubmitted:s.IsDocumentSubmitted
       })
 
-      this.modalRef=this.modalService.show(editStudent)
+      this.modalRef=this.modalService.show(editStudent,{class: 'modal-xl'})
     }
 
     onSubmitEditStudent(){

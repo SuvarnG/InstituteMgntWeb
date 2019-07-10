@@ -39,8 +39,7 @@
             </div> 
            
           </div> <hr>
-        <!-- <div> --> 
-         <!-- <hr width="120%">  -->
+        
       <div class="row m-3">
         <div class="col-md-3  py-1">
         <h2 class="h1 font-weight-medium  mt-3" >Staff</h2>
@@ -53,143 +52,115 @@
           title="Add Staff" >
           Add Staff</a>&nbsp;
         </div> 
-        <!-- <button type="submit" class="btn btn-info btn-lg btn-block py-1 px-5 rounded-0 f-20 ml-3"  >Login</button> -->
-
-        <!-- <button type="btn" class="btn btn-sm pull-right" (click)="printPage()" data-toggle="tooltip"
-          data-placement="bottom" title="Print">
-          <span class="fa fa-print fa-2x" aria-hidden="true"></span></button> -->
-
-          <!-- <input type="text" class="pull-left" placeholder="Search" [(ngModel)]="filter"> -->
+        
       </div>
        
-      <div class="row p-4 justify-content-around">
-   
-        <div class="card shadow px-2 mb-5 bg-white rounded" style="width: 24rem;"
-          *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
-          <div class="card-body">
-            <h5 class="card-title">
-              <!-- <button type="btn" class="btn btn-sm pull-right" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                data-placement="bottom" title="Edit Expense">
-                <span class="fa fa-pencil-square-o" aria-hidden="true"></span></button>
-              &nbsp;
-              <button type="btn" class="btn btn-sm pull-right" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
-                data-placement="bottom" title="Delete Staff">
-                <span class="fa fa-times" aria-hidden="true"></span></button> -->
-            </h5>
-            <div class="card-text">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                  <div style="display:-webkit-inline-box">
-                    <!-- thumbnailUrl -->
-                    <!-- <div *ngIf="t.Photo">
-                    <img [src]="t.Photo" class="img-circle" width="50" height="50">
-                  </div> -->
-                    <!-- Avtar -->
-
-
-<table  class="mb-2">
-  <tr>
-    <td>
-        <div>                     
-             <img src="{{t.Photo}}" class="img-circle" width="80" height="80"> 
-          </div>
-    </td>
-    <td>
-        <h6>
-            <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)" style="font-weight:bold;font-size:22px">
-              <span>{{t.FirstName+' '+t.LastName}}</span>
-            </a>
-            <span style="padding:10px;font-weight: normal" class="ml-2">{{t.ContactNo}}</span><br>
-            <span style="padding:10px;margin-top: 20px" class="ml-2">{{t.Email}}</span>
-          </h6>
-          
-    </td>
-  </tr>
-</table>
-                    
-                    <!-- <div *ngIf="t.Photo">
-                      <div *ngIf="t.Gender && t.Gender=='Male'">
-                        <img src="../../assets/images/MProfile.jpg" class="img-circle" width="50" height="50">
-                      </div>
-                      <div *ngIf="t.Gender && t.Gender=='Female'">
-                        <img src="../../assets/images/FProfile.png" class="img-circle" width="50" height="50">
-                      </div>
-                      <img src="{{t.Photo}}" class="img-circle" width="50" height="50">
-                    </div> -->
-                    
+      <div class="row my-4 px-5 pb-3">
+          <div class="col-sm-4 col-md-4 col-xl-4 mb-3" *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
+            <div class="card shadow mb-0 pb-0 bg-white rounded-0" style="width: 24rem;">
+              <div class="card-body mb-0 pb-0">
+                <div class="row border-bottom">
+                  <div class="col-sm-3">
+                      <img src="{{t.Photo}}" class="img-circle" width="80" height="80"> 
                   </div>
-                </li>
-                <!-- <li class="list-group-item"><i class="fa fa-mobile" aria-hidden="true"></i><span
-                    style="padding:5px">{{t.ContactNo}}</span>
-                </li> -->
-                <hr>
-                <div class="row justify-content-center">
-                  <div class="col-md-4 mb-2">
-                      <!-- <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
-                      <span class="fa fa-eye icon-md"  aria-hidden="true" ></span></button> -->
-                      <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
-                      <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                      viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="45px">
-                   <g>
-                     <g>
-                       <path d="M508.177,245.995C503.607,240.897,393.682,121,256,121S8.394,240.897,3.823,245.995c-5.098,5.698-5.098,14.312,0,20.01
-                         C8.394,271.103,118.32,391,256,391s247.606-119.897,252.177-124.995C513.274,260.307,513.274,251.693,508.177,245.995z M256,361
-                         c-57.891,0-105-47.109-105-105s47.109-105,105-105s105,47.109,105,105S313.891,361,256,361z"/>
-                     </g>
-                   </g>
-                   <g>
-                     <g>
-                       <path d="M271,226c0-15.09,7.491-28.365,18.887-36.53C279.661,184.235,268.255,181,256,181c-41.353,0-75,33.647-75,75
-                         c0,41.353,33.647,75,75,75c37.024,0,67.668-27.034,73.722-62.358C299.516,278.367,271,255.522,271,226z"/>
-                     </g>
-                   </g>
-</svg>                   
+                  <div class="col-sm-9">
+                    <div class="row">
+                      <div class="col-sm-12 ">
+                          <!-- <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)">
+                              <span>{{t.FirstName+' '+t.LastName}}</span>
+                            </a> -->
+                            <h5 class="card-title">{{t.FirstName+' '+t.LastName}}</h5>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 py-0">
+                          <p class="card-title">{{t.ContactNo}}</p>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-sm-12 py-0">
+                            <p class="card-title">{{t.Email}}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-
-                   </div>   
-                   <div class="col-md-4 mb-2">
-                      <!-- <button type="btn" class="btn btn-sm icon mt-n3  mb-n2" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
-                      
-                      <span class="fa fa-pencil-square-o icon-md"   aria-hidden="true" ></span></button> -->
-                      <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
-                      <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="30px">
-<g>
-	<g>
-		<g>
-			<polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			"/>
-			<path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
-				C386.027,77.92,386.027,64.373,377.707,56.053z"/>
-		</g>
-	</g>
-</g>
-</svg>
-</div>
-                    &nbsp;
+                    <div class="row justify-content-center text-center mb-0 pb-0">
+                      <div class="col-md-4 mt-3">
+    
+                        <div class="icon-sm" (click)="getStaffDetails(showStaff,t)"
+                          data-toggle="tooltip" data-placement="bottom" title="View Staff">
+                          <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                            style="enable-background:new 0 0 512 512;" xml:space="preserve" width="45px">
+                            <g>
+                              <g>
+                                <path d="M508.177,245.995C503.607,240.897,393.682,121,256,121S8.394,240.897,3.823,245.995c-5.098,5.698-5.098,14.312,0,20.01
+                             C8.394,271.103,118.32,391,256,391s247.606-119.897,252.177-124.995C513.274,260.307,513.274,251.693,508.177,245.995z M256,361
+                             c-57.891,0-105-47.109-105-105s47.109-105,105-105s105,47.109,105,105S313.891,361,256,361z" />
+                              </g>
+                            </g>
+                            <g>
+                              <g>
+                                <path
+                                  d="M271,226c0-15.09,7.491-28.365,18.887-36.53C279.661,184.235,268.255,181,256,181c-41.353,0-75,33.647-75,75
+                             c0,41.353,33.647,75,75,75c37.024,0,67.668-27.034,73.722-62.358C299.516,278.367,271,255.522,271,226z" />
+                              </g>
+                            </g>
+                          </svg>
+                        </div>
+    
+    
+                      </div>
+                      <div class="col-md-4 mt-4">
+    
+                        <div class="icon-sm" (click)="edit(editStaff,t)" data-toggle="tooltip"
+                          data-placement="bottom" title="Edit Staff">
+                          <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
+                            style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="30px">
+                            <g>
+                              <g>
+                                <g>
+                                  <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
+                                  <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+            C386.027,77.92,386.027,64.373,377.707,56.053z" />
+                                </g>
+                              </g>
+                            </g>
+                          </svg>
+                        </div>
+                        &nbsp;
+                      </div>
+                      <div class="col-md-4 mt-4">
+    
+                        <div class="icon-sm" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
+                          data-placement="bottom" title="Delete Staff">
+                          <svg class="icon-red" xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                            viewBox="0 0 24 24">
+                            <path
+                              d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
+                            </svg>
+                        </div>
+    
+    
+                      </div>
                     </div>
-                    <div class="col-md-4 mb-2">
-                     <!-- <button type="btn" class="btn btn-sm icon mt-n3 mb-n2" (click)="delete(t.StaffId,t.FirstName,t.LastName)" data-toggle="tooltip"
-                      data-placement="bottom" title="Delete Staff">
-                      <span class="fa fa-trash-o icon-md"  aria-hidden="true" ></span></button>  -->
-                      <div class="icon-md mt-n4" (click)="edit(editStaff,t)" data-toggle="tooltip"
-                      data-placement="bottom" title="Edit Expense">
-                      <svg class="icon-red" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z"/></svg>
-                    </div>
-                      
+    
                   
-                </div>  
-              </div>
-              </ul>
+    
+    
+    
+                </div>
+    
+    
+              
+              
             </div>
           </div>
+    
         </div>
-   
-      </div>
+
     <!-- </div> -->
     <ul class="pagination">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
@@ -607,7 +578,7 @@
 <ng-template #showStaff>
 
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-      <div class="modal-dialog modal-xl">
+      <!-- <div class="modal-dialog modal-xl"> -->
     <div class="modal-header ">
       <h2 class="modal-title pull-left ml-4">Staff Details</h2>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
@@ -839,10 +810,10 @@
                     
         
                       <div class="form-group col-md-2">
-                          <label class="mt-3 h6 text-muted">Previous Experience:</label>
+                          <label class="mt-3 h6 text-muted ">Previous Experience:</label>
                         </div>
                         <div class="form-group col-md-1">
-                            <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
+                            <input type="text" class="form-control border-0" id="PreviousExperience" formControlName="PreviousExperience"
                     disabled>
                         </div>
         
@@ -850,14 +821,20 @@
                           </div>
                   </div>
                 </div>
+              
                 <hr>
+                <!-- <div class="modal-footer">
+                    <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
+                    <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+                      (click)="modalRef.hide()">Cancel</button>
+                </div> -->
                 <!--Fifth End-->
+                 <div class="modal-footer">
+                    <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+                    (click)="modalRef.hide()">Cancel</button>
+                </div>
       </form>
     </div>
-    <div class="modal-footer">
-      <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-              (click)="modalRef.hide()">Cancel</button>
-    </div>
-  </div>
-  </div>
+</div>
+  
 </ng-template>

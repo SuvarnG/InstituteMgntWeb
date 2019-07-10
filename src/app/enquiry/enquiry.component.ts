@@ -99,7 +99,8 @@ export class EnquiryComponent implements OnInit {
       this.GetCourseTypeList();
     }
     this.modalRef = this.modalService.show(CreateEnquiryModal, {
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 

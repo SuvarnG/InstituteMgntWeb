@@ -16,15 +16,14 @@
       <div class="row">
         <div class="col-md-12 shadow my-3">
           <h4 class=" font-weight-medium  py-4 px-3">Personal Info :</h4>
-
+          
           <div class="row">
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row">
-                <!-- <div class="form-group col-md-1">
-          <label for="fullName">Name</label>
-        </div> -->
+                
                 <div class="form-group col-md-2 px-3">
-                  <select id="Gender" formControlName="Gender" class="form-control" placeholder="Name">
+                  <select id="Gender" formControlName="Gender" [value]="null" class="form-control" placeholder="Name">
+                    <option [value]="null">Gender</option>
                     <option>MR.</option>
                     <option value="Female">Mrs.</option>
                     <option value="Female">Miss</option>
@@ -142,9 +141,9 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4 px-3">
-                  <select id="State" class="form-control" formControlName="State"
+                  <select id="State" class="form-control" [value]="null" formControlName="State"
                     [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
-                    <!-- <option [value]="null">Select State...</option> -->
+                    <option  [value]="null">Select State</option>
                     <option value="Maharashtra">Maharashtra</option>
                   </select>
                   <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
@@ -199,9 +198,9 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4 px-3">
-                  <select id="State" class="form-control" formControlName="State"
+                  <select id="State" class="form-control" [value]="null" formControlName="State"
                     [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
-                    <!-- <option [value]="null">Select State...</option> -->
+                     <option [value]="null">Select State</option>
                     <option value="Maharashtra">Maharashtra</option>
                   </select>
                   <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
@@ -295,17 +294,17 @@
                 <div class="col-md-6 mt-4 px-3">
                   <label for="inpuIsCV" class="h6">Is CV</label>
                   <div class="custom-control custom-radio custom-control-inline ml-4">
-                    <input type="radio" class="custom-control-input " id="defaultInline1" value="true" name="IsCv"
-                      formControlName="IsCv" (click)="Show()">
-                    <label class="customtro-control-label" for="defaultInline1">Yes</label>
-                  </div>
-                  <div class="custom-conl custom-radio custom-control-inline">
+                      <input type="radio" class="custom-control-input" id="defaultInline1" value="true"
+                        name="IsCv" formControlName="IsCv" (click)="Show()">
+                      <label class="custom-control-label" for="defaultInline1">Yes</label>
+                    </div>
+                  <div class="custom-conl custom-radio custom-control-inline ml-4">
                     <input type="radio" class="custom-control-input" id="defaultInline2" value="false" name="IsCv"
                       formControlName="IsCv" (click)="Hide()" [checked]="true">
                     <label class="custom-control-label" for="defaultInline2">No</label>
                   </div>
                 </div>
-                <div class="col-md-6 px-3" *ngIf='shown'>
+                <div class="col-md-6 mt-4  px-3" *ngIf='shown'>
                   <input type="file" formControlName="Document" id="customFile" (change)="onFileSelected($event)">
                   <button type="button" (click)="onUploadFile()">UploadFile</button>
                 </div>
