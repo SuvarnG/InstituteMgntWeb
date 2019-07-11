@@ -13,6 +13,7 @@ export interface EnquiryList{
     Remark:string,
     Course:string;
     BranchId:number;
+    CourseId:number;
     }
 
 export interface CourseTypeMaster

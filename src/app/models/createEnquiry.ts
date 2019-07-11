@@ -6,7 +6,7 @@
     LastName: string,
     Address: string,
     City: string,
-    //CourseTypeId: number,
+    CourseTypeId: number,
     DateOfEnquiry:Date,
     //IsFollowupNeeded:Number,
     NeedFollowupDate: Date,
