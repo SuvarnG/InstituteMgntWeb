@@ -341,7 +341,7 @@
                     formControlName="P_Address1" [ngClass]="{'is-invalid': submitted && f.P_Address1.errors} ">
                 </div>   
                 <div *ngIf="submitted && f.P_Address1.errors">
-                    <div *ngIf="f.P_Address1.errors.required">CourseType is required</div>
+                    <div *ngIf="f.P_Address1.errors.required">Address is required</div>
                   </div>
               </div>   
             </div>
@@ -361,7 +361,7 @@
                   </select>
                   </div>
                   <div *ngIf="submitted && f.P_State.errors">
-                      <div *ngIf="f.P_State.errors.required">CourseType is required</div>
+                      <div *ngIf="f.P_State.errors.required">State is required</div>
                     </div>
     
                   <div class="form-group col-md-1">
@@ -372,7 +372,7 @@
                         [ngClass]="{'is-invalid': submitted && f.P_City.errors} ">
                     </div>
                     <div *ngIf="submitted && f.P_City.errors">
-                        <div *ngIf="f.P_City.errors.required">CourseType is required</div>
+                        <div *ngIf="f.P_City.errors.required">City is required</div>
                       </div>
     
                     <div class="form-group col-md-1">
@@ -383,7 +383,7 @@
                     [ngClass]="{'is-invalid': submitted && f.P_STDCode.errors} ">
                       </div>
                       <div *ngIf="submitted && f.P_STDCode.errors">
-                          <div *ngIf="f.P_STDCode.errors.required">CourseType is required</div>
+                          <div *ngIf="f.P_STDCode.errors.required">PinCode is required</div>
                         </div>
                       </div>
               </div>
