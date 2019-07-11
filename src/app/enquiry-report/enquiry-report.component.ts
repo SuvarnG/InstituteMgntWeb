@@ -21,6 +21,8 @@ export class EnquiryReportComponent implements OnInit {
   enquiryReportList:EnquiryReport[];
   registerEnquiryReport:FormGroup;
   submitted=false;
+  periodSelection:string;
+  dateRange=false;
 
   constructor(private branchService:BranchService,
               private coursesService:CoursesService,
@@ -45,9 +47,12 @@ export class EnquiryReportComponent implements OnInit {
   get f() {return this.registerEnquiryReport.controls}
 
   pullEnquiryReport(){
+
+    if(this.periodSelection=="SelectDateRange"){
+
     this.submitted=true;
     if(this.registerEnquiryReport.invalid){
-      this.submitted=false;
+      //this.submitted=false;
       return;
     }
 
@@ -58,12 +63,78 @@ export class EnquiryReportComponent implements OnInit {
       ToDate:this.registerEnquiryReport.controls.ToDate.value
     }
 
-    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{this.enquiryReportList=res});
+    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
+      this.enquiryReportList=res
+    });
+  }
+
+  if(this.periodSelection=="OneMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+
+    let body:EnquiryReportInput={
+      BranchId:this.registerEnquiryReport.controls.BranchName.value,
+      CourseId:this.registerEnquiryReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
+      ToDate:todaysDate
+    }
+
+    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
+      this.enquiryReportList=res
+    });
+
+  }
+
+  if(this.periodSelection=="ThreeMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+
+    let body:EnquiryReportInput={
+      BranchId:this.registerEnquiryReport.controls.BranchName.value,
+      CourseId:this.registerEnquiryReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
+      ToDate:todaysDate
+    }
+
+    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
+      this.enquiryReportList=res
+    });
+
+  }
+
+  if(this.periodSelection=="SixMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+
+    let body:EnquiryReportInput={
+      BranchId:this.registerEnquiryReport.controls.BranchName.value,
+      CourseId:this.registerEnquiryReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
+      ToDate:todaysDate
+    }
+
+    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
+      this.enquiryReportList=res
+    });
+
+  }
   }
 
   exportAsXLSX():void {
     debugger;
     this.enquiryReportService.exportAsExcelFile(this.enquiryReportList, 'Enquiry');
  }
+
+ selectPeriod(event:any){
+  debugger;
+  this.periodSelection=event.target.value
+  if(this.periodSelection=="SelectDateRange"){
+    this.dateRange=true;
+  }
+  else{
+    this.dateRange=false;
+  }
+  
+}
 
 }

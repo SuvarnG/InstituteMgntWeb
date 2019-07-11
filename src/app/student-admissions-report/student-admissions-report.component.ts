@@ -20,6 +20,8 @@ export class StudentAdmissionsReportComponent implements OnInit {
   submitted=false;
   registerStudentAdmissionReport:FormGroup;
   studentAdmissionReportList:StudentReport[];
+  periodSelection:string;
+  dateRange=false;
 
   constructor(private branchService:BranchService,
               private coursesService:CoursesService,
@@ -44,6 +46,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
 
   pullStudentAdmissionReport(){
 
+    if(this.periodSelection=="SelectDateRange"){
     this.submitted=true;
     if(this.registerStudentAdmissionReport.invalid){      
       return;
@@ -56,11 +59,72 @@ export class StudentAdmissionsReportComponent implements OnInit {
       ToDate:this.registerStudentAdmissionReport.controls.ToDate.value
     }
 
-    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{this.studentAdmissionReportList=res});
+    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
+      this.studentAdmissionReportList=res
+    });
+  }
+
+  if(this.periodSelection=="OneMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+    let body:StudentReportInput={
+      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
+      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
+      ToDate:todaysDate
+    }
+
+    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
+      this.studentAdmissionReportList=res
+    });
+  }
+
+  if(this.periodSelection=="ThreeMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+    let body:StudentReportInput={
+      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
+      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
+      ToDate:todaysDate
+    }
+
+    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
+      this.studentAdmissionReportList=res
+    });
+  }
+
+  if(this.periodSelection=="SixMonth"){
+    var todaysDate=new Date();
+    var lastMonthDate=new Date();
+    let body:StudentReportInput={
+      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
+      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
+      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
+      ToDate:todaysDate
+    }
+
+    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
+      this.studentAdmissionReportList=res
+    });
+  }
+
   }
 
   exportAsXLSX():void {
     debugger;
     this.studentAdmissionsReportService.exportAsExcelFile(this.studentAdmissionReportList, 'Student_Admission');
  }
+
+ selectPeriod(event:any){
+  debugger;
+  this.periodSelection=event.target.value
+  if(this.periodSelection=="SelectDateRange"){
+    this.dateRange=true;
+  }
+  else{
+    this.dateRange=false;
+  }
+  
+}
 }

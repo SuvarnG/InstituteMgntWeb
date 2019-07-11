@@ -20,6 +20,8 @@ export class FeesCollectionReportComponent implements OnInit {
   registerFeesCollectionReport:FormGroup;
   feesReportList:FeesReport[];
   submitted=false;
+  periodSelection:string;
+  dateRange=false;
 
   constructor(private coursesService:CoursesService,
               private branchService:BranchService,
@@ -42,24 +44,68 @@ export class FeesCollectionReportComponent implements OnInit {
 
   public user= Utils.GetCurrentUser();
 
-  pullFeesCollectionReport(){
-
+  pullFeesCollectionReport() {
     debugger;
-    this.submitted=true;
-    if(this.registerFeesCollectionReport.invalid){
-      return;
+    if (this.periodSelection == "SelectDateRange") {
+      this.submitted = true;
+      if (this.registerFeesCollectionReport.invalid) {
+        return;
+      }
+      let body: FeesReportInput = {
+        BranchId: this.registerFeesCollectionReport.controls.branchId.value,
+        CourseId: this.registerFeesCollectionReport.controls.courseId.value,
+        FromDate: this.registerFeesCollectionReport.controls.FromDate.value,
+        ToDate: this.registerFeesCollectionReport.controls.ToDate.value
+      }
+      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+        this.feesReportList = res
+      })
     }
 
-    let body:FeesReportInput={
-      BranchId:this.registerFeesCollectionReport.controls.branchId.value,
-      CourseId:this.registerFeesCollectionReport.controls.courseId.value,
-      FromDate:this.registerFeesCollectionReport.controls.FromDate.value,
-      ToDate:this.registerFeesCollectionReport.controls.ToDate.value
+    if (this.periodSelection == "OneMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+
+      let body: FeesReportInput = {
+        BranchId: this.registerFeesCollectionReport.controls.branchId.value,
+        CourseId: this.registerFeesCollectionReport.controls.courseId.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
+        ToDate: todaysDate
+      }
+      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+        this.feesReportList = res
+      })
     }
 
-    this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res=>{
-      this.feesReportList=res
-    })
+    if (this.periodSelection == "ThreeMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+
+      let body: FeesReportInput = {
+        BranchId: this.registerFeesCollectionReport.controls.branchId.value,
+        CourseId: this.registerFeesCollectionReport.controls.courseId.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
+        ToDate: todaysDate
+      }
+      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+        this.feesReportList = res
+      })
+    }
+
+    if (this.periodSelection == "SixMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+
+      let body: FeesReportInput = {
+        BranchId: this.registerFeesCollectionReport.controls.branchId.value,
+        CourseId: this.registerFeesCollectionReport.controls.courseId.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
+        ToDate: todaysDate
+      }
+      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+        this.feesReportList = res
+      })
+    }
 
   }
 
@@ -67,6 +113,19 @@ export class FeesCollectionReportComponent implements OnInit {
     debugger;
     this.feesCollectionReportService.exportAsExcelFile(this.feesReportList, 'Fees Collection');
  }
+
+ selectPeriod(event:any){
+  debugger;
+  this.periodSelection=event.target.value
+  if(this.periodSelection=="SelectDateRange"){
+    this.dateRange=true;
+  }
+  else{
+    this.dateRange=false;
+  }
+  
+}
+
 
 
 }

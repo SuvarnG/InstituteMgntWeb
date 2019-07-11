@@ -8,6 +8,7 @@ import { Utils } from '../Utils';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { ExpenseReportService } from './expense-report.service';
+import { toDate } from '@angular/common/src/i18n/format_date';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class ExpenseReportComponent implements OnInit {
   branchList:Branch[];
   registerExpensesReport:FormGroup;
   expenseReportList:ExpenseReportList[];
+  periodSelection:string;
+  dateRange=false;
 
   constructor(private expenseReportService:ExpenseReportService,
               private expenseMasterService:ExpenseMasterService,
@@ -36,7 +39,8 @@ export class ExpenseReportComponent implements OnInit {
       BranchName:[],
       Expense:[],
       FromDate:['',Validators.required],
-      ToDate:['',Validators.required]
+      ToDate:['',Validators.required],
+      period:[]
     })
   }
 
@@ -46,20 +50,62 @@ export class ExpenseReportComponent implements OnInit {
 
   pullExpenseReport(){
     debugger;
-    this.submitted=true;
-    if(this.registerExpensesReport.invalid){
-      return;
+
+    if(this.periodSelection=="OneMonth"){
+      var todaysDate=new Date();
+      var lastMonthDate=new Date();
+      let body:ExpenseReport={
+        BranchId:this.registerExpensesReport.controls.BranchName.value,
+        ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
+        ToDate:todaysDate,
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),        
+       }
+         this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
+         this.expenseReportList=res});
     }
 
-   let body:ExpenseReport={
-    BranchId:this.registerExpensesReport.controls.BranchName.value,
-    ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
-    FromDate:this.registerExpensesReport.controls.FromDate.value,
-    ToDate:this.registerExpensesReport.controls.ToDate.value
-   }
-   this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
-     this.expenseReportList=res
-    });
+    if(this.periodSelection=="ThreeMonth"){
+      var todaysDate=new Date();
+      var lastMonthDate=new Date();
+      let body:ExpenseReport={
+        BranchId:this.registerExpensesReport.controls.BranchName.value,
+        ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
+        ToDate:todaysDate,
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),        
+       }
+         this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
+         this.expenseReportList=res});
+    }
+
+    if(this.periodSelection=="SixMonth"){
+      var todaysDate=new Date();
+      var lastMonthDate=new Date();
+      let body:ExpenseReport={
+        BranchId:this.registerExpensesReport.controls.BranchName.value,
+        ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
+        ToDate:todaysDate,
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),        
+       }
+         this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
+         this.expenseReportList=res});
+    }
+
+    if(this.periodSelection=="SelectDateRange"){
+
+      this.submitted=true;
+      if(this.registerExpensesReport.invalid){
+        return;
+      }
+
+      let body:ExpenseReport={
+        BranchId:this.registerExpensesReport.controls.BranchName.value,
+        ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
+        ToDate:this.registerExpensesReport.controls.ToDate.value,
+        FromDate:this.registerExpensesReport.controls.FromDate.value,        
+       }
+         this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
+         this.expenseReportList=res});
+    }
   }
 
   exportAsXLSX():void {
@@ -94,5 +140,17 @@ export class ExpenseReportComponent implements OnInit {
 // getDateTime(){
 //   this.currentDate=new Date()
 // }
+
+selectPeriod(event:any){
+        debugger;
+        this.periodSelection=event.target.value
+        if(this.periodSelection=="SelectDateRange"){
+          this.dateRange=true;
+        }
+        else{
+          this.dateRange=false;
+        }
+        
+    }
 
 }

@@ -27,7 +27,17 @@
           </select>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-1">
+            <label>Select Period:</label>
+            <select class="form-control" formControlName="period" (change)="selectPeriod($event)">
+              <option value="OneMonth" >Last 1 Month</option>
+              <option value="ThreeMonth" >Last 3 Month</option>
+              <option value="SixMonth" >Last 6 Month</option>
+              <option value="SelectDateRange" >Select Date Range</option>
+            </select>
+        </div> 
+
+        <div class="col-lg-2" *ngIf="dateRange">
           <label>From Date:</label>
           <input type="date" class="form-control" formControlName="FromDate"
             [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
@@ -36,7 +46,7 @@
           </div>
         </div>
 
-        <div class="col-lg-2">
+        <div class="col-lg-2" *ngIf="dateRange">
           <label>To Date:</label>
           <input type="date" class="form-control" formControlName="ToDate"
             [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">

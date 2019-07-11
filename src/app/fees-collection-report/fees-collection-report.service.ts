@@ -26,6 +26,7 @@ export class FeesCollectionReportService {
     return this.httpClient.post<FeesReport[]>(environment.APIBASEURL + 'Student/GetFeesCollectionReport',body,httpOptions);
   }
 
+
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     //const workbook = self.spread.get
