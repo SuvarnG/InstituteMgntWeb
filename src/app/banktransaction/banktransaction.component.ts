@@ -63,7 +63,9 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
 
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
+
     });
 
   }

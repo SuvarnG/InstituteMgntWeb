@@ -73,6 +73,7 @@ export class LeavesListComponent implements OnInit {
   };
 
   CreateNewLeave(template: TemplateRef<any>) {
+    
     this.modalRef = this.modalService.show(template);
     
   };
@@ -89,7 +90,7 @@ export class LeavesListComponent implements OnInit {
 
     this.registerUpdateLeave.patchValue(body);
     this.modalRef = this.modalService.show(template);
-  };
+};
 
   onSubmitUpdate(){
     debugger;

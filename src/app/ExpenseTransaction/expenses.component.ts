@@ -105,7 +105,8 @@ export class ExpensesComponent implements OnInit {
       });;
     this.modalRef = this.modalService.show(addExpense, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 
@@ -165,7 +166,8 @@ export class ExpensesComponent implements OnInit {
    
     this.modalRef = this.modalService.show(editExpense, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
    
     
