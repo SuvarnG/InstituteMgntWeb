@@ -23,6 +23,11 @@ import { RoleComponent } from './role/role.component';
 import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
 import { CoursetypeComponent } from './coursetype/coursetype.component';
+import { ReportsComponent } from './reports/reports.component';
+import { ExpenseReportComponent } from './expense-report/expense-report.component';
+import { FeesCollectionReportComponent } from './fees-collection-report/fees-collection-report.component';
+import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
+import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
 
 
 const routes: Routes = [
@@ -135,6 +140,26 @@ component: BranchComponent
 {
   path: 'coursetype',
   component: CoursetypeComponent
+},
+{
+  path: 'reports',
+  component: ReportsComponent
+},
+{
+  path: 'ExpenseReport',
+  component: ExpenseReportComponent
+},
+{
+  path: 'FeesCollectionReport',
+  component: FeesCollectionReportComponent
+},
+{
+  path: 'EnquiryReport',
+  component: EnquiryReportComponent
+},
+{
+  path: 'StudentAdmissionsReport',
+  component: StudentAdmissionsReportComponent
 },
 
 ];

@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Branch } from '../Model/Branch';
 import { BranchService } from './branch.service';
 import { Subject } from 'rxjs';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-branch',
@@ -43,10 +44,13 @@ export class BranchComponent implements OnInit {
       ContactNo: ['', Validators.required]
     });
     this.getBranchList();
-  }
+  };
+
+  public user=Utils.GetCurrentUser();
+
 getBranchList(){
   debugger;
-  this.branchService.getBranches().subscribe(res=> {
+  this.branchService.getBranches(this.user.InstituteId).subscribe(res=> {
     this.branch=res;
   this.dtTrigger.next();
 });

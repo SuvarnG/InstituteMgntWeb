@@ -4,9 +4,11 @@ import { Branch } from '../Model/Branch';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Utils } from '../Utils';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json',
+                              'Authorization': `Bearer ${Utils.GetAccessToken()}`})
 };
 
 @Injectable({
@@ -26,10 +28,10 @@ export class BranchService {
   //   }));
   // }
 
-   getBranches()
+   getBranches(InstituteId:number)
   {
     debugger;
-    return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll',httpOptions)
+    return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll'+'/'+InstituteId,httpOptions)
     ;
   }
 

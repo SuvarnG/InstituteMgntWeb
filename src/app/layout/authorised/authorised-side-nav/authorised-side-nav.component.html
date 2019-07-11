@@ -58,6 +58,9 @@
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/coursetype"><i class='fas fa-book-reader' style="padding:10px"></i>Course Type</a>
       </li>
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/reports">Reports</a>
+      </li>
       <li routerLinkActive="active current" class="nav-item"
         *ngIf="currentRole==='Admin' || currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/role"><i class="fa fa-user-plus" aria-hidden="true" style="padding:10px"></i>Role</a>

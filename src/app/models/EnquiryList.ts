@@ -25,3 +25,19 @@ export interface CourseNameMaster{
     CourseID:Number,
     Course:string
 }
+
+export interface EnquiryReportInput{
+    BranchId:number;
+    CourseId:number;
+    FromDate:Date;
+    ToDate:Date;
+}
+
+export interface EnquiryReport{
+    EnquirerName:string;
+    BranchName:string;
+    CourseName:string;
+    Address:string;
+    City:string;
+    DateOfEnquiry:Date;
+}

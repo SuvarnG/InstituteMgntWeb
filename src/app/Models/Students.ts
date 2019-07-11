@@ -167,3 +167,39 @@ export interface RecentStudent{
 export interface ThumbnailUrl{
     Message:string;
 }
+
+export interface FeesReportInput{
+    BranchId:number;
+    CourseId:number;
+    FromDate:Date;
+    ToDate:Date;
+}
+
+export interface FeesReport{
+    StudentName:string;
+    BranchName:string;
+    CourseName:string;
+    TotalFees:number;
+    PendingFees:number;
+    Discount:number;
+}
+
+export interface StudentReportInput{
+    BranchId:number;
+    CourseId:number;
+    FromDate:Date;
+    ToDate:Date;
+}
+
+export interface StudentReport{
+    StudentName:string;
+    BranchName:string;
+    CourseName:string;
+    TotalFees:number;
+    PendingFees:number;
+    City:string;
+    EmailId:string;
+    DateOfJoining:Date;
+    Address:string;
+    Gender:string;
+}
