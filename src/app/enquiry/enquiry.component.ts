@@ -147,6 +147,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   selectCourseNameForCourseType(event) {
+    debugger;
     this.GetCourseNameList(event.target.value);
   }
 
@@ -154,12 +155,15 @@ export class EnquiryComponent implements OnInit {
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
 
+    debugger;
+
     this.modalRef = this.modalService.show(editEnquiryModal, {
       backdrop: 'static',
       class: 'modal-xl'
     });
 
     this.GetCourseTypeList();
+    this.GetCourseNameList(editItem.CourseTypeId);
     this.UpdateEnquiryFormGroup.patchValue({
       ID: editItem.ID,
       FirstName: editItem.FirstName,
@@ -170,7 +174,8 @@ export class EnquiryComponent implements OnInit {
       DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
       NeedFollowupDate: editItem.NeedFollowupDate,
       Remark: editItem.Remark,
-      CourseId: editItem.CourseId
+      CourseId: editItem.CourseId,
+      CourseTypeId:editItem.CourseTypeId
     })
   }
 
@@ -189,7 +194,8 @@ export class EnquiryComponent implements OnInit {
       DateOfEnquiry: this.fu.DateOfEnquiry.value,
       NeedFollowupDate: this.fu.NeedFollowupDate.value,
       Remark: this.fu.Remark.value,
-      CourseId: this.fu.CourseId.value
+      CourseId: this.fu.CourseId.value,
+      CourseTypeId:this.fu.CourseTypeId.value
     }
 
     this.enquiryService.EnquiryUpdate(res).subscribe(data => { this.getEnquiryList(), this.modalRef.hide() })

@@ -137,7 +137,8 @@ export class LeaveComponent implements OnInit {
 
   OpenCreateModal(createTemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(createTemplate,{
-      backdrop: 'static'
+      backdrop: 'static',
+      class:'modal-xl'
     });
     
   }
@@ -148,7 +149,8 @@ export class LeaveComponent implements OnInit {
     this.getCourseName();
     this.getStudentName
     this.modalRef = this.modalService.show(EditTemplate,{
-        backdrop: 'static'
+        backdrop: 'static',
+        class:'modal-xl'
       });
     this.UpdateLeaveFormGroup.patchValue({
       LeaveId: editItem.Id,

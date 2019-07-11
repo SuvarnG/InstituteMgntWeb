@@ -6,16 +6,58 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
+
+
+
+
+
+
   <div class="col-md-10">
-      <div style="margin-top: 10px;margin-right: 20px">
+      <div class="row justify-content-center">
   
-    <button type="submit" class="btn btn-primary" style="float: right;" 
+     <!-- <button type="submit" class="btn btn-primary" style="float: right;" 
      data-target="#myupdate" data-toggle="modal" (click)="createNewCourse(addtemplate)"
      data-toggle="tooltip" data-placement="bottom" title="Add" (click)="clearForm()">Add Course
-     Type</button>
-  </div>
+     Type</button> -->
+     <div class="col-md-12 col-12 col-sm-12 col-xs-12">
+        <div class="box ml-n2 mt-2">
+
+          <div class="row mb-4 px-0">
+            <div class="col-md-10 mt-4 ">
+              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+                Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <a routerLink="/coursetype" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+                title="coursetype">
+                Course Type</a>&nbsp;
+            </div>
+          </div>
+          <hr>
+          <div class="row m-3 ">
+            <div class="col-md-3  py-1">
+              <h2 class="h1 font-weight-medium  mt-3">Course Type</h2>
+            </div>
+
+            <div class="col-md-9 px-2 pt-2 py-1 justify-content-end text-right">
+              <a routerLink="/coursetype"
+                class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
+                data-placement="bottom" title="Create New" (click)="createNewCourse(addtemplate); clearForm()"
+                data-toggle="tooltip" data-placement="bottom" title="Add Course Type">
+                Add Course Type</a>&nbsp;
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+  
   <!-- <table class="table table-bordered"> -->
-      <div style="margin-top:80px">
+      <div class="container shadow mt-3 p-5 m-3">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
@@ -30,9 +72,25 @@
         <td>{{i+1}}</td>
         <td>{{c.CourseTypeName}}</td>
         <td>
-          <button type="submit" style="margin-right:5px" class="btn btn-default" 
-          data-toggle="tooltip" data-placement="bottom" title="Edit" (click)="editCourseType(editTemplate,c)" >
-          <i style='font-size:18px' class="fas fa-pencil-alt"></i></button>         
+                   
+          <svg class="icon" (click)="editCourseType(editTemplate,c)" data-toggle="tooltip"
+          data-placement="bottom" title="Edit Course Type" version="1.1" id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+          viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"
+          width="18px">
+          <g>
+            <g>
+              <g>
+                <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893" />
+                <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+C386.027,77.92,386.027,64.373,377.707,56.053z" />
+              </g>
+            </g>
+          </g>
+        </svg>
+
+
+
       </tr>
     </tbody>
   </table>
@@ -47,20 +105,30 @@
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
     <div class="modal-body">
-        <div class="form-group">
-      <label for="CourseTypeName">CourseTypeName : </label>
+        <div class="row">
+            <div class="form-group col-md-4">
+
+                <label for="expense" class="mt-3">Course Type</label>
+              </div>
+              <div class="form-group col-md-6">
       <input type="text" class="form-control" formControlName="CourseTypeName"
         [ngClass]="{ 'is-invalid': submitted && f.CourseTypeName.errors }" #CourseTypeName  >
       <div *ngIf="submitted && f.CourseTypeName.errors" class="invalid-feedback">
         <div *ngIf="f.CourseTypeName.errors.required">Name is required</div>
       </div>
+      
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" style="margin:5px" (click)="createCourseName(CourseTypeName.value)">submit</button>
-        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
+      
     </div>
+    <div class="modal-footer">
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit" (click)="createCourseName(CourseTypeName.value)">Submit</button>
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+      </div>
+
   </form>
 </ng-template>
 
@@ -68,23 +136,37 @@
 <ng-template #editTemplate>
   <form [formGroup]="editregisterForm" (ngSubmit)="updateCourseType()">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Edit Course Type</h4>
+      <h4 class="modal-title pull-left">Update Course Type</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
+
     <div class="modal-body">
-      <label for="CourseTypeName">CourseTypeName : </label>
-      <input type="text" class="form-control" formControlName="CourseTypeName"
-        [ngClass]="{ 'is-invalid': submitted && fu.CourseTypeName.errors }" #CourseTypeName  >
-      <div *ngIf="submitted && fu.CourseTypeName.errors" class="invalid-feedback">
-        <div *ngIf="fu.CourseTypeName.errors.required">Name Required </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+
+                <label for="expense" class="mt-3">Course Type</label>
+              </div>
+              <div class="form-group col-md-6">
+                  <input type="text" class="form-control border-0" formControlName="CourseTypeName"
+                  [ngClass]="{ 'is-invalid': submitted && fu.CourseTypeName.errors }" #CourseTypeName  >
+                  <div *ngIf="submitted && fu.CourseTypeName.errors" class="invalid-feedback">
+                      <div *ngIf="fu.CourseTypeName.errors.required">Name Required </div>
+                    </div>
+      
       </div>
-      <div class="form-group">
-        <button class="btn btn-primary" style="margin:5px" (click)="UpdateCourseType(CourseTypeName.value)">submit</button>
-        <button type="button" class="btn btn-primary"  (click)="modalRef.hide()" >Cancel</button>
       </div>
+      
     </div>
+
+    <div class="modal-footer">
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit" (click)="UpdateCourseType(CourseTypeName.value)">Update</button>
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+      </div>
+
+
   </form>
   
 </ng-template>

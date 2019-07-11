@@ -89,25 +89,25 @@
           <table style="border:1px solid black; width: 100%">
             <tr style="border:1px solid black">
               <th>Student Name</th>
-              <th>Branch Name</th>
+              <!-- <th>Branch Name</th> -->
               <th>Course Name</th>
-              <th>Gender</th>
-              <th>Address</th>
+              <!-- <th>Gender</th> -->
+              <!-- <th>Address</th> -->
               <th>City</th>
-              <th>Email Id</th>
+              <!-- <th>Email Id</th> -->
               <th>Date Of Joining</th>
               <th>Total Fees</th>
               <th>Pending Fees</th>
             </tr>
             <tr *ngFor="let s of studentAdmissionReportList | paginate: { itemsPerPage: 25, currentPage: p }" style="border:1px solid black">
               <td>{{s.StudentName}}</td>
-              <td>{{s.BranchName}}</td>
+              <!-- <td>{{s.BranchName}}</td> -->
               <td>{{s.CourseName}}</td>
-              <td>{{s.Gender}}</td>
-              <td>{{s.Address}}</td>
+              <!-- <td>{{s.Gender}}</td>
+              <td>{{s.Address}}</td> -->
               <td>{{s.City}}</td>
-              <td>{{s.EmailId}}</td>
-              <td>{{s.DateOfJoining}}</td>
+              <!-- <td>{{s.EmailId}}</td> -->
+              <td>{{s.DateOfJoining | date}}</td>
               <td>{{s.TotalFees}}</td>
               <td>{{s.PendingFees}}</td>
             </tr>

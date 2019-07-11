@@ -170,7 +170,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-3 px-3">
-                  <select name="CourseTypeId" class="form-control" formControlName="CourseTypeId"
+                  <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"
                   (change)="selectCourseNameForCourseType($event)"
                   [ngClass]="{'is-invalid': submitted && f.CourseTypeId.errors} ">
                   <option value="" disabled selected>CourseType</option>
@@ -184,9 +184,9 @@
                 </div>
 
                 <div class="form-group col-md-4 px-3">
-                  <select name="CourseId" class="form-control" formControlName="CourseId"
+                  <select name="CourseId" id="CourseId" class="form-control" formControlName="CourseId"
                   [ngClass]="{'is-invalid': submitted && f.CourseId.errors} ">
-                  <option value="" disabled selected>CourseName</option>
+                  <!-- <option value="" disabled selected>CourseName</option> -->
                   <option *ngFor="let CourseName of listCourseName" [value]="CourseName.CourseId">
                     {{CourseName.CourseName}}
                   </option>
@@ -433,7 +433,11 @@
                 <!--Third Row End-->
   
   
-        
+                <div class="modal-footer">
+                  <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
+                  <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+                    (click)="modalRef.hide()">Cancel</button>
+              </div>
         
         
         
