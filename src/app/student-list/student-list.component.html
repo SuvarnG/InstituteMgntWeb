@@ -43,10 +43,6 @@
       </div>
     </div>
 
-
-
-
-
     <div class="row mt-3 px-3">
       <div class="col-sm-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
         <div class="card shadow px-2 mb-5 bg-white rounded-0" style="width: 24rem;">
@@ -381,7 +377,7 @@
               <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
             </div>
             <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="Address1" placeholder="Address 1"
+              <input type="text" class="form-control border-0" id="Address1" 
                 formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
             </div>
             <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">

@@ -60,8 +60,8 @@ export class EnquiryComponent implements OnInit {
       FirstName: ['', Validators.required],
       MiddleName: ['', Validators.required],
       LastName: ['', Validators.required],
-      Address: ['Kondhwa', Validators.required],
-      City: ['Pune', Validators.required],
+      Address: ['', Validators.required],
+      City: ['', Validators.required],
       DateOfEnquiry: [new Date().toDateString(), Validators.required],
       IsFollowupNeeded: [],
       //CourseName:['',Validators.required],
@@ -168,7 +168,6 @@ export class EnquiryComponent implements OnInit {
       Address: editItem.Address,
       City: editItem.City,
       DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
-      // IsFollowupNeeded: editItem.NeedFollowupDate ? true : false,
       NeedFollowupDate: editItem.NeedFollowupDate,
       Remark: editItem.Remark,
       CourseId: editItem.CourseId
@@ -176,8 +175,6 @@ export class EnquiryComponent implements OnInit {
   }
 
   UpdateEnquiry() {
-    //debugger;
-    console.log(this.fu);
     this.submitted = true;
     if (this.UpdateEnquiryFormGroup.invalid) {
       return
@@ -190,7 +187,6 @@ export class EnquiryComponent implements OnInit {
       Address: this.fu.Address.value,
       City: this.fu.City.value,
       DateOfEnquiry: this.fu.DateOfEnquiry.value,
-      // IsFollowUpNeeded: this.fu.IsFollowUpNeeded.value,
       NeedFollowupDate: this.fu.NeedFollowupDate.value,
       Remark: this.fu.Remark.value,
       CourseId: this.fu.CourseId.value

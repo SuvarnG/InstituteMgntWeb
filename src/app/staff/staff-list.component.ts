@@ -70,7 +70,9 @@ export class StaffListComponent implements OnInit {
       P_STDCode: ['', Validators.required],
       EmergencyNo: ['', Validators.required],
       PreviousWorkName: ['', Validators.required],
-      BloodGroup: ['', Validators.required]
+      BloodGroup: ['', Validators.required],
+      CourseTypeId:[],
+      CourseId:[]
     });
 
 this.showStaffDetailsForm=this.fb.group({
@@ -167,6 +169,7 @@ this.showStaffDetailsForm=this.fb.group({
   }
   
   edit(editStaff: TemplateRef<any>, teacher) {
+    debugger;
     this.teacherId = teacher.StaffId;
     let body = {
       Gender: teacher.Gender,
@@ -179,8 +182,8 @@ this.showStaffDetailsForm=this.fb.group({
       Email: teacher.Email,
       ContactNo: teacher.ContactNo,
       EmergencyNo: teacher.EmergencyNo,
-      CourseTypeName: teacher.CourseTypeName,
-      CourseName: teacher.CourseName,
+      //CourseTypeName: teacher.CourseTypeName,
+      //CourseName: teacher.CourseName,
       Salary:teacher.Salary,
       PreviousWorkName: teacher.PreviousWorkName,
       PreviousExperience: teacher.PreviousExperience,
@@ -195,6 +198,8 @@ this.showStaffDetailsForm=this.fb.group({
       P_State: teacher.P_State,
       P_STDCode: teacher.P_STDCode,
       DateOfJoining:formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en'),
+      CourseTypeName:teacher.CourseTypeId,
+      CourseName:teacher.CourseId
     }
     this.staffForm.patchValue(body);
     this.modalRef = this.modalService.show(editStaff, {
@@ -206,11 +211,9 @@ this.showStaffDetailsForm=this.fb.group({
       {
         this.courseTypeList=res
       });
-    if (teacher.CourseType != null) {
-      this.createNewStudentService.getCourseNameFromCourseType(Number(teacher.CourseType)).subscribe(res=>{
+      this.createNewStudentService.getCourseNameFromCourseType(teacher.CourseTypeId).subscribe(res=>{
         this.courseNameList=res
       });
-    }
   }
 
   delete(staffID,firstName,lastName) {

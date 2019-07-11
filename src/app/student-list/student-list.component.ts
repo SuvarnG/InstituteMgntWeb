@@ -102,8 +102,8 @@ export class StudentListComponent implements OnInit {
         ZipCode:s.STDCode,
         DOB:formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
         PAddress1:s.PAddress1,
-        CourseType:s.CourseType,
-        Course:s.Course,
+        CourseType:s.CourseTypeId,
+        Course:s.CourseId,
         PCity:s.PCity,
         PState:s.PState,
         PSTDCode:s.PSTDCode,
@@ -114,6 +114,10 @@ export class StudentListComponent implements OnInit {
         Email:s.EmailId,
         IsDocumentSubmitted:s.IsDocumentSubmitted
       })
+
+      this.createNewStudentService.getCourseNameFromCourseType(s.CourseTypeId).subscribe(res => {
+        this.courseNameList = res
+      });
 
       this.modalRef=this.modalService.show(editStudent,{class: 'modal-xl'})
     }
@@ -129,7 +133,7 @@ selectCourseType(event) {
         return
       }
 
-      let body : UpdateStudent= {
+      let body = {
         StudentId:this.studentID,
         Gender:this.registerUpdateStudent.controls.Gender.value,
         FirstName:this.registerUpdateStudent.controls.FirstName.value,
@@ -160,33 +164,33 @@ selectCourseType(event) {
 
     openStudentDetailsPopup(studentDetails:TemplateRef<any>, s){
       this.studentID=s.StudentId,
-      this.registerUpdateStudent.patchValue(s);
-      //   {
-      //   StudentId:s.StudentId,
-      //   Gender:s.Gender,
-      //   FirstName:s.FirstName,
-      //   MiddleName:s.MiddleName,
-      //   LastName:s.LastName,
-      //   Address1:s.Address1,
-      //   CourseType:s.CourseType,
-      //   Course:s.Course,
-      //  // Address2:s.Address2,
-      //   City:s.City,
-      //   State:s.State,
-      //   ZipCode:s.STDCode,
-      //   DOB:formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
-      //   PAddress1:s.PAddress1,
-      //  // P_Address2:s.PAddress2,
-      //   PCity:s.PCity,
-      //   PState:s.PState,
-      //   PSTDCode:s.PSTDCode,
-      //   BloodGroup:s.BloodGroup,
-      //   Photo:s.Photo,
-      //   ContactNo:s.ContactNo,
-      //   EmergencyNo:s.EmergencyNo,
-      //   Email:s.EmailId,
-      //   IsDocumentSubmitted:s.IsDocumentSubmitted
-      // })
+      this.registerUpdateStudent.patchValue(
+        {
+        StudentId:s.StudentId,
+        Gender:s.Gender,
+        FirstName:s.FirstName,
+        MiddleName:s.MiddleName,
+        LastName:s.LastName,
+        Address1:s.Address1,
+        CourseType:s.CourseType,
+        Course:s.Course,
+       // Address2:s.Address2,
+        City:s.City,
+        State:s.State,
+        ZipCode:s.STDCode,
+        DOB:formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
+        PAddress1:s.PAddress1,
+       // P_Address2:s.PAddress2,
+        PCity:s.PCity,
+        PState:s.PState,
+        PSTDCode:s.PSTDCode,
+        BloodGroup:s.BloodGroup,
+        Photo:s.Photo,
+        ContactNo:s.ContactNo,
+        EmergencyNo:s.EmergencyNo,
+        Email:s.EmailId,
+        IsDocumentSubmitted:s.IsDocumentSubmitted
+      })
 
       this.modalRef=this.modalService.show(studentDetails,{class: 'modal-xl'})
     }

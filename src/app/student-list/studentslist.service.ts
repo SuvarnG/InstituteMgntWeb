@@ -31,7 +31,7 @@ export class StudentslistService {
     return this.http.post<void>(this.DeleteStdnt + "/"+id,null,httpOptions)
   }
 
-  editStudent(student:UpdateStudent){
+  editStudent(student){
     return this.http.post<UpdateStudent>(this.EditStnt,student,httpOptions)
   }
 }

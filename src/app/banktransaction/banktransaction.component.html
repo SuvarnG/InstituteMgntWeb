@@ -102,10 +102,10 @@
         <h4 class="modal-title pull-left mt-3">Bank Details :</h4>
 	  <div class="form-row py-4">
 		<div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-          <select name="BankName" placeholder="Bank Name" id="BankName"  class="form-control border-bottom text-muted" (change)="getAccountNumber($event)"
-            formControlName="BankName" [value]="null" [ngClass]="{ 'is-invalid': submitted &&
+          <select name="BankName" id="BankName" [value]="null"  class="form-control border-bottom text-muted" (change)="getAccountNumber($event)"
+            formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
           f.BankName.errors }">
-            <option [value]="null">Bank Name</option>
+            <option [value]="null" disabled selected>Bank Name</option>
             <option *ngFor="let bank of banknames" [value]="bank.BankName">
               {{bank.BankName}}
             </option>
@@ -115,9 +115,9 @@
           </div>
         </div>
 		<div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-          <select name="AccountNo" placeholder="Account No." id="AccountNo" [value]="null" class="form-control border-bottom text-muted" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
+          <select name="AccountNo" id="AccountNo" [value]="null" class="form-control border-bottom text-muted" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
         f.AccountNo.errors }">
-        <option [value]="null">Account Number</option>
+        <option [value]="null" disabled selected>Account Number</option>
             <option *ngFor="let accno of listaccno" [value]="accno.AccountNo">
               {{accno.AccountNo}}
             </option>
@@ -156,7 +156,7 @@
           <select name="TransactionBy" id="TransactionBy" [value]="null" class="form-control border-bottom text-muted" formControlName="TransactionBy"
             [ngClass]="{ 'is-invalid': submitted &&
         f.TransactionBy.errors }">
-            <option [value]="null">Transaction By</option>
+            <option [value]="null" disabled selected>Transaction By</option>
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
               <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
               <span>{{' '+ staff.LastName}}</span>
@@ -239,7 +239,7 @@
           <select name="TransactionBy" id="TransactionBy" class="form-control" formControlName="TransactionBy"
             [value]="fu.TransactionById.value" [ngClass]="{ 'is-invalid': submitted &&
         fu.TransactionBy.errors }"   (change)="selectTransactionBy($event)">
-            <option [value]="null">Select Name</option>
+            <option [value]="null" disabled selected>Select Name</option>
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
               <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
               <span>{{' '+ staff.LastName}}</span>

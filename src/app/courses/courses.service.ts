@@ -26,7 +26,6 @@ export class CoursesService {
 
   //For displaying all entries
   courseList(InstituteId:number, BranchId:number) {
-    debugger;
     return this.http.get<Course[]>(this.Url+'/'+InstituteId+'/'+BranchId, httpOptions);
 }
 

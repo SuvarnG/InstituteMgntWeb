@@ -60,6 +60,8 @@ export interface UpdateStudent{
     Course:string;
     CourseType:string;
     //Photo:string
+    CourseTypeId:number;
+    CourseId:number;
 }
 
 export interface CreateStudent{
