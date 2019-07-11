@@ -40,12 +40,12 @@ export interface UpdateStudent{
     MiddleName:string;
     LastName:string;
     Address1:string;
-    Address2:string;
+   // Address2:string;
     City:string;
     State:string;
     STDCode:string;
     PAddress1:string;
-    PAddress2:string;
+    //PAddress2:string;
     PCity:string;
     PState:string;
     PSTDCode:string;
@@ -57,7 +57,11 @@ export interface UpdateStudent{
     IsDocumentSubmitted:boolean;
     //DateOfJoining:Date,
     ContactNo:string;
+    Course:string;
+    CourseType:string;
     //Photo:string
+    CourseTypeId:number;
+    CourseId:number;
 }
 
 export interface CreateStudent{
@@ -67,12 +71,12 @@ export interface CreateStudent{
     MiddleName:string;
     LastName:string;
     Address1:string;
-    Address2:string;
+   // Address2:string;
     City:string;
     State:string;
     STDCode:string;
     PAddress1:string;
-    PAddress2:string;
+    //PAddress2:string;
     PCity:string;
     PState:string;
     PSTDCode:string;
@@ -110,7 +114,6 @@ export interface FeesTransactions{
     Id:number;
     CourseId:number;
     StudentId:number;
-    //CourseFees:number;
     DateOfPayment:Date;
     FeesPaid:number;
     FeesTakenBy:string;
@@ -120,7 +123,6 @@ export interface FeesTransactions{
 export interface User{
 
     Id:number;
-   // StudentId:number;
     FirstName:string;
     LastName:string;
     Email:string;
@@ -138,6 +140,7 @@ export interface Courses{
     CourseId:number;
     CourseName:string;
     Fees:number;
+    Percentage:number;
 }
 
 export interface CourseFees{

@@ -36,8 +36,7 @@ export class CreateNewStudentService {
   constructor(private http: HttpClient) { }
 
   createNewStudent(students:CreateStudent){
-    debugger
-    return this.http.post<CreateStudent>(this.Url,students,httpOptions) //.toPromise().then(result=>this.NewStudId = result as unknown);    
+    return this.http.post<CreateStudent>(this.Url,students,httpOptions) 
   }
 
   createStudentCourse(feesTransaction:FeesTransaction){
@@ -50,30 +49,18 @@ export class CreateNewStudentService {
 
   getRecentlyCreatedStudent(){
     return this.http.get(environment.APIBASEURL+'Student/GetRecentlyCreatedStudent',httpOptions).pipe(map(data => data as RecentStudent[]))
-
-    //this.http.get(environment.APIBASEURL + 'student/GetRecentlyCreatedStudent').toPromise().then(result=>this.listRecentStudent = result as RecentStudent[]) 
   }
 
-  // getAllCourseType(){
-  //   this.http.get(environment.APIBASEURL + 'Course/GetAllCourseType').toPromise().then(result=>this.listCourseType = result as CourseType[]) 
-  // }
 
-  getCourseNameFromCourseType(id){
-    debugger;
-   // this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id).toPromise().then(result=>this.listCourses = result as Courses[])
-  
+  getCourseNameFromCourseType(id){  
     return this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id,httpOptions).pipe(map(data => data as Courses[]))
   }
 
   getCourseFeesFromCourseName(id){
-    //this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id).toPromise().then(result=>this.listCourseFees = result as CourseFees[])
-  
-  
     return this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
   }
 
   getUsersListForFeesTaken(){
-    //this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken').toPromise().then(result=>this.listUsers=result as Users[])
     return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',httpOptions).pipe(map(data => data as Users[]))
  
   }

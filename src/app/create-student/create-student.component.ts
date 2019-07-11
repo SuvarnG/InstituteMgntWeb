@@ -61,25 +61,23 @@ export class CreateStudentComponent implements OnInit {
       firstName: ['', Validators.required],
       middleName: ['', Validators.required],
       lastName: ['', Validators.required],
-      Address1: ['Kondhwa', Validators.required],
-      Address2: [],
-      city: ['Pune', Validators.required],
-      state: ['Maharashtra', Validators.required],
-      zipCode: ['411048', Validators.required],
-      PAddress1: ['Kondhwa', Validators.required],
-      PAddress2: [],
-      Pcity: ['Pune', Validators.required],
-      Pstate: ['Maharashtra', Validators.required],
-      PzipCode: ['411048', Validators.required],
+      Address1: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      zipCode: ['', Validators.required],
+      PAddress1: ['', Validators.required],
+      Pcity: ['', Validators.required],
+      Pstate: ['', Validators.required],
+      PzipCode: ['', Validators.required],
       IsDocumentSubmitted: [],
       dateOfBirth: ['', Validators.required],
       bloodgroup: ['', Validators.required],
       ContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       EmergencyContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       Email: ['', [Validators.required, Validators.email]],
-      gender: ['Male', Validators.required],
-      payingFeesNow: ['', Validators.required],
-      Documents: [],
+      gender: ['', Validators.required],
+      payingFeesNow: [],
+      Document: [],
       Photo: ['../../assets/images/MProfile.jpg'],
       NewImage: ['']
     });
@@ -115,20 +113,19 @@ export class CreateStudentComponent implements OnInit {
   }
 
   selectAddress(event: any) {
+    debugger;
     if (event.currentTarget.checked == true) {
-      this.registerForm.controls.PAddress1.setValue(this.registerForm.controls.Address1.value)
-      this.registerForm.controls.PAddress2.setValue(this.registerForm.controls.Address2.value)
-      this.registerForm.controls.Pcity.setValue(this.registerForm.controls.city.value)
-      this.registerForm.controls.Pstate.setValue(this.registerForm.controls.state.value)
-      this.registerForm.controls.PzipCode.setValue(this.registerForm.controls.zipCode.value)
+      this.registerForm.controls.Address1.setValue(this.registerForm.controls.PAddress1.value)
+      this.registerForm.controls.city.setValue(this.registerForm.controls.Pcity.value)
+      this.registerForm.controls.state.setValue(this.registerForm.controls.Pstate.value)
+      this.registerForm.controls.zipCode.setValue(this.registerForm.controls.PzipCode.value)
 
     }
     else {
-      this.registerForm.controls.PAddress1.reset();
-      this.registerForm.controls.PAddress2.reset();
-      this.registerForm.controls.Pcity.reset();
-      this.registerForm.controls.Pstate.reset();
-      this.registerForm.controls.PzipCode.reset();
+      this.registerForm.controls.Address1.reset();
+      this.registerForm.controls.city.reset();
+      this.registerForm.controls.state.reset();
+      this.registerForm.controls.zipCode.reset();
     }
   }
 
@@ -167,7 +164,6 @@ export class CreateStudentComponent implements OnInit {
       MiddleName: this.registerForm.controls.middleName.value,
       LastName: this.registerForm.controls.lastName.value,
       Address1: this.registerForm.controls.Address1.value,
-      Address2: this.registerForm.controls.Address2.value,
       City: this.registerForm.controls.city.value,
       State: this.registerForm.controls.state.value,
       STDCode: this.registerForm.controls.zipCode.value,
@@ -177,11 +173,9 @@ export class CreateStudentComponent implements OnInit {
       EmergencyNo: this.registerForm.controls.EmergencyContactNo.value,
       EmailId: this.registerForm.controls.Email.value,
       PAddress1: this.registerForm.controls.PAddress1.value,
-      PAddress2: this.registerForm.controls.PAddress2.value,
       PCity: this.registerForm.controls.Pcity.value,
       PState: this.registerForm.controls.Pstate.value,
       PSTDCode: this.registerForm.controls.PzipCode.value,
-      //Photo:this.registerForm.controls.NewImage.value,
       Photo: this.CreateNewStudentService.thumbnailUrl,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       PayingFees: this.registerForm.controls.payingFeesNow.value
@@ -211,7 +205,12 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
-
+  onImageSelected(event: any) {
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.registerForm.get('Photo').setValue(file);
+    }
+  }
 
   openModal2(template: TemplateRef<any>) {
     debugger;
@@ -258,12 +257,20 @@ export class CreateStudentComponent implements OnInit {
   }
 
   showUpload() {
+    debugger;
+    if(this.registerForm.controls.IsDocumentSubmitted.value==false)
     this.showSelected = true;
-  }
-
-  hideUpload() {
+    else
     this.showSelected = false;
   }
+
+  // hideUpload() {
+  //   debugger;
+  //   if(this.showSelected==true){
+  //     this.showSelected = false;
+  //   }
+    
+  // }
 
   public user=Utils.GetCurrentUser();
 

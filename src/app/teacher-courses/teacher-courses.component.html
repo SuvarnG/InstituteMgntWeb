@@ -55,7 +55,7 @@
               <div class="form-row">
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                  <input type="text" id="DOB" class="form-control" formControlName="DOB" placeholder="Date Of Birth"
+                  <input type="text" id="DOB" placeholder="DOB"  onfocus="(this.type='date')"  class="form-control" formControlName="DOB" placeholder="Date Of Birth"
                     [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
                   <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
                     <div *ngIf="f.DOB.errors.required"> Please provide a valid DOB.</div>
@@ -189,36 +189,37 @@
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
-                  <input type="text" class="form-control" id="Address1" placeholder="Address 1"
-                    formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
+                  <input type="text" class="form-control" id="P_Address1" placeholder="Address 1"
+                    formControlName="P_Address1" [ngClass]="{ 'is-invalid': submitted && f.P_Address1.errors }">
                   <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address1.errors.required">Address is required</div>
+                    <div *ngIf="f.P_Address1.errors.required">Address is required</div>
                   </div>
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4 px-3">
+
                   <select id="State" class="form-control" [value]="null" formControlName="State"
                     [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                      <option [value]="null">Select State</option>
                     <option value="Maharashtra">Maharashtra</option>
                   </select>
-                  <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
-                    <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
+                  <div *ngIf="submitted && f.P_State.errors" class="invalid-feedback">
+                    <div *ngIf="f.P_State.errors.required"> Please provide a valid state.</div>
                   </div>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input type="text" class="form-control" id="City" formControlName="City" value="Pune"
+                  <input type="text" class="form-control" id="City" formControlName="P_City" value="Pune"
                     placeholder="City" [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
-                  <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
-                    <div *ngIf="f.City.errors.required"> Please provide a valid city.</div>
+                  <div *ngIf="submitted && f.P_City.errors" class="invalid-feedback">
+                    <div *ngIf="f.P_City.errors.required"> Please provide a valid city.</div>
                   </div>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input type="number" class="form-control" id="STDCode" formControlName="STDCode" value="411040"
+                  <input type="number" class="form-control" id="STDCode" formControlName="P_STDCode" value="411040"
                     placeholder="STD Code" [ngClass]="{ 'is-invalid': submitted && f.STDCode.errors }">
-                  <div *ngIf="submitted && f.STDCode.errors" class="invalid-feedback">
-                    <div *ngIf="f.STDCode.errors.required"> Please provide a valid STD Code.</div>
+                  <div *ngIf="submitted && f.P_STDCode.errors" class="invalid-feedback">
+                    <div *ngIf="f.P_STDCode.errors.required"> Please provide a valid STD Code.</div>
                   </div>
                 </div>
 
@@ -229,7 +230,7 @@
         </div>
       </div>
       <!--Fourth row End-->
-       <div class="row">
+       <!-- <div class="row">
     <div class="col-md-12 shadow mt-3 ">
            <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
        
@@ -264,7 +265,7 @@
    </div>
    
    </div>
-   </div> 
+   </div>  -->
       <!--fifth row end-->
       <div class="row">
         <div class="col-md-12 shadow mt-3">
@@ -355,7 +356,7 @@
               <div class="form-row">
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                  <input type="text" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
+                  <input type="text" id="DOB" placeholder="DOB"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
                     placeholder="Joining Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfJoining.errors }">
                   <div *ngIf="submitted && f.DateOfJoining.errors" class="invalid-feedback">
                     <div *ngIf="f.DateOfJoining.errors.required"> Please provide a valid Date.</div>
@@ -364,7 +365,7 @@
 
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                  <input type="text" id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
+                  <input type="text" id="DOB" placeholder="DOB" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
                     placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }">
                   <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
                     <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
@@ -392,7 +393,7 @@
   </div>
 
 </div>
-<!-- <ng-template #courseTemplate>
+ <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Teacher Course Details</h4>
@@ -404,49 +405,64 @@
       <table>
         <thead>
           <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <th>Course Type</th>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
               <th>Course Name</th>
             </div>
+            <div class="form-group col-md-4">
+                <th>Salary</th>
+              </div>
           </div>
         </thead>
         <tbody>
           <tr>
             <td colspan="1" style="padding:10 px">
-              <div formArrayName="coursesArray"
+              <!-- <div formArrayName="coursesArray"
                 *ngFor="let course of registerStaffForm.get('coursesArray').controls; let i=index">
-                <div fromGroupName="i">
+                <div fromGroupName="i"> -->
                   <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <select id="CourseType" class="form-control" formControlName="CourseType"
                         (change)="selectCourseType($event)">
-                        <option *ngFor="let courseType of  courseTypeList"
+                        <option *ngFor="let courseType of  CourseTypeList"
                           [value]="courseType.CourseTypeId">
                           {{courseType.CourseTypeName}}
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-4">
                       <select id="CourseName" class="form-control" formControlName="CourseName"
-                        (change)="selectCourseName($event)" [disabled]="disabled">
+                        (change)="selectCourseName($event); getSalaryFromCourseName($event)" [disabled]="disabled">
                         <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-4" *ngIf="!IsFixedPayment;then  thenBlock else elseBlock">    
+                      </div>        
+                          <ng-template #thenBlock>
+                             <div *ngFor="let s of Salary"> 
+                               <input  type="text" id="Salary" class="form-control" formControlName="Salary" >
+                                 <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
+                             </div>
+                          </ng-template>
+                         
+                      <ng-template #elseBlock>
+                          <input  type="text" id="Salary" class="form-control" formControlName="Salary">
+                         </ng-template>
+                    <!-- <div class="form-group col-md-2">
                       <button type="button" class="btn btn-primary btn-sm" id="btnAdd"
                         (click)="addNewRow()">Add</button>
                     </div>
                     <div class="form-group col-md-2" *ngIf="registerStaffForm.get('coursesArray').length>1">
                       <button type="button" class="btn btn-danger btn-sm" id="btnDelete"
                         (click)="removeCourse(i)">Del</button>
-                    </div>
+                    </div> -->
                   </div>
-                </div>
-              </div>
+                <!-- </div>
+              </div> -->
             </td>
           </tr>
         </tbody>
@@ -574,4 +590,4 @@
       </div>
     </form>
   </div>
-</ng-template> -->
+</ng-template> 

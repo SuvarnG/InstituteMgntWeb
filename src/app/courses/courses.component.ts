@@ -28,6 +28,9 @@ export class CoursesComponent implements OnInit {
   CalculateIsPercentage: number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  CourseTypeId:number;
+  CourseId:number;
+
 
   constructor(
     private modalService: BsModalService,
@@ -57,12 +60,12 @@ export class CoursesComponent implements OnInit {
 
 
     this.UpdateFormGroup = this.formBuilder.group({
-      CourseId: [],
-      CourseTypeId: ['', Validators.required],
-      CourseTypeName: ['', Validators.required],
+     // CourseId: [],
+      CourseTypeId: [''],
+     // CourseTypeName: ['', Validators.required],
       ShortName: ['', Validators.required],
       FullName: ['', Validators.required],
-      IsPercentage: ['', Validators.required],
+      IsPercentage: [''],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
       Percentage: ['', Validators.required],
@@ -90,9 +93,9 @@ export class CoursesComponent implements OnInit {
 
   }
 
-  getFullName(courseId: number) {
-    this.selectedCourse = this.courses.find(x => x.CourseId == courseId);
-  }
+  // getFullName(Id: number) {
+  //   this.selectedCourse = this.courses.find(x => x.CourseId == Id);
+  // }
   clearForm() {
     this.createForm.reset()
   }
@@ -147,9 +150,20 @@ export class CoursesComponent implements OnInit {
   }
 
   Edit(editTemplate: TemplateRef<any>, course) {
-    this.getShortName(course.CourseTypeId);
-    this.getFullName(course.CourseId);
-    this.UpdateFormGroup.patchValue(course);
+   // this.getShortName(course.CourseTypeId);
+    //this.getFullName(course.CourseId);
+    this.CourseTypeId=course.CourseTypeId;
+    this.CourseId=course.CourseId;
+    this.selectedCourse=course.FullName;
+    this.UpdateFormGroup.patchValue({
+      CourseTypeId:course.CourseTypeName,
+      ShortName:course.ShortName,
+      FullName:course.FullName,
+      IsPercentage:course.IsPercentage,
+      Percentage:course.Percentage,
+      Fees:course.Fees,
+      Duration:course.Duration
+    })
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
       backdrop: 'static',
@@ -164,10 +178,10 @@ export class CoursesComponent implements OnInit {
       return;
     }
     let body = {
-      CourseId: this.UpdateFormGroup.controls.CourseId.value,
-      CourseTypeId: this.UpdateFormGroup.controls.CourseTypeId.value,
-      CourseTypeName: this.UpdateFormGroup.controls.CourseTypeName.value,
-      ShortName: this.selectedCourse.ShortName,
+     CourseId: this.CourseId,
+      CourseTypeId: this.CourseTypeId,
+     CourseTypeName: this.UpdateFormGroup.controls.CourseTypeId.value,
+      ShortName:  this.UpdateFormGroup.controls.ShortName.value,
       FullName: this.UpdateFormGroup.controls.FullName.value,
       IsPercentage: this.UpdateFormGroup.controls.IsPercentage.value,
       Fees: this.UpdateFormGroup.controls.Fees.value,
