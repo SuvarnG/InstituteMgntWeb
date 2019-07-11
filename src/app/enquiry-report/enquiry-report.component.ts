@@ -38,7 +38,8 @@ export class EnquiryReportComponent implements OnInit {
       BranchName:[],
       CourseName:[],
       FromDate:['',Validators.required],
-      ToDate:['',Validators.required]
+      ToDate:['',Validators.required],
+      period:[]
     })
   }
 
