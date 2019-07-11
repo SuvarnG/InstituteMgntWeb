@@ -8,9 +8,10 @@ import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-            'Authorization':`Bearer ${Utils.GetAccessToken()}`
-})
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  })
 };
 
 @Injectable({
@@ -25,27 +26,27 @@ export class CoursesService {
   constructor(private http: HttpClient) { }
 
   //For displaying all entries
-  courseList(InstituteId:number, BranchId:number) {
-    return this.http.get<Course[]>(this.Url+'/'+InstituteId+'/'+BranchId, httpOptions);
-}
+  courseList(InstituteId: number, BranchId: number) {
+    return this.http.get<Course[]>(this.Url + '/' + InstituteId + '/' + BranchId, httpOptions);
+  }
 
-delete(CourseId): Observable<Course> {
-  return this.http.post<Course>(this.deleteUrl+CourseId,null, httpOptions).pipe(
-    tap(_ => console.log(`deleted Course id=${CourseId}`))
-  );
-}
+  delete(CourseId): Observable<Course> {
+    return this.http.post<Course>(this.deleteUrl + CourseId, null, httpOptions).pipe(
+      tap(_ => console.log(`deleted Course id=${CourseId}`))
+    );
+  }
 
-createCourse(course: Course) {
-  return this.http.post<Course>(this.CreateUrl, course, httpOptions).pipe(map(course => { return course }))
-}
+  createCourse(course: Course) {
+    return this.http.post<Course>(this.CreateUrl, course, httpOptions).pipe(map(course => { return course }))
+  }
 
-getShortName(CourseTypeId) {
-  return this.http.get(environment.APIBASEURL + 'Course/GetCourseMaster/' + CourseTypeId,httpOptions).pipe(map(data => data as Course[]))
-}
+  getShortName(CourseTypeId) {
+    return this.http.get(environment.APIBASEURL + 'Course/GetCourseMaster/' + CourseTypeId, httpOptions).pipe(map(data => data as Course[]))
+  }
 
-edit(course): Observable<Course> {
-  return this.http.post<Course>(this.UpdateUrl, course, httpOptions).pipe(
-    tap((course: Course) => console.log('Update CourseId=${course.CourseId}'))
-  );
-}
+  edit(course): Observable<Course> {
+    return this.http.post<Course>(this.UpdateUrl, course, httpOptions).pipe(
+      tap((course: Course) => console.log('Update CourseId=${course.CourseId}'))
+    );
+  }
 }

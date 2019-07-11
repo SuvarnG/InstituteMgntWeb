@@ -10,9 +10,10 @@ import { Utils } from '../Utils';
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-  'Authorization': `Bearer ${Utils.GetAccessToken()}`
- })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  })
 };
 @Injectable({
   providedIn: 'root'
@@ -38,16 +39,16 @@ export class StaffListService {
     };
   }
 
-  getAllStaff(InstituteId:number,BranchId:number) {
-    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher'+'/'+InstituteId+'/'+BranchId, httpOptions)
+  getAllStaff(InstituteId: number, BranchId: number) {
+    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher' + '/' + InstituteId + '/' + BranchId, httpOptions)
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
         return StaffMaster;
       }));
 
   }
-  getStaffDetails(id){
-    return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher/'+id, httpOptions)
+  getStaffDetails(id) {
+    return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher/' + id, httpOptions)
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
         return StaffMaster;
@@ -61,8 +62,8 @@ export class StaffListService {
       );
   }
 
-  deleteStaff(id:number) {
-    return this.http.post<StaffMaster>(this.deleteUrl + id,null, httpOptions).pipe(
+  deleteStaff(id: number) {
+    return this.http.post<StaffMaster>(this.deleteUrl + id, null, httpOptions).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<StaffMaster>('deleteStaff'))
     );

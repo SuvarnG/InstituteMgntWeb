@@ -9,184 +9,115 @@
           </div>
           <div class="col-md-8" style="font-size:20px;font-weight:bold">
             {{user.friendlyName}}
-<span style="font-size:16px;font-weight:normal">
-            {{user.roles}}
-          </span>
+            <span style="font-size:16px;font-weight:normal">
+              {{user.roles}}
+            </span>
           </div>
         </div>
 
       </li>
-      <li routerLinkActive="active current" 
-        class="nav-item" 
-        *ngIf="currentRole==='Admin'">
-        <a class="nav-link" 
-          routerLink="/StaffList" 
-          style="margin-top:30px">
-          <i class="fa fa-user" 
-          aria-hidden="true" 
-          style="padding:10px">
-        </i>
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/StaffList" style="margin-top:30px">
+          <i class="fa fa-user" aria-hidden="true" style="padding:10px">
+          </i>
           Staff
         </a>
       </li>
-      <li routerLinkActive="active current" 
-        class="nav-item" 
-        *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/StudentList">
-          <i class='fas fa-user-graduate' 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
+        <a class="nav-link" routerLink="/StudentList">
+          <i class='fas fa-user-graduate' style="padding:10px">
           </i>
           Student
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item"
-          *ngIf="currentRole==='Teacher'">
-          <a 
-          class="nav-link" 
-          routerLink="/Enquiry">
-          <i 
-          class="fa fa-desktop" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/Enquiry">
+          <i class="fa fa-desktop" style="padding:10px">
           </i>
           Enquiry
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/Courses">
-          <i 
-          class='fas fa-graduation-cap' 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/Courses">
+          <i class='fas fa-graduation-cap' style="padding:10px">
           </i>
           Courses
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-          <a 
-          class="nav-link" 
-          routerLink="/Expenses">
-          <i 
-          class="fa fa-tasks" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/Expenses">
+          <i class="fa fa-tasks" style="padding:10px">
           </i>
           Daily Expenses
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item"
-          *ngIf="currentRole==='Teacher'">
-          <a 
-          class="nav-link" 
-          routerLink="/Leave">
-          <i class=" fa fa-pencil" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/Leave">
+          <i class=" fa fa-pencil" style="padding:10px">
           </i>
           Apply Leave
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item"
-          *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/FeesTransaction">
-          <i class="fa fa-money" 
-          aria-hidden="true" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
+        <a class="nav-link" routerLink="/FeesTransaction">
+          <i class="fa fa-money" aria-hidden="true" style="padding:10px">
           </i>
           Fees Payment
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/BankTransaction">
-          <i class="fa fa-credit-card" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/BankTransaction">
+          <i class="fa fa-credit-card" style="padding:10px">
           </i>
           Bank Transaction
-          </a>
+        </a>
       </li>
-     <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Teacher'">
-          <a class="nav-link" 
-          routerLink="/LeaveList">
-          <i class=" fa fa-check" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/LeaveList">
+          <i class=" fa fa-check" style="padding:10px">
           </i>
           Leaves
-          </a>
+        </a>
       </li>
-     <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/Bank">
-          <i class="fa fa-id-card" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/Bank">
+          <i class="fa fa-id-card" style="padding:10px">
           </i>
           Bank Account
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/Branch">
-          <i class=" fa fa-map-marker" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/Branch">
+          <i class=" fa fa-map-marker" style="padding:10px">
           </i>
           Branch
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-          <a class="nav-link" 
-          routerLink="/ExpenseMaster">
-          <i class="fa fa-dollar" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/ExpenseMaster">
+          <i class="fa fa-dollar" style="padding:10px">
           </i>
           Expenses
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/coursetype">
-          <i class='fas fa-book-reader' 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/coursetype">
+          <i class='fas fa-book-reader' style="padding:10px">
           </i>
           Course Type
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item" 
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/reports">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/reports">
           Reports
-          </a>
+        </a>
       </li>
-      <li routerLinkActive="active current" 
-          class="nav-item"
-          *ngIf="currentRole==='Admin'">
-          <a class="nav-link" 
-          routerLink="/role">
-          <i class="fa fa-user-plus" 
-          aria-hidden="true" 
-          style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/role">
+          <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px">
           </i>
           Role
-          </a>
+        </a>
       </li>
     </ul>
   </div>

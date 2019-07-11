@@ -35,11 +35,11 @@ export class EnquiryComponent implements OnInit {
   listCourseName: Courses[];
   minDate: Date;
   maxDate: Date;
- courseType: CourseType[];
-  
+  courseType: CourseType[];
+
   constructor(
-    private formBuilder: FormBuilder, 
-    private modalService: BsModalService, 
+    private formBuilder: FormBuilder,
+    private modalService: BsModalService,
     private enquiryService: EnquiryService,
     private coursetypeService:CoursetypeService,
     private createNewStudentService:CreateNewStudentService) { }
@@ -154,7 +154,7 @@ export class EnquiryComponent implements OnInit {
 
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
-
+      
     debugger;
 
     this.modalRef = this.modalService.show(editEnquiryModal, {
@@ -211,10 +211,10 @@ export class EnquiryComponent implements OnInit {
 
   private GetCourseNameList(id: number) {
     this.createNewStudentService.getCourseNameFromCourseType(id).subscribe(res => {
-      this.listCourseName = res; 
+      this.listCourseName = res;
       console.log("test", this.listCourseName)
     });;
-    // .subscribe(res => {
+     // .subscribe(res => {
     //   this.listCourseName = res;
     //   console.log(JSON.stringify(this.listCourseName))
     // });

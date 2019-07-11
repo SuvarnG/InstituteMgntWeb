@@ -40,12 +40,10 @@ export interface UpdateStudent{
     MiddleName:string;
     LastName:string;
     Address1:string;
-   // Address2:string;
     City:string;
     State:string;
     STDCode:string;
     PAddress1:string;
-    //PAddress2:string;
     PCity:string;
     PState:string;
     PSTDCode:string;
@@ -55,28 +53,23 @@ export interface UpdateStudent{
     DOB:Date;
     EmergencyNo:string;
     IsDocumentSubmitted:boolean;
-    //DateOfJoining:Date,
     ContactNo:string;
     Course:string;
     CourseType:string;
-    //Photo:string
     CourseTypeId:number;
     CourseId:number;
 }
 
 export interface CreateStudent{
-    // StudentId:number,
     ContactNo:string;
     FirstName:string;
     MiddleName:string;
     LastName:string;
     Address1:string;
-   // Address2:string;
     City:string;
     State:string;
     STDCode:string;
     PAddress1:string;
-    //PAddress2:string;
     PCity:string;
     PState:string;
     PSTDCode:string;
@@ -88,7 +81,6 @@ export interface CreateStudent{
     IsDocumentSubmitted:boolean;
     PayingFees:boolean;
     Photo:string;
-    //PayingFees:string
 }
 
 export interface FeesTransaction{

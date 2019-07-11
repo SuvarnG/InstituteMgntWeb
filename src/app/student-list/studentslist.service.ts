@@ -7,9 +7,10 @@ import { map } from "rxjs/operators";
 
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                              'Authorization': `Bearer ${Utils.GetAccessToken()}` 
-                            })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${Utils.GetAccessToken()}`
+  })
 };
 
 @Injectable({
@@ -23,15 +24,15 @@ export class StudentslistService {
 
   constructor(private http: HttpClient) { }
 
-  getAllStudents(InstituteId:number,BranchId:number){
-    return this.http.get<Students[]>(this.Url+'/'+ InstituteId +'/'+ BranchId,httpOptions).pipe(map(data => data as Students[]))
+  getAllStudents(InstituteId: number, BranchId: number) {
+    return this.http.get<Students[]>(this.Url + '/' + InstituteId + '/' + BranchId, httpOptions).pipe(map(data => data as Students[]))
   }
 
-  deleteStudent(id:number){
-    return this.http.post<void>(this.DeleteStdnt + "/"+id,null,httpOptions)
+  deleteStudent(id: number) {
+    return this.http.post<void>(this.DeleteStdnt + "/" + id, null, httpOptions)
   }
 
-  editStudent(student){
-    return this.http.post<UpdateStudent>(this.EditStnt,student,httpOptions)
+  editStudent(student) {
+    return this.http.post<UpdateStudent>(this.EditStnt, student, httpOptions)
   }
 }
