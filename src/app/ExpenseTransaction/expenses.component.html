@@ -11,32 +11,30 @@
   </div>
   <div class="col-md-10 overflow-auto">
 
-<!-- Create button layout -->
-<div class="row mb-4 px-0 py-1">
-  <div class="col-md-10 mt-4 ">
-    <a routerLink="/authorised-layout" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-      title="home">
-      Home</a>&nbsp;
-    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-    <a routerLink="/Expenses" class="pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="Expenses"
-     >
-      Expenses</a>&nbsp;
-  </div>
-</div>
-<hr>
-<div class="row m-3 ">
-  <div class="col-md-6  py-1">
-    <h2 class="h1 font-weight-medium  mt-3">Expenses</h2>
-  </div>
-  
-  <div class="col-md-6 px-2 pt-2 py-1 justify-content-end text-right">
-      
-    <a routerLink="/Expenses"
-      class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
-      data-placement="bottom" title="Create New" (click)="addNewExpense(addExpense)">
-      Add Expenses</a>&nbsp;
-  </div>
-</div>
+    <!-- Create button layout -->
+    <div class="row mb-4 px-0 py-1">
+      <div class="col-md-10 mt-4 ">
+        <a routerLink="/authorised-layout" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+          title="home">
+          Home</a>&nbsp;
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a routerLink="/Expenses" class="pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="Expenses">
+          Expenses</a>&nbsp;
+      </div>
+    </div>
+    <hr>
+    <div class="row m-3 ">
+      <div class="col-md-6  py-1">
+        <h2 class="h1 font-weight-medium  mt-3"> Daily Expenses</h2>
+      </div>
+
+      <div class="col-md-6 px-2 pt-2 py-1 justify-content-end text-right">
+
+        <a routerLink="/Expenses" class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right"
+          data-toggle="tooltip" data-placement="bottom" title="Create New" (click)="addNewExpense(addExpense)">
+          Add Expenses</a>&nbsp;
+      </div>
+    </div>
 
 
 
@@ -47,10 +45,9 @@
       <button type="button" class="btn btn-primary" style="margin-left:100px" (click)="addNewExpense(addExpense)">Add
         Expenses</button>
     </div> -->
-    <div class="container m-3 shadow mt-4 p-5" >
+    <div class="container m-3 shadow mt-4 p-5">
 
-      <!-- <div class="table-responsive"> -->
-      <!-- <table class="table table-striped"> -->
+      
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
@@ -67,19 +64,20 @@
             <td>{{e.Date | date:'mediumDate'}}</td>
             <td>{{e.PaidByName}}</td>
             <td>{{e.Paid}}</td>
-            <svg class="icon" data-toggle="tooltip" title="Edit" data-placement="bottom" (click)="edit(editExpense,e)" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
-            style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="18px">
-            <g>
+            <svg class="icon" data-toggle="tooltip" title="Edit" data-placement="bottom" (click)="edit(editExpense,e)"
+              version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              x="0px" y="0px" viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;"
+              xml:space="preserve" width="18px">
               <g>
                 <g>
-                  <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
-                  <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+                  <g>
+                    <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
+                    <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
 C386.027,77.92,386.027,64.373,377.707,56.053z" />
+                  </g>
                 </g>
               </g>
-            </g>
-          </svg>
+            </svg>
           </tr>
         </tbody>
       </table>
@@ -90,50 +88,52 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
   <ng-template #editExpense>
 
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Update Expense</h4>
+      <h4 class=" h1 modal-title pull-left">Update Expense</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()">
-        <div class="form-group">
-          <label for="ExpenseType">ExpenseType</label>
+        <div class="row">
+          <div class="col-md-12 shadow my-3">
+            <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4>
 
-          <select name="ExpenseType" class="form-control" formControlName="ExpenseType" [value]="form.ExpenseId.value"
-            [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
-            <option [value]="null">Select Name</option>
-            <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
-              {{expense.Expenses}}
-              <!-- {{expense.ExpenseType}} -->
-            </option>
-          </select>
-          <div *ngIf="submitted && form.ExpenseType.errors">
-            <div *ngIf="form.ExpenseType.errors.required">ExpenseType is required</div>
-          </div>
-        </div>
+            <div class="row">
+              <div class="col-md-12 pb-4 px-4">
+                <div class="form-row">
 
-        <div class="form-group">
-          <label for="AmountPaid">Amount Paid</label>
-          <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid"
-            [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
+                  <div class="form-group col-md-3 px-3">
+                    <select name="ExpenseType" class="form-control" formControlName="ExpenseType"
+                      [value]="form.ExpenseId.value" [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+                      <option [value]="null">Select Name</option>
+                      <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
+                        {{expense.Expenses}}
+                        <!-- {{expense.ExpenseType}} -->
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && form.ExpenseType.errors">
+                      <div *ngIf="form.ExpenseType.errors.required">ExpenseType is required</div>
+                    </div>
+                  </div>
 
-          <div *ngIf="submitted && form.AmountPaid.errors">
-            <div *ngIf="form.AmountPaid.errors.required">AmountPaid is required</div>
-          </div>
-        </div>
+                  <div class="form-group col-md-3 px-3">
+                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
+                      placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
+                    <div *ngIf="submitted && form.AmountPaid.errors">
+                      <div *ngIf="form.AmountPaid.errors.required">AmountPaid is required</div>
+                    </div>
+                  </div>
 
-        <div class="form-group">
-          <label for="Date">Date</label>
-          <input class="form-control" formControlName="Date" [ngClass]="{'is-invalid': submitted && form.Date.errors }">
-          <div *ngIf="submitted && form.Date.errors">
-            <div *ngIf="form.Date.errors.required">Date is required</div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="PaidByName">Paid By Whom</label>
-          <select name="PaidByName" class="form-control" formControlName="PaidByName" [value]="form.PaidByWhom.value"
+                  <div class="form-group col-md-3 px-3">
+                    <input class="form-control" id="Date" formControlName="Date"
+                      [ngClass]="{'is-invalid': submitted && f.Date.errors }">
+                    <div *ngIf="submitted && f.Date.errors">
+                      <div *ngIf="f.Date.errors.required">Date is required</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-md-3 px-3">
+                    <select name="PaidByName" class="form-control" formControlName="PaidByName" [value]="form.PaidByWhom.value"
             [ngClass]="{'is-invalid': submitted && form.PaidByName.errors} ">
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
               <!-- {{user.FirstName+' '+user.LastName}} -->
@@ -141,25 +141,41 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
               <span>{{' '+ staff.LastName}}</span>
             </option>
           </select>
-         <div *ngIf="submitted && form.PaidByName.errors">
+          <div *ngIf="submitted && form.PaidByName.errors">
             <div *ngIf="form.PaidByName.errors.required">Paid By Whom is required</div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <label for="Remark">Remark</label>
-          <input type="text" class="form-control" id="Remark" formControlName="Remark"
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-3 mt-3 px-3">
+                    <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                    <input type="text" class="form-control" id="Remark" formControlName="Remark"
             [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
-         <div *ngIf="submitted && form.Remark.errors">
-            <div *ngIf="form.Remark.errors.required">Remark is required</div>
+            <div *ngIf="submitted && form.Remark.errors">
+              <div *ngIf="form.Remark.errors.required">Remark is required</div>
+            </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+        <!-- second Row start -->
 
-        <div class="form-group">
-          <button type="button" type="submit" style="margin-left: 5px" class="btn btn-primary">submit</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 5px"
+        <div class="modal-footer">
+          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
+          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
             (click)="modalRef.hide()">Cancel</button>
-        </div>
+      </div>
+
+
+
+
+
+
+
+
       </form>
     </div>
   </ng-template>
@@ -179,7 +195,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
         <div class="row">
           <div class="col-md-12 shadow my-3">
             <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4>
-  
+
             <div class="row">
               <div class="col-md-12 pb-4 px-4">
                 <div class="form-row">
@@ -187,64 +203,64 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
             <label for="fullName">Name</label>
           </div> -->
                   <div class="form-group col-md-3 px-3">
-                    <select name="ExpenseType" id="ExpenseType" [value]="null" class="form-control" formControlName="ExpenseType"
-                    [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
-                    <option value="null">Expense Type</option>
-                    <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
-                      {{expense.Expenses}}
-                    </option>
-                  </select>
-                  <div *ngIf="submitted && f.ExpenseType.errors">
-                    <div *ngIf="f.ExpenseType.errors.required">ExpenseType is required</div>
-                  </div>
+                    <select name="ExpenseType" id="ExpenseType" [value]="null" class="form-control"
+                      formControlName="ExpenseType" [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
+                      <option value="null">Expense Type</option>
+                      <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
+                        {{expense.Expenses}}
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && f.ExpenseType.errors">
+                      <div *ngIf="f.ExpenseType.errors.required">ExpenseType is required</div>
+                    </div>
                   </div>
 
                   <div class="form-group col-md-3 px-3">
-                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid"
-            [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
-            <div *ngIf="submitted && f.AmountPaid.errors">
-              <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
-            </div>
+                    <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
+                      placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
+                    <div *ngIf="submitted && f.AmountPaid.errors">
+                      <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
+                    </div>
                   </div>
-  
+
                   <div class="form-group col-md-3 px-3">
                     <input class="form-control" id="Date" formControlName="Date"
-            [ngClass]="{'is-invalid': submitted && f.Date.errors }">
-            <div *ngIf="submitted && f.Date.errors">
-              <div *ngIf="f.Date.errors.required">Date is required</div>
-            </div>
+                      [ngClass]="{'is-invalid': submitted && f.Date.errors }">
+                    <div *ngIf="submitted && f.Date.errors">
+                      <div *ngIf="f.Date.errors.required">Date is required</div>
+                    </div>
                   </div>
                   <div class="form-group col-md-3 px-3">
-                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom" (change)="selectUser($event)"
-            [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
-            <option value="null">Paid By Whom</option>
-            <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
-              <!-- {{user.FirstName+' '+user.LastName}} -->
-              <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
-              <span>{{' '+ staff.LastName}}</span>
-            </option>
-          </select>
-          <div *ngIf="submitted && f.PaidByWhom.errors">
-            <div *ngIf="f.PaidByWhom.errors.required">Paid by Whom</div>
-          </div>
+                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
+                      (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
+                      <option value="null">Paid By Whom</option>
+                      <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
+                        <!-- {{user.FirstName+' '+user.LastName}} -->
+                        <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
+                        <span>{{' '+ staff.LastName}}</span>
+                      </option>
+                    </select>
+                    <div *ngIf="submitted && f.PaidByWhom.errors">
+                      <div *ngIf="f.PaidByWhom.errors.required">Paid by Whom</div>
+                    </div>
                   </div>
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">
                     <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
                     <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
-            [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
-            <div *ngIf="submitted && f.Remark.errors">
-              <div *ngIf="f.Remark.errors.required">Remark is required</div>
-            </div>
+                      [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
+                    <div *ngIf="submitted && f.Remark.errors">
+                      <div *ngIf="f.Remark.errors.required">Remark is required</div>
+                    </div>
                   </div>
-                  
+
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- second Row start --> 
+        <!-- second Row start -->
 
         <div class="row justify-content-end text-right">
           <div class="col-md-3 pb-4  mt-5">
@@ -252,19 +268,19 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
               <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
               <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
                 (click)="modalRef.hide()">Cancel</button>
-              
-  
+
+
             </div>
           </div>
         </div>
 
-        
 
-        
 
-        
 
-        
+
+
+
+
       </form>
     </div>
   </ng-template>
