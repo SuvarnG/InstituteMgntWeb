@@ -36,7 +36,8 @@ export class FeesCollectionReportComponent implements OnInit {
       branchId:[],
       courseId:[],
       FromDate:['',Validators.required],
-      ToDate:['',Validators.required]
+      ToDate:['',Validators.required],
+      period:[]
     })
   }
 

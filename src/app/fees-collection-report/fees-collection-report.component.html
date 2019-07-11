@@ -85,24 +85,28 @@
 
     <div style="margin-top: 20px">
       <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
-        Fees Collection Report
+        <h4>Fees Collection Report</h4>
         <table style="border:1px solid black; width: 100%">
           <tr style="border:1px solid black">
             <th>Student Name</th>
-            <th>Branch Name</th>
+            <!-- <th>Branch Name</th> -->
             <th>Course Name</th>
             <th>Total Fees</th>
             <th>Pending Fees</th>
-            <th>Discount</th>
+            <th>Fees Paid</th>
+            <!-- <th>Discount</th> -->
+            <th>Payment Date</th>
           </tr>
           <tr *ngFor="let f of feesReportList | paginate: { itemsPerPage: 25, currentPage: p }"
             style="border:1px solid black">
             <td>{{f.StudentName}}</td>
-            <td>{{f.BranchName}}</td>
+            <!-- <td>{{f.BranchName}}</td> -->
             <td>{{f.CourseName}}</td>
             <td>{{f.TotalFees}}</td>
             <td>{{f.PendingFees}}</td>
-            <td>{{f.Discount}}</td>
+            <td>{{f.FeesPaid}}</td>            
+            <!-- <td>{{f.Discount}}</td> -->
+            <td>{{f.DateOfPayment | date}}</td>
           </tr>
         </table>
       </kendo-pdf-export>

@@ -182,6 +182,8 @@ export interface FeesReport{
     TotalFees:number;
     PendingFees:number;
     Discount:number;
+    DateOfPayment:Date;
+    FeesPaid:number;
 }
 
 export interface StudentReportInput{
