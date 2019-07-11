@@ -183,7 +183,8 @@ ngOnInit() {
     this.UpdateFormGroup.patchValue(selectedBank);
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 
