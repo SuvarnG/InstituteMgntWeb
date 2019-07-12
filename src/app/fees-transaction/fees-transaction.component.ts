@@ -47,8 +47,6 @@ export class FeesTransactionComponent implements OnInit {
       CourseFees: ['', Validators.required],
       StudentID: ['', Validators.required],
       FeesAmount: ['', Validators.required],
-      DateofPayment: ['', Validators.required],
-      FeesTakenBy: ['', Validators.required],
       RemainingFees: []
     })
 
@@ -81,12 +79,14 @@ export class FeesTransactionComponent implements OnInit {
   }
 
   getTotalFeesForStudentCourse() {
+    debugger;
     this.FeesTransactionService.getTotalFeesForStudentCourse(this.selectedStudentId).subscribe(res => {
       this.courseFees = res
     })
   }
 
   getFeesTransactionDetails() {
+    debugger;
     this.FeesTransactionService.getFeesTransactionDetails(this.selectedStudentId).subscribe(res => {
       this.feesTransaction = res
     })
@@ -104,9 +104,9 @@ export class FeesTransactionComponent implements OnInit {
       Id: 0,
       CourseId: this.registerFeesTransaction.controls.CourseName.value,
       StudentId: this.registerFeesTransaction.controls.StudentID.value,
-      DateOfPayment: this.registerFeesTransaction.controls.DateofPayment.value,
+      DateOfPayment: new Date(),
       FeesPaid: this.registerFeesTransaction.controls.FeesAmount.value,
-      FeesTakenBy: this.registerFeesTransaction.controls.FeesTakenBy.value,
+      FeesTakenBy: this.user.userId.toString(),
       PendingFees: Number(this.registerFeesTransaction.controls.RemainingFees.value) - Number(this.registerFeesTransaction.controls.FeesAmount.value)
     }
 
