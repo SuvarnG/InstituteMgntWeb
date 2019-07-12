@@ -1,3 +1,4 @@
+import { LeaveType, LeaveTransaction } from './../Models/LeaveTran';
 import { Course } from './../Model/CourseType';
 import { CoursesService } from './../courses/courses.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -5,14 +6,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LeaveService } from './leave.service';
 import { validateConfig } from '@angular/router/src/config';
-import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
 import { UpdateLeaves, Leaves } from '../Models/leaves';
 import { CourseType, Students } from '../Models/Students';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
-import {formatDate} from '@angular/common';
-//import { createEnquiry } from '../models/createEnquiry';
-//import { leave } from '@angular/core/src/profile/wtf_impl';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-leave',
@@ -30,11 +28,15 @@ export class LeaveComponent implements OnInit {
   leaves: LeaveType[];
   CreateLeaveFormGroup: FormGroup;
   UpdateLeaveFormGroup: FormGroup;
+  Days: number;
+  StudentId: number;
+  CourseId: number;
+  LeaveTransactionId: number;
 
   constructor(private formBuilder: FormBuilder,
-     private modalService: BsModalService, 
-     private LeaveService: LeaveService,
-     private coursesService:CoursesService) { }
+    private modalService: BsModalService,
+    private LeaveService: LeaveService,
+    private coursesService: CoursesService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -50,7 +52,8 @@ export class LeaveComponent implements OnInit {
       FromDate: ['', Validators.required],
       ToDate: ['', Validators.required],
       StudentName: ['', Validators.required],
-      LeaveName: []
+      LeaveName: [],
+      TotalDays: []
     });
 
     this.UpdateLeaveFormGroup = this.formBuilder.group({
@@ -60,9 +63,9 @@ export class LeaveComponent implements OnInit {
       NeedFollowupDate: ['', Validators.required],
       FromDate: ['', Validators.required],
       ToDate: ['', Validators.required],
-      Totaldays: ['', Validators.required],
-      StudentName: ['', Validators.required],
-      LeaveName: []
+      StudentName: [''],
+      LeaveName: [],
+      TotalDays: []
     });
 
     this.getLeaveList();
@@ -78,7 +81,7 @@ export class LeaveComponent implements OnInit {
   getLeaveList() {
     this.LeaveService.getLeave().subscribe(res => {
       this.leaveTran = res
-    this.dtTrigger.next()
+      this.dtTrigger.next()
     });
     console.log(JSON.stringify(this.leaveTran));
   }
@@ -101,9 +104,10 @@ export class LeaveComponent implements OnInit {
       StudentId: this.fc.StudentName.value,
       CourseId: this.fc.CourseName.value,
       Id: 0,
+      TotalDays: this.fc.TotalDays.value
     }
     this.LeaveService.createLeave(req).subscribe(res => {
-      this.modalRef.hide()   
+      this.modalRef.hide()
       this.getLeaveList();
       console.log(JSON.stringify(res));
     });
@@ -112,7 +116,7 @@ export class LeaveComponent implements OnInit {
 
   public user = Utils.GetCurrentUser();
 
-  getCourseName() {   
+  getCourseName() {
     this.coursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
       this.Courses = res;
       console.log(JSON.stringify(this.Courses));
@@ -120,7 +124,6 @@ export class LeaveComponent implements OnInit {
   }
 
   getStudentName(event) {
-    debugger;
     this.LeaveService.getStudentName(event.target.value).subscribe(res => {
       this.students = res;
       console.log(JSON.stringify(this.students));
@@ -136,57 +139,66 @@ export class LeaveComponent implements OnInit {
 
 
   OpenCreateModal(createTemplate: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(createTemplate,{
+    this.modalRef = this.modalService.show(createTemplate, {
       backdrop: 'static',
-      class:'modal-xl'
+      class: 'modal-xl'
     });
-    
+
   }
 
   // <!-- Edit leave modal -->
-  updateCreateModal(EditTemplate: TemplateRef<any>, editItem: LeaveTransaction) {
-    debugger;
+  updateCreateModal(EditTemplate: TemplateRef<any>, editItem) {
     this.getCourseName();
-    this.getStudentName
-    this.modalRef = this.modalService.show(EditTemplate,{
-        backdrop: 'static',
-        class:'modal-xl'
-      });
+    this.getStudentName;
+    this.StudentId = editItem.StudentId;
+    this.CourseId = editItem.CourseId;
+    this.LeaveTransactionId = editItem.Id;
     this.UpdateLeaveFormGroup.patchValue({
+      CourseName: editItem.FullName,
       LeaveId: editItem.Id,
       CourseId: editItem.CourseId,
       StudentId: editItem.StudentId,
-      StudentName: editItem.FullName,
+      StudentName: editItem.FirstName + ' ' + editItem.LastName,
       Reason: editItem.Reason,
       Comment: editItem.Comment,
-      NeedFollowupDate:formatDate(editItem.NeedFollowupDate, 'yyyy-MM-dd', 'en'),
+      NeedFollowupDate: formatDate(editItem.NeedFollowupDate, 'yyyy-MM-dd', 'en'),
       FromDate: formatDate(editItem.FromDate, 'yyyy-MM-dd', 'en'),
-      ToDate: formatDate(editItem.ToDate,'yyyy-MM-dd', 'en'),
-      LeaveName: editItem.LeaveType
+      ToDate: formatDate(editItem.ToDate, 'yyyy-MM-dd', 'en'),
+      LeaveName: editItem.LeaveId,
+      TotalDays: editItem.TotalDays
     })
+    this.modalRef = this.modalService.show(EditTemplate, {
+      backdrop: 'static',
+      class: 'modal-xl'
+    });
   }
 
   updateLeave() {
-    console.log(this.fu);
     this.submitted = true;
     if (this.UpdateLeaveFormGroup.invalid) {
       return
     }
     let req = {
-      Id: 0,
-      LeaveType: this.UpdateLeaveFormGroup.controls.LeaveType.value,
-      Course: this.UpdateLeaveFormGroup.controls.LeaveType.value,
+      Id: this.LeaveTransactionId,
+      LeaveType: this.UpdateLeaveFormGroup.controls.LeaveName.value,
       FromDate: this.UpdateLeaveFormGroup.controls.FromDate.value,
       ToDate: this.UpdateLeaveFormGroup.controls.ToDate.value,
       Reason: this.UpdateLeaveFormGroup.controls.Reason.value,
       NeedFollowupDate: this.UpdateLeaveFormGroup.controls.NeedFollowupDate.value,
       Comment: this.UpdateLeaveFormGroup.controls.Reason.value,
       FullName: null,
-      StudentId: this.UpdateLeaveFormGroup.controls.StudentId.value,
-      CourseId: this.UpdateLeaveFormGroup.controls.StudentId.value
+      StudentId: this.StudentId,
+      CourseId: this.CourseId,
+      TotalDays: this.UpdateLeaveFormGroup.controls.TotalDays.value
     }
     if (confirm("Do you want to Save Changes?")) {
       this.LeaveService.editLeave(req).subscribe(data => { this.getLeaveList(), this.modalRef.hide() })
     }
+  }
+
+  calculateTotaldays(d1, d2) {
+    var diff = Date.parse(d1) - Date.parse(d2);
+    this.Days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    this.CreateLeaveFormGroup.controls.TotalDays.setValue(this.Days);
   }
 }

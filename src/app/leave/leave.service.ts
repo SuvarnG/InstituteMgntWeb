@@ -14,7 +14,7 @@ const httpOptions = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${Utils.GetAccessToken()}`
   })
- };
+};
 
 @Injectable({
   providedIn: 'root'
@@ -31,15 +31,15 @@ export class LeaveService {
   }
 
   getLeaveTypeList() {
-    this.http.get<LeaveType[]>(environment.APIBASEURL + 'Leave/GetAll').pipe(map(data=>{return data as LeaveType[]}))//.toPromise().then(result => this.LeaveType = result as Leaves[])
+    this.http.get<LeaveType[]>(environment.APIBASEURL + 'Leave/GetAll').pipe(map(data => { return data as LeaveType[] }))//.toPromise().then(result => this.LeaveType = result as Leaves[])
   }
 
-  createLeave(leave: LeaveTransaction) {
+  createLeave(leave) {
     return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, httpOptions);
   }
 
   getStudentName(id) {
-    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id , httpOptions
+    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id, httpOptions
     ).pipe
       (map(data => {
         return data as Students[]
@@ -54,7 +54,7 @@ export class LeaveService {
       }));
   }
 
-  editLeave(leave: LeaveTransaction) {
+  editLeave(leave) {
     return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeaveTransaction', leave, httpOptions);
   }
 }
