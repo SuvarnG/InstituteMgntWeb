@@ -49,7 +49,6 @@ dtOptions: DataTables.Settings = {};
   }
 
 showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
-
   this.createExpenseForm.controls.expense.reset();
   this.modalRef = this.modalService.show(CreateExpenseTemplate, {
     animated: true,

@@ -56,6 +56,7 @@ export class CoursetypeComponent  {
 
   //Create CourseType
   createNewCourse(addtemplate: TemplateRef<any>) {
+    this.createregisterForm.reset();
     this.modalRef = this.modalService.show(addtemplate, {
       animated: true,
       backdrop: 'static'

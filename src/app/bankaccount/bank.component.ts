@@ -107,6 +107,7 @@ export class BankComponent implements OnDestroy, OnInit {
   }
 
   addBankAccNo(Addtemplate: TemplateRef<any>) {
+    this.registerForm.reset();
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static',

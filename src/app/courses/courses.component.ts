@@ -105,6 +105,7 @@ export class CoursesComponent implements OnInit {
   }
 
   AddCourses(Addtemplate: TemplateRef<any>) {
+    this.createForm.reset();
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static',

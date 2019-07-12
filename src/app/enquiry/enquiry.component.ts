@@ -95,6 +95,7 @@ export class EnquiryComponent implements OnInit {
   get fu() { return this.UpdateEnquiryFormGroup.controls; }
 
   public OpenEnquiryModel(CreateEnquiryModal: TemplateRef<any>) {
+    this.EnquiryForm.reset();
     if (!this.listCourseType) {
       this.GetCourseTypeList();
     }

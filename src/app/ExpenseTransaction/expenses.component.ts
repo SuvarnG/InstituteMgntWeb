@@ -95,6 +95,7 @@ export class ExpensesComponent implements OnInit {
 }
 
   addNewExpense(addExpense: TemplateRef<any>) {
+    this.expenseForm.reset();
     this.expenseMasterService.getAllExpenses().subscribe(res=>
       {
         this.expenseMaster=res
