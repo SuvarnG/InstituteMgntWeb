@@ -5,6 +5,6 @@ export interface BankTransaction{
     TransactionType:string,
     Date:Date,
     Amount:string,
-    TransactionBy:string
+    TransactionBy:number,
     BranchId:number
 }

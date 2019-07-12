@@ -165,7 +165,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
 		
 		</div>
 		<!-- Second Row End-->
-		<div class="form-row">
+		<!-- <div class="form-row">
 		<div class="form-group col-md-3 col-xl-3 col-sm-3 col-lg-3">
           <select name="TransactionBy" id="TransactionBy" [value]="null" class="form-control border-bottom text-muted" formControlName="TransactionBy"
             [ngClass]="{ 'is-invalid': submitted &&
@@ -187,7 +187,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
             <div *ngIf="f.Date.errors.required">Please Enter Date</div>
           </div>
         </div>
-		</div>
+		</div> -->
 		<!-- Third Row End-->
 		</div>
 		</div>
@@ -250,7 +250,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
           </div>
     <div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
     <div class="radio">
-    <label class="control-label-col-sm-2 h5 mt-3 h6 text-muted">Transaction Type : </label> 
+    <label class="control-label-col-sm-2 h5 mt-3 h6 text-muted">Transaction Type: </label> 
     <label><input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType" value="Withdraw"
                   checked><span class="ml-2">Withdraw</span></label>
                   <label><input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType"
@@ -261,8 +261,8 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
     <!-- Second Row End-->
     
     <div class="form-row mt-2">
-    <div class="form-group col-md-2 col-xl-2 col-sm-2 col-lg-2">
-        <label for="Date" class="control-label-col-sm-2 mt-3 h6 text-muted">Transaction Date : </label>
+    <!-- <div class="form-group col-md-2 col-xl-2 col-sm-2 col-lg-2">
+        <label for="Date" class="control-label-col-sm-2 mt-3 h6 text-muted">Transaction By : </label>
     </div>
     <div class="form-group col-md-3 col-xl-3 col-sm-3 col-lg-3">
     <select name="TransactionBy" id="TransactionBy" class="form-control text-muted" formControlName="TransactionBy"
@@ -277,17 +277,17 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
     <div *ngIf="submitted && fu.TransactionBy.errors" class="invalid-feedback">
        <div *ngIf="fu.TransactionBy.errors.required">Please Enter Name</div>
      </div>
-     </div>
-    <div class="form-group col-md-2 col-xl-2 col-sm-2 col-lg-2">
+     </div> -->
+    <!-- <div class="form-group col-md-2 col-xl-2 col-sm-2 col-lg-2">
         <label for="Date" class="control-label-col-sm-2 mt-3 h6 text-muted">TransactionDate : </label>
-    </div>
-    <div class="form-group col-md-3 col-xl-3 col-sm-3 col-lg-3">
+    </div> -->
+    <!-- <div class="form-group col-md-3 col-xl-3 col-sm-3 col-lg-3">
            <input class="form-control text-muted" formControlName="Date" [ngClass]="{ 'is-invalid': submitted &&
             fu.Date.errors }">
           <div *ngIf="submitted && fu.Date.errors" class="invalid-feedback">
               <div *ngIf="fu.Date.errors.required">Please Enter Date</div>
          </div>
-    </div>
+    </div> -->
     </div>
     
     <!-- Third Row End-->

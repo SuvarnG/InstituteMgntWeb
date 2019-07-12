@@ -57,9 +57,9 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
       this.CreateFormGroup.controls.BankName.reset,
       this.CreateFormGroup.controls.AccountNo.reset,
       this.CreateFormGroup.controls.TransactionType.reset,
-      this.CreateFormGroup.controls.Date.reset,
+     // this.CreateFormGroup.controls.Date.reset,
       this.CreateFormGroup.controls.Amount.reset,
-      this.CreateFormGroup.controls.TransactionBy.reset
+      //this.CreateFormGroup.controls.TransactionBy.reset
 
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
@@ -86,8 +86,8 @@ ngOnInit() {
       TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
 
-      TransactionBy: ['', Validators.required],
-      Date: ['', Validators.required]
+      //TransactionBy: ['', Validators.required],
+     // Date: ['', Validators.required]
     })
     this.getBankTransaction(this.user.BranchId);
     this.getBankList();
@@ -101,7 +101,7 @@ ngOnInit() {
       AccountNo: ['', Validators.required],
       TransactionType: ['', Validators.required],
       Amount: ['', Validators.required],
-      TransactionBy: ['', Validators.required],
+      //TransactionBy: [],
       TransactionById:[],
       Date: [new Date().toString(), Validators.required]
     })
@@ -137,9 +137,9 @@ ngOnInit() {
         BankName: this.CreateFormGroup.controls.BankName.value,
         AccountNo: this.CreateFormGroup.controls.AccountNo.value,
         TransactionType: this.CreateFormGroup.controls.TransactionType.value,
-        Date: this.CreateFormGroup.controls.Date.value,
+        Date: new Date(),
         Amount: this.CreateFormGroup.controls.Amount.value,
-        TransactionBy: this.CreateFormGroup.controls.TransactionBy.value,
+        TransactionBy: this.user.userId,
         BranchId:this.user.BranchId
       };
 
@@ -176,8 +176,8 @@ ngOnInit() {
       AccountNo: banktransaction.AccountNo,
       TransactionType: banktransaction.TransactionType,
       Amount:banktransaction.Amount,
-      TransactionBy:banktransaction.TransactionBy,
-      TransactionById:banktransaction.TransactionById,
+      //TransactionBy:this.user.userId,
+      //TransactionById:banktransaction.TransactionById,
       Date:new Date(banktransaction.Date).toDateString(),
     }
     this.UpdateFormGroup.patchValue(selectedBank);
@@ -200,8 +200,8 @@ ngOnInit() {
       AccountNo: this.UpdateFormGroup.controls.AccountNo.value,
       TransactionType: this.UpdateFormGroup.controls.TransactionType.value,
       Amount: this.UpdateFormGroup.controls.Amount.value,
-      TransactionBy:this.TransactionBy,// this.UpdateFormGroup.controls.TransactionBy.value,
-      Date: this.UpdateFormGroup.controls.Date.value,
+      TransactionBy:this.user.userId,// this.UpdateFormGroup.controls.TransactionBy.value,
+      Date: new Date(),
       BranchId:this.user.BranchId
     }
     this.BanktransactionService.edit(body).subscribe(data => {
