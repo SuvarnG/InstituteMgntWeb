@@ -16,6 +16,12 @@
         </div>
 
       </li>
+      <li  routerLinkActive="active current" class="nav-item"*ngIf="currentRole==='SuperAdmin'">
+           <span style="color:black;margin-top:30px;padding:30px">Institute</span> 
+        </li>
+        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
+            <span style="color:black;margin-top:30px;padding:30px"> Institute Admin</span>
+        </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
         <a class="nav-link" routerLink="/StaffList" style="margin-top:30px">
           <i class="fa fa-user" aria-hidden="true" style="padding:10px">
