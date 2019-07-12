@@ -114,7 +114,7 @@
                   <h4 class="modal-title pull-left mt-3">Bank Details :</h4>
               <div class="form-row py-4">
               <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-                  <input type="text" class="form-control" formControlName="BankName" value="" [ngClass]="{ 'is-invalid': submitted &&
+                  <input type="text" class="form-control" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
                   f.BankName.errors }" placeholder="Enter Bank name">
                   <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
                       <div *ngIf="f.BankName.errors.required">Please Enter Bank Name</div>
@@ -185,7 +185,7 @@
       </button>
     </div>
     <div class="modal-body">
-      <form [formGroup]="registerForm" (ngSubmit)="updateAccNo()">
+      <form [formGroup]="editForm" (ngSubmit)="updateAccNo()">
           <div class="row shadow m-3 px-4 mb-5">
               <div class="col-md-12 col-xl-12 col-sm-12 col-12">
               <h4 class="modal-title pull-left mt-3">Bank Details :</h4>
@@ -203,10 +203,10 @@
               <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
                   <input type="text" class="form-control border-0" formControlName="AccountNo"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
-              f.AccountNo.errors }" placeholder="Enter Account Number">
+              g.AccountNo.errors }" placeholder="Enter Account Number">
               <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
-              <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
-              <div *ngIf="f.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
+              <div *ngIf="g.AccountNo.errors.required">Please Enter Account Number</div>
+              <div *ngIf="g.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
               </div>
               </div>
               
@@ -221,18 +221,18 @@
                     <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
             <input type="password" class="form-control border-0" formControlName="ReAccountNo"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
-             f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
+            g.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
                     </div>
-                    <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
-                        <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
-                        <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
+                    <div *ngIf="submitted && g.ReAccountNo.errors" class="invalid-feedback">
+                        <div *ngIf="g.ReAccountNo.errors.required">Please ReEnter Account Number</div>
+                        <div *ngIf="g.ReAccountNo.errors.mustMatch">Account Number must match</div>
                       </div>
 
 
 
               <div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
               <div class="radio">
-              <label class="control-label-col-sm-2 h5 mt-3 h6 text-muted">Account Type : </label> 
+              <label class="control-label-col-sm-2 h5 mt-3 h6 text-muted">Account Type : </label>
               <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving"
                             checked><span class="ml-2">Saving</span></label>
                             <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"><span class="ml-2">Current</span></label>

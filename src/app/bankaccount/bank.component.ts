@@ -26,6 +26,7 @@ export class BankComponent implements OnDestroy, OnInit {
   @Input() name: string;
   public ID: number;
   public banks = [];
+  bankId:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
@@ -58,11 +59,24 @@ export class BankComponent implements OnDestroy, OnInit {
         validator: MustMatch('AccountNo', 'ReAccountNo')
       });
 
+
+      this.editForm=this.formBuilder.group({
+
+        BankName:[],
+        AccountNo:[],
+        ReAccountNo:[],
+        AccountType:[],
+        IFSC_Code:[]
+
+      })
+
     this.getBanks(this.user.InstituteId);
   }
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+
+  get g() {return this.editForm.controls}
 
   public user=Utils.GetCurrentUser();
 
@@ -120,16 +134,17 @@ InstituteId=this.user.InstituteId;
   }
 
   editAccNo(editTemplate: TemplateRef<any>, bank) {
+    this.bankId=bank.ID
     let selectedBank = {
       ID: bank.ID,
       BankName: bank.BankName,
       AccountNo:bank.AccountNo,
       AccountType: bank.AccountType,
-      IFSC_Code: bank.IFSC_Code,   
+      IFSC_Code: bank.IFSC_Code,
     }
-    this.registerForm.patchValue(selectedBank);
-    this.registerForm.controls.ReAccountNo.setValue(bank.AccountNo);
-    this.registerForm.controls.AccountNo.setValue(bank.AccountNo);
+    this.editForm.patchValue(selectedBank);
+    this.editForm.controls.ReAccountNo.setValue(bank.AccountNo);
+    this.editForm.controls.AccountNo.setValue(bank.AccountNo);
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
       backdrop: 'static',
@@ -138,19 +153,21 @@ InstituteId=this.user.InstituteId;
   }
 
   updateAccNo() {
+
+    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
-    if (this.registerForm.invalid) {
+    if (this.editForm.invalid) {
       return;
     }
     console.log(this.f)
     let body = {
-      AccountNo: this.registerForm.controls.AccountNo.value,
-      ID: this.registerForm.controls.ID.value,
-      BankName: this.registerForm.controls.BankName.value,
-      AccountType: this.registerForm.controls.AccountType.value,
-      IFSC_Code: this.registerForm.controls.IFSC_Code.value,
+      AccountNo: this.editForm.controls.AccountNo.value,
+      ID: this.bankId,
+      BankName: this.editForm.controls.BankName.value,
+      AccountType: this.editForm.controls.AccountType.value,
+      IFSC_Code: this.editForm.controls.IFSC_Code.value,
       InstituteId:this.user.InstituteId
     }
     this.BankService.editAccNo(body).subscribe(data => {
