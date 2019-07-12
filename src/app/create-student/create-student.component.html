@@ -61,9 +61,9 @@
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
 
-                  <input type="text" id="DOB" placeholder="DOB" onfocus="(this.type='date')" class="form-control"
-                    formControlName="DOB" placeholder="Date Of Birth"
-                    [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
+                  <input type="text" id="dateOfBirth" placeholder="dateOfBirth" onfocus="(this.type='date')" class="form-control"
+                    formControlName="dateOfBirth" placeholder="Date Of Birth"
+                    [ngClass]="{ 'is-invalid': submitted && f.dateOfBirth.errors }">
                   <div *ngIf="submitted && f.dateOfBirth.errors" class="invalid-feedback">
                     <div *ngIf="f.dateOfBirth.errors.required"> Please provide a valid DOB.</div>
                   </div>
