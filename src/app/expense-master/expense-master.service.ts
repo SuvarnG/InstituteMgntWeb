@@ -33,18 +33,11 @@ export class ExpenseMasterService {
 
 getAllExpenses()
 {
-  debugger;
-  // return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions)
-  // .pipe(map(ExpenseMaster=>{
-  //   console.log(ExpenseMaster);
-  //   return ExpenseMaster;
-  // }));
   return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAll',httpOptions).pipe(map(data => data as ExpenseMaster[]))
 }
 
 createNewExpense(expense)
 {
-  debugger;
    return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/CreateExpenses', expense,httpOptions)  
    .pipe(
      tap((expense: ExpenseMaster) => console.log(`added expenseid=${expense.ExpenseId}`)),
@@ -54,7 +47,6 @@ createNewExpense(expense)
 
 deleteExpense(id:number)
 {
-  debugger;
   return this.http.post(environment.APIBASEURL + 'Expenses/DeleteExpense/' + id,null, httpOptions)
 }
 

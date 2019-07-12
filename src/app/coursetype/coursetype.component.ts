@@ -65,7 +65,6 @@ export class CoursetypeComponent  {
 
   // onSubmit() {
 
-  //   debugger;
   //   this.submitted = true;
 
   //   // stop here if form is invalid
@@ -76,8 +75,6 @@ export class CoursetypeComponent  {
   // }
 
   createCourseName(CreateCourseName: string) {
-
-    debugger;
     this.submitted = true;
     if (this.createregisterForm.invalid) {
       return;

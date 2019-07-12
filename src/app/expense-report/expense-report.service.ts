@@ -24,7 +24,6 @@ export class ExpenseReportService {
   constructor(private httpClient:HttpClient) { }
 
   pullExpenseReport(body){
-    debugger;
       return this.httpClient.post<ExpenseReportList[]>(environment.APIBASEURL+'Expenses/GetExpenseReport',body,httpOptions)
   }
 

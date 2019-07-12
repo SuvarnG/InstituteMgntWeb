@@ -72,7 +72,6 @@ export class CreateNewStudentService {
 
 postFile(formData)
   {
-    debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
@@ -82,7 +81,6 @@ postFile(formData)
 
   // postPhoto(formData)
   // {
-  //   debugger;
   //   return this.http.post<any>(this.uploadUrl, formData, {
   //     reportProgress: true,
   //     observe: 'events'
@@ -91,7 +89,6 @@ postFile(formData)
 
   // postPhoto(formData)
   // {
-  //   debugger;
   //   return this.http.post<any>(this.uploadUrl, formData, {
   //     reportProgress: true,
   //     observe: 'events'
@@ -100,14 +97,11 @@ postFile(formData)
 
   postPhoto(formData)
   {
-    debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
     }).subscribe(
-      res=>{
-        debugger;
-          
+      res=>{      
           if(res['type']==4){
            this.thumbnailUrl='Http://'+ res['body']['Message'];
            

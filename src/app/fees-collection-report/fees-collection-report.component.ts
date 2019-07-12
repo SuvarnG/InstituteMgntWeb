@@ -46,7 +46,6 @@ export class FeesCollectionReportComponent implements OnInit {
   public user= Utils.GetCurrentUser();
 
   pullFeesCollectionReport() {
-    debugger;
     if (this.periodSelection == "SelectDateRange") {
       this.submitted = true;
       if (this.registerFeesCollectionReport.invalid) {
@@ -111,12 +110,10 @@ export class FeesCollectionReportComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    debugger;
     this.feesCollectionReportService.exportAsExcelFile(this.feesReportList, 'Fees Collection');
  }
 
  selectPeriod(event:any){
-  debugger;
   this.periodSelection=event.target.value
   if(this.periodSelection=="SelectDateRange"){
     this.dateRange=true;

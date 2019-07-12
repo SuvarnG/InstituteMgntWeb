@@ -39,7 +39,6 @@ export class EnquiryReportService {
     }
 
     createEnquiryPDF(body){
-      debugger;
       return this.httpClient.post(environment.APIBASEURL+'Enquiry/EnquiryPdf',body,httpOptions);
     }
 }

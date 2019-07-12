@@ -42,7 +42,6 @@ dtOptions: DataTables.Settings = {};
   get f() {return this.createExpenseForm.controls}
 
   getAllExpense(){
-  debugger;
   this.expenseMasterService.getAllExpenses().subscribe(res=> {
     this.expenses=res;
     this.dtTrigger.next();
@@ -64,7 +63,6 @@ onSubmitCreateExpense()
     return;
   }
 
-  debugger;
   let body={
     Expenses:this.createExpenseForm.controls.expense.value
   }
@@ -76,7 +74,6 @@ onSubmitCreateExpense()
 
 }
 deleteExpense(expenseName:any,id:number){
-  debugger;
   var ans = confirm("Do you want to delete the expense: " + expenseName);  
   if (ans) {  
       this.expenseMasterService.deleteExpense(id).subscribe(data => {  
@@ -100,7 +97,6 @@ editExpense(EditExpenseTemplate: TemplateRef<any>,expense)
 
 onSubmitEditExpense()
 {
-  debugger;
   let body={
     Expenses:this.editExpenseForm.controls.expense.value,
     ExpenseId:this.expensId

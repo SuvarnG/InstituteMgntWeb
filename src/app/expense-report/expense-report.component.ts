@@ -49,7 +49,6 @@ export class ExpenseReportComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   pullExpenseReport(){
-    debugger;
 
     if(this.periodSelection=="OneMonth"){
       var todaysDate=new Date();
@@ -109,13 +108,10 @@ export class ExpenseReportComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    debugger;
     this.expenseReportService.exportAsExcelFile(this.expenseReportList, 'Expense');
  }
 
  downloadPdf() {
-
-  debugger;
   //const doc = new jsPDF();
 
   const doc = new jsPDF('p', 'mm', 'a4');
@@ -142,7 +138,6 @@ export class ExpenseReportComponent implements OnInit {
 // }
 
 selectPeriod(event:any){
-        debugger;
         this.periodSelection=event.target.value
         if(this.periodSelection=="SelectDateRange"){
           this.dateRange=true;

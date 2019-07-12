@@ -147,16 +147,12 @@ export class EnquiryComponent implements OnInit {
   }
 
   selectCourseNameForCourseType(event) {
-    debugger;
     this.GetCourseNameList(event.target.value);
   }
 
 
   // <!-- Edit Enquiry modal -->
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
-      
-    debugger;
-
     this.modalRef = this.modalService.show(editEnquiryModal, {
       backdrop: 'static',
       class: 'modal-xl'

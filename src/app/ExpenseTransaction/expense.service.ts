@@ -40,7 +40,6 @@ export class ExpenseService {
   }
 
   expensesList(BranchId:number) {
-    debugger;
     return this.http.get<Expenses[]>( environment.APIBASEURL + 'Expenses/GetAll_tran'+'/'+BranchId, httpOptions)
       .pipe(map(Expenses => {
         console.log(Expenses);
@@ -59,7 +58,6 @@ export class ExpenseService {
   }
 
   saveExpense(expense): Observable<Expenses> {
-    debugger;
     // let body: Expenses = expense;
     return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/CreateExpense_Tran', expense, httpOptions)
       .pipe(
@@ -69,7 +67,6 @@ export class ExpenseService {
   }
 
   updateExpense(expense): Observable<Expenses> {
-    debugger;
     return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/UpdateExpense_Tran', expense, httpOptions)
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
@@ -77,11 +74,4 @@ export class ExpenseService {
       );
   }
 
-  // GetStaffList() {
-  //   return this.http.get(environment.APIBASEURL + 'Teacher/GetAllTeacher').pipe(map(data => data as StaffMaster[]))
-  // }
-
-//   getAllExpenseType() {
-//     this.http.get(environment.APIBASEURL + 'Expenses/GetAll').toPromise().then(result => this.listExpenseType = result as ExpenseMaster[])
-//   }
  }

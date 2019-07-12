@@ -52,7 +52,6 @@ export class ExpensesComponent implements OnInit {
 
      this.dtOptions = {
        retrieve: true,
-       //paging: false,
        pagingType: 'full_numbers',
        pageLength: 5
 
@@ -74,7 +73,6 @@ export class ExpensesComponent implements OnInit {
       PaidByWhom: [],
       Remark: ['', [Validators.required]],
       ExpenseId:[],
-      //Expenses: ['', [Validators.required]],
       Id:[],
       PaidByName:[]
     })
@@ -84,13 +82,11 @@ export class ExpensesComponent implements OnInit {
         this.expenseMaster=res
       });
     this.getStaffList();
-    //this.ExpenseService.userList();
   }
 
   public user=Utils.GetCurrentUser();
   
   getAllExpenseTransction(BranchId:number) {
-    debugger;
     BranchId=this.user.BranchId;
     this.ExpenseService.expensesList(BranchId).subscribe(res =>
       { this.expenses = res;
@@ -99,7 +95,6 @@ export class ExpensesComponent implements OnInit {
 }
 
   addNewExpense(addExpense: TemplateRef<any>) {
-    //this.ExpenseService.userList();
     this.expenseMasterService.getAllExpenses().subscribe(res=>
       {
         this.expenseMaster=res
@@ -121,8 +116,6 @@ export class ExpensesComponent implements OnInit {
   }
 
   onSubmit() {
-
-    debugger;
     if (this.expenseForm.invalid == true) {
       this.submitted = true;
       return;
@@ -132,7 +125,6 @@ export class ExpensesComponent implements OnInit {
       let body = {
         ExpenseType: this.expenseForm.controls.ExpenseType.value,
         Paid: this.expenseForm.controls.AmountPaid.value,
-       // PaidByWhom: this.selectedUserValue,
        PaidByWhom: this.user.userId,
        PaidByName:this.expenseForm.controls.PaidByName.value,
         Date: new Date(),
@@ -152,19 +144,13 @@ export class ExpensesComponent implements OnInit {
   }
 
   edit(editExpense: TemplateRef<any>, e) {
-    debugger;
-
-    this.modalRef = this.modalService.show(editExpense, {
+   this.modalRef = this.modalService.show(editExpense, {
       animated: true,
       backdrop: 'static',
       class: 'modal-xl'
     });
 
     this.getExpenseList();
-   
-    //this.id = e.Id;
-    //this.expenseId = e.ExpenseId;
-    
     this.editExpenseForm.patchValue({
       ExpenseType: e.ExpenseId,
       AmountPaid: e.Paid,
@@ -179,7 +165,6 @@ export class ExpensesComponent implements OnInit {
   }
 
   onSubmitEdit() {
-    debugger;
     if (this.editExpenseForm.invalid == true) {
       this.submitted = true;
       return;
@@ -189,14 +174,11 @@ export class ExpensesComponent implements OnInit {
       let body = {
         ExpenseType: this.editExpenseForm.controls.ExpenseType.value,
         Paid: this.editExpenseForm.controls.AmountPaid.value,
-       // PaidByWhom: this.selectedUserValue,
         PaidByWhom: this.user.userId,
         PaidByName:this.editExpenseForm.controls.PaidByName.value,
         Date: new Date(),
         Remark: this.editExpenseForm.controls.Remark.value,
         Id: this.editExpenseForm.controls.Id.value,
-        //ExpenseId: this.editExpenseForm.controls.ExpenseId.value,
-       // Expenses: this.editExpenseForm.controls.Expenses.value,
        BranchId:this.user.BranchId
       }
        this.ExpenseService.updateExpense(body)
@@ -215,7 +197,6 @@ export class ExpensesComponent implements OnInit {
   }
 
   selectUser(event) {
-    debugger;
     this.selectedUserValue = event.target.value;
   }
 

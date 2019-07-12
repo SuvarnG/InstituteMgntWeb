@@ -122,12 +122,10 @@ export class EnquiryReportComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    debugger;
     this.enquiryReportService.exportAsExcelFile(this.enquiryReportList, 'Enquiry');
  }
 
  selectPeriod(event:any){
-  debugger;
   this.periodSelection=event.target.value
   if(this.periodSelection=="SelectDateRange"){
     this.dateRange=true;

@@ -39,7 +39,6 @@ export class LoginService {
   }
 
   resetPassword(email:string){
-    debugger;
     return this.http.get<boolean>(environment.APIBASEURL + 'Login/ResetPasswordRequest/'+ email+'/', httpOptions
     ).pipe
     (map(data=>{

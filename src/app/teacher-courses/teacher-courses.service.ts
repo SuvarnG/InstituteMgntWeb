@@ -86,14 +86,11 @@ export class TeacherCoursesService {
   }
 
   postPhoto(formData) {
-    debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
     }).subscribe(
       res => {
-        debugger;
-
         if (res['type'] == 4) {
           this.thumbnailUrl = 'Http://' + res['body']['Message'];
         }

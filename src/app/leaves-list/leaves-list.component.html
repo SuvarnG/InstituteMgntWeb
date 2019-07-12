@@ -1,23 +1,23 @@
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="row">
-<div class="col-md-2">
-<app-authorised-side-nav></app-authorised-side-nav>
-</div>
+  <div class="col-md-2">
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
-<div class="col-md-10 overflow-auto">
+  <div class="col-md-10 overflow-auto">
 
-<div class="row justify-content-center">
+    <div class="row justify-content-center">
       <div class="col-md-12 col-12 col-sm-12 col-xs-12">
         <div class="box ml-n2 mt-2">
 
           <div class="row mb-4 px-0">
             <div class="col-md-10 mt-4 ">
-              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-                title="home">
+              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
                 Home</a>&nbsp;
               <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-              <a routerLink="/LeaveList" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="student">
+              <a routerLink="/LeaveList" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+                title="student">
                 Leave List</a>&nbsp;
             </div>
           </div>
@@ -40,94 +40,97 @@
         </div>
       </div>
     </div>
-	
-    <div class="container shadow mt-4 p-5 m-3" >
-  <!-- <table class="table table-bordered"> -->
+
+    <div class="container shadow mt-4 p-5 m-3">
+      <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-      <thead>
-        <tr>
-          <th scope="col">No</th>
-          <th scope="col">Leave Type</th>   
-          <th scope="col">Action</th>              
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor = "let l of Leaves;index as i">
-          <td>{{i+1}}</td>
-          <td>{{l.LeaveType}}</td>
-          <td> 
-           
-           <svg class="icon" (click)="UpdateNewLeave(template2,l.LeaveId,l.LeaveType)" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
-                        style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="18px">
-                        <g>
-                          <g>
-                            <g>
-                              <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
-                              <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Leave Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let l of Leaves;index as i">
+            <td>{{i+1}}</td>
+            <td>{{l.LeaveType}}</td>
+            <td>
+
+              <svg class="icon" (click)="UpdateNewLeave(template2,l.LeaveType)" version="1.1" id="Capa_1"
+                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"
+                width="18px">
+                <g>
+                  <g>
+                    <g>
+                      <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
+                      <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
 				C386.027,77.92,386.027,64.373,377.707,56.053z" />
-                            </g>
-                          </g>
-                        </g>
-                      </svg>
-          </td> 
-       
-      </tr>
-      </tbody>
-    </table>
+                    </g>
+                  </g>
+                </g>
+              </svg>
+            </td>
+
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
+
+
+<ng-template #template>
+  <div class="modal-header">
+    <h3 class="font-weight-medium mb-1 mt-1">Add Leave</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+  <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate()">
+    <div class="row">
+      <div class="col-md-12 col-12 ">
+        <div class="form-row p-3">
 
+          <div class="form-group mt-3 col-md-4">
+            New Leave Type:
+          </div>
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control" formControlName="LeaveName"
+              [ngClass]="{ 'is-invalid': submitted && n.LeaveName.errors }" #leaveName>
+            <div *ngIf="submitted && n.LeaveName.errors" class="invalid-feedback">
+              <div *ngIf="n.LeaveName.errors.required">Leave Name Required</div>
+            </div>
+          </div>
 
-  <ng-template #template>
-      <div class="modal-header">
-          <h3 class="font-weight-medium mb-1 mt-1">Add Leave</h3>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-      <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate()" >
-      <div class="row">
-        <div class="col-md-12 col-12 ">
-              <div class="form-row p-3">
-                  
-                  <div class="form-group mt-3 col-md-4">
-                      New Leave Type:
-                    </div>
-                <div class="form-group col-md-5">
-                  <input type="text" class="form-control" formControlName="LeaveName" [ngClass]="{ 'is-invalid': submitted && n.LeaveName.errors }" #leaveName>
-                  <div *ngIf="submitted && n.LeaveName.errors" class="invalid-feedback">
-                      <div *ngIf="n.LeaveName.errors.required">Leave Name Required</div>
-                  </div>
-                </div>
-              
-              </div>
-              
-              
-              </div>
-  </div>
-  <div class="modal-footer">
-      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit" (click)="CreateLeave(leaveName.value)">Submit</button>
+
+
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit"
+        (click)="CreateLeave(leaveName.value)">Submit</button>
       <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-      (click)="modalRef.hide()">Cancel</button>
-  </div>
+        (click)="modalRef.hide()">Cancel</button>
+    </div>
   </form>
-  </ng-template>
-  
+</ng-template>
 
-  <ng-template #template2>
-      <div class="modal-header">
-          <h3 class="font-weight-medium mb-1 mt-1">Update Leave</h3>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-    <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()" >
-    <div class="form-row" >
+
+<ng-template #template2>
+  <div class="modal-header">
+    <h3 class="font-weight-medium mb-1 mt-1">Update Leave</h3>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()">
+    <div class="form-row">
       <div class="row">
         <div class="col-md-12">
-          <div class="form-row ">
+          <!-- <div class="form-row ">
              <div class="row px-3">
               <div class="form-group col-md-5 m-3">
                    <label>Leave Type ID:</label>
@@ -139,30 +142,32 @@
                 <div *ngIf="m.LeaveId.errors.required"></div>
             </div>
           </div>
+          </div> -->
+
+
+          <div class="form-row">
+            <div class="row px-3">
+              <div class="form-group col-md-5 m-3">
+                <label>Leave Type Name: </label>
+              </div>
+              <div class="form-group col-md-5">
+                <input type="text" class="form-control border-0" formControlName="LeaveType"
+                  [ngClass]="{ 'is-invalid': submitted && m.LeaveType.errors }">
+                <div *ngIf="submitted && m.LeaveType.errors" class="invalid-feedback">
+                  <div *ngIf="m.LeaveType.errors.required">Leave Name required</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          
-            <div class="form-row">
-                <div class="row px-3">
-                <div class="form-group col-md-5 m-3">
-                    <label>Leave Type Name: </label>
-                  </div>
-              <div class="form-group col-md-5">
-                <input type="text" class="form-control border-0" formControlName="LeaveType" [ngClass]="{ 'is-invalid': submitted && m.LeaveType.errors }" >
-                <div *ngIf="submitted && m.LeaveType.errors" class="invalid-feedback">
-                    <div *ngIf="m.LeaveType.errors.required">Leave Name required</div>
-                </div>
-              </div>              
-            </div>
         </div>
-            
       </div>
-      </div>
-    </div>          
-    <div class="modal-footer">
-        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  "  (click)="UpdateLeave()" type="submit">Update</button>
-        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-          (click)="modalRef.hide()">Cancel</button>
     </div>
-</form>
+    <div class="modal-footer">
+      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " (click)="UpdateLeave()"
+        type="submit">Update</button>
+      <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+        (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </form>
 </ng-template>

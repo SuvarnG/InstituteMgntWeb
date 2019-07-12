@@ -25,13 +25,11 @@ export class AuthorizedSideNavService {
 
 
   submitUserImage(body){
-    debugger;
     return this.http.post<User>(this.imageUploadUrl,body,httpOptions)
   }
 
   postPhoto(formData)
   {
-    debugger;
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'

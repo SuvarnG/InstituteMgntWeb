@@ -113,12 +113,10 @@ export class StudentAdmissionsReportComponent implements OnInit {
   }
 
   exportAsXLSX():void {
-    debugger;
     this.studentAdmissionsReportService.exportAsExcelFile(this.studentAdmissionReportList, 'Student_Admission');
  }
 
  selectPeriod(event:any){
-  debugger;
   this.periodSelection=event.target.value
   if(this.periodSelection=="SelectDateRange"){
     this.dateRange=true;

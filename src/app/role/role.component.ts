@@ -97,7 +97,6 @@ export class RoleComponent {
   }
 
   EditRole(editTemplate: TemplateRef<any>,role){
-    debugger;
 this.ID=role.roleID;
     let body={
       role:role.RoleName
@@ -109,7 +108,6 @@ this.ID=role.roleID;
     });
   }
   UpdateRole() {
-    debugger;
     let body={
       RoleName:this.registerForm.controls.role.value,
       roleId:this.ID

@@ -24,7 +24,6 @@ export class BankService {
 
 
   bankList(InstituteId:number) {
-    debugger;
     // return this.http.get<Bank[]>( environment.APIBASEURL + 'Bank/GetAll'+'/'+InstituteId, httpOptions)
     //   .pipe(map(bank => {
     //     return bank;

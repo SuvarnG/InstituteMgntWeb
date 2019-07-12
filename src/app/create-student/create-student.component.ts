@@ -113,7 +113,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   selectAddress(event: any) {
-    debugger;
     if (event.currentTarget.checked == true) {
       this.registerForm.controls.Address1.setValue(this.registerForm.controls.PAddress1.value)
       this.registerForm.controls.city.setValue(this.registerForm.controls.Pcity.value)
@@ -136,7 +135,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   matchValidator(group: FormGroup) {
-    debugger;
     let password = this.registerStudentLogin.controls.Password.value;
     let verifyPassword = this.registerStudentLogin.controls.VerifyPassword.value;
 
@@ -151,7 +149,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   openModal(template: TemplateRef<any>) {
-    debugger;
     this.submitted = true;
     if (this.registerForm.invalid) {
       return
@@ -213,8 +210,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   openModal2(template: TemplateRef<any>) {
-    debugger;
-
     this.submitStudentFees = true;
     if (this.registerStudentCourse.invalid) {
       return
@@ -236,7 +231,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   onSubmitStudentLogin() {
-    debugger;
     this.submitStudentLogin = true;
 
     //stop here if form is invalid
@@ -257,7 +251,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   showUpload() {
-    debugger;
     if(this.registerForm.controls.IsDocumentSubmitted.value==false)
     this.showSelected = true;
     else
@@ -265,7 +258,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   // hideUpload() {
-  //   debugger;
   //   if(this.showSelected==true){
   //     this.showSelected = false;
   //   }
@@ -276,7 +268,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   createStudentCourse(feesTransaction: FeesTransaction) {
-    debugger;
     this.submitStudentFees = true;
     if (this.registerStudentCourse.invalid) {
       return
@@ -286,7 +277,6 @@ export class CreateStudentComponent implements OnInit {
       Id: 0,
       CourseId: this.registerStudentCourse.controls.CourseName.value,
       StudentId: this.selectedStudentIdValue,
-      //StudentId:this.registerStudentCourse.controls.StudentID.value,
       CourseFees: this.registerStudentCourse.controls.CourseFees.value,
       NewDiscountedAmount: this.registerStudentCourse.controls.NewDiscountedAmount.value,
       DateOfPayment: this.registerStudentCourse.controls.DateofPayment.value,
@@ -295,7 +285,6 @@ export class CreateStudentComponent implements OnInit {
       PendingFees:(Number(this.registerStudentCourse.controls.NewDiscountedAmount.value)-Number(this.registerStudentCourse.controls.FeesAmount.value)),
       BranchId:this.user.BranchId,
       InstituteId:this.user.InstituteId,
-      //FeesTakenBy:sessionStorage.setItem('CurrentUser', JSON.stringify(auth)),
       CourseCompleted: false,
       Discount: this.registerStudentCourse.controls.AnyDiscount.value,
       TotalFees: this.registerStudentCourse.controls.NewDiscountedAmount.value,
@@ -307,14 +296,12 @@ export class CreateStudentComponent implements OnInit {
     if (confirm("Do you want to submit?")) {
       this.modalRef.hide();
       this.CreateNewStudentService.createStudentCourse(body).subscribe(data => { this.router.navigateByUrl('/StudentList') });
-      //this.CreateNewStudentService.getRecentlyCreatedStudent();
     }
   }
 
 
 
   //   createStudentLogin(user: User) {
-  //     debugger;
 
   //     this.submitStudentLogin = true;
   //     if (this.registerStudentLogin.invalid) {
@@ -351,7 +338,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   handleFileInput(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       this.registerForm.get('Documents').setValue(file);
@@ -359,7 +345,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   handlePhotoInput(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       this.registerForm.get('Photo').setValue(file);
@@ -367,7 +352,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   onUploadFile() {
-    debugger;
     const formData = new FormData();
     formData.append('profile', this.registerForm.get('Documents').value)//this.registerForm.get('Documents').value);
     this.CreateNewStudentService.postFile(formData).subscribe(res => {
@@ -377,7 +361,6 @@ export class CreateStudentComponent implements OnInit {
 
   // onUploadPhoto()
   // {
-  //   debugger;
   //   const formData = new FormData();
   //   formData.append('profile',this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
   //   this.CreateNewStudentService.postPhoto(formData).subscribe(res=>{
@@ -387,29 +370,24 @@ export class CreateStudentComponent implements OnInit {
 
 
   onUploadPhoto() {
-    debugger;
     const formData = new FormData();
     formData.append('profile', this.registerForm.get('Photo').value)//this.registerForm.get('Documents').value);
     this.CreateNewStudentService.postPhoto(formData)
   }
 
   selectStudentId(event) {
-    debugger;
     this.selectedStudentIdValue = event.target.value;
   }
 
   selectStudentFirstName(event) {
-    debugger;
     this.selectedStudentFirstName = event.target.value;
   }
 
   selectStudentLastName(event) {
-    debugger;
     this.selectedStudentLastName = event.target.value;
   }
 
   selectStudentEmail(event) {
-    debugger;
     this.selectedStudentEmail = event.target.value;
   }
 
@@ -418,28 +396,23 @@ export class CreateStudentComponent implements OnInit {
   }
 
   selectUser(event) {
-    debugger;
     this.selectedUserValue = event.target.value;
   }
 
   selectFees(event) {
-    debugger;
     this.selectedFeesValue = event.target.value;
   }
 
   selectRole(event) {
-    debugger;
     this.selectedRoleValue = event.target.value;
   }
 
 
   selectPayingFeesNow(event) {
-    debugger;
     this.selectedPayingFeesNow = event.target.value;
   }
 
   getCourseNameFromCourseType(courses: Courses) {
-    debugger;
     this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue).subscribe(res=>{
       this.courses=res
     })
@@ -447,8 +420,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   getCourseFeesFromCourseName(courses: Courses) {
-    debugger;
-
     this.CreateNewStudentService.getCourseFeesFromCourseName(this.selectedFeesValue).subscribe(res => {
       this.courseFees = res
     })
@@ -456,7 +427,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   calculateDiscountedAmount() {
-    debugger;
     this.CalculatedDiscountedAmount = ((this.registerStudentCourse.controls.CourseFees.value) - ((this.registerStudentCourse.controls.AnyDiscount.value / 100) * this.registerStudentCourse.controls.CourseFees.value))
     this.registerStudentCourse.controls.NewDiscountedAmount.setValue(this.CalculatedDiscountedAmount)
 

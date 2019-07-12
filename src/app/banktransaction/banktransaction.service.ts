@@ -36,7 +36,6 @@ export class BanktransactionService {
 
 
   getAccountNumber(BankName) {
-debugger;
     return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo'+'/' + BankName,httpOptions).pipe(map(data => data as BankTransaction[]))
 
   }
