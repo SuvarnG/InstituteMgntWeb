@@ -1,111 +1,109 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="row">
   <div class="col-md-2">
-  <!-- Add left navigation componant -->
-  <app-authorised-side-nav></app-authorised-side-nav>
-</div>
+    <!-- Add left navigation componant -->
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
-<div class="col-md-10">
-  <div class="row justify-content-center">
+  <div class="col-md-10">
+    <div class="row justify-content-center">
       <div class="col-md-12 col-12 col-sm-12 col-xs-12">
-          <div class="box ml-n2 mt-2">
-  
-            <div class="row mb-4 px-0">
-              <div class="col-md-10 mt-4 ">
-                <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
-                  Home</a>&nbsp;
-                <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                <a routerLink="/Branch" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-                  title="Branch">
-                  Branch</a>&nbsp;
-              </div>
+        <div class="box ml-n2 mt-2">
+
+          <div class="row mb-4 px-0">
+            <div class="col-md-10 mt-4 ">
+              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+                Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <a routerLink="/Branch" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+                title="Branch">
+                Branch</a>&nbsp;
             </div>
-            <hr>
-            <div class="row m-3 ">
-              <div class="col-md-3  py-1">
-                <h2 class="h1 font-weight-medium  mt-3">New Branch</h2>
-              </div>
-  
-              <div class="col-md-9 px-2 pt-2 py-1 justify-content-end text-right">
-                <a routerLink="/Branch" class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right"
-                  data-toggle="tooltip" data-placement="bottom" title="Create New"
-                  (click)="openPopupForNew(NewBranchTemplate)" data-toggle="tooltip" data-placement="bottom"
-                  title="Branch">
-                  Add Branch</a>&nbsp;
-              </div>
+          </div>
+          <hr>
+          <div class="row m-3 ">
+            <div class="col-md-3  py-1">
+              <h2 class="h1 font-weight-medium  mt-3">New Branch</h2>
+            </div>
+
+            <div class="col-md-9 px-2 pt-2 py-1 justify-content-end text-right">
+              <a routerLink="/Branch" class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right"
+                data-toggle="tooltip" data-placement="bottom" title="Create New"
+                (click)="openPopupForNew(NewBranchTemplate)" data-toggle="tooltip" data-placement="bottom"
+                title="Branch">
+                Add Branch</a>&nbsp;
             </div>
           </div>
         </div>
       </div>
-  <!-- Branch List -->
-  
-      <div class="container shadow m-0 p-3">
+    </div>
+    <!-- Branch List -->
+
+    <div class="container shadow m-0 p-3">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-    <thead>
-      <tr>
-        <th>Branch Name</th>
-        <th>Address</th>
-        <th>Contact Number</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let branches of branch">
-        <td>{{branches.BranchName}}</td>
-        <td>{{branches.Address}}</td>
-        <td>{{branches.ContactNo}}</td>
-        <td>
+        <thead>
+          <tr>
+            <th>Branch Name</th>
+            <th>Address</th>
+            <th>Contact Number</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let branches of branch">
+            <td>{{branches.BranchName}}</td>
+            <td>{{branches.Address}}</td>
+            <td>{{branches.ContactNo}}</td>
+            <td>
 
-            <svg class="icon" (click)="openPopupForEdit(EditBranchTemplate,branches)" data-toggle="tooltip"
-            data-placement="bottom" title="Edit Branch" version="1.1" id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-            viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;"
-            xml:space="preserve" width="18px">
-            <g>
-              <g>
+              <svg class="icon" (click)="openPopupForEdit(EditBranchTemplate,branches)" data-toggle="tooltip"
+                data-placement="bottom" title="Edit Branch" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
+                style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="18px">
                 <g>
-                  <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893" />
-                  <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+                  <g>
+                    <g>
+                      <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893" />
+                      <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
 C386.027,77.92,386.027,64.373,377.707,56.053z" />
+                    </g>
+                  </g>
                 </g>
-              </g>
-            </g>
-          </svg>
+              </svg>
 
-          &nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;
 
-          <svg class="icon-red" (click)="delete(branches.BranchId,branches.BranchName)" data-toggle="tooltip"
+              <svg class="icon-red" (click)="delete(branches.BranchId,branches.BranchName)" data-toggle="tooltip"
                 data-placement="bottom" title="Delete branch" xmlns="http://www.w3.org/2000/svg" width="18"
                 viewBox="0 0 24 24">
                 <path
                   d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
               </svg>
 
-          
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-</div>
 
-
-
-<!-- New Branch template -->
-<ng-template #NewBranchTemplate>
-    <form [formGroup]="createBrachForm" (ngSubmit)="onSubmitCreateBranch()">
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Add New Branch</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="modal-body">
-      <div class="row shadow my-3 mx-3">
+
+  <!-- New Branch template -->
+  <ng-template #NewBranchTemplate>
+    <form [formGroup]="createBrachForm" (ngSubmit)="onSubmitCreateBranch()">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Add New Branch</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row shadow my-3 mx-3">
           <div class="col-md-12 ">
             <h4 class=" font-weight-medium  py-4 px-3">Branch Details :</h4>
 
@@ -114,18 +112,19 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">
-                      <input type="text" class="form-control" formControlName="BranchName" placeholder="Branch Name"
+                    <input type="text" class="form-control" formControlName="BranchName" placeholder="Branch Name"
                       [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
-                      <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
-                          <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
-                        </div>
+                    <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
+                      <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
+                    </div>
                   </div>
                   <div class="form-group col-md-4 px-3">
-                      <input type="text" class="form-control" formControlName="Address" placeholder="Branch Address" [ngClass]="{ 'is-invalid': submitted &&
+                    <input type="text" class="form-control" formControlName="Address" placeholder="Branch Address"
+                      [ngClass]="{ 'is-invalid': submitted &&
                       f.Address.errors }">
-                      <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
-                          <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
-                        </div>
+                    <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                      <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
+                    </div>
                   </div>
 
 
@@ -134,99 +133,89 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                 <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">
 
-                      <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact No" [ngClass]="{ 'is-invalid': submitted &&
+                    <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact No"
+                      [ngClass]="{ 'is-invalid': submitted &&
                       f.ContactNo.errors }">
-                      <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                          <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
-                        </div>
+                    <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-    </div>
+      </div>
 
-  <div class="modal-footer">
-      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-      <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-        (click)="modalRef.hide()">Cancel</button>
-    </div>
-</form>
-</ng-template>
+      <div class="modal-footer">
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </ng-template>
 
-<!-- Edit Branch template -->
-<ng-template #EditBranchTemplate>
+  <!-- Edit Branch template -->
+  <ng-template #EditBranchTemplate>
     <form [formGroup]="editBranchForm" (ngSubmit)="onSubmitEditBranch()">
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Edit Branch</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-      <div class="row shadow my-3 mx-3">
+      <div class="modal-header">
+        <h4 class="modal-title pull-left">Edit Branch</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row shadow my-3 mx-3">
           <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+            <div class="form-row py-3">
               <h4>Personal Details :</h4>
-                </div>
-          <div class="form-row">
+            </div>
+            <div class="form-row">
               <div class="form-group col-md-2">
                 <label for="BranchName" class="mt-3 h6 text-muted">Branch Name : </label>
               </div>
               <div class="form-group col-md-2">
-                  <input type="text" class="form-control border-0" formControlName="BranchName"
-          [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
-               </div>
-               <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
-                  <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
-                </div>
-
+                <input type="text" class="form-control border-0" formControlName="BranchName"
+                  [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
+              </div>
+              <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
+                <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
+              </div>
+              <div class="form-group col-md-2">
+                <label for="Address" class="mt-3 h6 text-muted">Branch Address : </label>
+              </div>
 
               <div class="form-group col-md-2">
-                <label for="Address" class="mt-3 h6 text-muted">Branch Address  : </label>
-              </div>
-
-                <div class="form-group col-md-2">
-                    <input type="text" class="form-control border-0" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
+                <input type="text" class="form-control border-0" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
                     f.Address.errors }">
-                </div>
-                <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
-                  </div>
-
-
-
-
-                <div class="form-group col-md-2">
+              </div>
+              <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
+              </div>
+              <div class="form-group col-md-2">
                 <label for="ContactNo" class="mt-3 h6 text-muted">Contact Number : </label>
               </div>
-                  <div class="form-group col-md-2">
-                      <input type="text" class="form-control border-0" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
+              <div class="form-group col-md-2">
+                <input type="text" class="form-control border-0" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
                     f.ContactNo.errors }">
-                  </div>
-                  <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                      <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
-                    </div>   
-            </div> 
+              </div>
+              <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+              </div>
+            </div>
           </div>
         </div>
-
-        
-          
-
-      
-      
-      <!-- <div class="form-group">
+        <!-- <div class="form-group">
         <button class="btn btn-primary" type="submit" id="submit">submit</button>
         <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
       </div> -->
-  </div>
+      </div>
 
-  <div class="modal-footer">
-      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit" (click)="UpdateCourseType(CourseTypeName.value)">Update</button>
-      <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-        (click)="modalRef.hide()">Cancel</button>
-    </div>
-</form>
-</ng-template>
+      <div class="modal-footer">
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit"
+          (click)="UpdateCourseType(CourseTypeName.value)">Update</button>
+        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </ng-template>
