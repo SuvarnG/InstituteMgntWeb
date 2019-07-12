@@ -7,7 +7,7 @@ import { Bank } from '../Model/Bank';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { MustMatch } from './must-match.validator'
 import { debounceTime } from 'rxjs/operators';
-import { Type } from '@angular/compiler';
+import { Type, Xliff } from '@angular/compiler';
 import { Subject } from 'rxjs';
 
 
@@ -95,7 +95,8 @@ export class BankComponent implements OnDestroy, OnInit {
   addBankAccNo(Addtemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
 
 
@@ -131,7 +132,8 @@ InstituteId=this.user.InstituteId;
     this.registerForm.controls.AccountNo.setValue(bank.AccountNo);
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 

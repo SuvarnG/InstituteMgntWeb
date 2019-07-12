@@ -59,7 +59,8 @@ getBranchList(){
   openPopupForNew(NewBranchTemplate: TemplateRef<any>){
     this.modalRef = this.modalService.show(NewBranchTemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
 
@@ -74,7 +75,8 @@ getBranchList(){
     this.editBranchForm.patchValue(body);
     this.modalRef = this.modalService.show(EditBranchTemplate, {
       animated: true,
-      backdrop: 'static'
+      backdrop: 'static',
+      class: 'modal-xl'
     });
   }
   onSubmitCreateBranch()
