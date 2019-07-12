@@ -114,7 +114,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
               <input type="text" id="expense" class="form-control" formControlName="expense"
                 [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
               <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
-                <div *ngIf="f.expense.errors.required">Expense No is required</div>
+                <div *ngIf="f.expense.errors.required">Expense Name is required</div>
               </div>
             </div>
 

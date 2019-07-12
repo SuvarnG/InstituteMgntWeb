@@ -63,16 +63,27 @@ export class CoursetypeComponent  {
     
   };
 
-  onSubmit() {
-    this.submitted = true;
+  // onSubmit() {
 
-    // stop here if form is invalid
+  //   debugger;
+  //   this.submitted = true;
+
+  //   // stop here if form is invalid
+  //   if (this.createregisterForm.invalid) {
+  //     return;
+  //   }
+  //   this.submitted = false;
+  // }
+
+  createCourseName(CreateCourseName: string) {
+
+    debugger;
+    this.submitted = true;
     if (this.createregisterForm.invalid) {
       return;
     }
     this.submitted = false;
-  }
-  createCourseName(CreateCourseName: string) {
+
     this.CoursetypeService.createCourseType(CreateCourseName).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();

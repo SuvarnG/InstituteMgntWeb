@@ -33,6 +33,7 @@ export class ExpensesComponent implements OnInit {
   editExpenseForm: FormGroup;
   public listUser: User[];
   public expenses: Expenses[];
+  listExpenseType:ExpenseMaster[];
   public staffMasters: StaffMaster[];
   selectedUserValue: Number;
   submitted = false;
@@ -59,8 +60,8 @@ export class ExpensesComponent implements OnInit {
     this.expenseForm = this.fb.group({
       ExpenseType: ['', [Validators.required]],
       AmountPaid: ['', [Validators.required]],
-      Date: [new Date().toDateString(), [Validators.required]],
-      PaidByWhom: ['', [Validators.required]],
+      Date: [],
+      PaidByWhom: [],
       Remark: ['', [Validators.required]],
       ExpenseId:[],
       PaidByName:[]
@@ -69,8 +70,8 @@ export class ExpensesComponent implements OnInit {
     this.editExpenseForm = this.fb.group({
       ExpenseType: ['', [Validators.required]],
       AmountPaid: ['', [Validators.required]],
-      Date: ['', [Validators.required]],
-      PaidByWhom: ['', [Validators.required]],
+      Date: [],
+      PaidByWhom: [],
       Remark: ['', [Validators.required]],
       ExpenseId:[],
       //Expenses: ['', [Validators.required]],
@@ -120,6 +121,8 @@ export class ExpensesComponent implements OnInit {
   }
 
   onSubmit() {
+
+    debugger;
     if (this.expenseForm.invalid == true) {
       this.submitted = true;
       return;
@@ -130,9 +133,9 @@ export class ExpensesComponent implements OnInit {
         ExpenseType: this.expenseForm.controls.ExpenseType.value,
         Paid: this.expenseForm.controls.AmountPaid.value,
        // PaidByWhom: this.selectedUserValue,
-       PaidByWhom: this.expenseForm.controls.PaidByWhom.value,
+       PaidByWhom: this.user.userId,
        PaidByName:this.expenseForm.controls.PaidByName.value,
-        Date: this.expenseForm.controls.Date.value,
+        Date: new Date(),
         Remark: this.expenseForm.controls.Remark.value,
         BranchId:this.user.BranchId
       }
@@ -144,32 +147,34 @@ export class ExpensesComponent implements OnInit {
     }
   }
 
+  getExpenseList(){
+    this.expenseMasterService.getAllExpenses().subscribe(data=>{this.listExpenseType=data})
+  }
+
   edit(editExpense: TemplateRef<any>, e) {
     debugger;
-   
-    this.id = e.Id;
-    this.expenseId = e.ExpenseId;
-    
-    
-      let selectedexpense={
-      ExpenseType: e.ExpenseType,
-      AmountPaid: e.Paid,
-      PaidByWhom: e.PaidByWhom,
-      Date: new Date(e.Date).toDateString(),
-      Remark: e.Remark,
-      Id: e.Id,
-      ExpenseId: e.ExpenseId,
-      PaidByName:e.PaidByName
-      }
-      this.editExpenseForm.patchValue(selectedexpense);
-     
-   
+
     this.modalRef = this.modalService.show(editExpense, {
       animated: true,
       backdrop: 'static',
       class: 'modal-xl'
     });
+
+    this.getExpenseList();
    
+    //this.id = e.Id;
+    //this.expenseId = e.ExpenseId;
+    
+    this.editExpenseForm.patchValue({
+      ExpenseType: e.ExpenseId,
+      AmountPaid: e.Paid,
+      PaidByWhom: e.PaidByWhom,
+      Date: new Date(e.Date).toDateString(),
+      Remark: e.Remark,
+      Id: e.Id,
+      ExpenseId:e.ExpenseId,
+      PaidByName:e.PaidByName
+    })  
     
   }
 
@@ -185,13 +190,14 @@ export class ExpensesComponent implements OnInit {
         ExpenseType: this.editExpenseForm.controls.ExpenseType.value,
         Paid: this.editExpenseForm.controls.AmountPaid.value,
        // PaidByWhom: this.selectedUserValue,
-        PaidByWhom: this.editExpenseForm.controls.PaidByWhom.value,
+        PaidByWhom: this.user.userId,
         PaidByName:this.editExpenseForm.controls.PaidByName.value,
-        Date: this.editExpenseForm.controls.Date.value,
+        Date: new Date(),
         Remark: this.editExpenseForm.controls.Remark.value,
         Id: this.editExpenseForm.controls.Id.value,
-        ExpenseId: this.editExpenseForm.controls.ExpenseId.value,
+        //ExpenseId: this.editExpenseForm.controls.ExpenseId.value,
        // Expenses: this.editExpenseForm.controls.Expenses.value,
+       BranchId:this.user.BranchId
       }
        this.ExpenseService.updateExpense(body)
         .subscribe((data) => {

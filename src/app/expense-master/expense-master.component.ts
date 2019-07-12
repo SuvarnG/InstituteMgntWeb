@@ -16,6 +16,7 @@ createExpenseForm:FormGroup;
 editExpenseForm:FormGroup;
 errorMessage:string;
 expensId:Number;
+submitted=false;
 dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   constructor(private fb:FormBuilder,private expenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
@@ -36,6 +37,10 @@ dtOptions: DataTables.Settings = {};
     }),
     this.getAllExpense();
   }
+
+
+  get f() {return this.createExpenseForm.controls}
+
   getAllExpense(){
   debugger;
   this.expenseMasterService.getAllExpenses().subscribe(res=> {
@@ -54,6 +59,11 @@ showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
 }
 onSubmitCreateExpense()
 {
+  this.submitted=true;
+  if(this.createExpenseForm.invalid){
+    return;
+  }
+
   debugger;
   let body={
     Expenses:this.createExpenseForm.controls.expense.value
@@ -65,7 +75,7 @@ onSubmitCreateExpense()
   }, error => this.errorMessage = error) 
 
 }
-deleteExpense(expenseName:any,id:any){
+deleteExpense(expenseName:any,id:number){
   debugger;
   var ans = confirm("Do you want to delete the expense: " + expenseName);  
   if (ans) {  

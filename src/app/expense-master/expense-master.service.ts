@@ -51,14 +51,13 @@ createNewExpense(expense)
      catchError(this.handleError<ExpenseMaster>('expense'))
    );
 }
-deleteExpense(id): Observable<ExpenseMaster>
+
+deleteExpense(id:number)
 {
   debugger;
-  return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/DeleteExpense/'+id, httpOptions).pipe(
-    tap(_ => console.log(`deleted expense id=${id}`)),
-    catchError(this.handleError<ExpenseMaster>('id'))
-  );
+  return this.http.post(environment.APIBASEURL + 'Expenses/DeleteExpense/' + id,null, httpOptions)
 }
+
  editExpense(expense): Observable<ExpenseMaster>{
   return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/UpdateExpenses', expense,httpOptions)  
   .pipe(

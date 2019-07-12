@@ -104,10 +104,10 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                 <div class="form-row">
 
                   <div class="form-group col-md-3 px-3">
-                    <select name="ExpenseType" class="form-control" formControlName="ExpenseType"
-                      [value]="form.ExpenseId.value" [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
-                      <option [value]="null">Select Name</option>
-                      <option *ngFor="let expense of ExpenseService.listExpenseType" [value]="expense.ExpenseId">
+                    <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"
+                       [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+                      <!-- <option [value]="null">Select Name</option> -->
+                      <option *ngFor="let expense of listExpenseType" [value]="expense.ExpenseId">
                         {{expense.Expenses}}
                         <!-- {{expense.ExpenseType}} -->
                       </option>
@@ -125,18 +125,18 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     </div>
                   </div>
 
-                  <div class="form-group col-md-3 px-3">
+                  <!-- <div class="form-group col-md-3 px-3">
                     <input class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && f.Date.errors }">
                     <div *ngIf="submitted && f.Date.errors">
                       <div *ngIf="f.Date.errors.required">Date is required</div>
                     </div>
-                  </div>
-                  <div class="form-group col-md-3 px-3">
+                  </div> -->
+                  <!-- <div class="form-group col-md-3 px-3">
                     <select name="PaidByName" class="form-control" formControlName="PaidByName" [value]="form.PaidByWhom.value"
             [ngClass]="{'is-invalid': submitted && form.PaidByName.errors} ">
             <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
-              <!-- {{user.FirstName+' '+user.LastName}} -->
+             
               <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
               <span>{{' '+ staff.LastName}}</span>
             </option>
@@ -144,7 +144,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
           <div *ngIf="submitted && form.PaidByName.errors">
             <div *ngIf="form.PaidByName.errors.required">Paid By Whom is required</div>
           </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">
@@ -223,19 +223,19 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     </div>
                   </div>
 
-                  <div class="form-group col-md-3 px-3">
+                  <!-- <div class="form-group col-md-3 px-3">
                     <input class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && f.Date.errors }">
                     <div *ngIf="submitted && f.Date.errors">
                       <div *ngIf="f.Date.errors.required">Date is required</div>
                     </div>
-                  </div>
-                  <div class="form-group col-md-3 px-3">
+                  </div> -->
+                  <!-- <div class="form-group col-md-3 px-3">
                     <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
                       (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
                       <option value="null">Paid By Whom</option>
                       <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
-                        <!-- {{user.FirstName+' '+user.LastName}} -->
+                        
                         <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
                         <span>{{' '+ staff.LastName}}</span>
                       </option>
@@ -243,7 +243,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     <div *ngIf="submitted && f.PaidByWhom.errors">
                       <div *ngIf="f.PaidByWhom.errors.required">Paid by Whom</div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">

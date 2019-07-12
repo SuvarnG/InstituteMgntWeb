@@ -98,7 +98,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
 </div>
 
 <ng-template #addtemplate>
-  <form [formGroup]="createregisterForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="createregisterForm" (ngSubmit)="createCourseName(CourseTypeName.value)">
     <div class="modal-header">
       <h4 class="modal-title pull-left">Course Type</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
@@ -124,7 +124,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
       
     </div>
     <div class="modal-footer">
-        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit" (click)="createCourseName(CourseTypeName.value)">Submit</button>
+        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
         <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
           (click)="modalRef.hide()">Cancel</button>
       </div>
