@@ -4,6 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Models/Students';
 import { map } from 'rxjs/operators';
+import { debug } from 'util';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json',
@@ -17,7 +18,7 @@ export class FeesTransactionService {
   public listCourseType: CourseType[];
   public listCourses:Courses[];
   public listStudents:Students[];
-  public listCourseFees:CourseFees[];
+  public listCourseFees:CourseFees;
   public listUsers:Users[];
   public listFeesTransactions:FeesTransactions[];
   private FeesTransactionUrl = environment.APIBASEURL+'Bank/SaveFeesTransaction'
@@ -31,6 +32,7 @@ export class FeesTransactionService {
 
   getTotalFeesForStudentCourse(id:number)
   { 
+    debugger;
     return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
   }
 
