@@ -14,7 +14,7 @@ import { FormBuilder,FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./fees-collection-report.component.css']
 })
 export class FeesCollectionReportComponent implements OnInit {
-
+p:any;
   courseList:Course[];
   branchList:Branch[];
   registerFeesCollectionReport:FormGroup;

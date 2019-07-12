@@ -15,7 +15,7 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
   styleUrls: ['./enquiry-report.component.css']
 })
 export class EnquiryReportComponent implements OnInit {
-
+p:any;
   branchList:Branch[];
   courseList:Course[];
   enquiryReportList:EnquiryReport[];

@@ -24,6 +24,7 @@ export class LeavesListComponent implements OnInit {
   registerCreateLeave: FormGroup;
   public Leaves = [];
   public UpdateLeaves = [];
+  filter:any;
 
   constructor(private LeavelistService: LeavelistService, private formBuilder: FormBuilder,
     private router: Router, private route: ActivatedRoute, private modalService: BsModalService) { }

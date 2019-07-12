@@ -22,7 +22,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
   studentAdmissionReportList:StudentReport[];
   periodSelection:string;
   dateRange=false;
-
+p:any;
   constructor(private branchService:BranchService,
               private coursesService:CoursesService,
               private formBuilder:FormBuilder,

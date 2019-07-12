@@ -36,7 +36,7 @@ export class TeacherCoursesComponent implements OnInit {
   roles: Roles[];
 IsFixedPayment:boolean;
 Salary:CourseFees[];
-
+public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder,
@@ -54,7 +54,7 @@ Salary:CourseFees[];
       Gender: [''],
       LastName: ['', Validators.required],
       DateOfJoining: ['', Validators.required],
-      ContactNo: ['', Validators.required],
+      ContactNo: ['', Validators.required, Validators.pattern],
       Email: ['', Validators.required],
       PreviousExperience: [''],
       DateOfLeaving: [],
@@ -64,12 +64,12 @@ Salary:CourseFees[];
       gridCheck1: [],
       City: ['', Validators.required],
       State: ['', Validators.required],
-      STDCode: ['', Validators.required],
+      ZipCode: ['', Validators.required],
       P_Address1: ['', Validators.required],
       P_City: ['', Validators.required],
       P_State: ['', Validators.required],
-      P_STDCode: ['', Validators.required],
-      EmergencyNo: ['', Validators.required],
+      P_ZipCode: ['', Validators.required],
+      EmergencyNo: ['', Validators.required, Validators.pattern],
       PreviousWorkName: [''],
       IsCv: [],
       IsFixedPayment: [],
@@ -86,18 +86,19 @@ Salary:CourseFees[];
       Salary:['']
     });
     this.staffLoginForm = this.formBuilder.group({
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
-      Email: ['', Validators.required],
-      Role: ['', Validators.required],
+      //FirstName: ['', Validators.required],
+     // LastName: ['', Validators.required],
+      //Email: ['', Validators.required],
+      //Role: ['', Validators.required],
       Password: ['', Validators.required],
-      VerifyPassword: ['', Validators.required],
+      VerifyPassword: ['', Validators.required]
     });
   }
   get f() { return this.registerStaffForm.controls; }
   get login() { return this.staffLoginForm.controls; }
 
   onSubmit(template: TemplateRef<any>) {
+    debugger;
     // stop here if form is invalid
     if (this.registerStaffForm.invalid == true) {
       this.submitted = true;
@@ -123,15 +124,15 @@ Salary:CourseFees[];
         PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
         DateOfLeaving: this.registerStaffForm.controls.DateOfLeaving.value,
         DOB: this.registerStaffForm.controls.DOB.value,
-        Photo: this.teacherCoursesService.thumbnailUrl,
+        Photo: this.thumbnailUrl,
         Address1: this.registerStaffForm.controls.Address1.value,
         City: this.registerStaffForm.controls.City.value,
         State: this.registerStaffForm.controls.State.value,
-        STDCode: this.registerStaffForm.controls.STDCode.value,
+        STDCode: this.registerStaffForm.controls.ZipCode.value,
         P_Address1: this.registerStaffForm.controls.P_Address1.value,
         P_City: this.registerStaffForm.controls.P_City.value,
         P_State: this.registerStaffForm.controls.P_State.value,
-        P_STDCode: this.registerStaffForm.controls.P_STDCode.value,
+        P_STDCode: this.registerStaffForm.controls.P_ZipCode.value,
         EmergencyNo: this.registerStaffForm.controls.EmergencyNo.value,
         PreviousWorkName: this.registerStaffForm.controls.PreviousWorkName.value,
         IsCv: this.registerStaffForm.controls.IsCv.value,
@@ -142,7 +143,6 @@ Salary:CourseFees[];
       this.teacherCoursesService.saveStaff(body)
         .subscribe((data) => {
         }, error => this.errorMessage = error)
-      alert("Success");
 
     }
 
@@ -196,14 +196,14 @@ Salary:CourseFees[];
       this.registerStaffForm.controls.P_Address1.setValue(this.registerStaffForm.controls.Address1.value),
         this.registerStaffForm.controls.P_City.setValue(this.registerStaffForm.controls.City.value),
         this.registerStaffForm.controls.P_State.setValue(this.registerStaffForm.controls.State.value),
-        this.registerStaffForm.controls.P_STDCode.setValue(this.registerStaffForm.controls.STDCode.value)
+        this.registerStaffForm.controls.P_ZipCode.setValue(this.registerStaffForm.controls.ZipCode.value)
 
     }
     else {
       this.registerStaffForm.controls.P_Address1.reset(),
         this.registerStaffForm.controls.P_City.reset(),
         this.registerStaffForm.controls.P_State.reset(),
-        this.registerStaffForm.controls.P_STDCode.reset()
+        this.registerStaffForm.controls.P_ZipCode.reset()
     }
   }
 
@@ -238,15 +238,20 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
   public user = Utils.GetCurrentUser();
 
   onStaffLogin() {
+    if (this.staffLoginForm.invalid == true) {
+      this.submitted = true;
+      return;
+    }
+    else {    
     if (this.staffLoginForm.controls.Password.value != this.staffLoginForm.controls.VerifyPassword.value) {
       alert("Re-type Password");
     }
     else {
       let body = {
-        FirstName: this.staffLoginForm.controls.FirstName.value,
-        LastName: this.staffLoginForm.controls.LastName.value,
-        Email: this.staffLoginForm.controls.Email.value,
-        RoleId: this.staffLoginForm.controls.Role.value,
+        FirstName: this.registerStaffForm.controls.FirstName.value,
+        LastName: this.registerStaffForm.controls.LastName.value,
+        Email: this.registerStaffForm.controls.Email.value,
+        RoleId: 4,
         Password: this.staffLoginForm.controls.Password.value,
         Address: this.registerStaffForm.controls.Address1.value,
         CreatedBy: this.user.userId,
@@ -254,19 +259,17 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
         Gender: this.registerStaffForm.controls.Gender.value,
         LastLoginTime: this.user.lastLogin,
         IsActive: true,
-        Photo: this.teacherCoursesService.thumbnailUrl,
+        Photo: this.thumbnailUrl,
         BranchId: this.user.BranchId,
         InstituteId: this.user.InstituteId
-
       }
       this.teacherCoursesService.addStaffInUsers(body)
         .subscribe((data) => {
           this.modalRef.hide()
-          alert("Staff Created successfully");
           this.router.navigate(['/StaffList']);
         }, error => this.errorMessage = error)
-      alert("Success");
     }
+  }
   }
 
   onImageSelected(event: any) {
@@ -290,22 +293,34 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.registerStaffForm.get('Photo').value);
-    this.teacherCoursesService.postPhoto(formData);
+    this.teacherCoursesService.postPhoto(formData).subscribe(
+      res => {
+        if (res['type'] == 4) {
+          this.thumbnailUrl = 'Http://' + res['body']['Message'];
+        }
+      }
+    );
 
   }
 
   onFileSelected(event: any) {
+    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
-      this.registerStaffForm.get('Document').setValue(file);
+      if(file.name.includes(".txt") || file.name.includes(".pdf"))
+      {
+        this.registerStaffForm.get('Document').setValue(file);
+      }
+      else{
+            alert("Please select Proper file");
+      }
+      
     }
   }
   onUploadFile() {
     const formData = new FormData();
     formData.append('File', this.registerStaffForm.get('Document').value);
     this.teacherCoursesService.uploadFile(formData).subscribe(res => {
-      console.log(res);
     });
-    alert("CV uploaded successfully");
   }
 }

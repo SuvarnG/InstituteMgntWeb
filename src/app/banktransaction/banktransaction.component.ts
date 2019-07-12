@@ -37,6 +37,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   TransactionBy:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+filter:any;
 
  constructor(private http: HttpClient,
    private modalService: BsModalService, 

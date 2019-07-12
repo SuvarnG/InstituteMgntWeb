@@ -29,7 +29,7 @@ export class BankComponent implements OnDestroy, OnInit {
   bankId:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-
+filter:any;
 
   constructor(private modalService: BsModalService, 
     private formBuilder: FormBuilder, 

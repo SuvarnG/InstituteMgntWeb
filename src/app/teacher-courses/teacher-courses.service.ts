@@ -89,12 +89,13 @@ export class TeacherCoursesService {
     return this.http.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
-    }).subscribe(
-      res => {
-        if (res['type'] == 4) {
-          this.thumbnailUrl = 'Http://' + res['body']['Message'];
-        }
-      }
-    )
+    })
+    // .subscribe(
+    //   res => {
+    //     if (res['type'] == 4) {
+    //       this.thumbnailUrl = 'Http://' + res['body']['Message'];
+    //     }
+    //   }
+    // )
   }
 }

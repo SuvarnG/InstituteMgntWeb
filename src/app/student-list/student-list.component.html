@@ -132,7 +132,7 @@
       </div>
 
     </div>
-    <div class="col-sm-6">
+    <!-- <div class="col-sm-6">
       <button type="button" class="fas fa-info" value="Details" title="Student Details"
         (click)="openStudentDetailsPopup(StudentDetails, s)"></button>
       &nbsp;
@@ -141,9 +141,9 @@
       &nbsp;
       <button type="button" class="fas fa-times" value="Delete" title="Delete"
         (click)="deleteStudent(s.StudentId)"></button>
-    </div>
-
-    <ul class="pagination">
+    </div> -->
+<p *ngIf="students && students.length==0">No records found.</p>
+    <ul class="pagination" *ngIf="students && students.length>0">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </ul>
   </div>

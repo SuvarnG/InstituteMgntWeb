@@ -25,7 +25,7 @@ export class ExpenseReportComponent implements OnInit {
   expenseReportList:ExpenseReportList[];
   periodSelection:string;
   dateRange=false;
-
+p:any;
   constructor(private expenseReportService:ExpenseReportService,
               private expenseMasterService:ExpenseMasterService,
               private formBuilder:FormBuilder,

@@ -149,9 +149,9 @@
               </div>
             </div>
           </div>
-
+          <p *ngIf="staffMaster && staffMaster.length==0">No records found.</p>
           <!-- </div> -->
-          <ul class="pagination">
+          <ul class="pagination" *ngIf="staffMaster && staffMaster.length>0">
             <pagination-controls (pageChange)="p = $event"></pagination-controls>
           </ul>
           <!-- </div> -->

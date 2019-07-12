@@ -149,6 +149,7 @@ export class CreateStudentComponent implements OnInit {
 
 
   openModal(template: TemplateRef<any>) {
+    debugger;
     this.submitted = true;
     if (this.registerForm.invalid) {
       return
