@@ -191,7 +191,8 @@ export class CreateStudentComponent implements OnInit {
     if (this.registerForm.controls.payingFeesNow.value) {
       this.modalRef = this.modalService.show(template, {
         animated: true,
-        backdrop: 'static'
+        backdrop: 'static',
+        class:'modal-xl'
       });
       this.coursetypeService.courseTypeList().subscribe(res=>{
         this.courseTypeList=res
