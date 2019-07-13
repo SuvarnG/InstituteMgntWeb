@@ -86,15 +86,15 @@ export class CreateStudentComponent implements OnInit {
 
 
     this.registerStudentCourse = this.formBuilder.group({
-      StudentID: ['', Validators.required],
+      //StudentID: ['', Validators.required],
       CourseType: ['', Validators.required],
       CourseName: ['', Validators.required],
       CourseFees: ['', Validators.required],
       FeesAmount: ['', Validators.required],
       AnyDiscount: ['', Validators.required],
       NewDiscountedAmount: ['', Validators.required],
-      DateofPayment: ['', Validators.required],
-      FeesTakenBy: ['', Validators.required],
+      //DateofPayment: ['', Validators.required],
+      //FeesTakenBy: ['', Validators.required],
       Remark: ['', Validators.required]
     },
     );
@@ -274,15 +274,15 @@ export class CreateStudentComponent implements OnInit {
       return
     }
 
-    let body: FeesTransaction = {
+    let body = {
       Id: 0,
       CourseId: this.registerStudentCourse.controls.CourseName.value,
-      StudentId: this.selectedStudentIdValue,
+      //StudentId: this.selectedStudentIdValue,
       CourseFees: this.registerStudentCourse.controls.CourseFees.value,
       NewDiscountedAmount: this.registerStudentCourse.controls.NewDiscountedAmount.value,
-      DateOfPayment: this.registerStudentCourse.controls.DateofPayment.value,
+      DateOfPayment: new Date(),
       FeesPaid: this.registerStudentCourse.controls.FeesAmount.value,
-      FeesTakenBy: this.registerStudentCourse.controls.FeesTakenBy.value,
+      FeesTakenBy: this.user.userId.toString(),
       PendingFees:(Number(this.registerStudentCourse.controls.NewDiscountedAmount.value)-Number(this.registerStudentCourse.controls.FeesAmount.value)),
       BranchId:this.user.BranchId,
       InstituteId:this.user.InstituteId,

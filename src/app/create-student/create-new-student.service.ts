@@ -39,7 +39,7 @@ export class CreateNewStudentService {
     return this.http.post<CreateStudent>(this.Url,students,httpOptions) 
   }
 
-  createStudentCourse(feesTransaction:FeesTransaction){
+  createStudentCourse(feesTransaction){
     return this.http.post<FeesTransaction>(this.FeesUrl,feesTransaction,httpOptions)
   }
 
