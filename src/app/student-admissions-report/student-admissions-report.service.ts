@@ -7,10 +7,6 @@ import { StudentReport } from '../Models/Students';
 import { Utils } from '../Utils';
 
 
-const httpOptions={
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${Utils.GetAccessToken()}` })
-} 
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
@@ -23,9 +19,19 @@ export class StudentAdmissionsReportService {
 
   constructor(private httpClient:HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   pullStudentAdmissionReport(body){
 
-    return this.httpClient.post<StudentReport[]>(environment.APIBASEURL+'Student/GetStudentAdmissionReport',body,httpOptions);
+    return this.httpClient.post<StudentReport[]>(environment.APIBASEURL+'Student/GetStudentAdmissionReport',body,this.getAuthHeader());
 
   }
 

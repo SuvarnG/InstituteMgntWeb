@@ -353,8 +353,9 @@ export class CreateStudentComponent implements OnInit {
   }
 
   onUploadFile() {
+    debugger;
     const formData = new FormData();
-    formData.append('profile', this.registerForm.get('Documents').value)//this.registerForm.get('Documents').value);
+    formData.append('profile', this.registerForm.get('Document').value)//this.registerForm.get('Documents').value);
     this.CreateNewStudentService.postFile(formData).subscribe(res => {
       console.log(res);
     });

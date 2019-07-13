@@ -6,13 +6,6 @@ import { Utils } from '../Utils';
 import { map } from "rxjs/operators";
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Utils.GetAccessToken()}`
-  })
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,15 +17,27 @@ export class StudentslistService {
 
   constructor(private http: HttpClient) { }
 
+
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
+ 
   getAllStudents(InstituteId: number, BranchId: number) {
-    return this.http.get<Students[]>(this.Url + '/' + InstituteId + '/' + BranchId, httpOptions).pipe(map(data => data as Students[]))
+    return this.http.get<Students[]>(this.Url + '/' + InstituteId + '/' + BranchId, this.getAuthHeader()).pipe(map(data => data as Students[]))
   }
 
   deleteStudent(id: number) {
-    return this.http.post<void>(this.DeleteStdnt + "/" + id, null, httpOptions)
+    return this.http.post<void>(this.DeleteStdnt + "/" + id, null, this.getAuthHeader())
   }
 
   editStudent(student) {
-    return this.http.post<UpdateStudent>(this.EditStnt, student, httpOptions)
+    return this.http.post<UpdateStudent>(this.EditStnt, student, this.getAuthHeader())
   }
 }

@@ -10,10 +10,6 @@ import { Utils } from '../Utils';
 // import { from, Observable } from 'rxjs';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-  'Authorization': `Bearer ${Utils.GetAccessToken()}`}) 
-};
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +22,19 @@ export class ExpenseService {
   listUser: User[];
   public listStaff: StaffMaster[];
   listExpenseType: ExpenseMaster[];
+
+
   constructor(private http: HttpClient) { }
+
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -40,7 +48,7 @@ export class ExpenseService {
   }
 
   expensesList(BranchId:number) {
-    return this.http.get<Expenses[]>( environment.APIBASEURL + 'Expenses/GetAll_tran'+'/'+BranchId, httpOptions)
+    return this.http.get<Expenses[]>( environment.APIBASEURL + 'Expenses/GetAll_tran'+'/'+BranchId, this.getAuthHeader())
       .pipe(map(Expenses => {
         console.log(Expenses);
         return Expenses;
@@ -48,7 +56,7 @@ export class ExpenseService {
   }
 
   deleteExpense(id): Observable<Expenses> {
-    return this.http.post<Expenses>(this.deleteUrl + id, httpOptions).pipe(
+    return this.http.post<Expenses>(this.deleteUrl + id, this.getAuthHeader()).pipe(
       tap(_ => console.log(`deleted expense id=${id}`)),
       catchError(this.handleError<Expenses>('deleteExpense'))
     );
@@ -59,7 +67,7 @@ export class ExpenseService {
 
   saveExpense(expense): Observable<Expenses> {
     // let body: Expenses = expense;
-    return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/CreateExpense_Tran', expense, httpOptions)
+    return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/CreateExpense_Tran', expense, this.getAuthHeader())
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
         catchError(this.handleError<Expenses>('saveExpense'))
@@ -67,7 +75,7 @@ export class ExpenseService {
   }
 
   updateExpense(expense): Observable<Expenses> {
-    return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/UpdateExpense_Tran', expense, httpOptions)
+    return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/UpdateExpense_Tran', expense, this.getAuthHeader())
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
         catchError(this.handleError<Expenses>('updateExpense'))

@@ -7,11 +7,6 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
 
-const httpOptions={
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${Utils.GetAccessToken()}` })
-} 
-
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
 const EXCEL_EXTENSION = '.xlsx';
@@ -23,8 +18,18 @@ export class ExpenseReportService {
 
   constructor(private httpClient:HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   pullExpenseReport(body){
-      return this.httpClient.post<ExpenseReportList[]>(environment.APIBASEURL+'Expenses/GetExpenseReport',body,httpOptions)
+      return this.httpClient.post<ExpenseReportList[]>(environment.APIBASEURL+'Expenses/GetExpenseReport',body,this.getAuthHeader())
   }
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {

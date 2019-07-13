@@ -6,10 +6,6 @@ import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseTyp
 import { map } from 'rxjs/operators';
 import { debug } from 'util';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-  'Authorization': `Bearer ${Utils.GetAccessToken()}` })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -25,29 +21,39 @@ export class FeesTransactionService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   getStudentListFromCourseName(id)
   {
-    return this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id,httpOptions).pipe(map(data => data as Students[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id,this.getAuthHeader()).pipe(map(data => data as Students[]))
   }
 
   getTotalFeesForStudentCourse(id:number)
   { 
     debugger;
-    return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,this.getAuthHeader()).pipe(map(data => data as CourseFees[]))
   }
 
   getFeesTransactionDetails(id:number)
   {
-    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,httpOptions).pipe(map(data => data as FeesTransactions[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,this.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
   }
 
   getUsersListForFeesTaken()
   {
-    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',httpOptions).pipe(map(data => data as Users[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',this.getAuthHeader()).pipe(map(data => data as Users[]))
   }
 
   createStudentCourse(feesTransactions:FeesTransactions)
   {
-    return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,httpOptions)//.subscribe()
+    return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,this.getAuthHeader())//.subscribe()
   }
 }

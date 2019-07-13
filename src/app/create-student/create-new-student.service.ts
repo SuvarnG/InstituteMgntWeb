@@ -7,11 +7,6 @@ import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,
 import { Utils } from '../Utils';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-  'Authorization': `Bearer ${Utils.GetAccessToken()}`
-})
-};
 
 @Injectable({
   providedIn: 'root'
@@ -35,33 +30,43 @@ export class CreateNewStudentService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   createNewStudent(students:CreateStudent){
-    return this.http.post<CreateStudent>(this.Url,students,httpOptions) 
+    return this.http.post<CreateStudent>(this.Url,students,this.getAuthHeader()) 
   }
 
   createStudentCourse(feesTransaction){
-    return this.http.post<FeesTransaction>(this.FeesUrl,feesTransaction,httpOptions)
+    return this.http.post<FeesTransaction>(this.FeesUrl,feesTransaction,this.getAuthHeader())
   }
 
   createStudentLogin(user:User){
-    return this.http.post<User>(this.StudentLoginUrl,user,httpOptions)
+    return this.http.post<User>(this.StudentLoginUrl,user,this.getAuthHeader())
   }
 
   getRecentlyCreatedStudent(){
-    return this.http.get(environment.APIBASEURL+'Student/GetRecentlyCreatedStudent',httpOptions).pipe(map(data => data as RecentStudent[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetRecentlyCreatedStudent',this.getAuthHeader()).pipe(map(data => data as RecentStudent[]))
   }
 
 
   getCourseNameFromCourseType(id){  
-    return this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id,httpOptions).pipe(map(data => data as Courses[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetCourseNameFromCourseType'+'/'+id,this.getAuthHeader()).pipe(map(data => data as Courses[]))
   }
 
   getCourseFeesFromCourseName(id){
-    return this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id,httpOptions).pipe(map(data => data as CourseFees[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetCourseFeesFromCourseName'+'/'+id,this.getAuthHeader()).pipe(map(data => data as CourseFees[]))
   }
 
   getUsersListForFeesTaken(){
-    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',httpOptions).pipe(map(data => data as Users[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',this.getAuthHeader()).pipe(map(data => data as Users[]))
  
   }
 
@@ -72,7 +77,8 @@ export class CreateNewStudentService {
 
 postFile(formData)
   {
-    return this.http.post<any>(this.uploadUrl, formData, {
+    debugger;
+    return this.http.post<any>(environment.APIBASEURL+'Upload/PostFile', formData, {
       reportProgress: true,
       observe: 'events'
     });

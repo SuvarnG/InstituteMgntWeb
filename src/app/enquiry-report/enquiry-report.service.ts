@@ -6,10 +6,6 @@ import {EnquiryReport} from '../models/EnquiryList'
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
-const httpOptions={
-  headers: new HttpHeaders({ 'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${Utils.GetAccessToken()}` })
-} 
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 
@@ -22,8 +18,18 @@ export class EnquiryReportService {
 
   constructor(private httpClient:HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   pullEnquiryReport(body){
-        return this.httpClient.post<EnquiryReport[]>(environment.APIBASEURL+'Enquiry/GetEnquiryReport',body,httpOptions);
+        return this.httpClient.post<EnquiryReport[]>(environment.APIBASEURL+'Enquiry/GetEnquiryReport',body,this.getAuthHeader());
   }
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {
@@ -39,6 +45,6 @@ export class EnquiryReportService {
     }
 
     createEnquiryPDF(body){
-      return this.httpClient.post(environment.APIBASEURL+'Enquiry/EnquiryPdf',body,httpOptions);
+      return this.httpClient.post(environment.APIBASEURL+'Enquiry/EnquiryPdf',body,this.getAuthHeader());
     }
 }

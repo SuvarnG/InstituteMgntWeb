@@ -4,11 +4,9 @@ import { from, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Roles } from '../Model/Roles'
 import { map, catchError, tap } from 'rxjs/operators';
+import { Utils } from '../Utils';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -22,8 +20,19 @@ export class RoleService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
+
   roleList() {
-    return this.http.get<Roles[]>(this.Url, httpOptions)
+    return this.http.get<Roles[]>(this.Url, this.getAuthHeader())
       .pipe(map(role => {
         return role;
       }));
@@ -32,7 +41,7 @@ export class RoleService {
 
   deleteRole(roleID):Observable<Roles>{
 
-    return this.http.post<Roles>(this.deleteUrl + roleID, httpOptions).pipe(
+    return this.http.post<Roles>(this.deleteUrl + roleID, this.getAuthHeader()).pipe(
       tap(_ => console.log(`deleted role id=${roleID}`))
    
   );
@@ -40,7 +49,7 @@ export class RoleService {
   
 CreateRole(RoleName:string):Observable<Roles>{
    
-    return this.http.post<Roles>(this.createUrl + "/" + RoleName, httpOptions).pipe(
+    return this.http.post<Roles>(this.createUrl + "/" + RoleName, this.getAuthHeader()).pipe(
       tap(_ => console.log(`created role RoleName=${RoleName}`))
     
   );
@@ -48,7 +57,7 @@ CreateRole(RoleName:string):Observable<Roles>{
 
 EditRole(role):Observable<Roles>{
    
-  return this.http.post<Roles>(this.UpdateUrl,role, httpOptions).pipe(
+  return this.http.post<Roles>(this.UpdateUrl,role, this.getAuthHeader()).pipe(
     tap((role:Roles)=>console.log('Update RoleID=${role.rOleId}'))
   
 );

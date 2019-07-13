@@ -10,10 +10,6 @@ import { Accountnumbers } from '../Model/AccountNumber';
 import { Utils } from '../Utils';
 
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' ,
-  'Authorization': `Bearer ${Utils.GetAccessToken()}`})
-};
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +21,21 @@ export class BanktransactionService {
   public listStaff: StaffMaster[];
   public listaccno: BankTransaction[];
   public bankname: BankNames[];
+
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   banktransactionList(BranchId:number) {
-    return this.http.get<BankTransaction[]>(environment.APIBASEURL + 'Bank/GetAllBankTrn'+'/'+BranchId, httpOptions)
+    return this.http.get<BankTransaction[]>(environment.APIBASEURL + 'Bank/GetAllBankTrn'+'/'+BranchId, this.getAuthHeader())
       .pipe(map(banktransaction => {
         return banktransaction;
       }));
@@ -36,19 +43,19 @@ export class BanktransactionService {
 
 
   getAccountNumber(BankName) {
-    return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo'+'/' + BankName,httpOptions).pipe(map(data => data as BankTransaction[]))
+    return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo'+'/' + BankName,this.getAuthHeader()).pipe(map(data => data as BankTransaction[]))
 
   }
 
   banktransaction(banktransaction: BankTransaction) {
 
-    return this.http.post<BankTransaction>(this.CreateUrl, banktransaction, httpOptions).pipe(map(banktransaction => { return banktransaction }))
+    return this.http.post<BankTransaction>(this.CreateUrl, banktransaction, this.getAuthHeader()).pipe(map(banktransaction => { return banktransaction }))
   }
 
 
   edit(banktransaction): Observable<BankTransaction> {
 
-    return this.http.post<BankTransaction>(this.UpdateUrl, banktransaction, httpOptions).pipe(
+    return this.http.post<BankTransaction>(this.UpdateUrl, banktransaction, this.getAuthHeader()).pipe(
       tap((banktransaction: BankTransaction) => console.log('Update Id=${banktransaction.ID}'))
 
     );

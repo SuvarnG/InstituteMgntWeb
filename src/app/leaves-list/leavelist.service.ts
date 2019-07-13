@@ -5,12 +5,6 @@ import { environment } from '../../environments/environment';
 import { Leaves, UpdateLeaves } from '../Models/leaves'
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Utils.GetAccessToken()}`
-  })
-};
 
 @Injectable({
   providedIn: 'root'
@@ -24,19 +18,29 @@ export class LeavelistService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
   GetAllLeaves() {
-    return this.http.get<Leaves[]>(this.Url, httpOptions)
+    return this.http.get<Leaves[]>(this.Url, this.getAuthHeader())
   }
 
   DeleteLeaveType(id: number) {
-    return this.http.post<void>(this.DeleteUrl + "/" + id, httpOptions)
+    return this.http.post<void>(this.DeleteUrl + "/" + id, this.getAuthHeader())
   }
 
   CreateLeave(leaveName: string) {
-    return this.http.post<void>(this.CreateUrl + "/" + leaveName, httpOptions)
+    return this.http.post<void>(this.CreateUrl + "/" + leaveName, this.getAuthHeader())
   }
 
   UpdateLeave(leaves: Leaves) {
-    return this.http.post<void>(this.UpdateUrl, leaves, httpOptions)
+    return this.http.post<void>(this.UpdateUrl, leaves, this.getAuthHeader())
   }
 }

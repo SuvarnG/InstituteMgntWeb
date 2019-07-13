@@ -8,16 +8,12 @@ import { Courses, CourseType, Roles } from '../Models/Students';
 import { User } from '../Models/User';
 import { Utils } from '../Utils';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Utils.GetAccessToken()}`
-  }
-  )
-};
+
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class TeacherCoursesService {
   listCourseType: CourseType[];
   listCourses: Courses[];
@@ -28,6 +24,16 @@ export class TeacherCoursesService {
   private uploadUrl = environment.APIBASEURL + 'Upload/PostUserImage'
 
   constructor(private http: HttpClient) { }
+
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -58,7 +64,7 @@ export class TeacherCoursesService {
   }
 
   saveStaff(staffMaster): Observable<StaffMaster> {
-    return this.http.post<StaffMaster>(environment.APIBASEURL + 'Teacher/CreateTeacher', staffMaster, httpOptions)
+    return this.http.post<StaffMaster>(environment.APIBASEURL + 'Teacher/CreateTeacher', staffMaster, this.getAuthHeader())
       .pipe(
         tap((staffMaster: StaffMaster) => console.log('added id=${staffMaster.StaffId}')),
         catchError(this.handleError<StaffMaster>('staffMaster'))
@@ -66,7 +72,7 @@ export class TeacherCoursesService {
   }
  
   addTeacherCourses(teacherCourse) {
-    return this.http.post<TeacherCourse>(environment.APIBASEURL + 'Teacher/AddTeacherCourses', teacherCourse, httpOptions)
+    return this.http.post<TeacherCourse>(environment.APIBASEURL + 'Teacher/AddTeacherCourses', teacherCourse, this.getAuthHeader())
       .pipe(
         tap((teacherCourse: TeacherCourse) => console.log('added id=${teacherCourse.TeacherId}')),
         catchError(this.handleError<TeacherCourse>('teacherCourse'))
@@ -74,11 +80,11 @@ export class TeacherCoursesService {
   }
 
   getRoleList() {
-    return this.http.get(environment.APIBASEURL + 'Student/GetRolesList', httpOptions).pipe(map(data => data as Roles[]))
+    return this.http.get(environment.APIBASEURL + 'Student/GetRolesList', this.getAuthHeader()).pipe(map(data => data as Roles[]))
   }
 
   addStaffInUsers(user) {
-    return this.http.post<User>(environment.APIBASEURL + 'Login/CreateNewUser', user, httpOptions)
+    return this.http.post<User>(environment.APIBASEURL + 'Login/CreateNewUser', user, this.getAuthHeader())
       .pipe(
         tap((user: User) => console.log('added id=${user.Id}')),
         catchError(this.handleError<User>('user'))

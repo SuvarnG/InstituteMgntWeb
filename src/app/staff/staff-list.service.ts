@@ -9,12 +9,6 @@ import { Utils } from '../Utils';
 
 
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${Utils.GetAccessToken()}`
-  })
-};
 @Injectable({
   providedIn: 'root'
 })
@@ -28,6 +22,17 @@ export class StaffListService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    return httpOptions
+  }
+
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 
@@ -40,22 +45,24 @@ export class StaffListService {
   }
 
   getAllStaff(InstituteId: number, BranchId: number) {
-    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher' + '/' + InstituteId + '/' + BranchId, httpOptions)
+    return this.http.get<StaffMaster[]>(environment.APIBASEURL + 'Teacher/GetAllTeacher' + '/' + InstituteId + '/' + BranchId, this.getAuthHeader())
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
         return StaffMaster;
       }));
 
   }
+
+  
   getStaffDetails(id) {
-    return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher/' + id, httpOptions)
+    return this.http.get<StaffMaster>(environment.APIBASEURL + 'Teacher/GetTeacher/' + id, this.getAuthHeader())
       .pipe(map(StaffMaster => {
         console.log(StaffMaster);
         return StaffMaster;
       }));
   }
   updateStaff(staffMaster): Observable<StaffMaster> {
-    return this.http.post<StaffMaster>(environment.APIBASEURL + 'Teacher/UpdateTeacher', staffMaster, httpOptions)
+    return this.http.post<StaffMaster>(environment.APIBASEURL + 'Teacher/UpdateTeacher', staffMaster, this.getAuthHeader())
       .pipe(
         tap((expense: StaffMaster) => console.log(`added staffid=${staffMaster.StaffId}`)),
         catchError(this.handleError<StaffMaster>('updateStaff'))
@@ -63,7 +70,7 @@ export class StaffListService {
   }
 
   deleteStaff(id: number) {
-    return this.http.post<StaffMaster>(this.deleteUrl + id, null, httpOptions).pipe(
+    return this.http.post<StaffMaster>(this.deleteUrl + id, null, this.getAuthHeader()).pipe(
       tap(_ => console.log(`deleted product id=${id}`)),
       catchError(this.handleError<StaffMaster>('deleteStaff'))
     );
