@@ -26,3 +26,13 @@ fieldset
             line-height: 70px;
              text-align: center; 
         }
+
+        #A{
+            overflow-x: hidden;
+            overflow-y: scroll;
+           
+    }
+    
+    .h-460{
+            height: 460px;
+    }

@@ -6,15 +6,16 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
-  <div class="container">
+  <div class="container p-4 m-0">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 border-bottom m-3">
         <h2 class="h1 font-weight-medium mb-3 mt-5">Add Staff</h2>
       </div>
     </div>
+    <div id="A"  class="h-460 shadow p-4">
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
-        <div class="col-md-12 shadow my-3">
+        <div class="col-md-12 border-bottom m-3">
           <h4 class=" font-weight-medium  py-4 px-3">Personal Info :</h4>
           
           <div class="row">
@@ -90,7 +91,7 @@
       <!-- second Row start -->
 
       <div class="row">
-        <div class="col-md-12 shadow mt-3 ">
+        <div class="col-md-12 border-bottom m-3 ">
           <h4 class=" font-weight-medium  py-4 px-3">Contact Info :</h4>
 
           <div class="row">
@@ -129,7 +130,7 @@
       <!--Second row End-->
       <div class="row">
 
-        <div class="col-md-12 shadow mt-3 ">
+        <div class="col-md-12 border-bottom m-3 ">
           <h4 class=" font-weight-medium  py-4 px-3">Permanent Address :</h4>
 
           <div class="row">
@@ -178,7 +179,7 @@
       <!--Third Row End-->
       <div class="row">
 
-        <div class="col-md-12 shadow mt-3">
+        <div class="col-md-12 border-bottom m-3">
           <h4 class=" font-weight-medium  py-4 px-3">Current Address :</h4>
           <div class="row">
             <div class="form-group col-md-4 px-5">
@@ -272,7 +273,7 @@
    </div>  -->
       <!--fifth row end-->
       <div class="row">
-        <div class="col-md-12 shadow mt-3">
+        <div class="col-md-12 border-bottom m-3">
           <h4 class=" font-weight-medium  py-4 px-3">Professional Details :</h4>
 
           <div class="row">
@@ -340,7 +341,7 @@
       </div>
       <!--Sixth row End-->
       <div class="row">
-        <div class="col-md-12 shadow mt-3 ">
+        <div class="col-md-12 border-bottom m-3 ">
           <h4 class=" font-weight-medium  py-4 px-3">Previous Company Details :</h4>
 
           <div class="form-row mt-2 ">
@@ -396,6 +397,7 @@
       </div>
 
     </form>
+  </div>
   </div>
 
 </div>
