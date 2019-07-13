@@ -95,7 +95,7 @@ export class FeesTransactionComponent implements OnInit {
   createStudentCourse() {
     this.submitFeesTransaction = true;
     if (this.registerFeesTransaction.invalid) {
-      return
+      return      
     }
 
     this.studentId = this.registerFeesTransaction.controls.StudentID.value;
@@ -138,6 +138,13 @@ export class FeesTransactionComponent implements OnInit {
     console.log(this.remainingFees)
 
     this.registerFeesTransaction.controls.RemainingFees.setValue(this.remainingFees)
+  }
+
+  clearFeesTransaction(){
+    this.submitFeesTransaction=false;
+    this.feesTransaction=null;
+    this.registerFeesTransaction.reset();
+
   }
 
 }

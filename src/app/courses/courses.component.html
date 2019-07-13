@@ -160,7 +160,8 @@
                   <div class="form-group col-md-3 px-3">
 
                     <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
-                          f.Duration.errors }" placeholder="Duration">
+                          f.Duration.errors }" placeholder="Duration in days"> 
+                          
                     <div *ngIf="submitted && f.Duration.errors" class="invalid-feedback">
                       <div *ngIf="f.Duration.errors.required">Please Enter Duration </div>
                     </div>
