@@ -108,7 +108,7 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
          this.coursetypeService.courseTypeList().subscribe(res => {
            this.CourseTypeList = res
          });
-        this.modalRef = this.modalService.show(template);
+        this.modalRef = this.modalService.show(template, {class: 'modal-xl'},);
       this.newEmail = this.registerStaffForm.controls.Email.value;
       this.FName = this.registerStaffForm.controls.FirstName.value;
       this.LName = this.registerStaffForm.controls.LastName.value;
