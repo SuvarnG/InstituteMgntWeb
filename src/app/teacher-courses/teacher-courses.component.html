@@ -6,10 +6,30 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
+  
+
+
   <div class="container p-4 m-0">
+      <div class="row mb-4">
+          <div class="col-md-10 mt-2">
+            <a routerLink="/Dashboard" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
+              title="home" class="text-dark">
+              Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a routerLink="/StaffList"  data-toggle="tooltip" data-placement="bottom"
+            title="staff" class="text-dark">
+            Staff</a>&nbsp;
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom"
+            title="staff" class="text-dark">
+            AddStaff</a>
+          </div>
+        
+        </div> <hr>
+
     <div class="row">
-      <div class="col-md-12 border-bottom m-3">
-        <h2 class="h1 font-weight-medium mb-3 mt-5">Add Staff</h2>
+      <div class="col-md-12  mx-3">
+        <h2 class="h1 font-weight-medium mb-4 mt-2">Add Staff</h2>
       </div>
     </div>
     <div id="A" class="h-460 shadow p-4">
@@ -22,8 +42,8 @@
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row">
                 
-                <div class="form-group col-md-2 px-3">
-                  <select id="Gender" formControlName="Gender" [value]="null" class="form-control" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
+                <div class="form-group col-md-3 px-3">
+                  <select id="Gender" formControlName="Gender" [value]="null" class="form-control text-muted" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
                     <option [value]="null">Gender</option>
                     <option value="Male">MR.</option>
                     <option value="Female">Mrs.</option>
@@ -67,7 +87,7 @@
                 </div>
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label for="BloodGroup">Blood Group</label> -->
-                  <select id="BloodGroup" class="form-control" [value]="null" formControlName="BloodGroup"
+                  <select id="BloodGroup" class="form-control text-muted" [value]="null" formControlName="BloodGroup"
                     [ngClass]="{ 'is-invalid': submitted && f.BloodGroup.errors }">
                     <option [value]="null">Blood Group</option>
                     <option>A+</option>
@@ -106,7 +126,7 @@
                 </div>
 
                 <div class="form-group col-md-4 px-3">
-                  <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency ContactNo"
+                  <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                     class="form-control"  pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
                   <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
                     <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
@@ -114,7 +134,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input type="email" class="form-control" id="Email" placeholder="Email" formControlName="Email"
+                  <input type="email" class="form-control" id="Email" placeholder="Email" formControlName="Email ID"
                     [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
                   <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
                     <div *ngIf="f.Email.errors.required">Email is required</div>
@@ -137,7 +157,7 @@
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
-                  <input type="text" class="form-control" id="Address1" placeholder="Address 1"
+                  <input type="text" class="form-control" id="Address1" placeholder="Address"
                     formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
                   <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
                     <div *ngIf="f.Address1.errors.required">Address is required</div>
@@ -194,7 +214,7 @@
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
-                  <input type="text" class="form-control" id="P_Address1" placeholder="Address 1"
+                  <input type="text" class="form-control" id="P_Address1" placeholder="Address"
                     formControlName="P_Address1" [ngClass]="{ 'is-invalid': submitted && f.P_Address1.errors }">
                   <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
                     <div *ngIf="f.P_Address1.errors.required">Address is required</div>
@@ -383,24 +403,27 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-end text-right">
+      <!-- <div class="row justify-content-end text-right">
         <div class="col-md-3 pb-4  mt-5">
           <div class="form-row">
             <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
             <a routerLink="/StaffList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
                 Cancel</a>
-            <!-- <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-              (click)="modalRef.hide()">Cancel</button> -->
-            <!-- <button class="btn btn-info btn-lg  py-1 px-3 rounded-0 f-20 ml-3" type="button" (click)="modalRef.hide()">Cancel</button> -->
+            
 
           </div>
         </div>
-      </div>
+      </div> -->
+      <div class="modal-footer">
+          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
+          <a routerLink="/StaffList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
+            Cancel</a>
+        </div>
 
     </form>
   </div>
-  </div>
 
+</div>
 </div>
  <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">

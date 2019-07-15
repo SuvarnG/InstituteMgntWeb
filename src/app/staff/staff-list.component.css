@@ -52,8 +52,22 @@ margin-top: 0px;
 .modal-lg {
     max-width: 80%;
 }
+label {
+    float: left
+}
+span {
+    display: block;
+    overflow: hidden;
+    padding: 0 4px 0 6px
+}
+input {
+    width: 100%;
+}
 
-
+.form-control{
+    font-size:22px !important;
+    columns: #222222;
+}
 
 
 
