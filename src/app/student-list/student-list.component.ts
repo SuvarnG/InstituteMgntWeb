@@ -136,7 +136,8 @@ export class StudentListComponent implements OnInit {
     if (this.registerUpdateStudent.invalid) {
       return
     }
-
+    
+    this.submitted=false;
     let body = {
       StudentId: this.studentID,
       Gender: this.registerUpdateStudent.controls.Gender.value,
