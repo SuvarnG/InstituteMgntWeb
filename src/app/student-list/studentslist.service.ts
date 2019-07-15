@@ -40,4 +40,11 @@ export class StudentslistService {
   editStudent(student) {
     return this.http.post<UpdateStudent>(this.EditStnt, student, this.getAuthHeader())
   }
+
+  postPhoto(formData) {
+    return this.http.post<any>(environment.APIBASEURL + 'Upload/PostUserImage', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
 }

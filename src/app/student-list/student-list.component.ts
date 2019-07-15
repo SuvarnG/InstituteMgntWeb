@@ -28,6 +28,7 @@ export class StudentListComponent implements OnInit {
   students: Students[];
   CourseTypeList: CourseType[];
   courseNameList: Courses[];
+  public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
 
   constructor(private modalService: BsModalService,
     private router: Router,
@@ -63,7 +64,7 @@ export class StudentListComponent implements OnInit {
       Email: ['', Validators.required],
       ZipCode: ['', Validators.required],
       IsDocumentSubmitted: [],
-
+      Photo:[]
     })
   }
 
@@ -86,10 +87,12 @@ export class StudentListComponent implements OnInit {
   }
 
   openEditStudentPopup(editStudent: TemplateRef<any>, s) {
+    debugger;
     this.coursetypeService.courseTypeList().subscribe(res => {
       this.CourseTypeList = res
     });
     this.studentID = s.StudentId,
+    this.thumbnailUrl=s.Photo
       this.registerUpdateStudent.patchValue({
         StudentId: s.StudentId,
         Gender: s.Gender,
@@ -128,6 +131,7 @@ export class StudentListComponent implements OnInit {
     });
   }
   onSubmitEditStudent() {
+    debugger;
     this.submitted = true;
     if (this.registerUpdateStudent.invalid) {
       return
@@ -155,6 +159,7 @@ export class StudentListComponent implements OnInit {
       IsDocumentSubmitted: this.registerUpdateStudent.controls.IsDocumentSubmitted.value,
       Course: this.registerUpdateStudent.controls.Course.value,
       CourseType: this.registerUpdateStudent.controls.CourseType.value,
+      Photo: this.thumbnailUrl
     }
     if (confirm("Do you want to Save Changes?")) {
       this.StudentslistService.editStudent(body).subscribe(data => { this.getAllStudents(this.user.InstituteId, this.user.BranchId), this.modalRef.hide() })
@@ -164,6 +169,7 @@ export class StudentListComponent implements OnInit {
 
   openStudentDetailsPopup(studentDetails: TemplateRef<any>, s) {
     this.studentID = s.StudentId,
+    
       this.registerUpdateStudent.patchValue(
         {
           StudentId: s.StudentId,
@@ -206,5 +212,25 @@ export class StudentListComponent implements OnInit {
   }
 
   get f() { return this.registerUpdateStudent.controls }
+
+  onImageSelected(event: any) {
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.registerUpdateStudent.get('Photo').setValue(file);
+    }
+  }
+
+  onUploadPhoto() {
+    const formData = new FormData();
+    formData.append('profile', this.registerUpdateStudent.get('Photo').value);
+    this.StudentslistService.postPhoto(formData).subscribe(
+      res => {
+        if (res['type'] == 4) {
+          this.thumbnailUrl = 'Http://' + res['body']['Message'];
+        }
+      }
+    );
+
+  }
 
 }
