@@ -26,7 +26,7 @@
                       <select class="form-control" [value]= null formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <option value= null >CourseType</option>
+                      <option value= null> CourseType</option>
                       <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 
@@ -41,7 +41,7 @@
                     <select class="form-control" [value]= null formControlName="StudentID" data-toggle="tooltip" data-placement="bottom" title="StudentName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
                       (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
-                      <option value= null >FullName</option>
+                      <option value= null >Student Name</option>
                       <option *ngFor="let student of studentList" [value]=" student.StudentId">
                         {{student.FullName}}
                       </option>
@@ -59,7 +59,7 @@
                     <div class="form-group col-md-3 px-3">
                         <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip" data-placement="bottom" title="CourseFees"
                         [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }" (change)="selectStudent($event);calculateRemainingFees()">
-                        <option [value]="null" disabled>select Fees </option>
+                        <option [value]="null" disabled>Select Fees </option>
                         <option *ngFor="let course of courseFees" [value]="course.TotalFees">
                           {{course.TotalFees}}
                         </option>
@@ -70,7 +70,7 @@
                       </div>
   
                       <div class="form-group col-md-3 px-3">
-                          <input type="text" class="form-control" formControlName="RemainingFees" disabled placeholder="remaning Fees">
+                          <input type="text" class="form-control" formControlName="RemainingFees" disabled placeholder="Remaining Fees">
                           
                         </div>
 
@@ -85,10 +85,16 @@
                     
                   </div>
           </div>
-          <div class="modal-footer col-md-12">
+
+          <div class="modal-footer">
+              <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
+              <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+              (click)="clearFeesTransaction()">Cancel</button>
+            </div>
+          <!-- <div class="modal-footer col-md-12">
               <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20 pull-right" id="SubmitFees" type="submit">save</button>
               <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20 pull-right" id="ClearAll" type="button" (click)="clearFeesTransaction()">Clear</button>
-          </div>
+          </div> -->
         </div>
        
 
