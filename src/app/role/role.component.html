@@ -50,22 +50,24 @@
     data-toggle="tooltip" data-placement="bottom" title="Add" (click)="clearForm()">Add Roles</button> -->
  </div>
   <!-- <table class="table table-bordered"> -->
+    <div class="row">
+      <div class="col-md-8">
       <div class="shadow m-3 p-5">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
     <thead>
       <tr>
-        <th>No</th>
+        <!-- <th>No</th> -->
         <th>Role Name</th>
-        <th></th>
+        <!-- <th></th> -->
         
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let r of roles;index as i">
-        <td>{{i+1}}</td>
+        <!-- <td>{{i+1}}</td> -->
         <td>{{r.RoleName}}</td>
         <!-- <td>{{r.IsActive}}</td> -->
-        <td>
+        <!-- <td>
          
           <svg class="icon-red" (click)="Delete(r.roleID,r.RoleName)" data-toggle="tooltip"
                 data-placement="bottom" title="Delete role" xmlns="http://www.w3.org/2000/svg" width="18"
@@ -74,10 +76,12 @@
                   d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
               </svg>
 
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
+</div>
+</div>
 </div>
 
 </div>

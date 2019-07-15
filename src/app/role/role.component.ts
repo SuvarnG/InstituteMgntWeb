@@ -36,7 +36,7 @@ export class RoleComponent {
   ngOnInit() {
     this.dtOptions = {
       retrieve:true,
-      paging:false,
+      paging:true,
       pagingType: 'full_numbers',
       pageLength: 5
     };
