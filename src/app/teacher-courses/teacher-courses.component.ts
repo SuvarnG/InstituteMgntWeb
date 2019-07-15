@@ -52,13 +52,13 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
     this.registerStaffForm = this.formBuilder.group({
       FirstName: ['', Validators.required],
       MiddleName: ['', Validators.required],
-      Gender: [''],
+      Gender: ['', Validators.required],
       LastName: ['', Validators.required],
       DateOfJoining: ['', Validators.required],
       ContactNo: ['', Validators.required, Validators.pattern],
       Email: ['', Validators.required],
-      PreviousExperience: [''],
-      DateOfLeaving: [],
+      PreviousExperience: ['', Validators.required],
+      DateOfLeaving: ['', Validators.required],
       DOB: ['', Validators.required],
       Photo: [''],
       Address1: ['', Validators.required],
@@ -71,7 +71,7 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
       P_State: ['', Validators.required],
       P_ZipCode: ['', Validators.required],
       EmergencyNo: ['', Validators.required, Validators.pattern],
-      PreviousWorkName: [''],
+      PreviousWorkName: ['', Validators.required],
       IsCv: [],
       IsFixedPayment: [],
       Document: [],
@@ -84,7 +84,7 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
     this.courseForm = this.formBuilder.group({
       CourseType: ['', Validators.required],
       CourseName: ['', Validators.required],
-      Salary:['']
+      Salary:['', Validators.required]
     });
     this.staffLoginForm = this.formBuilder.group({
       //FirstName: ['', Validators.required],
@@ -96,10 +96,10 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
     });
   }
   get f() { return this.registerStaffForm.controls; }
+  get cf() { return this.courseForm.controls; }
   get login() { return this.staffLoginForm.controls; }
 
   onSubmit(template: TemplateRef<any>) {
-    debugger;
     // stop here if form is invalid
     if (this.registerStaffForm.invalid == true) {
       this.submitted = true;
@@ -216,6 +216,13 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
 })
   }
   onAddCourses(staffLoginTemplate: TemplateRef<any>) {
+    this.submitted = true;
+    if (this.courseForm.invalid == true) {
+     // this.submitted = true;
+      return;
+    }
+    else { 
+      this.submitted = false;  
     this.IsFixedPayment= this.registerStaffForm.controls.IsFixedPayment.value;
     let body = {
       CourseTypeId: this.selectedCourseTypeValue,
@@ -236,6 +243,7 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
         });
         this.modalRef = this.modalService.show(staffLoginTemplate);
       }, error => this.errorMessage = error)
+  }
   }
 
   public user = Utils.GetCurrentUser();
@@ -307,7 +315,6 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
   }
 
   onFileSelected(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       if(file.name.includes(".txt") || file.name.includes(".pdf"))
@@ -328,7 +335,6 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
   }
 
   calculateWorkExperience(DOJ:Date,DOL:Date){
-    debugger;
     this.PreviousExperience=Number(new Date(DOL).getFullYear())  - Number(new Date(DOJ).getFullYear()) ;
   }
 }

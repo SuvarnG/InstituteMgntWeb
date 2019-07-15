@@ -44,13 +44,13 @@
                 
                 <div class="form-group col-md-3 px-3">
                   <select id="Gender" formControlName="Gender" [value]="null" class="form-control text-muted" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
-                    <option [value]="null">Gender</option>
+                    <option [value]="null" disabled>Gender</option>
                     <option value="Male">MR.</option>
                     <option value="Female">Mrs.</option>
                     <option value="Female">Miss</option>
                   </select>
                   <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
-                    <div *ngIf="f.Gender.errors.required">First Name is required</div>
+                    <div *ngIf="f.Gender.errors.required">Gender is required</div>
                   </div>
                 </div>
                 <div class="form-group col-md-3 px-3">
@@ -134,7 +134,7 @@
                   </div>
                 </div>
                 <div class="form-group col-md-4 px-3">
-                  <input type="email" class="form-control" id="Email" placeholder="Email" formControlName="Email ID"
+                  <input type="email" class="form-control" id="Email" placeholder="Email" formControlName="Email"
                     [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
                   <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
                     <div *ngIf="f.Email.errors.required">Email is required</div>
@@ -318,7 +318,7 @@
               </div>
               <div class="form-row mt-2">
                 <div class="col-md-6 mt-4 px-3">
-                  <label for="inpuIsCV" class="h6">Is CV</label>
+                  <label for="inpuIsCV" class="h6">Is CV?</label>
                   <div class="custom-control custom-radio custom-control-inline ml-4">
                       <input type="radio" class="custom-control-input" id="defaultInline1" value="true"
                         name="IsCv" formControlName="IsCv" (click)="Show()">
@@ -337,7 +337,7 @@
               </div>
               <div class="form-row mt-2">
                 <div class="col-md-6 mt-3 px-3">
-                  <label for="inputIsFixedPayemnt" class="h6">Is Fixed Payment</label>
+                  <label for="inputIsFixedPayemnt" class="h6">Is Fixed Payment?</label>
                   <div class="custom-control custom-radio custom-control-inline ml-4">
                     <input type="radio" class="custom-control-input" id="inputIsFixedPayemnt1" value="true"
                       name="IsFixedPayment" formControlName="IsFixedPayment" [checked]="true">
@@ -367,13 +367,16 @@
           <div class="form-row mt-2 ">
             <div class="col-md-4 px-3">
               <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName"
-                placeholder="Company Name">
-            </div>
+                placeholder="Company Name"  [ngClass]="{ 'is-invalid': submitted && f.PreviousWorkName.errors }">
+                <div *ngIf="submitted && f.PreviousWorkName.errors" class="invalid-feedback">
+                    <div *ngIf="f.PreviousWorkName.errors.required"> Please provide a valid STD Code.</div>
+                  </div>
+              </div>
 
             <div class="col-md-4 px-3">
               <!-- <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
                 placeholder="Work Experience (Year)"> -->
-                Candidates Work Experience is <label formControlName="PreviousExperience">{{PreviousExperience}}</label> Years.
+                Candidates Work Experience is <label for="PreviousExperience" formControlName="PreviousExperience">{{PreviousExperience}}</label> Years.
             </div>
           </div>
 
@@ -382,7 +385,7 @@
               <div class="form-row">
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                  <input type="text" id="DOB" placeholder="DOB"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
+                  <input type="text" id="DateOfJoining" placeholder="DateOfJoining"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
                     placeholder="Joining Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfJoining.errors }">
                   <div *ngIf="submitted && f.DateOfJoining.errors" class="invalid-feedback">
                     <div *ngIf="f.DateOfJoining.errors.required"> Please provide a valid Date.</div>
@@ -391,7 +394,7 @@
 
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                  <input type="text" id="DOB" placeholder="DOB" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
+                  <input type="text" id="DateOfLeaving" placeholder="DateOfLeaving" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
                     placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }" (change)="calculateWorkExperience(f.DateOfJoining.value,f.DateOfLeaving.value)">
                   <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
                     <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
@@ -444,24 +447,30 @@
   
                     <div class="form-group col-md-4 px-3">
                         <select id="CourseType" class="form-control" [value]="null" formControlName="CourseType"
-                        (change)="selectCourseType($event)">
+                        (change)="selectCourseType($event)" [ngClass]="{ 'is-invalid': submitted && cf.CourseType.errors }">
                         <option [value]="null">Course Type</option>
                         <option *ngFor="let courseType of  CourseTypeList"
                           [value]="courseType.CourseTypeId">
                           {{courseType.CourseTypeName}}
                         </option>
                       </select>
+                      <div *ngIf="submitted && cf.CourseType.errors" class="invalid-feedback">
+                          <div *ngIf="cf.CourseType.errors.required"> Please provide a valid Date.</div>
+                        </div>
                     </div>
 
                     
                     <div class="form-group col-md-4 px-3">
                         <select id="CourseName" class="form-control" [value]="null" formControlName="CourseName"
-                        (change)="selectCourseName($event); getSalaryFromCourseName($event)" [disabled]="disabled">
+                        (change)="selectCourseName($event); getSalaryFromCourseName($event)" [ngClass]="{ 'is-invalid': submitted && cf.CourseName.errors }">
                         <option [value]="null">CourseName</option>
                         <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>
                       </select>
+                      <div *ngIf="submitted && cf.CourseName.errors" class="invalid-feedback">
+                          <div *ngIf="cf.CourseName.errors.required"> Please provide a valid Date.</div>
+                        </div>
                     </div>
   
   
@@ -474,15 +483,18 @@
                           </div>        
                               <ng-template #thenBlock>
                                  <div *ngFor="let s of Salary"> 
-                                   <input  type="text" id="Salary" class="form-control" formControlName="Salary" placeholder="Salary" >
+                                   <input  type="text" id="Salary" class="form-control" formControlName="Salary" placeholder="Salary" [ngClass]="{ 'is-invalid': submitted && cf.Salary.errors }">
                                      <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
                                  </div>
                               </ng-template>
                              
                           <ng-template #elseBlock>
-                              <input  type="text" id="Salary" class="form-control" formControlName="Salary">
+                              <input  type="text" id="Salary" class="form-control" formControlName="Salary" [ngClass]="{ 'is-invalid': submitted && cf.Salary.errors }">
                              </ng-template>
 
+                             <div *ngIf="submitted && cf.Salary.errors" class="invalid-feedback">
+                                <div *ngIf="cf.Salary.errors.required"> Please provide a Salary.</div>
+                              </div>
 
                       
                     </div>
