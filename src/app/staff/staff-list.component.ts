@@ -158,7 +158,8 @@ export class StaffListComponent implements OnInit {
         DOJ: formatDate(this.staffForm.controls.DateOfJoining.value, 'yyyy-MM-dd', 'en'),
         DOL: formatDate(this.staffForm.controls.DateOfLeaving.value, 'yyyy-MM-dd', 'en'),
         BranchId: this.user.BranchId,
-        InstituteId: this.user.InstituteId
+        InstituteId: this.user.InstituteId,
+        UpdatedBy:this.user.userId
       }
       this.staffListService.updateStaff(body)
         .subscribe((data) => {

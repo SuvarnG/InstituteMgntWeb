@@ -140,7 +140,8 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
         IsCv: this.registerStaffForm.controls.IsCv.value,
         IsFixedPayment: this.registerStaffForm.controls.IsFixedPayment.value,
         BranchId: this.user.BranchId,
-        InstituteId: this.user.InstituteId
+        InstituteId: this.user.InstituteId,
+        CreatedBy:this.user.userId
       }
       this.teacherCoursesService.saveStaff(body)
         .subscribe((data) => {
