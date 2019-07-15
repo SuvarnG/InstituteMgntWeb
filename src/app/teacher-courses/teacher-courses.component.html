@@ -12,7 +12,7 @@
         <h2 class="h1 font-weight-medium mb-3 mt-5">Add Staff</h2>
       </div>
     </div>
-    <div id="A"  class="h-460 shadow p-4">
+    <div id="A" class="h-460 shadow p-4">
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
         <div class="col-md-12 border-bottom m-3">
@@ -404,81 +404,76 @@
  <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Teacher Course Details</h4>
+      <h4 class=" h1 modal-title pull-left">Teacher Course Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <table>
-        <thead>
-          <div class="form-row">
-            <div class="form-group col-md-4">
-              <th>Course Type</th>
-            </div>
-            <div class="form-group col-md-4">
-              <th>Course Name</th>
-            </div>
-            <div class="form-group col-md-4">
-                <th>Salary</th>
-              </div>
-          </div>
-        </thead>
-        <tbody>
-          <tr>
-            <td colspan="1" style="padding:10 px">
-              <!-- <div formArrayName="coursesArray"
-                *ngFor="let course of registerStaffForm.get('coursesArray').controls; let i=index">
-                <div fromGroupName="i"> -->
+        <div class="row shadow my-3 mx-3">
+            <div class="col-md-12 ">
+              <h4 class=" font-weight-medium  py-4 px-3">Course Type :</h4>
+  
+              <div class="row">
+                <div class="col-md-12 pb-4 px-4">
                   <div class="form-row">
-                    <div class="form-group col-md-4">
-                      <select id="CourseType" class="form-control" formControlName="CourseType"
+  
+                    <div class="form-group col-md-4 px-3">
+                        <select id="CourseType" class="form-control" [value]="null" formControlName="CourseType"
                         (change)="selectCourseType($event)">
+                        <option [value]="null">Course Type</option>
                         <option *ngFor="let courseType of  CourseTypeList"
                           [value]="courseType.CourseTypeId">
                           {{courseType.CourseTypeName}}
                         </option>
                       </select>
                     </div>
-                    <div class="form-group col-md-4">
-                      <select id="CourseName" class="form-control" formControlName="CourseName"
+
+                    
+                    <div class="form-group col-md-4 px-3">
+                        <select id="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                         (change)="selectCourseName($event); getSalaryFromCourseName($event)" [disabled]="disabled">
+                        <option [value]="null">CourseName</option>
                         <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>
                       </select>
                     </div>
-                    <div class="form-group col-md-4" *ngIf="!IsFixedPayment;then  thenBlock else elseBlock">    
-                      </div>        
-                          <ng-template #thenBlock>
-                             <div *ngFor="let s of Salary"> 
-                               <input  type="text" id="Salary" class="form-control" formControlName="Salary" >
-                                 <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
-                             </div>
-                          </ng-template>
-                         
-                      <ng-template #elseBlock>
-                          <input  type="text" id="Salary" class="form-control" formControlName="Salary">
-                         </ng-template>
-                    <!-- <div class="form-group col-md-2">
-                      <button type="button" class="btn btn-primary btn-sm" id="btnAdd"
-                        (click)="addNewRow()">Add</button>
-                    </div>
-                    <div class="form-group col-md-2" *ngIf="registerStaffForm.get('coursesArray').length>1">
-                      <button type="button" class="btn btn-danger btn-sm" id="btnDelete"
-                        (click)="removeCourse(i)">Del</button>
-                    </div> -->
+  
+  
+  
                   </div>
-                <!-- </div>
-              </div> -->
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                  <div class="form-row">
+                    <div class="form-group col-md-3 mt-3 px-3">
+                        
+                        <div class="form-group col-md-4" *ngIf="!IsFixedPayment;then  thenBlock else elseBlock">    
+                          </div>        
+                              <ng-template #thenBlock>
+                                 <div *ngFor="let s of Salary"> 
+                                   <input  type="text" id="Salary" class="form-control" formControlName="Salary" placeholder="Salary" >
+                                     <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
+                                 </div>
+                              </ng-template>
+                             
+                          <ng-template #elseBlock>
+                              <input  type="text" id="Salary" class="form-control" formControlName="Salary">
+                             </ng-template>
+
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
     </div>
     <div class="modal-footer">
-      <button type="submit" id="submitCourse" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+      <!-- <button type="submit" id="submitCourse" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
+      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" id="submitCourse" type="submit">Submit</button>
+          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button" data-dismiss="modal"
+            (click)="modalRef.hide()">Cancel</button>
     </div>
   </form>
 </ng-template>
@@ -488,7 +483,7 @@
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
     <form [formGroup]="staffLoginForm" (ngSubmit)="onStaffLogin()">
       <div class="modal-header">
-        <h4 class="modal-title pull-left">Create Password</h4>
+        <h4 class=" h1 modal-title pull-left">Create Password</h4>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -593,8 +588,13 @@
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" type="submit" id="submitLogin" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button>
+
+
+          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" id="submitLogin" type="submit">Submit</button>
+          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+            (click)="modalRef.hide()">Cancel</button>
+        <!-- <button type="button" type="submit" id="submitLogin" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
       </div>
     </form>
   </div>
