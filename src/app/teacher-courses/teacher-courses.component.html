@@ -351,8 +351,9 @@
             </div>
 
             <div class="col-md-4 px-3">
-              <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
-                placeholder="Work Experience (Year)">
+              <!-- <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
+                placeholder="Work Experience (Year)"> -->
+                Candidates Work Experience is <label formControlName="PreviousExperience">{{PreviousExperience}}</label> Years.
             </div>
           </div>
 
@@ -371,7 +372,7 @@
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
                   <input type="text" id="DOB" placeholder="DOB" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
-                    placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }">
+                    placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }" (change)="calculateWorkExperience(f.DateOfJoining.value,f.DateOfLeaving.value)">
                   <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
                     <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
                   </div>

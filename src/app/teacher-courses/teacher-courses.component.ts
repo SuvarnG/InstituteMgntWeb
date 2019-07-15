@@ -36,6 +36,7 @@ export class TeacherCoursesComponent implements OnInit {
   roles: Roles[];
 IsFixedPayment:boolean;
 Salary:CourseFees[];
+PreviousExperience:number=0;
 public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
 
   constructor(private modalService: BsModalService,
@@ -121,7 +122,8 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
         BloodGroup: this.registerStaffForm.controls.BloodGroup.value,
         ContactNo: this.registerStaffForm.controls.ContactNo.value,
         Email: this.registerStaffForm.controls.Email.value,
-        PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
+        PreviousExperience: this.PreviousExperience,
+        //PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
         DateOfLeaving: this.registerStaffForm.controls.DateOfLeaving.value,
         DOB: this.registerStaffForm.controls.DOB.value,
         Photo: this.thumbnailUrl,
@@ -322,5 +324,10 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
     formData.append('File', this.registerStaffForm.get('Document').value);
     this.teacherCoursesService.uploadFile(formData).subscribe(res => {
     });
+  }
+
+  calculateWorkExperience(DOJ:Date,DOL:Date){
+    debugger;
+    this.PreviousExperience=Number(new Date(DOL).getFullYear())  - Number(new Date(DOJ).getFullYear()) ;
   }
 }
