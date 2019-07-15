@@ -14,21 +14,30 @@
             </span>
           </div>
         </div>
-
       </li>
-      <li  routerLinkActive="active current" class="nav-item"*ngIf="currentRole==='SuperAdmin'">
+      
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLink="/Dashboard" style="margin-top:30px">
+            <i class="fa fa-home" style="padding:10px"></i>
+          Dashboard
+        </a>
+      </li>
+
+      <li  routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
            <span style="color:black;margin-top:30px;padding:30px">Institute</span> 
         </li>
         <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
             <span style="color:black;margin-top:30px;padding:30px"> Institute Admin</span>
         </li>
+
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/StaffList" style="margin-top:30px">
+        <a class="nav-link" routerLink="/StaffList" >
           <i class="fa fa-user" aria-hidden="true" style="padding:10px">
           </i>
           Staff
         </a>
       </li>
+
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
         <a class="nav-link" routerLink="/StudentList">
           <i class='fas fa-user-graduate' style="padding:10px">

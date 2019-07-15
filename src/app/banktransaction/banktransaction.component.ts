@@ -74,7 +74,7 @@ filter:any;
 ngOnInit() {
     this.dtOptions = {
       retrieve: true,
-      paging: false,
+     // paging: false,
       pagingType: 'full_numbers',
       pageLength: 5
 

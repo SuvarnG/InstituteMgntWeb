@@ -52,7 +52,7 @@ const routes: Routes = [
     }    
   },    
   {    
-    path: 'authorised-layout',    
+    path: 'Dashboard',    
     component:AuthorisedLayoutComponent ,    
     data: {    
       title: 'Layout Page'    

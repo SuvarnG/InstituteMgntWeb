@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     })
 
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/authorised-layout';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Dashboard';
   }
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
