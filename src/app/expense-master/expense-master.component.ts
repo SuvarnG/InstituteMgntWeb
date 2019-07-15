@@ -41,6 +41,8 @@ dtOptions: DataTables.Settings = {};
 
   get f() {return this.createExpenseForm.controls}
 
+  get g() {return this.editExpenseForm.controls}
+
   getAllExpense(){
   this.expenseMasterService.getAllExpenses().subscribe(res=> {
     this.expenses=res;
@@ -49,6 +51,7 @@ dtOptions: DataTables.Settings = {};
   }
 
 showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
+  this.submitted=false;
   this.createExpenseForm.controls.expense.reset();
   this.modalRef = this.modalService.show(CreateExpenseTemplate, {
     animated: true,
@@ -96,6 +99,13 @@ editExpense(EditExpenseTemplate: TemplateRef<any>,expense)
 
 onSubmitEditExpense()
 {
+  this.submitted=true;
+  if( this.editExpenseForm.invalid){
+    //this.submitted=false;
+    return;    
+  }
+ 
+
   let body={
     Expenses:this.editExpenseForm.controls.expense.value,
     ExpenseId:this.expensId

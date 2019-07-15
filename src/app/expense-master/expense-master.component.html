@@ -148,9 +148,9 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
             </div>
             <div class="form-group col-md-6">
               <input type="text" id="expense" class="form-control border-0" formControlName="expense"
-                [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
-              <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
-                <div *ngIf="f.expense.errors.required">Expense No is required</div>
+                [ngClass]="{ 'is-invalid': submitted && g.expense.errors }">
+              <div *ngIf="submitted && g.expense.errors" class="invalid-feedback">
+                <div *ngIf="g.expense.errors.required">Expense Name is required</div>
               </div>
             </div>
 
