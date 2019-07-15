@@ -281,7 +281,7 @@
                   </div>
                 </div>
                 <div class="col-md-6 px-3" *ngIf='showSelected'>
-                  <input type="file" formControlName="Document" id="customFile" (change)="onFileSelected($event)">
+                  <input type="file" formControlName="Document" (change)="handleFileInput($event)">
                   <button type="button" (click)="onUploadFile()">UploadFile</button>
                 </div>
               </div>

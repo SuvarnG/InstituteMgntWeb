@@ -29,6 +29,7 @@ export class FeesTransactionComponent implements OnInit {
   users: Users[];
   studentId: number;
   courseList: Course[];
+  showFeesTable=false;
 
   constructor(public FeesTransactionService: FeesTransactionService,
     private formBuilder: FormBuilder,
@@ -64,6 +65,7 @@ export class FeesTransactionComponent implements OnInit {
 
   selectStudent(event) {
     this.selectedStudentId = event.target.value;
+    this.showFeesTable=true;
   }
 
   getUsersListForFeesTaken() {
@@ -143,6 +145,7 @@ export class FeesTransactionComponent implements OnInit {
   clearFeesTransaction(){
     this.submitFeesTransaction=false;
     this.feesTransaction=null;
+    this.showFeesTable=false;
     this.registerFeesTransaction.reset();
 
   }

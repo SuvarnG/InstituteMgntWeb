@@ -338,10 +338,26 @@ export class CreateStudentComponent implements OnInit {
 
 
 
+  // handleFileInput(event: any) {
+  //   if (event.target.files.length) {
+  //     const file = event.target.files[0];
+  //     this.registerForm.get('Document').setValue(file);
+  //   }
+  // }
+
+
   handleFileInput(event: any) {
+    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
-      this.registerForm.get('Documents').setValue(file);
+      if(file.name.includes(".txt") || file.name.includes(".pdf"))
+      {
+        this.registerForm.get('Document').setValue(file);
+      }
+      else{
+            alert("Please select Proper file");
+      }
+      
     }
   }
 
@@ -352,12 +368,19 @@ export class CreateStudentComponent implements OnInit {
     }
   }
 
+  // onUploadFile() {
+  //   debugger;
+  //   const formData = new FormData();
+  //   formData.append('profile', this.registerForm.get('Document').value)//this.registerForm.get('Documents').value);
+  //   this.CreateNewStudentService.postFile(formData).subscribe(res => {
+  //     console.log(res);
+  //   });
+  // }
+
   onUploadFile() {
-    debugger;
     const formData = new FormData();
-    formData.append('profile', this.registerForm.get('Document').value)//this.registerForm.get('Documents').value);
+    formData.append('File', this.registerForm.get('Document').value);
     this.CreateNewStudentService.postFile(formData).subscribe(res => {
-      console.log(res);
     });
   }
 
