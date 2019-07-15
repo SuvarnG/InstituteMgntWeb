@@ -90,4 +90,11 @@ export class StaffListService {
   getTeacherCourses(id) {
     this.http.get(environment.APIBASEURL + 'Teacher/GetTeacherCourses' + '/' + id).toPromise().then(result => this.listTeacherCourse = result as TeacherCourse[])
   }
+
+  postPhoto(formData) {
+    return this.http.post<any>(environment.APIBASEURL + 'Upload/PostUserImage', formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
 }

@@ -33,6 +33,7 @@ export class StaffListComponent implements OnInit {
   staffInfo: StaffMaster;
   courseTypeList: CourseType[];
   courseNameList: Courses[];
+  public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
 
   constructor(private datePipe: DatePipe,
     private staffListService: StaffListService,
@@ -59,7 +60,7 @@ export class StaffListComponent implements OnInit {
       LastName: ['', Validators.required],
       MiddleName: ['', Validators.required],
       DOB: ['', Validators.required],
-      Photo: ['', Validators.required],
+      Photo: [],
       Address1: ['', Validators.required],
       City: ['', Validators.required],
       State: ['', Validators.required],
@@ -119,6 +120,7 @@ export class StaffListComponent implements OnInit {
   }
 
   onSubmitEditStaff() {
+    debugger;
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -141,7 +143,7 @@ export class StaffListComponent implements OnInit {
         MiddleName: this.staffForm.controls.MiddleName.value,
         LastName: this.staffForm.controls.LastName.value,
         DOB: formatDate(this.staffForm.controls.DOB.value, 'yyyy-MM-dd', 'en'),
-        Photo: this.staffForm.controls.Photo.value,
+        Photo: this.thumbnailUrl,
         Address1: this.staffForm.controls.Address1.value,
         City: this.staffForm.controls.City.value,
         State: this.staffForm.controls.State.value,
@@ -169,7 +171,9 @@ export class StaffListComponent implements OnInit {
   }
 
   edit(editStaff: TemplateRef<any>, teacher) {
+    debugger;
     this.teacherId = teacher.StaffId;
+    this.thumbnailUrl=teacher.Photo
     let body = {
       Gender: teacher.Gender,
       StaffId: teacher.StaffId,
@@ -270,5 +274,25 @@ export class StaffListComponent implements OnInit {
       animated: true,
       backdrop: 'static',
     });
+  }
+
+  onImageSelected(event: any) {
+    if (event.target.files.length) {
+      const file = event.target.files[0];
+      this.staffForm.get('Photo').setValue(file);
+    }
+  }
+
+  onUploadPhoto() {
+    const formData = new FormData();
+    formData.append('profile', this.staffForm.get('Photo').value);
+    this.staffListService.postPhoto(formData).subscribe(
+      res => {
+        if (res['type'] == 4) {
+          this.thumbnailUrl = 'Http://' + res['body']['Message'];
+        }
+      }
+    );
+
   }
 }
