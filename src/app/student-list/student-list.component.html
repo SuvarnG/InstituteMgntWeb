@@ -198,12 +198,13 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row">
-                <div class="form-group col-md-1 p-0">
-                  <label for="Gender" class="mt-3 ml-3 h6 text-muted">Gender:</label>
-                </div>
-                <div class="form-group col-md-2">
-                  <input type="text" class="form-control border-0" formControlName="Gender"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                
+                <div class="form-group col-md-3">
+                    <label for="Gender" class="mt-3 ml-3 h5 text-muted">Gender:</label>
+                    <!-- <input type="radio" formControlName="Gender" value="Male">Male
+                  <input type="radio" formControlName="Gender" value="Female">Female -->
+                 <span> <input type="text" class="form-control border-0 mt-1" formControlName="Gender"
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "></span>
                   <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
 
                   </div>
@@ -213,26 +214,22 @@
                 </div>
 
 
-                <div class="form-group col-md-2">
-                  <label class="col-md-6 control-label" class="mt-3 h6 ml-5 text-muted">DateOfBirth :</label>
-
-                </div>
-                <div class="form-group col-md-3">
-                  <input type="date" id="DOB" class="form-control border-0" formControlName="DOB"
-                    [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
+                
+               <div class="form-group col-md-5">
+                  <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">Date Of Birth :</label>
+                <span><input type="date" id="DOB" class="form-control border-0 mt-1" formControlName="DOB"
+                    [ngClass]="{'is-invalid': submitted && f.DOB.errors} "></span>
                 </div>
                 <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
                   <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
-                </div>
+                </div> 
 
 
 
-                <div class="form-group col-md-2">
-                  <label for="BloodGroup" class="mt-3 h6 ml-5 text-muted">Blood Group :</label>
-
-                </div>
-                <div class="form-group col-md-1">
-                  <select id="BloodGroup" class="form-control border-0" formControlName="BloodGroup"
+                
+                <div class="form-group col-md-4">
+                    <label for="BloodGroup" class="mt-3 h5 ml-5 text-muted">Blood Group :</label>
+                 <span> <select id="BloodGroup" class="form-control border-0 mt-1" formControlName="BloodGroup"
                     [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
                     <option>A+</option>
                     <option>B+</option>
@@ -242,7 +239,7 @@
                     <option>B-</option>
                     <option>O-</option>
                     <option>AB-</option>
-                  </select>
+                  </select></span>
                 </div>
                 <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
                   <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
@@ -261,22 +258,20 @@
             <h4>Contact Info :</h4>
           </div>
           <div class="form-row  pt-3">
-            <div class="form-group col-md-2">
-              <label class="mt-3 h6 text-muted">Contact No :</label>
-            </div>
-            <div class="form-group col-md-3">
-              <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
-                class="form-control border-0" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">Contact No :</label>
+              <span><input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
+                class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }"></span>
             </div>
             <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
               <div *ngIf="f.ContactNo.errors.required">Contact No is required</div>
             </div>
-            <div class="form-group col-md-2">
-              <label class="mt-3 h6 text-muted">Emergency No :</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
-                class="form-control border-0" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">Emergency No :</label>
+             <span> <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
+                class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }"></span>
             </div>
 
             <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
@@ -288,12 +283,11 @@
       <div class="row  px-2">
         <div class="col-md-12 mt-3  px-5">
           <div class="form-row mt-n1">
-            <div class="form-group col-md-2">
-              <label class="mt-3 h6 text-muted">Email ID :</label>
-            </div>
+            
             <div class="form-group col-md-6">
-              <input type="email" class="form-control border-0" id="Email" formControlName="Email"
-                [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
+                <label class="mt-3 h5 text-muted">Email ID :</label>
+             <span><input type="email" class="form-control border-0 mt-1" id="Email" formControlName="Email"
+                [ngClass]="{'is-invalid': submitted && f.Email.errors} "></span> 
             </div>
             <div *ngIf="submitted && f.Email.errors">
               <div *ngIf="f.Email.errors.required">Email is required</div>
@@ -309,12 +303,11 @@
             <h4>Permanent Address :</h4> 
           </div>
           <div class="form-row pt-3">
-            <div class="form-group col-md-1">
-              <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="PAddress1"
-                formControlName="PAddress1" [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} ">
+            
+            <div class="form-group col-md-4">
+                <label for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
+             <span> <input type="text" class="form-control border-0 mt-1" id="PAddress1"
+                formControlName="PAddress1" [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} "></span>
             </div>
             <div *ngIf="submitted && f.PAddress1.errors">
               <div *ngIf="f.PAddress1.errors.required">Address is required</div>
@@ -325,38 +318,34 @@
       <div class="row px-2">
         <div class="col-md-12 mt-3  px-5">
           <div class="form-row mt-n1">
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted">State:</label>
-
-            </div>
-            <div class="form-group col-md-2">
-              <select id="PState" class="form-control border-0" formControlName="PState"
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">State:</label>
+             <span> <select id="PState" class="form-control border-0 mt-1" formControlName="PState"
                 [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
-                <option selected>Select State...</option>
+                <option selected>Select State</option>
                 <option>Maharashtra</option>
-              </select>
+              </select></span>
             </div>
             <div *ngIf="submitted && f.PState.errors">
               <div *ngIf="f.PState.errors.required">State is required</div>
             </div>
 
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted ml-5">City:</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="PCity" formControlName="PCity"
-                [ngClass]="{'is-invalid': submitted && f.PCity.errors} ">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted ml-5">City:</label>
+             <span> <input type="text" class="form-control border-0 mt-1" id="PCity" formControlName="PCity"
+                [ngClass]="{'is-invalid': submitted && f.PCity.errors} "></span>
             </div>
             <div *ngIf="submitted && f.PCity.errors">
               <div *ngIf="f.PCity.errors.required">City is required</div>
             </div>
 
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted">PinCode:</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="number" class="form-control border-0" id="PSTDCode" formControlName="PSTDCode"
-                [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} ">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">PinCode:</label>
+             <span><input type="number" class="form-control border-0 mt-1" id="PSTDCode" formControlName="PSTDCode"
+                [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} "></span>
             </div>
             <div *ngIf="submitted && f.PSTDCode.errors">
               <div *ngIf="f.PSTDCode.errors.required">PinCode is required</div>
@@ -373,12 +362,11 @@
             <h4>Current Address :</h4>
           </div>
           <div class="form-row pt-3">
-            <div class="form-group col-md-1">
-              <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="Address1" 
-                formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
+            
+            <div class="form-group col-md-4">
+                <label for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
+             <span> <input type="text" class="form-control border-0 mt-1" id="Address1" 
+                formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }"></span>
             </div>
             <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
               <div *ngIf="f.Address1.errors.required">Address is required</div>
@@ -389,36 +377,33 @@
       <div class="row px-2">
         <div class="col-md-12 mt-3  px-5">
           <div class="form-row mt-n1">
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted">State:</label>
-            </div>
-            <div class="form-group col-md-2">
-              <select id="State" class="form-control border-0" formControlName="State"
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">State:</label>
+             <span> <select id="State" class="form-control border-0 mt-1" formControlName="State"
                 [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                 <option>Maharashtra</option>
-              </select>
+              </select></span>
             </div>
             <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
               <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
             </div>
 
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted ml-5">City:</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="text" class="form-control border-0" id="City" formControlName="City"
-                [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted ml-5">City:</label>
+             <span> <input type="text" class="form-control border-0 mt-1" id="City" formControlName="City"
+                [ngClass]="{ 'is-invalid': submitted && f.city.errors }"></span>
             </div>
             <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
               <div *ngIf="f.city.errors.required"> Please provide a valid city.</div>
             </div>
 
-            <div class="form-group col-md-1">
-              <label class="mt-3 h6 text-muted">PinCode:</label>
-            </div>
-            <div class="form-group col-md-2">
-              <input type="number" class="form-control border-0" id="ZipCode" formControlName="ZipCode"
-                [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
+            
+            <div class="form-group col-md-4">
+                <label class="mt-3 h5 text-muted">PinCode:</label>
+              <span><input type="number" class="form-control border-0 mt-1" id="ZipCode" formControlName="ZipCode"
+                [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }"></span>
             </div>
             <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
               <div *ngIf="f.ZipCode.errors.required"> Please provide a valid STD Code.</div>
@@ -435,33 +420,31 @@
           <div class="row  px-2">
             <div class="col-md-12 pb-4 px-4">
               <div class="form-row pt-3 p-2">
-                <div class="form-group col-md-2 px-3">
-                  <label class="mt-3 h6 text-muted">Course Type :</label>
-                </div>
+                
                 <div class="form-group col-md-4 px-3">
-                    <select id="CourseType" class="form-control" formControlName="CourseType" name="CourseType"
+                    <label class="mt-3 h5 text-muted">Course Type :</label>
+                   <span> <select id="CourseType" class="form-control border-0 mt-1" formControlName="CourseType" name="CourseType"
                     (change)="selectCourseType($event)" [value]="f.CourseType.value">
                     <option *ngFor="let courseType of  CourseTypeList"
                       [value]="courseType.CourseTypeId">
                       {{courseType.CourseTypeName}}
                     </option>
-                  </select>
+                  </select></span>
                   <!-- <input id="CourseType" class="form-control border-0" formControlName="CourseType"
                     [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }"> -->
                   <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
                     <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
                   </div>
                 </div>
-                <div class="form-group col-md-2 px-3">
-                  <label class="mt-3 ml-1 h6 text-muted">Course Name :</label>
-                </div>
-                <div class="form-group col-md-4 px-3">
-                    <select id="Course" class="form-control" formControlName="Course" name="Course"
+                
+                <div class="form-group col-md-4 px-4">
+                    <label class="mt-3 ml-1 h5 text-muted">Course Name :</label>
+                   <span> <select id="Course" class="form-control border-0 mt-1" formControlName="Course" name="Course"
                       [value]="f.Course.value">
                     <option *ngFor="let courselist of courseNameList"
                       [value]="courselist.CourseId">
                       {{courselist.CourseName}}</option>
-                  </select>
+                  </select></span>
                   <!-- <input id="Course" class="form-control border-0" formControlName="Course"
                     [ngClass]="{ 'is-invalid': submitted && f.Course.errors }"> -->
 

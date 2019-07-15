@@ -26,7 +26,7 @@
                       <select class="form-control" [value]= null formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <option value= null> CourseType</option>
+                      <option value= null> Course Type</option>
                       <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 
@@ -106,9 +106,9 @@
     <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
   <thead>
   <tr>
-    <th>InstallmentDate</th>
-    <th>PaidAmount</th>
-    <th>FeesTakenBy</th>
+    <th>Installment Date</th>
+    <th>Paid Amount</th>
+    <th>Fees Taken By</th>
   </tr>
 </thead>
 <tbody>

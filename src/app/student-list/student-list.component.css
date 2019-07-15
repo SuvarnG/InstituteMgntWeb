@@ -30,3 +30,16 @@
     font-weight: 600;
 }
 
+label {
+    float: left
+}
+span {
+    display: block;
+    overflow: hidden;
+    padding: 0 4px 0 6px
+}
+input {
+    width: 100%
+}
+
+
