@@ -14,6 +14,7 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
+
 export class CoursesComponent implements OnInit {
   modalRef: BsModalRef;
   createForm: FormGroup;

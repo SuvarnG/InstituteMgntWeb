@@ -1,9 +1,12 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ExpenseMasterService } from './expense-master.service';
 import {ExpenseMaster} from '../Model/Expenses';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
+
+
 @Component({
   selector: 'app-expense-master',
   templateUrl: './expense-master.component.html',
@@ -18,7 +21,12 @@ errorMessage:string;
 expensId:Number;
 submitted=false;
 dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
+dtTrigger: Subject<any> = new Subject();
+
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
   constructor(private fb:FormBuilder,private expenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -38,6 +46,19 @@ dtOptions: DataTables.Settings = {};
     this.getAllExpense();
   }
 
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+}
+
 
   get f() {return this.createExpenseForm.controls}
 
@@ -46,7 +67,8 @@ dtOptions: DataTables.Settings = {};
   getAllExpense(){
   this.expenseMasterService.getAllExpenses().subscribe(res=> {
     this.expenses=res;
-    this.dtTrigger.next();
+    this.rerender();
+    //this.dtTrigger.next();
 });
   }
 
