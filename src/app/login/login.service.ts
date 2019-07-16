@@ -32,7 +32,7 @@ export class LoginService {
     ).pipe(map(auth => {
       if (auth && auth.access_token) {
         // store user details and jwt token in session storage to keep user logged in between page refreshes
-        sessionStorage.setItem('CurrentUser', JSON.stringify(auth));
+        localStorage.setItem('CurrentUser', JSON.stringify(auth));
         }
        return auth;
     }));

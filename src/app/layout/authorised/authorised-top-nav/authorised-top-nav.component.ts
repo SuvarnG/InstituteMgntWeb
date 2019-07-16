@@ -15,7 +15,7 @@ export class AuthorisedTopNavComponent implements OnInit {
 
   Logout(){
     console.log(1);
-    sessionStorage.removeItem('CurrentUser');
+    localStorage.removeItem('CurrentUser');
     this.router.navigate(['/Login']);
   }
 

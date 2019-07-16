@@ -9,15 +9,15 @@ export class Utils {
     constructor() { }
     private static userKey = 'CurrentUser';
     public static SetUserInCookies(auth: Auth) {
-        sessionStorage.setItem(this.userKey, JSON.stringify(auth));
+        localStorage.setItem(this.userKey, JSON.stringify(auth));
     }
 
     public static GetCurrentUser(): Auth {
-        return sessionStorage.getItem(this.userKey) ? JSON.parse(sessionStorage.getItem(this.userKey)) : null;
+        return localStorage.getItem(this.userKey) ? JSON.parse(localStorage.getItem(this.userKey)) : null;
     }
 
     public static ClearUserSession() {
-        sessionStorage.removeItem(this.userKey);
+        localStorage.removeItem(this.userKey);
     }
 
     public static GetAccessToken(): string {

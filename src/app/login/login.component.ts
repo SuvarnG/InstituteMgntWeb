@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Resetpassword } from '../Model/User';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -39,6 +40,10 @@ export class LoginComponent implements OnInit {
       Email:['',Validators.required]
     })
 
+    if(localStorage.length>0){
+      debugger;
+      this.router.navigate(['/Dashboard']);
+    }
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Dashboard';
   }
@@ -46,15 +51,16 @@ export class LoginComponent implements OnInit {
   get f() { return this.loginForm.controls; }
   get n() {return this.forgotPasswordForm.controls;}
 
-  
+
   LoginUser() {
     this.submitted = true;
     this.LoginService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {
         console.log('User after login:' + JSON.stringify(data));
-        if (data && data.access_token)
+        if (data && data.access_token){
           this.router.navigate([this.returnUrl]);
+        }
       },
         error => {
           this.errorMessage = 'Invalid Email or Password!'
