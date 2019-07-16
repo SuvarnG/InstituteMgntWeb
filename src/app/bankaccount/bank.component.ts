@@ -1,5 +1,5 @@
 import { Utils } from './../Utils';
-import { Component, OnInit, TemplateRef, Input,OnDestroy } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input,OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { BankService } from './bank.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -9,6 +9,7 @@ import { MustMatch } from './must-match.validator'
 import { debounceTime } from 'rxjs/operators';
 import { Type, Xliff } from '@angular/compiler';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 
 
@@ -29,7 +30,10 @@ export class BankComponent implements OnDestroy, OnInit {
   bankId:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-filter:any;
+  filter:any;
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
 
   constructor(private modalService: BsModalService, 
     private formBuilder: FormBuilder, 
@@ -37,8 +41,18 @@ filter:any;
     private BankService: BankService,
     private route: ActivatedRoute) { }
   
+
+    ngAfterViewInit(): void {this.dtTrigger.next();}
+
     ngOnDestroy(): void {
       this.dtTrigger.unsubscribe();
+    }
+  
+    rerender(): void {
+      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+          dtInstance.destroy();
+          this.dtTrigger.next();
+      });
     }
 
   ngOnInit() {
@@ -118,10 +132,11 @@ filter:any;
   }
 
   getBanks(InstituteId:number) {
-InstituteId=this.user.InstituteId;
+    InstituteId=this.user.InstituteId;
     this.BankService.bankList(InstituteId).subscribe(res => {
-      this.banks = res;
-      this.dtTrigger.next();
+    this.banks = res;
+    this.rerender();
+      //this.dtTrigger.next();
     });
   }
 
@@ -130,6 +145,7 @@ InstituteId=this.user.InstituteId;
     if (ans) {
       this.BankService.delete(ID).subscribe(data => {
         this.getBanks(this.user.InstituteId);
+        this.rerender();
       }, error => console.error(error))
     }
   }
@@ -162,6 +178,7 @@ InstituteId=this.user.InstituteId;
     if (this.editForm.invalid) {
       return;
     }
+    this.submitted = false;
     console.log(this.f)
     let body = {
       AccountNo: this.editForm.controls.AccountNo.value,
@@ -174,6 +191,7 @@ InstituteId=this.user.InstituteId;
     this.BankService.editAccNo(body).subscribe(data => {
       this.modalRef.hide();
       this.getBanks(this.user.InstituteId);
+      this.rerender();
     }, error => console.error(error))
   }
   clearForm() {
