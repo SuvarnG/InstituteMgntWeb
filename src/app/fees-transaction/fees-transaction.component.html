@@ -21,12 +21,17 @@
         <div class="row justify-content-end text-right shadow p-3 m-3">
           <div class="col-md-12">
               <div class="form-row">
+
+                  <div class="form-group col-md-3 px-3">
+                      <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">Select Course Type:</h4>
+                  <!-- <label class="ml-0">Select Course Type:</label> -->
+                  </div>
                 
-                  <div class="form-group col-md-4 px-4">
+                  <div class="form-group col-md-3 px-3">
                       <select class="form-control" [value]= null formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <option value= null> Course Type</option>
+                      <option value= null disabled> Course Type</option>
                       <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 
@@ -37,11 +42,11 @@
                   </div>
 
 
-                  <div class="form-group col-md-4 px-4">
+                  <div class="form-group col-md-3 px-3">
                     <select class="form-control" [value]= null formControlName="StudentID" data-toggle="tooltip" data-placement="bottom" title="StudentName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
                       (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
-                      <option value= null >Student Name</option>
+                      <option value= null disabled>Student Name</option>
                       <option *ngFor="let student of studentList" [value]=" student.StudentId">
                         {{student.FullName}}
                       </option>
