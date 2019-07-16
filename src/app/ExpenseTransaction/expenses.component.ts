@@ -38,6 +38,8 @@ export class ExpensesComponent implements OnInit {
   selectedUserValue: Number;
   submitted = false;
   expenseMaster:ExpenseMaster[];
+  filter:any;
+  p:any;
 
   constructor(
     private modalService: BsModalService,

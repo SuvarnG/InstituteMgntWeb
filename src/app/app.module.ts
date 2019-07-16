@@ -78,6 +78,7 @@ import { PDFExportModule } from '@progress/kendo-angular-pdf-export';
 import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
 import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
 import { ExportAsModule } from 'ngx-export-as';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 const appRoutes: Routes = [
@@ -167,7 +168,8 @@ const appRoutes: Routes = [
       DatePipe,
       BranchService,
       BanktransactionService,
-      AuthorizedSideNavService
+      AuthorizedSideNavService,
+      {provide: LocationStrategy, useClass: HashLocationStrategy}
     ],
 
   bootstrap: [AppComponent]

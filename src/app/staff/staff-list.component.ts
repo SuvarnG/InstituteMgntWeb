@@ -164,7 +164,6 @@ export class StaffListComponent implements OnInit {
       this.staffListService.updateStaff(body)
         .subscribe((data) => {
           this.modalRef.hide();
-          alert("Staff updated successfully");
           this.getAllStaff(this.user.InstituteId, this.user.BranchId);
           this.router.navigate(['/StaffList']);
         }, error => this.errorMessage = error)
