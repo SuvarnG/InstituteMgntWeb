@@ -3,7 +3,7 @@ import { Bank } from './../Model/Bank';
 import { BankService } from './../bankaccount/bank.service';
 import { Utils } from './../Utils';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BanktransactionService } from './banktransaction.service';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,6 +14,7 @@ import { Accountnumbers } from '../Model/AccountNumber';
 import { BankTransaction } from '../Model/BankTransaction';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -37,7 +38,11 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   TransactionBy:number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-filter:any;
+  filter:any;
+
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
 
  constructor(private http: HttpClient,
    private modalService: BsModalService, 
@@ -48,8 +53,17 @@ filter:any;
   private bankService:BankService,
   private staffListService:StaffListService) { }
 
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
   }
 
   addBank(Addtemplate: TemplateRef<any>) {
@@ -116,7 +130,8 @@ ngOnInit() {
 
   getBankList() {
     
-    this.bankService.bankList(this.user.InstituteId).subscribe(res => { this.banknames = res; console.log("test", this.banknames) });
+    this.bankService.bankList(this.user.InstituteId).subscribe(res => { this.banknames = res; 
+      console.log("test", this.banknames) });
   }
 
 
@@ -132,7 +147,9 @@ ngOnInit() {
     if (this.CreateFormGroup.invalid) {
       return;
     }
-    else {
+    else 
+    {
+      this.submitted = false;
       let body = {
         ID: 0,
         BankName: this.CreateFormGroup.controls.BankName.value,
@@ -158,7 +175,8 @@ ngOnInit() {
     BranchId=this.user.BranchId;
     this.BanktransactionService.banktransactionList(BranchId).subscribe(res => {
       this.banktransactions = res;
-      this.dtTrigger.next();
+      this.rerender();
+      //this.dtTrigger.next();
     });
   }
 
@@ -195,6 +213,8 @@ ngOnInit() {
     if (this.UpdateFormGroup.invalid) {
       return;
     }
+
+    this.submitted = false;
     let body = {
       ID: this.bankTransactionId,
       BankName: this.UpdateFormGroup.controls.BankName.value,
