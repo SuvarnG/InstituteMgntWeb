@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -6,6 +6,8 @@ import { Branch } from '../Model/Branch';
 import { BranchService } from './branch.service';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
+import { DataTableDirective } from 'angular-datatables';
+
 
 @Component({
   selector: 'app-branch',
@@ -23,6 +25,9 @@ export class BranchComponent implements OnInit {
   branchID: number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+
+  @ViewChild(DataTableDirective)
+    dtElement: DataTableDirective;
 
   constructor(
     private modalService: BsModalService,
@@ -50,12 +55,26 @@ export class BranchComponent implements OnInit {
     this.getBranchList();
   };
 
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+
   public user = Utils.GetCurrentUser();
 
   getBranchList() {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res => {
       this.branch = res;
-      this.dtTrigger.next();
+      this.rerender();
+      //this.dtTrigger.next();
     });
   }
 
