@@ -59,8 +59,15 @@ export class FeesTransactionComponent implements OnInit {
     this.selectedUserValue = event.target.value;
   }
 
-  selectFees(event) {
+  selectFees(event) {    
     this.selectedFeesValue = event.target.value;
+    this.courseFees=null;
+    this.feesTransaction=null;
+    //this.remainingFees=0;
+    this.showFeesTable=false;
+    if(this.registerFeesTransaction.controls.RemainingFees.value){
+      this.registerFeesTransaction.controls.RemainingFees.reset();
+    }
   }
 
   selectStudent(event) {
