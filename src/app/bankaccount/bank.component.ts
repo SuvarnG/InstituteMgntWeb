@@ -171,7 +171,6 @@ export class BankComponent implements OnDestroy, OnInit {
 
   updateAccNo() {
 
-    debugger;
     this.submitted = true;
 
     // stop here if form is invalid

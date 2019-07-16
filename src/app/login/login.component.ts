@@ -16,7 +16,7 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 export class LoginComponent implements OnInit {
   returnUrl: string;
   errorMessage: any;
-  submitted: boolean;
+  submitted: boolean=false;
   loginForm: any;
   ForgotPasswordForm: any;
   modalRef: BsModalRef;
@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
     })
 
     if(localStorage.length>0){
-      debugger;
       this.router.navigate(['/Dashboard']);
     }
 
@@ -54,6 +53,10 @@ export class LoginComponent implements OnInit {
 
   LoginUser() {
     this.submitted = true;
+    // stop here if form is invalid
+    if (this.loginForm.invalid) {
+      return;
+    }
     this.LoginService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {

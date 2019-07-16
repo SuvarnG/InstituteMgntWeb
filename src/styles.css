@@ -1,13 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap/dist/css/bootstrap.min.css";
-
+@import "~font-awesome/css/font-awesome.css";
 
 body{
     overflow-x: hidden;
     overflow-y: scroll;
     font-family:'Trebuchet MS';
     letter-spacing: 0.8px;
+    zoom: 90%;
     
   }
   

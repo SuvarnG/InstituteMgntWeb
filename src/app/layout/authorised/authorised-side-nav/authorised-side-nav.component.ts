@@ -15,7 +15,7 @@ export class AuthorisedSideNavComponent implements OnInit {
 
   public newThumbnailUrl: any = '../../assets/images/MProfile.jpg';
   public currentRole: string;
-
+  isCollapsed = false;
   constructor(public sideNavService: AuthorisedSideNavService, private modalService: BsModalService,
     private formBuilder: FormBuilder, public AuthorizedSideNavService: AuthorizedSideNavService,
     public _DomSanitizer: DomSanitizer) { }
@@ -28,7 +28,6 @@ export class AuthorisedSideNavComponent implements OnInit {
   ngOnInit() {
 
     this.checkStaff();
-
     this.userImageUploadForm = this.formBuilder.group({
       Photo: [],
       Id: []
@@ -94,6 +93,7 @@ export class AuthorisedSideNavComponent implements OnInit {
   }
 
 
-
-
+  onShown() {
+    this.isCollapsed=false;
+  }
 }

@@ -77,7 +77,6 @@ export class CreateNewStudentService {
 
 // postFile(formData)
 //   {
-//     debugger;
 //     return this.http.post<any>(environment.APIBASEURL+'Upload/PostFile', formData, {
 //       reportProgress: true,
 //       observe: 'events'

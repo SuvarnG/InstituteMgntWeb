@@ -21,7 +21,7 @@ import { EnquiryComponent } from './enquiry/enquiry.component';
 import { EnquiryService } from './enquiry/enquiry.service';
 import { LeaveService } from './leave/leave.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
-import { ModalModule } from 'ngx-bootstrap';
+import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { LeaveComponent } from './leave/leave.component';
 import { HomeComponent } from './home/home.component';
 import { sliderservice } from './sliderservice.service';
@@ -148,7 +148,9 @@ const appRoutes: Routes = [
     StudentListModule,
     StaffListModule,
     PDFExportModule,
-    ExportAsModule
+    ExportAsModule,
+    BsDropdownModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   providers:
     [sliderservice,

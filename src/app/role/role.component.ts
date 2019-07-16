@@ -105,7 +105,6 @@ export class RoleComponent {
 
 
   CreateRole(RoleName: string) {
-    debugger;
 
     this.submitted=true;
     if(this.registerForm.invalid){

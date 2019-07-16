@@ -38,7 +38,6 @@ export class FeesTransactionService {
 
   getTotalFeesForStudentCourse(id:number)
   { 
-    debugger;
     return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,this.getAuthHeader()).pipe(map(data => data as CourseFees[]))
   }
 

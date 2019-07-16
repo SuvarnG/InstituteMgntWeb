@@ -89,7 +89,6 @@ export class StudentListComponent implements OnInit {
   }
 
   openEditStudentPopup(editStudent: TemplateRef<any>, s) {
-    debugger;
     this.coursetypeService.courseTypeList().subscribe(res => {
       this.CourseTypeList = res
     });
@@ -133,7 +132,6 @@ export class StudentListComponent implements OnInit {
     });
   }
   onSubmitEditStudent() {
-    debugger;
     this.submitted = true;
     if (this.registerUpdateStudent.invalid) {
       return
@@ -171,7 +169,6 @@ export class StudentListComponent implements OnInit {
   }
 
   openStudentDetailsPopup(studentDetails: TemplateRef<any>, s) {
-    debugger;
     this.studentID = s.StudentId,
     this.urlDocument=s.Document,
       this.registerUpdateStudent.patchValue(

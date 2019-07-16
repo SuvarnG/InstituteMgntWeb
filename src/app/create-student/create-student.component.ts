@@ -150,7 +150,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   openModal(template: TemplateRef<any>) {
-    debugger;
     this.submitted = true;
     if (this.registerForm.invalid) {
       return
@@ -350,7 +349,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   handleFileInput(event: any) {
-    debugger;
     if (event.target.files.length) {
       const file = event.target.files[0];
       if(file.name.includes(".txt") || file.name.includes(".pdf"))
@@ -372,7 +370,6 @@ export class CreateStudentComponent implements OnInit {
   }
 
   // onUploadFile() {
-  //   debugger;
   //   const formData = new FormData();
   //   formData.append('profile', this.registerForm.get('Document').value)//this.registerForm.get('Documents').value);
   //   this.CreateNewStudentService.postFile(formData).subscribe(res => {
@@ -381,7 +378,6 @@ export class CreateStudentComponent implements OnInit {
   // }
 
   onUploadFile() {
-    debugger;
     const formData = new FormData();
     formData.append('File', this.registerForm.get('Document').value);
     this.CreateNewStudentService.postFile(formData).subscribe(

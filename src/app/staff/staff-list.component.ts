@@ -120,7 +120,6 @@ export class StaffListComponent implements OnInit {
   }
 
   onSubmitEditStaff() {
-    debugger;
     if (this.staffForm.invalid == true) {
       this.submitted = true;
       return;
@@ -171,7 +170,6 @@ export class StaffListComponent implements OnInit {
   }
 
   edit(editStaff: TemplateRef<any>, teacher) {
-    debugger;
     this.teacherId = teacher.StaffId;
     this.thumbnailUrl=teacher.Photo
     let body = {

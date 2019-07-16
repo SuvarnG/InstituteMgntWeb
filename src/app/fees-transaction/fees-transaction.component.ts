@@ -88,14 +88,12 @@ export class FeesTransactionComponent implements OnInit {
   }
 
   getTotalFeesForStudentCourse() {
-    debugger;
     this.FeesTransactionService.getTotalFeesForStudentCourse(this.selectedStudentId).subscribe(res => {
       this.courseFees = res
     })
   }
 
   getFeesTransactionDetails() {
-    debugger;
     this.FeesTransactionService.getFeesTransactionDetails(this.selectedStudentId).subscribe(res => {
       this.feesTransaction = res
     })
