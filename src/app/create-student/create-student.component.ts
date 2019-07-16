@@ -47,6 +47,7 @@ export class CreateStudentComponent implements OnInit {
   users: Users[];
   courses:Courses[];
   courseTypeList:CourseType[];
+  thumbnailDocUrl:any;
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
     public CreateNewStudentService: CreateNewStudentService,
@@ -176,6 +177,7 @@ export class CreateStudentComponent implements OnInit {
       PSTDCode: this.registerForm.controls.PzipCode.value,
       Photo: this.CreateNewStudentService.thumbnailUrl,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
+      Document:this.thumbnailDocUrl,
       PayingFees: this.registerForm.controls.payingFeesNow.value
     };
 
@@ -379,10 +381,19 @@ export class CreateStudentComponent implements OnInit {
   // }
 
   onUploadFile() {
+    debugger;
     const formData = new FormData();
     formData.append('File', this.registerForm.get('Document').value);
-    this.CreateNewStudentService.postFile(formData).subscribe(res => {
-    });
+    this.CreateNewStudentService.postFile(formData).subscribe(
+      res=>{ 
+             
+          if(res['type']==4){ 
+           this.thumbnailDocUrl='Http://'+ res['body']['Message'];
+           
+          }
+                        
+      }
+    );
   }
 
   // onUploadPhoto()

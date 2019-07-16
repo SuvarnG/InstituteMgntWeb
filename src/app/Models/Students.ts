@@ -32,6 +32,7 @@ export interface Students{
     EmergencyNo:string;
     IsDocumentSubmitted:boolean;
     Photo:string;
+    Document:string;
 }
 
 export interface UpdateStudent{
@@ -81,6 +82,7 @@ export interface CreateStudent{
     IsDocumentSubmitted:boolean;
     PayingFees:boolean;
     Photo:string;
+    Document:string;
 }
 
 export interface FeesTransaction{

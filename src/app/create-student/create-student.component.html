@@ -299,6 +299,8 @@
                 <div class="col-md-6 px-3" *ngIf='showSelected'>
                   <input type="file" formControlName="Document" (change)="handleFileInput($event)">
                   <button type="button" (click)="onUploadFile()">UploadFile</button>
+                  <!-- <img [src]="thumbnailDocUrl" width="100px" height="100px"> -->
+                  <label for="thumbnailDocUrl">{{thumbnailDocUrl}}</label>
                 </div>
               </div>
               <div class="form-row mt-2">

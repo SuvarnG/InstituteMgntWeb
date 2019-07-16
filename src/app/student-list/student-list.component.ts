@@ -29,6 +29,7 @@ export class StudentListComponent implements OnInit {
   CourseTypeList: CourseType[];
   courseNameList: Courses[];
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
+  urlDocument:any;
 
   constructor(private modalService: BsModalService,
     private router: Router,
@@ -64,7 +65,8 @@ export class StudentListComponent implements OnInit {
       Email: ['', Validators.required],
       ZipCode: ['', Validators.required],
       IsDocumentSubmitted: [],
-      Photo:[]
+      Photo:[],
+      //Document:[]
     })
   }
 
@@ -169,8 +171,9 @@ export class StudentListComponent implements OnInit {
   }
 
   openStudentDetailsPopup(studentDetails: TemplateRef<any>, s) {
+    debugger;
     this.studentID = s.StudentId,
-    
+    this.urlDocument=s.Document,
       this.registerUpdateStudent.patchValue(
         {
           StudentId: s.StudentId,
@@ -194,7 +197,8 @@ export class StudentListComponent implements OnInit {
           ContactNo: s.ContactNo,
           EmergencyNo: s.EmergencyNo,
           Email: s.EmailId,
-          IsDocumentSubmitted: s.IsDocumentSubmitted
+          IsDocumentSubmitted: s.IsDocumentSubmitted,
+          Document:s.Document
         })
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
