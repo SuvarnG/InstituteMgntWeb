@@ -1,9 +1,10 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CoursetypeService } from './coursetype.service';
 import { CourseType } from '../Models/Students';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-coursetype',
@@ -21,6 +22,9 @@ export class CoursetypeComponent  {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
 
+
+  @ViewChild(DataTableDirective)
+    dtElement: DataTableDirective;
 
   constructor(private CoursetypeService: CoursetypeService,
     private modalService: BsModalService, 
@@ -44,13 +48,27 @@ export class CoursetypeComponent  {
 
 }
 
+ngAfterViewInit(): void {this.dtTrigger.next();}
+
+ngOnDestroy(): void {
+  this.dtTrigger.unsubscribe();
+}
+
+rerender(): void {
+  this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
+      this.dtTrigger.next();
+  });
+}
+
   get f() { return this.createregisterForm.controls; }
   get fu() { return this.editregisterForm.controls; }
 
   getCourseType(){
     this.CoursetypeService.courseTypeList().subscribe(res=> {
       this.courseType=res;
-      this.dtTrigger.next();
+      this.rerender();
+      //this.dtTrigger.next();
     });
   }
 
@@ -100,6 +118,8 @@ export class CoursetypeComponent  {
     if(this.editregisterForm.invalid){
       return;
     }
+
+    this.submitted=false;
     let body={
       CourseTypeName:this.editregisterForm.controls.CourseTypeName.value,
       CourseTypeId:this.editregisterForm.controls.CourseTypeId.value,
