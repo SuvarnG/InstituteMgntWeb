@@ -1,11 +1,12 @@
 import { CoursetypeService } from './../coursetype/coursetype.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CoursesService } from './courses.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CourseType, Course } from '../Model/CourseType';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -30,6 +31,10 @@ export class CoursesComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   CourseTypeId: number;
   CourseId: number;
+
+
+  @ViewChild(DataTableDirective)
+    dtElement: DataTableDirective;
 
 
   constructor(
@@ -70,12 +75,26 @@ export class CoursesComponent implements OnInit {
     })
   }
 
+
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+}
+
   public user = Utils.GetCurrentUser();
 
   getCourses(InstituteId: number, BranchId: number) {
     this.CoursesService.courseList(InstituteId, BranchId).subscribe(res => {
       this.course = res;
-      this.dtTrigger.next();
+      this.rerender();
     });
   }
 
@@ -140,7 +159,11 @@ export class CoursesComponent implements OnInit {
       this.CoursesService.createCourse(body).subscribe((data) => {
         this.modalRef.hide();
         this.submitted = false;
-        this.getCourses(this.user.InstituteId, this.user.BranchId);
+        this.CoursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
+          this.course = res;
+          this.rerender();
+        });
+        
       })
     }
   }
@@ -185,8 +208,12 @@ export class CoursesComponent implements OnInit {
     }
     this.CoursesService.edit(body).subscribe(data => {
       this.modalRef.hide();
-      this.getCourses(this.user.InstituteId, this.user.BranchId);
+      this.CoursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
+        this.course = res;
+        this.rerender();
+      });
     }, error => console.error(error))
+   
   }
 
   calculateIsPercentage() {
