@@ -52,7 +52,7 @@ margin-top: 0px;
 .modal-lg {
     max-width: 80%;
 }
-label {
+/* label {
     float: left
 }
 span {
@@ -62,7 +62,7 @@ span {
 }
 input {
     width: 100%;
-}
+} */
 
 .form-control{
     font-size:22px !important;
