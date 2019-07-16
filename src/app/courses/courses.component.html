@@ -155,12 +155,13 @@ f.Fees.errors }" placeholder="Fees">
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
+                   <div class="form-group col-md-3 mt-3 px-3">
 
                     <input type="checkbox" formControlName="IsPercentage" (click)="calculateIsPercentage()">
                     IsPercentage?
 
-                  </div>
+                  </div> 
+                  
                   <div class="form-group col-md-3 px-3" *ngIf="f.IsPercentage.value">
 
                     <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
