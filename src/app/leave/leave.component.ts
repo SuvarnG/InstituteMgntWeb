@@ -41,7 +41,7 @@ export class LeaveComponent implements OnInit {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 10
 
     };
     this.CreateLeaveFormGroup = this.formBuilder.group({

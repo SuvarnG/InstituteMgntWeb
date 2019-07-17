@@ -55,7 +55,7 @@ export class ExpensesComponent implements OnInit {
      this.dtOptions = {
        retrieve: true,
        pagingType: 'full_numbers',
-       pageLength: 5
+       pageLength: 10
 
      };
     this.expenseForm = this.fb.group({

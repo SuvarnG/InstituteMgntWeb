@@ -39,7 +39,7 @@ export class RoleComponent {
       retrieve:true,
       paging:true,
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 10
     };
     this.registerForm = this.formBuilder.group({
       role: ['', Validators.required]
