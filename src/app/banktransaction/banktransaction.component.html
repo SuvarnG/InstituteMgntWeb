@@ -9,39 +9,35 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-  <div class="col-md-10">
-  <div class="row justify-content-center">
-      <div class="col-md-12 col-12 col-sm-12 col-xs-12">
-        <div class="box ml-n2 mt-2">
-
-          <div class="row mb-4 px-0">
-            <div class="col-md-10 mt-4 ">
-              <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-                title="home">
-                Home</a>&nbsp;
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-              <a routerLink="/BankTransaction" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="Bank Transaction">
-                Bank Transaction</a>&nbsp;
-            </div>
-          </div>
-          <hr>
-          <div class="row m-3 ">
-            <div class="col-md-3  py-1">
-              <h2 class="h3 font-weight-medium  mt-3">Bank Transaction</h2>
-            </div>
-            <div class="col-md-4 px-2 pt-2 py-1 justify-content-end text-right">
-              <a routerLink="/BankTransaction"
-                class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
-                data-placement="bottom" title="Create New" (click)="addBank(Addtemplate)" (click)="clearForm()">
-                Add Transaction</a>&nbsp;
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="box ml-n2 mt-2">
     
-  
-       <div class="container shadow mt-4 p-5 ml-3">
+                <div class="row mt-2">
+                    <div class="col-md-8 mt-2">
+                      <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                        title="home" >
+                        Home</a>&nbsp;
+                      <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
+                      <a routerLink="/BankTransaction"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                      title="Bank Transaction" >
+                      Bank Transaction</a>&nbsp;
+                      
+                    </div>
+                    <div class="col-md-4 px-4">
+                        <a routerLink="/BankTransaction" class="btn btn-info font-weight-medium rounded-0 pull-right" data-toggle="tooltip" data-placement="bottom"
+                        title="Add Transaction" (click)="addBank(Addtemplate)" >      
+                      Add  
+                      </a>&nbsp;
+                    </div>
+                   
+                  </div> 
+                  <hr>
+            </div>
+          </div>
+
+       <div class="container shadow p-3 ml-2 mr-3">
 
       <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">

@@ -1,4 +1,4 @@
-<div class="sidebar">
+<!-- <div class="sidebar" id="togglediv" > -->
   <nav id="sidebar" class="navbar-light bg-light" [ngClass]="{'hidden': sideNavService.hideSideNav }">
     <ul class="navbar-nav">
       <li>
@@ -19,19 +19,19 @@
       </li>
       <li routerLinkActive="active current" class="nav-item"
         *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/Dashboard" style="margin-top:30px">
-          <i class="fa fa-home" style="padding:10px"></i>
+        <a class="nav-link" routerLink="/Dashboard">
+          <i class="fa fa-home"></i>
           Dashboard
         </a>
       </li>
 
       <li  routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-          <span style="color:black;padding:10px">
+          <span style="color:black;">
             Institute
           </span> 
        </li>
        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-           <span style="color:black;padding:10px">
+           <span style="color:black;">
              Institute Admin
             </span>
        </li>
@@ -50,14 +50,14 @@
             <li role="menuitem" routerLinkActive="active current" class="nav-item"
               *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
               <a class="nav-link" routerLink="/StudentList">
-                <i class='fa fa-user-graduate' style="padding:10px"></i>
+                <i class='fa fa-user-graduate'></i>
                 Student
               </a>
             </li>
 
             <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
               <a id="nav-link" class="nav-link" routerLink="/Bank">
-                <i class="fa fa-id-card" style="padding:10px">
+                <i class="fa fa-id-card">
                 </i>
                 Bank Account
               </a>
@@ -65,7 +65,7 @@
             <li role="menuitem" routerLinkActive="active current" class="nav-item"
               *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
               <a class="nav-link" routerLink="/ExpenseMaster">
-                <i class="fa fa-dollar" style="padding:10px">
+                <i class="fa fa-dollar">
                 </i>
                 Expenses
               </a>
@@ -73,26 +73,32 @@
 
             <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
               <a class="nav-link" routerLink="/Courses">
-                <i class='fa fa-graduation-cap' style="padding:10px">
+                <i class='fa fa-graduation-cap'>
                 </i>
                 Courses
               </a>
             </li>
             <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
               <a class="nav-link" routerLink="/Branch">
-                <i class=" fa fa-map-marker" style="padding:10px">
+                <i class=" fa fa-map-marker">
                 </i>
                 Branch
               </a>
             </li>
             <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
               <a class="nav-link" routerLink="/coursetype">
-                <i class='fa fa-book-reader' style="padding:10px">
+                <i class='fa fa-book-reader'>
                 </i>
                 Course Type
               </a>
             </li>
-
+            <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
+              <a class="nav-link" routerLink="/LeaveList">
+                <i class=" fa fa-check">
+                </i>
+                Leaves
+              </a>
+            </li>
           </ul>
         </div>
       </li>
@@ -107,7 +113,7 @@
           <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-link">
             <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
               <a class="nav-link" routerLink="/StaffList">
-                <i class="fa fa-user" aria-hidden="true" style="padding:10px">
+                <i class="fa fa-user" aria-hidden="true">
                 </i>
                 Staff
               </a>
@@ -118,23 +124,29 @@
 
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
         <a class="nav-link" routerLink="/Enquiry">
-          <i class="fa fa-desktop" style="padding:10px">
+          <i class="fa fa-desktop">
           </i>
           Enquiry
         </a>
       </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/LeaveList">
-          <i class=" fa fa-check" style="padding:10px">
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLink="/BankTransaction">
+          <i class="fa fa-credit-card" style="padding:10px">
           </i>
-          Leaves
+          Bank Transaction
         </a>
       </li>
-      
+      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+        <a class="nav-link" routerLink="/Expenses">
+          <i class="fa fa-tasks" style="padding:10px">
+          </i>
+          Daily Expenses
+        </a>
+      </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
         <a class="nav-link" routerLink="/Leave">
-          <i class=" fa fa-pencil" style="padding:10px">
+          <i class=" fa fa-pencil">
           </i>
           Apply Leave
         </a>
@@ -142,7 +154,7 @@
 
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
         <a class="nav-link" routerLink="/FeesTransaction">
-          <i class="fa fa-money" aria-hidden="true" style="padding:10px">
+          <i class="fa fa-money" aria-hidden="true">
           </i>
           Fees Payment
         </a>
@@ -150,21 +162,21 @@
 
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
         <a class="nav-link" routerLink="/reports">
-          <i class="fa fa-file" aria-hidden="true" style="padding:10px"></i>
+          <i class="fa fa-file" aria-hidden="true"></i>
           Reports
         </a>
       </li>
 
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
         <a class="nav-link" routerLink="/role">
-          <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px">
+          <i class="fa fa-user-plus" aria-hidden="true">
           </i>
           Role
         </a>
       </li>
     </ul>
   </nav>
-</div>
+<!-- </div> -->
 
 
 

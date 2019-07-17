@@ -7,38 +7,35 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-  <div class="col-md-10 overflow-auto">
-
-<!-- Create button layout -->
-<div class="row mb-4 px-0 py-1">
-    <div class="col-md-10 mt-4 ">
-      <a routerLink="/TeacherCourses" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-        title="home">
-        Home</a>&nbsp;
-      <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-      <a routerLink="/Enquiry" class="pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="student"
-       >
-        Enquiry</a>&nbsp;
-    </div>
-  </div>
-  <hr>
-  <div class="row m-3 ">
-      <div class="col-md-6  py-1">
-        <h2 class="h1 font-weight-medium  mt-3">Enquiry</h2>
-      </div>
-      
-      <div class="col-md-6 px-2 pt-2 py-1 justify-content-end text-right">
-          
-        <a routerLink="/Enquiry"
-          class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
-          data-placement="bottom" title="Create New" (click)="OpenEnquiryModel(CreateEnquiryModal)">
-          Add Enquiry</a>&nbsp;
-      </div>
-    </div>
-
+  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div class="box ml-n2 mt-2">
+    
+                <div class="row mt-2">
+                    <div class="col-md-8 mt-2">
+                      <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                        title="home" >
+                        Home</a>&nbsp;
+                      <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
+                      <a routerLink="/Enquiry"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                      title="staff" >
+                      Enquiry</a>&nbsp;
+                      
+                    </div>
+                    <div class="col-md-4 px-4">
+                        <a Enquiry class="btn btn-info font-weight-medium rounded-0 pull-right" data-toggle="tooltip" data-placement="bottom"
+                        title="Add Enquiry"  (click)="OpenEnquiryModel(CreateEnquiryModal)">      
+                       Add
+                      </a>&nbsp;
+                    </div>                   
+                  </div> 
+                  <hr>
+            </div>
+          </div>
 
 <!-- Enquiry table -->
-<div class="container m-3 shadow mt-4 p-5">
+<div class="container ml-2 shadow mr-4 p-3">
   <div class="row">
 <div class="col-md-12">
   

@@ -4,3 +4,6 @@
     margin-right:15%;
     text-align: center;
 } */
+.container{
+    max-width: 100%;
+}
