@@ -12,43 +12,38 @@
   <!--  -->
 
   
-  <div class="col-md-10 col-11 col-sm-11 col-xs-11">
+  <div class="col-md-10 col-xl-10 col-lg-10 col-11 col-sm-11 col-xs-11">
     
 
     <div class="row mr-0 justify-content-center">
 
       <div class="col-md-12 col-12 col-sm-12 col-xs-12">
-        <div class="box ml-n2 mt-2">
-          <div class="row mb-2">
-            <div class="col-md-10 mt-2">
-              <a routerLink="/TeacherCourses" class="ml-4 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+        <div class="box ml-n2 mt-3">
+          <div class="row mt-2">
+            <div class="col-md-4 mt-2">
+              <a routerLink="/TeacherCourses" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
                 title="home" >
                 Home</a>&nbsp;
               <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
               <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
               title="staff" >
               Staff</a>&nbsp;
+              
             </div>
-          
-          </div> <hr>
-
-          <div class="row mx-2">
-            <div class="col-md-3">
-                <h2 class="h1 font-weight-medium">Staff</h2>
-              </div>
-            <div class="col-md-5 px-5 py-1 ">
+            <div class="col-md-4">
                 <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
             </div>
-            <div class="col-md-4 px-2 py-1">
+            <div class="col-md-4 px-4">
                 <a routerLink="/TeacherCourses" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
                 title="Add Staff" >      
-                Add Staff</a>&nbsp;
+                <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></a>&nbsp;
             </div>
+            
+          </div> <hr>
 
-          </div>
-
+          
           <div class="row my-4 px-3 pb-3">
-              <div class="col-sm-4 col-md-4 col-xl-4 mb-3" *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
+              <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4 mb-3" *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
               <div class="card shadow  pb-0 bg-white rounded-0" style="width: 22rem;">
                 <div class="card-body  pb-0">
                   <div class="row border-bottom">
@@ -56,21 +51,21 @@
                       <img src="{{t.Photo}}" class="img-circle" width="80" height="80">
                     </div>
                     <div class="col-sm-9">
-                      <div class="row py-0">
+                      <div class="row ">
                         <div class="col-sm-12 ">
                           <!-- <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)">
                               <span>{{t.FirstName+' '+t.LastName}}</span>
                             </a> -->
-                          <h5 class="card-title">{{t.FirstName+' '+t.LastName | titlecase}}</h5>
+                          <h5 class="card-title mb-1">{{t.FirstName+' '+t.LastName | titlecase}}</h5>
                         </div>
                       </div>
-                      <div class="row py-0">
-                        <div class="col-sm-12 py-0">
-                          <p class="card-title">{{t.ContactNo}}</p>
+                      <div class="row ">
+                        <div class="col-sm-12  ">
+                          <p class="card-title mb-1">{{t.ContactNo}}</p>
                         </div>
                       </div>
                       <div class="row">
-                        <div class="col-sm-12 py-0">
+                        <div class="col-sm-12  ">
                           <p class="card-title">{{t.Email}}</p>
                         </div>
                       </div>
@@ -160,7 +155,7 @@
     <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
       <form [formGroup]="staffForm" (ngSubmit)="onSubmitEditStaff()">
         <div class="modal-header">
-          <h4 class="h1 modal-title pull-left ml-4">Update Staff</h4>
+          <h3 class=" modal-title pull-left ml-4">Update Staff</h3>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -618,7 +613,7 @@
     <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
       <!-- <div class="modal-dialog modal-xl"> -->
       <div class="modal-header">
-        <h2 class="modal-title pull-left ml-4">Staff Details</h2>
+        <h3 class="modal-title pull-left ml-4">Staff Details</h3>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -628,22 +623,22 @@
         <form [formGroup]="showStaffDetailsForm">
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row py-1">
                 <h4>Personal Details :</h4>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-1">
-                  <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
+                <div class="form-group col-md-1 mb-0">
+                  <label for="firstName" class="mt-3 h5 text-muted">Name :</label>
                 </div>
-                <div class="form-group col-md-2">
-                  <input type="text" class="form-control text-dark border-0" formControlName="FirstName" disabled>
+                <div class="form-group col-md-2 mb-0">
+                  <input type="text" class="form-control text-dark border-0 mt-1" formControlName="FirstName" disabled>
 
                 </div>
-                <div class="form-group col-md-2">
-                  <input type="text" class="form-control text-dark border-0 ml-n5" formControlName="MiddleName" disabled>
+                <div class="form-group col-md-2 mb-0">
+                  <input type="text" class="form-control text-dark border-0 ml-n5 mt-1" formControlName="MiddleName" disabled>
                 </div>
-                <div class="form-group col-md-2">
-                  <input type="text" class="form-control text-dark border-0 ml-n5" formControlName="LastName" disabled>
+                <div class="form-group col-md-2 mb-0">
+                  <input type="text" class="form-control text-dark border-0 ml-n5 mt-1" formControlName="LastName" disabled>
                 </div>
               </div>
 
@@ -652,23 +647,23 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12  mb-0 px-5">
               <div class="form-row">
                
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-3 mb-0">
                     <label for="Gender" class="mt-3 h5 text-muted">Gender :</label>
                   <span><input type="text" class="form-control text-dark border-0 mt-1" formControlName="Gender" disabled></span>
                 </div>
 
-                <div class="form-group col-md-4">
-                    <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">DateOfBirth :</label>
+                <div class="form-group col-md-5  mb-0"> 
+                    <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">Date Of Birth :</label>
                  <span> <input type="text" id="DOB" class="form-control text-dark border-0 mt-1" formControlName="DOB" disabled></span>
                 </div>
 
 
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4  mb-0">
                     <label for="BloodGroup" class="mt-3 h5 ml-5 text-muted">Blood Group :</label>
                   <span> <input type="text" id="BloodGroup" class="form-control text-dark border-0 mt-1" formControlName="BloodGroup" disabled></span>
                 </div>
@@ -681,18 +676,18 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row py-1">
                 <h4>Contact Details :</h4>
               </div>
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">Contact No :</label>
                   <span><input type="text" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"   class="form-control border-0  mt-1" disabled></span>
 
                 </div>
           
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">Emergency No :</label>
                  <span> <input type="text" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                     class="form-control border-0 mt-1" disabled></span>
@@ -703,10 +698,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12 px-5">
               <div class="form-row">
                 
-                <div class="form-group col-md-6">
+                <div class="form-group mb-0 col-md-6 mb-0">
                     <label class="mt-3 h5 text-muted">Email ID :</label>
                  <span> <input type="text" class="form-control border-0 mt-1" id="Email" formControlName="Email" disabled></span>
                 </div>
@@ -718,12 +713,12 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row py-1">
                 <h4>Permanent Address :</h4>
               </div>
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label  for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
                   <span><input type="text" class="form-control border-0 mt-1" id="P_Address1" placeholder="Address 1"
                     formControlName="P_Address1" disabled></span>
@@ -732,22 +727,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12  px-5">
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">State:</label>
                  <span> <input type="text" id="P_State" class="form-control border-0 mt-1" formControlName="P_State" disabled></span>
                 </div>
 
                 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3 mb-0">
                     <label class="mt-3 h5 text-muted">City:</label>
                     <span><input type="text" class="form-control border-0 mt-1" id="P_City" formControlName="P_City" disabled></span>
                 </div>
 
                 
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-3 mb-0">
                     <label class="mt-3 h5 text-muted">PinCode:</label>
                     <span> <input type="text" class="form-control border-0 mt-1" id="P_STDCode" formControlName="P_STDCode" disabled></span>
                 </div>
@@ -759,12 +754,12 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row py-1">
                 <h4>Current Address :</h4>
               </div>
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label  for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
                  <span> <input type="text" class="form-control border-0 mt-1" id="Address1" placeholder="Address 1"
                     formControlName="Address1" disabled></span>
@@ -773,22 +768,22 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12 px-5">
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">State:</label>
                   <span>  <input type="text" id="State" class="form-control border-0 mt-1" formControlName="State" disabled></span>
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">City:</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="City" formControlName="City" disabled></span>
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">PinCode:</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="STD" formControlName="STDCode" disabled></span>
                 </div>
@@ -798,28 +793,28 @@
           <hr>
           <!--Fourth End-->
           <div class="row">
-            <div class="col-md-12  mt-3 ">
-              <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
+            <div class="col-md-12 px-5">
+              <h4 class=" font-weight-medium  py-1 px-3">Course Details :</h4>
 
               <div class="row">
                 <div class="col-md-12 pb-4 px-4">
                   <div class="form-row">
                     
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 mb-0">
                         <label  for="inputCourseType" class="mt-3 h5 text-muted"> CourseType :</label>
                       <span><input type="text" class="form-control border-0 mt-1" id="CourseTypeName" formControlName="CourseTypeName" 
                        disabled></span>
                     </div>
 
                     
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 mb-0">
                        <label  for="inputCourseName" class="mt-3 h5 text-muted"> CourseName :</label>
                        <span> <input type="text" class="form-control border-0 mt-1" id="CourseName" formControlName="CourseName"
                         disabled></span> 
                     </div>
 
                     
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-4 mb-0">
                         <label  for="inputSalary" class="mt-3 h5 text-muted"> Salary :</label>
                      <span> <input type="text" class="form-control border-0 mt-1" id="Salary" formControlName="Salary" 
                       disabled></span>
@@ -830,24 +825,25 @@
 
             </div>
           </div>
+          <hr>
 
 
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row py-1">
                 <h4> Previous Work Details :</h4>
               </div>
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label  for="inputPaddress" class="mt-3 h5 text-muted"> PreviousWork :</label>
                  <span> <input type="text" class="form-control border-0 mt-1" id="PreviousWorkName" formControlName="PreviousWorkName" 
                     disabled></span>
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">DateOfLeaving:</label>
                  <span> <input type="text" class="form-control border-0 mt-1" id="DateOfLeaving" formControlName="DateOfLeaving" disabled></span>
                 </div>
@@ -857,12 +853,12 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12 px-5">
               <div class="form-row">
 
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted ">Previous Experience:</label>
                 <span>  <input type="text" class="form-control border-0 mt-1" id="PreviousExperience" formControlName="PreviousExperience" 
                   disabled></span>
