@@ -28,18 +28,18 @@
         </div> <hr>
 
     <div class="row">
-      <div class="col-md-12  mx-3">
+      <!-- <div class="col-md-12  mx-3">
         <h2 class="h1 font-weight-medium mb-4 mt-2">Add Staff</h2>
-      </div>
+      </div> -->
     </div>
-    <div id="A" class="h-460 shadow p-4">
+    <div id="A" class="h-460 shadow p-3">
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
-        <div class="col-md-12 border-bottom m-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Personal Info :</h4>
+        <div class="col-md-12 border-bottom mx-3">
+          <h4 class=" font-weight-medium px-3">Personal Info :</h4>
           
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 px-4">
               <div class="form-row">
                 
                 <div class="form-group col-md-3 px-3">
@@ -77,7 +77,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-3 mt-3 px-3">
+                <div class="form-group col-md-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
                   <input type="text" id="DOB" placeholder="DOB"  onfocus="(this.type='date')"  class="form-control" formControlName="DOB" placeholder="Date Of Birth"
                     [ngClass]="{ 'is-invalid': submitted && f.DOB.errors }">
@@ -85,7 +85,7 @@
                     <div *ngIf="f.DOB.errors.required"> Please provide a valid DOB.</div>
                   </div>
                 </div>
-                <div class="form-group col-md-3 mt-3 px-3">
+                <div class="form-group col-md-3 px-3">
                   <!-- <label for="BloodGroup">Blood Group</label> -->
                   <select id="BloodGroup" class="form-control text-muted" [value]="null" formControlName="BloodGroup"
                     [ngClass]="{ 'is-invalid': submitted && f.BloodGroup.errors }">
@@ -111,11 +111,11 @@
       <!-- second Row start -->
 
       <div class="row">
-        <div class="col-md-12 border-bottom m-3 ">
-          <h4 class=" font-weight-medium  py-4 px-3">Contact Info :</h4>
+        <div class="col-md-12 border-bottom mx-3 ">
+          <h4 class=" font-weight-medium px-3 my-3">Contact Info :</h4>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 px-4">
               <div class="form-row">
                 <div class="form-group col-md-3 px-3">
                   <input type="number" id="ContactNo"  formControlName="ContactNo" placeholder="Contact No"
@@ -148,13 +148,12 @@
         </div>
       </div>
       <!--Second row End-->
-      <div class="row">
-
-        <div class="col-md-12 border-bottom m-3 ">
-          <h4 class=" font-weight-medium  py-4 px-3">Permanent Address :</h4>
-
+    
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 border-bottom mx-3 ">
+                <h4 class=" font-weight-medium px-3 my-3">Permanent Address :</h4>
+          <div class="row">
+            <div class="col-md-12  px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
                   <input type="text" class="form-control" id="Address1" placeholder="Address"
@@ -199,9 +198,9 @@
       <!--Third Row End-->
       <div class="row">
 
-        <div class="col-md-12 border-bottom m-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Current Address :</h4>
-          <div class="row">
+        <div class="col-md-12 border-bottom mx-3">
+          <h4 class=" font-weight-medium px-3 my-3">Current Address :</h4>
+          <div class="row pt-2">
             <div class="form-group col-md-4 px-5">
               <input class="form-check-input " type="checkbox" id="gridCheck1" (click)="checkAll($event)"
                 formControlName="gridCheck1">
@@ -211,7 +210,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
                   <input type="text" class="form-control" id="P_Address1" placeholder="Address"
@@ -293,11 +292,11 @@
    </div>  -->
       <!--fifth row end-->
       <div class="row">
-        <div class="col-md-12 border-bottom m-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Professional Details :</h4>
+        <div class="col-md-12 border-bottom mx-3">
+          <h4 class=" font-weight-medium   px-3 my-3">Professional Details :</h4>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12  px-4">
               <div class="form-row">
 
                 <div class=" col-md-5 px-3">
@@ -316,7 +315,7 @@
                   </div>
                 </div>
               </div>
-              <div class="form-row mt-2">
+              <div class="form-row ">
                 <div class="col-md-6 mt-4 px-3">
                   <label for="inpuIsCV" class="h6">Is CV?</label>
                   <div class="custom-control custom-radio custom-control-inline ml-4">
@@ -335,7 +334,7 @@
                   <button type="button" (click)="onUploadFile()">UploadFile</button>
                 </div>
               </div>
-              <div class="form-row mt-2">
+              <div class="form-row ">
                 <div class="col-md-6 mt-3 px-3">
                   <label for="inputIsFixedPayemnt" class="h6">Is Fixed Payment?</label>
                   <div class="custom-control custom-radio custom-control-inline ml-4">
@@ -361,10 +360,10 @@
       </div>
       <!--Sixth row End-->
       <div class="row">
-        <div class="col-md-12 border-bottom m-3 ">
-          <h4 class=" font-weight-medium  py-4 px-3">Previous Company Details :</h4>
+        <div class="col-md-12 border-bottom mx-3 ">
+          <h4 class=" font-weight-medium  px-3 my-3">Previous Company Details :</h4>
 
-          <div class="form-row mt-2 ">
+          <div class="form-row  ">
             <div class="col-md-4 px-3">
               <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName"
                 placeholder="Company Name"  [ngClass]="{ 'is-invalid': submitted && f.PreviousWorkName.errors }">
@@ -381,7 +380,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4 mt-4">
+            <div class="col-md-12 pb-4 px-4 ">
               <div class="form-row">
                 <div class="form-group col-md-3 mt-3 px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->

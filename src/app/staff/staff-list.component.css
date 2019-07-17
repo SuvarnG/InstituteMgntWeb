@@ -65,7 +65,7 @@ input {
 } */
 
 .form-control{
-    font-size:22px !important;
+    /* font-size:22px !important; */
     columns: #222222;
 }
 

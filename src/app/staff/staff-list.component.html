@@ -35,8 +35,10 @@
             </div>
             <div class="col-md-4 px-4">
                 <a routerLink="/TeacherCourses" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
-                title="Add Staff" >      
-                <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></a>&nbsp;
+                title="Add Staff" > Add Staff     
+                <!-- <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg> -->
+              </a>
+              &nbsp;
             </div>
             
           </div> <hr>
@@ -161,16 +163,16 @@
           </button>
         </div>
         <div class="modal-body">
-          <div class="row">
-            <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+          <div class="row  mb-0">
+            <div class="col-md-12 px-5 mb-0">
+              <div class="form-row">
                 <h4>Personal Details :</h4>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-1">
+              <div class="form-row mb-0">
+                <div class="form-group  mb-0 col-md-1">
                   <label for="firstName" class="mt-3 h5 text-muted">Name :</label>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group  mb-0 col-md-2">
                   <input type="text" class="form-control border-0 mt-1" formControlName="FirstName"
                     [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
                 </div>
@@ -178,14 +180,14 @@
                   <div *ngIf="f.FirstName.errors.required">First Name is required</div>
 
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group  mb-0 col-md-2">
                   <input type="text" class="form-control border-0" formControlName="MiddleName"
                     [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
                 </div>
                 <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
                   <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group  mb-0 col-md-2">
                   <input type="text" class="form-control border-0" formControlName="LastName"
                     [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
                 </div>
@@ -193,83 +195,77 @@
                   <div *ngIf="f.LastName.errors.required">Last Name is required</div>
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-12 mt-3  px-5">
-              <div class="form-row">
-
-
-
-                  <div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label class="control-label-col-sm-2 h5 mt-3 text-muted">Gender: </label> 
+              <div class="form-row  mb-0">
+                  <div class="form-group  mb-0 col-md-6 col-xl-6 col-sm-6 col-lg-6">
+                     <div class="row">
+                         <div class="col-md-2  mb-0">
+                             <label class="control-label-col-sm-2 h5 mt-3 text-muted">Gender: </label> 
+                           </div>
+                       <div class="col-md-4 mt-3 radio  mb-0">
+                       
+                       <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Male"
+                                    ></label><span class="ml-5 h5 text-muted">Male</span>
                           </div>
-                      <div class="col-md-4 mt-3 radio">
-                      
-                      <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Male"
-                                   ></label><span class="ml-5 h5 text-muted">Male</span>
-                         </div>
-                         <div class="col-md-4 mt-3 radio px-0 mx-0 ml-n5">
-                          <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Female"></label>
-                                    <span class="ml-5 h5 text-muted">Female</span>
-                      </div>
-                      </div>
-                    </div>
+                          <div class="col-md-4  mb-0 mt-3 radio px-0 mx-0 ml-n5  mb-0">
+                           <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Female"></label>
+                                     <span class="ml-5 h5 text-muted">Female</span>
+                       </div>
+                       </div>
+                     </div>
+                 
+                 <!-- <div class="form-group col-md-3">
+                     <label for="Gender" class="mt-3 h5 text-muted">Gender :</label>
+                  <span> <input type="text" class="form-control border-0 mt-1" formControlName="Gender"
+                     [ngClass]="{'is-invalid': submitted && f.Gender.errors} "></span>
+ 
+                 </div> -->
+                 <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                   <div *ngIf="f.Gender.errors.required">Gender is required</div>
+                 </div>
                 
-                <!-- <div class="form-group col-md-3">
-                    <label for="Gender" class="mt-3 h5 text-muted">Gender :</label>
-                 <span> <input type="text" class="form-control border-0 mt-1" formControlName="Gender"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "></span>
+                 
+                 <div class="form-group col-md-5  mb-0">
+                     <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">Date Of Birth :</label>
+                     <span> <input type="date" id="DOB" class="form-control border-0 mt-1" formControlName="DOB"
+                     [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">  </span>
+                 </div>
+                 <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+                   <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
+                 </div>
+                </div>
+                <div class="form-row  mb-0">
+                 <div class="form-group col-md-3  mb-0">
+                     <label for="BloodGroup" class="mt-3 h5 text-muted">Blood Group :</label>
+                   <span> <select id="BloodGroup" class="form-control border-0 mt-1" formControlName="BloodGroup"
+                     [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
+                     <option>A+</option>
+                     <option>B+</option>
+                     <option>AB+</option>
+                     <option>O+</option>
+                     <option>A-</option>
+                     <option>B-</option>
+                     <option>O-</option>
+                     <option>AB-</option>
+                   </select></span>
+                 </div>
+                 <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
+                   <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
+                 </div>
+               </div>
 
-                </div> -->
-                <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
-                  <div *ngIf="f.Gender.errors.required">Gender is required</div>
-                </div>
-               
-                
-                <div class="form-group col-md-5">
-                    <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">DateOfBirth :</label>
-                    <span> <input type="date" id="DOB" class="form-control border-0 mt-1" formControlName="DOB"
-                    [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">  </span>
-                </div>
-                <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-                  <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
-                </div>
-                
-                <div class="form-group col-md-4">
-                    <label for="BloodGroup" class="mt-3 h5 ml-1 text-muted">Blood Group :</label>
-                  <span> <select id="BloodGroup" class="form-control border-0 mt-1" formControlName="BloodGroup"
-                    [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
-                    <option>A+</option>
-                    <option>B+</option>
-                    <option>AB+</option>
-                    <option>O+</option>
-                    <option>A-</option>
-                    <option>B-</option>
-                    <option>O-</option>
-                    <option>AB-</option>
-                  </select></span>
-                </div>
-                <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
-                  <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
-                </div>
-              </div>
             </div>
           </div>
           <hr>
           <!--First Edit End-->
 
           <div class="row">
-            <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+            <div class="col-md-12 px-5  mb-0">
+              <div class="form-row mb-0">
                 <h4>Contact Details :</h4>
               </div>
-              <div class="form-row">
+              <div class="form-row mb-0">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">Contact No :</label>
                   <span> <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
                     class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }"></span>
@@ -278,7 +274,7 @@
                   <div *ngIf="f.ContactNo.errors.required">Contact No is required</div>
                 </div>
                
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 mb-0">
                     <label class="mt-3 h5 text-muted">Emergency No :</label>
                   <span><input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                     class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }"></span>
@@ -290,11 +286,11 @@
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 mt-3  px-5">
-              <div class="form-row">
+          <div class="row  mb-0">
+            <div class="col-md-12 px-5">
+              <div class="form-row mb-0">
                 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 mb-0">
                     <label class="mt-3 h5 text-muted">Email ID :</label>
                   <span> <input type="email" class="form-control border-0 mt-1" id="Email" formControlName="Email"
                     [ngClass]="{'is-invalid': submitted && f.Email.errors} "></span>
@@ -310,12 +306,12 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row mb-0">
                 <h4>Permanent Address :</h4>
               </div>
-              <div class="form-row">
+              <div class="form-row mb-0">
                 
-                <div class="form-group col-md-12">
+                <div class="form-group col-md-12 mb-0">
                     <label  for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="P_Address1" placeholder="Address 1"
                     formControlName="P_Address1" [ngClass]="{'is-invalid': submitted && f.P_Address1.errors} ">
@@ -328,10 +324,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
-              <div class="form-row">
+            <div class="col-md-12  mb-0  px-5">
+              <div class="form-row mb-0">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">State:</label>
                   <span> <select id="P_State" class="form-control border-0 mt-1" formControlName="P_State"
                     [ngClass]="{'is-invalid': submitted && f.P_State.errors} ">
@@ -344,7 +340,7 @@
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">City:</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="P_City" formControlName="P_City"
                     [ngClass]="{'is-invalid': submitted && f.P_City.errors} "></span>
@@ -354,7 +350,7 @@
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">PinCode:</label>
                   <span> <input type="number" class="form-control border-0 mt-1" id="P_STDCode" formControlName="P_STDCode"
                     [ngClass]="{'is-invalid': submitted && f.P_STDCode.errors} "></span>
@@ -370,12 +366,12 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row mb-0">
                 <h4>Current Address :</h4>
               </div>
-              <div class="form-row">
+              <div class="form-row mb-0">
                 
-                <div class="form-group col-md-12">
+                <div class="form-group mb-0 col-md-12">
                     <label  for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
                   <span><input type="text" class="form-control border-0 mt-1" id="Address1" placeholder="Address 1"
                     formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
@@ -387,10 +383,10 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
+            <div class="col-md-12 mb-0 px-5">
               <div class="form-row">
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">State:</label>
                   <span> <select id="State" class="form-control border-0 mt-1" formControlName="State"
                     [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
@@ -402,7 +398,7 @@
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">City:</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="City" formControlName="City"
                     [ngClass]="{ 'is-invalid': submitted && f.City.errors }"></span>
@@ -412,7 +408,7 @@
                 </div>
 
                 
-                <div class="form-group col-md-4">
+                <div class="form-group mb-0 col-md-4">
                     <label class="mt-3 h5 text-muted">PinCode:</label>
                   <span> <input type="number" class="form-control border-0 mt-1" id="STD" formControlName="STDCode"
                     [ngClass]="{ 'is-invalid': submitted && f.STDCode.errors }"></span>
@@ -426,13 +422,12 @@
           <hr>
           <!--Fourth Edit End-->
           <div class="row">
-            <div class="col-md-12  mt-3 ">
-              <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
-
-              <div class="row">
-                <div class="col-md-12 pb-4 px-4">
-                  <div class="form-row">
-                    <div class="form-group col-md-4">
+            <div class="col-md-12 mb-0 px-5">
+                <div class="form-row mb-0">
+                    <h4>Course Details :</h4>
+                  </div>
+                  <div class="form-row mb-0">
+                    <div class="form-group mb-0 col-md-4">
                         <label  for="inputSalary" class="mt-3 h5 text-muted"> Course Type :</label>
                       <span> <select id="CourseTypeName" class="form-control border-0 mt-1" formControlName="CourseTypeName"
                         (change)="selectCourse($event)" [ngClass]="{ 'is-invalid': submitted && f.CourseTypeName.errors }">
@@ -451,7 +446,7 @@
                       </div>
                     </div>
 
-                    <div class="form-group col-md-4">
+                    <div class="form-group mb-0 col-md-4">
                         <label  for="inputSalary" class="mt-3 h5 text-muted"> Course Name :</label>
                       <span> <select id="CourseName" class="form-control mt-1 border-0" formControlName="CourseName"
                       (change)="selectCourseName($event)" [ngClass]="{ 'is-invalid': submitted && f.CourseName.errors }">
@@ -471,16 +466,14 @@
 
 
                   
-                    <div class="form-group col-md-4">
+                    <div class="form-group mb-0 col-md-4">
                         <label  for="inputSalary" class="mt-3 h5 text-muted"> Salary :</label>
                       <span> <input type="text" class="form-control border-0 mt-1" id="Salary" formControlName="Salary" [ngClass]="{ 'is-invalid': submitted && f.Salary.errors }">
                       </span>  </div>
                     <div *ngIf="submitted && f.Salary.errors" class="invalid-feedback">
                       <div *ngIf="f.Salary.errors.required"> Please provide a valid Salary.</div>
                     </div>
-                  </div>
-                </div>
-              </div>
+                  </div>  
             </div>
           </div>
           <hr>
@@ -488,24 +481,24 @@
 
           <div class="row">
             <div class="col-md-12 px-5">
-              <div class="form-row py-3">
+              <div class="form-row  mb-0">
                 <h4> Previous Work Details :</h4>
               </div>
-              <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label  for="inputPaddress" class="mt-3 h5 text-muted"> PreviousWork :</label>
+              <div class="form-row mb-0">
+                <div class="form-group col-md-4 mb-0">
+                    <label  for="inputPaddress" class="mt-3 h5 text-muted"> Previous Work :</label>
                   <span> <input type="text" class="form-control border-0 mt-1" id="PreviousWorkName" formControlName="PreviousWorkName">
                   </span>
                 </div>
 
               
-                <div class="form-group col-md-4">
-                    <label  for="inputPaddress" class="mt-3 h5 text-muted"> DateOfJoining :</label>
+                <div class="form-group col-md-4 mb-0">
+                    <label  for="inputPaddress" class="mt-3 h5 text-muted"> Date Of Joining :</label>
                   <span> <input type="date" class="form-control border-0 mt-1" id="DateOfJoining" formControlName="DateOfJoining">
                   </span>
                 </div>
-                <div class="form-group col-md-4">
-                    <label class="mt-3 h5 text-muted">DateOfLeaving:</label>
+                <div class="form-group col-md-4 mb-0">
+                    <label class="mt-3 h5 text-muted">Date Of Leaving:</label>
                   <span>  <input type="date" class="form-control border-0 mt-1" id="DateOfLeaving" formControlName="DateOfLeaving">
                   </span>
                 </div>
@@ -514,9 +507,9 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 mt-3  px-5">
-              <div class="form-row">
-                <div class="form-group col-md-4"> 
+            <div class="col-md-12  mb-0  px-5">
+              <div class="form-row mb-0">
+                <div class="form-group col-md-4 mb-0"> 
                   <label class="mt-3 h5 text-muted">Previous Experience:</label>
                   <span> <input type="number" class="form-control border-0 mt-1" id="PreviousExperience"
                     formControlName="PreviousExperience"></span>
@@ -531,50 +524,47 @@
 
           <!--Seventh Row-->
 
-          <div class="row  px-2">
-            <div class="col-md-12  mt-3 ">
-              <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">New Image Upload :</h4>
-    
-              <div class="row  px-2">
-                <div class="col-md-12 pb-4 px-4">
-                  <div class="form-row pt-3 p-2">
-                    <div class="form-group col-md-4 px-3">
-                      <div class=" col-md-5 px-3">
-                        <div class="media">
-      
-                          <div class="media-body">
-                            <input type="file" (change)="onImageSelected($event)" id="Photo">
-      
-                            <input type="hidden" name="fileHidden" formControlName="Photo" />
-      
-                            <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button>
-                              &nbsp;
-                             <img [src]="thumbnailUrl" width="100" height="100">
-    
-                          </div>
-                        </div>
-                      </div>
+          <div class="row">
+              <div class="col-md-12 px-5">
+                  <div class="form-row  mb-0">
+                      <h4>New Image Upload :</h4>
                     </div>
-    
-    
+                  <div class="form-row mt-3">
+                      <div class="form-group col-md-6 mb-0">
+                          <div class="media">
+      
+                              <div class="media-body">
+                                  <div class="row">
+                                      <div class="col-md-3">
+                                  <img [src]="thumbnailUrl" width="100" height="100"> &nbsp;
+                                </div>
+                               
+                                <div class="col-md-6">
+                                <input type="file" (change)="onImageSelected($event)" id="Photo">
+          
+                                <input type="hidden" name="fileHidden" formControlName="Photo" />
+          
+                                <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button>
+                              </div>
+        
+                              </div>
+                            </div>
                   </div>
-                </div>
-              </div>
-    
-            </div>
+        
+                  </div>
+            
           </div>
-    
+          </div>
+        </div> 
 
           <!--Seventh Row End-->
-
-
-
-        </div>
+       
         <div class="modal-footer">
           <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
           <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
             (click)="modalRef.hide()">Cancel</button>
         </div>
+      </div>
       </form>
     </div>
   </ng-template>
@@ -626,7 +616,7 @@
               <div class="form-row py-1">
                 <h4>Personal Details :</h4>
               </div>
-              <div class="form-row">
+              <div class="form-row mb-0">
                 <div class="form-group col-md-1 mb-0">
                   <label for="firstName" class="mt-3 h5 text-muted">Name :</label>
                 </div>
@@ -646,9 +636,9 @@
 
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-0">
             <div class="col-md-12  mb-0 px-5">
-              <div class="form-row">
+              <div class="form-row mb-0">
                
                 <div class="form-group col-md-3 mb-0">
                     <label for="Gender" class="mt-3 h5 text-muted">Gender :</label>
@@ -794,10 +784,12 @@
           <!--Fourth End-->
           <div class="row">
             <div class="col-md-12 px-5">
-              <h4 class=" font-weight-medium  py-1 px-3">Course Details :</h4>
+                <div class="form-row py-1">
+                    <h4>Course Details :</h4>
+                  </div>
+              <!-- <h4 class=" font-weight-medium  py-1 px-3 ml-4">Course Details :</h4> -->
 
-              <div class="row">
-                <div class="col-md-12 pb-4 px-4">
+             
                   <div class="form-row">
                     
                     <div class="form-group col-md-4 mb-0">
@@ -820,8 +812,7 @@
                       disabled></span>
                     </div>
                   </div>
-                </div>
-              </div>
+                
 
             </div>
           </div>
@@ -869,7 +860,7 @@
             </div>
           </div>
 
-          <hr>
+         
           <!-- <div class="modal-footer">
                     <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
                     <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
