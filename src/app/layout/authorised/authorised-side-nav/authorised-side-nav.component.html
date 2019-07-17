@@ -2,18 +2,20 @@
   <nav id="sidebar" class="navbar-light bg-light" [ngClass]="{'hidden': sideNavService.hideSideNav }">
     <ul class="navbar-nav">
       <li>
-        <div class="row" style="margin-top:25px;color: black;font-weight: bold">
+        <div class="row py-4 pl-2 text-dark">
           <div class="col-md-4">
             <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap"
-              (click)="changeUserImage(ChangeUserImage)" style="margin-left:5px">
+              (click)="changeUserImage(ChangeUserImage)">
           </div>
-          <div class="col-md-8" style="font-size:20px;font-weight:bold">
+          <div class="col-md-8 font-weight-bold">
             {{user.friendlyName}}
-            <span style="font-size:16px;font-weight:normal">
+            <span class="font-weight-normal">
               {{user.roles}}
             </span>
+            
           </div>
         </div>
+        
       </li>
       <li routerLinkActive="active current" class="nav-item"
         *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
@@ -162,7 +164,6 @@
       </li>
     </ul>
   </nav>
-  <button class="sidebar-minimizer brand-minimizer" type="button"></button>
 </div>
 
 

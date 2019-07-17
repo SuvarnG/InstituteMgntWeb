@@ -83,3 +83,13 @@ span {
 input {
   width: 100%;
 }
+
+.card{
+  min-height: 0px !important;
+}
+.ngx-pagination .current {
+  padding: 0.1875rem 0.625rem;
+  background: #009999 !important;
+  color: #fefefe;
+  cursor: default;
+}
