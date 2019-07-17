@@ -9,33 +9,32 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-
-
-  <div class="col-md-10">
-    <div class="row mb-4 px-0 py-1">
-      <div class="col-md-10 mt-4 ">
-        <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
-          Home</a>&nbsp;
-        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-        <a routerLink="/Courses" class="pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="Courses">
-          Courses</a>&nbsp;
-      </div>
-    </div>
-    <hr>
-    <div class="row m-3 ">
-      <div class="col-md-6 py-1">
-        <h2 class="h1 font-weight-medium mt-3">Courses</h2>
-      </div>
-
-      <div class="col-md-6 px-2 pt-2 py-1 justify-content-end text-right">
-
-        <a routerLink="/Courses" class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right"
-          data-toggle="tooltip" data-placement="bottom" title="Create New" (click)="AddCourses(Addtemplate)">
-          Add Courses</a>&nbsp;
-      </div>
-    </div>
-
-
+  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+    <div class="row">
+        <div class="col-xl-12 col-md-12 col-lg-12 col-sm-12 col-xs-12">
+            <div class="box ml-n2 mt-2">
+    
+                <div class="row mt-2">
+                    <div class="col-md-8 mt-2">
+                      <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                        title="home" >
+                        Home</a>&nbsp;
+                      <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
+                      <a routerLink="/Courses"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                      title="Courses" >
+                      Courses</a>&nbsp;
+                      
+                    </div>
+                    <div class="col-md-4 px-4">
+                        <a routerLink="/Courses" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
+                        title="Add New Course" (click)="AddCourses(Addtemplate)" >      
+                        <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg></a>&nbsp;
+                    </div>
+                   
+                  </div> 
+                  <hr>
+            </div>
+          </div>
 
     <div class="container shadow mt-4 p-5 ml-3">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
