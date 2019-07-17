@@ -12,23 +12,21 @@
 
       <div class="row mb-4 px-0">
           <div class="col-md-10 mt-4 ">
-            <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+            <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
               Home</a>&nbsp;
             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a routerLink="/EnquiryReport" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-              title="EnquiryReport">
-              EnquiryReport</a>&nbsp;
+            <a routerLink="/reports" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+              title="Report">
+              Reports</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <a routerLink="/EnquiryReport" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+                title="Enquiry Report">
+                Enquiry Report</a>
           </div>
         </div>
   <hr>
 
     <form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
-        <div class="row">
-            <div class="col-lg-12 py-2">
-            <h2 class="ml-4">Enquiry Report</h2>
-          </div>
-        </div>
-
         <div class="row shadow p-5 m-3">
             <div class="col-lg-12 py-2">
             <div class="form-row ">
