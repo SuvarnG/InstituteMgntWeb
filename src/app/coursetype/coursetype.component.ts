@@ -33,7 +33,7 @@ export class CoursetypeComponent  {
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 4
+      pageLength: 10
 
     };
     this.getCourseType();

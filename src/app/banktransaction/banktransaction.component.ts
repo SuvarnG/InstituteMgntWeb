@@ -90,7 +90,7 @@ ngOnInit() {
       retrieve: true,
      // paging: false,
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 10
 
     };
 

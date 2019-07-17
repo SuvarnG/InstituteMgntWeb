@@ -34,7 +34,7 @@ dtTrigger: Subject<any> = new Subject();
       // retrieve: true,
       // paging: false,
       pagingType: 'full_numbers',
-      pageLength: 4
+      pageLength: 10
 
     };
     this.createExpenseForm=this.fb.group({

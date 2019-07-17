@@ -39,7 +39,7 @@ export class BranchComponent implements OnInit {
     this.dtOptions = {
       retrieve: true,
       pagingType: 'full_numbers',
-      pageLength: 4
+      pageLength: 10
 
     };
     this.createBrachForm = this.formBuilder.group({

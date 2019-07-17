@@ -50,7 +50,7 @@ export class EnquiryComponent implements OnInit {
       retrieve: true,
       //paging: false,
       pagingType: 'full_numbers',
-      pageLength: 5
+      pageLength: 10
 
     };
     this.myDateValue = new Date();
