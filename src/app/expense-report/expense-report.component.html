@@ -5,209 +5,126 @@
 
 <div class="row">
   <div class="col-md-2">
- 
-  <app-authorised-side-nav></app-authorised-side-nav>
-</div> 
+
+    <app-authorised-side-nav></app-authorised-side-nav>
+  </div>
 
 
-<div class="col-md-10">
+  <div class="col-md-10">
     <div class="row mb-4 px-0">
-        <div class="col-md-10 mt-4 ">
-          <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
-            Home</a>&nbsp;
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a routerLink="/reports" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-            title="Report">
-            Reports</a>&nbsp;
-          <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-          <a routerLink="/ExpenseReport" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-            title="ExpenseReport">
-            Expense Report</a>&nbsp;
-        </div>
+      <div class="col-md-10 mt-4 ">
+        <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+          Home</a>&nbsp;
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a routerLink="/reports" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+          title="Report">
+          Reports</a>&nbsp;
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        <a routerLink="/ExpenseReport" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+          title="ExpenseReport">
+          Expense Report</a>&nbsp;
       </div>
-<hr>
+    </div>
+    <hr>
 
-  <form [formGroup]="registerExpensesReport" (ngSubmit)="pullExpenseReport()">
+    <form [formGroup]="registerExpensesReport" (ngSubmit)="pullExpenseReport()">
 
-<div class="row shadow p-3 m-3">
-    <div class="col-lg-12 py-2">
-    <div class="form-row ">
-        <!-- <div class="col-lg-2">
-        <label class="h6 text-muted">Branch Name:</label>
-        </div> -->
-      <div class="col-lg-2">        
-          <select class="form-control" [value]="null"  formControlName="BranchName">
-            <option value="null" disabled>Select Branch</option>
-            <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
-          </select>
-      </div>
-      <!-- <div class="col-lg-2">
-          <label class="h6 text-muted mt-3">Expense Type:</label>
-          </div> -->
-      <div class="col-lg-2"> 
-          <select class="form-control" [value]="null" formControlName="Expense">
-              <option value="null" disabled>Select Expense</option>
-            <option *ngFor="let e of expenseList" [value]="e.ExpenseId" >{{e.Expenses}}</option>
-          </select>
-      </div> 
-
-      <div class="col-lg-2">
-          <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)" [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
-            <option value="null" disabled>Select Period</option>
-            <option value="OneMonth" >Last 1 Month</option>
-            <option value="ThreeMonth" >Last 3 Month</option>
-            <option value="SixMonth" >Last 6 Month</option>
-            <option value="SelectDateRange">Date Range</option>
-          </select>
-          <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
-              <div *ngIf="f.period.errors.required">Period is required</div>
+      <div class="row shadow p-3 m-3">
+        <div class="col-lg-12 py-2">
+          <div class="form-row ">
+            <div class="col-lg-2">
+              <select class="form-control" [value]="null" formControlName="BranchName">
+                <option value="null" disabled>Select Branch</option>
+                <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
+              </select>
             </div>
-      </div>
+            <div class="col-lg-2">
+              <select class="form-control" [value]="null" formControlName="Expense">
+                <option value="null" disabled>Select Expense</option>
+                <option *ngFor="let e of expenseList" [value]="e.ExpenseId">{{e.Expenses}}</option>
+              </select>
+            </div>
 
-      <div class="col-lg-1" *ngIf="dateRange">
-          <label class="h6 text-muted mt-3">From:</label>
-        </div>
+            <div class="col-lg-2">
+              <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)"
+                [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
+                <option value="null" disabled>Select Period</option>
+                <option value="OneMonth">Last 1 Month</option>
+                <option value="ThreeMonth">Last 3 Month</option>
+                <option value="SixMonth">Last 6 Month</option>
+                <option value="SelectDateRange">Date Range</option>
+              </select>
+              <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+                <div *ngIf="f.period.errors.required">Period is required</div>
+              </div>
+            </div>
 
-        <div class="col-lg-2" *ngIf="dateRange" >
-          
-            <input type="date" class="form-control" formControlName="FromDate" [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
-            <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
+            <div class="col-lg-1" *ngIf="dateRange">
+              <label class="h6 text-muted mt-3">From:</label>
+            </div>
+
+            <div class="col-lg-2" *ngIf="dateRange">
+
+              <input type="date" class="form-control" formControlName="FromDate"
+                [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
+              <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
                 <div *ngIf="f.FromDate.errors.required">Date is required</div>
               </div>
-        </div> 
+            </div>
 
-        <div class="col-lg-1" *ngIf="dateRange">
-            <label class="h6 text-muted mt-3">To:</label>
-          </div>
+            <div class="col-lg-1" *ngIf="dateRange">
+              <label class="h6 text-muted mt-3">To:</label>
+            </div>
 
-          <div class="col-lg-2" *ngIf="dateRange">   
-              <input type="date" class="form-control" formControlName="ToDate" [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
+            <div class="col-lg-2" *ngIf="dateRange">
+              <input type="date" class="form-control" formControlName="ToDate"
+                [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
               <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
-                  <div *ngIf="f.ToDate.errors.required">Date is required</div>
-                </div>
-          </div>
-      
-    </div>
-
-    <!-- <div class="form-row py-3">
-        <div class="col-lg-2">
-            <label class="h6 text-muted mt-3">Select Period:</label>
-          </div>
-        <div class="col-lg-3">
-            <select class="form-control" formControlName="period" (change)="selectPeriod($event)">
-              <option value="OneMonth" >Last 1 Month</option>
-              <option value="ThreeMonth" >Last 3 Month</option>
-              <option value="SixMonth" >Last 6 Month</option>
-              <option value="SelectDateRange">Select Date Range</option>
-            </select>
-        </div>
-        
-        </div> -->
-
-        <!-- <div class="form-row py-3 ">
-        <div class="col-lg-2" *ngIf="dateRange">
-            <label class="h6 text-muted mt-3">From Date:</label>
-          </div>
-      <div class="col-lg-3" *ngIf="dateRange" >
-          
-          <input type="date" class="form-control" formControlName="FromDate" [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
-          <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
-              <div *ngIf="f.FromDate.errors.required">Date is required</div>
+                <div *ngIf="f.ToDate.errors.required">Date is required</div>
+              </div>
             </div>
-      </div> 
-    
 
-      <div class="col-lg-1" *ngIf="dateRange">
-          <label class="h6 text-muted mt-3">To Date:</label>
-        </div>
-      <div class="col-lg-3" *ngIf="dateRange">   
-          <input type="date" class="form-control" formControlName="ToDate" [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
-          <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
-              <div *ngIf="f.ToDate.errors.required">Date is required</div>
+          </div>
+
+          <div class="row justify-content-end border-top">
+            <div class="col-lg-7 mt-3">
+              <button type="submit" value="Search" class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
+              <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
+                (click)="exportAsXLSX()">Export Excel</button>
+              <button type="button" (click)="pdf.saveAs('expenseTable.pdf')" value="Download PDF"
+                class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button>
             </div>
+          </div>
+
+        </div>
       </div>
-       
- </div>  -->
+    </form>
 
-      <div class="row justify-content-end border-top">
-      <div class="col-lg-7 mt-3">
-       
-          <button type="submit"  value="Search" class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
-          <button type="button"  class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4"  value="Export Excel" (click)="exportAsXLSX()">Export Excel</button>
-          <button type="button" (click)="pdf.saveAs('expenseTable.pdf')" value="Download PDF" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button>
-      </div> 
 
+    <div class="shadow p-5 m-3">
+      <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
+        <table style="border:1px solid black; width: 100%">
+          <tr style="border:1px solid black">
+            <th>Branch Name</th>
+            <th>Expense Name</th>
+            <th>Amount Paid</th>
+            <th>Date</th>
+            <th>Paid By</th>
+          </tr>
+          <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 25, currentPage: p }"
+            style="border:1px solid black">
+            <td>{{e.BranchName}}</td>
+            <td>{{e.ExpenseName}}</td>
+            <td>{{e.AmountPaid}}</td>
+            <td>{{e.Date | date}}</td>
+            <td>{{e.PaidBy}}</td>
+          </tr>
+        </table>
+      </kendo-pdf-export>
+      <ul class="pagination">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </ul>
     </div>
-      
-
-      
-      <!-- <div class="col-lg-1">
-          <input type="button" (click)="downloadPdf()" value="Download PDF" class="btn btn-secondary" style="margin-top: 30px">
-      </div>  -->
-
-      
-    
-      <!-- <button class="btn btn-secondary"  (click)="pdf.saveAs('expenseTable_.pdf')">
-          Save As PDF...
-        </button> -->
 
 
-
-
-   
-    </div>
   </div>
-  </form>
-
- 
-      <div class="shadow p-5 m-3">
-        <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
-          <table style="border:1px solid black; width: 100%">
-            <tr style="border:1px solid black">
-              <th>Branch Name</th>
-              <th>Expense Name</th>
-              <th>Amount Paid</th>
-              <th>Date</th>
-              <th>Paid By</th>
-            </tr>
-            <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 25, currentPage: p }" style="border:1px solid black">
-              <td>{{e.BranchName}}</td>
-              <td>{{e.ExpenseName}}</td>
-              <td>{{e.AmountPaid}}</td>
-              <td>{{e.Date | date}}</td>
-              <td>{{e.PaidBy}}</td>
-            </tr>
-          </table>
-        </kendo-pdf-export>
-        <ul class="pagination">  
-            <pagination-controls (pageChange)="p = $event"></pagination-controls>  
-            </ul>
-      </div>
-   
-
-</div>
-
-<!-- <ng-template >
-  <kendo-pdf-export #pdf paperSize="A4" margin="2cm">
-    <div style="margin-top: 20px">
-      <table class="expenseTable" style="border:1px solid black; width: 100%">
-        <tr style="border:1px solid black">
-          <th>Branch Name</th>
-          <th>Expense Name</th>
-          <th>Amount Paid</th>
-          <th>Date</th>
-          <th>Paid By</th>
-        </tr>
-        <tr *ngFor="let e of expenseReportList" style="border:1px solid black">
-          <td>{{e.BranchName}}</td>
-          <td>{{e.ExpenseName}}</td>
-          <td>{{e.AmountPaid}}</td>
-          <td>{{e.Date | date:"shortDate"}}</td>
-          <td>{{e.PaidBy}}</td>
-        </tr>
-      </table>
-    </div>
-  </kendo-pdf-export>
-</ng-template> -->
-
-

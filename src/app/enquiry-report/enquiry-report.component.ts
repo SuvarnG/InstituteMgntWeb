@@ -49,14 +49,15 @@ p:any;
 
   pullEnquiryReport(){
 
+    debugger;
+
     if(this.periodSelection=="SelectDateRange"){
 
     this.submitted=true;
     if(this.registerEnquiryReport.invalid){
-      //this.submitted=false;
       return;
     }
-
+    this.submitted=false;
     let body:EnquiryReportInput={
       BranchId:this.registerEnquiryReport.controls.BranchName.value,
       CourseId:this.registerEnquiryReport.controls.CourseName.value,
@@ -68,6 +69,11 @@ p:any;
       this.enquiryReportList=res
     });
   }
+
+  if(this.registerEnquiryReport.controls.period.invalid){
+    return;
+  }
+  this.submitted=false;
 
   if(this.periodSelection=="OneMonth"){
     var todaysDate=new Date();
