@@ -254,7 +254,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   showUpload() {
-    if(this.registerForm.controls.IsDocumentSubmitted.value==false)
+    if(this.registerForm.controls.IsDocumentSubmitted.value==true)
     this.showSelected = true;
     else
     this.showSelected = false;
