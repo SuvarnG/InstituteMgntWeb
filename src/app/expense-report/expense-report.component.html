@@ -1,3 +1,6 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="row">
@@ -26,29 +29,67 @@
 
   <form [formGroup]="registerExpensesReport" (ngSubmit)="pullExpenseReport()">
 
-<div class="row shadow p-5 m-3">
+<div class="row shadow p-3 m-3">
     <div class="col-lg-12 py-2">
     <div class="form-row ">
-        <div class="col-lg-2">
+        <!-- <div class="col-lg-2">
         <label class="h6 text-muted">Branch Name:</label>
-        </div>
+        </div> -->
       <div class="col-lg-2">        
-          <select class="form-control"  formControlName="BranchName">
+          <select class="form-control" [value]="null"  formControlName="BranchName">
+            <option value="null" disabled>Select Branch</option>
             <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
           </select>
       </div>
-      <div class="col-lg-2">
+      <!-- <div class="col-lg-2">
           <label class="h6 text-muted mt-3">Expense Type:</label>
-          </div>
-      <div class="col-lg-2">
-          <select class="form-control" formControlName="Expense">
+          </div> -->
+      <div class="col-lg-2"> 
+          <select class="form-control" [value]="null" formControlName="Expense">
+              <option value="null" disabled>Select Expense</option>
             <option *ngFor="let e of expenseList" [value]="e.ExpenseId" >{{e.Expenses}}</option>
           </select>
       </div> 
+
+      <div class="col-lg-2">
+          <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)" [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
+            <option value="null" disabled>Select Period</option>
+            <option value="OneMonth" >Last 1 Month</option>
+            <option value="ThreeMonth" >Last 3 Month</option>
+            <option value="SixMonth" >Last 6 Month</option>
+            <option value="SelectDateRange">Date Range</option>
+          </select>
+          <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+              <div *ngIf="f.period.errors.required">Period is required</div>
+            </div>
+      </div>
+
+      <div class="col-lg-1" *ngIf="dateRange">
+          <label class="h6 text-muted mt-3">From:</label>
+        </div>
+
+        <div class="col-lg-2" *ngIf="dateRange" >
+          
+            <input type="date" class="form-control" formControlName="FromDate" [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
+            <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
+                <div *ngIf="f.FromDate.errors.required">Date is required</div>
+              </div>
+        </div> 
+
+        <div class="col-lg-1" *ngIf="dateRange">
+            <label class="h6 text-muted mt-3">To:</label>
+          </div>
+
+          <div class="col-lg-2" *ngIf="dateRange">   
+              <input type="date" class="form-control" formControlName="ToDate" [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
+              <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.ToDate.errors.required">Date is required</div>
+                </div>
+          </div>
       
     </div>
 
-    <div class="form-row py-3">
+    <!-- <div class="form-row py-3">
         <div class="col-lg-2">
             <label class="h6 text-muted mt-3">Select Period:</label>
           </div>
@@ -61,9 +102,9 @@
             </select>
         </div>
         
-        </div>
+        </div> -->
 
-        <div class="form-row py-3 ">
+        <!-- <div class="form-row py-3 ">
         <div class="col-lg-2" *ngIf="dateRange">
             <label class="h6 text-muted mt-3">From Date:</label>
           </div>
@@ -86,7 +127,8 @@
             </div>
       </div>
        
- </div> 
+ </div>  -->
+
       <div class="row justify-content-end border-top">
       <div class="col-lg-7 mt-3">
        
@@ -120,11 +162,6 @@
  
       <div class="shadow p-5 m-3">
         <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
-            <div class="row">
-                <div class="col-lg-7 mt-3">
-          <h4>Expense Report</h4>
-          </div>
-          </div>
           <table style="border:1px solid black; width: 100%">
             <tr style="border:1px solid black">
               <th>Branch Name</th>

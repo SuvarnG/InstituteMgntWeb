@@ -9,6 +9,7 @@ import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { ExpenseReportService } from './expense-report.service';
 import { toDate } from '@angular/common/src/i18n/format_date';
+import { validateConfig } from '@angular/router/src/config';
 
 
 @Component({
@@ -40,7 +41,7 @@ p:any;
       Expense:[],
       FromDate:['',Validators.required],
       ToDate:['',Validators.required],
-      period:[]
+      period:['',Validators.required]
     })
   }
 
@@ -49,6 +50,14 @@ p:any;
   public user = Utils.GetCurrentUser();
 
   pullExpenseReport(){
+
+    debugger;
+
+    this.submitted=true;
+    if(this.registerExpensesReport.controls.period.invalid){
+      return;
+    }
+    this.submitted=false;
 
     if(this.periodSelection=="OneMonth"){
       var todaysDate=new Date();
@@ -89,13 +98,13 @@ p:any;
          this.expenseReportList=res});
     }
 
-    if(this.periodSelection=="SelectDateRange"){
-
-      this.submitted=true;
-      if(this.registerExpensesReport.invalid){
-        return;
-      }
-
+    if(this.periodSelection=="SelectDateRange"){       
+    this.submitted=true;
+    if(this.registerExpensesReport.invalid){
+      return;
+    }
+    this.submitted=false;
+      
       let body:ExpenseReport={
         BranchId:this.registerExpensesReport.controls.BranchName.value,
         ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
@@ -138,7 +147,7 @@ p:any;
 // }
 
 selectPeriod(event:any){
-        this.periodSelection=event.target.value
+        this.periodSelection=event.target.value;
         if(this.periodSelection=="SelectDateRange"){
           this.dateRange=true;
         }
