@@ -3,4 +3,6 @@ input[type="radio"]{
   }
   .container{
     max-width: 100%;
+    margin-right: 3%;
+    margin-left: 3%;
 }

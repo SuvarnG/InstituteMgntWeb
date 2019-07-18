@@ -5,43 +5,34 @@
     <app-authorised-side-nav></app-authorised-side-nav>
   </div>
 
-  <div class="col-md-10 overflow-auto">
+  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
+      <div class="row">
+          <div class="col-md-12 col-sm-12">
+              <div class="box ml-n2 mt-2">
+      
+                  <div class="row mt-2">
+                      <div class="col-md-8 mt-2">
+                        <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                          title="home" >
+                          Home</a>&nbsp;
+                        <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
+                        <a routerLink="/LeaveList"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                        title="Leave List" >
+                       Leave List</a>&nbsp;                        
+                      </div>
+                      <div class="col-md-4 px-4">
+                          <a routerLink="/LeaveList" class="btn btn-info font-weight-medium rounded-0 pull-right" data-toggle="tooltip" data-placement="bottom"
+                          title="Add Leave" (click)="CreateNewLeave(template)">     
+                         Add 
+                        </a>&nbsp;
+                      </div>
+                      
+                    </div> 
+                    <hr>
+              </div>
+            </div>
 
-    <div class="row justify-content-center">
-      <div class="col-md-12 col-12 col-sm-12 col-xs-12">
-        <div class="box ml-n2 mt-2">
-
-          <div class="row mb-4 px-0">
-            <div class="col-md-10 mt-4 ">
-              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
-                Home</a>&nbsp;
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-              <a routerLink="/LeaveList" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
-                title="student">
-                Leave List</a>&nbsp;
-            </div>
-          </div>
-          <hr>
-          <div class="row m-3 ">
-            <div class="col-md-3  py-1">
-              <h2 class="h1 font-weight-medium  mt-3">Leaves</h2>
-            </div>
-            <div class="col-md-5 px-5 py-1 ">
-              <input type="text" placeholder="Search" [(ngModel)]="filter"
-                class=" mt-3 py-2 px-3 border-0 rounded-0 shadow-sm">
-            </div>
-            <div class="col-md-4 px-2 pt-2 py-1 justify-content-end text-right">
-              <a routerLink="/LeaveList"
-                class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
-                data-placement="bottom" title="Create New" (click)="CreateNewLeave(template)">
-                Create Leave</a>&nbsp;
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container shadow mt-4 p-5 m-3">
+    <div class="container shadow p-3">
       <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>

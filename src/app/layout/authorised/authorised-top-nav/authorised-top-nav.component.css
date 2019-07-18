@@ -13,8 +13,16 @@
 }
 
 .navbar{
-    min-height: 70px;
+    min-height: 40px;
     -webkit-box-shadow: 0 8px 6px -6px #cccccc;
        -moz-box-shadow: 0 8px 6px -6px #cccccc;
        box-shadow: 0 8px 6px -6px #cccccc;
    }
+
+.heading{
+    color:black;
+     /* margin-right:1100px; */
+     font-family: 'Trebuchet MS';
+     /* font-size: 22px; */
+     text-align: center;
+}

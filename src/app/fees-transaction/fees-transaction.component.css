@@ -2,3 +2,6 @@ body{
     overflow-x: hidden;
     overflow-y: hidden;
   }
+  label{
+    font-size: 20px;
+  }

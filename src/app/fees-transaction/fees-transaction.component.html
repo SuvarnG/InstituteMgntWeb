@@ -7,9 +7,9 @@
   
   <div class="col-md-10">
       <form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
-      <div class="row mb-4 px-0">
+      <div class="row px-0">
           <div class="col-md-10 mt-4 ">
-            <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+            <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
               Home</a>&nbsp;
             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
             <a routerLink="/FeesTransaction" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -18,20 +18,20 @@
           </div>
         </div>
         <hr>
-        <div class="row justify-content-end text-right shadow p-3 m-3">
+        <div class="row justify-content-end text-right shadow">
           <div class="col-md-12">
-              <div class="form-row">
+              <div class="form-row mb-3">
 
                   <div class="form-group col-md-3 px-3">
-                      <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">Select Course Type:</h4>
-                  <!-- <label class="ml-0">Select Course Type:</label> -->
+                      <!-- <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">Select Course Type:</h4> -->
+                  <label class=" font-weight-medium pt-2">Select CourseName:</label>
                   </div>
                 
                   <div class="form-group col-md-3 px-3">
-                      <select class="form-control" [value]= null formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
+                      <select class="form-control" [value]="null"  formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <option value= null disabled> Course Type</option>
+                      <option [value]= "null" disabled> Course Type</option>
                       <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 

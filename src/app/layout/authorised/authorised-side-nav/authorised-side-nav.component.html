@@ -50,7 +50,7 @@
             <li role="menuitem" routerLinkActive="active current" class="nav-item"
               *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
               <a class="nav-link" routerLink="/StudentList">
-                <i class='fa fa-user-graduate'></i>
+                <i class="fa fa-user-circle"></i>
                 Student
               </a>
             </li>
@@ -132,14 +132,14 @@
 
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
         <a class="nav-link" routerLink="/BankTransaction">
-          <i class="fa fa-credit-card" style="padding:10px">
+          <i class="fa fa-credit-card" >
           </i>
           Bank Transaction
         </a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
         <a class="nav-link" routerLink="/Expenses">
-          <i class="fa fa-tasks" style="padding:10px">
+          <i class="fa fa-tasks">
           </i>
           Daily Expenses
         </a>

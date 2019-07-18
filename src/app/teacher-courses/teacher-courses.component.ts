@@ -57,7 +57,7 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
       DateOfJoining: ['', Validators.required],
       ContactNo: ['', Validators.required, Validators.pattern],
       Email: ['', Validators.required],
-      PreviousExperience: ['', Validators.required],
+     // PreviousExperience: ['', Validators.required],
       DateOfLeaving: ['', Validators.required],
       DOB: ['', Validators.required],
       Photo: [''],

@@ -4,7 +4,7 @@
      
     #sidebar {
     min-width: 200px;
-    max-width: 250px;
+    max-width: 275px; 
     min-height: 100vh;
     color: #fff;
     transition: all 0.3s;
@@ -49,9 +49,6 @@
     padding: 15px;
     display: block;
     width: 100%;
-    
-    
-   
     } 
      
     hr {
@@ -67,8 +64,7 @@
       color: black;
       /* border-radius: 10px 0px 0px 10px; */
       
-    }  
-    
+    }   
     
     #sidebar ul li.active >a,a[nav-link] {
       padding: 15px;
