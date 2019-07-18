@@ -191,9 +191,9 @@ export class LeaveComponent implements OnInit {
       CourseId: this.CourseId,
       TotalDays: this.UpdateLeaveFormGroup.controls.TotalDays.value
     }
-    if (confirm("Do you want to Save Changes?")) {
+    
       this.LeaveService.editLeave(req).subscribe(data => { this.getLeaveList(), this.modalRef.hide() })
-    }
+    
   }
 
   calculateTotaldays(d1, d2) {
