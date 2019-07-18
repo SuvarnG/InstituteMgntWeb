@@ -81,7 +81,7 @@ export class StudentListComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   deleteStudent(id: number) {
-    if (confirm("Are you sure to delete ")) {
+    if (confirm("Are you sure to delete this student? ")) {
       this.StudentslistService.deleteStudent(id).subscribe(data => {
         this.getAllStudents(this.user.InstituteId, this.user.BranchId);
       })
@@ -162,9 +162,9 @@ export class StudentListComponent implements OnInit {
       CourseType: this.registerUpdateStudent.controls.CourseType.value,
       Photo: this.thumbnailUrl
     }
-    if (confirm("Do you want to Save Changes?")) {
+    
       this.StudentslistService.editStudent(body).subscribe(data => { this.getAllStudents(this.user.InstituteId, this.user.BranchId), this.modalRef.hide() })
-    }
+    
 
   }
 

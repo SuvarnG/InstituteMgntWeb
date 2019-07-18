@@ -292,11 +292,11 @@
                       width="80px" height="80px">
 
                     <div class="media-body">
-                      <input type="file" (change)="onImageSelected($event)" id="Photo">
+                      <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
 
                       <input type="hidden" name="fileHidden" formControlName="Photo" />
 
-                      <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button>
+                      <!-- <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button> -->
                     </div>
                   </div>
                 </div>
@@ -311,13 +311,15 @@
                   </div>
                 </div>
                 <div class="col-md-6 px-3" *ngIf='showSelected'>
-                  <input type="file" formControlName="Document" (change)="handleFileInput($event)">
-                  <button type="button" (click)="onUploadFile()">UploadFile</button>
+                  <input type="file" formControlName="Document" (change)="handleFileInput($event);onUploadFile()">
+
+                  <!-- <button type="button" (click)="onUploadFile()">UploadFile</button> -->
                   <!-- <img [src]="thumbnailDocUrl" width="100px" height="100px"> -->
-                  <label for="thumbnailDocUrl">{{thumbnailDocUrl}}</label>
+                  <!-- <label for="thumbnailDocUrl">{{thumbnailDocUrl}}</label> -->
                 </div>
               </div>
-              <div class="form-row mt-2">
+
+              <!-- <div class="form-row mt-2">
                 <div class="col-md-6 mt-3 px-3">
                   <div class="form-check">
                     <input type="checkbox" class="form-check-input" id="materialUnchecked"
@@ -325,7 +327,8 @@
                     <label class="form-check-label" for="PayingFeesNow">Paying Fees Now? </label>
                   </div>
                 </div>
-              </div>
+              </div> -->
+
               <div>
               </div>
             </div>

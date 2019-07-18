@@ -77,7 +77,7 @@ export class CreateStudentComponent implements OnInit {
       EmergencyContactNo: ['', [Validators.required, this.phoneNumberValidator]],
       Email: ['', [Validators.required, Validators.email]],
       gender: ['', Validators.required],
-      payingFeesNow: [],
+      //payingFeesNow: [],
       Document: [],
       Photo: ['../../assets/images/MProfile.jpg'],
       NewImage: ['']
@@ -150,6 +150,7 @@ export class CreateStudentComponent implements OnInit {
 
 
   openModal(template: TemplateRef<any>) {
+    debugger;
     this.submitted = true;
     if (this.registerForm.invalid) {
       return
@@ -177,7 +178,7 @@ export class CreateStudentComponent implements OnInit {
       Photo: this.CreateNewStudentService.thumbnailUrl,
       IsDocumentSubmitted: this.registerForm.controls.IsDocumentSubmitted.value,
       Document:this.thumbnailDocUrl,
-      PayingFees: this.registerForm.controls.payingFeesNow.value
+      //PayingFees: this.registerForm.controls.payingFeesNow.value
     };
 
 
@@ -189,7 +190,6 @@ export class CreateStudentComponent implements OnInit {
     );
 
     //Open Popup function
-    if (this.registerForm.controls.payingFeesNow.value) {
       this.modalRef = this.modalService.show(template, {
         animated: true,
         backdrop: 'static',
@@ -202,7 +202,7 @@ export class CreateStudentComponent implements OnInit {
       this.CreateNewStudentService.getUsersListForFeesTaken().subscribe(res => {
         this.users = res
       });
-    }
+    
   }
 
   onImageSelected(event: any) {
@@ -296,10 +296,9 @@ export class CreateStudentComponent implements OnInit {
 
     };
 
-    if (confirm("Do you want to submit?")) {
       this.modalRef.hide();
       this.CreateNewStudentService.createStudentCourse(body).subscribe(data => { this.router.navigateByUrl('/StudentList') });
-    }
+   
   }
 
 
