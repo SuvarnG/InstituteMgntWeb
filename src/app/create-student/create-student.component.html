@@ -7,7 +7,25 @@
 
 
   <div class="col-md-10 col-11 col-sm-11 col-xs-11">
+
+
       <div class="row mb-4">
+          <div class="col-md-10 mt-2">
+            <a routerLink="/Dashboard" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
+              title="home" class="text-dark">
+              Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a routerLink="/StudentList"  data-toggle="tooltip" data-placement="bottom"
+            title="StudentList" class="text-dark">
+            Student</a>&nbsp;
+            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+            <a routerLink="/CreateStudent"  data-toggle="tooltip" data-placement="bottom"
+            title="staff" class="text-dark">
+            AddStudent</a>
+          </div>
+        
+        </div> <hr>
+      <!-- <div class="row mb-4">
           <div class="col-md-10 mt-4 ">
             <a routerLink="/TeacherCourses" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
               title="home" style="font-weight:normal;font-size:18px;color: black">
@@ -18,23 +36,19 @@
             Staff</a>&nbsp;
           </div>
         
-        </div> <hr>
+        </div> <hr> -->
 
 
   <div class="container px-4 pb-4 m-0">
-    <div class="row">
-      <div class="col-md-12">
-        <h2 class="h1 font-weight-medium mb-4 ml-4">Add Student</h2>
-      </div>
-    </div>
-    <div id="A"  class="h-460 shadow p-4">
+    
+    <div id="A"  class="h-460 shadow p-3">
     <form [formGroup]="registerForm" (ngSubmit)="openModal(template)">
       <div class="row">
         <div class="col-md-12 border-bottom m-3">
-          <h4 class=" font-weight-medium py-4 px-3">Personal Info :</h4>
+          <h4 class=" font-weight-medium px-3">Personal Info :</h4>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 px-4">
               <div class="form-row">
                 <!-- <div class="form-group col-md-1">
                   <label for="fullName">Name</label>
@@ -75,7 +89,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-3 mt-3 px-3">
+                <div class="form-group col-md-3  px-3">
                   <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
 
                   <input type="text" id="dateOfBirth" placeholder="dateOfBirth" onfocus="(this.type='date')" class="form-control"
@@ -85,7 +99,7 @@
                     <div *ngIf="f.dateOfBirth.errors.required"> Please provide a valid DOB.</div>
                   </div>
                 </div>
-                <div class="form-group col-md-3 mt-3 px-3">
+                <div class="form-group col-md-3 px-3">
                   <!-- <label for="BloodGroup">Blood Group</label> -->
                   <select id="inputBloodGroup" class="form-control text-muted" formControlName="bloodgroup"
                     [ngClass]="{ 'is-invalid': submitted && f.bloodgroup.errors }">
@@ -111,11 +125,11 @@
       <!-- second Row start -->
 
       <div class="row">
-        <div class="col-md-12 border-bottom m-3 ">
-          <h4 class=" font-weight-medium  py-4 px-3">Contact Info :</h4>
+        <div class="col-md-12 border-bottom mx-3 ">
+          <h4 class=" font-weight-medium  px-3 my-3">Contact Info :</h4>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4 ">
+            <div class="col-md-12 px-4 ">
               <div class="form-row">
                 <div class="form-group col-md-3 px-3 ">
                   <input type="number" id="inputContactNo" class="form-control" formControlName="ContactNo"
@@ -155,11 +169,11 @@
       <!--Second row End-->
       <div class="row">
 
-        <div class="col-md-12 border-bottom mt-3 ">
-          <h4 class=" font-weight-medium  py-4 px-3">Permanent Address :</h4>
+        <div class="col-md-12 border-bottom mx-3 ">
+          <h4 class=" font-weight-medium px-3 my-3">Permanent Address :</h4>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12  px-4">
               <div class="form-row">
                 <div class="form-group col-md-10 px-3">
                   <input type="text" class="form-control" id="PermanentAddress1" placeholder="Address"
@@ -206,8 +220,8 @@
       <!--Third Row End-->
       <div class="row">
 
-        <div class="col-md-12 border-bottom mt-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Current Address :</h4>
+        <div class="col-md-12 border-bottom mx-3">
+          <h4 class=" font-weight-medium px-3 my-3">Current Address :</h4>
           <div class="row">
             <div class="form-group col-md-4 px-5">
               <input class="form-check-input " type="checkbox" id="gridCheck1" (click)="selectAddress($event)">
@@ -264,8 +278,8 @@
 
 
       <div class="row">
-        <div class="col-md-12 border-bottom mt-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Profile Details :</h4>
+        <div class="col-md-12 border-bottom mx-3">
+          <h4 class=" font-weight-medium px-3 my-3">Profile Details :</h4>
 
           <div class="row">
             <div class="col-md-12 pb-4 px-4">
@@ -319,17 +333,25 @@
         </div>
       </div>
       <!--Sixth row End-->
-      <div class="row justify-content-end text-right">
+
+
+
+      <div class="modal-footer">
+          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
+          <a routerLink="/StudentList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
+            Cancel</a>
+        </div>
+      <!-- <div class="row justify-content-end text-right">
         <div class="col-md-3 pb-4  mt-5">
           <div class="form-row">
             <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
             <a routerLink="/StudentList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
               Cancel</a>
-            <!-- <button class="btn btn-info btn-lg  py-1 px-3 rounded-0 f-20 ml-3" type="button" (click)="modalRef.hide()">Cancel</button> -->
+            
 
           </div>
         </div>
-      </div>
+      </div> -->
     </form>
   </div>
   </div>
