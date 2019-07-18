@@ -445,9 +445,9 @@
                   <div class="form-row">
   
                     <div class="form-group col-md-4 px-3">
-                        <select id="CourseType" class="form-control" [value]="null" formControlName="CourseType"
+                        <select id="CourseType" class="form-control" [value]="'default'" formControlName="CourseType"
                         (change)="selectCourseType($event)" [ngClass]="{ 'is-invalid': submitted && cf.CourseType.errors }">
-                        <option [value]="null">Course Type</option>
+                        <option [value]="'default'" disabled hidden>Course Type</option>
                         <option *ngFor="let courseType of  CourseTypeList"
                           [value]="courseType.CourseTypeId">
                           {{courseType.CourseTypeName}}
@@ -462,7 +462,7 @@
                     <div class="form-group col-md-4 px-3">
                         <select id="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                         (change)="selectCourseName($event); getSalaryFromCourseName($event)" [ngClass]="{ 'is-invalid': submitted && cf.CourseName.errors }">
-                        <option [value]="null">CourseName</option>
+                        <option [value]="null" disabled hidden>CourseName</option>
                         <option *ngFor="let courselist of courseNameList"
                           [value]="courselist.CourseId">
                           {{courselist.CourseName}}</option>

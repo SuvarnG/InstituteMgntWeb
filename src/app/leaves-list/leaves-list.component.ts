@@ -84,7 +84,7 @@ export class LeavesListComponent implements OnInit {
     if (this.registerUpdateLeave.invalid) {
       return;
     }
-    alert('Success!! \n\n' + JSON.stringify(this.registerUpdateLeave.value))
+    //alert('Success!! \n\n' + JSON.stringify(this.registerUpdateLeave.value))
   }
 
   CreateLeave(leaveName: string) {

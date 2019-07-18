@@ -82,7 +82,7 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
     });
 
     this.courseForm = this.formBuilder.group({
-      CourseType: ['', Validators.required],
+      CourseType: ['default', Validators.required],
       CourseName: ['', Validators.required],
       Salary:['', Validators.required]
     });

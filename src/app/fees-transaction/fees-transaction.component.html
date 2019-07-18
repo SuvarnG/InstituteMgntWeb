@@ -20,18 +20,12 @@
         <hr>
         <div class="row justify-content-end text-right shadow">
           <div class="col-md-12">
-              <div class="form-row mb-3">
-
+              <div class="form-row mb-3">               
                   <div class="form-group col-md-3 px-3">
-                      <!-- <h4 class=" font-weight-medium ml-4 py-1 px-3  pt-2">Select Course Type:</h4> -->
-                  <label class=" font-weight-medium pt-2">Course Name:</label>
-                  </div>
-                
-                  <div class="form-group col-md-3 px-3">
-                      <select class="form-control"   formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="Course Type"
+                      <select class="form-control" [value]="'default'"  formControlName="CourseName" data-toggle="tooltip" data-placement="bottom" title="CourseType"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
                       (change)="selectFees($event);getStudentListFromCourseName()">
-                      <!-- <option [value]= "null" disabled> Course Type</option> -->
+                      <option [value]= "'default'" disabled hidden> Course Type</option>
                       <option *ngFor="let course of courseList" [value]="course.CourseId">
                         {{course.FullName}}</option>
 
@@ -40,13 +34,11 @@
                         <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
                       </div>
                   </div>
-
-
                   <div class="form-group col-md-3 px-3">
-                    <select class="form-control" [value]= null formControlName="StudentID" data-toggle="tooltip" data-placement="bottom" title="Student Name"
+                    <select class="form-control" [value]= null formControlName="StudentID" data-toggle="tooltip" data-placement="bottom" title="StudentName"
                       [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
                       (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
-                      <option value= null disabled>Student Name</option>
+                      <option value= null disabled hidden>Student Name</option>
                       <option *ngFor="let student of studentList" [value]=" student.StudentId">
                         {{student.FullName}}
                       </option>
@@ -62,9 +54,9 @@
 
                 <div class="form-row mb-3">
                     <div class="form-group col-md-3 px-3">
-                        <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip" data-placement="bottom" title="Course Fees"
+                        <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip" data-placement="bottom" title="CourseFees"
                         [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }" (change)="selectStudent($event);calculateRemainingFees()">
-                        <option [value]="null" disabled>Select Fees </option>
+                        <option [value]="null" disabled hidden>Select Fees </option>
                         <option *ngFor="let course of courseFees" [value]="course.TotalFees">
                           {{course.TotalFees}}
                         </option>
@@ -75,12 +67,12 @@
                       </div>
   
                       <div class="form-group col-md-3 px-3">
-                          <input type="text" class="form-control" formControlName="RemainingFees" disabled placeholder="Remaining Fees" title="Remaining Fees">
+                          <input type="text" class="form-control" formControlName="RemainingFees" disabled placeholder="Remaining Fees">
                           
                         </div>
 
                     <div class="form-group col-md-3 px-3">
-                        <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount" data-toggle="tooltip" data-placement="bottom" title="Fees Amount" placeholder="Fees Amount"
+                        <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount" data-toggle="tooltip" data-placement="bottom" title="FeesAmount" placeholder="Fees Amount"
                         [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
                         <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
                             <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
@@ -101,8 +93,6 @@
               <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20 pull-right" id="ClearAll" type="button" (click)="clearFeesTransaction()">Clear</button>
           </div> -->
         </div>
-       
-
         
 
           <div class="row m-3" *ngIf="showFeesTable">

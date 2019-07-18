@@ -61,7 +61,7 @@
             <td>{{c.CourseTypeName}}</td>
             <td>{{c.ShortName}}</td>
             <!--<td>{{c.FullName}}</td>-->
-            <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i> </td>
+            <td><i class="material-icons" [style.color]="c.IsPercentage==true  ? 'teal' : 'danger'" >{{c.IsPercentage ? "check_circle":"cancel"}}</i> </td>
             <td>{{c.Fees}}</td>
             <td>{{c.Duration}}</td>
             <td>{{c.Percentage}}

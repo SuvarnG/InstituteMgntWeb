@@ -32,7 +32,7 @@ dtTrigger: Subject<any> = new Subject();
   ngOnInit() {
     this.dtOptions = {
       // retrieve: true,
-      // paging: false,
+       paging: false,
       pagingType: 'full_numbers',
       pageLength: 10
 

@@ -57,6 +57,7 @@ export class BankComponent implements OnDestroy, OnInit {
 
   ngOnInit() {
       this.dtOptions = {
+        paging:false,
         pagingType: 'full_numbers',
         pageLength: 10
   

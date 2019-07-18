@@ -44,7 +44,7 @@ export class FeesTransactionComponent implements OnInit {
     this.getUsersListForFeesTaken();
 
     this.registerFeesTransaction = this.formBuilder.group({
-      CourseName: ['', Validators.required],
+      CourseName: ['default', Validators.required],
       CourseFees: ['', Validators.required],
       StudentID: ['', Validators.required],
       FeesAmount: ['', Validators.required],
