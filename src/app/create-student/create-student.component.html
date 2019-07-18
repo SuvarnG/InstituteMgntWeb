@@ -291,7 +291,7 @@
                       [src]=_DomSanitizationService.bypassSecurityTrustUrl(CreateNewStudentService.thumbnailUrl)
                       width="80px" height="80px">
 
-                    <div class="media-body">
+                    <div class="media-body mt-3">
                       <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
 
                       <input type="hidden" name="fileHidden" formControlName="Photo" />
@@ -301,6 +301,7 @@
                   </div>
                 </div>
               </div>
+
               <div class="form-row mt-2">
                 <div class="col-md-6 mt-4 px-3">
                   <div class="form-check">
@@ -310,7 +311,7 @@
                     <label class="form-check-label" for="IsDocumentSubmitted">Document Submitted? </label>
                   </div>
                 </div>
-                <div class="col-md-6 px-3" *ngIf='showSelected'>
+                <div class="col-md-6 px-3 mt-4" *ngIf='showSelected'>
                   <input type="file" formControlName="Document" (change)="handleFileInput($event);onUploadFile()">
 
                   <!-- <button type="button" (click)="onUploadFile()">UploadFile</button> -->
