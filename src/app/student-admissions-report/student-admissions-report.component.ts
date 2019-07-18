@@ -37,7 +37,7 @@ p:any;
       CourseName:[],
       FromDate:['',Validators.required],
       ToDate:['',Validators.required],
-      period:[]
+      period:['',Validators.required]
     })
   }
 
@@ -52,6 +52,7 @@ p:any;
     if(this.registerStudentAdmissionReport.invalid){      
       return;
     }
+    this.submitted=false;
 
     let body:StudentReportInput={
       BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
@@ -64,6 +65,12 @@ p:any;
       this.studentAdmissionReportList=res
     });
   }
+
+  this.submitted=true;
+  if(this.registerStudentAdmissionReport.controls.period.invalid){      
+    return;
+  }
+  this.submitted=false;
 
   if(this.periodSelection=="OneMonth"){
     var todaysDate=new Date();

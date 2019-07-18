@@ -28,7 +28,7 @@
     <hr>
 
     <form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
-      <div class="row shadow p-5 m-3">
+      <div class="row shadow p-3 m-3">
         <div class="col-lg-12 py-2">
           <div class="form-row ">
 
@@ -48,13 +48,17 @@
             </div>
 
             <div class="col-lg-2">
-              <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)">
+              <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)"
+              [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
                 <option value="null" disabled>Select Period</option>
                 <option value="OneMonth">Last 1 Month</option>
                 <option value="ThreeMonth">Last 3 Month</option>
                 <option value="SixMonth">Last 6 Month</option>
-                <option value="SelectDateRange">Select Date Range</option>
+                <option value="SelectDateRange">Date Range</option>
               </select>
+              <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+                  <div *ngIf="f.period.errors.required">Period is required</div>
+                </div>
             </div>
 
             <div class="col-lg-1" *ngIf="dateRange">
@@ -102,7 +106,7 @@
     </form>
 
 
-    <div class="shadow p-5 m-3">
+    <div class="shadow p-3 m-3">
       <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
         <table style="border:1px solid black; width: 100%">
           <tr style="border:1px solid black">
@@ -113,7 +117,7 @@
             <th>City</th>
             <th>Date Of Enquiry</th>
           </tr>
-          <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 25, currentPage: p }"
+          <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 8, currentPage: p }"
             style="border:1px solid black">
             <td>{{e.BranchName}}</td>
             <td>{{e.EnquirerName}}</td>

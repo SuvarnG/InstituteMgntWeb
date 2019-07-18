@@ -39,7 +39,7 @@ p:any;
       CourseName:[],
       FromDate:['',Validators.required],
       ToDate:['',Validators.required],
-      period:[]
+      period:['',Validators.required]
     })
   }
 
@@ -69,6 +69,12 @@ p:any;
       this.enquiryReportList=res
     });
   }
+
+  this.submitted=true;
+  if(this.registerEnquiryReport.controls.period.invalid){
+    return;
+  }
+  this.submitted=false;
 
   if(this.registerEnquiryReport.controls.period.invalid){
     return;
