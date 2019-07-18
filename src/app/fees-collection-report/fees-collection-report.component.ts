@@ -37,7 +37,7 @@ p:any;
       courseId:[],
       FromDate:['',Validators.required],
       ToDate:['',Validators.required],
-      period:[]
+      period:['',Validators.required]
     })
   }
 
@@ -51,6 +51,7 @@ p:any;
       if (this.registerFeesCollectionReport.invalid) {
         return;
       }
+      this.submitted = false;
       let body: FeesReportInput = {
         BranchId: this.registerFeesCollectionReport.controls.branchId.value,
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
@@ -61,6 +62,12 @@ p:any;
         this.feesReportList = res
       })
     }
+
+    this.submitted = true;
+      if (this.registerFeesCollectionReport.controls.period.invalid) {
+        return;
+      }
+      this.submitted = false;
 
     if (this.periodSelection == "OneMonth") {
       var todaysDate = new Date();
