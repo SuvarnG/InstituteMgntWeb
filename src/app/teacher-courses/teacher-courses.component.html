@@ -330,8 +330,8 @@
                   </div>
                 </div>
                 <div class="col-md-6 mt-4  px-3" *ngIf='shown'>
-                  <input type="file" formControlName="Document" id="customFile" (change)="onFileSelected($event)">
-                  <button type="button" (click)="onUploadFile()">UploadFile</button>
+                  <input type="file" formControlName="Document" id="customFile" (change)="onFileSelected($event);onUploadFile()">
+                  <!-- <button type="button" (click)="onUploadFile()">UploadFile</button> -->
                 </div>
               </div>
               <div class="form-row ">
