@@ -278,7 +278,7 @@
             </div>
             <div class="form-row mb-0">
               <div class="form-group mb-0 col-md-1">
-                <label for="firstName" class="mt-3 h5 text-muted">Name :</label>
+                <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
               </div>
               <div class="form-group mb-0 col-md-2">
                 <input type="text" class="form-control border-0" formControlName="FirstName"
@@ -320,12 +320,12 @@
                         
                         <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Male"
                           [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
-                        </label><span class="ml-5 h5 text-muted">Male</span>
+                        </label><span class="ml-5 h6 text-muted">Male</span>
                            </div>
                            <div class="col-md-4 mt-3 radio px-0 mx-0 ml-n5 mb-0">
                             <label><input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Female"
                               [ngClass]="{'is-invalid': submitted && f.Gender.errors} "></label>
-                                      <span class="ml-5 h5 text-muted">Female</span>
+                                      <span class="ml-5 h6 text-muted">Female</span>
                                       <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
                                           <div *ngIf="f.Gender.errors.required">Gender is required</div>
                                         </div>
@@ -352,7 +352,7 @@
 
                 
                <div class="form-group col-md-5 mb-0">
-                  <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">Date Of Birth :</label>
+                  <label class="col-md-6 control-label" class="mt-3 h6 ml-5 text-muted">Date Of Birth :</label>
                 <span><input type="date" id="DOB" class="form-control border-0 mt-1" formControlName="DOB"
                     [ngClass]="{'is-invalid': submitted && f.DOB.errors} "></span>
                 </div>
@@ -364,7 +364,7 @@
 
                 
                 <div class="form-group col-md-4 mb-0">
-                    <label for="BloodGroup" class="mt-3 h5 ml-1 text-muted">Blood Group :</label>
+                    <label for="BloodGroup" class="mt-3 h6 ml-1 text-muted">Blood Group :</label>
                  <span> <select id="BloodGroup" class="form-control border-0 mt-1" formControlName="BloodGroup"
                     [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
                     <option>A+</option>
@@ -396,7 +396,7 @@
           <div class="form-row mb-0">
             
             <div class="form-group col-md-4 mb-0">
-                <label class="mt-3 h5 text-muted">Contact No :</label>
+                <label class="mt-3 h6 text-muted">Contact No :</label>
               <span><input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
                 class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }"></span>
             </div>
@@ -405,7 +405,7 @@
             </div>
             
             <div class="form-group col-md-4 mb-0">
-                <label class="mt-3 h5 text-muted">Emergency No :</label>
+                <label class="mt-3 h6 text-muted">Emergency No :</label>
              <span> <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                 class="form-control border-0 mt-1" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }"></span>
             </div>
@@ -421,7 +421,7 @@
           <div class="form-row mt-n1 mb-0">
             
             <div class="form-group col-md-6 mb-0">
-                <label class="mt-3 h5 text-muted">Email ID :</label>
+                <label class="mt-3 h6 text-muted">Email ID :</label>
              <span><input type="email" class="form-control border-0 mt-1" id="Email" formControlName="Email"
                 [ngClass]="{'is-invalid': submitted && f.Email.errors} "></span> 
             </div>
@@ -456,7 +456,7 @@
           <div class="form-row mb-0">
             
             <div class="form-group mb-0 col-md-4">
-                <label class="mt-3 h5 text-muted">State:</label>
+                <label class="mt-3 h6 text-muted">State:</label>
              <span> <select id="PState" class="form-control border-0 mt-1" formControlName="PState"
                 [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
                 <option selected>Select State</option>
@@ -469,7 +469,7 @@
 
             
             <div class="form-group mb-0 col-md-4">
-                <label class="mt-3 h5 text-muted ml-5">City:</label>
+                <label class="mt-3 h6 text-muted ml-5">City:</label>
              <span> <input type="text" class="form-control border-0 mt-1" id="PCity" formControlName="PCity"
                 [ngClass]="{'is-invalid': submitted && f.PCity.errors} "></span>
             </div>
@@ -515,7 +515,7 @@
           <div class="form-row">
             
             <div class="form-group col-md-4 mb-0">
-                <label class="mt-3 h5 text-muted">State:</label>
+                <label class="mt-3 h6 text-muted">State:</label>
              <span> <select id="State" class="form-control border-0 mt-1" formControlName="State"
                 [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                 <option>Maharashtra</option>
@@ -527,7 +527,7 @@
 
             
             <div class="form-group col-md-4 mb-0">
-                <label class="mt-3 h5 text-muted ml-5">City:</label>
+                <label class="mt-3 h6 text-muted ml-5">City:</label>
              <span> <input type="text" class="form-control border-0 mt-1" id="City" formControlName="City"
                 [ngClass]="{ 'is-invalid': submitted && f.city.errors }"></span>
             </div>
@@ -537,7 +537,7 @@
 
             
             <div class="form-group col-md-4 mb-0">
-                <label class="mt-3 h5 text-muted">PinCode:</label>
+                <label class="mt-3 h6 text-muted">PinCode:</label>
               <span><input type="number" class="form-control border-0 mt-1" id="ZipCode" formControlName="ZipCode"
                 [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }"></span>
             </div>
@@ -558,7 +558,7 @@
               <div class="form-row ">
                 
                 <div class="form-group col-md-4 px-3 mb-0">
-                    <label class="mt-3 h5 text-muted">Course Type :</label>
+                    <label class="mt-3 h6 text-muted">Course Type :</label>
                    <span> <select id="CourseType" class="form-control border-0 mt-1" formControlName="CourseType" name="CourseType"
                     (change)="selectCourseType($event)" [value]="f.CourseType.value">
                     <option *ngFor="let courseType of  CourseTypeList"
@@ -664,7 +664,7 @@
             </div>
             <div class="form-row">
               <div class="form-group col-md-1 mb-0">
-                <label for="firstName" class="mt-3 h5 text-muted">Name :</label>
+                <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
               </div>
               <div class="form-group col-md-2 mb-0">
                  
@@ -686,7 +686,7 @@
             <div class="form-row mb-0">
               
               <div class="form-group col-md-4 mb-0">
-                  <label for="Gender" class="mt-3 h5 text-muted">Gender :</label>
+                  <label for="Gender" class="mt-3 h6 text-muted">Gender :</label>
                <span><input type="text" class="form-control text-dark border-0 mt-1" formControlName="Gender" disabled></span> 
               </div>
 
@@ -694,7 +694,7 @@
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="col-md-6 control-label" class="mt-3 h5 ml-5 text-muted">Date Of Birth :</label>
+                  <label class="col-md-6 control-label" class="mt-3 h6 ml-5 text-muted">Date Of Birth :</label>
                 <span><input type="text" id="DOB" class="form-control text-dark border-0 mt-1" formControlName="DOB" disabled></span>
               </div>
 
@@ -702,7 +702,7 @@
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label for="BloodGroup" class="mt-3 h5 ml-5 text-muted">Blood Group :</label>
+                  <label for="BloodGroup" class="mt-3 h6 ml-5 text-muted">Blood Group :</label>
               <span><input type="text" id="BloodGroup" class="form-control text-dark border-0 mt-1" formControlName="BloodGroup"
                   disabled></span>
               </div>
@@ -720,14 +720,14 @@
             <div class="form-row">
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">Contact No :</label>
+                  <label class="mt-3 h6 text-muted">Contact No :</label>
                <span><input type="text" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
                   class="form-control border-0  mt-1" disabled></span>
 
               </div>
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">Emergency No :</label>
+                  <label class="mt-3 h6 text-muted">Emergency No :</label>
                 <span><input type="text" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                   class="form-control border-0 mt-1" disabled></span>
               </div>
@@ -741,7 +741,7 @@
             <div class="form-row">
               
               <div class="form-group col-md-6 mb-0">
-                  <label class="mt-3 h5 text-muted">Email ID :</label>
+                  <label class="mt-3 h6 text-muted">Email ID :</label>
              <span><input type="text" class="form-control border-0 mt-1" id="Email" formControlName="Email" disabled></span>
               </div>
             </div>
@@ -758,7 +758,7 @@
                 <div class="form-row">
                   
                   <div class="form-group col-md-4 px-3 mb-0">
-                      <label class="mt-3 h5 text-muted">Course Type :</label>
+                      <label class="mt-3 h6 text-muted">Course Type :</label>
                    <span><input id="CourseType" class="form-control border-0 mt-1" formControlName="CourseType"
                       [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }" disabled></span>
 
@@ -772,7 +772,7 @@
                 <div class="form-row">
                   
                   <div class="form-group col-md-6 px-3 mb-0">
-                      <label class="mt-3 h5 text-muted">Course Name :</label>
+                      <label class="mt-3 h6 text-muted">Course Name :</label>
                    <span><input id="Course" class="form-control border-0 mt-1" formControlName="Course"
                       [ngClass]="{ 'is-invalid': submitted && f.Course.errors }" disabled></span>
                   </div>
@@ -796,7 +796,7 @@
             <div class="form-row">
               
               <div class="form-group col-md-4 mb-0">
-                  <label for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
+                  <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
                <span><input type="text" class="form-control border-0 mt-1" id="PAddress1" 
                   formControlName="PAddress1" disabled></span>
               </div>
@@ -808,19 +808,19 @@
             <div class="form-row">
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">State:</label>
+                  <label class="mt-3 h6 text-muted">State:</label>
               <span><input type="text" id="PState" class="form-control border-0 mt-1" formControlName="PState" disabled></span>
               </div>
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted ml-4">City:</label>
+                  <label class="mt-3 h6 text-muted ml-4">City:</label>
                <span> <input type="text" class="form-control border-0 mt-1" id="PCity" formControlName="PCity" disabled></span>
               </div>
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">PinCode:</label>
+                  <label class="mt-3 h6 text-muted">PinCode:</label>
                <span><input type="text" class="form-control border-0 mt-1" id="PSTDCode" formControlName="PSTDCode" disabled></span>
               </div>
             </div>
@@ -836,7 +836,7 @@
             <div class="form-row">
               
               <div class="form-group col-md-4 mb-0">
-                  <label for="inputPaddress" class="mt-3 h5 text-muted"> Address :</label>
+                  <label for="inputPaddress" class="mt-3 h6 text-muted"> Address :</label>
                <span> <input type="text" class="form-control border-0 mt-1" id="Address1" placeholder="Address 1"
                   formControlName="Address1" disabled></span>
               </div>
@@ -848,19 +848,19 @@
             <div class="form-row">
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">State:</label>
+                  <label class="mt-3 h6 text-muted">State:</label>
                <span> <input type="text" id="State" class="form-control border-0 mt-1" formControlName="State" disabled></span>
               </div>
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">City:</label>
+                  <label class="mt-3 h6 text-muted">City:</label>
               <span><input type="text" class="form-control border-0 mt-1" id="City" formControlName="City" disabled></span>
               </div>
 
               
               <div class="form-group col-md-4 mb-0">
-                  <label class="mt-3 h5 text-muted">PinCode:</label>
+                  <label class="mt-3 h6 text-muted">PinCode:</label>
                <span><input type="text" class="form-control border-0 mt-1" id="ZipCode" formControlName="ZipCode" disabled></span>
               </div>
             </div>
