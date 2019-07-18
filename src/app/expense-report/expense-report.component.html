@@ -34,13 +34,13 @@
           <div class="form-row ">
             <div class="col-lg-2">
               <select class="form-control" [value]="null" formControlName="BranchName">
-                <option value="null" disabled>Select Branch</option>
+                <option value="null" disabled hidden>Select Branch</option>
                 <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
               </select>
             </div>
             <div class="col-lg-2">
               <select class="form-control" [value]="null" formControlName="Expense">
-                <option value="null" disabled>Select Expense</option>
+                <option value="null" disabled hidden>Select Expense</option>
                 <option *ngFor="let e of expenseList" [value]="e.ExpenseId">{{e.Expenses}}</option>
               </select>
             </div>
@@ -48,7 +48,7 @@
             <div class="col-lg-2">
               <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)"
                 [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
-                <option value="null" disabled>Select Period</option>
+                <option value="null" disabled hidden>Select Period</option>
                 <option value="OneMonth">Last 1 Month</option>
                 <option value="ThreeMonth">Last 3 Month</option>
                 <option value="SixMonth">Last 6 Month</option>
@@ -59,7 +59,7 @@
               </div>
             </div>
 
-            <div class="col-lg-1" *ngIf="dateRange">
+            <div class="col-lg-0.5" *ngIf="dateRange">
               <label class="h6 text-muted mt-3">From:</label>
             </div>
 
@@ -72,7 +72,7 @@
               </div>
             </div>
 
-            <div class="col-lg-1" *ngIf="dateRange">
+            <div class="col-lg-0.5" *ngIf="dateRange">
               <label class="h6 text-muted mt-3">To:</label>
             </div>
 
@@ -84,16 +84,10 @@
               </div>
             </div>
 
-          </div>
+            <div class="col-lg-1">
+            <button type="submit" value="Search" class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
+           </div>
 
-          <div class="row justify-content-end border-top">
-            <div class="col-lg-7 mt-3">
-              <button type="submit" value="Search" class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
-              <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
-                (click)="exportAsXLSX()">Export Excel</button>
-              <button type="button" (click)="pdf.saveAs('expenseTable.pdf')" value="Download PDF"
-                class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button>
-            </div>
           </div>
 
         </div>
@@ -101,7 +95,14 @@
     </form>
 
 
-    <div class="shadow p-3 m-2">
+    <div class="shadow p-3 m-2 ">
+        <div class="row justify-content-end border-top mr-3 mt-1">           
+            <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
+            (click)="exportAsXLSX()">Export Excel</button>
+          <button type="button" (click)="pdf.saveAs('expenseTable.pdf')" value="Download PDF"
+            class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button>         
+          </div>
+       <div class="mt-3">  
       <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
         <table style="border:1px solid black; width: 100%">
           <tr style="border:1px solid black">
@@ -121,6 +122,7 @@
           </tr>
         </table>
       </kendo-pdf-export>
+    </div> 
       <ul class="pagination">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </ul>
