@@ -540,11 +540,11 @@
                                 </div>
                                
                                 <div class="col-md-6">
-                                <input type="file" (change)="onImageSelected($event)" id="Photo">
+                                <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
           
                                 <input type="hidden" name="fileHidden" formControlName="Photo" />
           
-                                <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button>
+                                <!-- <button type="button" class="mt-3" (click)="onUploadPhoto()">UploadPhoto</button> -->
                               </div>
         
                               </div>
