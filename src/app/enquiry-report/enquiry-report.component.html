@@ -99,10 +99,15 @@
     <div class="shadow p-3 m-2">
 
       <div class="row justify-content-end border-top mr-3 mt-1">
-        <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
+
+          <a class="button" (click)="exportAsXLSX()" title="Export Excel"><i class="fa fa-file-excel-o fa-2x" aria-hidden="true"></i></a>
+          &nbsp;
+            <a class="button" (click)="pdf.saveAs('enquiryTable_.pdf')" title="Download PDF"><i class="fa fa-file-pdf-o fa-2x" aria-hidden="true"></i></a>
+
+        <!-- <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
           (click)="exportAsXLSX()">Export Excel</button>
         <button type="button" (click)="pdf.saveAs('enquiryTable_.pdf')" value="Download PDF"
-          class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button>
+          class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button> -->
       </div>
       <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
         <div class="mt-3">
