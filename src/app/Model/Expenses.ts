@@ -1,7 +1,7 @@
 export interface Expenses {
     Id: Number,
     ExpenseId:number,
-    expenseType:string,
+    ExpenseType:string,
     AmountPaid: number,
     PaidByWhom: number,
     Email: string,
@@ -9,7 +9,8 @@ export interface Expenses {
     Remark:string,
     Expenses:string,
     PaidByName:string,
-    BranchId:number
+    BranchId:number,
+    Paid:number
 }
 
 export interface ExpenseMaster{
