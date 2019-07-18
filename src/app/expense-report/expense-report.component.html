@@ -101,7 +101,7 @@
     </form>
 
 
-    <div class="shadow p-5 m-3">
+    <div class="shadow p-3 m-3">
       <kendo-pdf-export #pdf paperSize="A4" margin="1cm" class=".k-widget">
         <table style="border:1px solid black; width: 100%">
           <tr style="border:1px solid black">
@@ -111,7 +111,7 @@
             <th>Date</th>
             <th>Paid By</th>
           </tr>
-          <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 25, currentPage: p }"
+          <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 8, currentPage: p }"
             style="border:1px solid black">
             <td>{{e.BranchName}}</td>
             <td>{{e.ExpenseName}}</td>
