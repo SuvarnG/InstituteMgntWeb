@@ -109,7 +109,10 @@ rerender(): void {
 
   editCourseType(editTemplate: TemplateRef<any>,coursetype){
     this.editregisterForm.patchValue(coursetype);
-    this.modalRef = this.modalService.show(editTemplate);
+    this.modalRef = this.modalService.show(editTemplate,{
+      animated: true,
+      backdrop: 'static'
+    });
   }
 
   updateCourseType() {
