@@ -18,7 +18,7 @@
                     title="Report">
                     Reports</a>&nbsp;
                 <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                <a routerLink="/StudentAdmissionReport" class="ml-3 pt-1 text-dark" data-toggle="tooltip"
+                <a class="ml-3 pt-1 text-dark" data-toggle="tooltip"
                     data-placement="bottom" title="StudentAdmissionReport">
                     Student Admission Report</a>&nbsp;
             </div>
@@ -96,10 +96,10 @@
 
         <div class="shadow p-3 m-2">
 
-            <div class="row justify-content-end border-top mr-3 mt-1">
+            <div class="row justify-content-end mr-2 mt-1">
 
                     <a class="button" (click)="exportAsXLSX()" title="Export Excel"><i class="fa fa-file-excel-o fa-2x" style="color:#008000" aria-hidden="true"></i></a>
-                    &nbsp;
+                    &nbsp;&nbsp;
                       <a class="button" (click)="pdf.saveAs('studentAdmissionTable.pdf')" title="Download PDF"><i class="fa fa-file-pdf-o fa-2x" style="color:red" aria-hidden="true"></i></a>
 
                 <!-- <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
