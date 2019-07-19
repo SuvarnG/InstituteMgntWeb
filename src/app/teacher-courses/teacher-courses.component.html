@@ -20,7 +20,7 @@
             title="staff" class="text-dark">
             Staff</a>&nbsp;
             <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom"
+            <a data-toggle="tooltip" data-placement="bottom"
             title="staff" class="text-dark">
             AddStaff</a>
           </div>
@@ -36,7 +36,7 @@
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
         <div class="col-md-12 border-bottom">
-          <h5 class=" font-weight-medium px-3">Personal Info :</h5>
+          <h5 class=" font-weight-medium px-3">Personal Info </h5>
           
           <div class="row">
             <div class="col-md-12 px-4">
@@ -112,7 +112,7 @@
 
       <div class="row">
         <div class="col-md-12 border-bottom">
-          <h5 class=" font-weight-medium px-3 my-2">Contact Info :</h5>
+          <h5 class=" font-weight-medium px-3 my-2">Contact Info </h5>
 
           <div class="row">
             <div class="col-md-12 px-4">
@@ -151,7 +151,7 @@
     
           <div class="row">
               <div class="col-md-12 border-bottom  ">
-                <h5 class=" font-weight-medium px-3 my-2">Permanent Address :</h5>
+                <h5 class=" font-weight-medium px-3 my-2">Permanent Address </h5>
           <div class="row">
             <div class="col-md-12  px-4">
               <div class="form-row">
@@ -199,7 +199,7 @@
       <div class="row">
 
         <div class="col-md-12 border-bottom ">
-          <h5 class=" font-weight-medium px-3 my-2">Current Address :</h5>
+          <h5 class=" font-weight-medium px-3 my-2">Current Address</h5>
           <div class="row pt-2">
             <div class="form-group col-md-4 px-5">
               <input class="form-check-input " type="checkbox" id="gridCheck1" (click)="checkAll($event)"
@@ -293,7 +293,7 @@
       <!--fifth row end-->
       <div class="row">
         <div class="col-md-12 border-bottom">
-          <h5 class=" font-weight-medium   px-3 my-2">Professional Details :</h5>
+          <h5 class=" font-weight-medium   px-3 my-2">Professional Details </h5>
 
           <div class="row">
             <div class="col-md-12  px-4">
@@ -305,7 +305,7 @@
                       [src]=_DomSanitizationService.bypassSecurityTrustUrl(thumbnailUrl)
                       width="80px" height="80px">
 
-                    <div class="media-body">
+                    <div class="media-body mt-3">
                       <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
 
                       <input type="hidden" name="fileHidden" formControlName="Photo" />
@@ -361,29 +361,48 @@
       <!--Sixth row End-->
       <div class="row">
         <div class="col-md-12 border-bottom  ">
-          <h5 class=" font-weight-medium  px-3 my-2">Previous Company Details :</h5>
+          <h5 class=" font-weight-medium  px-3 my-2">Previous Company Details </h5>
 
           <div class="form-row  ">
             <div class="col-md-4 px-3">
               <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName"
                 placeholder="Company Name"  [ngClass]="{ 'is-invalid': submitted && f.PreviousWorkName.errors }">
                 <div *ngIf="submitted && f.PreviousWorkName.errors" class="invalid-feedback">
-                    <div *ngIf="f.PreviousWorkName.errors.required"> Please provide a valid STD Code.</div>
+                    <div *ngIf="f.PreviousWorkName.errors.required"> Please Provide a company Name.</div>
                   </div>
               </div>
 
-            <div class="col-md-4 px-3">
-              <!-- <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
-                placeholder="Work Experience (Year)"> -->
+            <!-- <div class="col-md-4 px-3">
+              <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
+                placeholder="Work Experience (Year)">
                 <label for="PreviousExperience"> Candidates Work Experience is {{PreviousExperience}} Years.</label>
-            </div>
+            </div> -->
+
+            <div class="col-md-4 px-3">
+                <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                <input type="text" id="DateOfJoining" placeholder="DateOfJoining"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
+                  placeholder="Joining Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfJoining.errors }">
+                <div *ngIf="submitted && f.DateOfJoining.errors" class="invalid-feedback">
+                  <div *ngIf="f.DateOfJoining.errors.required"> Please provide a valid Date.</div>
+                </div>
+              </div>
+
+              <div class="col-md-4 px-3 mb-3">
+                  <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                  <input type="text" id="DateOfLeaving" placeholder="DateOfLeaving" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
+                    placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }" (change)="calculateWorkExperience(f.DateOfJoining.value,f.DateOfLeaving.value)">
+                  <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
+                    <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
+                  </div>
+                </div>
+
           </div>
 
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-12 pb-4 px-4 ">
               <div class="form-row">
                 <div class="form-group col-md-3 mt-3 px-3">
-                  <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                  <label class="col-md-6 control-label">Date Of Birth</label>
                   <input type="text" id="DateOfJoining" placeholder="DateOfJoining"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
                     placeholder="Joining Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfJoining.errors }">
                   <div *ngIf="submitted && f.DateOfJoining.errors" class="invalid-feedback">
@@ -392,7 +411,7 @@
                 </div>
 
                 <div class="form-group col-md-3 mt-3 px-3">
-                  <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                  <label class="col-md-6 control-label">Date Of Birth</label>
                   <input type="text" id="DateOfLeaving" placeholder="DateOfLeaving" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
                     placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }" (change)="calculateWorkExperience(f.DateOfJoining.value,f.DateOfLeaving.value)">
                   <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
@@ -402,7 +421,9 @@
 
               </div>
             </div>
-          </div>
+          </div> -->
+
+
         </div>
       </div>
       <!-- <div class="row justify-content-end text-right">
@@ -430,18 +451,18 @@
  <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">
     <div class="modal-header">
-      <h4 class=" h1 modal-title pull-left">Teacher Course Details</h4>
+      <h6 class=" h6 modal-title pull-left">Add Course Details</h6>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-        <div class="row shadow my-3 mx-3">
+        <div class="row">
             <div class="col-md-12 ">
-              <h4 class=" font-weight-medium  py-4 px-3">Course Type :</h4>
+              <!-- <h4 class=" font-weight-medium  py-4 px-3">Course Type </h4> -->
   
               <div class="row">
-                <div class="col-md-12 pb-4 px-4">
+                <div class="col-md-12">
                   <div class="form-row">
   
                     <div class="form-group col-md-4 px-3">
@@ -491,10 +512,10 @@
                              <div *ngIf="submitted && cf.Salary.errors" class="invalid-feedback">
                                 <div *ngIf="cf.Salary.errors.required"> Please provide a Salary.</div>
                               </div>
-
-                      
+                    
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -515,7 +536,7 @@
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
     <form [formGroup]="staffLoginForm" (ngSubmit)="onStaffLogin()">
       <div class="modal-header">
-        <h4 class=" h1 modal-title pull-left">Create Password</h4>
+        <h5 class=" h5 modal-title pull-left">Create Password</h5>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -586,7 +607,7 @@
             <td colspan="1">
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="inputAddress2">Create Password</label>
+                  <label for="inputAddress2">Enter New Password</label>
                 </div>
                 <div class="form-group col-md-6">
                   <input type="password" class="form-control" id="CreatePassword" formControlName="Password"
