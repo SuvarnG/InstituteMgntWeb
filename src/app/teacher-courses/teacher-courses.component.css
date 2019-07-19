@@ -35,5 +35,9 @@ fieldset
     
     .h-460{
             height: 540px;
+            max-width: 100%;
     }
 
+    .body-width{
+        max-width: 80%;
+    }

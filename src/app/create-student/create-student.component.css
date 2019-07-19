@@ -37,3 +37,7 @@ legend
 .h-460{
         height: 540px;
 }
+
+.body-width{
+        max-width: 98%;
+}
