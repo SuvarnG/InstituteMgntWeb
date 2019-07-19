@@ -123,10 +123,12 @@ export class BranchComponent implements OnInit {
   }
 
   onSubmitEditBranch() {
-    if (this.editBranchForm.invalid == true) {
-      this.submitted = true;
+    this.submitted = true;
+    if (this.editBranchForm.invalid) {
       return;
     }
+
+    this.submitted=false;
 
     let body = {
       BranchId: this.branchID,
@@ -142,9 +144,10 @@ export class BranchComponent implements OnInit {
       }, error => this.errorMessage = error)
   }
 
-  get f() {
-    return this.createBrachForm.controls;
-  }
+  get f() { return this.createBrachForm.controls}
+
+  get g(){ return this.editBranchForm.controls}
+
   delete(id: number, branchName: any) {
     var ans = confirm("Do you want to delete this Branch: " + branchName);
     if (ans) {
