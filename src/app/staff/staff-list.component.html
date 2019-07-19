@@ -25,7 +25,7 @@
                 title="home" >
                 Home</a>&nbsp;
               <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-              <a routerLink="/staffList"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+              <a data-toggle="tooltip" data-placement="bottom" class="text-dark"
               title="staff" >
               Staff</a>&nbsp;
               
@@ -157,7 +157,7 @@
     <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
       <form [formGroup]="staffForm" (ngSubmit)="onSubmitEditStaff()">
         <div class="modal-header">
-          <h3 class=" modal-title pull-left ml-4">Update Staff</h3>
+          <h5 class=" modal-title pull-left ml-4">Update Staff</h5>
           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -166,7 +166,7 @@
           <div class="row  mb-0">
             <div class="col-md-12 px-5 mb-0">
               <div class="form-row">
-                <h5>Personal Details :</h5>
+                <h5>Personal Details </h5>
               </div>
               <div class="form-row mb-0">
                 <div class="form-group  mb-0 col-md-1">
@@ -261,7 +261,7 @@
           <div class="row">
             <div class="col-md-12 px-5  mb-0">
               <div class="form-row mb-0">
-                <h5>Contact Details :</h5>
+                <h5>Contact Details </h5>
               </div>
               <div class="form-row mb-0">
                 
@@ -307,7 +307,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row mb-0">
-                <h5>Permanent Address :</h5>
+                <h5>Permanent Address </h5>
               </div>
               <div class="form-row mb-0">
                 
@@ -367,7 +367,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row mb-0">
-                <h5>Current Address :</h5>
+                <h5>Current Address </h5>
               </div>
               <div class="form-row mb-0">
                 
@@ -424,7 +424,7 @@
           <div class="row">
             <div class="col-md-12 mb-0 px-5">
                 <div class="form-row mb-0">
-                    <h5>Course Details :</h5>
+                    <h5>Course Details </h5>
                   </div>
                   <div class="form-row mb-0">
                     <div class="form-group mb-0 col-md-4">
@@ -482,7 +482,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row  mb-0">
-                <h5> Previous Work Details :</h5>
+                <h5> Previous Work Details </h5>
               </div>
               <div class="form-row mb-0">
                 <div class="form-group col-md-4 mb-0">
@@ -527,7 +527,7 @@
           <div class="row">
               <div class="col-md-12 px-5">
                   <div class="form-row  mb-0">
-                      <h5>New Image Upload :</h5>
+                      <h5>New Image Upload </h5>
                     </div>
                   <div class="form-row mt-3">
                       <div class="form-group col-md-6 mb-0">
@@ -539,7 +539,7 @@
                                   <img [src]="thumbnailUrl" width="100" height="100"> &nbsp;
                                 </div>
                                
-                                <div class="col-md-6">
+                                <div class="col-md-6 mt-4">
                                 <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
           
                                 <input type="hidden" name="fileHidden" formControlName="Photo" />
@@ -603,7 +603,7 @@
     <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
       <!-- <div class="modal-dialog modal-xl"> -->
       <div class="modal-header">
-        <h3 class="modal-title pull-left ml-4">Staff Details</h3>
+        <h5 class="modal-title pull-left ml-4">Staff Details</h5>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -614,7 +614,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row ">
-                <h5>Personal Details :</h5>
+                <h5>Personal Details </h5>
               </div>
               <div class="form-row mb-0">
                 <div class="form-group col-md-1 mb-0">
@@ -667,7 +667,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row ">
-                <h5>Contact Details :</h5>
+                <h5>Contact Details </h5>
               </div>
               <div class="form-row">
                 
@@ -704,7 +704,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row ">
-                <h5>Permanent Address :</h5>
+                <h5>Permanent Address </h5>
               </div>
               <div class="form-row">
                 
@@ -745,7 +745,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row">
-                <h5>Current Address :</h5>
+                <h5>Current Address </h5>
               </div>
               <div class="form-row">
                 
@@ -785,7 +785,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
                 <div class="form-row ">
-                    <h5>Course Details :</h5>
+                    <h5>Course Details </h5>
                   </div>
               <!-- <h4 class=" font-weight-medium  py-1 px-3 ml-4">Course Details :</h4> -->
 
@@ -823,7 +823,7 @@
           <div class="row">
             <div class="col-md-12 px-5">
               <div class="form-row ">
-                <h5> Previous Work Details :</h5>
+                <h5> Previous Work Details </h5>
               </div>
               <div class="form-row">
                 
