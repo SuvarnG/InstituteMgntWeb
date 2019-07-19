@@ -119,6 +119,10 @@ export class StaffListComponent implements OnInit {
     return this.staffForm.controls;
   }
 
+  get g(){
+    return this.showStaffDetailsForm.controls
+  }
+
   onSubmitEditStaff() {
     if (this.staffForm.invalid == true) {
       this.submitted = true;
