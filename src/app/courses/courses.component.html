@@ -11,221 +11,216 @@
 
   <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
     <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="box ml-n2 mt-2">
-    
-                <div class="row mt-2">
-                    <div class="col-md-8 mt-2">
-                      <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
-                        title="home" >
-                        Home</a>&nbsp;
-                      <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                      <a routerLink="/Courses"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
-                      title="Courses" >
-                      Courses</a>&nbsp;
-                      
-                    </div>
-                    <div class="col-md-4 px-4">
-                        <a routerLink="/Courses" class="btn btn-info font-weight-medium rounded-0 pull-right" data-toggle="tooltip" data-placement="bottom"
-                        title="Add New Course" (click)="AddCourses(Addtemplate)" >      
-                       Add
-                      </a>&nbsp;
-                    </div>
-                   
-                  </div> 
-                  <hr>
+      <div class="col-md-12 col-sm-12">
+        <div class="box ml-n2 mt-2">
+
+          <div class="row mt-2">
+            <div class="col-md-8 mt-2">
+              <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                title="home">
+                Home</a>&nbsp;
+              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+              <a routerLink="/Courses" data-toggle="tooltip" data-placement="bottom" class="text-dark" title="Courses">
+                Courses</a>&nbsp;
+
             </div>
+            <div class="col-md-4 px-4">
+              <a routerLink="/Courses" class="btn btn-info font-weight-medium rounded-0 pull-right"
+                data-toggle="tooltip" data-placement="bottom" title="Add New Course" (click)="AddCourses(Addtemplate)">
+                Add
+              </a>&nbsp;
+            </div>
+
           </div>
+          <hr>
+        </div>
+      </div>
 
-    <div class="container shadow p-3">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-        <thead>
-          <tr>
-            <!--<th>No</th>-->
-            <th class="pl-2">Course Type</th>
-            <th class="pl-2">Course</th>
-            <!--<th>Full Name</th>-->
-            <th class="pl-2">Percentage</th>
-            <th class="pl-2">Fees</th>
-            <th class="pl-2">Duration (In Days)</th>
+      <div class="container shadow p-3">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <!--<th>No</th>-->
+              <th class="pl-2">Course Type</th>
+              <th class="pl-2">Course</th>
+              <!--<th>Full Name</th>-->
+              <th class="pl-2">Percentage</th>
+              <th class="pl-2">Fees</th>
+              <th class="pl-2">Duration (In Days)</th>
 
-            <th class="pl-2">Percentage</th>
-            <th class="pl-2">Action</th>
-            <!-- <th></th> -->
+              <th class="pl-2">Percentage</th>
+              <th class="pl-2">Action</th>
+              <!-- <th></th> -->
 
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let c of course;index as i">
-            <!--<td>{{i+1}}</td>-->
-            <td>{{c.CourseTypeName}}</td>
-            <td>{{c.ShortName}}</td>
-            <!--<td>{{c.FullName}}</td>-->
-            <td><i class="material-icons" [style.color]="c.IsPercentage==true  ? 'teal' : 'danger'" >{{c.IsPercentage ? "check_circle":"cancel"}}</i> </td>
-            <td>{{c.Fees}}</td>
-            <td>{{c.Duration}}</td>
-            <td>{{c.Percentage}}
-            <td>
-              <div class="icon-sm " (click)="Edit(editTemplate,c)" data-toggle="tooltip" data-placement="bottom"
-                title="Edit Course">
-                <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
-                  style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="20px">
-                  <g>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of course;index as i">
+              <!--<td>{{i+1}}</td>-->
+              <td>{{c.CourseTypeName}}</td>
+              <td>{{c.ShortName}}</td>
+              <!--<td>{{c.FullName}}</td>-->
+              <td><i class="material-icons"
+                  [style.color]="c.IsPercentage==true  ? 'teal' : 'danger'">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
+              </td>
+              <td>{{c.Fees}}</td>
+              <td>{{c.Duration}}</td>
+              <td>{{c.Percentage}}
+              <td>
+                <div class="icon-sm " (click)="Edit(editTemplate,c)" data-toggle="tooltip" data-placement="bottom"
+                  title="Edit Course">
+                  <svg class="icon" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
+                    style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="20px">
                     <g>
                       <g>
-                        <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
-                        <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
+                        <g>
+                          <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893 			" />
+                          <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
 				C386.027,77.92,386.027,64.373,377.707,56.053z" />
+                        </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
-              </div>
-              &nbsp;
-              <!--<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Delete"
+                  </svg>
+                </div>
+                &nbsp;
+                <!--<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Delete"
 (click)="Delete(c.CourseId)">
 <i style='font-size:20px' class="fa fa-trash" aria-hidden="true"></i>-->
-            </td>
+              </td>
 
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
-  <!-- Create model -->
+    <!-- Create model -->
 
-  <ng-template #Addtemplate>
-    <div class="modal-header">
-      <h4 class=" h1 modal-title pull-left">Add Course</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+    <ng-template #Addtemplate>
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Add Course</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
 
-        <div class="row m-3">
-          <div class="col-md-12 shadow my-3">
-            <h4 class=" font-weight-medium py-4 px-3">Course Details :</h4>
+          <div class="row m-3">
+            <div class="col-md-12 shadow my-3">
+              <!-- <h4 class=" font-weight-medium py-4 px-3">Course Details :</h4> -->
 
-            <div class="row ">
-              <div class="col-md-12 pb-4 px-4">
-                <div class="form-row">
-                  <!-- <div class="form-group col-md-1">
+              <div class="row ">
+                <div class="col-md-12 pb-4 px-4">
+                  <div class="form-row">
+                    <!-- <div class="form-group col-md-1">
 <label for="fullName">Name</label>
 </div> -->
-                  <div class="form-group col-md-3 px-3">
-                    <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"
-                      [value]="null" [ngClass]="{ 'is-invalid': submitted &&
-f.CourseTypeId.errors }">
-                      <option [value]="null" disabled> Course Type </option>
-                      <option *ngFor="let course of coursetype" [value]="course.CourseTypeId">
-                        {{course.CourseTypeName}}
-                      </option>
-                    </select>
-                    <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
-                      <div *ngIf="f.CourseTypeId.errors.required">Please Enter Name</div>
+                    <div class="form-group col-md-3 px-3">
+                      <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"
+                        [value]="null" [ngClass]="{ 'is-invalid': submitted && f.CourseTypeId.errors }">
+                        <option [value]="null" disabled hidden> Course Type </option>
+                        <option *ngFor="let course of coursetype" [value]="course.CourseTypeId">
+                          {{course.CourseTypeName}}
+                        </option>
+                      </select>
+                      <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
+                        <div *ngIf="f.CourseTypeId.errors.required">Please Enter Name.</div>
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3 px-3">
+                      <input type="text" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted && f.ShortName.errors }" placeholder="Course Name">
+                      <div *ngIf="submitted && f.ShortName.errors" class="invalid-feedback">
+                        <div *ngIf="f.ShortName.errors.required">Please Enter Courses. </div>
+
+                      </div>
+                    </div>
+
+                    <div class="form-group col-md-3 px-3">
+                      <input type="text" class="form-control" formControlName="FullName" [ngClass]="{ 'is-invalid': submitted && f.FullName.errors }" placeholder="Course Full Name">
+                      <div *ngIf="submitted && f.FullName.errors" class="invalid-feedback">
+                        <div *ngIf="f.FullName.errors.required">Please Enter Course Full Name.</div>
+
+                      </div>
+                    </div>
+                    <div class="form-group col-md-3 px-3">
+                      <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted && f.Fees.errors }" placeholder="Fees">
+                      <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
+                        <div *ngIf="f.Fees.errors.required">Please Enter Fees.</div>
+                      </div>
                     </div>
                   </div>
-                  <div class="form-group col-md-3 px-3">
-                    <input type="text" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
-f.ShortName.errors }" placeholder="Course Name">
-                    <div *ngIf="submitted && f.ShortName.errors" class="invalid-feedback">
-                      <div *ngIf="f.ShortName.errors.required">Please Enter Courses </div>
-
+                  <div class="form-row">
+                      <div class="form-group col-md-1 mt-3 px-4">
+                           <label class="h6">Percentage?</label>
+                        </div>
+                    <div class="form-group col-md-2 mt-3">
+                      <input type="checkbox" formControlName="IsPercentage" (click)="calculateIsPercentage()">
                     </div>
-                  </div>
+                    
+                    <div class="form-group col-md-3 px-3" *ngIf="f.IsPercentage.value">
 
-                  <div class="form-group col-md-3 px-3">
-                    <input type="text" class="form-control" formControlName="FullName" [ngClass]="{ 'is-invalid': submitted &&
-f.FullName.errors }" placeholder="Course Full Name">
-                    <div *ngIf="submitted && f.FullName.errors" class="invalid-feedback">
-                      <div *ngIf="f.FullName.errors.required">Please Enter Course Full Name </div>
+                      <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted && f.Percentage.errors }" placeholder="">
+                      <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
 
+                        <div *ngIf="f.Percentage.errors.required"> Percentage is required. </div>
+
+                      </div>
                     </div>
-                  </div>
-                  <div class="form-group col-md-3 px-3">
-                    <input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
-f.Fees.errors }" placeholder="Fees">
-                    <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
-                      <div *ngIf="f.Fees.errors.required">Please Enter Fees </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-row">
-                   <div class="form-group col-md-3 mt-3 px-3">
 
-                    <input type="checkbox" formControlName="IsPercentage" (click)="calculateIsPercentage()">
-                    Percentage?
+                    <div class="form-group col-md-3 px-3">
 
-                  </div> 
-                  
-                  <div class="form-group col-md-3 px-3" *ngIf="f.IsPercentage.value">
+                      <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted && f.Duration.errors }" placeholder="Duration in days">
 
-                    <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
-f.Percentage.errors }" placeholder="">
-                    <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
-
-                      <div *ngIf="f.Percentage.errors.required">required </div>
-
-                    </div>
-                  </div>
-
-                  <div class="form-group col-md-3 px-3">
-
-                    <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
-f.Duration.errors }" placeholder="Duration in days">
-
-                    <div *ngIf="submitted && f.Duration.errors" class="invalid-feedback">
-                      <div *ngIf="f.Duration.errors.required">Please Enter Duration </div>
+                      <div *ngIf="submitted && f.Duration.errors" class="invalid-feedback">
+                        <div *ngIf="f.Duration.errors.required">Please Enter Duration </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- second Row start -->
+          <!-- second Row start -->
 
-        <div class="modal-footer">
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Submit</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-            (click)="modalRef.hide()">Cancel</button>
-        </div>
+          <div class="modal-footer">
+            <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Submit</button>
+            <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+              (click)="modalRef.hide()">Cancel</button>
+          </div>
 
-      </form>
-    </div>
+        </form>
+      </div>
 
-  </ng-template>
+    </ng-template>
 
 
-  <!-- Edit Course Model -->
+    <!-- Edit Course Model -->
 
-  <!-- Edit Course Model -->
+    <!-- Edit Course Model -->
 
-  <ng-template #editTemplate>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Edit Courses</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update()">
-        <div class="row m-3">
-          <div class="col-md-12 shadow my-3">
-            <h4 class="h5 py-4 px-3">Course Details :</h4>
+    <ng-template #editTemplate>
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Edit Course Details</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update()">
+          <div class="row m-3">
+            <div class="col-md-12 shadow my-3">
+              <!-- <h4 class="h5 py-4 px-3">Course Details :</h4> -->
 
-            <div class="row ">
-              <div class="col-md-12 pb-4 px-4">
-                <div class="form-row">
-                  <div class="form-group col-md-4 px-3">
-                    <label for="CourseTypeId font-weight-bold" class="h5 text-muted mt-3">Course Type : </label>
-                    <span><input type="text" name="CourseTypeId" id="CourseTypeId" class="form-control border-0 mt-1"
-                        formControlName="CourseTypeId" disabled></span>
-                    <!-- <select name="CourseTypeId" id="CourseTypeId" (change)="getShortName($event.target.value)"
+              <div class="row ">
+                <div class="col-md-12 pb-4 px-4">
+                  <div class="form-row">
+                    <div class="form-group col-md-4 px-3 mt-3">
+                      <label for="CourseTypeId font-weight-bold" class="h6 text-muted mt-3">Course Type : </label>
+                      <span><input type="text" name="CourseTypeId" id="CourseTypeId" class="form-control"
+                          formControlName="CourseTypeId" disabled></span>
+                      <!-- <select name="CourseTypeId" id="CourseTypeId" (change)="getShortName($event.target.value)"
     class="form-control border-0" formControlName="CourseTypeId"
     [ngClass]="{ 'is-invalid': submitted &&
     fu.CourseTypeId.errors }">
@@ -237,38 +232,38 @@ f.Duration.errors }" placeholder="Duration in days">
     <div *ngIf="submitted && fu.CourseTypeId.errors" class="invalid-feedback">
     <div *ngIf="fu.CourseTypeId.errors.required">Please Enter Name</div>
     </div> -->
-                  </div>
+                    </div>
 
-                  <div class="form-group col-md-4 px-3">
-                    <label for="ShortName" class="h5 text-muted mt-3">Course Name :</label>
-                    <span><input type="text" name="ShortName" class="form-control border-0 mt-1"
-                        formControlName="ShortName" id="ShortName"></span>
-                    <!-- <select name="ShortName" class="form-control border-0" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
+                    <div class="form-group col-md-4 px-3 mt-3">
+                      <label for="ShortName" class="h6 text-muted mt-3">Course Name:</label>
+                      <span><input type="text" name="ShortName" class="form-control"
+                          formControlName="ShortName" id="ShortName"></span>
+                      <!-- <select name="ShortName" class="form-control border-0" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted &&
     fu.ShortName.errors }">
     <option [value]="null">select Courses</option>
     <option *ngFor="let course of courses" [value]="course.CourseId">
     {{course.ShortName}}
     </option>
     </select> -->
-                    <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback mt-3">
-                      <div *ngIf="fu.ShortName.errors.required">Please enter Course Short Name</div>
+                      <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback mt-3">
+                        <div *ngIf="fu.ShortName.errors.required">Please enter Course Short Name</div>
+                      </div>
+                    </div>
+
+
+                    <div class="form-group col-md-4 px-3 mt-3">
+                      <label for="FullName" class="mt-3 h6 text-muted">Full Name :</label>
+                      <span><input type="text" id="FullName" name="FullName" class="form-control"
+                          formControlName="FullName"></span>
+                      <!-- <div class="lable mt-3" *ngIf="selectedCourse">FullName:&nbsp;{{selectedCourse}}</div> -->
                     </div>
                   </div>
 
-
-                  <div class="form-group col-md-4 px-3">
-                    <label for="FullName" class="mt-3 h5 text-muted">Full Name :</label>
-                    <span><input type="text" id="FullName" name="FullName" class="form-control border-0 mt-1"
-                        formControlName="FullName"></span>
-                    <!-- <div class="lable mt-3" *ngIf="selectedCourse">FullName:&nbsp;{{selectedCourse}}</div> -->
-                  </div>
-                </div>
-
-                <div class="form-row">
+                  <div class="form-row">
                     <div class="form-group col-md-1">
-  
+
                       <input type="checkbox" formControlName="IsPercentage" class="control-label-col-sm-2 mt-4 ml-n3">
-                     
+
                       <!-- <label for="IsPercentage" class="control-label-col-sm-2 mt-3"> Is Percentage: </label>
                     </div>
                     <div class="form-group col-md-2 px-3">
@@ -279,16 +274,16 @@ f.Duration.errors }" placeholder="Duration in days">
                       </div> -->
                     </div>
                     <div class="form-group col-md-3">
-                        <label for="Fees" class="mt-3 h5 text-muted ml-n5">Percentage?</label>
-                        
+                      <label for="Fees" class="mt-3 h6 text-muted ml-n5">Percentage?</label>
+
                     </div>
-  
-  
+
+
                     <div class="form-group col-md-4" *ngIf="fu.IsPercentage.value">
                       <!-- <label for="Percentage" class="control-label-col-sm-2 mt-3">Percentage : </label>
                     </div>
                     <div class="form-group col-md-2"> -->
-                      <input type="text" class="form-control border-0" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
+                      <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
                                       fu.Percentage.errors }" placeholder="Percentage">
                       <div *ngIf="submitted && fu.Percentage.errors" class="invalid-feedback">
                         <div *ngIf="fu.Percentage.errors.required"> </div>
@@ -296,41 +291,44 @@ f.Duration.errors }" placeholder="Duration in days">
                     </div>
                   </div>
 
-                
 
-                <div class="form-row">
-                  <div class="form-group col-md-4 px-3">
-                    <label for="Fees" class="mt-3 h5">Fees :</label>
-                    <span><input type="text" class="form-control border-0 mt-1" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
+
+                  <div class="form-row">
+                    <div class="form-group col-md-4 px-3">
+                      <label for="Fees" class="mt-3 h6 text-muted">Fees :</label>
+                      <span><input type="text" class="form-control" formControlName="Fees" [ngClass]="{ 'is-invalid': submitted &&
     fu.Fees.errors }" placeholder=""></span>
-                    <div *ngIf="submitted && fu.Fees.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Fees.errors.required">Please Enter Fees</div>
+                      <div *ngIf="submitted && fu.Fees.errors" class="invalid-feedback">
+                        <div *ngIf="fu.Fees.errors.required">Please Enter Fees</div>
+                      </div>
+
+                    </div>
+                    <div class="form-group col-md-3 px-3">
+                      <label for="Duration" class=" mt-3 h6 text-muted">Duration :</label>
+                      <span><input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
+    fu.Duration.errors }" placeholder="Duration in Days"></span>
+
+    <!-- <input type="text" class="form-control" formControlName="ShortName" [ngClass]="{ 'is-invalid': submitted && f.ShortName.errors }" placeholder="Duration in Days"> -->
+
+                      <div *ngIf="submitted && fu.Duration.errors" class="invalid-feedback">
+                        <div *ngIf="fu.Duration.errors.required">Please Enter Duration </div>
+                      </div>
                     </div>
 
-                  </div>
-                  <div class="form-group col-md-3 px-3">
-                    <label for="Duration" class=" mt-3 h5">Duration :</label>
-                    <span><input type="text" class="form-control border-0 mt-1" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
-    fu.Duration.errors }" placeholder="Duration"></span>
-                    <div *ngIf="submitted && fu.Duration.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Duration.errors.required">Please Enter Duration </div>
-                    </div>
                   </div>
 
                 </div>
-
               </div>
             </div>
           </div>
-        </div>
-        <!-- second Row start -->
+          <!-- second Row start -->
 
-        <div class="modal-footer">
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Update</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-            (click)="modalRef.hide()">Cancel</button>
-        </div>
+          <div class="modal-footer">
+            <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Update</button>
+            <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+              (click)="modalRef.hide()">Cancel</button>
+          </div>
 
-      </form>
-    </div>
-  </ng-template>
+        </form>
+      </div>
+    </ng-template>
