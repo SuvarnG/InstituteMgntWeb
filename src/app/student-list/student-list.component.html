@@ -255,7 +255,8 @@
         (click)="deleteStudent(s.StudentId)"></button>
     </div> -->
 <p *ngIf="students && students.length==0">No records found.</p>
-    <ul class="pagination" *ngIf="students && students.length>0">
+
+    <ul class="pagination" *ngIf="students && students.length>6">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </ul>
   </div>
