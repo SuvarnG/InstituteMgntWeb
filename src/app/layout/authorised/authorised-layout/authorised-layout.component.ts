@@ -14,12 +14,12 @@ export class AuthorisedLayoutComponent implements OnInit {
   Expense = [];  
   Amount = [];  
   chart = []; 
-
+  public user:any;
   constructor(private expenseService:ExpenseService) { }
 
   ngOnInit() {
     debugger;
-    
+    this.user=Utils.GetCurrentUser();
     this.expenseService.expensesList(this.user.BranchId).subscribe((result: Expenses[]) =>{
       result.forEach(x => {  
       this.Expense.push(x.ExpenseType);  
@@ -92,5 +92,5 @@ export class AuthorisedLayoutComponent implements OnInit {
 
 
 
-  public user=Utils.GetCurrentUser();
+
   }

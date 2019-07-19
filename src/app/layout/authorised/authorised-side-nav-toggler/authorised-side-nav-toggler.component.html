@@ -1,7 +1,21 @@
-<div class="main">
+<!-- <div class="main">
   <div class="container">
 <button class="navbar-toggler ml-auto custom-toggler" type="button" class="navbar-toggler" (click)="sideNavService.toggleSideNav()">
   <span class="navbar-toggler-icon"></span>
 </button>
 </div>
-</div>
+</div> -->
+
+<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+    <i class="fas fa-bars"></i>
+  </a>
+
+  <script>
+      jQuery(function ($) {
+      
+        $("#show-sidebar").click(function () {
+          $(".page-wrapper").addClass("toggled");
+        });
+    
+      });
+    </script>

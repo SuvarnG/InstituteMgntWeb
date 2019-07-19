@@ -1,374 +1,207 @@
-<!-- <div class="sidebar" id="togglediv" > -->
-  <nav id="sidebar" class="navbar-light bg-light" [ngClass]="{'hidden': sideNavService.hideSideNav }">
-    <ul class="navbar-nav">
-      <li>
-        <div class="row py-4 pl-2 text-dark">
-          <div class="col-md-4">
-            <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap"
-              (click)="changeUserImage(ChangeUserImage)">
-          </div>
-          <div class="col-md-8 font-weight-bold">
-            {{user.friendlyName}}
-            <span class="font-weight-normal">
-              {{user.roles}}
+<!-- <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+  <i class="fas fa-bars"></i>
+</a> -->
+<nav id="sidebar" class="sidebar-wrapper">
+  <div class="sidebar-content">
+    <div class="sidebar-brand">
+      <a href="#">pro sidebar</a>
+      <div id="close-sidebar">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    <div class="sidebar-header">
+      <div class="user-pic">
+        <img class="img-responsive img-rounded"
+        src="{{user.Photo}}"
+          alt="User picture">
+      </div>
+      <div class="user-info">
+        <span class="user-name">
+          <strong>{{user.friendlyName}}</strong>
+        </span>
+        <span class="user-role">{{user.roles}}</span>
+        <span class="user-status">
+          <i class="fa fa-circle"></i>
+          <span>Online</span>
+        </span>
+      </div>
+    </div>
+    <!-- sidebar-header  -->
+    <div class="sidebar-search">
+      <div>
+        <div class="input-group">
+          <input type="text" class="form-control search-menu" placeholder="Search...">
+          <div class="input-group-append">
+            <span class="input-group-text">
+              <i class="fa fa-search" aria-hidden="true"></i>
             </span>
-            
           </div>
         </div>
-        
-      </li>
-      <li routerLinkActive="active current" class="nav-item"
-        *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/Dashboard">
-          <i class="fa fa-home"></i>
-          Dashboard
-        </a>
-      </li>
-
-      <li  routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-          <span style="color:black;">
-            Institute
-          </span> 
-       </li>
-       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-           <span style="color:black;">
-             Institute Admin
-            </span>
-       </li>
-
-      <li class="nav-item nav-dropdown" dropdown 
-      *ngIf="currentRole==='Teacher'|| currentRole==='Admin'"
-       (onShown)="onShown()" (onHidden)="false" (isOpenChange)="false"
-       [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-        <a  href id="nav-link" class="nav-link nav-dropdown-toggle" dropdownToggle (click)="false" >
-            <i class="fa fa-info" aria-hidden="true"></i>
-          Manage Masters
-        </a>
-        <div id="collapseBasic" [collapse]="isCollapsed" >
-          <ul id="nav-link-dropdown" *dropdownMenu class="dropdown-menu"
-          role="menu" aria-labelledby="nav-link">
-            <li role="menuitem" routerLinkActive="active current" class="nav-item"
-              *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-              <a class="nav-link" routerLink="/StudentList">
-                <i class="fa fa-user-circle" style="padding-left:30px"></i>
-                Student
-              </a>
-            </li>
-
-            <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-              <a id="nav-link" class="nav-link" routerLink="/Bank">
-                <i class="fa fa-id-card" style="padding-left: 30px;"> 
-                </i>
-                Bank Account
-              </a>
-            </li>
-            <li role="menuitem" routerLinkActive="active current" class="nav-item"
-              *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-              <a class="nav-link" routerLink="/ExpenseMaster">
-                <i class="fa fa-dollar" style="padding-left: 30px;">
-                </i>
-                Expenses
-              </a>
-            </li>
-
-            <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-              <a class="nav-link" routerLink="/Courses">
-                <i class='fa fa-graduation-cap' style="padding-left: 30px;">
-                </i>
-                Courses
-              </a>
-            </li>
-            <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-              <a class="nav-link" routerLink="/Branch" >
-                <i class=" fa fa-map-marker" style="padding-left: 30px;">
-                </i>
-                Branch
-              </a>
-            </li>
-            <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-              <a class="nav-link" routerLink="/coursetype">
-                <i class='fa fa-book-reader' style="padding-left: 30px;">
-                </i>
-                Course Type
-              </a>
-            </li>
-            <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-              <a class="nav-link" routerLink="/LeaveList">
-                <i class=" fa fa-check" style="padding-left: 30px;">
-                </i>
-                Leaves
-              </a>
-            </li>
-          </ul>
-        </div>
-      </li>
-
-      <li class="nav-item nav-dropdown" dropdown  *ngIf="currentRole==='Admin'" (onShown)="onShown()" (onHidden)="false" (isOpenChange)="false"
-      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
-        <a class="nav-link nav-dropdown-toggle" href dropdownToggle (click)="false">
-            <i class="fa fa-users" aria-hidden="true"></i>
-           Manage Users
+      </div>
+    </div>
+    <!-- sidebar-search  -->
+    <div class="sidebar-menu">
+      <ul>
+        <li class="header-menu">
+          <span>Menus</span>
+        </li>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
+          <a routerLink="/Dashboard">
+            <i class="fa fa-tachometer-alt"></i>
+            <span>Dashboard</span>
           </a>
-        <div id="collapseBasic" [collapse]="isCollapsed">
-          <ul *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="nav-link">
-            <li role="menuitem" routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-              <a class="nav-link" routerLink="/StaffList">
-                <i class="fa fa-user" aria-hidden="true" style="padding-left: 30px;">
-                </i>
-                Staff
+        </li>
+        <li  *ngIf="currentRole==='SuperAdmin'">
+            <a href="#">
+              <i class="fa fa-book"></i>
+              <span>Institute</span>
+            </a>
+          </li>
+          <li  *ngIf="currentRole==='SuperAdmin'">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Institute Admin</span>
               </a>
             </li>
-          </ul>
-        </div>
-      </li>
+        <li class="sidebar-dropdown" data-toggle="collapse" data-target="#masters" class="collapsed"  *ngIf="currentRole==='SuperAdmin'|| currentRole==='Teacher'|| currentRole==='Admin'">
+          <a href (click)="false">
+            <i class="fa fa-shopping-cart"></i>
+            <span>Manage Masters</span>
+          </a>
+          <div class="sub-menu collapse" id="masters">
+            <ul>
+                <li routerLinkActive="active current"  *ngIf="currentRole==='SuperAdmin' || currentRole==='Teacher'|| currentRole==='Admin'">
+                <a routerLink="/StudentList">  <i class="fa fa-shopping-cart"></i>
+                  <span>Student</span> </a>
+              </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Enquiry">
-          <i class="fa fa-desktop">
-          </i>
-          Enquiry
-        </a>
-      </li>
+              <li routerLinkActive="active current" *ngIf="currentRole==='SuperAdmin' || currentRole==='Admin'">
+                <a routerLink="/Bank"><i class="fa fa-shopping-cart"></i>
+                  <span>Bank Account</span></a>
+              </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/BankTransaction">
-          <i class="fa fa-credit-card" >
-          </i>
-          Bank Transaction
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Expenses">
-          <i class="fa fa-tasks">
-          </i>
-          Daily Expenses
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Leave">
-          <i class=" fa fa-pencil">
-          </i>
-          Apply Leave
-        </a>
-      </li>
+              <li routerLinkActive="active current" *ngIf="currentRole==='Admin'">
+                <a routerLink="/Courses"><i class="fa fa-shopping-cart"></i>
+                  <span>Courses</span></a>
+              </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-        <a class="nav-link" routerLink="/FeesTransaction">
-          <i class="fa fa-money" aria-hidden="true">
-          </i>
-          Fees Payment
-        </a>
-      </li>
+              <li routerLinkActive="active current" *ngIf="currentRole==='Admin'">
+                  <a routerLink="/Branch"><i class="fa fa-shopping-cart"></i>
+                    <span>Branch</span></a>
+                </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/reports">
-          <i class="fa fa-file" aria-hidden="true"></i>
-          Reports
-        </a>
-      </li>
+                <li routerLinkActive="active current"  *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+                <a routerLink="/ExpenseMaster">Expense Type</a>
+              </li>
 
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/role">
-          <i class="fa fa-user-plus" aria-hidden="true">
-          </i>
-          Role
-        </a>
-      </li>
-    </ul>
-  </nav>
-<!-- </div> -->
+              <li routerLinkActive="active current" *ngIf="currentRole==='Admin'">
+                <a routerLink="/coursetype"><i class="fa fa-shopping-cart"></i>
+                  <span>Course Type</span></a>
+              </li>
 
+              <li routerLinkActive="active current" *ngIf="currentRole==='Teacher'">
+                <a  routerLink="/LeaveList"><i class="fa fa-shopping-cart"></i>
+                  <span>Leave Type</span></a>
+              </li>
 
-
-<!-- <nav id="sidebar" class="navbar-light bg-light" [ngClass]="{'hidden': sideNavService.hideSideNav }">
-  <div>
-    <ul class="navbar-nav">
-      <li>
-        <div class="row" style="margin-top:25px;color: black;font-weight: bold">
-          <div class="col-md-4">
-            <img class="img-circle" src="{{user.Photo}}" width="70px" height="70px" alt="Card image cap"
-              (click)="changeUserImage(ChangeUserImage)" style="margin-left:5px">
+            </ul>
           </div>
-          <div class="col-md-8" style="font-size:20px;font-weight:bold">
-            {{user.friendlyName}}
-            <span style="font-size:16px;font-weight:normal">
-              {{user.roles}}
-            </span>
+        </li>
+        <li data-toggle="collapse" data-target="#service" class="collapsed"  *ngIf="currentRole==='Admin'">
+          <a href (click)="false">
+            <i class="far fa-gem"></i>
+            <span>Manage Users</span>
+          </a>
+          <div class="sub-menu collapse" id="service">
+            <ul>
+              <li routerLinkActive="active current"  *ngIf="currentRole==='Admin'">
+                <a routerLink="/StaffList"><i class="fa fa-shopping-cart"></i>
+                  <span>Staff</span></a>
+              </li>
+            </ul>
           </div>
-        </div>
-      </li>
-      
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/Dashboard" style="margin-top:30px">
-            <i class="fa fa-home" style="padding:10px"></i>
-          Dashboard
-        </a>
-      </li>
-
-      <li routerLinkActive="active current" class="nav-item" dropdown [autoClose]="false">
-          <a href id="dropdown-autoclose2" dropdownToggle (click)="false"
-             aria-controls="dropdown-autoclose2">
-             <i class="fa fa-user" aria-hidden="true"></i>
-             Manage Masters
+        </li>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
+          <a  routerLink="/FeesTransaction">
+            <i class="fa fa-chart-line"></i>
+            <span>Fees Payment</span>
+          </a>
+        </li>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+          <a routerLink="/Expenses">
+            <i class="fa fa-globe"></i>
+            <span>Daily Expenses</span>
+          </a>
+        </li>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Teacher'">
+            <a  routerLink="/Leave">
+              <i class="fa fa-book"></i>
+              <span>Apply Leave </span>
+              <span class="badge badge-pill badge-primary">Beta</span>
             </a>
-            
-          <ul id="dropdown-autoclose2" *dropdownMenu class="dropdown-menu"
-              role="menu" aria-labelledby="dropdown-autoclose2">
-              <li  role="menuitem" routerLinkActive="active current" class="dropdown-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-                <a class="nav-link" routerLink="/StudentList">
-                  <i class='fas fa-user-graduate' style="padding:10px">
-                  </i>
-                  Student
-                </a>
-              </li>
-              <li  role="menuitem" routerLinkActive="active current" class="dropdown-item" *ngIf="currentRole==='Admin'">
-                <a class="nav-link" routerLink="/Bank">
-                  <i class="fa fa-id-card" style="padding:10px">
-                  </i>
-                  Bank Account
-                </a>
-              </li>
-              <li  role="menuitem" routerLinkActive="active current" class="dropdown-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-                <a class="nav-link" routerLink="/ExpenseMaster">
-                  <i class="fa fa-dollar" style="padding:10px">
-                  </i>
-                  Expenses
-                </a>
-              </li>
-              <li  role="menuitem" routerLinkActive="active current" class="dropdown-item" *ngIf="currentRole==='Admin'">
-                <a class="nav-link" routerLink="/Courses">
-                  <i class='fas fa-graduation-cap' style="padding:10px">
-                  </i>
-                  Courses
-                </a>
-              </li>
-          </ul>
-      </li>
-      <li  routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-           <span style="color:black;margin-top:30px;padding:30px">Institute</span> 
+          </li>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Admin'">
+          <a routerLink="/BankTransaction">
+            <i class="fa fa-book"></i>
+            <span>Bank Transaction</span>
+            <span class="badge badge-pill badge-primary">Beta</span>
+          </a>
         </li>
-        <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-            <span style="color:black;margin-top:30px;padding:30px"> Institute Admin</span>
-        </li>
-
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/StaffList" >
-          <i class="fa fa-user" aria-hidden="true" style="padding:10px">
-          </i>
-          Staff
-        </a>
-      </li>
-
-      
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Enquiry">
-          <i class="fa fa-desktop" style="padding:10px">
-          </i>
-          Enquiry
-        </a>
-      </li>
-     
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Expenses">
-          <i class="fa fa-tasks" style="padding:10px">
-          </i>
-          Daily Expenses
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/Leave">
-          <i class=" fa fa-pencil" style="padding:10px">
-          </i>
-          Apply Leave
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='Admin'">
-        <a class="nav-link" routerLink="/FeesTransaction">
-          <i class="fa fa-money" aria-hidden="true" style="padding:10px">
-          </i>
-          Fees Payment
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/BankTransaction">
-          <i class="fa fa-credit-card" style="padding:10px">
-          </i>
-          Bank Transaction
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLink="/LeaveList">
-          <i class=" fa fa-check" style="padding:10px">
-          </i>
-          Leaves
-        </a>
-      </li>
-      
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/Branch">
-          <i class=" fa fa-map-marker" style="padding:10px">
-          </i>
-          Branch
-        </a>
-      </li>
-     
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/coursetype">
-          <i class='fas fa-book-reader' style="padding:10px">
-          </i>
-          Course Type
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLink="/reports">
-          Reports
-        </a>
-      </li>
-      <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="/role">
-          <i class="fa fa-user-plus" aria-hidden="true" style="padding:10px">
-          </i>
-          Role
-        </a>
-      </li>
-    </ul>
+        <li routerLinkActive="active current" *ngIf="currentRole==='Admin'">
+            <a routerLink="/reports">
+              <i class="fa fa-book"></i>
+              <span>Reports</span>
+            </a>
+          </li>
+          <li routerLinkActive="active current" *ngIf="currentRole==='SuperAdmin'">
+              <a routerLink="/role">
+                <i class="fa fa-book"></i>
+                <span>Roles</span>
+              </a>
+            </li>
+      </ul>
+    </div>
+    <!-- sidebar-menu  -->
   </div>
-</nav> -->
-
-
-<ng-template #ChangeUserImage>
-  <div>
-    <form [formGroup]="userImageUploadForm" (ngSubmit)="submitUserImage()">
-      <div class="modal-header">
-        <h5 class="modal-title">Upload New Image</h5>
-
-      </div>
-      <div class="modal-body">
-        <div>
-          <input type="hidden" value="{{users.userId}}" formControlName="Id">
-        </div>
-        <div class="row">
-          <div style="margin-left:10px ">
-            <input name="file" type="file" (change)="handlePhotoInput($event)">
-            <input type="hidden" name="fileHidden" formControlName="Photo" />
-            <button type="button" (click)="onUploadPhoto()">Upload</button>
-          </div>
-        </div>
-        <div class="row" style="margin-top: 10px">
-          <div class="col-md-2">
-            Photo Preview:
-          </div>
-          <div class="col-md-4">
-            <img class="img-circle"
-              [src]="_DomSanitizer.bypassSecurityTrustUrl(AuthorisedSideNavComponent.newThumbnailUrl)" width="50px"
-              height="50px">
-          </div>
-        </div>
-        <div class="modal-footer float-right" style="margin-top: 5px">
-          <input type="submit" class="btn btn-primary pull-right" value="Submit">
-        </div>
-      </div>
-    </form>
+  <!-- sidebar-content  -->
+  <div class="sidebar-footer">
   </div>
+</nav>
+<script>
+  jQuery(function ($) {
 
-</ng-template>
+    $("#close-sidebar").click(function () {
+          $(".page-wrapper").removeClass("toggled");
+        });
+
+    $(".sidebar-dropdown > a").click(function () {
+      $(".sidebar-submenu").slideUp(200);
+      if (
+        $(this)
+          .parent()
+          .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .parent()
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(200);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
+    });
+
+    $("#close-sidebar").click(function () {
+      $(".page-wrapper").removeClass("toggled");
+    });
+    $("#show-sidebar").click(function () {
+      $(".page-wrapper").addClass("toggled");
+    });
+
+  });
+</script>
