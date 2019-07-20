@@ -117,7 +117,7 @@
             <th>Date</th>
             <th>Paid By</th>
           </tr>
-          <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 8, currentPage: p }"
+          <tr *ngFor="let e of expenseReportList | paginate: { itemsPerPage: 10, currentPage: p }"
             style="border:1px solid black">
             <td>{{e.BranchName}}</td>
             <td>{{e.ExpenseName}}</td>
@@ -128,9 +128,13 @@
         </table>
       </kendo-pdf-export>
     </div> 
-      <ul class="pagination">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      </ul>
+      <div class="text-center">
+        <ul class="pagination">
+          <li >
+            <pagination-controls class="span-pagination" (pageChange)="p = $event"></pagination-controls>
+          </li>
+        </ul>       
+    </div>
     </div>
 
 
