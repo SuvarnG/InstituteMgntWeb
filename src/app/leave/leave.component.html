@@ -18,7 +18,7 @@
                         title="home" >
                         Home</a>&nbsp;
                       <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                      <a routerLink="/Leave"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                      <a data-toggle="tooltip" data-placement="bottom" class="text-dark"
                       title="Apply Leave" >
                       Apply Leave</a>&nbsp;
                       
@@ -48,12 +48,12 @@
                 <th scope="col">Student</th>
                 <th scope="col">Leave Type </th>
                 <th scope="col">Reason</th>
-                <th scope="col">Comment</th>
-                <th scope="col">Is Follow UpDate</th>
+                <!-- <th scope="col">Comment</th> -->
+                <th scope="col">Follow-up Date</th>
                 <th scope="col">From Date</th>
                 <th scope="col">To Date</th>
                 <th scope="col">Total Days</th>
-                <th scope="col">A</th>
+                <th scope="col"></th>
                 <div class="float-right">
                   <th></th>
                 </div>
@@ -66,7 +66,7 @@
                 <td>{{item.FirstName}}</td>
                 <td>{{item.Leave}}</td>
                 <td>{{item.Reason}}</td>
-                <td>{{item.Comment}}</td>
+                <!-- <td>{{item.Comment}}</td> -->
                 <td>{{item.NeedFollowupDate | date }}</td>
                 <td>{{item.FromDate | date }}</td>
                 <td>{{item.ToDate| date}}</td>
@@ -101,25 +101,25 @@
   <!-- Create leave modal -->
   <ng-template #CreateTemplate>
     <div class="modal-header">
-      <h1 class="modal-title pull-left px-4">Apply For Leave</h1>
+      <h5 class="modal-title pull-left">Apply For Leave</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <form [formGroup]="CreateLeaveFormGroup" (ngSubmit)="createNewLeave()">
-        <div class="row shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 ">
-            <h4 class=" font-weight-medium  py-4 px-3">Student Details :</h4>
+            <h5 class=" font-weight-medium px-3">Student Details </h5>
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">
                     <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                       (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
-                      <option [value]="null" disabled> select course </option>
+                      <option [value]="null" disabled hidden> Select Course </option>
                       <option *ngFor="let Course of Courses" [value]="Course.CourseId">
                         {{Course.FullName}}
                       </option>
@@ -127,7 +127,7 @@
                   </div>
                   <div class="form-group col-md-4 px-3">
                     <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName">
-                      <option [value]="null" disabled>select student </option>
+                      <option [value]="null" disabled hidden>Select Student </option>
                       <option *ngFor="let student of students" [value]="student.StudentId">
                         {{student.FullName}}
                       </option>
@@ -135,19 +135,19 @@
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
+                  <div class="form-group col-md-4 px-3">
 
                     <select name="LeaveName" class="form-control" formControlName="LeaveName">
-                      <option [value]="null"> select Leave </option>
+                      <option [value]="null" disabled hidden> Select Leave </option>
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>
                     </select>
                   </div>
-                  <div class="form-group col-md-3 mt-3 px-3">
+                  <div class="form-group col-md-4 px-3">
 
                     <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
-                      class="form-control" placeholder="NeedFollowupDate"
+                      class="form-control" placeholder="Need Follow-up Date"
                       [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
                     <div *ngIf="submitted && fc.NeedFollowupDate.errors" class="invalid-feedback">
                       <div *ngIf="fc.NeedFollowupDate.errors.required">Days is required</div>
@@ -158,13 +158,14 @@
             </div>
           </div>
         </div>
+
         <!-- second Row start -->
-        <div class="row  shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 ">
-            <h4 class=" font-weight-medium  py-4 px-3">Leave Date :</h4>
+            <h5 class=" font-weight-medium px-3">Leave Date</h5>
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">
@@ -178,15 +179,15 @@
                   <div class="form-group col-md-4 px-3">
                     <input type="text" name="ToDate" [(ngModel)]="ToDate" formControlName="ToDate"
                       onfocus="(this.type='date')" (change)="calculateTotaldays(ToDate,FromDate)" class="form-control"
-                      placeholder="ToDate" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
+                      placeholder="To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
                     <div *ngIf="submitted && fc.ToDate.errors" class="invalid-feedback">
                       <div *ngIf="fc.ToDate.errors.required">Date is required</div>
                     </div>
                   </div>
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
-                    <input type="text" class="form-control" placeholder="TotalDays" id="TotalDays" name="TotalDays"
+                  <div class="form-group col-md-3 px-3">
+                    <input type="text" class="form-control" placeholder="Total Days" id="TotalDays" name="TotalDays"
                       formControlName="TotalDays">
                   </div>
                 </div>
@@ -195,11 +196,11 @@
           </div>
         </div>
         <!-- Thired Row start -->
-        <div class="row shadow my-3 mb-5 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12">
-            <h4 class=" font-weight-medium  py-4 px-3"> Leave Reason :</h4>
+            <h5 class=" font-weight-medium px-3"> Leave Reason</h5>
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
                   <div class="form-group col-md-4 px-3">
                     <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
@@ -233,27 +234,27 @@
   <!-- Edit leave modal -->
   <ng-template #EditTemplate>
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Apply Leave</h4>
+      <h5 class="modal-title pull-left">Edit Leave Details</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <form [formGroup]="UpdateLeaveFormGroup" (ngSubmit)="updateLeave()">
-        <div class="row shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 ">
-            <h4 class=" font-weight-medium  py-4 px-3">Student Details :</h4>
+            <h5 class=" font-weight-medium px-3">Student Details </h5>
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">
-                    <input type="text" formControlName="CourseName" class="form-control" placeholder="CourseName"
+                    <input type="text" formControlName="CourseName" class="form-control" placeholder="Course Name"
                       [ngClass]="{'is-invalid': submitted && fu.CourseName.errors}" disabled />
                   </div>
                   <div class="form-group col-md-4 px-3">
-                    <input type="text" formControlName="StudentName" class="form-control" placeholder="StudentName"
+                    <input type="text" formControlName="StudentName" class="form-control" placeholder="Student Name"
                       [ngClass]="{'is-invalid': submitted && fu.StudentName.errors}" disabled />
                   </div>
 
@@ -261,10 +262,10 @@
 
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
+                  <div class="form-group col-md-4 px-3">
 
                     <select name="LeaveName" class="form-control" formControlName="LeaveName">
-                      <option [value]="null"> select Leave </option>
+                      <option [value]="null" disabled hidden> Select Leave Type </option>
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>
@@ -275,7 +276,7 @@
                       <div *ngIf="fu.LeaveName.errors.required">Days is required</div>
                     </div>
                   </div>
-                  <div class="form-group col-md-3 mt-3 px-3">
+                  <div class="form-group col-md-4 px-3">
 
                     <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
                       class="form-control" placeholder="NeedFollowupDate"
@@ -290,12 +291,12 @@
           </div>
         </div>
         <!-- second Row start -->
-        <div class="row  shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 ">
-            <h4 class=" font-weight-medium  py-4 px-3">Leave Date :</h4>
+            <h5 class=" font-weight-medium px-3">Leave Date </h5>
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">
@@ -319,7 +320,7 @@
 
                 </div>
                 <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
+                  <div class="form-group col-md-3 px-3">
 
                     <input type="text" class="form-control" placeholder="TotalDays" formControlName="TotalDays">
                   </div>
@@ -330,12 +331,12 @@
           </div>
         </div>
         <!-- Thired Row start -->
-        <div class="row shadow my-3 mx-3 mb-5">
+        <div class="row mx-3">
           <div class="col-md-12">
-            <h4 class=" font-weight-medium  py-4 px-3"> Leave Reason :</h4>
+            <h5 class=" font-weight-medium px-3"> Leave Reason </h5>
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-4 px-3">

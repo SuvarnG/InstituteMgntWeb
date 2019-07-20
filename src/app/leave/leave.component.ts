@@ -1,7 +1,7 @@
 import { LeaveType, LeaveTransaction } from './../Models/LeaveTran';
 import { Course } from './../Model/CourseType';
 import { CoursesService } from './../courses/courses.service';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LeaveService } from './leave.service';
@@ -11,6 +11,7 @@ import { CourseType, Students } from '../Models/Students';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
 import { formatDate } from '@angular/common';
+import { DataTableDirective } from 'angular-datatables';
 
 @Component({
   selector: 'app-leave',
@@ -32,6 +33,9 @@ export class LeaveComponent implements OnInit {
   StudentId: number;
   CourseId: number;
   LeaveTransactionId: number;
+
+  @ViewChild(DataTableDirective)
+    dtElement: DataTableDirective;
 
   constructor(private formBuilder: FormBuilder,
     private modalService: BsModalService,
@@ -73,6 +77,20 @@ export class LeaveComponent implements OnInit {
     this.getCourseNameByType();
   }
 
+
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+  }
+
   // convenience getter for easy access to form fields
   get fc() { return this.CreateLeaveFormGroup.controls; }
   get fu() { return this.UpdateLeaveFormGroup.controls; }
@@ -81,7 +99,8 @@ export class LeaveComponent implements OnInit {
   getLeaveList() {
     this.LeaveService.getLeave().subscribe(res => {
       this.leaveTran = res
-      this.dtTrigger.next()
+      this.rerender()
+      //this.dtTrigger.next()
     });
     console.log(JSON.stringify(this.leaveTran));
   }
@@ -192,7 +211,8 @@ export class LeaveComponent implements OnInit {
       TotalDays: this.UpdateLeaveFormGroup.controls.TotalDays.value
     }
     
-      this.LeaveService.editLeave(req).subscribe(data => { this.getLeaveList(), this.modalRef.hide() })
+      this.LeaveService.editLeave(req).subscribe(data => { 
+        this.getLeaveList(), this.modalRef.hide() })
     
   }
 
