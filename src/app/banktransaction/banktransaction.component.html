@@ -20,7 +20,7 @@
                         title="home" >
                         Home</a>&nbsp;
                       <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                      <a routerLink="/BankTransaction"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                      <a  data-toggle="tooltip" data-placement="bottom" class="text-dark"
                       title="Bank Transaction" >
                       Bank Transaction</a>&nbsp;
                       
@@ -97,17 +97,16 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
 
   <ng-template #Addtemplate>
     <div class="modal-header">
-      <h4 class=" h1 modal-title pull-left px-3">Bank Transaction</h4>
+      <h5 class=" h5 modal-title pull-left px-3">Bank Transaction</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
       <form [formGroup]="CreateFormGroup" (ngSubmit)="onSubmit()">
-	  <div class="row shadow m-3 px-4 mb-5">
+	  <div class="row px-4">
 	  <div class="col-md-12 col-xl-12 col-sm-12 col-12">
-        <h4 class="modal-title pull-left mt-3">Bank Details :</h4>
-	  <div class="form-row py-4">
+	  <div class="form-row">
 		<div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
           <select name="BankName" id="BankName" [value]="null"  class="form-control border-bottom text-muted" (change)="getAccountNumber($event)"
             formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
@@ -147,7 +146,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
 		<div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
 		
 		<div class="radio">
-        <label class="control-label-col-sm-2 h5">Transaction Type : </label>       
+        <label class="control-label-col-sm-2 h6">Transaction Type : </label>       
           <label><input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType"
               value="Withdraw"><span class="ml-2">Withdraw</span></label>
               <label><input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType"
