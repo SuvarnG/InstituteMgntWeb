@@ -82,7 +82,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
   <ng-template #editExpense>
 
     <div class="modal-header">
-      <h4 class=" h1 modal-title pull-left">Update Expense</h4>
+      <h5 class=" h5 modal-title pull-left">Update Expense</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -90,11 +90,10 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
     <div class="modal-body">
       <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()">
         <div class="row">
-          <div class="col-md-12 shadow my-3">
-            <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4>
+          <div class="col-md-12 my-3">
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
                   <div class="form-group col-md-3 px-3">
@@ -107,7 +106,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                       </option>
                     </select>
                     <div *ngIf="submitted && form.ExpenseType.errors">
-                      <div *ngIf="form.ExpenseType.errors.required">ExpenseType is required</div>
+                      <div *ngIf="form.ExpenseType.errors.required">Expense Type is required</div>
                     </div>
                   </div>
 
@@ -115,10 +114,20 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
                       placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
                     <div *ngIf="submitted && form.AmountPaid.errors">
-                      <div *ngIf="form.AmountPaid.errors.required">AmountPaid is required</div>
+                      <div *ngIf="form.AmountPaid.errors.required">Amount Paid is required</div>
                     </div>
                   </div>
 
+                  <div class="form-group col-md-3 px-3">
+                  <input class="form-control" id="Remark" formControlName="Remark"
+                  [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
+                  <div *ngIf="submitted && form.Remark.errors">
+                    <div *ngIf="form.Remark.errors.required">Remark is required</div>
+                  </div>
+                </div>
+
+              </div>
+                
                   <!-- <div class="form-group col-md-3 px-3">
                     <input class="form-control" id="Date" formControlName="Date"
                       [ngClass]="{'is-invalid': submitted && f.Date.errors }">
@@ -139,25 +148,26 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
             <div *ngIf="form.PaidByName.errors.required">Paid By Whom is required</div>
           </div>
                   </div> -->
-                </div>
+                
+<!-- 
                 <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">
-                    <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
-                    <textarea class="form-control" id="Remark" formControlName="Remark"
-            [ngClass]="{'is-invalid': submitted && form.Remark.errors} "></textarea>
+                    <label class="col-md-6 control-label">Date Of Birth</label> 
+                    <input class="form-control" id="Remark" formControlName="Remark"
+            [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
             <div *ngIf="submitted && form.Remark.errors">
               <div *ngIf="form.Remark.errors.required">Remark is required</div>
             </div>
                   </div>
+                </div> -->
 
-                </div>
               </div>
             </div>
           </div>
         </div>
         <!-- second Row start -->
 
-        <div class="modal-footer">
+        <div class="form-row justify-content-end text-right">
           <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
           <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
             (click)="modalRef.hide()">Cancel</button>
@@ -179,7 +189,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
 
   <ng-template #addExpense>
     <div class="modal-header">
-      <h4 class=" h1 modal-title pull-left">Add Expense</h4>
+      <h5 class=" h5 modal-title pull-left">Add Expense</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -187,11 +197,11 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
     <div class="modal-body">
       <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
         <div class="row">
-          <div class="col-md-12 shadow my-3">
-            <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4>
+          <div class="col-md-12 my-3">
+            <!-- <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4> -->
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
                   <!-- <div class="form-group col-md-1">
             <label for="fullName">Name</label>
@@ -205,7 +215,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                       </option>
                     </select>
                     <div *ngIf="submitted && f.ExpenseType.errors">
-                      <div *ngIf="f.ExpenseType.errors.required">ExpenseType is required</div>
+                      <div *ngIf="f.ExpenseType.errors.required">Expense Type is required</div>
                     </div>
                   </div>
 
@@ -216,6 +226,16 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                       <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
                     </div>
                   </div>
+
+
+                  <div class="form-group col-md-3 px-3">
+                  <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
+                  [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
+                <div *ngIf="submitted && f.Remark.errors">
+                  <div *ngIf="f.Remark.errors.required">Remark is required</div>
+                </div>
+                </div>
+
 
                   <!-- <div class="form-group col-md-3 px-3">
                     <input class="form-control" id="Date" formControlName="Date"
@@ -239,17 +259,18 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     </div>
                   </div> -->
                 </div>
-                <div class="form-row">
+
+                <!-- <div class="form-row">
                   <div class="form-group col-md-3 mt-3 px-3">
-                    <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
+                    <label class="col-md-6 control-label">Date Of Birth</label>
                     <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
                       [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
                     <div *ngIf="submitted && f.Remark.errors">
                       <div *ngIf="f.Remark.errors.required">Remark is required</div>
                     </div>
                   </div>
+                </div> -->
 
-                </div>
               </div>
             </div>
           </div>
@@ -257,7 +278,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
         <!-- second Row start -->
 
         <div class="row justify-content-end text-right">
-          <div class="col-md-3 pb-4  mt-5">
+          <div class="col-md-3 pb-3">
             <div class="form-row">
               <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
               <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
