@@ -21,7 +21,7 @@
                           title="home" >
                           Home</a>&nbsp;
                         <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                        <a routerLink="/Branch"  data-toggle="tooltip" data-placement="bottom" class="text-dark"
+                        <a data-toggle="tooltip" data-placement="bottom" class="text-dark"
                         title="staff" >
                         Branches</a>&nbsp;
                         
@@ -98,22 +98,22 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
         </button>
       </div>
       <div class="modal-body">
-        <div class="row shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 ">
             <!-- <h4 class=" font-weight-medium  py-4 px-3">Branch Details :</h4> -->
 
             <div class="row">
-              <div class="col-md-12 pb-4 px-4">
+              <div class="col-md-12 px-4">
                 <div class="form-row">
 
-                  <div class="form-group col-md-4 px-3 mt-2">
+                  <div class="form-group col-md-4 px-3">
                     <input type="text" class="form-control" formControlName="BranchName" placeholder="Branch Name"
                       [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
                     <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
                       <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
                     </div>
                   </div>
-                  <div class="form-group col-md-4 px-3 mt-2">
+                  <div class="form-group col-md-4 px-3">
                     <input type="text" class="form-control" formControlName="Address" placeholder="Branch Address"
                       [ngClass]="{ 'is-invalid': submitted &&
                       f.Address.errors }">
@@ -122,10 +122,18 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                     </div>
                   </div>
 
-
+                  <div class="form-group col-md-4 px-3">
+                  <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                  [ngClass]="{ 'is-invalid': submitted &&
+                  f.ContactNo.errors }">
+                <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                  <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+                </div>
+                </div>
 
                 </div>
-                <div class="form-row">
+
+                <!-- <div class="form-row">
                   <div class="form-group col-md-3 mt-2 px-3">
 
                     <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
@@ -135,7 +143,8 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                       <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
                     </div>
                   </div>
-                </div>
+                </div> -->
+
               </div>
             </div>
           </div>
@@ -160,7 +169,7 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
         </button>
       </div>
       <div class="modal-body">
-        <div class="row shadow my-3 mx-3">
+        <div class="row mx-3">
           <div class="col-md-12 px-5">
             <!-- <div class="form-row py-3">
               <h4>Branch Details :</h4>
