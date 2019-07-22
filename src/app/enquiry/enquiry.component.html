@@ -19,7 +19,7 @@
                         Home</a>&nbsp;
                       <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
                       <a data-toggle="tooltip" data-placement="bottom" class="text-dark"
-                      title="staff" >
+                      title="Enquiry" >
                       Enquiry</a>&nbsp;
                       
                     </div>
@@ -87,7 +87,7 @@
 <!-- Create Enquiry modal -->
 <ng-template #CreateEnquiryModal>
   <div class="modal-header">
-    <h2 class="h1 font-weight-medium mb-3 mt-3">Add Enquiry</h2>
+    <h5 class=" font-weight-medium mb-1">Add Enquiry</h5>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -95,12 +95,12 @@
   <div class="modal-body">
 
     <form [formGroup]="EnquiryForm" (ngSubmit)="CreateNewEnquiry()">
-      <div class="row mx-3">
-        <div class="col-md-12 shadow my-3">
-          <h4 class=" font-weight-medium  py-4 px-3">Enquiry Info :</h4>
+      <div class="row ">
+        <div class="col-md-12">
+          <h5 class=" font-weight-medium  py-2 px-2">Enquiry Info :</h5>
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 pb-1 px-1">
               <div class="form-row">
                 
                 
@@ -157,20 +157,21 @@
           </div>
         </div>
       </div>
+      <hr>
       <!-- second Row start -->
-      <div class="row mx-3">
-        <div class="col-md-12 shadow mt-3 ">
-           <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4> 
+      <div class="row ">
+        <div class="col-md-12  ">
+           <h5 class=" font-weight-medium  py-2 px-2">Course Details :</h5> 
 
           <div class="row">
-            <div class="col-md-12 pb-4 px-4">
+            <div class="col-md-12 pb-1 px-1">
 
               <div class="form-row">
                 <div class="form-group col-md-3 px-3">
-                    <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"
+                    <select name="CourseTypeId" id="CourseTypeId" class="form-control" [value]="null" formControlName="CourseTypeId"
                   (change)="selectCourseNameForCourseType($event)"
                   [ngClass]="{'is-invalid': submitted && f.CourseTypeId.errors} ">
-                  <option value="" disabled selected>CourseType</option>
+                  <option value="null">CourseType</option>
                   <option *ngFor="let cType of courseType" [value]="cType.CourseTypeId">
                     {{cType.CourseTypeName}}
                   </option>
@@ -181,9 +182,9 @@
                 </div>
 
                 <div class="form-group col-md-4 px-3">
-                    <select name="CourseId" id="CourseId" class="form-control" formControlName="CourseId"
+                    <select name="CourseId" id="CourseId" class="form-control" value="null" formControlName="CourseId"
                     [ngClass]="{'is-invalid': submitted && f.CourseId.errors} ">
-                    <!-- <option value="" disabled selected>CourseName</option> -->
+                    <option value="null">CourseName</option>
                   <option *ngFor="let CourseName of listCourseName" [value]="CourseName.CourseId">
                     {{CourseName.CourseName}}
                   </option>
@@ -202,11 +203,12 @@
 
         </div>
       </div>
+      <hr>
       <!--Second row End-->
-      <div class="row mx-3">
+      <div class="row ">
 
-        <div class="col-md-12 shadow mt-3 ">
-        <h4 class=" font-weight-medium  py-4 px-3">Follow Up Details :</h4> 
+        <div class="col-md-12">
+        <h5 class=" font-weight-medium  py-2 px-2">Follow Up Details :</h5> 
 
           <div class="row ">
             <div class="col-md-12 pb-4 px-4">
@@ -237,9 +239,10 @@
 
         </div>
       </div>
+      <hr>
       <!--Third Row End-->
       <div class="row justify-content-end text-right">
-        <div class="col-md-3 pb-4  mt-5">
+        <div class="col-md-3 ">
           <div class="form-row">
             <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
             <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"

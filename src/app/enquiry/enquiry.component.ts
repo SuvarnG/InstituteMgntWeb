@@ -48,7 +48,7 @@ export class EnquiryComponent implements OnInit {
 
     this.dtOptions = {
       retrieve: true,
-      //paging: false,
+      paging: false,
       pagingType: 'full_numbers',
       pageLength: 10
 
