@@ -48,7 +48,8 @@ export class CoursesComponent implements OnInit {
     this.dtOptions = {
       retrieve: true,
       pagingType: 'full_numbers',
-      pageLength: 8
+      pageLength: 8,
+      paging:false
     };
     this.createForm = this.formBuilder.group({
       CourseId: [],

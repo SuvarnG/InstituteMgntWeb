@@ -37,10 +37,10 @@ export class BranchComponent implements OnInit {
 
   ngOnInit() {
     this.dtOptions = {
-      retrieve: true,
+      retrieve: false,
       pagingType: 'full_numbers',
-      pageLength: 10
-
+      pageLength: 10,
+      paging:false
     };
     this.createBrachForm = this.formBuilder.group({
       BranchName: ['', Validators.required],
