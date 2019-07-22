@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { LeavelistService } from './leavelist.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { leave } from '@angular/core/src/profile/wtf_impl';
@@ -7,7 +7,7 @@ import { Leaves, UpdateLeaves } from '../Models/leaves';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { idLocale } from 'ngx-bootstrap';
 import { Subject } from 'rxjs';
-
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -26,6 +26,9 @@ export class LeavesListComponent implements OnInit {
   public UpdateLeaves = [];
   filter:any;
 
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
   constructor(private LeavelistService: LeavelistService, private formBuilder: FormBuilder,
     private router: Router, private route: ActivatedRoute, private modalService: BsModalService) { }
 
@@ -33,8 +36,10 @@ export class LeavesListComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:false
+      paging:false,
+      searching:false
     };
+
     this.GetAllLeaves();
 
     this.registerUpdateLeave = this.formBuilder.group({
@@ -50,6 +55,19 @@ export class LeavesListComponent implements OnInit {
     );
   }
 
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+}
+
   get m() { return this.registerUpdateLeave.controls }
 
   get n() { return this.registerCreateLeave.controls }
@@ -57,7 +75,8 @@ export class LeavesListComponent implements OnInit {
   GetAllLeaves() {
     this.LeavelistService.GetAllLeaves().subscribe(res => {
     this.Leaves = res
-      this.dtTrigger.next();
+    this.rerender();
+      //this.dtTrigger.next();
     });
   }
 
@@ -95,12 +114,15 @@ export class LeavesListComponent implements OnInit {
       return;
     }
 
-    this.LeavelistService.CreateLeave(leaveName).subscribe(data => { this.GetAllLeaves(), this.modalRef.hide() })
+    this.LeavelistService.CreateLeave(leaveName).subscribe(data => { this.GetAllLeaves(), 
+      this.rerender();          
+      this.modalRef.hide() })
   }
 
   UpdateLeave(leaves: Leaves) {
+    debugger;
     this.submitted = true;
-    //stop here if form is invalid
+    //stop here if form is invalida
     if (this.registerUpdateLeave.invalid) {
       return;
     }
@@ -110,7 +132,9 @@ export class LeavesListComponent implements OnInit {
       LeaveType: this.registerUpdateLeave.controls.LeaveType.value
     }
 
-    this.LeavelistService.UpdateLeave(body).subscribe(data => { this.GetAllLeaves(), this.modalRef.hide() })
+    this.LeavelistService.UpdateLeave(body).subscribe(data => { this.GetAllLeaves(), 
+            this.rerender();  
+            this.modalRef.hide() })
   }
 
 

@@ -37,10 +37,11 @@ export class LeavelistService {
   }
 
   CreateLeave(leaveName: string) {
-    return this.http.post<void>(this.CreateUrl + "/" + leaveName, this.getAuthHeader())
+    return this.http.post<void>(this.CreateUrl + "/" + leaveName,null, this.getAuthHeader())
   }
 
   UpdateLeave(leaves: Leaves) {
+    debugger;
     return this.http.post<void>(this.UpdateUrl, leaves, this.getAuthHeader())
   }
 }
