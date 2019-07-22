@@ -46,8 +46,8 @@ export class LeaveComponent implements OnInit {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging: false
-
+      paging: false,
+      searching:false
     };
     this.CreateLeaveFormGroup = this.formBuilder.group({
       CourseName: [],
@@ -129,6 +129,7 @@ export class LeaveComponent implements OnInit {
     this.LeaveService.createLeave(req).subscribe(res => {
       this.modalRef.hide()
       this.getLeaveList();
+      this.rerender();
       console.log(JSON.stringify(res));
     });
 
@@ -213,7 +214,9 @@ export class LeaveComponent implements OnInit {
     }
     
       this.LeaveService.editLeave(req).subscribe(data => { 
-        this.getLeaveList(), this.modalRef.hide() })
+        this.getLeaveList(),
+        this.rerender();
+        this.modalRef.hide() })
     
   }
 
