@@ -34,8 +34,8 @@ export class CoursetypeComponent  {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:false
-
+      paging:false,
+      searching:false
     };
     this.getCourseType();
 
@@ -104,6 +104,7 @@ rerender(): void {
     this.CoursetypeService.createCourseType(CreateCourseName).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
+      this.rerender();
     }, error => console.error(error))
   }
 

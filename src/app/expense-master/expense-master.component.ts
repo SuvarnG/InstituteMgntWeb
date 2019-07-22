@@ -34,7 +34,8 @@ dtTrigger: Subject<any> = new Subject();
       // retrieve: true,
        paging: false,
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
+      searching:false
 
     };
     this.createExpenseForm=this.fb.group({
@@ -94,6 +95,7 @@ onSubmitCreateExpense()
   .subscribe((data) => {  
     this.modalRef.hide();
     this.getAllExpense();
+    this.rerender();
   }, error => this.errorMessage = error) 
 
 }
@@ -135,7 +137,8 @@ onSubmitEditExpense()
   this.expenseMasterService.editExpense(body)  
   .subscribe((data) => {  
     this.modalRef.hide();
-    this.getAllExpense();   
+    this.getAllExpense(); 
+    this.rerender();  
   }, error => this.errorMessage = error)
 }
 }
