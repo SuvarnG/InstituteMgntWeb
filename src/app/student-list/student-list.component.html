@@ -14,20 +14,20 @@
 
             <div class="row mt-2">
                 <div class="col-md-4 mt-2">
-                  <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+                  <a routerLink="/Dashboard" class="ml-4 text-dark" data-toggle="tooltip" data-placement="bottom"
                     title="home" >
                     Home</a>&nbsp;
-                  <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                  <a  data-toggle="tooltip" data-placement="bottom" class="text-dark"
-                  title="staff" >
-                  Student</a>&nbsp;
+                  <i class="fa fa-angle-double-right" aria-hidden="true" ></i>&nbsp;
+                  <a  data-toggle="tooltip" data-placement="bottom" class=" active"
+                  title="student" >
+                       Student</a>&nbsp;
                   
                 </div>
                 <div class="col-md-4">
                     <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
                 </div>
                 <div class="col-md-4 px-4">
-                    <a routerLink="/CreateStudent" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
+                    <a routerLink="/CreateStudent" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip" data-placement="bottom"
                     title="Add Staff" > Add     
                     <!-- <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg> -->
                   </a>
@@ -281,25 +281,23 @@
               <div class="form-group mb-0 col-md-1 Heading">
                 <label for="firstName" class="mt-3 h6 text-muted">Name :</label>
               </div>
-              <div class="form-group col-md-2 mb-0 mt-3">
-                  {{f.FirstName.value}} {{f.MiddleName.value}} {{f.LastName.value}}
-               </div>
-              <!-- <div class="form-group mb-0 col-md-2">
+              
+               <div class="form-group mb-0 col-md-2">
                 <input type="text" class="form-control border-0 mt-1" formControlName="FirstName"
                   >
               </div>
               <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
                 <div *ngIf="f.FirstName.errors.required">First Name is required</div>
 
-              </div> -->
-              <!-- <div class="form-group mb-0 col-md-2">
+              </div> 
+               <div class="form-group mb-0 col-md-2">
                 <input type="text" class="form-control border-0" formControlName="MiddleName"
                   [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
               </div>
               <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
                 <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
-              </div> -->
-              <!-- <div class="form-group mb-0 col-md-2">
+              </div> 
+               <div class="form-group mb-0 col-md-2">
                 <input type="text" class="form-control border-0" formControlName="LastName"
                   [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
                 <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
@@ -307,7 +305,7 @@
                 <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
                   <div *ngIf="f.LastName.errors.required">Last Name is required</div>
                 </div>
-              </div> -->
+              </div> 
             </div>
           </div>
 
