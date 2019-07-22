@@ -3,3 +3,13 @@
     margin-right: 3%;
     margin-left: 3%;
 }
+
+#A{
+    overflow-x: hidden;
+    overflow-y: scroll;
+   
+}
+
+.h-460{
+    height: 540px;
+}
