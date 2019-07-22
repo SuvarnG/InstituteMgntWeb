@@ -17,3 +17,12 @@ input {
 .material-icons{
     font-size: 30px;
 }
+#A{
+    overflow-x: hidden;
+    overflow-y: scroll;
+   
+}
+
+.h-460{
+    height: 540px;
+}
