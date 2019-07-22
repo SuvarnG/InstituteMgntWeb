@@ -37,9 +37,10 @@ export class RoleComponent {
   ngOnInit() {
     this.dtOptions = {
       retrieve:true,
-      paging:true,
+      paging:false,
       pagingType: 'full_numbers',
-      pageLength: 10
+      pageLength: 10,
+      searching:false
     };
     this.registerForm = this.formBuilder.group({
       role: ['', Validators.required]
@@ -48,6 +49,7 @@ export class RoleComponent {
 
     this.getRoles();
   }
+  
 
   ngAfterViewInit(): void {this.dtTrigger.next();}
 
@@ -115,6 +117,7 @@ export class RoleComponent {
     this.RoleService.CreateRole(RoleName).subscribe(data => {
       this.modalRef.hide();
       this.getRoles();
+      this.rerender();
     }, error => console.error(error))
   }
 
@@ -137,6 +140,7 @@ this.ID=role.roleID;
     this.RoleService.EditRole(body).subscribe(data => {
       this.modalRef.hide();
       this.getRoles();
+      this.rerender();
      }, error => console.error(error))
   }
   clearForm()

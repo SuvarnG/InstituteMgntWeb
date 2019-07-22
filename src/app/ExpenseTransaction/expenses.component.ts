@@ -53,7 +53,7 @@ export class ExpensesComponent implements OnInit {
   ngOnInit() {
 
      this.dtOptions = {
-       retrieve: true,
+       //retrieve: true,
        pagingType: 'full_numbers',
        pageLength: 10,
        paging:false

@@ -13,29 +13,39 @@
     <div class="col-md-12 col-12 col-sm-12 col-xs-12">
         <div class="box ml-n2 mt-2">
 
-          <div class="row mb-4 px-0">
-            <div class="col-md-10 mt-4 ">
-              <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
+          <div class="row px-0">
+            <div class="col-md-4 mt-2 ">
+              <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
                 Home</a>&nbsp;
               <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-              <a routerLink="/role" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
+              <a class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
                 title="role">
-                role</a>&nbsp;
-            </div>
-          </div>
-          <hr>
-          <div class="row m-3 ">
-            <div class="col-md-3  py-1">
-              <h2 class="h1 font-weight-medium  mt-3">Role</h2>
+                Role</a>&nbsp;
             </div>
 
-            <div class="col-md-9 px-2 pt-2 py-1 justify-content-end text-right">
+              <div class="col-md-4">
+                <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
+            </div>
+
+            <div class="col-md-4 px-4">
+              <a class="btn btn-info font-weight-medium rounded-0 pull-right" data-toggle="tooltip" data-placement="bottom"
+              title="Add New Role" (click)="openModal(template)" >      
+            Add  
+            </a>&nbsp;
+          </div>
+
+          </div>
+
+          <hr>
+          <div class="row m-3 ">
+
+            <!-- <div class="col-md-9 px-2 pt-2 py-1 justify-content-end text-right">
               <a routerLink="/role"
                 class="btn btn-info font-weight-medium px-3 py-2 rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip"
                 data-placement="bottom" title="Create New" (click)="openModal(template)"
                 data-toggle="tooltip" data-placement="bottom" title="Add Course Type" (click)="clearForm()">
                 Add Role</a>&nbsp;
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -51,19 +61,19 @@
  </div>
   <!-- <table class="table table-bordered"> -->
     <div class="row">
-      <div class="col-md-8">
-      <div class="shadow m-3 p-5">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+      <div class="container col-md-12">
+      <div class="shadow p-3 h-460" id="A">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
     <thead>
       <tr>
         <!-- <th>No</th> -->
-        <th>Role Name</th>
+        <th class="pl-2">Role Name</th>
         <!-- <th></th> -->
         
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let r of roles;index as i">
+      <tr *ngFor="let r of roles | filter:filter">
         <!-- <td>{{i+1}}</td> -->
         <td>{{r.RoleName}}</td>
         <!-- <td>{{r.IsActive}}</td> -->
@@ -89,7 +99,7 @@
 <ng-template #template>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="modal-header">
-      <h4 class="modal-title pull-left">Role</h4>
+      <h5 class="modal-title pull-left">Role</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -98,13 +108,13 @@
         <div class="row">
             <div class="form-group col-md-4">
 
-                <label for="role" class="mt-3">Role :</label>
+                <label for="role" class="h6 mt-3">Role :</label>
               </div>
               <div class="form-group col-md-6">
                   <input type="text" class="form-control" formControlName="role"
                   [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
                   <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                      <div *ngIf="f.role.errors.required">Name Required </div>
+                      <div *ngIf="f.role.errors.required">Role Name is Required </div>
                     </div>
                     
       

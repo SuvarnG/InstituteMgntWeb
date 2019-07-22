@@ -1,0 +1,13 @@
+#A{
+    overflow-x: hidden;
+    overflow-y: auto;
+   
+}
+
+.h-460{
+    height: 540px;
+}
+
+.w1{
+    max-width: 100%;
+}
