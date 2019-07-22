@@ -32,6 +32,7 @@ export class CoursesComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   CourseTypeId: number;
   CourseId: number;
+  filter:any;
 
 
   @ViewChild(DataTableDirective)

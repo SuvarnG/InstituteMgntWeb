@@ -37,6 +37,7 @@ export class EnquiryComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
   courseType: CourseType[];
+  filter:any;
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

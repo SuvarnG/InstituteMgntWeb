@@ -24,6 +24,7 @@ export class RoleComponent {
   public ID:number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  filter:any;
 
   @ViewChild(DataTableDirective)
     dtElement: DataTableDirective;

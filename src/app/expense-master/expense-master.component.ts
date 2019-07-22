@@ -22,6 +22,7 @@ expensId:Number;
 submitted=false;
 dtOptions: DataTables.Settings = {};
 dtTrigger: Subject<any> = new Subject();
+filter:any;
 
 
   @ViewChild(DataTableDirective)

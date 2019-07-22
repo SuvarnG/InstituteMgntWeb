@@ -25,6 +25,7 @@ export class BranchComponent implements OnInit {
   branchID: number;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  filter:any;
 
   @ViewChild(DataTableDirective)
     dtElement: DataTableDirective;

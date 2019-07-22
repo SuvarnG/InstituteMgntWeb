@@ -21,6 +21,7 @@ export class CoursetypeComponent  {
   public courseType: CourseType[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  filter:any;
 
 
   @ViewChild(DataTableDirective)

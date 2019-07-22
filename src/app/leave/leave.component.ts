@@ -33,6 +33,7 @@ export class LeaveComponent implements OnInit {
   StudentId: number;
   CourseId: number;
   LeaveTransactionId: number;
+  filter:any;
 
   @ViewChild(DataTableDirective)
     dtElement: DataTableDirective;
