@@ -15,15 +15,19 @@
         <div class="box ml-n2 mt-2">
 
           <div class="row mt-2">
-            <div class="col-md-8 mt-2">
+            <div class="col-md-4 mt-2">
               <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
                 title="home">
                 Home</a>&nbsp;
               <i class="fa fa-angle-double-right" aria-hidden="true"></i>
               <a data-toggle="tooltip" data-placement="bottom" class="text-dark" title="Courses">
                 Courses</a>&nbsp;
-
             </div>
+
+            <div class="col-md-4">
+              <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
+          </div>
+
             <div class="col-md-4 px-4">
               <a routerLink="/Courses" class="btn btn-info font-weight-medium rounded-0 pull-right"
                 data-toggle="tooltip" data-placement="bottom" title="Add New Course" (click)="AddCourses(Addtemplate)">
@@ -55,7 +59,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let c of course;index as i">
+            <tr *ngFor="let c of course | filter:filter">
               <!--<td>{{i+1}}</td>-->
               <td>{{c.CourseTypeName}}</td>
               <td>{{c.ShortName}}</td>
