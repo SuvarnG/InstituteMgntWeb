@@ -40,7 +40,8 @@ export class BranchComponent implements OnInit {
       retrieve: false,
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:false
+      paging:false,
+      searching:false
     };
     this.createBrachForm = this.formBuilder.group({
       BranchName: ['', Validators.required],
@@ -118,6 +119,7 @@ export class BranchComponent implements OnInit {
       this.branchService.createNewBranch(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBranchList();
+        this.rerender();
       }, error => this.errorMessage = error)
     }
   }
@@ -141,6 +143,7 @@ export class BranchComponent implements OnInit {
       .subscribe((data) => {
         this.modalRef.hide();
         this.getBranchList();
+        this.rerender();
       }, error => this.errorMessage = error)
   }
 
