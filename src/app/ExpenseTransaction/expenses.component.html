@@ -54,7 +54,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let e of expenses | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }; let i=index">
+          <tr *ngFor="let e of expenses | filter:filter">
             <td>{{e.ExpenseType}}</td>
             <td>{{e.Date | date:'mediumDate'}}</td>
             <td>{{e.PaidByName}}</td>
@@ -76,10 +76,10 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
           </tr>
         </tbody>
       </table>
-      <p *ngIf="expenses && expenses.length==0">No records found.</p>
+      <!-- <p *ngIf="expenses && expenses.length==0">No records found.</p>
     <ul class="pagination" *ngIf="expenses && expenses.length>0">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </ul>
+    </ul> -->
     </div>
   </div>
 
