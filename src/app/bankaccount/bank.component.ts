@@ -59,8 +59,8 @@ export class BankComponent implements OnDestroy, OnInit {
       this.dtOptions = {
         paging:false,
         pagingType: 'full_numbers',
-        pageLength: 10
-  
+        pageLength: 10,
+        searching:false
       };
 
     this.registerForm = this.formBuilder.group({
@@ -115,6 +115,7 @@ export class BankComponent implements OnDestroy, OnInit {
       this.BankService.bank(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBanks(this.user.InstituteId);
+        this.rerender();
         this.submitted = false;
 
       })
@@ -126,7 +127,7 @@ export class BankComponent implements OnDestroy, OnInit {
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static',
-      class: 'modal-xl'
+      class: 'modal-xl',
     });
 
 
