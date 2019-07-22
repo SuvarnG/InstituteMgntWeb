@@ -90,8 +90,8 @@ ngOnInit() {
       retrieve: true,
       paging: false,
       pagingType: 'full_numbers',
-      pageLength: 10
-
+      pageLength: 10,
+      searching:false
     };
 
   this.CreateFormGroup = this.formBuilder.group({
@@ -164,6 +164,7 @@ ngOnInit() {
       this.BanktransactionService.banktransaction(body).subscribe((data) => {
         this.modalRef.hide();
         this.getBankTransaction(this.user.BranchId);
+        this.rerender();
         this.submitted = false;
 
       })
@@ -228,6 +229,7 @@ ngOnInit() {
     this.BanktransactionService.edit(body).subscribe(data => {
       this.modalRef.hide();
       this.getBankTransaction(this.user.BranchId);
+      this.rerender();
     }, error => console.error(error))
   }
   clearForm()
