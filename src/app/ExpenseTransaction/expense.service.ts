@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Expenses, ExpenseMaster } from '../Model/Expenses';
+import { Expenses, ExpenseMaster,ExpenseChart, IncomeExpense } from '../Model/Expenses';
 import { map, tap, catchError, debounceTime } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { User } from '../Model/User';
@@ -53,6 +53,16 @@ export class ExpenseService {
         console.log(Expenses);
         return Expenses;
       }));
+  }
+
+  expensesChartList(BranchId:number) {
+    debugger;
+    return this.http.post<ExpenseChart[]>( environment.APIBASEURL + 'Expenses/GetExpensesData_Chart'+'/'+BranchId,null, this.getAuthHeader());
+  }
+
+  getIncomeAndExpenseData(BranchId:number){
+    debugger;
+    return this.http.post<IncomeExpense[]>(environment.APIBASEURL + 'Expenses/GetIncomeAndExpenseData'+'/'+BranchId,null, this.getAuthHeader())
   }
 
   deleteExpense(id): Observable<Expenses> {

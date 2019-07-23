@@ -13,6 +13,11 @@ export interface Expenses {
     Paid:number
 }
 
+export interface ExpenseChart{
+    ExpenseName:string;
+    PaidAmount:number;
+}
+
 export interface ExpenseMaster{
     ExpenseId:Number,
     Expenses:string
@@ -31,4 +36,9 @@ export interface ExpenseReportList{
     AmountPaid:number;
     Date:Date;
     PaidBy:string;
+}
+
+export interface IncomeExpense{
+    Income:number;
+    Expense:number;
 }
