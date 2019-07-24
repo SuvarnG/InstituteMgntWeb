@@ -1,15 +1,9 @@
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
 
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-      <div class="row">
-          <div class="col-md-12 col-sm-12">
-              <div class="box ml-n2 mt-2">
-      
+    <main class="main">      
                   <div class="row mt-2">
                       <div class="col-md-4 mt-2">
                         <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -35,25 +29,19 @@
                       
                     </div> 
                     <hr>
-              </div>
-            </div>
-
     <div class="container shadow p-3 h-460" id="A">
       <!-- <table class="table table-bordered"> -->
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
         <thead>
           <tr>
-            <!-- <th scope="col">No</th> -->
             <th class="pl-2" scope="col">Leave Type</th>
             <th class="pl-2" scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let l of Leaves | filter:filter">
-            <!-- <td>{{i+1}}</td> -->
             <td>{{l.LeaveType}}</td>
             <td>
-
               <svg class="icon" (click)="UpdateNewLeave(template2,l.LeaveType)" version="1.1" id="Capa_1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"
@@ -69,14 +57,12 @@
                 </g>
               </svg>
             </td>
-
           </tr>
         </tbody>
       </table>
     </div>
+    </main>
   </div>
-</div>
-
 
 <ng-template #template>
   <div class="modal-header">

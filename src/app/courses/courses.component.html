@@ -3,17 +3,12 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
 
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-    <div class="row">
-      <div class="col-md-12 col-sm-12">
-        <div class="box ml-n2 mt-2">
 
+    <main class="main">
           <div class="row mt-2">
             <div class="col-md-4 mt-2">
               <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -37,33 +32,25 @@
 
           </div>
           <hr>
-        </div>
-      </div>
 
       <div id="A" class="container shadow p-3 h-460">
         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
           <thead>
             <tr>
-              <!--<th>No</th>-->
               <th class="pl-2">Course Type</th>
               <th class="pl-2">Course</th>
-              <!--<th>Full Name</th>-->
               <th class="pl-2">Percentage</th>
               <th class="pl-2">Fees (Rs)</th>
               <th class="pl-2">Duration (In Days)</th>
 
               <th class="pl-2">Percentage</th>
               <th class="pl-2">Action</th>
-              <!-- <th></th> -->
-
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let c of course | filter:filter">
-              <!--<td>{{i+1}}</td>-->
               <td>{{c.CourseTypeName}}</td>
               <td>{{c.ShortName}}</td>
-              <!--<td>{{c.FullName}}</td>-->
               <td><i class="material-icons"
                   [style.color]="c.IsPercentage==true  ? 'teal' : 'danger'">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
               </td>
@@ -88,16 +75,13 @@
                   </svg>
                 </div>
                 &nbsp;
-                <!--<button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Delete"
-(click)="Delete(c.CourseId)">
-<i style='font-size:20px' class="fa fa-trash" aria-hidden="true"></i>-->
               </td>
-
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+</main>
+</div>
 
     <!-- Create model -->
 
@@ -199,8 +183,6 @@
 
     </ng-template>
 
-
-    <!-- Edit Course Model -->
 
     <!-- Edit Course Model -->
 

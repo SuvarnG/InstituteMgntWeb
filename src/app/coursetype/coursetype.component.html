@@ -1,17 +1,11 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
 
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="box ml-n2 mt-2">
-    
+    <main class="main"> 
                 <div class="row mt-2">
                     <div class="col-md-4 mt-2">
                       <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -36,16 +30,11 @@
                    
                   </div> 
                   <hr>
-            </div>
-          </div>
-
   
-  <!-- <table class="table table-bordered"> -->
       <div class="container shadow p-3 h-460" id="A">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
     <thead>
       <tr>
-        <!-- <th>No.</th> -->
         <th class="pl-2">Course Type Name</th>
         <th></th>
         
@@ -53,7 +42,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let c of courseType | filter:filter">
-        <!-- <td>{{i+1}}</td> -->
         <td>{{c.CourseTypeName}}</td>
         <td>
                    
@@ -72,13 +60,11 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
             </g>
           </g>
         </svg>
-
-
-
       </tr>
     </tbody>
   </table>
 </div>
+</main>
 </div>
 
 <ng-template #addtemplate>

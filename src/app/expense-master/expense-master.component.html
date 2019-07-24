@@ -1,20 +1,11 @@
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-  integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
 
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="box ml-n2 mt-2">
-    
+    <main class="main">   
                 <div class="row mt-2">
                     <div class="col-md-4 mt-2">
                       <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -40,24 +31,19 @@
                    
                   </div> 
                   <hr>
-            </div>
-          </div>
 
     <div class="container shadow p-3 h-460" id="A">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
         <thead>
           <tr>
-
             <th class="pl-2">Expenses</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let expense of expenses | filter:filter">
-            <!-- <td>{{i+1}}</td> -->
             <td>{{expense.Expenses}}</td>
-            <td>
-              
+            <td>             
               <svg class="icon" (click)="editExpense(EditExpenseTemplate,expense)" data-toggle="tooltip"
                 data-placement="bottom" title="Edit Expense" version="1.1" id="Capa_1"
                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -73,21 +59,13 @@ C386.027,77.92,386.027,64.373,377.707,56.053z" />
                   </g>
                 </g>
               </svg>
-
-
               &nbsp;&nbsp;&nbsp;&nbsp;
-              
-               <!-- <svg class="icon-red" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)" data-toggle="tooltip"
-                data-placement="bottom" title="Delete Expense" xmlns="http://www.w3.org/2000/svg" width="18"
-                viewBox="0 0 24 24">
-                <path
-                  d="M3 6v18h18v-18h-18zm5 14c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm5 0c0 .552-.448 1-1 1s-1-.448-1-1v-10c0-.552.448-1 1-1s1 .448 1 1v10zm4-18v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.315c0 .901.73 2 1.631 2h5.712z" />
-              </svg>  -->
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+    </main>
   </div>
 
   <ng-template #CreateExpenseTemplate>

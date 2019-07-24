@@ -1,17 +1,11 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
-
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="box ml-n2 mt-2">
     
+    <main class="main"> 
                 <div class="row mt-2">
                     <div class="col-md-4 mt-2">
                       <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -35,10 +29,6 @@
                     </div>
                    
                   </div> 
-                  <hr>
-            </div>
-          </div>
-
     <!-- leave transaction table -->
     <div class="container shadow p-3 h-460" id="A">
       <div class="row p-0 m-0">
@@ -47,12 +37,10 @@
           <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
             <thead>
               <tr>
-                <!-- <th scope="col">ID</th> -->
                 <th class="pl-2" scope="col">Course</th>
                 <th  class="pl-2" scope="col">Student Name</th>
                 <th  class="pl-2" scope="col">Leave Type </th>
                 <th  class="pl-2" scope="col">Reason</th>
-                <!-- <th scope="col">Comment</th> -->
                 <th  class="pl-2"  class="pl-2" scope="col">Follow-up Date</th>
                 <th  class="pl-2" scope="col">From Date</th>
                 <th  class="pl-2" scope="col">To Date</th>
@@ -70,7 +58,6 @@
                 <td>{{item.FirstName}}</td>
                 <td>{{item.Leave}}</td>
                 <td>{{item.Reason}}</td>
-                <!-- <td>{{item.Comment}}</td> -->
                 <td>{{item.NeedFollowupDate | date }}</td>
                 <td>{{item.FromDate | date }}</td>
                 <td>{{item.ToDate| date}}</td>
@@ -91,7 +78,6 @@
                       </g>
                     </g>
                   </svg>
-
                 </td>
               </tr>
             </tbody>
@@ -99,7 +85,7 @@
         </div>
       </div>
     </div>
-
+    </main>
   </div>
 
   <!-- Create leave modal -->
