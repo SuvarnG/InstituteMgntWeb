@@ -1,14 +1,14 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
+
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
+
   
 
-
+  <main class="main">
   <div class="container p-4 m-0 body-width">
       <div class="row mb-4">
           <div class="col-md-10 mt-2">
@@ -447,7 +447,11 @@
   </div>
 
 </div>
+</main>
 </div>
+
+
+
  <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">
     <div class="modal-header">
