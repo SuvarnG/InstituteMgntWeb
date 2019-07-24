@@ -33,7 +33,53 @@
           
           <div class="row my-4 px-3 pb-3">
               <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4 mb-3" *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
-              <div class="card shadow  pb-0 bg-white rounded-0" style="width: 22rem;">
+     
+                
+                  <div class="card">
+                      <div class="card-header h5">{{t.FirstName+' '+t.LastName | titlecase}}
+                        <div class="card-header-actions">
+                          <a class="card-header-action btn-setting" (click)="getStaffDetails(showStaff,t)" title="Staff Details">
+                            <i class="cui-info"></i>
+                          </a>
+                          <a class="card-header-action btn-minimize" (click)="edit(editStaff,t)" title="Edit Information">
+                            <i class="cui-pencil"></i>
+                          </a>
+                          <a class="card-header-action btn-close" (click)="delete(t.StaffId,t.FirstName,t.LastName)" title="Delete Staff">
+                            <i class="icon-close"></i>
+                          </a>
+                        </div>
+                      </div>
+                      <div class="collapse show" id="collapseExample">
+                        <div class="card-body">
+                            <div class="row border-bottom">
+                            <div class="col-sm-3">
+                                <img src="{{t.Photo}}" class="img-circle" width="80" height="80">
+                              </div>
+                              <div class="col-sm-9">
+      
+                                <div class="row ">
+                                  <div class="col-sm-12  ">
+                                    <p class="card-title mb-1">{{t.ContactNo}}</p>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-12  ">
+                                    <p class="card-title">{{t.Email}}</p>
+                                  </div>
+                                </div>
+                                <!-- <div class="row">
+                                    <div class="col-sm-12  ">
+                                      <p class="card-title">{{s.EmailId}}</p>
+                                    </div>
+                                  </div> -->
+
+                              </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+           
+                <!-- <div class="card shadow  pb-0 bg-white rounded-0" style="width: 22rem;">
                 <div class="card-body  pb-0">
                   <div class="row border-bottom">
                     <div class="col-sm-3">
@@ -42,9 +88,7 @@
                     <div class="col-sm-9">
                       <div class="row ">
                         <div class="col-sm-12 ">
-                          <!-- <a type="btn" class="btn  btn-link ml-2" (click)="getStaffDetails(showStaff,t)">
-                              <span>{{t.FirstName+' '+t.LastName}}</span>
-                            </a> -->
+                            </a> 
                           <h5 class="card-title mb-1">{{t.FirstName+' '+t.LastName | titlecase}}</h5>
                         </div>
                       </div>
@@ -122,7 +166,9 @@
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> -->
+
+
             </div>
           </div>
           <p *ngIf="staffMaster && staffMaster.length==0">No records found.</p>
