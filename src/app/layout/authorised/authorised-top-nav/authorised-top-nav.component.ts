@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Utils } from 'src/app/Utils';
 @Component({
   selector: 'app-authorised-top-nav',
   templateUrl: './authorised-top-nav.component.html',
@@ -11,6 +12,7 @@ export class AuthorisedTopNavComponent implements OnInit {
   constructor(private router: Router,) { }
 
   ngOnInit() {
+    console.log(this.user)
   }
 
   Logout(){
@@ -18,6 +20,8 @@ export class AuthorisedTopNavComponent implements OnInit {
     localStorage.removeItem('CurrentUser');
     this.router.navigate(['/Login']);
   }
+
+  public user = Utils.GetCurrentUser();
 
   
 
