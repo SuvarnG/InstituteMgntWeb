@@ -10,7 +10,7 @@
     margin-right:15%;
     text-align: center;
 } */
-
+/* 
 .body{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background-color: black;
@@ -24,7 +24,7 @@
 .img {
     border-radius: 50%;
     
-}
+} */
 
 /* .btn-primary{
     background-color: #009999;
@@ -49,9 +49,9 @@ margin-top: 0px;
     padding: 0px;
 } */
 
-.modal-lg {
+/* .modal-lg {
     max-width: 80%;
-}
+} */
 /* label {
     float: left
 }
@@ -63,11 +63,10 @@ span {
 input {
     width: 100%;
 } */
-
+/* 
 .form-control{
-    /* font-size:22px !important; */
     columns: #222222;
-}
+} */
 
 
 

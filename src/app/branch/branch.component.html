@@ -7,7 +7,32 @@
 
       
   <main class="main">
-                  <div class="row mt-2">
+
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+        title="home">
+        Home</a></li>
+      <li class="breadcrumb-item">Branches</li>
+      
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+          
+            <button class="btn btn-primary" type="button">
+                <i class="fa fa-search"></i></button>
+
+            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+            &nbsp;&nbsp;
+            <a class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20 text-white" data-toggle="tooltip" data-placement="bottom"
+                          title="Add Branch"  (click)="openPopupForNew(NewBranchTemplate)">      
+                         Add
+                        </a>
+        </div>
+      </li>
+    </ol>
+
+                  <!-- <div class="row mt-2">
                       <div class="col-md-4 mt-2">
                         <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
                           title="home" >
@@ -30,7 +55,7 @@
                       </div>
                       
                     </div> 
-                    <hr>
+                    <hr> -->
     <div class="container shadow p-3 h-460" id="A">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
         <thead>

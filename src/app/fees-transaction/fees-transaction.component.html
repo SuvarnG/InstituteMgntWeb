@@ -5,6 +5,14 @@
 
   <main class="main">
     <form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
+        <!-- Breadcrumb-->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+              title="home">
+              Home</a></li>
+            <li class="breadcrumb-item">Fees Transaction</li>
+          </ol> 
+<!-- 
       <div class="row mt-2 px-0">
         <div class="col-md-10 mt-2 ">
           <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
@@ -14,7 +22,8 @@
             title="Fees Transaction">Fees Transaction</a>
         </div>
       </div>
-      <hr>
+      <hr> -->
+      
       <div class="row justify-content-end text-right shadow p-3 m-2">
         <div class="col-md-12 mt-2">
           <div class="form-row mb-3">

@@ -6,7 +6,30 @@
     <app-authorised-side-nav></app-authorised-side-nav>
 
     <main class="main">
-          <div class="row mt-2">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+        title="home">
+        Home</a></li>
+      <li class="breadcrumb-item">Staff</li>
+      
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+          
+            <button class="btn btn-primary" type="button">
+                <i class="fa fa-search"></i></button>
+
+            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+            &nbsp;&nbsp;
+            <a routerLink="/TeacherCourses" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
+                title="Add Staff" > Add      
+              </a>
+        </div>
+      </li>
+    </ol>
+
+          <!-- <div class="row mt-2">
             <div class="col-md-4 mt-2">
               <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
                 title="home" >
@@ -23,12 +46,11 @@
             <div class="col-md-4 px-4">
                 <a routerLink="/TeacherCourses" class="btn btn-info font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
                 title="Add Staff" > Add      
-                <!-- <svg class="white-icon " xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg> -->
               </a>
               &nbsp;
             </div>
             
-          </div> <hr>
+          </div> <hr> -->
 
           
           <div class="row my-4 px-3 pb-3">

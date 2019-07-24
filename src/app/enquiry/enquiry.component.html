@@ -1,18 +1,37 @@
 <!-- Add top navigation componant -->
 <app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="row">
-  <div class="col-md-2">
+<div class="app-body">
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
 
-  <div class="col-xl-10 col-lg-10 col-md-10 col-sm-10 col-xs-10">
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="box ml-n2 mt-2">
-    
-                <div class="row mt-2">
+    <main class="main"> 
+     <!-- Breadcrumb-->
+   <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
+        title="home">
+        Home</a></li>
+      <li class="breadcrumb-item">Enquiry</li>
+      
+      <!-- Breadcrumb Menu-->
+      <li class="breadcrumb-menu d-md-down-none">
+        <div class="btn-group" role="group" aria-label="Button group">
+          
+            <button class="btn btn-primary" type="button">
+                <i class="fa fa-search"></i></button>
+
+            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+            &nbsp;&nbsp;
+            <a Enquiry class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20 text-white" data-toggle="tooltip" data-placement="bottom"
+            title="Add Enquiry"  (click)="OpenEnquiryModel(CreateEnquiryModal)">      
+           Add
+          </a>
+        </div>
+      </li>
+    </ol>
+
+
+                <!-- <div class="row mt-2">
                     <div class="col-md-4 mt-2">
                       <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
                         title="home" >
@@ -34,9 +53,7 @@
                       </a>&nbsp;
                     </div>                   
                   </div> 
-                  <hr>
-            </div>
-          </div>
+                  <hr> -->
 
 <!-- Enquiry table -->
 <div class="container shadow p-3 h-460" id="A">
@@ -86,6 +103,7 @@
 </div> 
 </div>
 </div>
+</main>
 </div>
 
 <!-- Create Enquiry modal -->
