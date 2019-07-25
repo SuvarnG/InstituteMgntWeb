@@ -11,5 +11,6 @@ export interface Auth {
     Photo:string;
     BranchId:number;
     InstituteId:number;
+    userEmail:string;
 
 }
