@@ -9,8 +9,14 @@
   
 
   <main class="main">
-  <div class="container p-4 m-0 body-width">
-      <div class="row mb-4">
+      <!-- Breadcrumb-->
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/StaffList">Staff</a></li>
+          <li class="breadcrumb-item"> Add Staff</li>
+        </ol> 
+      <div class="container-fluid">
+      <!-- <div class="row mb-4">
           <div class="col-md-10 mt-2">
             <a routerLink="/Dashboard" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
               title="home" class="text-dark">
@@ -25,14 +31,14 @@
             Add Staff</a>
           </div>
         
-        </div> <hr>
+        </div>  -->
 
     <div class="row">
       <!-- <div class="col-md-12  mx-3">
         <h2 class="h1 font-weight-medium mb-4 mt-2">Add Staff</h2>
       </div> -->
     </div>
-    <div id="A" class="h-460 shadow p-3">
+    <div>
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
         <div class="col-md-12 border-bottom">
@@ -438,8 +444,8 @@
         </div>
       </div> -->
       <div class="modal-footer">
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-          <a routerLink="/StaffList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
+          <button class="btn btn-primary btn-square ml-2 " type="submit">Submit</button>
+          <a routerLink="/StaffList" class="btn btn-danger btn-square ml-2">      
             Cancel</a>
         </div>
 
@@ -528,8 +534,8 @@
     <div class="modal-footer">
       <!-- <button type="submit" id="submitCourse" class="btn btn-primary">Save</button>
       <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
-      <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" id="submitCourse" type="submit">Submit</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button" data-dismiss="modal"
+      <button class="btn btn-primary btn-square ml-2" id="submitCourse" type="submit">Submit</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" data-dismiss="modal"
             (click)="modalRef.hide()">Cancel</button>
     </div>
   </form>
@@ -547,66 +553,6 @@
       </div>
       <div class="modal-body">
         <table>
-          <!-- <tr>
-            <td colspan="1">
-              <div class="form-group">
-                <div class="form-row">
-                  <div class="form-group col-md-4">
-                    <label for="fullName">Full Name</label>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="First name" formControlName="FirstName"
-                      [ngClass]="{ 'is-invalid': submitted && login.FirstName.errors }">
-                    <div *ngIf="submitted && login.FirstName.errors" class="invalid-feedback">
-                      <div *ngIf="login.FirstName.errors.required">First Name is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control" placeholder="Last name" formControlName="LastName"
-                      [ngClass]="{ 'is-invalid': submitted && login.LastName.errors }">
-                    <div *ngIf="submitted && login.LastName.errors" class="invalid-feedback">
-                      <div *ngIf="login.LastName.errors.required">Last Name is required</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr> -->
-          <!-- <tr>
-            <td colspan="1">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="Email">Email ID</label>
-                </div>
-                <div class="form-group col-md-6">
-                  <input type="text" class="form-control" placeholder="Email" formControlName="Email"
-                    [ngClass]="{ 'is-invalid': submitted && login.Email.errors }">
-                  <div *ngIf="submitted && login.Email.errors" class="invalid-feedback">
-                    <div *ngIf="login.Email.errors.required"></div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr> -->
-          <!-- <tr>
-            <td colspan="1">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="Role">Role</label>
-                </div>
-                <div class="form-group col-md-6">
-                  <select class="form-control" formControlName="Role"
-                    [ngClass]="{ 'is-invalid': submitted && login.Role.errors }" (change)="selectRole($event)">
-                    <option *ngFor="let rolelist of roles" [value]="rolelist.roleID">
-                      {{rolelist.RoleName}} </option>
-                  </select>
-                  <div *ngIf="submitted && login.Role.errors" class="invalid-feedback">
-                    <div *ngIf="login.Role.errors.required"></div>
-                  </div>
-                </div>
-              </div>
-            </td>
-          </tr> -->
           <tr>
             <td colspan="1">
               <div class="form-row">
@@ -645,10 +591,8 @@
         </table>
       </div>
       <div class="modal-footer">
-
-
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" id="submitLogin" type="submit">Submit</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          <button class="btn btn-primary btn-square ml-2" id="submitLogin" type="submit">Submit</button>
+          <button class="btn btn-danger btn-square ml-2" type="button"
             (click)="modalRef.hide()">Cancel</button>
         <!-- <button type="button" type="submit" id="submitLogin" class="btn btn-primary">Save</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
