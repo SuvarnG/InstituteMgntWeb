@@ -8,9 +8,7 @@
     <main class="main">
         <!-- Breadcrumb-->
    <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
-        title="home">
-        Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
       <li class="breadcrumb-item">Expenses</li>
       
       <!-- Breadcrumb Menu-->
@@ -56,7 +54,10 @@
                   </div> 
                   <hr> -->
  
-    <div class="container shadow p-3 h-460" id="A">    
+    <div class="container-fluid">  
+        <div id="ui-view">
+            <div class="card border-0 shadow rounded-0">
+              <div class="card-body">  
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="tbl row-border hover">
         <thead>
           <tr>
@@ -81,7 +82,11 @@
           </tr>
         </tbody>
       </table>
+      </div>
+      </div>
+      </div>
     </div>
+
 </main>
   </div>
   <ng-template #editExpense>
@@ -94,54 +99,49 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()">
+        <div class="form-group">
         <div class="row">
-          <div class="col-md-12 my-3">
-
-            <div class="row">
-              <div class="col-md-12 px-4">
-                <div class="form-row">
-
-                  <div class="form-group col-md-3 px-3">
-                    <select name="ExpenseType" id="ExpenseType" class="form-control" formControlName="ExpenseType"
+      
+                  <div class="col-md-4">
+                    <select id="ExpenseType" class="form-control" formControlName="ExpenseType"
                        [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
-                      <!-- <option [value]="null">Select Name</option> -->
+                      <!-- <option value="null" disabled hidden>Select Expense Type</option> -->
                       <option *ngFor="let expense of listExpenseType" [value]="expense.ExpenseId">
                         {{expense.Expenses}}
-                        <!-- {{expense.ExpenseType}} -->
                       </option>
                     </select>
-                    <div *ngIf="submitted && form.ExpenseType.errors">
+                    <div *ngIf="submitted && form.ExpenseType.errors" class="invalid-feedback">
                       <div *ngIf="form.ExpenseType.errors.required">Expense Type is required</div>
                     </div>
                   </div>
 
-                  <div class="form-group col-md-3 px-3">
+                  <div class="col-md-4">
                     <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
                       placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
-                    <div *ngIf="submitted && form.AmountPaid.errors">
+                    <div *ngIf="submitted && form.AmountPaid.errors" class="invalid-feedback">
                       <div *ngIf="form.AmountPaid.errors.required">Amount Paid is required</div>
                     </div>
                   </div>
 
-                  <div class="form-group col-md-3 px-3">
+                  <div class="col-md-4">
                   <input class="form-control" id="Remark" formControlName="Remark"
                   [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
-                  <div *ngIf="submitted && form.Remark.errors">
+                  <div *ngIf="submitted && form.Remark.errors" class="invalid-feedback">
                     <div *ngIf="form.Remark.errors.required">Remark is required</div>
                   </div>
                 </div>
 
-              </div>
-
-              </div>
-            </div>
-          </div>
+               
         </div>
+        <hr>
+      </div>
+
+       
         <!-- second Row start -->
 
         <div class="form-row justify-content-end text-right">
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
+          <button class="btn btn-square btn-primary" type="submit">Update</button>
+          <button class="btn btn-danger btn-square ml-2" type="button"
             (click)="modalRef.hide()">Cancel</button>
       </div>
       </form>
@@ -160,104 +160,50 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-md-12 my-3">
-            <!-- <h4 class=" font-weight-medium  py-4 px-3">Expense Details :</h4> -->
 
-            <div class="row">
-              <div class="col-md-12 px-4">
-                <div class="form-row">
-                  <!-- <div class="form-group col-md-1">
-            <label for="fullName">Name</label>
-          </div> -->
-                  <div class="form-group col-md-3 px-3">
+        <div class="form-group">
+        <div class="row">
+                  <div class="col-md-4">
                     <select name="ExpenseType" id="ExpenseType" [value]="null" class="form-control"
                       formControlName="ExpenseType" [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
-                      <option value="null">Expense Type</option>
+                      <option value="null" disabled hidden>Select Expense Type</option>
                       <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
                         {{expense.Expenses}}
                       </option>
                     </select>
-                    <div *ngIf="submitted && f.ExpenseType.errors">
+                    <div *ngIf="submitted && f.ExpenseType.errors" class="invalid-feedback">
                       <div *ngIf="f.ExpenseType.errors.required">Expense Type is required</div>
                     </div>
                   </div>
 
-                  <div class="form-group col-md-3 px-3">
+                  <div class="col-md-4">
                     <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
                       placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
-                    <div *ngIf="submitted && f.AmountPaid.errors">
+                    <div *ngIf="submitted && f.AmountPaid.errors" class="invalid-feedback">
                       <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
                     </div>
                   </div>
 
 
-                  <div class="form-group col-md-3 px-3">
+                  <div class="col-md-4">
                   <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
                   [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
-                <div *ngIf="submitted && f.Remark.errors">
+                <div *ngIf="submitted && f.Remark.errors" class="invalid-feedback">
                   <div *ngIf="f.Remark.errors.required">Remark is required</div>
                 </div>
                 </div>
-
-
-                  <!-- <div class="form-group col-md-3 px-3">
-                    <input class="form-control" id="Date" formControlName="Date"
-                      [ngClass]="{'is-invalid': submitted && f.Date.errors }">
-                    <div *ngIf="submitted && f.Date.errors">
-                      <div *ngIf="f.Date.errors.required">Date is required</div>
-                    </div>
-                  </div> -->
-                  <!-- <div class="form-group col-md-3 px-3">
-                    <select name="PaidByWhom" class="form-control" formControlName="PaidByWhom"
-                      (change)="selectUser($event)" [ngClass]="{'is-invalid': submitted && f.PaidByWhom.errors} ">
-                      <option value="null">Paid By Whom</option>
-                      <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
-                        
-                        <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
-                        <span>{{' '+ staff.LastName}}</span>
-                      </option>
-                    </select>
-                    <div *ngIf="submitted && f.PaidByWhom.errors">
-                      <div *ngIf="f.PaidByWhom.errors.required">Paid by Whom</div>
-                    </div>
-                  </div> -->
-                </div>
-
-                <!-- <div class="form-row">
-                  <div class="form-group col-md-3 mt-3 px-3">
-                    <label class="col-md-6 control-label">Date Of Birth</label>
-                    <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
-                      [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
-                    <div *ngIf="submitted && f.Remark.errors">
-                      <div *ngIf="f.Remark.errors.required">Remark is required</div>
-                    </div>
-                  </div>
-                </div> -->
-
               </div>
-            </div>
-          </div>
+
         </div>
+
+        <hr>
         <!-- second Row start -->
 
-        <div class="row justify-content-end text-right">
-          <div class="col-md-3 pb-3">
-            <div class="form-row">
-              <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-              <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-                (click)="modalRef.hide()">Cancel</button>
-
-
-            </div>
-          </div>
+        <div class="form-row justify-content-end text-right">
+              <button class="btn btn-square btn-primary" type="submit">Submit</button>
+              <button class="btn btn-danger btn-square ml-2" type="button"
+                (click)="modalRef.hide()">Cancel</button>     
         </div>
-
-
-
-
-
-
 
 
       </form>
