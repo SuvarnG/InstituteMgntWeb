@@ -6,9 +6,7 @@
     <main class="main"> 
        <!-- Breadcrumb-->
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
-        title="home">
-        Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
       <li class="breadcrumb-item">Student</li>
       
       <!-- Breadcrumb Menu-->
@@ -84,17 +82,17 @@
 
                           <div class="row ">
                             <div class="col-sm-12 ">
-                              <p class="card-title">{{s.Course}}</p>
+                              <p class="card-title"><i class="icon-book-open"></i> {{s.Course}}</p>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-sm-12  ">
-                              <p class="card-title">{{s.ContactNo}}</p>
+                              <p class="card-title"><i class="font-md cui-phone"></i> {{s.ContactNo}}</p>
                             </div>
                           </div>
                           <div class="row">
                               <div class="col-sm-12  ">
-                                <p class="card-title">{{s.EmailId}}</p>
+                                <p class="card-title"><i class="font-md cui-envelope-closed"></i> {{s.EmailId}}</p>
                               </div>
                             </div>
                         </div>
