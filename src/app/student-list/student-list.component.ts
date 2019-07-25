@@ -198,7 +198,7 @@ export class StudentListComponent implements OnInit {
           Document:s.Document
         })
 
-    this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
+    this.modalRef = this.modalService.show(studentDetails, { class: 'modal-md' })
   }
 
   showUpload() {
