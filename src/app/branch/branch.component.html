@@ -72,21 +72,11 @@
             <td>{{branches.Address}}</td>
             <td>{{branches.ContactNo}}</td>
             <td>
+                <a class="card-header-action btn-minimize" (click)="openPopupForEdit(EditBranchTemplate,branches)" title="Edit Information">
+                    <i class="cui-pencil"></i>
+                  </a> 
 
-              <svg class="icon" (click)="openPopupForEdit(EditBranchTemplate,branches)" data-toggle="tooltip"
-                data-placement="bottom" title="Edit Branch" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 383.947 383.947"
-                style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve" width="18px">
-                <g>
-                  <g>
-                    <g>
-                      <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893" />
-                      <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
-C386.027,77.92,386.027,64.373,377.707,56.053z" />
-                    </g>
-                  </g>
-                </g>
-              </svg>
+              
 
               &nbsp;&nbsp;&nbsp;&nbsp;
             </td>
