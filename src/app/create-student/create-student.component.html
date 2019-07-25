@@ -4,44 +4,19 @@
   <div class="app-body">
     <app-authorised-side-nav></app-authorised-side-nav>
   
-
-
   <main class="main">
 
+      <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
+          <li class="breadcrumb-item"><a routerLink="/StudentList">Student</a></li>
+          <li class="breadcrumb-item">Add Student</li>
+          <!-- Breadcrumb Menu-->
 
-      <div class="row mb-4">
-          <div class="col-md-10 mt-2">
-            <a routerLink="/Dashboard" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
-              title="home" class="text-dark">
-              Home</a>&nbsp;
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a routerLink="/StudentList"  data-toggle="tooltip" data-placement="bottom"
-            title="StudentList" class="text-dark">
-            Student</a>&nbsp;
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;
-            <a data-toggle="tooltip" data-placement="bottom"
-            title="Add Student" class=" active">
-            Add Student</a>
-          </div>
-        
-        </div> <hr>
-      <!-- <div class="row mb-4">
-          <div class="col-md-10 mt-4 ">
-            <a routerLink="/TeacherCourses" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
-              title="home" style="font-weight:normal;font-size:18px;color: black">
-              Home</a>&nbsp;
-            <i class="fa fa-angle-double-right" aria-hidden="true" style="font-size:20px"></i>
-            <a routerLink="/TeacherCourses"  data-toggle="tooltip" data-placement="bottom"
-            title="staff" style="font-weight:normal;font-size:18px;color: black">
-            Staff</a>&nbsp;
-          </div>
-        
-        </div> <hr> -->
+        </ol>
 
-
-  <div class="container px-4 pb-4 m-0 body-width">
+  <div class="container-fluid">
     
-    <div id="A"  class="h-460 shadow p-3">
+
     <form [formGroup]="registerForm" (ngSubmit)="openModal(template)">
       <div class="row">
         <div class="col-md-12 border-bottom ">
@@ -341,23 +316,12 @@
 
 
       <div class="modal-footer">
-          <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-          <a routerLink="/StudentList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
+          <button class="btn btn-primary btn-square" type="submit">Submit</button>
+          <a routerLink="/StudentList" class="btn btn-danger btn-square ml-2">      
             Cancel</a>
         </div>
-      <!-- <div class="row justify-content-end text-right">
-        <div class="col-md-3 pb-4  mt-5">
-          <div class="form-row">
-            <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-            <a routerLink="/StudentList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
-              Cancel</a>
-            
-
-          </div>
-        </div>
-      </div> -->
     </form>
-  </div>
+
   </div>
 </main>
 </div>
