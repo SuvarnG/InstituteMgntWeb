@@ -188,7 +188,7 @@
                   </div>
               
               
-		<div class="form-row pull-right">
+		<div class="modal-footer">
         <button class="btn btn-primary btn-square" type="submit">Submit</button>
         <button class="btn btn-danger btn-square ml-2" type="button"
           (click)="modalRef.hide()">Cancel</button>
@@ -213,6 +213,7 @@
     </button>
     </div>
     <div class="modal-body">
+        <div class="container-fluid">
         <form [formGroup]="UpdateFormGroup" (ngSubmit)="update()">
            
                 <div class="form-group">
@@ -225,7 +226,7 @@
                 </div>
                 <div class="form-group">
                 <label for="Amount">Amount</label>
-                <input type="text" class="form-control border-0 text-muted" formControlName="Amount" [ngClass]="{ 'is-invalid': submitted &&
+                <input type="text" class="form-control  text-muted" formControlName="Amount" [ngClass]="{ 'is-invalid': submitted &&
                   fu.Amount.errors }">
                   <div *ngIf="submitted && fu.Amount.errors" class="invalid-feedback">
                       <div *ngIf="fu.Amount.errors.required">Please Enter Amount</div>
@@ -249,12 +250,13 @@
                 
                 
                 
-    <div class="form-row pull-right">
+    <div class="modal-footer">
     <button class="btn btn-primary btn-square" type="submit">Update</button>
     <button class="btn btn-danger btn-square ml-2" type="button"
     (click)="modalRef.hide()">Cancel</button>
     </div>
     </form>
+    </div>
     </div>
     </ng-template>
 
