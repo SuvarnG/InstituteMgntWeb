@@ -6,28 +6,35 @@
     <!-- Add left navigation componant -->
     <app-authorised-side-nav></app-authorised-side-nav>
  
-
+    
     <main class="main">
   <!-- Breadcrumb-->
   <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
-        title="home">
-        Home</a></li>
+      <li class="breadcrumb-item"><a routerLink="/Dashboard"> Home</a></li>
       <li class="breadcrumb-item"> Bank Accounts</li>
       
       <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group">
           
-            <button class="btn btn-primary" type="button">
-                <i class="fa fa-search"></i></button>
+          <div class="input-group">
+            <span class="input-group-prepend">
+            <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search"></i></button>
+            </span>
+            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> 
+            </div>
 
-            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
-            &nbsp;&nbsp;
-            <a class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20 text-white" data-toggle="tooltip" data-placement="bottom"
-            title="Add Bank Account" (click)="addBankAccNo(Addtemplate)">     
+            <!-- <button class="btn btn-primary btn-square" type="button">
+                <i class="fa fa-search"></i></button> -->
+
+            <!-- <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+           --> &nbsp;&nbsp; 
+           <button class="btn btn-sm btn-primary btn-square text-white"(click)="addBankAccNo(Addtemplate)" type="button">Add</button>
+             <!-- <a class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20 text-white" data-toggle="tooltip" data-placement="bottom"
+            title="Add Bank Account" (click)="addBankAccNo(Addtemplate)">    
            Add 
-          </a>
+          </a> -->
         </div>
       </li>
     </ol>
@@ -57,7 +64,10 @@
                     </div> 
                     <hr> -->
 
-          <div class="container shadow p-3 h-460" id="A">
+          <div class="container-fluid h-460" id="A">
+              <div id="ui-view">
+                  <div class="card border-0 shadow rounded-0">
+                      <div class="card-body">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
         <thead>
           <tr>
@@ -66,6 +76,7 @@
             <th class="pl-2">Account Number</th>
             <th class="pl-2">Account Type</th>
             <th class="pl-2">IFSC Code</th>
+            <th class="pl-2">Action</th>
             <th></th>
           </tr>
         </thead>
@@ -104,6 +115,9 @@
         </tbody>
       </table>
       </div>
+    </div>
+    </div>
+  </div>
 </main>
 </div>
 
@@ -111,27 +125,25 @@
 
   <ng-template #Addtemplate>
     <div class="modal-header">
-      <h5 class=" h5 modal-title pull-left">Add Bank Details</h5>
+      <h5 class=" h5 modal-title pull-left  px-3">Add Bank Details</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
+        <div class="container-fluid">
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <div class="row ">
-              <div class="col-md-12 col-xl-12 col-sm-12 col-12">
-                  <!-- <h6 class="modal-title pull-left mt-3">Bank Details :</h6> -->
-              <div class="form-row ">
-              <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-                  <input type="text" class="form-control" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
-                  f.BankName.errors }" placeholder="Enter Bank name">
-                  <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
-                      <div *ngIf="f.BankName.errors.required">Please Enter Bank Name</div>
-                    </div>
-                  </div>
-
-              <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-                    <input type="text" class="form-control" formControlName="AccountNo"
+          <div class="form-group">
+              <label for="BankName">Bank Name:</label>
+              <input type="text" class="form-control" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
+              f.BankName.errors }" placeholder="Enter Bank name">
+              <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
+                  <div *ngIf="f.BankName.errors.required">Please Enter Bank Name</div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="AccountNo">Account Number</label>
+                  <input type="text" class="form-control" formControlName="AccountNo"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
                            f.AccountNo.errors }" placeholder="Account Number">
                            <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
@@ -139,69 +151,49 @@
                               <div *ngIf="f.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
                             </div>
                   </div>
-
-                  <div class="form-group col-md-4 col-xl-4 col-sm-4 col-lg-4">
+                  <div class="form-group">
+                      <label for="Amount">Amount</label>
                       <input type="password" class="form-control" formControlName="ReAccountNo"
-            onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
-                        f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
-                        <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
-                            <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
-                            <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
+                      onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
+                                  f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
+                                  <div *ngIf="submitted && f.ReAccountNo.errors" class="invalid-feedback">
+                                      <div *ngIf="f.ReAccountNo.errors.required">Please ReEnter Account Number</div>
+                                      <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
+                                    </div>
+                      </div>
+                      <div class="form-group row">
+                          <label class="col-md-4 col-form-label">Account Type:</label>
+                          <div class="col-md-8 col-form-label">
+                          <div class="form-check form-check-inline mr-1">
+                              <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving">
+                          <label class="form-check-label ml-1" for="inline-radio1">Saving</label>
                           </div>
-                    </div>
+                          <div class="form-check form-check-inline mr-1">
+                              <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"
+                               >
+                          <label class="form-check-label ml-1" for="inline-radio2">Current</label>
+                          </div>
+                          
+                          </div>
+                          </div>
 
-              </div>
-              <!-- First Row End-->
-              <div class="form-row">
-              <div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
+                          <div class="form-group">
+                              <label for="Amount">Amount</label>
+                              <input type="text" class="form-control" formControlName="IFSC_Code" [ngClass]="{ 'is-invalid': submitted &&
+                              f.IFSC_Code.errors }" placeholder="Enter IFSC Code">
+                                          <div *ngIf="submitted && f.IFSC_Code.errors" class="invalid-feedback">
+                                              <div *ngIf="f.IFSC_Code.errors.required">Please Enter IFSC Code </div>
+                                            </div>
+                              </div>
 
-                  <!-- <div class="form-group col-md-7 col-xl-7 col-sm-7 col-lg-7"> -->
-                      <div class="row">
-                          <div class="col-md-3 mb-0">
-                              <label class="control-label-col-sm-2 h6 mt-3 text-muted">Account Type: </label> 
-                            </div>
-                        <div class="col-md-4 mt-3 radio  mb-0">
-                        
-                        <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving"
-                          >
-                        </label><span class="ml-4 h6 text-muted">Saving</span>
-                           </div>
-                           <div class="col-md-4 mt-3 radio px-0 mx-0 ml-n5 mb-0">
-                            <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"
-                               ></label>
-                                      <span class="ml-4 h6 text-muted">Current</span>
-                                      
-                        </div>
-                        </div>
-                      <!-- </div> -->
-
-              
-              <!-- <div class="radio">
-                  <label class="control-label-col-sm-2 mt-3 h6">Account Type : </label>       
-                    <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType"
-                      value="Saving"><span class="ml-2">Saving</span></label>
-                        <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"><span class="ml-2">Current</span></label>
-                  </div> -->
-                  
-                  </div>
-                  <div class="form-group col-md-4 col-xl-4 col-sm-4 col-lg-4">
-                      <input type="text" class="form-control" formControlName="IFSC_Code" [ngClass]="{ 'is-invalid': submitted &&
-                      f.IFSC_Code.errors }" placeholder="Enter IFSC Code">
-                      <div *ngIf="submitted && f.IFSC_Code.errors" class="invalid-feedback">
-                          <div *ngIf="f.IFSC_Code.errors.required">Please Enter IFSC Code </div>
-                        </div>
-                    </div>
-              </div>
-              </div>
-              </div>
-        
-        <div class="modal-footer">
-            <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Submit</button>
-            <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-              (click)="modalRef.hide()">Cancel</button>
+           <div class="modal-footer">
+            <button class="btn btn-primary btn-square" type="submit">Submit</button>
+            <button class="btn btn-danger btn-square ml-2" type="button"
+                                (click)="modalRef.hide()">Cancel</button>
           </div>
       </form>
     </div>
+  </div>
   </ng-template>
 
 
@@ -210,107 +202,65 @@
   <ng-template #editTemplate>
  
     <div class="modal-header">
-      <h4 class=" h5 modal-title pull-left">Edit Bank Details</h4>
+      <h4 class=" h5 modal-title pull-left px-3">Edit Bank Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
+        <div class="container-fluid">
       <form [formGroup]="editForm" (ngSubmit)="updateAccNo()">
-          <div class="row px-4">
-              <div class="col-md-12 col-xl-12 col-sm-12 col-12">
-              <div class="form-row">
-              <div class="form-group col-md-2 col-xl-2 col-sm-2 col-2">
-              <label for="BankName" class="mt-3 h6 text-muted">Bank Name : </label>
+          <div class="form-group">
+              <label for="BankName">Bank Name</label>
+              <input type="text" class="form-control" formControlName="BankName" name="BankName" disabled>
               </div>
-              <div class="form-group col-md-4 col-xl-4 col-sm-4 col-4">
-                  <input type="text" class="form-control border-0" formControlName="BankName" name="BankName" disabled>
-              </div>
-              
-              <div class="form-group col-md-2 col-xl-2 col-sm-2 col-2">
-                <label for="AccountNo"class="mt-3 h6 text-muted">Account Number : </label>
-              </div>
-              <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-                  <input type="text" class="form-control border-0" formControlName="AccountNo"
+              <div class="form-group">
+                  <label for="AccountNo">Account Number</label>
+                  <input type="text" class="form-control" formControlName="AccountNo"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
               g.AccountNo.errors }" placeholder="Enter Account Number">
               <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
-              <div *ngIf="g.AccountNo.errors.required">Please Enter Account Number</div>
-              <div *ngIf="g.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
-              </div>
-              </div>
-              
-              
-            </div>
-              <!-- First Row End-->
-              
-              <div class="form-row">
-                  <div class="form-group col-md-2 col-xl-3 col-sm-3 col-3">
-                      <label for="Amount" class="control-label-col-sm-2 mt-2 h6 text-muted">Re-Enter Account No :  </label>
-                    </div>
-                    <div class="form-group col-md-3 col-xl-3 col-sm-3 col-3">
-            <input type="password" class="form-control border-0" formControlName="ReAccountNo"
+                  <div *ngIf="g.AccountNo.errors.required">Please Enter Account Number</div>
+                  <div *ngIf="g.AccountNo.errors.minlength">Account Number must be in 12 digit</div>
+                  </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="Amount">Re-Enter Account No : </label>
+                      <input type="password" class="form-control" formControlName="ReAccountNo"
             onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
             g.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
-                    </div>
-                    <div *ngIf="submitted && g.ReAccountNo.errors" class="invalid-feedback">
-                        <div *ngIf="g.ReAccountNo.errors.required">Please Re-Enter Account Number</div>
-                        <div *ngIf="g.ReAccountNo.errors.mustMatch">Account Number must match</div>
+            <div *ngIf="submitted && g.ReAccountNo.errors" class="invalid-feedback">
+                <div *ngIf="g.ReAccountNo.errors.required">Please Re-Enter Account Number</div>
+                <div *ngIf="g.ReAccountNo.errors.mustMatch">Account Number must match</div>
+              </div>
                       </div>
-
-
-
-              <!-- <div class="form-group col-md-6 col-xl-6 col-sm-6 col-lg-6">
-              <div class="radio">
-              <label class="control-label-col-sm-2 h5 mt-2 h6 text-muted">Account Type : </label>
-              <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving"
-                            checked><span class="ml-2">Saving</span></label>
-                            <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"><span class="ml-2">Current</span></label>
-              </div>
-              </div> -->
-              <div class="form-group col-md-6 col-xl-6 col-sm-6 col-6">
-              <div class="row">
-                <div class="col-md-4 mb-0">
-                    <label class="control-label-col-sm-2 h6 mt-3 text-muted">Account Type: </label> 
-                  </div>
-              <div class="col-md-4 mt-3 radio  mb-0">
-              
-              <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving"
-                >
-              </label><span class="ml-5 h6 text-muted">Saving</span>
-                 </div>
-                 <div class="col-md-4 mt-3 radio px-0 mx-0 ml-n5 mb-0">
-                  <label><input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current"
-                     ></label>
-                            <span class="ml-5 h6 text-muted">Current</span>
-                            
-              </div>
-              </div>
-              </div>
-            </div>
-              <!-- Second Row End-->
-              
-              <div class="form-row mt-2">
-              <div class="form-group col-md-2 col-xl-2 col-sm-2 col-lg-2">
-                  <label for="Date" class="control-label-col-sm-2 mt-2 h6 text-muted">IFSCCode : </label>
-              </div>
-              <div class="form-group col-md-3 col-xl-3 col-sm-3 col-lg-3">
-                  <input type="text" class="form-control border-0" formControlName="IFSC_Code" name="IFSC_Code" disabled>
-
-               </div>
-
-              </div>
-              
-              <!-- Third Row End-->
-              </div>
-              </div>
-        
+                      <div class="form-group row">
+                          <label class="col-md-4 col-form-label">Account Type: </label>
+                          <div class="col-md-8 col-form-label">
+                          <div class="form-check form-check-inline mr-1">
+                              <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving">
+                          <label class="form-check-label ml-1" for="inline-radio1">Saving</label>
+                          </div>
+                          <div class="form-check form-check-inline mr-1">
+                              <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Current">
+                          <label class="form-check-label ml-1" for="inline-radio2">Current</label>
+                          </div>
+                          
+                          </div>
+                          </div>   
+                          
+                          <div class="form-group">
+                              <label for="Date">IFSCCode :</label>
+                              <input type="text" class="form-control border-0" formControlName="IFSC_Code" name="IFSC_Code" disabled>
+                              </div>
               <div class="modal-footer">
-                  <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20" type="submit">Update</button>
-                  <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-                  (click)="modalRef.hide()">Cancel</button>
+                  <button class="btn btn-primary btn-square" type="submit">Update</button>
+    <button class="btn btn-danger btn-square ml-2" type="button"
+    (click)="modalRef.hide()">Cancel</button>
                   </div>
       </form>
     </div>
+  </div>
 
   </ng-template>
