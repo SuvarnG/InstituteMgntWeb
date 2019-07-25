@@ -79,7 +79,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
     this.modalRef = this.modalService.show(Addtemplate, {
       animated: true,
       backdrop: 'static',
-      class: 'modal-xl'
+      class: 'modal-md'
 
     });
 
@@ -204,7 +204,7 @@ ngOnInit() {
     this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
       backdrop: 'static',
-      class: 'modal-xl'
+      class: 'modal-md'
     });
   }
 
