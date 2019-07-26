@@ -3,7 +3,7 @@
   <span class="navbar-toggler-icon"></span>
 </button>
   <a class="navbar-brand" href="#">
-      <img class="navbar-brand-full" src="assets\images\realizertechnologies_logojpg.jpg" width="100" height="40" alt="CoreUI Logo">
+      <img class="navbar-brand-full" src="assets\images\realizertechnologies_logojpg.jpg" width="auto" height="52px" alt="CoreUI Logo">
       <!-- <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"> -->
   </a>
   <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
@@ -21,12 +21,12 @@
       </li>
   </ul> -->
   <ul class="nav navbar-nav ml-auto">
-      <li class="nav-item d-md-down-none">
+      <!-- <li class="nav-item d-md-down-none">
           <a class="nav-link" href="#" title="Notifications">
               <i class="icon-bell"></i>
               <span class="badge badge-pill badge-danger">5</span>
           </a>
-      </li>
+      </li> -->
 
       <li class="nav-item dropdown">
           <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -34,7 +34,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right">
               <a class="dropdown-item">
-                 <strong><i class="fa fa-envelope"></i> {{user.userEmail}}</strong>
+                 <strong><i class="fa fa-envelope-o"></i> {{user.userEmail}}</strong>
               </a>
 
               <a class="dropdown-item" (click)="Logout()">
