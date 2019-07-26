@@ -9,7 +9,7 @@
         <div class="btn-group" role="group" aria-label="Button group">
 
           <button class="btn btn-primary" type="button">
-            <i class="fa fa-search"></i></button>
+            <i class="fa fa-search text-white"></i></button>
 
           <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
           &nbsp;&nbsp;
@@ -110,7 +110,7 @@
 
     <div class="modal-footer">
       <button class="btn btn-square btn-primary" type="submit">Submit</button>
-      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
     </div>
   </form>
 </ng-template>
@@ -162,7 +162,7 @@
     <div class="modal-footer">
       <button class="btn btn-square btn-primary" type="submit"
         (click)="UpdateCourseType(CourseTypeName.value)">Update</button>
-      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
     </div>
   </form>
 </ng-template>
