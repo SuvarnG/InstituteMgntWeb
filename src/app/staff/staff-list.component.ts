@@ -272,7 +272,7 @@ export class StaffListComponent implements OnInit {
     this.showStaffDetailsForm.patchValue(body);
     this.staffListService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
     this.modalRef = this.modalService.show(showStaff, {
-      class: 'modal-xl',
+      class: 'modal-md',
       animated: true,
       backdrop: 'static',
     });

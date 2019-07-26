@@ -11,10 +11,16 @@ import { Chart } from 'chart.js';
 })
 export class AuthorisedLayoutComponent implements OnInit {
   public expenses: Expenses[];
-  Expense = [];  
-  Amount = [];  
+  Pexpense = [];  
+  Pamount = [];  
+  Bexpense = [];  
+  Bamount = [];  
+  Dexpense = [];  
+  Damount = []
+  Lexpense = [];  
+  Lamount = [];;  
   chart = []; 
-
+dChart=[];
   Income = [];
   Expenses = [];
   chart1=[];
@@ -96,22 +102,24 @@ export class AuthorisedLayoutComponent implements OnInit {
 
   this.expenseService.expensesChartList(this.user.BranchId).subscribe((result: ExpenseChart[]) =>{
       result.forEach(x => {  
-      this.Expense.push(x.ExpenseName);  
-      this.Amount.push(x.PaidAmount); 
+      this.Pexpense.push(x.ExpenseName);  
+      this.Pamount.push(x.PaidAmount); 
     }); 
     this 
     this.chart = new Chart('canvas', {  
-      type:  'doughnut', 
+      type:  'pie', 
       innerRadius: 90,
       data: {  
-        labels: this.Expense, 
+        labels: this.Pexpense, 
         innerRadius: 90, 
         datasets: [  
           {  
-            data: this.Amount,  
-            borderColor: '#3cba9f',  
+            data: this.Pamount,   
             backgroundColor: [  
-              "#3cb371",  
+              "#20a8d8",  
+              "#f86c6b",  
+              "#ffc107" ,
+              "#4dbd74",  
               "#0000FF",  
               "#9966FF",  
               "#4C4CFF",  
@@ -119,9 +127,7 @@ export class AuthorisedLayoutComponent implements OnInit {
               "#f990a7",  
               "#aad2ed",  
               "#FF00FF",  
-              "Blue",  
-              "Red",  
-              "Blue"  
+            
             ],  
             fill: true  
           }  
@@ -133,59 +139,37 @@ export class AuthorisedLayoutComponent implements OnInit {
         },  
         scales: {  
           xAxes: [{  
-            display: true  
+            display: false  
           }],  
           yAxes: [{  
-            display: true  
+            display: false  
           }],  
         }  
       }  
     });  
   }); 
 
-  Chart.pluginService.register({
-    beforeDraw: function(chart) {
-      var width = chart.chart.width,
-          height = chart.chart.height,
-          ctx = chart.chart.ctx;
   
-      ctx.restore();
-      var fontSize =2; //(height / 114).toFixed(2);
-      ctx.font = fontSize + "em sans-serif";
-      ctx.textBaseline = "middle";
-  
-      var text = "Expenses",
-          textX = Math.round((width - ctx.measureText(text).width) / 2),
-          textY = height / 2;
-  
-      ctx.fillText(text, textX, textY);
-      ctx.save();
-    }
-  });
-
-
-
-
-
-
-  this.expenseService.getIncomeAndExpenseData(this.user.BranchId).subscribe((result: IncomeExpense[]) =>{
+  this.expenseService.expensesChartList(this.user.BranchId).subscribe((result: ExpenseChart[]) =>{
     result.forEach(x => {  
-    this.Income.push(x.Income);  
-    this.Expenses.push(x.Expense); 
+    this.Dexpense.push(x.ExpenseName);  
+    this.Damount.push(x.PaidAmount); 
   }); 
   this 
-  this.chart1 = new Chart('canvas1', {  
-    type:  'pie', 
+  this.dChart = new Chart('canvas2', {  
+    type:  'doughnut', 
     innerRadius: 90,
     data: {  
-      labels: this.Income, 
+      labels: this.Dexpense, 
       innerRadius: 90, 
       datasets: [  
         {  
-          data: this.Expenses,  
-          borderColor: '#3cba9f',  
+          data: this.Damount,   
           backgroundColor: [  
-            "#3cb371",  
+            "#f86c6b",  
+            "#ffc107" , 
+            "#20a8d8", 
+            "#4dbd74",  
             "#0000FF",  
             "#9966FF",  
             "#4C4CFF",  
@@ -193,9 +177,7 @@ export class AuthorisedLayoutComponent implements OnInit {
             "#f990a7",  
             "#aad2ed",  
             "#FF00FF",  
-            "Blue",  
-            "Red",  
-            "Blue"  
+            
           ],  
           fill: true  
         }  
@@ -207,35 +189,155 @@ export class AuthorisedLayoutComponent implements OnInit {
       },  
       scales: {  
         xAxes: [{  
-          display: true  
+          display: false  
         }],  
         yAxes: [{  
-          display: true  
+          display: false  
         }],  
       }  
     }  
   });  
 }); 
 
-Chart.pluginService.register({
-  beforeDraw: function(chart) {
-    var width = chart.chart.width,
-        height = chart.chart.height,
-        ctx = chart.chart.ctx;
 
-    ctx.restore();
-    var fontSize =2; //(height / 114).toFixed(2);
-    ctx.font = fontSize + "em sans-serif";
-    ctx.textBaseline = "middle";
+this.expenseService.expensesChartList(this.user.BranchId).subscribe((result: ExpenseChart[]) =>{
+  result.forEach(x => {  
+  this.Bexpense.push(x.ExpenseName);  
+  this.Bamount.push(x.PaidAmount); 
+}); 
+this 
+this.chart = new Chart('canvas1', {  
+  type:  'bar', 
+  data: {  
+    labels: this.Bexpense, 
+    datasets: [  
+      {  
+        data: this.Bamount,  
+        borderColor: '#3cba9f',  
+        fill: true  
+      }  
+    ]  
+  },  
+  options: {
+    legend: {  
+      display: true  
+    },  
+    scales: {  
+      xAxes: [{  
+        display: true  
+      }],  
+      yAxes: [{  
+        display: true  
+      }],  
+    }  
+  }  
+});  
+}); 
 
-    var text = "Expenses",
-        textX = Math.round((width - ctx.measureText(text).width) / 2),
-        textY = height / 2;
 
-    ctx.fillText(text, textX, textY);
-    ctx.save();
-  }
-});
+this.expenseService.expensesChartList(this.user.BranchId).subscribe((result: ExpenseChart[]) =>{
+  result.forEach(x => {  
+  this.Lexpense.push(x.ExpenseName);  
+  this.Lamount.push(x.PaidAmount); 
+}); 
+this 
+this.chart = new Chart('canvas3', {  
+  type:  'line', 
+  data: {  
+    labels: this.Lexpense, 
+    datasets: [  
+      {   
+        // backgroundColor: "#0000FF", 
+        data: this.Lamount,  
+        borderColor: '#3cba9f',  
+        fill: true  
+      }  
+    ]  
+  },  
+  options: {
+    legend: {  
+      display: true  
+    },  
+    scales: {  
+      xAxes: [{  
+        display: true  
+      }],  
+      yAxes: [{  
+        display: true  
+      }],  
+    }  
+  }  
+});  
+}); 
+
+//   this.expenseService.getIncomeAndExpenseData(this.user.BranchId).subscribe((result: IncomeExpense[]) =>{
+//     result.forEach(x => {  
+//     this.Income.push(x.Income);  
+//     this.Expenses.push(x.Expense); 
+//   }); 
+//   this 
+//   this.chart1 = new Chart('canvas1', {  
+//     type:  'pie', 
+//     innerRadius: 90,
+//     data: {  
+//       labels: this.Income, 
+//       innerRadius: 90, 
+//       datasets: [  
+//         {  
+//           data: this.Expenses,  
+//           borderColor: '#3cba9f',  
+//           backgroundColor: [  
+//             "#3cb371",  
+//             "#0000FF",  
+//             "#9966FF",  
+//             "#4C4CFF",  
+//             "#00FFFF",  
+//             "#f990a7",  
+//             "#aad2ed",  
+//             "#FF00FF",  
+//             "Blue",  
+//             "Red",  
+//             "Blue"  
+//           ],  
+//           fill: true  
+//         }  
+//       ]  
+//     },  
+//     options: {
+//       legend: {  
+//         display: true  
+//       },  
+//       scales: {  
+//         xAxes: [{  
+//           display: true  
+//         }],  
+//         yAxes: [{  
+//           display: true  
+//         }],  
+//       }  
+//     }  
+//   });  
+// }); 
+
+// Chart.pluginService.register({
+//   beforeDraw: function(chart) {
+//     var width = chart.chart.width,
+//         height = chart.chart.height,
+//         ctx = chart.chart.ctx;
+
+//     ctx.restore();
+//     var fontSize =2; //(height / 114).toFixed(2);
+//     ctx.font = fontSize + "em sans-serif";
+//     ctx.textBaseline = "middle";
+
+//     var text = "Expenses",
+//         textX = Math.round((width - ctx.measureText(text).width) / 2),
+//         textY = height / 2;
+
+//     ctx.fillText(text, textX, textY);
+//     ctx.save();
+//   }
+// });
 
 
 
