@@ -26,8 +26,7 @@
     </ol>
 
     <div class="row my-4 px-3 pb-3">
-        <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4 mb-3" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
-
+        <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
 
             <div class="card">
                 <div class="card-header h5">{{s.FullName | titlecase}}
@@ -45,7 +44,7 @@
                 </div>
                 <div class="collapse show" id="collapseExample">
                   <div class="card-body">
-                      <div class="row border-bottom">
+                      <div class="row">
                       <div class="col-sm-3">
                           <img src="{{s.Photo}}" class="img-circle" width="80" height="80">
                         </div>
@@ -189,7 +188,7 @@
           <div class="form-row">
             <h5>Personal Details</h5>
           </div>
-          <label for="StudentName">Student Name:</label>
+          <label for="StudentName">Student Name</label>
           <div class="row">
             <div class="col-md-4">
               <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
@@ -218,18 +217,18 @@
          <div class="form-group">
           <div class="row">
             <div class="col-md-4">
-              <label for="Gender">Gender:</label>
+              <label for="Gender">Gender</label>
               <div class="row">
                 <div class="col-md-12">
                   <input type="radio" name="Gender" formControlName="Gender" value="Male"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">Male
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "> Male
                   <input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Female"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">Female
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "> Female
                 </div>
               </div>
             </div>
             <div class="col-md-4">
-              <label for="DateOfBirth">Date Of Birth:</label>
+              <label for="DateOfBirth">Date Of Birth</label>
               <input type="date" id="DOB" class="form-control" formControlName="DOB"
                 [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
               <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
@@ -238,7 +237,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="BloodGroup">Blood Group:</label>
+              <label for="BloodGroup">Blood Group</label>
               <select id="BloodGroup" class="form-control" formControlName="BloodGroup"
                 [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
                 <option>A+</option>
@@ -267,7 +266,7 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label for="ContactNo">Contact Number:</label>
+              <label for="ContactNo">Contact Number</label>
               <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
               <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
@@ -276,7 +275,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="EmergencyNo">Emergency No:</label>
+              <label for="EmergencyNo">Emergency No</label>
               <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
               <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
@@ -285,7 +284,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="EmailID">Email ID :</label>
+              <label for="EmailID">Email ID</label>
               <input type="email" class="form-control" id="Email" formControlName="Email"
                 [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
               <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
@@ -305,7 +304,7 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label for="Address1">Address:</label>
+              <label for="Address1">Address</label>
               <input type="text" class="form-control" id="Address1" formControlName="Address1"
                 [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
               <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
@@ -316,7 +315,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="State">State:</label>
+              <label for="State">State</label>
               <select id="State" class="form-control" formControlName="State"
                 [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
                 <option>Maharashtra</option>
@@ -327,7 +326,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="City">City:</label>
+              <label for="City">City</label>
               <input type="text" class="form-control" id="City" formControlName="City"
                 [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
               <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
@@ -338,7 +337,7 @@
              
 
             <div class="col-md-4">
-              <label for="ZipCode">Zip Code::</label>
+              <label for="ZipCode">Zip Code</label>
               <input type="number" class="form-control" id="ZipCode" formControlName="ZipCode"
                 [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
               <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
@@ -359,7 +358,7 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label for="PAddress1">Address:</label>
+              <label for="PAddress1">Address</label>
               <input type="text" class="form-control" id="PAddress1" formControlName="PAddress1"
                 [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} ">
               <div *ngIf="submitted && f.PAddress1.errors" class="invalid-feedback">
@@ -370,7 +369,7 @@
 
           <div class="row">
             <div class="col-md-4">
-              <label for="PState">State:</label>
+              <label for="PState">State</label>
               <select id="PState" class="form-control" formControlName="PState"
                 [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
                 <option selected>Select State</option>
@@ -382,7 +381,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="PCity">City:</label>
+              <label for="PCity">City</label>
               <input type="text" class="form-control" id="PCity" formControlName="PCity"
                 [ngClass]="{'is-invalid': submitted && f.PCity.errors} ">
               <div *ngIf="submitted && f.PCity.errors" class="invalid-feedback">
@@ -391,7 +390,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="PSTDCode">Zip Code::</label>
+              <label for="PSTDCode">Zip Code</label>
               <input type="number" class="form-control" id="PSTDCode" formControlName="PSTDCode"
                 [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} ">
               <div *ngIf="submitted && f.PSTDCode.errors" class="invalid-feedback">
@@ -412,7 +411,7 @@
           </div>
           <div class="row">
             <div class="col-md-4">
-              <label for="CourseType">Course Type :</label>
+              <label for="CourseType">Course Type</label>
               <select id="CourseType" class="form-control" formControlName="CourseType" name="CourseType"
                 (change)="selectCourseType($event)" [value]="f.CourseType.value">
                 <option *ngFor="let courseType of  CourseTypeList" [value]="courseType.CourseTypeId">
@@ -425,7 +424,7 @@
             </div>
 
             <div class="col-md-4">
-              <label for="Course">Course Name :</label>
+              <label for="Course">Course Name</label>
               <select id="Course" class="form-control" formControlName="Course" name="Course" [value]="f.Course.value">
                 <option *ngFor="let courselist of courseNameList" [value]="courselist.CourseId">
                   {{courselist.CourseName}}</option>
@@ -455,7 +454,7 @@
       <div class="modal-footer">
         <button class="btn btn-primary btn-square ml-2" type="submit">Update</button>
         <button class="btn btn-danger btn-square ml-2" type="button"
-          (click)="modalRef.hide()">Cancel</button>
+          (click)="modalRef.hide()">Close</button>
       </div>
     </form>
   </div>
@@ -593,7 +592,7 @@
               </div>
     
               <div class="col-md-6">
-                <label for="PSTDCode">Zip Code::</label>
+                <label for="PSTDCode">Zip Code:</label>
                 {{f.PSTDCode.value}}
               </div>
   
@@ -624,7 +623,7 @@
 
           <div class="modal-footer">
               <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+            (click)="modalRef.hide()">Close</button>
           </div>
           </div>
         </div>
