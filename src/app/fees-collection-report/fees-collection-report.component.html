@@ -33,8 +33,11 @@
         <hr> -->
 
         <form [formGroup]="registerFeesCollectionReport" (ngSubmit)="pullFeesCollectionReport()">
-
-            <div class="row shadow p-3 m-2">
+                <div class="container-fluid">
+                        <div id="ui-view">
+            <div class="card border-0 shadow rounded-0">
+                <div class="card-body">
+            <div class="row ">
                 <div class="col-lg-12 py-2">
                     <div class="form-row ">
 
@@ -98,10 +101,18 @@
                     </div>
                 </div>
             </div>
+            </div>
+            </div>
+            </div>
+            </div>
         </form>
 
+        <div class="container-fluid">
+                <div id="ui-view">
+    <div class="card border-0 shadow rounded-0">
+        <div class="card-body">
 
-        <div class="shadow p-3 m-2">
+        <div class="">
                 <div class="row justify-content-end mr-2 mt-1">
                     
                     
@@ -146,6 +157,10 @@
             <ul class="pagination">
                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
             </ul>
+        </div>
+        </div>
+        </div>
+        </div>
         </div>
     </main>
 
