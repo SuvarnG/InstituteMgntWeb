@@ -5,53 +5,64 @@
 <div class="app-body">
   <!-- Add left navigation componant -->
   <app-authorised-side-nav></app-authorised-side-nav>
-  <main class="main">   
-          <div class="row px-0">
-            <div class="col-md-4 mt-2 ">
-              <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
-                Home</a>&nbsp;
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-              <a class="active" data-toggle="tooltip" data-placement="bottom"
-                title="role">
-                Role</a>&nbsp;
-            </div>
+  <main class="main">
 
-              <div class="col-md-4">
-                <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
-            </div>
-
-            <div class="col-md-4 px-4">
-              <a class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3 f-20 text-white" data-toggle="tooltip" data-placement="bottom"
-              title="Add New Role" (click)="openModal(template)" >      
-            Add  
-            </a>&nbsp;
-          </div>
-
-          </div>
-
-          <hr>
-          <div class="row m-3 ">
-          </div>
-  <!-- <table class="table table-bordered"> -->
-    <div class="row">
-      <div class="container col-md-12">
-      <div class="shadow p-3 h-460" id="A">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
-    <thead>
-      <tr>
-        <th class="pl-2">Role Name</th>       
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let r of roles | filter:filter">
-        <td>{{r.RoleName}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-</div>
-</div>
-  </main>
+      <!-- Breadcrumb-->
+      
+      <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a routerLink="/Dashboard" >Home</a></li>
+         <li class="breadcrumb-item">Role</li>
+         
+         <!-- Breadcrumb Menu-->
+         <li class="breadcrumb-menu d-md-down-none">
+           <div class="btn-group" role="group" aria-label="Button group">
+             
+                
+                 
+                   <div class="input-group">
+                       <span class="input-group-prepend">
+                       <button class="btn btn-primary btn-square" type="button">
+                       <i class="fa fa-search"></i></button>
+                       </span>
+                       <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> 
+                       </div>
+   
+                
+               &nbsp;&nbsp;
+               <button class="btn btn-sm btn-primary text-dark" (click)="openModal(template)" type="button">Add</button>
+               
+           </div>
+         </li>
+   
+       </ol>
+   
+   <div class="container-fluid">
+     <div id="ui-view">
+       <div class="card border-0 shadow rounded-0">
+         <div class="card-body">
+         <!-- <table class="table table-bordered"> -->
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+           <thead>
+             <tr>
+               
+               <th class="pl-2">Role Name</th>  
+               
+  
+             </tr>
+           </thead>
+           <tbody>
+              <tr *ngFor="let r of roles | filter:filter">
+                  <td>{{r.RoleName}}</td>
+                </tr>
+           </tbody>
+         </table>
+           
+         </div>
+       </div>
+     </div>
+   </div>
+   
+   </main>
 </div>
 
 <ng-template #template>
@@ -63,7 +74,15 @@
       </button>
     </div>
     <div class="modal-body">
-        <div class="row">
+        <div class="form-group">
+            <label for="Role">Role</label>
+            <input type="text" class="form-control" formControlName="role"
+                  [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
+                  <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
+                      <div *ngIf="f.role.errors.required">Role Name is Required </div>
+                    </div>
+            </div>
+        <!-- <div class="row">
             <div class="form-group col-md-4">
 
                 <label for="role" class="h6 mt-3">Role :</label>
@@ -77,13 +96,13 @@
                     
       
       </div>
-      </div>
+      </div> -->
       
     </div>
     <div class="modal-footer">
-        <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20 " type="submit" (click)="CreateRole(RoleName.value)">Submit</button>
-        <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-          (click)="modalRef.hide()">Cancel</button>
+        <button class="btn btn-primary btn-square" type="submit" (click)="CreateRole(RoleName.value)">Submit</button>
+        <button class="btn btn-danger btn-square ml-2" type="button"
+          (click)="modalRef.hide()">Close</button>
       </div>
   </form>
 </ng-template>
