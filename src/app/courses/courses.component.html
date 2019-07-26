@@ -17,31 +17,16 @@
           Home</a></li>
       <li class="breadcrumb-item">Courses</li>
 
-      <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu d-md-down-none">
         <div class="btn-group" role="group" aria-label="Button group">
 
-          <!-- <button class="btn btn-primary" type="button">
-                    <i class="fa fa-search"></i></button> -->
-          <div class="input-group">
-            <span class="input-group-prepend">
-              <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search"></i></button>
-            </span>
-            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
-          </div>
+          <button class="btn btn-primary" type="button">
+            <i class="fa fa-search"></i></button>
 
-
-          <!-- <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> -->
+          <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
           &nbsp;&nbsp;
-
-
           <button class="btn btn-sm btn-primary text-dark" data-toggle="tooltip" data-placement="bottom"
-            title="Add New Course" (click)="AddCourses(Addtemplate)" type="button">Add</button>
-          <!-- <a routerLink="/Courses" class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20"
-                data-toggle="tooltip" data-placement="bottom" title="Add New Course" (click)="AddCourses(Addtemplate)">
-                Add
-              </a> -->
+          title="Add New Course" (click)="AddCourses(Addtemplate)" type="button">Add</button>
         </div>
       </li>
     </ol>
