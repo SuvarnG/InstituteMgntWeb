@@ -49,19 +49,19 @@
     }
 
     .card {
-        min-height: 500px;
+        min-height: 450px;
         
     }
 
-    .form-control{
+    /* .form-control{
         background: transparent;
         border-radius: 0px;
         border: 0px;
         border-bottom: 1px solid black;
         font-size: 22px;
-    }
+    } */
 
-    .block {
+    /* .block {
         display: block;
         width: 250%;
         border: none;
@@ -72,16 +72,21 @@
         cursor: pointer;
         text-align: center;
         margin-left: 10px;
-      }
+      } */
       
-      .block:hover {
+      /* .block:hover {
         background-color: #ddd;
         color: black;
-      }
+      } */
 
-      .logo{
+      /* .logo{
           height: 70px;
           width: 150px;
-      }
+      } */
       
-    
+     .logo{
+      /* font-family: 'Kanit-Bold' !important; */
+      font-family: 'Permanent Marker', cursive !important;
+  font-weight: bold !important;
+  font-style: bold !important;
+     }
