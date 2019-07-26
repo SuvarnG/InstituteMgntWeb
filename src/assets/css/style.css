@@ -10387,7 +10387,7 @@ a.text-dark:hover, a.text-dark:focus {
   border: 0;
 }
 
-.breadcrumb-menu .btn:hover, .breadcrumb-menu .btn.active {
+/* .breadcrumb-menu .btn:hover, .breadcrumb-menu .btn.active {
   color: #23282c;
   background: transparent;
 }
@@ -10395,7 +10395,7 @@ a.text-dark:hover, a.text-dark:focus {
 .breadcrumb-menu .open .btn {
   color: #23282c;
   background: transparent;
-}
+} */
 
 .breadcrumb-menu .dropdown-menu {
   min-width: 180px;
