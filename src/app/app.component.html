@@ -1,16 +1,16 @@
   <!-- Add top navigation componant -->
-<app-authorised-top-nav></app-authorised-top-nav>
+<app-authorised-top-nav *ngIf="showMenu"></app-authorised-top-nav>
 
 <div class="app-body">
     <!-- Add left navigation componant -->
-    <app-authorised-side-nav></app-authorised-side-nav>
-    <main class="main">
+    <app-authorised-side-nav *ngIf="showMenu"></app-authorised-side-nav>
+    <main class="main" >
   <router-outlet></router-outlet>
  
   </main>
 
   </div> 
-  <app-footer></app-footer>
+    <app-footer *ngIf="showMenu"></app-footer>
 <ng-progress  [minimum]="0.15" [maximum]="1" [speed]="800" [ease]="'linear'" [meteor]="true"
               [spinner]="false" [spinnerPosition]="'right'" [direction]="'leftToRightIncreased'"
               [color]="'#45C4D9'" [trickleSpeed]="250" [thick]="false"
