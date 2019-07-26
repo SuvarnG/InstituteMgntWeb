@@ -1,6 +1,3 @@
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
-
 <app-authorised-top-nav></app-authorised-top-nav>
 
 <div class="app-body">
@@ -8,8 +5,15 @@
 
 
   <main class="main">
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item active"><a routerLink="/Dashboard">Home</a></li>
+    <li class="breadcrumb-item active"><a routerLink="/reports">Reports</a></li>
+    <li class="breadcrumb-item">Expense Report</li>
+    </ol>
 
-    <div class="row mt-2 px-0">
+
+    <!-- <div class="row mt-2 px-0">
       <div class="col-md-10 mt-2 ">
         <a routerLink="/" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom" title="home">
           Home</a>&nbsp;
@@ -23,7 +27,7 @@
           Expense Report</a>&nbsp;
       </div>
     </div>
-    <hr>
+    <hr> -->
 
     <form [formGroup]="registerExpensesReport" (ngSubmit)="pullExpenseReport()">
 
@@ -83,7 +87,7 @@
             </div>
 
             <div class="col-lg-1">
-            <button type="submit" value="Search" class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
+            <button type="submit" value="Search" class="btn btn-square btn-primary">Search</button>
            </div>
 
           </div>

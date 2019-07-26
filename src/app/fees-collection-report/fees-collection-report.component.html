@@ -8,7 +8,14 @@
 
 
     <main class="main">
-        <div class="row mt-2 px-0">
+ <!-- Breadcrumb-->
+ <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a routerLink="/Dashboard">Home</a></li>
+        <li class="breadcrumb-item active"><a routerLink="/reports">Reports</a></li>
+        <li class="breadcrumb-item">Fees Collection Report</li>
+        </ol>
+
+        <!-- <div class="row mt-2 px-0">
             <div class="col-md-10 mt-2 ">
                 <a routerLink="/Dashboard" class="ml-3 pt-1 text-dark" data-toggle="tooltip" data-placement="bottom"
                     title="home">
@@ -23,7 +30,7 @@
                     Fees Collection Report</a>&nbsp;
             </div>
         </div>
-        <hr>
+        <hr> -->
 
         <form [formGroup]="registerFeesCollectionReport" (ngSubmit)="pullFeesCollectionReport()">
 
@@ -85,7 +92,7 @@
 
                         <div class="col-lg-1">
                         <button type="submit" value="Search"
-                        class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20">Search</button>
+                        class="btn btn-square btn-primary">Search</button>
                         </div>
 
                     </div>
