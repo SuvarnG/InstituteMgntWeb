@@ -56,7 +56,8 @@ export class ExpensesComponent implements OnInit {
        //retrieve: true,
        pagingType: 'full_numbers',
        pageLength: 10,
-       paging:false
+       paging:false,
+       searching:false
 
      };
     this.expenseForm = this.fb.group({
