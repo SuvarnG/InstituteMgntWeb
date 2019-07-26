@@ -33,12 +33,18 @@
               <img class="img-avatar" src="{{user.Photo}}" >
           </a>
           <div class="dropdown-menu dropdown-menu-right">
-              <a class="dropdown-item">
+              
+              <a class="dropdown-header text-center">
                  <strong><i class="fa fa-envelope-o"></i> {{user.userEmail}}</strong>
               </a>
 
-              <a class="dropdown-item" (click)="Logout()">
-                  <i class="fa fa-lock"></i> Logout</a>
+              <!-- <a class="dropdown-header text-center" (click)="Logout()">
+                    <strong><i class="fa fa-lock"></i> Logout</strong>
+                 </a> -->
+
+              <a class="dropdown-item text-center" (click)="Logout()">
+                  <i class="fa fa-lock"></i>Logout
+                </a>
           </div>
       </li>
   </ul>
