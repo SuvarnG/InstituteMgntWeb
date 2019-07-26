@@ -122,7 +122,7 @@ export class EnquiryComponent implements OnInit {
     }
     this.modalRef = this.modalService.show(CreateEnquiryModal, {
       backdrop: 'static',
-      class: 'modal-xl'
+      class: 'modal-lg'
     });
   }
 
