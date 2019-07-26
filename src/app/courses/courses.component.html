@@ -1,15 +1,5 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-<!-- Add top navigation componant -->
-<app-authorised-top-nav></app-authorised-top-nav>
-
-<div class="app-body">
-  <!-- Add left navigation componant -->
-  <app-authorised-side-nav></app-authorised-side-nav>
-
-
-  <main class="main">
-
+ 
     <!-- Breadcrumb-->
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
@@ -23,7 +13,7 @@
 
           <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
           &nbsp;&nbsp;
-          <button class="btn btn-sm btn-primary text-dark" data-toggle="tooltip" data-placement="bottom"
+          <button class="btn btn-sm btn-primary btn-square text-white" data-toggle="tooltip" data-placement="bottom"
           title="Add New Course" (click)="AddCourses(Addtemplate)" type="button">Add</button>
         </div>
       </li>
@@ -74,8 +64,8 @@
         </div>
       </div>
     </div>
-  </main>
-</div>
+
+
 
 <!-- Create model -->
 

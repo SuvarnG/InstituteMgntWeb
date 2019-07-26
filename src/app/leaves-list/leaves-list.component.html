@@ -1,10 +1,4 @@
-<app-authorised-top-nav></app-authorised-top-nav>
-
-<div class="app-body">
-    <app-authorised-side-nav></app-authorised-side-nav>
-
-    <main class="main">   
-    <!-- Breadcrumb-->
+     <!-- Breadcrumb-->
   <ol class="breadcrumb">
       <li class="breadcrumb-item active"><a routerLink="/Dashboard">
         Home</a></li>
@@ -19,7 +13,7 @@
 
             <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
             &nbsp;&nbsp;
-            <a routerLink="/LeaveList" class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20" data-toggle="tooltip" data-placement="bottom"
+            <a routerLink="/LeaveList" class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip" data-placement="bottom"
             title="Add Leave" (click)="CreateNewLeave(template)">     
            Add 
           </a>
@@ -27,31 +21,6 @@
       </li>
     </ol>  
       
-                  <!-- <div class="row mt-2">
-                      <div class="col-md-4 mt-2">
-                        <a routerLink="/Dashboard" class="ml-4  text-dark" data-toggle="tooltip" data-placement="bottom"
-                          title="home" >
-                          Home</a>&nbsp;
-                        <i class="fa fa-angle-double-right" aria-hidden="true" ></i>
-                        <a data-toggle="tooltip" data-placement="bottom" class="active"
-                        title="Leave List" >
-                       Leave Type</a>&nbsp;                        
-                      </div>
-
-                     
-                    <div class="col-md-4">
-                      <input type="text"  placeholder="Search" [(ngModel)]="filter" class="  py-2 px-3 mt-1 border-0 rounded-0 shadow-sm">
-                    </div>
-
-                      <div class="col-md-4 px-4">
-                          <a routerLink="/LeaveList" class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20" data-toggle="tooltip" data-placement="bottom"
-                          title="Add Leave" (click)="CreateNewLeave(template)">     
-                         Add 
-                        </a>&nbsp;
-                      </div>
-                      
-                    </div> 
-                    <hr> -->
     <div class="container-fluid">
         <div id="ui-view">
             <div class="card border-0 shadow rounded-0">
@@ -79,8 +48,7 @@
       </div>
       </div>
     </div>
-    </main>
-  </div>
+
 
 <ng-template #template>
   <div class="modal-header">

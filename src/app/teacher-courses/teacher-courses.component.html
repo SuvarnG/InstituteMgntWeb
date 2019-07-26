@@ -1,14 +1,3 @@
-<!-- Add top navigation componant -->
-<app-authorised-top-nav></app-authorised-top-nav>
-
-<div class="app-body">
-
-    <!-- Add left navigation componant -->
-    <app-authorised-side-nav></app-authorised-side-nav>
-
-  
-
-  <main class="main">
       <!-- Breadcrumb-->
       <ol class="breadcrumb">
           <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
@@ -16,29 +5,6 @@
           <li class="breadcrumb-item"> Add Staff</li>
         </ol> 
       <div class="container-fluid">
-      <!-- <div class="row mb-4">
-          <div class="col-md-10 mt-2">
-            <a routerLink="/Dashboard" class="ml-3 pt-1" data-toggle="tooltip" data-placement="bottom"
-              title="home" class="text-dark">
-              Home</a>&nbsp;
-              <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a routerLink="/StaffList"  data-toggle="tooltip" data-placement="bottom"
-            title="staff" class="text-dark">
-            Staff</a>&nbsp;
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>&nbsp;
-            <a data-toggle="tooltip" data-placement="bottom" class=" active"
-            title="staff">
-            Add Staff</a>
-          </div>
-        
-        </div>  -->
-
-    <div class="row">
-      <!-- <div class="col-md-12  mx-3">
-        <h2 class="h1 font-weight-medium mb-4 mt-2">Add Staff</h2>
-      </div> -->
-    </div>
-    <div>
     <form [formGroup]="registerStaffForm" (ngSubmit)="onSubmit(courseTemplate)">
       <div class="row">
         <div class="col-md-12 border-bottom">
@@ -259,44 +225,6 @@
 
         </div>
       </div>
-      <!--Fourth row End-->
-       <!-- <div class="row">
-    <div class="col-md-12 shadow mt-3 ">
-           <h4 class=" font-weight-medium  py-4 px-3">Course Details :</h4>
-       
-    <div class="row">
-   <div class="col-md-12 pb-4 px-4"> 
-       <div class="form-row">
-          <div class="form-group col-md-4 px-3">
-              <select id="CourseType" class="form-control" [value]="null" formControlName="CourseType" 
-                [ngClass]="{ 'is-invalid': submitted && f.CourseType.errors }">
-                
-                <option [value]="null">Select CourseType</option>
-                <option value="goverment" >Goverment</option>
-              </select>
-              <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
-                <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
-              </div>
-            </div>
-     
-            <div class="form-group col-md-4 px-3">
-                <select id="Course" class="form-control"  [value]="null" formControlName="Course" 
-                  [ngClass]="{ 'is-invalid': submitted && f.Course.errors }">
-                  <option [value]="null">Select Course</option>
-                  <option value="MSCIT" >MSCIT</option>
-                </select>
-                <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
-                  <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
-                </div>
-              </div>
-           
-         </div>
-      </div> 
-   </div>
-   
-   </div>
-   </div>  -->
-      <!--fifth row end-->
       <div class="row">
         <div class="col-md-12 border-bottom">
           <h5 class=" font-weight-medium   px-3 my-2">Professional Details </h5>
@@ -378,12 +306,6 @@
                   </div>
               </div>
 
-            <!-- <div class="col-md-4 px-3">
-              <input type="text" class="form-control" id="PreviousExperience" formControlName="PreviousExperience"
-                placeholder="Work Experience (Year)">
-                <label for="PreviousExperience"> Candidates Work Experience is {{PreviousExperience}} Years.</label>
-            </div> -->
-
             <div class="col-md-4 px-3">
                 <!-- <label class="col-md-6 control-label">Date Of Birth</label> -->
                 <input type="text" id="DateOfJoining" placeholder="DateOfJoining"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
@@ -401,60 +323,18 @@
                     <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
                   </div>
                 </div>
-
           </div>
-
-          <!-- <div class="row">
-            <div class="col-md-12 pb-4 px-4 ">
-              <div class="form-row">
-                <div class="form-group col-md-3 mt-3 px-3">
-                  <label class="col-md-6 control-label">Date Of Birth</label>
-                  <input type="text" id="DateOfJoining" placeholder="DateOfJoining"  onfocus="(this.type='date')" onblur="(this.type='text')" id="DateOfJoining" class="form-control" formControlName="DateOfJoining"
-                    placeholder="Joining Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfJoining.errors }">
-                  <div *ngIf="submitted && f.DateOfJoining.errors" class="invalid-feedback">
-                    <div *ngIf="f.DateOfJoining.errors.required"> Please provide a valid Date.</div>
-                  </div>
-                </div>
-
-                <div class="form-group col-md-3 mt-3 px-3">
-                  <label class="col-md-6 control-label">Date Of Birth</label>
-                  <input type="text" id="DateOfLeaving" placeholder="DateOfLeaving" onblur="(this.type='text')" onfocus="(this.type='date')"  id="DateOfLeaving" class="form-control" formControlName="DateOfLeaving"
-                    placeholder="Leaving Date" [ngClass]="{ 'is-invalid': submitted && f.DateOfLeaving.errors }" (change)="calculateWorkExperience(f.DateOfJoining.value,f.DateOfLeaving.value)">
-                  <div *ngIf="submitted && f.DateOfLeaving.errors" class="invalid-feedback">
-                    <div *ngIf="f.DateOfLeaving.errors.required"> Please provide a valid Date.</div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div> -->
-
-
-        </div>
-      </div>
-      <!-- <div class="row justify-content-end text-right">
-        <div class="col-md-3 pb-4  mt-5">
-          <div class="form-row">
-            <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Submit</button>
-            <a routerLink="/StaffList" class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0">      
-                Cancel</a>
-            
-
           </div>
         </div>
-      </div> -->
       <div class="modal-footer">
           <button class="btn btn-primary btn-square ml-2 " type="submit">Submit</button>
           <a routerLink="/StaffList" class="btn btn-danger btn-square ml-2">      
             Cancel</a>
         </div>
-
     </form>
   </div>
 
-</div>
-</main>
-</div>
+
 
 
 

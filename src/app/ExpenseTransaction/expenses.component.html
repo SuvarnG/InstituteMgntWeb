@@ -1,11 +1,4 @@
-<!-- Add top navigation componant -->
-<app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="app-body">
-    <!-- Add left navigation componant -->
-    <app-authorised-side-nav></app-authorised-side-nav>
-
-    <main class="main">
         <!-- Breadcrumb-->
    <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
@@ -20,7 +13,7 @@
 
             <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
             &nbsp;&nbsp;
-            <a routerLink="/Expenses" class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20" data-toggle="tooltip" data-placement="bottom"
+            <a routerLink="/Expenses" class="btn btn-info font-weight-medium rounded-0 pull-right py-2 px-3  f-20 text-white" data-toggle="tooltip" data-placement="bottom"
             title="Add New Expense" (click)="addNewExpense(addExpense)" >      
            Add
           </a>
@@ -61,8 +54,7 @@
       </div>
     </div>
 
-</main>
-  </div>
+
   <ng-template #editExpense>
 
     <div class="modal-header">

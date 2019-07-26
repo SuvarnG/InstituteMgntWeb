@@ -1,9 +1,4 @@
-<app-authorised-top-nav></app-authorised-top-nav>
 
-<div class="app-body">
-    <app-authorised-side-nav></app-authorised-side-nav>
-
-    <main class="main"> 
        <!-- Breadcrumb-->
   <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
@@ -18,7 +13,7 @@
 
             <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
             &nbsp;&nbsp;
-            <a routerLink="/CreateStudent" class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right" data-toggle="tooltip" data-placement="bottom"
+            <a routerLink="/CreateStudent" class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip" data-placement="bottom"
             title="Add Staff" > Add     
           </a>
         </div>
@@ -168,10 +163,6 @@
     <ul class="pagination" *ngIf="students && students.length>6">
       <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </ul>
-  </main>
-</div>
-
-
 
 <ng-template #editStudent role="modal-dialog modal-xl">
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
