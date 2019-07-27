@@ -9,12 +9,21 @@ import { Router, NavigationStart } from '@angular/router';
 })
 export class AppComponent {
   title = 'Angular';
-  showMenu:any;
-  menu:boolean=false;
+  showMenu:boolean=true;
   constructor(router:Router) {
+    debugger; 
     router.events.forEach((event) => {
         if(event instanceof NavigationStart) {
+          this.showMenu=true;
+          if(event.url=='/Login')
+          {
             this.showMenu = event.url !== "/Login";
+          }
+          if(event.url=='/')
+          {
+            this.showMenu = event.url !== "/";
+          }
+            
         }
       });
     }
