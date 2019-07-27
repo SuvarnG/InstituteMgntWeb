@@ -62,7 +62,7 @@
   <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate()">
     <div class="form-group">
            <label for="LeaveName">Leave Type</label>
-            <input type="text" class="form-control" formControlName="LeaveName"
+            <input type="text" class="form-control" formControlName="LeaveName" placeholder="Enter Leave Type"
               [ngClass]="{ 'is-invalid': submitted && n.LeaveName.errors }" #leaveName>
             <div *ngIf="submitted && n.LeaveName.errors" class="invalid-feedback">
               <div *ngIf="n.LeaveName.errors.required">Leave Name Required</div>
@@ -72,7 +72,7 @@
       <button class="btn btn-square btn-primary" type="submit"
         (click)="CreateLeave(leaveName.value)">Submit</button>
       <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Close</button>
+        (click)="modalRef.hide()">Cancle</button>
     </div>
   </form>
   </div>
@@ -92,7 +92,7 @@
   <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()">
     <div class="form-group">
                 <label>Leave Type</label>
-                <input type="text" class="form-control" formControlName="LeaveType"
+                <input type="text" class="form-control" formControlName="LeaveType" 
                   [ngClass]="{ 'is-invalid': submitted && m.LeaveType.errors }">
                 <div *ngIf="submitted && m.LeaveType.errors" class="invalid-feedback">
                   <div *ngIf="m.LeaveType.errors.required">Leave Name required</div>
@@ -102,7 +102,7 @@
       <button class="btn btn-square btn-primary" (click)="UpdateLeave(template2)"
         type="submit">Update</button>
       <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Close</button>
+        (click)="modalRef.hide()">Cancle</button>
     </div>
   </form>
   </div>

@@ -84,6 +84,7 @@
 <div class="form-group">
   <div class="row">
       <div class="col-md-6">
+          <label for="CourseName">Course Name</label>
                     <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                       (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
                       <option [value]="null" disabled hidden> Select Course </option>
@@ -93,6 +94,7 @@
                     </select>
                   </div>
                   <div class="col-md-6">
+                      <label for="CourseName">Student Name</label>
                     <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName">
                       <option [value]="null" disabled hidden>Select Student </option>
                       <option *ngFor="let student of students" [value]="student.StudentId">
@@ -106,6 +108,7 @@
 <div class="form-group">
     <div class="row">
         <div class="col-md-6">
+            <label for="CourseName">Leave Type</label>
                     <select name="LeaveName" class="form-control" formControlName="LeaveName">
                       <option [value]="null" disabled hidden> Select Leave </option>
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
@@ -114,6 +117,7 @@
                     </select>
                   </div>
                   <div class="col-md-6">
+                      <label for="CourseName">Follow up Date</label>
                     <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
                       class="form-control" placeholder="Need Follow-up Date"
                       [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
@@ -129,6 +133,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6"> 
+                        <label for="CourseName">From Date</label>
                     <input type="text" name="FromDate" [(ngModel)]="FromDate" formControlName="FromDate"
                       onfocus="(this.type='date')" class="form-control" placeholder="From Date"
                       [ngClass]="{ 'is-invalid': submitted && fc.FromDate.errors }" />
@@ -137,6 +142,7 @@
                     </div>
                   </div>
                   <div class="col-md-6">
+                      <label for="CourseName">To Date</label>
                     <input type="text" name="ToDate" [(ngModel)]="ToDate" formControlName="ToDate"
                       onfocus="(this.type='date')" (change)="calculateTotaldays(ToDate,FromDate)" class="form-control"
                       placeholder="To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
@@ -149,6 +155,7 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-md-6">
+                            <label for="CourseName">Total Days</label>
                     <input type="text" class="form-control" placeholder="Total Days" id="TotalDays" name="TotalDays"
                       formControlName="TotalDays">
                       </div>
@@ -160,6 +167,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
+                        <label for="CourseName">Reason</label>
                     <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
                       [ngClass]="{'is-invalid': submitted && fc.Reason.errors}" formControlName="Reason"></textarea>
                     <div *ngIf="submitted && fc.Reason.errors" class="invalid-feedback">
@@ -167,6 +175,7 @@
                     </div>
                   </div>
                   <div class="col-md-6">
+                      <label for="CourseName">Comment</label>
                     <textarea class="form-control rounded-0" rows="1" placeholder="Comment"
                       formControlName="Comment"></textarea>
                     <div *ngIf="submitted && fc.Comment.errors" class="invalid-feedback">
@@ -179,7 +188,7 @@
         <div class="modal-footer">
           <button class="btn btn-square btn-primary" type="submit">Submit</button>
           <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Close</button>
+            (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
@@ -189,7 +198,7 @@
   <!-- Edit leave modal -->
   <ng-template #EditTemplate>
     <div class="modal-header">
-      <h5 class="modal-title pull-left">Edit Leave Details</h5>
+      <h5 class="modal-title pull-left">Update Leave</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -303,7 +312,7 @@
         <div class="modal-footer">
           <button class="btn btn-square btn-primary" type="submit">Update</button>
           <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Close</button>
+            (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
