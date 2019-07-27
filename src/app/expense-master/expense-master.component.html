@@ -74,7 +74,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="expense">Expense Name</label>
-                <input type="text" id="expense" class="form-control" formControlName="expense"
+                <input type="text" id="expense" class="form-control" formControlName="expense" placeholder="Enter Expense Name"
                 [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
                 <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
                     <div *ngIf="f.expense.errors.required">Expense Name is required</div>
