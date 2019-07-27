@@ -95,10 +95,9 @@
         <h5>Personal Details </h5>
         <div class="form-group">
 
-          <label for="Name">Name</label>
-
           <div class="row">
             <div class="col-md-4">
+                <label for="FirstName">First Name</label>
               <input type="text" class="form-control" formControlName="FirstName"
                 [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
               <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
@@ -106,6 +105,7 @@
               </div>
             </div>
             <div class="col-md-4">
+                <label for="MiddleName">Middle Name</label>
               <input type="text" class="form-control" formControlName="MiddleName"
                 [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
               <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
@@ -113,6 +113,7 @@
               </div>
             </div>
             <div class="col-md-4">
+                <label for="LastName">Last Name</label>
               <input type="text" class="form-control" formControlName="LastName"
                 [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
               <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
@@ -124,7 +125,7 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-4">
-              <label for="Gender">Gender:</label>
+              <label for="Gender">Gender</label>
               <div class="row">
                 <div class="col-md-12">
                     <div class="form-check form-check-inline mr-1">
@@ -162,7 +163,7 @@
               </div>
             </div>
             <div class="col-md-4">
-              <label for="DOB">Date Of Birth</label>
+              <label for="DOB">Date of Birth</label>
               <input type="date" id="DOB" class="form-control" formControlName="DOB"
                 [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
               <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
@@ -177,7 +178,7 @@
           <div class="row">
             <div class="col-md-4">
               <label for="ContactNo">Contact No</label>
-              <input type="number" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
+              <input type="text" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact No"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
               <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
                 <div *ngIf="f.ContactNo.errors.required">Contact No is required</div>
@@ -185,14 +186,14 @@
             </div>
             <div class="col-md-4">
               <label for="EmergencyNo">Emergency No</label>
-              <input type="number" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
+              <input type="text" minlength="0" maxlength="10" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
               <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
                 <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
               </div>
             </div>
             <div class="col-md-4">
-              <label for="Email">Email ID </label>
+              <label for="Email">Email</label>
               <input type="email" class="form-control" id="Email" formControlName="Email"
                 [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
               <div *ngIf="submitted && f.Email.errors">
@@ -246,7 +247,7 @@
           <h5>Current Address </h5>
           <div class="form-group">
               <label for="inputPaddress">Address </label>
-              <input type="text" class="form-control" id="Address1" placeholder="Address 1"
+              <input type="text" class="form-control" id="Address1" placeholder="Address"
               formControlName="Address1" [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
               <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
                   <div *ngIf="f.Address1.errors.required">Address is required</div>
@@ -329,11 +330,11 @@
                       <input type="text" class="form-control" id="PreviousWorkName" formControlName="PreviousWorkName">
                     </div>
                     <div class="col-md-4">
-                        <label for="DateOfJoining">Date Of Joining </label>
+                        <label for="DateOfJoining">Date of Joining </label>
                         <input type="date" class="form-control" id="DateOfJoining" formControlName="DateOfJoining">
                       </div>
                       <div class="col-md-4">
-                          <label for="DateOfLeaving">Date Of Leaving </label>
+                          <label for="DateOfLeaving">Date of Leaving </label>
                           <input type="date" class="form-control" id="DateOfLeaving" formControlName="DateOfLeaving">
                         </div>
                     </div>
@@ -358,7 +359,7 @@
         <div class="modal-footer">
             <button class="btn btn-square  btn-primary" type="submit">Update</button>
             <button class="btn btn-danger btn-square ml-2" type="button"
-          (click)="modalRef.hide()">Close</button>
+          (click)="modalRef.hide()">Cancle</button>
          <!-- <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
           <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
             (click)="modalRef.hide()">Cancel</button> -->
@@ -429,7 +430,7 @@
 
             <div class="row">        
               <div class="col-md-6">
-                  <label for="DOB">Date Of Birth: </label>
+                  <label for="DOB">Date of Birth: </label>
                   {{g.DOB.value}}
                 </div>
                 <div class="col-md-6">
@@ -456,7 +457,7 @@
     </div>
     <div class="row">
         <div class="col">
-      <label for="EmergencyNo">Email ID: </label>
+      <label for="EmergencyNo">Email: </label>
       {{g.Email.value}}
       </div>
       </div>
@@ -563,7 +564,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="CourseName">Previous Experience: </label>
-                    {{g.PreviousExperience.value}}
+                    {{g.PreviousExperience.value}} Year
                 </div>
                 </div>
               </div>
