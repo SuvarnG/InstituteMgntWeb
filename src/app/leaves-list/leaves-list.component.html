@@ -9,7 +9,7 @@
         <div class="btn-group" role="group" aria-label="Button group">
           
             <button class="btn btn-primary" type="button">
-                <i class="fa fa-search"></i></button>
+                <i class="fa fa-search text-white"></i></button>
 
             <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
             &nbsp;&nbsp;
@@ -72,7 +72,7 @@
       <button class="btn btn-square btn-primary" type="submit"
         (click)="CreateLeave(leaveName.value)">Submit</button>
       <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Cancel</button>
+        (click)="modalRef.hide()">Close</button>
     </div>
   </form>
   </div>
@@ -82,7 +82,7 @@
 
 <ng-template #template2>
   <div class="modal-header">
-    <h3 class="font-weight-medium mb-1 mt-1">Update Leave Type</h3>
+    <h5 class="font-weight-medium mb-1 mt-1">Update Leave Type</h5>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -102,7 +102,7 @@
       <button class="btn btn-square btn-primary" (click)="UpdateLeave(template2)"
         type="submit">Update</button>
       <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Cancel</button>
+        (click)="modalRef.hide()">Close</button>
     </div>
   </form>
   </div>
