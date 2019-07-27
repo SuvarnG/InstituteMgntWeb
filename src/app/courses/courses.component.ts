@@ -61,7 +61,7 @@ export class CoursesComponent implements OnInit {
       IsPercentage: [],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
-      Percentage: [],
+      Percentage: ['',Validators.maxLength],
 
     })
     this.getCourses(this.user.InstituteId, this.user.BranchId);

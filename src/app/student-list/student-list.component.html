@@ -213,10 +213,17 @@
               <label for="Gender">Gender</label>
               <div class="row">
                 <div class="col-md-12">
-                  <input type="radio" name="Gender" formControlName="Gender" value="Male"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "> Male
-                  <input type="radio" class="ml-3" name="Gender" formControlName="Gender" value="Female"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} "> Female
+                    <div class="form-check form-check-inline mr-1">
+                        <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                        <label class="form-check-label" for="radio1">Male</label>
+                      </div>
+                  
+                  <div class="form-check form-check-inline mr-1">
+                      <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
+                      [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                      <label class="form-check-label" for="radio2">Female</label>
+                    </div>
                 </div>
               </div>
             </div>
