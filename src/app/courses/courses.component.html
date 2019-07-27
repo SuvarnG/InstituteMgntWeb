@@ -41,10 +41,9 @@
                 <tr *ngFor="let c of course | filter:filter">
                   <td>{{c.CourseTypeName}}</td>
                   <td>{{c.ShortName}}</td>
-                  <td><i class="material-icons"
-                      [style.color]="c.IsPercentage==true  ? 'teal' : 'danger'">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
+                  <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
                   </td>
-                  <td>{{c.Fees}}</td>
+                  <td>{{c.Fees | number}}</td>
                   <td>{{c.Duration}}</td>
                   <td>{{c.Percentage}}
                   <td>
@@ -126,7 +125,7 @@
             <input type="checkbox" formControlName="IsPercentage" (click)="calculateIsPercentage()">
           </div>
           <div class="form-group col-md-3">
-            <label class="h6">Percentage?</label>
+            <label class="">Percentage</label>
           </div>
 
         </div>
@@ -157,7 +156,7 @@
 
         <div class="modal-footer">
           <button class="btn btn-primary btn-square" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
 
       </form>
@@ -171,7 +170,7 @@
 
 <ng-template #editTemplate>
   <div class="modal-header">
-    <h5 class="modal-title pull-left">Edit Course Details</h5>
+    <h5 class="modal-title pull-left">Update Course</h5>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -205,7 +204,7 @@
 
           </div>
           <div class="form-group col-md-3">
-            <label for="Fees" class=" h6 text-muted ">Percentage?</label>
+            <label for="Fees">Percentage</label>
 
           </div>
         </div>
@@ -235,7 +234,7 @@
 
         <div class="modal-footer">
           <button class="btn btn-primary btn-square" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
 
       </form>

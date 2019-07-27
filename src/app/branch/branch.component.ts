@@ -85,7 +85,7 @@ export class BranchComponent implements OnInit {
     this.modalRef = this.modalService.show(NewBranchTemplate, {
       animated: true,
       backdrop: 'static',
-      class: 'modal-lg'
+      class: 'modal-md'
     });
   }
 
@@ -100,7 +100,7 @@ export class BranchComponent implements OnInit {
     this.modalRef = this.modalService.show(EditBranchTemplate, {
       animated: true,
       backdrop: 'static',
-      class: 'modal-lg'
+      class: 'modal-md'
     });
   }
   onSubmitCreateBranch() {

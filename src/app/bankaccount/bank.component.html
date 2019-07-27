@@ -56,24 +56,9 @@
             <td>{{b.AccountType}}</td>
             <td>{{b.IFSC_Code}}</td>
             <td>
-                <a class="card-header-action btn-minimize" (click)="editAccNo(editTemplate,b)" title="Edit Information">
+                <a (click)="editAccNo(editTemplate,b)" title="Edit Information">
                     <i class="cui-pencil"></i>
                   </a>
-                <!-- <svg class="icon" (click)="editAccNo(editTemplate,b)"  data-toggle="tooltip"
-                data-placement="bottom" title="Edit Bank" version="1.1" id="Capa_1"
-                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                viewBox="0 0 383.947 383.947" style="enable-background:new 0 0 383.947 383.947;" xml:space="preserve"
-                width="18px">
-                <g>
-                  <g>
-                    <g>
-                      <polygon points="0,303.947 0,383.947 80,383.947 316.053,147.893 236.053,67.893" />
-                      <path d="M377.707,56.053L327.893,6.24c-8.32-8.32-21.867-8.32-30.187,0l-39.04,39.04l80,80l39.04-39.04
-      C386.027,77.92,386.027,64.373,377.707,56.053z" />
-                    </g>
-                  </g>
-                </g>
-              </svg> -->
               &nbsp;&nbsp;&nbsp;&nbsp;
               
               
@@ -129,9 +114,13 @@
                                       <div *ngIf="f.ReAccountNo.errors.mustMatch">Account Number must match</div>
                                     </div>
                       </div>
-                      <div class="form-group row">
-                          <label class="col-md-4 col-form-label">Account Type</label>
-                          <div class="col-md-8 col-form-label">
+
+
+
+                       <div class="form-group row">
+                          <label class="col-md-3 col-form-label">Account Type</label>
+                          <div class="row">
+                          <div class="col-md-12 col-form-label">
                           <div class="form-check form-check-inline mr-1">
                               <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving">
                           <label class="form-check-label ml-1" for="inline-radio1">Saving</label>
@@ -143,7 +132,8 @@
                           </div>
                           
                           </div>
-                          </div>
+                        </div>
+                          </div> 
 
                           <div class="form-group">
                               <label for="Amount">Amount</label>
@@ -157,7 +147,7 @@
            <div class="modal-footer">
             <button class="btn btn-primary btn-square" type="submit">Submit</button>
             <button class="btn btn-danger btn-square ml-2" type="button"
-                                (click)="modalRef.hide()">Close</button>
+                                (click)="modalRef.hide()">Cancel</button>
           </div>
       </form>
     </div>
@@ -170,7 +160,7 @@
   <ng-template #editTemplate>
  
     <div class="modal-header">
-      <h4 class=" h5 modal-title pull-left px-3">Edit Bank Details</h4>
+      <h4 class=" h5 modal-title pull-left px-3">Update Bank Details</h4>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -204,8 +194,9 @@
               </div>
                       </div>
                       <div class="form-group row">
-                          <label class="col-md-4 col-form-label">Account Type </label>
-                          <div class="col-md-8 col-form-label">
+                          <label class="col-md-3 col-form-label">Account Type </label>
+                          <div class="row">
+                          <div class="col-md-12 col-form-label">
                           <div class="form-check form-check-inline mr-1">
                               <input type="radio" class="ml-3" name="AccountType" formControlName="AccountType" value="Saving">
                           <label class="form-check-label ml-1" for="inline-radio1">Saving</label>
@@ -216,6 +207,7 @@
                           </div>
                           
                           </div>
+                        </div>
                           </div>   
                           
                           <div class="form-group">
@@ -225,7 +217,7 @@
               <div class="modal-footer">
                   <button class="btn btn-primary btn-square" type="submit">Update</button>
     <button class="btn btn-danger btn-square ml-2" type="button"
-    (click)="modalRef.hide()">Close</button>
+    (click)="modalRef.hide()">Cancel</button>
                   </div>
       </form>
     </div>

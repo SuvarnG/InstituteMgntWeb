@@ -31,7 +31,8 @@
                   <th class="pl-2">Branch Name</th>
                   <th class="pl-2">Address</th>
                   <th class="pl-2">Contact Number</th>
-                  <th></th>
+                  <th class="pl-2">Action</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -62,55 +63,49 @@
 <ng-template #NewBranchTemplate>
   <form [formGroup]="createBrachForm" (ngSubmit)="onSubmitCreateBranch()">
     <div class="modal-header">
-      <h5 class="modal-title pull-left">Add New Branch</h5>
+      <h5 class="modal-title pull-left">Add Branch</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-      <div class="row mx-3">
-        <div class="col-md-12 ">
-
-          <div class="row">
-            <div class="col-md-12 px-4">
-              <div class="form-row">
-
-                <div class="form-group col-md-4 px-3">
-                  <input type="text" class="form-control" formControlName="BranchName" placeholder="Branch Name"
+        <div class="container-fluid">
+        <div class="form-group">
+            <label for="BankName">Branch Name</label>
+            <input type="text" class="form-control" formControlName="BranchName" placeholder="Branch Name"
                     [ngClass]="{ 'is-invalid': submitted && f.BranchName.errors }">
-                  <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
-                    <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
-                  </div>
-                </div>
-                <div class="form-group col-md-4 px-3">
-                  <input type="text" class="form-control" formControlName="Address" placeholder="Branch Address"
+                    <div *ngIf="submitted && f.BranchName.errors" class="invalid-feedback">
+                        <div *ngIf="f.BranchName.errors.required">Please Enter Branch Name</div>
+                      </div>
+            </div>
+
+            <div class="form-group">
+                <label for="BankName">Branch Address</label>
+                <input type="text" class="form-control" formControlName="Address" placeholder="Branch Address"
                     [ngClass]="{ 'is-invalid': submitted &&
                       f.Address.errors }">
-                  <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
-                  </div>
+                      <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                          <div *ngIf="f.Address.errors.required">Please Enter Branch Address</div>
+                        </div>
                 </div>
 
-                <div class="form-group col-md-4 px-3">
-                  <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                <div class="form-group">
+                    <label for="BankName">Contact Number</label>
+                    <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
                     [ngClass]="{ 'is-invalid': submitted &&
                   f.ContactNo.errors }">
                   <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                    <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
-                  </div>
-                </div>
+                      <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+                    </div>
+                    </div>
 
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
+      
     </div>
 
     <div class="modal-footer">
       <button class="btn btn-square btn-primary" type="submit">Submit</button>
-      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+    </div>
     </div>
   </form>
 </ng-template>
@@ -119,50 +114,45 @@
 <ng-template #EditBranchTemplate>
   <form [formGroup]="editBranchForm" (ngSubmit)="onSubmitEditBranch()">
     <div class="modal-header">
-      <h5 class="modal-title pull-left">Edit Branch</h5>
+      <h5 class="modal-title pull-left">Update Branch</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
     <div class="modal-body">
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-md-4">
-            <label for="BranchName">Branch Name:</label>
+        <div class="container-fluid">
+        <div class="form-group">
+            <label for="BankName">Branch Name</label>
             <input type="text" class="form-control" formControlName="BranchName"
               [ngClass]="{ 'is-invalid': submitted && g.BranchName.errors }">
-            <div *ngIf="submitted && g.BranchName.errors" class="invalid-feedback">
-              <div *ngIf="g.BranchName.errors.required">Please Enter Branch Name</div>
+              <div *ngIf="submitted && g.BranchName.errors" class="invalid-feedback">
+                  <div *ngIf="g.BranchName.errors.required">Please Enter Branch Name</div>
+                </div>
             </div>
-          </div>
-
-          <div class="col-md-4">
-            <label for="BranchAddress">Branch Address:</label>
-            <input type="text" class="form-control" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
+            <div class="form-group">
+                <label for="BranchName">Branch Address</label>
+                <input type="text" class="form-control" formControlName="Address" [ngClass]="{ 'is-invalid': submitted &&
                g.Address.errors }">
-            <div *ngIf="submitted && g.Address.errors" class="invalid-feedback">
-              <div *ngIf="g.Address.errors.required">Please Enter Branch Address</div>
-            </div>
-          </div>
-
-          <div class="col-md-4">
-            <label for="EmailID">Contact Number:</label>
-            <input type="text" class="form-control" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
+               <div *ngIf="submitted && g.Address.errors" class="invalid-feedback">
+                  <div *ngIf="g.Address.errors.required">Please Enter Branch Address</div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <label for="ContactNo">Contact Number</label>
+                    <input type="text" class="form-control" formControlName="ContactNo" [ngClass]="{ 'is-invalid': submitted &&
                   g.ContactNo.errors }">
-            <div *ngIf="submitted && g.ContactNo.errors" class="invalid-feedback">
-              <div *ngIf="g.ContactNo.errors.required">Please Enter contact number</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+                  <div *ngIf="submitted && g.ContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="g.ContactNo.errors.required">Please Enter contact number</div>
+                    </div>
+                    </div>
+      
     </div>
 
     <div class="modal-footer">
       <button class="btn btn-square btn-primary" type="submit"
         (click)="UpdateCourseType(CourseTypeName.value)">Update</button>
-      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+    </div>
     </div>
   </form>
 </ng-template>
