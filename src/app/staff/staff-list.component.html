@@ -30,14 +30,14 @@
           <div class="card-header h5">{{t.FirstName+' '+t.LastName | titlecase}}
             <div class="card-header-actions">
               <a class="card-header-action btn-setting" (click)="getStaffDetails(showStaff,t)" title="Staff Details">
-                <i class="cui-info"></i>
+                <i class="cui-info info"></i>
               </a>
               <a class="card-header-action btn-minimize" (click)="edit(editStaff,t)" title="Edit Information">
-                <i class="cui-pencil"></i>
+                <i class="cui-pencil pencil"></i>
               </a>
               <a class="card-header-action btn-close" (click)="delete(t.StaffId,t.FirstName,t.LastName)"
                 title="Delete Staff">
-                <i class="cui-trash"></i>
+                <i class="cui-trash trash"></i>
               </a>
             </div>
           </div>

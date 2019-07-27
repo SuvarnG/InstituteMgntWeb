@@ -12201,7 +12201,7 @@ canvas {
   flex-wrap: wrap;
   -ms-flex-align: center;
   align-items: center;
-  padding: 0 1rem;
+  padding: 10px 1rem;
   color: #23282c;
   background: #f0f3f5;
   border-top: 1px solid #c8ced3;
@@ -16394,3 +16394,18 @@ body {
   background-position: right calc(0.375em + 0.1875rem) center;
 }
 /*# sourceMappingURL=style.css.map */
+
+
+
+
+.info:hover{
+  color:lightskyblue !important;
+  }
+
+  .pencil:hover{
+    color:lightseagreen !important;
+    }
+
+    .trash:hover{
+      color:red !important;
+      }

@@ -207,13 +207,14 @@ this.expenseService.expensesChartList(this.user.BranchId).subscribe((result: Exp
 }); 
 this 
 this.chart = new Chart('canvas1', {  
-  type:  'bar', 
+  type:  'bar',   
   data: {  
     labels: this.Bexpense, 
     datasets: [  
-      {  
+      { 
+        label: 'Expenses',
         data: this.Bamount,  
-        borderColor: '#3cba9f',  
+        // borderColor: '#3cba9f',  
         fill: true  
       }  
     ]  
@@ -221,7 +222,7 @@ this.chart = new Chart('canvas1', {
   options: {
     legend: {  
       display: true  
-    },  
+    }, 
     scales: {  
       xAxes: [{  
         display: true  
@@ -248,6 +249,7 @@ this.chart = new Chart('canvas3', {
     datasets: [  
       {   
         // backgroundColor: "#0000FF", 
+        label: 'Expenses',
         data: this.Lamount,  
         borderColor: '#3cba9f',  
         fill: true  
