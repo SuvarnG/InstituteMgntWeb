@@ -56,12 +56,12 @@ export class ExpenseService {
   }
 
   expensesChartList(BranchId:number) {
-    debugger;
+    
     return this.http.post<ExpenseChart[]>( environment.APIBASEURL + 'Expenses/GetExpensesData_Chart'+'/'+BranchId,null, this.getAuthHeader());
   }
 
   getIncomeAndExpenseData(BranchId:number){
-    debugger;
+    
     return this.http.post<IncomeExpense[]>(environment.APIBASEURL + 'Expenses/GetIncomeAndExpenseData'+'/'+BranchId,null, this.getAuthHeader())
   }
 

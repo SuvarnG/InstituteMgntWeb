@@ -49,7 +49,7 @@ p:any;
 
   pullEnquiryReport(){
 
-    debugger;
+    
 
     if(this.periodSelection=="SelectDateRange"){
 

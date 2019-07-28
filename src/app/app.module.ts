@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-// import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthorisedTopNavComponent } from './layout/authorised/authorised-top-nav/authorised-top-nav.component';
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
@@ -23,17 +22,9 @@ import { LeaveService } from './leave/leave.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { LeaveComponent } from './leave/leave.component';
-import { HomeComponent } from './home/home.component';
-import { sliderservice } from './sliderservice.service';
-import { SliderComponent } from './slider/slider.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { CoursesComponent } from './courses/courses.component';
-import { SocialactComponent } from './socialact/socialact.component';
-import { TestinomialsComponent } from './testinomials/testinomials.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
 import { StaffListComponent } from './staff/staff-list.component';
 import { ExpensesComponent } from './ExpenseTransaction/expenses.component';
@@ -97,16 +88,9 @@ const appRoutes: Routes = [
     LeavesListComponent,
     EnquiryComponent,
     LeaveComponent,
-    HomeComponent,
-    SliderComponent,
     NavigationBarComponent,
     FooterComponent,
-    HeaderComponent,
-    ContactUsComponent,
-    AboutUsComponent,
     CoursesComponent,
-    SocialactComponent,
-    TestinomialsComponent,
     TeacherCoursesComponent,
     StaffListComponent,
     ExpensesComponent,
@@ -153,7 +137,7 @@ const appRoutes: Routes = [
     CollapseModule.forRoot()
   ],
   providers:
-    [sliderservice,
+    [
       StudentslistService,
       LeavelistService,
       CreateNewStudentService,

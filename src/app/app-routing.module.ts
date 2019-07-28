@@ -6,12 +6,7 @@ import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
 import { LoginComponent } from './login/login.component';
 import { LeaveComponent } from './leave/leave.component';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CoursesComponent } from './courses/courses.component';
-import { TestinomialsComponent } from './testinomials/testinomials.component';
-import { SocialactComponent } from './socialact/socialact.component';
-import { HomeComponent } from './home/home.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { StaffListComponent } from './staff/staff-list.component';
 import { TeacherCoursesComponent } from './teacher-courses/teacher-courses.component';
@@ -31,137 +26,108 @@ import { StudentAdmissionsReportComponent } from './student-admissions-report/st
 
 
 const routes: Routes = [
- {
-    path:'',
-    component:LoginComponent,
-    pathMatch:'full'
+  {
+    path: '',
+    component: LoginComponent,
+    pathMatch: 'full'
   },
 
-  {    
-    path: 'Login',    
-    component: LoginComponent,    
-    data: {    
-      title: 'Login Page'    
-    }    
-  }, 
-  {    
-    path: 'Leave',    
-    component: LeaveComponent,    
-    data: {    
-      title: 'Leave Page'    
-    }    
-  },    
-  {    
-    path: 'Dashboard',    
-    component:AuthorisedLayoutComponent ,    
-    data: {    
-      title: 'Layout Page'    
-    }    
-  },  
   {
-    path:'Enquiry',
-    component:EnquiryComponent
+    path: 'Login',
+    component: LoginComponent,
   },
   {
-    path:'Enquiry',
-    component:EnquiryComponent
-  },  
-   {
-    path:'Leave',
-    component:LeaveComponent
+    path: 'Leave',
+    component: LeaveComponent,
   },
   {
-    path:'LeaveList',
-    component:LeavesListComponent
+    path: 'Dashboard',
+    component: AuthorisedLayoutComponent,
   },
   {
-    path:'StudentList',
-    component:StudentListComponent
-  },
-    {
-    path:'CreateStudent',
-    component:CreateStudentComponent
-  } ,
-  {
-    path:'AboutUs',
-    component:AboutUsComponent
+    path: 'Enquiry',
+    component: EnquiryComponent
   },
   {
-    path:'ContactUs',
-    component:ContactUsComponent
+    path: 'Leave',
+    component: LeaveComponent
   },
   {
-    path:'Socialact',
-    component:SocialactComponent
+    path: 'LeaveList',
+    component: LeavesListComponent
   },
   {
-    path:'Testinomials',
-    component:TestinomialsComponent
+    path: 'StudentList',
+    component: StudentListComponent
   },
   {
-    path:'Courses',
-    component:CoursesComponent
+    path: 'CreateStudent',
+    component: CreateStudentComponent
   },
-  { path: 'StaffList',
-   component: StaffListComponent
-},
-{ path: 'Expenses',
-   component: ExpensesComponent
-},
-{ path: 'TeacherCourses',
-component: TeacherCoursesComponent
-},
-
-{ path: 'ExpenseMaster',
-component: ExpenseMasterComponent
-},
-
-{ path: 'FeesTransaction',
-component: FeesTransactionComponent
-},
-
-{ path: 'Branch',
-component: BranchComponent
-},
-
-{
-  path: 'role',
-  component: RoleComponent
-},
-
-{
-  path: 'BankTransaction',
-  component: BanktransactionComponent
-},
-{
-  path: 'Bank',
-  component: BankComponent
-},
-{
-  path: 'coursetype',
-  component: CoursetypeComponent
-},
-{
-  path: 'reports',
-  component: ReportsComponent
-},
-{
-  path: 'ExpenseReport',
-  component: ExpenseReportComponent
-},
-{
-  path: 'FeesCollectionReport',
-  component: FeesCollectionReportComponent
-},
-{
-  path: 'EnquiryReport',
-  component: EnquiryReportComponent
-},
-{
-  path: 'StudentAdmissionsReport',
-  component: StudentAdmissionsReportComponent
-},
-
+  {
+    path: 'Courses',
+    component: CoursesComponent
+  },
+  {
+    path: 'StaffList',
+    component: StaffListComponent
+  },
+  {
+    path: 'Expenses',
+    component: ExpensesComponent
+  },
+  {
+    path: 'TeacherCourses',
+    component: TeacherCoursesComponent
+  },
+  {
+    path: 'ExpenseMaster',
+    component: ExpenseMasterComponent
+  },
+  {
+    path: 'FeesTransaction',
+    component: FeesTransactionComponent
+  },
+  {
+    path: 'Branch',
+    component: BranchComponent
+  },
+  {
+    path: 'role',
+    component: RoleComponent
+  },
+  {
+    path: 'BankTransaction',
+    component: BanktransactionComponent
+  },
+  {
+    path: 'Bank',
+    component: BankComponent
+  },
+  {
+    path: 'coursetype',
+    component: CoursetypeComponent
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent
+  },
+  {
+    path: 'ExpenseReport',
+    component: ExpenseReportComponent
+  },
+  {
+    path: 'FeesCollectionReport',
+    component: FeesCollectionReportComponent
+  },
+  {
+    path: 'EnquiryReport',
+    component: EnquiryReportComponent
+  },
+  {
+    path: 'StudentAdmissionsReport',
+    component: StudentAdmissionsReportComponent
+  }
 ];
 
 @NgModule({

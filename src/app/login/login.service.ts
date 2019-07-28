@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { from, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { User } from '../models/User';
 import { Auth } from '../models/Auth';
-import { Utils } from '../Utils';
-import { Resetpassword } from '../Model/User';
 
  const httpOptions = {
   headers: new HttpHeaders({

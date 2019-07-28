@@ -150,7 +150,7 @@ export class CreateStudentComponent implements OnInit {
 
 
   openModal(template: TemplateRef<any>) {
-    debugger;
+    
     this.submitted = true;
     if (this.registerForm.invalid) {
       return
@@ -459,7 +459,7 @@ export class CreateStudentComponent implements OnInit {
   }
 
   calculateDiscountedAmount() {
-    debugger;
+    
     this.CalculatedDiscountedAmount = ((this.registerStudentCourse.controls.CourseFees.value) - ((this.registerStudentCourse.controls.AnyDiscount.value / 100) * this.registerStudentCourse.controls.CourseFees.value))
     this.registerStudentCourse.controls.NewDiscountedAmount.setValue(this.CalculatedDiscountedAmount)
 

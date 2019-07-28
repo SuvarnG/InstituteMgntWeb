@@ -5,7 +5,6 @@ import { FormsModule, Validators, FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Resetpassword } from '../Model/User';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 
 
 @Component({

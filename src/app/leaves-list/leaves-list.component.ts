@@ -120,7 +120,7 @@ export class LeavesListComponent implements OnInit {
   }
 
   UpdateLeave(leaves: Leaves) {
-    debugger;
+    
     this.submitted = true;
     //stop here if form is invalida
     if (this.registerUpdateLeave.invalid) {

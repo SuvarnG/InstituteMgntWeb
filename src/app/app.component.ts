@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import {LoginService} from './login/login.service';
-import { Router, NavigationStart } from '@angular/router';
+import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +7,18 @@ import { Router, NavigationStart } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular';
-  showMenu:boolean=true;
-  constructor(router:Router) {
-    debugger; 
+  public isLoginPage: boolean = false;
+
+  constructor(router: Router, private route: ActivatedRoute) {
+    
     router.events.forEach((event) => {
-        if(event instanceof NavigationStart) {
-          this.showMenu=true;
-          if(event.url=='/Login')
-          {
-            this.showMenu = event.url !== "/Login";
-          }
-          if(event.url=='/')
-          {
-            this.showMenu = event.url !== "/";
-          }
-            
+      if (event instanceof NavigationStart) {
+        if (event.url.toLowerCase() == "/login" || event.url.toLowerCase() == "/") {
+          this.isLoginPage = true;
+          console.log('page:', this.isLoginPage);
         }
-      });
-    }
+      }
+    });
+  }
 
 }

@@ -51,7 +51,7 @@ p:any;
 
   pullExpenseReport(){
 
-    debugger;
+    
 
     this.submitted=true;
     if(this.registerExpensesReport.controls.period.invalid){
