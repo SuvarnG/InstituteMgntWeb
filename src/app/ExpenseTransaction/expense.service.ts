@@ -17,7 +17,7 @@ import { Utils } from '../Utils';
 
 export class ExpenseService {
   private Url = environment.APIBASEURL + 'Expenses/GetAll_tran';
-  private deleteUrl = environment.APIBASEURL + 'Expenses/DeleteExpense/';
+  private deleteUrl = environment.APIBASEURL + 'Expenses/DeleteExpense_Tran/';
   private editUrl = environment.APIBASEURL + 'Expenses/UpdateExpense_Tran/';
   listUser: User[];
   public listStaff: StaffMaster[];
@@ -66,7 +66,7 @@ export class ExpenseService {
   }
 
   deleteExpense(id): Observable<Expenses> {
-    return this.http.post<Expenses>(this.deleteUrl + id, this.getAuthHeader()).pipe(
+    return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/DeleteExpense_Tran'+'/' + id,null, this.getAuthHeader()).pipe(
       tap(_ => console.log(`deleted expense id=${id}`)),
       catchError(this.handleError<Expenses>('deleteExpense'))
     );

@@ -16,6 +16,7 @@ export interface Expenses {
 export interface ExpenseChart{
     ExpenseName:string;
     PaidAmount:number;
+    Month:string;
 }
 
 export interface ExpenseMaster{

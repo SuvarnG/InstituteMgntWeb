@@ -37,7 +37,7 @@
             <td>{{e.ExpenseType}}</td>
             <td>{{e.Date | date:'mediumDate'}}</td>
             <td>{{e.PaidByName}}</td>
-            <td>{{e.Paid}}</td>
+            <td>{{e.Paid | number}}</td>
             <td>
             <a class="card-header-action btn-minimize" (click)="edit(editExpense,e)" title="Edit Information">
                 <i class="cui-pencil"></i>

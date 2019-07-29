@@ -1,7 +1,7 @@
 import { ExpenseMaster } from './../Model/Expenses';
 import { ExpenseMasterService } from './../expense-master/expense-master.service';
 import { StaffListService } from './../staff/staff-list.service';
-import { Component, OnInit, TemplateRef, Pipe } from '@angular/core';
+import { Component, OnInit, TemplateRef, Pipe, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ExpenseService } from './expense.service';
@@ -11,6 +11,7 @@ import { User } from '../Model/User';
 import { StaffMaster } from '../Model/StaffMaster';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
+import { DataTableDirective } from 'angular-datatables';
 
 
 @Component({
@@ -41,6 +42,9 @@ export class ExpensesComponent implements OnInit {
   filter:any;
   p:any;
 
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
   constructor(
     private modalService: BsModalService,
     private router: Router,
@@ -56,7 +60,7 @@ export class ExpensesComponent implements OnInit {
        //retrieve: true,
        pagingType: 'full_numbers',
        pageLength: 10,
-       paging:false,
+       paging:true,
        searching:false
 
      };
@@ -87,6 +91,18 @@ export class ExpensesComponent implements OnInit {
       });
     this.getStaffList();
   }
+  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+        dtInstance.destroy();
+        this.dtTrigger.next();
+    });
+}
 
   public user=Utils.GetCurrentUser();
   
@@ -94,7 +110,8 @@ export class ExpensesComponent implements OnInit {
     BranchId=this.user.BranchId;
     this.ExpenseService.expensesList(BranchId).subscribe(res =>
       { this.expenses = res;
-    this.dtTrigger.next();
+    //this.dtTrigger.next();
+    this.rerender();
   });
 }
 
@@ -112,6 +129,7 @@ export class ExpensesComponent implements OnInit {
   }
 
   delete(expensetype:string,expenseID:number) {
+    debugger;
     var ans = confirm("Do you want to delete expense od type: " + expensetype);
     if (ans) {
       this.ExpenseService.deleteExpense(expenseID).subscribe(data => {
@@ -140,6 +158,7 @@ export class ExpensesComponent implements OnInit {
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
+          this.rerender();
         }, error => this.errorMessage = error)
     }
   }
@@ -190,6 +209,7 @@ export class ExpensesComponent implements OnInit {
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
+          this.rerender();
         }, error => this.errorMessage = error)
     }
   }
