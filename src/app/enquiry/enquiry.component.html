@@ -81,6 +81,7 @@
                 
                 
                 <div class="form-group col-md-4">
+                  <label for="FirstName">First Name</label>
                   <input type="text" formControlName="FirstName" class="form-control" placeholder="First Name"
           [ngClass]="{'is-invalid': submitted && f.FirstName.errors }" />
           <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
@@ -89,6 +90,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
+                    <label for="MiddleName">Middle Name</label>
                   <input type="text" formControlName="MiddleName" class="form-control" placeholder="Middle Name"
           [ngClass]="{'is-invalid': submitted && f.MiddleName.errors }" />
           <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
@@ -96,6 +98,7 @@
           </div>
                 </div>
                 <div class="form-group col-md-4">
+                    <label for="LastName">Last Name</label>
                   <input type="text" formControlName="LastName" class="form-control" placeholder="Last Name"
           [ngClass]="{'is-invalid': submitted && f.LastName.errors }" />
           <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
@@ -105,7 +108,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
-                  
+                    <label for="Address">Address</label>
                   <input type="text" formControlName="Address" class="form-control" placeholder="Address"
           [ngClass]="{ 'is-invalid': submitted && f.Address.errors }" />
           <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
@@ -113,7 +116,7 @@
           </div>
                 </div>
                 <div class="form-group col-md-4">
-                  
+                    <label for="City">City</label>
                   <input type="text" formControlName="City" class="form-control" placeholder="City"
           [ngClass]="{'is-invalid': submitted && f.City.errors }" />
           <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
@@ -121,6 +124,7 @@
           </div>
                 </div>
                 <div class="form-group col-md-4">
+                    <label for="DateOfEnquiry">Date of Enquiry</label>
                   <input type="date"  class="form-control" formControlName="DateOfEnquiry"
         [ngClass]="{ 'is-invalid': submitted && f.DateOfEnquiry.errors }">
         <div *ngIf="submitted && f.DateOfEnquiry.errors" class="invalid-feedback">
@@ -144,6 +148,7 @@
 
               <div class="form-row">
                 <div class="form-group col-md-4">
+                    <label for="CourseType">Course Type</label>
                     <select name="CourseTypeId" id="CourseTypeId" class="form-control" [value]="null" formControlName="CourseTypeId"
                   (change)="selectCourseNameForCourseType($event)"
                   [ngClass]="{'is-invalid': submitted && f.CourseTypeId.errors} ">
@@ -158,6 +163,7 @@
                 </div>
 
                 <div class="form-group col-md-4">
+                    <label for="CourseName">Course Name</label>
                     <select name="CourseId" id="CourseId" class="form-control" value="null" formControlName="CourseId"
                     [ngClass]="{'is-invalid': submitted && f.CourseId.errors} ">
                     <option value="null" disabled hidden>Course Name</option>
@@ -189,16 +195,17 @@
           <div class="row ">
             <div class="col-md-12">
               <div class="form-row">
-                  <div class="form-group col-md-5">                  
+                  <div class="form-group col-md-5">                
                       <input type="checkbox" formControlName="IsFollowupNeeded"> Follow Up Needed?     
                     </div>
-                <div class="col-md-4" *ngIf="f.IsFollowupNeeded.value">           
+                <div class="col-md-4" *ngIf="f.IsFollowupNeeded.value">          
                     <input type="date" class="form-control" formControlName="NeedFollowupDate"
                     [min]="'2019/05/31'| date:'yyyy-MM-dd'">
                 </div>
               </div>
               <div class="form-row">
                 <div class="form-group col-md-4">
+                    <label for="Remark">Remark</label>
                   <textarea class="form-control rounded-0" formControlName="Remark" id="Remark" rows="1" placeholder="Remark"
                   [ngClass]="{ 'is-invalid': submitted && f.Remark.errors }"></textarea>
                   <div *ngIf="submitted && f.Remark.errors" class="invalid-feedback">
@@ -219,7 +226,7 @@
           <div class="form-row">
             <button class="btn btn-square btn-primary  " type="submit">Submit</button>
             <button class="btn btn-danger btn-square ml-2" type="button"
-              (click)="modalRef.hide()">Close</button>
+              (click)="modalRef.hide()">Cancle</button>
             <!-- <button class="btn btn-info btn-lg  py-1 px-3 rounded-0 f-20 ml-3" type="button" (click)="modalRef.hide()">Cancel</button> -->
 
           </div>
@@ -409,7 +416,7 @@
                 <div class="modal-footer">
                     <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
                     <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-                      (click)="modalRef.hide()">Close</button>
+                      (click)="modalRef.hide()">Cancle</button>
                 </div>
         
                 
