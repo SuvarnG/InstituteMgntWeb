@@ -7,14 +7,17 @@
             <li class="breadcrumb-item">Fees Payment</li>
           </ol> 
       
-      <div class="row justify-content-end text-right">
+     
           <div class="container-fluid">  
               <div id="ui-view">
                   <div class="card border-0 shadow rounded-0">
                     <div class="card-body">  
         <div class="col-md-12 mt-2">
+            
           <div class="form-row mb-3">
-            <div class="form-group col-md-3 px-3">
+              
+            <div class="form-group col-md-3 ">
+                <label for="Amount">Course Type</label>
               <select class="form-control" [value]="'default'" formControlName="CourseName" data-toggle="tooltip"
                 data-placement="bottom" title="CourseType"
                 [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
@@ -29,6 +32,7 @@
               </div>
             </div>
             <div class="form-group col-md-3 px-3">
+                <label for="Amount">Student Name</label>
               <select class="form-control" [value]=null formControlName="StudentID" data-toggle="tooltip"
                 data-placement="bottom" title="Student Name"
                 [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
@@ -49,6 +53,7 @@
 
           <div class="form-row mb-3">
             <div class="form-group col-md-3 px-3">
+                <label for="Amount">Fees</label>
               <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip"
                 data-placement="bottom" title="Course Fees"
                 [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }"
@@ -64,13 +69,15 @@
             </div>
 
             <div class="form-group col-md-3 px-3">
+                <label for="Amount">Remaining Fees</label>
               <input type="text" class="form-control" formControlName="RemainingFees" disabled
                 placeholder="Remaining Fees" title="Remaining Fees">
 
             </div>
 
             <div class="form-group col-md-3 px-3">
-              <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount"
+                <label for="Amount">Paying Amount</label>
+              <input type="text" class="form-control" id="FeesAmount" formControlName="FeesAmount"
                 data-toggle="tooltip" data-placement="bottom" title="Paying Amount?" placeholder="Paying Amount?"
                 [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
               <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
@@ -85,43 +92,46 @@
         <div class="form-row pull-right">
           <button class="btn btn-square btn-primary" type="submit">Submit</button>
           <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="clearFeesTransaction()">Close</button>
+            (click)="clearFeesTransaction()">Cancel</button>
         </div>
+
+
+        <div class="row justify-content-center text-left  mt-5" *ngIf="showFeesTable">
+            <div class="col-md-12 mt-2" id="ui-view">
+                <div class="card border-0  rounded-0">
+                  <div class="card-body">  
+            <table class="table table-bordered">
+              <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
+              <thead>
+                <tr>
+                  <th>Installment Date</th>
+                  <th>Paid Amount</th>
+                  <th>Fees Received By</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let fees of feesTransaction">
+  
+                  <td>{{fees.DateOfPayment | date}}</td>
+                  <td>{{fees.FeesPaid}}</td>
+                  <td>{{fees.FeesTakenBy}}</td>
+                </tr>
+              </tbody>
+            </table>
+  </div>
+  </div>
+          </div>
+        </div>
+  
         </div>
         </div>
         </div>
           </div>
         
-      </div>
+     
 
 
-      <div class="row justify-content text-left m-2" *ngIf="showFeesTable">
-          <div class="col-md-6 mt-2" id="ui-view">
-              <div class="card border-0 shadow rounded-0">
-                <div class="card-body">  
-          <table class="table table-bordered">
-            <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
-            <thead>
-              <tr>
-                <th>Installment Date</th>
-                <th>Paid Amount</th>
-                <th>Fees Taken By</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let fees of feesTransaction">
-
-                <td>{{fees.DateOfPayment | date}}</td>
-                <td>{{fees.FeesPaid}}</td>
-                <td>{{fees.FeesTakenBy}}</td>
-              </tr>
-            </tbody>
-          </table>
-</div>
-</div>
-        </div>
-      </div>
-
+      
 
 
     </form>
