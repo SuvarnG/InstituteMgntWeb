@@ -44,6 +44,7 @@
             <th class="pl-2">Account Type</th>
             <th class="pl-2">IFSC Code</th>
             <th class="pl-2">Action</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -57,8 +58,11 @@
                 <a (click)="editAccNo(editTemplate,b)" title="Edit Information">
                     <i class="cui-pencil"></i>
                   </a>
-              &nbsp;&nbsp;&nbsp;&nbsp;
               
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a (click)="delete(b.ID,b.BankName)" title="Edit Information">
+                  <i class="cui-trash"></i>
+                </a> 
               
  </td>
 
@@ -103,7 +107,7 @@
                             </div>
                   </div>
                   <div class="form-group">
-                      <label for="Amount">Amount</label>
+                      <label for="Amount">Re-Enter Account No</label>
                       <input type="password" class="form-control" formControlName="ReAccountNo"
                       onkeypress="return event.charCode >= 48 && event.charCode <= 57" [ngClass]="{ 'is-invalid': submitted &&
                                   f.ReAccountNo.errors }" placeholder="Re-Enter Account Number">
@@ -134,7 +138,7 @@
                           </div> 
 
                           <div class="form-group">
-                              <label for="Amount">Amount</label>
+                              <label for="Amount">IFSC Code</label>
                               <input type="text" class="form-control" formControlName="IFSC_Code" [ngClass]="{ 'is-invalid': submitted &&
                               f.IFSC_Code.errors }" placeholder="Enter IFSC Code">
                                           <div *ngIf="submitted && f.IFSC_Code.errors" class="invalid-feedback">

@@ -1,11 +1,3 @@
-<!-- Add top navigation componant -->
-<app-authorised-top-nav></app-authorised-top-nav>
-
-
-<div class="app-body">
-  <!-- Add left navigation componant -->
-  <app-authorised-side-nav></app-authorised-side-nav>
-  <main class="main">
 
       <!-- Breadcrumb-->
       
@@ -22,14 +14,14 @@
                    <div class="input-group">
                        <span class="input-group-prepend">
                        <button class="btn btn-primary btn-square" type="button">
-                       <i class="fa fa-search"></i></button>
+                       <i class="fa fa-search text-white"></i></button>
                        </span>
                        <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> 
                        </div>
    
                 
                &nbsp;&nbsp;
-               <button class="btn btn-sm btn-primary text-dark" (click)="openModal(template)" type="button">Add</button>
+               <button class="btn btn-sm btn-primary text-white" (click)="openModal(template)" type="button">Add</button>
                
            </div>
          </li>
@@ -62,8 +54,8 @@
      </div>
    </div>
    
-   </main>
-</div>
+     
+ 
 
 <ng-template #template>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
@@ -82,22 +74,7 @@
                       <div *ngIf="f.role.errors.required">Role Name is Required </div>
                     </div>
             </div>
-        <!-- <div class="row">
-            <div class="form-group col-md-4">
-
-                <label for="role" class="h6 mt-3">Role :</label>
-              </div>
-              <div class="form-group col-md-6">
-                  <input type="text" class="form-control" formControlName="role"
-                  [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
-                  <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                      <div *ngIf="f.role.errors.required">Role Name is Required </div>
-                    </div>
-                    
-      
-      </div>
-      </div> -->
-      
+        
     </div>
     <div class="modal-footer">
         <button class="btn btn-primary btn-square" type="submit" (click)="CreateRole(RoleName.value)">Submit</button>
