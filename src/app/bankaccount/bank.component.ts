@@ -60,7 +60,7 @@ export class BankComponent implements OnDestroy, OnInit {
         retrieve: true,
         paging:true,
         pagingType: 'full_numbers',
-        pageLength: 7,
+        pageLength: 4,
         searching:false
       };
 
