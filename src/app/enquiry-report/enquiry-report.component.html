@@ -124,8 +124,8 @@
             </div>
             <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
               <div class="mt-3">
-                <table style="border:1px solid gray; width: 100%">
-                  <tr style="border:1px solid gray">
+                <table class="table table-striped">
+                  <tr>
                     <th>Branch Name</th>
                     <th>Enquirer Name</th>
                     <th>Course Name</th>
@@ -133,8 +133,7 @@
                     <th>City</th>
                     <th>Date Of Enquiry</th>
                   </tr>
-                  <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 8, currentPage: p }"
-                    style="border:1px solid gray">
+                  <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 8, currentPage: p }">
                     <td>{{e.BranchName}}</td>
                     <td>{{e.EnquirerName}}</td>
                     <td>{{e.CourseName}}</td>
