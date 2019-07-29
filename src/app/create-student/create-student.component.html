@@ -275,6 +275,7 @@
                         <div class="form-row">
         
                           <div class="form-group col-md-4 px-3">
+                              <label for="CourseType">Course Type</label>
                               <select class="form-control" formControlName="CourseType" [value]="null"
                           [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseType.errors }"
                           (change)="selectUser($event);getCourseNameFromCourseType()">
@@ -290,6 +291,7 @@
 
                           
                           <div class="form-group col-md-4 px-3">
+                              <label for="CourseName">Course Name</label>
                               <select class="form-control" formControlName="CourseName" [value]="null"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseName.errors }"
                         (change)="selectFees($event);getCourseFeesFromCourseName()">
@@ -306,6 +308,7 @@
 
 
                           <div class="form-group col-md-4 px-3">
+                              <label for="CourseFees">Course Fees</label>
                               <select class="form-control" formControlName="CourseFees" [value]="null"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseFees.errors }"
                         (change)="selectCourseFees($event)">
@@ -330,6 +333,7 @@
                           <div class="form-row">
           
                             <div class="form-group col-md-4 px-3">
+                                <label for="Discount">Discount</label>
                                 <input type="number" class="form-control" id="Discount" formControlName="AnyDiscount" placeholder="Discount in %?"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.AnyDiscount.errors }" (blur)="calculateDiscountedAmount()">
                         <div *ngIf="submitStudentFees && g.AnyDiscount.errors" class="invalid-feedback">
@@ -339,6 +343,7 @@
   
                             
                             <div class="form-group col-md-4 px-3">
+                                <label for="DiscountAmount">Discount Amount</label>
                                 <input type="number" class="form-control" id="DiscountedAmount"
                         formControlName="NewDiscountedAmount" placeholder="Discounted Amount"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.NewDiscountedAmount.errors }" disabled>
@@ -361,6 +366,7 @@
                             <div class="form-row">
 
                                 <div class="form-group col-md-4 px-3">
+                                    <label for="FeesAmount">Fees Amount</label>
                                     <input type="number" class="form-control" id="FeesAmount" formControlName="FeesAmount" placeholder="Amount Paying?"
                             [ngClass]="{ 'is-invalid': submitStudentFees && g.FeesAmount.errors }">
                             <div *ngIf="submitStudentFees && g.FeesAmount.errors" class="invalid-feedback">
@@ -372,6 +378,7 @@
 
             
                               <div class="form-group col-md-4 px-3">
+                                  <label for="Remark">Remark</label>
                                   <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.Remark.errors }">
                         <div *ngIf="submitStudentFees && g.Remark.errors" class="invalid-feedback">
