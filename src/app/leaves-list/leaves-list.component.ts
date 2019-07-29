@@ -3,7 +3,7 @@ import { LeavelistService } from './leavelist.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { leave } from '@angular/core/src/profile/wtf_impl';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { Leaves, UpdateLeaves } from '../Models/leaves';
+import { Leaves, UpdateLeaves } from '../Model/leaves';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { idLocale } from 'ngx-bootstrap';
 import { Subject } from 'rxjs';

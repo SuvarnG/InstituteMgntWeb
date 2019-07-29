@@ -9,7 +9,7 @@ import { StaffMaster } from '../Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Utils } from '../Utils';
-import { Courses } from '../Models/Students';
+import { Courses } from '../Model/Students';
 import { formatDate } from '@angular/common';
 
 @Component({

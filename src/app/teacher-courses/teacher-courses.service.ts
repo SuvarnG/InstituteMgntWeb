@@ -4,8 +4,8 @@ import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { StaffMaster, TeacherCourse } from '../Model/StaffMaster';
 import { tap, catchError, map } from 'rxjs/operators';
-import { Courses, CourseType, Roles } from '../Models/Students';
-import { User } from '../Models/User';
+import { Courses, CourseType, Roles } from '../Model/Students';
+import { User } from '../Model/User';
 import { Utils } from '../Utils';
 
 

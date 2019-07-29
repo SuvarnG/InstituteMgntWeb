@@ -1,11 +1,11 @@
-import { CourseFees, Users } from './../Models/Students';
+import { CourseFees, Users } from '../Model/Students';
 import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AbstractControl } from '@angular/forms'
 import { CreateNewStudentService } from './create-new-student.service';
-import { Students, CreateStudent, FeesTransaction, User, CourseType, Courses, RecentStudent } from '../Models/Students';
+import { Students, CreateStudent, FeesTransaction, User, CourseType, Courses, RecentStudent } from '../Model/Students';
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { template } from '@angular/core/src/render3';
 import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';

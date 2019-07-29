@@ -1,11 +1,11 @@
-import { CourseType, Courses } from './../Models/Students';
+import { CourseType, Courses } from '../Model/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentslistService } from './studentslist.service';
 import { BsModalService, BsModalRef, ModalContainerComponent, ModalOptions } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { formatDate } from '@angular/common';
-import { Students, UpdateStudent } from '../Models/Students'
+import { Students, UpdateStudent } from '../Model/Students'
 import { Utils } from '../Utils';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { CoursetypeService } from './../coursetype/coursetype.service';

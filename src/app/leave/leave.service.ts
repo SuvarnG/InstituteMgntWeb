@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { Leaves } from '../Models/leaves';
-import { LeaveTransaction, LeaveType } from '../models/LeaveTran';
-import { Students, CourseType } from '../../app/models/Students'
+import { Leaves } from '../Model/leaves';
+import { LeaveTransaction, LeaveType } from '../Model/LeaveTran';
+import { Students, CourseType } from '../Model/Students'
 import { Observable } from 'rxjs';
 import { Utils } from '../Utils';
 

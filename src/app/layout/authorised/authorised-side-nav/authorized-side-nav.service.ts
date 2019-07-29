@@ -2,7 +2,7 @@ import { Utils } from './../../../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/models/User';
+import { User } from 'src/app/model/User';
 import { Router } from '@angular/router';
 
 

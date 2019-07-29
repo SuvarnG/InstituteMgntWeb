@@ -3,7 +3,7 @@ import { EnquiryReportService } from './enquiry-report.service';
 import { BranchService } from '../branch/branch.service';
 import { Utils } from '../Utils';
 import {Branch} from '../Model/Branch'
-import {EnquiryReportInput,EnquiryReport} from '../models/EnquiryList'
+import {EnquiryReportInput,EnquiryReport} from '../Model/EnquiryList'
 import { CoursesService } from '../courses/courses.service';
 import {Course} from '../model/CourseType'
 import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';

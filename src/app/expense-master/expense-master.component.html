@@ -1,9 +1,7 @@
-
-  
-  <!-- Breadcrumb-->
+<!-- Breadcrumb-->
   <ol class="breadcrumb">
       <li class="breadcrumb-item"><a routerLink="/Dashboard" >Home</a></li>
-      <li class="breadcrumb-item">Expenses</li>
+      <li class="breadcrumb-item">Expense Types</li>
       
       <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu d-md-down-none">
@@ -26,8 +24,6 @@
         </div>
       </li>
     </ol>    
-                
-
     <div class="  h-460" id="A">
         <div class="container-fluid">
             <div id="ui-view">
@@ -36,9 +32,8 @@
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
         <thead>
           <tr>
-            <th class="pl-2">Expenses</th>
-            <th class="pl-2">Action</th>
-            
+            <th >Expense Type</th>
+            <th >Action</th>            
           </tr>
         </thead>
         <tbody>
@@ -46,10 +41,12 @@
             <td>{{expense.Expenses}}</td>
             <td>  
                 <a class="card-header-action btn-minimize" (click)="editExpense(EditExpenseTemplate,expense)" title="Edit Information">
-                    <i class="cui-pencil"></i>
-                  </a>           
-              
-              &nbsp;&nbsp;&nbsp;&nbsp;
+                    <i class="cui-pencil pencil"></i>
+                  </a>                       
+             &nbsp;&nbsp;
+              <a class="card-header-action btn-minimize" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)" title="Delete Expense Type">
+                  <i class="cui-trash trash"></i>
+                </a>
             </td>
           </tr>
         </tbody>
@@ -73,11 +70,11 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="expense">Expense Name</label>
-                <input type="text" id="expense" class="form-control" formControlName="expense" placeholder="Enter Expense Name"
+                <label for="expense">Expense Type</label>
+                <input type="text" id="expense" class="form-control" formControlName="expense" placeholder="Enter Expense Type"
                 [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
                 <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
-                    <div *ngIf="f.expense.errors.required">Expense Name is required</div>
+                    <div *ngIf="f.expense.errors.required">Expense Type is required</div>
                   </div>
                 </div>
 
@@ -103,11 +100,11 @@
         </div>
         <div class="modal-body">
             <div class="form-group">
-                <label for="expense">Expense Name</label>
+                <label for="expense">Expense Type</label>
                 <input type="text" id="expense" class="form-control " formControlName="expense"
                 [ngClass]="{ 'is-invalid': submitted && g.expense.errors }">
                 <div *ngIf="submitted && g.expense.errors" class="invalid-feedback">
-                    <div *ngIf="g.expense.errors.required">Expense Name is required</div>
+                    <div *ngIf="g.expense.errors.required">Expense Type is required</div>
                   </div>
                 </div>
         </div>

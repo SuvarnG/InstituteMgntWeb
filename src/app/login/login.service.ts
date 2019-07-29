@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
-import { Auth } from '../models/Auth';
+import { Auth } from '../Model/Auth';
 
  const httpOptions = {
   headers: new HttpHeaders({

@@ -2,7 +2,7 @@ import { Utils } from './../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Leaves, UpdateLeaves } from '../Models/leaves'
+import { Leaves, UpdateLeaves } from '../Model/leaves'
 
 
 

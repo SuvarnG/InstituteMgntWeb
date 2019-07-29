@@ -5,7 +5,7 @@ import {Course} from '../Model/CourseType'
 import { BranchService } from '../branch/branch.service';
 import {Branch} from '../Model/Branch';
 import { FeesCollectionReportService } from './fees-collection-report.service';
-import {FeesReportInput,FeesReport} from '../models/Students'
+import {FeesReportInput,FeesReport} from '../Model/Students'
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 
 @Component({

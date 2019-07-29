@@ -111,8 +111,8 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
-  delete(expenseID) {
-    var ans = confirm("Do you want to delete customer with Id: " + expenseID);
+  delete(expensetype:string,expenseID:number) {
+    var ans = confirm("Do you want to delete expense od type: " + expensetype);
     if (ans) {
       this.ExpenseService.deleteExpense(expenseID).subscribe(data => {
         this.getAllExpenseTransction(this.user.BranchId);

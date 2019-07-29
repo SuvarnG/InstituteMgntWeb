@@ -28,11 +28,12 @@ filter:any;
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
-  constructor(private fb:FormBuilder,private expenseMasterService:ExpenseMasterService,private modalService: BsModalService) { }
+  constructor(private fb:FormBuilder,
+    private expenseMasterService:ExpenseMasterService,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.dtOptions = {
-      // retrieve: true,
        paging: false,
       pagingType: 'full_numbers',
       pageLength: 10,
@@ -70,7 +71,6 @@ filter:any;
   this.expenseMasterService.getAllExpenses().subscribe(res=> {
     this.expenses=res;
     this.rerender();
-    //this.dtTrigger.next();
 });
   }
 

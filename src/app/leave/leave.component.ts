@@ -1,4 +1,4 @@
-import { LeaveType, LeaveTransaction } from './../Models/LeaveTran';
+import { LeaveType, LeaveTransaction } from '../Model/LeaveTran';
 import { Course } from './../Model/CourseType';
 import { CoursesService } from './../courses/courses.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
@@ -6,8 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { LeaveService } from './leave.service';
 import { validateConfig } from '@angular/router/src/config';
-import { UpdateLeaves, Leaves } from '../Models/leaves';
-import { CourseType, Students } from '../Models/Students';
+import { UpdateLeaves, Leaves } from '../Model/leaves';
+import { CourseType, Students } from '../Model/Students';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
 import { formatDate } from '@angular/common';

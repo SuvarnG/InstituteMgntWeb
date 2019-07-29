@@ -1,14 +1,14 @@
-import { Courses } from './../Models/Students';
+import { Courses } from '../Model/Students';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EnquiryService } from './enquiry.service';
-import { EnquiryList, CourseNameMaster, CourseTypeMaster } from '../models/EnquiryList';
-import { createEnquiry } from '../models/createEnquiry';
+import { EnquiryList, CourseNameMaster, CourseTypeMaster } from '../Model/EnquiryList';
+import { createEnquiry } from '../Model/createEnquiry';
 import { validateConfig } from '@angular/router/src/config';
 import { Subject } from 'rxjs';
 import { CoursetypeService } from './../coursetype/coursetype.service';
-import { CourseType } from '../Models/Students';
+import { CourseType } from '../Model/Students';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 
