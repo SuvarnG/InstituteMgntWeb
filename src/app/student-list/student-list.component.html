@@ -35,6 +35,11 @@
                     <a class="card-header-action btn-close" (click)="deleteStudent(s.StudentId)" title="Delete Student">
                       <i class="cui-trash trash"></i>
                     </a>
+
+                    <!-- <a routerLink="/FeesTransaction"  data-toggle="tooltip" data-placement="bottom"
+                    title="Fees Payment" >
+                    <i class="fa fa-money text-dark"></i>      
+          </a> -->
                   </div>
                 </div>
                 <div class="collapse show" id="collapseExample">
@@ -47,19 +52,28 @@
 
                           <div class="row ">
                             <div class="col-sm-12 ">
-                              <p class="card-title"><i class="icon-book-open"></i> {{s.Course}}</p>
+                              <p class="card-title"><i class="icon-book-open" data-toggle="tooltip" data-placement="bottom"
+                                title="Course" ></i> {{s.Course}}</p>
                             </div>
                           </div>
                           <div class="row">
                             <div class="col-sm-12  ">
-                              <p class="card-title"><i class="font-md cui-phone"></i> {{s.ContactNo}}</p>
+                              <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
+                                title="ContactNo" ></i> {{s.ContactNo}}</p>
                             </div>
                           </div>
                           <div class="row">
                               <div class="col-sm-12  ">
-                                <p class="card-title"><i class="font-md cui-envelope-closed"></i> {{s.EmailId}}</p>
+                                <p class="card-title"><i class="font-md cui-envelope-closed" data-toggle="tooltip" data-placement="bottom"
+                                  title="Email" ></i> {{s.EmailId}}</p>
                               </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-12  ">
+                                  <p class="card-title"><i class="font-md fa fa-money" data-toggle="tooltip" data-placement="bottom"
+                                    title="Pending Fees" ></i> {{s.PendingFees}}</p>
+                                </div>
+                              </div>
                         </div>
                       </div>
                   </div>
