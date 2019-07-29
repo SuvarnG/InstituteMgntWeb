@@ -17,6 +17,9 @@ export class AppComponent {
           this.isLoginPage = true;
           console.log('page:', this.isLoginPage);
         }
+        else{
+          this.isLoginPage=false;
+        }
       }
     });
   }

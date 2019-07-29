@@ -11,6 +11,8 @@ import { CoursetypeService } from './../coursetype/coursetype.service';
 import { CourseType } from '../Model/Students';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
+import { formatDate } from '@angular/common';
+import { Utils } from '../Utils';
 
 @Component({
   selector: 'app-enquiry',
@@ -53,7 +55,7 @@ export class EnquiryComponent implements OnInit {
 
     this.dtOptions = {
       retrieve: true,
-      paging: false,
+      paging: true,
       pagingType: 'full_numbers',
       pageLength: 10,
       searching:false
@@ -111,6 +113,8 @@ export class EnquiryComponent implements OnInit {
     console.log(newDate);
   }
 
+  public user=Utils.GetCurrentUser();
+
   // convenience getter for easy access to form fields
   get f() { return this.EnquiryForm.controls; }
   get fu() { return this.UpdateEnquiryFormGroup.controls; }
@@ -127,7 +131,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   getEnquiryList() {
-    this.enquiryService.getEnquiry().subscribe(res => {
+    this.enquiryService.getEnquiry(this.user.BranchId).subscribe(res => {
       this.enquiries = res;
       this.rerender();
       //this.dtTrigger.next();
@@ -153,9 +157,9 @@ export class EnquiryComponent implements OnInit {
       Remark: this.EnquiryForm.controls.Remark.value,
       DateOfEnquiry: this.EnquiryForm.controls.DateOfEnquiry.value,
       CourseId: this.EnquiryForm.controls.CourseId.value,
-      BranchId:1
+      BranchId:this.user.BranchId
     };
-    this.enquiryService.createEnquires(req).subscribe(data => {
+    this.enquiryService.createEnquiry(req).subscribe(data => {
       this.modalRef.hide()
       this.getEnquiryList();
       this.rerender();
@@ -178,7 +182,7 @@ export class EnquiryComponent implements OnInit {
   UpdateEnquiryModal(editEnquiryModal: TemplateRef<any>, editItem: createEnquiry) {
     this.modalRef = this.modalService.show(editEnquiryModal, {
       backdrop: 'static',
-      class: 'modal-xl'
+      class: 'modal-lg'
     });
 
     this.GetCourseTypeList();
@@ -190,8 +194,9 @@ export class EnquiryComponent implements OnInit {
       LastName: editItem.LastName,
       Address: editItem.Address,
       City: editItem.City,
-      DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
-      NeedFollowupDate: editItem.NeedFollowupDate,
+      DateOfEnquiry: formatDate(editItem.DateOfEnquiry,'yyyy-MM-dd', 'en'),
+      //DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
+      NeedFollowupDate: formatDate(editItem.NeedFollowupDate,'yyyy-MM-dd', 'en'),
       Remark: editItem.Remark,
       CourseId: editItem.CourseId,
       CourseTypeId:editItem.CourseTypeId
@@ -199,6 +204,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   UpdateEnquiry() {
+    debugger;
     this.submitted = true;
     if (this.UpdateEnquiryFormGroup.invalid) {
       return

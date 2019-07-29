@@ -28,11 +28,12 @@ export class EnquiryService {
     return httpOptions
   }
 
-  getEnquiry() {
-    return this.http.get<EnquiryList[]>(this.Url, this.getAuthHeader()
+  getEnquiry(id:number) {
+    return this.http.get<EnquiryList[]>(this.Url + '/' + id, this.getAuthHeader()
     ).pipe(map(data => data as EnquiryList[]));
   }
-  createEnquires(Enquiry: createEnquiry) {
+
+  createEnquiry(Enquiry: createEnquiry) {
     return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry', Enquiry, this.getAuthHeader());
   }
 
