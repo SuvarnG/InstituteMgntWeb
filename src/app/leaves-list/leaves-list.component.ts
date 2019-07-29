@@ -80,10 +80,13 @@ export class LeavesListComponent implements OnInit {
     });
   }
 
-  DeleteLeaveType(id: number) {
-    this.LeavelistService.DeleteLeaveType(id).subscribe(data =>
-      this.GetAllLeaves()
-    )
+  DeleteLeaveType(id: number,name:string) {
+    var ans = confirm("Do you want to delete expense od type: " + name);
+    if (ans) {
+      this.LeavelistService.DeleteLeaveType(id).subscribe(data =>
+        this.GetAllLeaves()
+      )
+    }   
   };
 
   CreateNewLeave(template: TemplateRef<any>) {

@@ -38,8 +38,12 @@
             <td>{{l.LeaveType}}</td>
             <td>
                 <a class="card-header-action btn-minimize" (click)="UpdateNewLeave(template2,l.LeaveType)" title="Edit Information">
-                    <i class="cui-pencil"></i>
+                    <i class="cui-pencil pencil"></i>
                   </a>
+                  &nbsp;&nbsp;
+                  <a class="card-header-action btn-minimize" (click)="DeleteLeaveType(l.LeaveId,l.LeaveType)" title="Delete Leave Type">
+                      <i class="cui-trash trash"></i>
+                    </a>
             </td> 
           </tr>
         </tbody>

@@ -90,16 +90,24 @@
                         {{Course.FullName}}
                       </option>
                     </select>
+                    <div *ngIf="submitted && fc.CourseName.errors" class="invalid-feedback">
+                      <div *ngIf="fc.CourseName.errors.required">CourseName is required</div>
+                    </div>
                   </div>
                   <div class="col-md-6">
                       <label for="CourseName">Student Name</label>
-                    <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName">
+                    <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName"  [ngClass]="{'is-invalid': submitted && fc.StudentName.errors}">
                       <option [value]="null" disabled hidden>Select Student </option>
                       <option *ngFor="let student of students" [value]="student.StudentId">
                         {{student.FullName}}
                       </option>
                     </select>
+                    <div *ngIf="students?.length == 0"><h6 style="color:#f86c6b">No student is listed under this course.</h6></div>
+                    <div *ngIf="submitted && fc.StudentName.errors" class="invalid-feedback">
+                      <div *ngIf="fc.StudentName.errors.required">StudentName is required</div>
+                    </div>
                   </div>
+                
                 </div>
 </div>
 
@@ -107,12 +115,15 @@
     <div class="row">
         <div class="col-md-6">
             <label for="CourseName">Leave Type</label>
-                    <select name="LeaveName" class="form-control" formControlName="LeaveName">
+                    <select name="LeaveName" [value]="null" class="form-control" formControlName="LeaveName" [ngClass]="{'is-invalid': submitted && fc.LeaveName.errors}">
                       <option [value]="null" disabled hidden> Select Leave </option>
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>
                     </select>
+                    <div *ngIf="submitted && fc.LeaveName.errors" class="invalid-feedback">
+                      <div *ngIf="fc.LeaveName.errors.required">LeaveName is required</div>
+                    </div>
                   </div>
                   <div class="col-md-6">
                       <label for="CourseName">Follow up Date</label>
@@ -225,8 +236,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="LeaveName">Leave Name</label>
-                    <select name="LeaveName" [value]="null" class="form-control" formControlName="LeaveName">
-                      <option [value]="null" disabled hidden> Select Leave Type </option>
+                    <select name="LeaveName"  class="form-control" formControlName="LeaveName">
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>

@@ -1,3 +1,5 @@
+import { LeavelistService } from './../leaves-list/leavelist.service';
+import { debug } from 'util';
 import { LeaveType, LeaveTransaction } from '../Model/LeaveTran';
 import { Course } from './../Model/CourseType';
 import { CoursesService } from './../courses/courses.service';
@@ -12,6 +14,8 @@ import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
 import { formatDate } from '@angular/common';
 import { DataTableDirective } from 'angular-datatables';
+
+
 
 @Component({
   selector: 'app-leave',
@@ -41,7 +45,8 @@ export class LeaveComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private LeaveService: LeaveService,
-    private coursesService: CoursesService) { }
+    private coursesService: CoursesService,
+    private leavelistService:LeavelistService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -51,14 +56,14 @@ export class LeaveComponent implements OnInit {
       searching:false
     };
     this.CreateLeaveFormGroup = this.formBuilder.group({
-      CourseName: [],
+      CourseName: ['', Validators.required],
       Reason: ['', Validators.required],
       Comment: [],
       NeedFollowupDate: ['', Validators.required],
       FromDate: ['', Validators.required],
       ToDate: ['', Validators.required],
       StudentName: ['', Validators.required],
-      LeaveName: [],
+      LeaveName: ['', Validators.required],
       TotalDays: []
     });
 
@@ -76,7 +81,7 @@ export class LeaveComponent implements OnInit {
 
     this.getLeaveList();
     this.getCourseName();
-    this.getCourseNameByType();
+    this.getLeaveTypeList();
   }
 
 
@@ -152,8 +157,8 @@ export class LeaveComponent implements OnInit {
     })
   }
 
-  getCourseNameByType() {
-    this.LeaveService.getCourseNameByType().subscribe(res => {
+  getLeaveTypeList() {
+    this.leavelistService.GetAllLeaves().subscribe(res => {
       this.leaves = res;
       console.log(JSON.stringify(this.leaves));
     });

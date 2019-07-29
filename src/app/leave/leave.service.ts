@@ -34,10 +34,7 @@ export class LeaveService {
     }));
   }
 
-  getLeaveTypeList() {
-    this.http.get<LeaveType[]>(environment.APIBASEURL + 'Leave/GetAll').pipe(map(data => { return data as LeaveType[] }))//.toPromise().then(result => this.LeaveType = result as Leaves[])
-  }
-
+  
   createLeave(leave) {
     return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, this.getAuthHeader());
   }
@@ -50,13 +47,6 @@ export class LeaveService {
       }));
   }
 
-  getCourseNameByType() {
-    return this.http.get(environment.APIBASEURL + 'Leave/GetAllLeaves'
-    ).pipe
-      (map(data => {
-        return data as LeaveType[]
-      }));
-  }
 
   editLeave(leave) {
     return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeaveTransaction', leave, this.getAuthHeader());

@@ -204,7 +204,6 @@ export class EnquiryComponent implements OnInit {
   }
 
   UpdateEnquiry() {
-    debugger;
     this.submitted = true;
     if (this.UpdateEnquiryFormGroup.invalid || this.listCourseName.length==0) {
       return

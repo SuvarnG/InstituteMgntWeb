@@ -33,7 +33,7 @@ export class LeavelistService {
   }
 
   DeleteLeaveType(id: number) {
-    return this.http.post<void>(this.DeleteUrl + "/" + id, this.getAuthHeader())
+    return this.http.post<void>(this.DeleteUrl + "/" + id,null, this.getAuthHeader())
   }
 
   CreateLeave(leaveName: string) {
