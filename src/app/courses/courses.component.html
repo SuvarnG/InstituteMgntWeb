@@ -88,8 +88,9 @@
             </option>
           </select>
           <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
-            <div *ngIf="f.CourseTypeId.errors.required">Please Enter Name.</div>
+            <div *ngIf="f.CourseTypeId.errors.required">Please Enter Course Type Name.</div>
           </div>
+          <div *ngIf="coursetype?.length == 0"><h6 style="color:#f86c6b">Course Type is not available. <a routerLink="/coursetype" (click)="onCancelAdd()">Click here to create a course type.</a></h6></div>
         </div>
 
         <div class="form-group">
@@ -97,7 +98,7 @@
           <input type="text" class="form-control" formControlName="ShortName"
             [ngClass]="{ 'is-invalid': submitted && f.ShortName.errors }" placeholder="Course Name">
           <div *ngIf="submitted && f.ShortName.errors" class="invalid-feedback">
-            <div *ngIf="f.ShortName.errors.required">Please Enter Courses. </div>
+            <div *ngIf="f.ShortName.errors.required">Please Enter Course Name. </div>
 
           </div>
         </div>
@@ -117,7 +118,7 @@
           <input type="text" class="form-control" formControlName="Fees"
             [ngClass]="{ 'is-invalid': submitted && f.Fees.errors }" placeholder="Fees">
           <div *ngIf="submitted && f.Fees.errors" class="invalid-feedback">
-            <div *ngIf="f.Fees.errors.required">Please Enter Fees.</div>
+            <div *ngIf="f.Fees.errors.required">Please Enter Course Fees.</div>
           </div>
         </div>
         <div class="form-row p-0 m-0">
@@ -135,7 +136,7 @@
             [ngClass]="{ 'is-invalid': submitted && f.Percentage.errors }" placeholder="">
           <div *ngIf="submitted && f.Percentage.errors" class="invalid-feedback">
             <div *ngIf="f.Percentage.errors.required"> Percentage is required. </div>
-            <div *ngIf="f.Percentage.errors.maxlength"> Percentage should be less 100. </div>
+            <div *ngIf="f.Percentage.errors.maxlength"> Percentage should be less than 100. </div>
           </div>
         </div>
 
@@ -145,7 +146,7 @@
             [ngClass]="{ 'is-invalid': submitted && f.Duration.errors }" placeholder="Duration in days">
 
           <div *ngIf="submitted && f.Duration.errors" class="invalid-feedback">
-            <div *ngIf="f.Duration.errors.required">Please Enter Duration </div>
+            <div *ngIf="f.Duration.errors.required">Please Enter Course Duration in Days </div>
           </div>
         </div>
 
@@ -155,7 +156,7 @@
 
         <div class="modal-footer">
           <button class="btn btn-primary btn-square" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancelAdd()">Cancel</button>
         </div>
 
       </form>
@@ -184,14 +185,19 @@
         </div>
         <div class="form-group">
           <label for="BankName">Course Name</label>
-          <input type="text" name="ShortName" class="form-control" formControlName="ShortName" id="ShortName">
-          <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback mt-3">
+          <input type="text" name="ShortName" class="form-control" formControlName="ShortName" id="ShortName" 
+          [ngClass]="{ 'is-invalid': submitted && fu.ShortName.errors }">
+          <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback">
             <div *ngIf="fu.ShortName.errors.required">Please enter Course Short Name</div>
           </div>
         </div>
         <div class="form-group">
           <label for="BankName">Course Full Name</label>
-          <input type="text" id="FullName" name="FullName" class="form-control" formControlName="FullName">
+          <input type="text" id="FullName" name="FullName" class="form-control" formControlName="FullName"
+          [ngClass]="{ 'is-invalid': submitted && fu.FullName.errors }">
+          <div *ngIf="submitted && fu.FullName.errors" class="invalid-feedback">
+              <div *ngIf="fu.FullName.errors.required">Please enter Course Short Name</div>
+            </div>
         </div>
 
 
@@ -214,7 +220,7 @@
             <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
              fu.Percentage.errors }" placeholder="Percentage">
             <div *ngIf="submitted && fu.Percentage.errors" class="invalid-feedback">
-              <div *ngIf="fu.Percentage.errors.required"> </div>
+              <div *ngIf="fu.Percentage.errors.required"> Please enter percentage</div>
             </div>
           </div>
           </div>
@@ -224,7 +230,7 @@
           <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&
            fu.Duration.errors }" placeholder="Duration in Days">
           <div *ngIf="submitted && fu.Duration.errors" class="invalid-feedback">
-            <div *ngIf="fu.Duration.errors.required">Please Enter Duration </div>
+            <div *ngIf="fu.Duration.errors.required">Please Enter Course Duration in Days </div>
           </div>
         </div>
 
@@ -233,7 +239,7 @@
 
         <div class="modal-footer">
           <button class="btn btn-primary btn-square" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancelAdd()">Cancel</button>
         </div>
 
       </form>

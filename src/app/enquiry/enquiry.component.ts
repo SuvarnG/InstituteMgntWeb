@@ -57,7 +57,7 @@ export class EnquiryComponent implements OnInit {
       retrieve: true,
       paging: true,
       pagingType: 'full_numbers',
-      pageLength: 10,
+      pageLength: 6,
       searching:false
 
     };
@@ -206,9 +206,10 @@ export class EnquiryComponent implements OnInit {
   UpdateEnquiry() {
     debugger;
     this.submitted = true;
-    if (this.UpdateEnquiryFormGroup.invalid) {
+    if (this.UpdateEnquiryFormGroup.invalid || this.listCourseName.length==0) {
       return
     }
+    this.submitted = false;
     let res = {
       ID: this.fu.ID.value,
       FirstName: this.fu.FirstName.value,
@@ -246,6 +247,12 @@ export class EnquiryComponent implements OnInit {
     //   console.log(JSON.stringify(this.listCourseName))
     // });
 
+  }
+
+
+  onCancel(){
+    this.modalRef.hide();
+    this.submitted=false;
   }
 
 }

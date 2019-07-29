@@ -49,8 +49,8 @@ export class CoursesComponent implements OnInit {
     this.dtOptions = {
       retrieve: true,
       pagingType: 'full_numbers',
-      pageLength: 8,
-      paging:false,
+      pageLength: 6,
+      paging:true,
       searching:false
     };
     this.createForm = this.formBuilder.group({
@@ -144,9 +144,11 @@ export class CoursesComponent implements OnInit {
 
     // stop here if form is invalid
     if (this.createForm.invalid) {
+    
       return;
     }
     else {
+      this.submitted = false;
       let body = {
         CourseId: this.createForm.controls.CourseId.value,
         CourseTypeId: this.createForm.controls.CourseTypeId.value,
@@ -162,7 +164,6 @@ export class CoursesComponent implements OnInit {
       };
       this.CoursesService.createCourse(body).subscribe((data) => {
         this.modalRef.hide();
-        this.submitted = false;
         this.CoursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
           this.course = res;
           this.rerender();
@@ -199,6 +200,8 @@ export class CoursesComponent implements OnInit {
     if (this.UpdateFormGroup.invalid) {
       return;
     }
+
+    this.submitted = false;
     let body = {
       CourseId: this.CourseId,
       CourseTypeId: this.CourseTypeId,
@@ -223,5 +226,11 @@ export class CoursesComponent implements OnInit {
   calculateIsPercentage() {
     this.CalculateIsPercentage = ((this.createForm.controls.Fees.value / 2) / 100)
     this.createForm.controls.Percentage.setValue(this.CalculateIsPercentage)
+  }
+
+
+  onCancelAdd(){
+    this.modalRef.hide();
+    this.submitted=false;
   }
 }

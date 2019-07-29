@@ -79,7 +79,7 @@
     <form [formGroup]="EnquiryForm" (ngSubmit)="CreateNewEnquiry()">
       <div class="row ">
         <div class="col-md-12">
-          <h5 class=" font-weight-medium">Enquiry Info </h5>
+          <h5 class=" font-weight-medium">Enquirer Info </h5>
 
           <div class="row">
             <div class="col-md-12">
@@ -118,7 +118,7 @@
                   <input type="text" formControlName="Address" class="form-control" placeholder="Address"
                     [ngClass]="{ 'is-invalid': submitted && f.Address.errors }" />
                   <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
-                    <div *ngIf="f.Address.errors.required">Invalid Address</div>
+                    <div *ngIf="f.Address.errors.required">Address is required</div>
                   </div>
                 </div>
                 <div class="form-group col-md-4">
@@ -126,7 +126,7 @@
                   <input type="text" formControlName="City" class="form-control" placeholder="City"
                     [ngClass]="{'is-invalid': submitted && f.City.errors }" />
                   <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
-                    <div *ngIf="f.City.errors.required"> Invalid City</div>
+                    <div *ngIf="f.City.errors.required"> City is required</div>
                   </div>
                 </div>
                 <div class="form-group col-md-4">
@@ -134,7 +134,7 @@
                   <input type="date" class="form-control" formControlName="DateOfEnquiry"
                     [ngClass]="{ 'is-invalid': submitted && f.DateOfEnquiry.errors }">
                   <div *ngIf="submitted && f.DateOfEnquiry.errors" class="invalid-feedback">
-                    <div *ngIf="f.DateOfEnquiry.errors.required"> Invalid date</div>
+                    <div *ngIf="f.DateOfEnquiry.errors.required"> Date is required.</div>
                   </div>
                 </div>
 
@@ -163,8 +163,8 @@
                       {{cType.CourseTypeName}}
                     </option>
                   </select>
-                  <div *ngIf="submitted && f.CourseTypeId.errors">
-                    <div *ngIf="f.CourseTypeId.errors.required">Course type is required</div>
+                  <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
+                    <div *ngIf="f.CourseTypeId.errors.required">Course Type is required</div>
                   </div>
                 </div>
 
@@ -177,9 +177,10 @@
                       {{CourseName.CourseName}}
                     </option>
                   </select>
-                  <div *ngIf="submitted && fu.CourseId.errors">
+                  <div *ngIf="submitted && f.CourseId.errors" class="invalid-feedback">
                     <div *ngIf="f.CourseId.errors">Course Name is required</div>
                   </div>
+                  <div *ngIf="listCourseName?.length == 0"><h6 style="color:#f86c6b">No Course is listed under this course type.</h6></div>
                 </div>
 
 
@@ -215,7 +216,7 @@
                   <textarea class="form-control rounded-0" formControlName="Remark" id="Remark" rows="1"
                     placeholder="Remark" [ngClass]="{ 'is-invalid': submitted && f.Remark.errors }"></textarea>
                   <div *ngIf="submitted && f.Remark.errors" class="invalid-feedback">
-                    <div *ngIf="f.Remark.errors.required">Remark required</div>
+                    <div *ngIf="f.Remark.errors.required">Remark is required</div>
                   </div>
                 </div>
 
@@ -231,7 +232,7 @@
         <div class="col-md-3 ">
           <div class="form-row">
             <button class="btn btn-square btn-primary  " type="submit">Submit</button>
-            <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+            <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
             <!-- <button class="btn btn-info btn-lg  py-1 px-3 rounded-0 f-20 ml-3" type="button" (click)="modalRef.hide()">Cancel</button> -->
 
           </div>
@@ -263,7 +264,7 @@
 
 <div class="row ">
         <div class="col-md-12">
-          <h5 class=" font-weight-medium">Enquiry Info </h5>
+          <h5 class=" font-weight-medium">Enquirer Info </h5>
 
           <div class="row">
             <div class="col-md-12">
@@ -365,6 +366,7 @@
                   <div *ngIf="submitted && fu.CourseId.errors" class="invalid-feedback">
                     <div *ngIf="fu.CourseId.errors">Course Name is required</div>
                   </div>
+                  <div *ngIf="listCourseName?.length == 0"><h6 style="color:#f86c6b">No Course is listed under this course type.</h6></div>
                 </div>
 
               </div>
@@ -418,7 +420,7 @@
 
       <div class="modal-footer">
         <button class="btn btn-square btn-primary  " type="submit">Update</button>
-        <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
       </div>
 
     </form>
