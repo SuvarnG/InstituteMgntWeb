@@ -1,129 +1,158 @@
 <!-- Breadcrumb-->
 <ol class="breadcrumb">
-    <li class="breadcrumb-item active"><a routerLink="/Dashboard">Home</a></li>
-    <li class="breadcrumb-item active"><a routerLink="/reports">Reports</a></li>
-    <li class="breadcrumb-item">Enquiry Report</li>
-    </ol>
+  <li class="breadcrumb-item active"><a routerLink="/Dashboard">Home</a></li>
+  <li class="breadcrumb-item active"><a routerLink="/reports">Reports</a></li>
+  <li class="breadcrumb-item">Enquiry Report</li>
+</ol>
 
-    <form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
-        <div class="container-fluid">
-            <div id="ui-view">
-<div class="card border-0 shadow rounded-0">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-lg-12 py-2">
-          <div class="form-row ">
+<form [formGroup]="registerEnquiryReport" (ngSubmit)="pullEnquiryReport()">
+  <div class="container-fluid">
+    <div id="ui-view">
+      <div class="card border-0 shadow rounded-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-lg-12 py-2">
+              <div class="form-row ">
 
-            <div class="col-lg-2">
-              <select class="form-control" [value]="null" formControlName="BranchName">
-                <option value="null" disabled hidden>Select Branch</option>
-                <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
-              </select>
-            </div>
+                <div class="col-lg-2">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <label>Branch</label>
+                    </div>
+                    <div class="col-lg-12">
+                      <select class="form-control" [value]="null" formControlName="BranchName">
+                        <option value="null" disabled hidden>Select Branch</option>
+                        <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
 
-            <div class="col-lg-2">
-              <select class="form-control" [value]="null" formControlName="CourseName">
-                <option value="null" disabled hidden>Select Course</option>
-                <option *ngFor="let c of courseList" [value]="c.CourseId">{{c.ShortName}}</option>
-              </select>
-            </div>
+                <div class="col-lg-2">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <label>Course</label>
+                    </div>
+                    <div class="col-lg-12">
+                      <select class="form-control" [value]="null" formControlName="CourseName">
+                        <option value="null" disabled hidden>Select Course</option>
+                        <option *ngFor="let c of courseList" [value]="c.CourseId">{{c.ShortName}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
 
-            <div class="col-lg-2">
-              <select class="form-control" [value]="null" formControlName="period" (change)="selectPeriod($event)"
-                [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
-                <option value="null" disabled hidden>Select Period</option>
-                <option value="OneMonth">Last 1 Month</option>
-                <option value="ThreeMonth">Last 3 Month</option>
-                <option value="SixMonth">Last 6 Month</option>
-                <option value="SelectDateRange">Date Range</option>
-              </select>
-              <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
-                <div *ngIf="f.period.errors.required">Period is required</div>
+                <div class="col-lg-2">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <label>Period</label>
+                    </div>
+                    <div class="col-lg-12">
+                      <select class="form-control" [value]="null" formControlName="period"
+                        (change)="selectPeriod($event)" [ngClass]="{ 'is-invalid': submitted && f.period.errors }">
+                        <option value="null" disabled hidden>Select Period</option>
+                        <option value="OneMonth">Last 1 Month</option>
+                        <option value="ThreeMonth">Last 3 Month</option>
+                        <option value="SixMonth">Last 6 Month</option>
+                        <option value="SelectDateRange">Date Range</option>
+                      </select>
+                      <div *ngIf="submitted && f.period.errors" class="invalid-feedback">
+                        <div *ngIf="f.period.errors.required">Period is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-2" *ngIf="dateRange">
+                  <div class="col-lg-12">
+                    <label>From</label>
+                  </div>
+                  <div class="col-lg-12">
+                    <input type="date" class="form-control" formControlName="FromDate"
+                      [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
+                    <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
+                      <div *ngIf="f.FromDate.errors.required">Date is required</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-lg-2" *ngIf="dateRange">
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <label>To</label>
+                    </div>
+                    <div class="col-lg-12">
+                      <input type="date" class="form-control" formControlName="ToDate"
+                        [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
+                      <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
+                        <div *ngIf="f.ToDate.errors.required">Date is required</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-1">
+                  <div class="row">
+                    <div class="col-lg-12">
+                    </div>
+                    <div class="col-lg-12">
+                      <button type="submit" value="Search" class="btn btn-square btn-primary mt-4">Search</button>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-            </div>
-
-            <div class="col-lg-0.5" *ngIf="dateRange">
-              <label class="h6 text-muted mt-3">From:</label>
-            </div>
-
-            <div class="col-lg-2" *ngIf="dateRange">
-              <input type="date" class="form-control" formControlName="FromDate"
-                [ngClass]="{ 'is-invalid': submitted && f.FromDate.errors }">
-              <div *ngIf="submitted && f.FromDate.errors" class="invalid-feedback">
-                <div *ngIf="f.FromDate.errors.required">Date is required</div>
-              </div>
-            </div>
-
-            <div class="col-lg-0.5" *ngIf="dateRange">
-              <label class="h6 text-muted mt-3">To:</label>
-            </div>
-
-            <div class="col-lg-2" *ngIf="dateRange">
-              <input type="date" class="form-control" formControlName="ToDate"
-                [ngClass]="{ 'is-invalid': submitted && f.ToDate.errors }">
-              <div *ngIf="submitted && f.ToDate.errors" class="invalid-feedback">
-                <div *ngIf="f.ToDate.errors.required">Date is required</div>
-              </div>
-            </div>
-
-            <div class="col-lg-1">
-              <button type="submit" value="Search" class="btn btn-square btn-primary">Search</button>
             </div>
           </div>
-        </div>
-      </div>
-      </div>
-      </div>
-      </div>
-      </div>
-    </form>
 
-    <div class="container-fluid">
-        <div id="ui-view">
-<div class="card border-0 shadow rounded-0">
-<div class="card-body">
-    <div class="">
+          <div class="">
 
-      <div class="row justify-content-end mr-2 mt-1">
+            <div class="row justify-content-end mr-2 mt-1">
 
-          <a class="button" (click)="exportAsXLSX()" title="Export Excel"><i class="fa fa-file-excel-o fa-2x" style="color:#008000" aria-hidden="true"></i></a>
-          &nbsp;&nbsp;
-            <a class="button" (click)="pdf.saveAs('enquiryTable_.pdf')" title="Download PDF"><i class="fa fa-file-pdf-o fa-2x" style="color:red" aria-hidden="true"></i></a>
+              <a class="button" (click)="exportAsXLSX()" title="Export Excel"><i class="fa fa-file-excel-o fa-1.5x"
+                  style="color:#008000" aria-hidden="true"></i></a>
+              &nbsp;&nbsp;
+              <a class="button" (click)="pdf.saveAs('enquiryTable_.pdf')" title="Download PDF"><i
+                  class="fa fa-file-pdf-o fa-1.5x" style="color:red" aria-hidden="true"></i></a>
 
-        <!-- <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
+              <!-- <button type="button" class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4" value="Export Excel"
           (click)="exportAsXLSX()">Export Excel</button>
         <button type="button" (click)="pdf.saveAs('enquiryTable_.pdf')" value="Download PDF"
           class="btn btn-dark btn-lg py-1 pr-3 rounded-0 f-20 ml-4">Download PDF</button> -->
-      </div>
-      <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
-        <div class="mt-3">
-          <table style="border:1px solid black; width: 100%">
-            <tr style="border:1px solid black">
-              <th>Branch Name</th>
-              <th>Enquirer Name</th>
-              <th>Course Name</th>
-              <th>Address</th>
-              <th>City</th>
-              <th>Date Of Enquiry</th>
-            </tr>
-            <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 8, currentPage: p }"
-              style="border:1px solid black">
-              <td>{{e.BranchName}}</td>
-              <td>{{e.EnquirerName}}</td>
-              <td>{{e.CourseName}}</td>
-              <td>{{e.Address}}</td>
-              <td>{{e.City}}</td>
-              <td>{{e.DateOfEnquiry | date}}</td>
-            </tr>
-          </table>
+            </div>
+            <kendo-pdf-export #pdf paperSize="A4" margin="1cm">
+              <div class="mt-3">
+                <table style="border:1px solid gray; width: 100%">
+                  <tr style="border:1px solid gray">
+                    <th>Branch Name</th>
+                    <th>Enquirer Name</th>
+                    <th>Course Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>Date Of Enquiry</th>
+                  </tr>
+                  <tr *ngFor="let e of enquiryReportList | paginate: { itemsPerPage: 8, currentPage: p }"
+                    style="border:1px solid gray">
+                    <td>{{e.BranchName}}</td>
+                    <td>{{e.EnquirerName}}</td>
+                    <td>{{e.CourseName}}</td>
+                    <td>{{e.Address}}</td>
+                    <td>{{e.City}}</td>
+                    <td>{{e.DateOfEnquiry | date}}</td>
+                  </tr>
+                </table>
+              </div>
+            </kendo-pdf-export>
+            <ul class="pagination">
+              <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            </ul>
+          </div>
+
+
         </div>
-      </kendo-pdf-export>
-      <ul class="pagination">
-        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-      </ul>
+      </div>
     </div>
-</div>
-</div>
-</div>
-</div>
+  </div>
+</form>
