@@ -35,10 +35,11 @@ export class CoursesService {
     return this.http.get<Course[]>(this.Url + '/' + InstituteId + '/' + BranchId, this.getAuthHeader());
   }
 
-  delete(CourseId): Observable<Course> {
-    return this.http.post<Course>(this.deleteUrl + CourseId, null, this.getAuthHeader()).pipe(
-      tap(_ => console.log(`deleted Course id=${CourseId}`))
-    );
+  delete(CourseId){
+    return this.http.post(this.deleteUrl + CourseId, null, this.getAuthHeader())
+    // .pipe(
+    //   tap(_ => console.log(`deleted Course id=${CourseId}`))
+    // );
   }
 
   createCourse(course: Course) {

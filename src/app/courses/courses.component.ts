@@ -32,6 +32,7 @@ export class CoursesComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   CourseTypeId: number;
   CourseId: number;
+  chkCourseId:any;
   filter:any;
 
 
@@ -122,6 +123,11 @@ export class CoursesComponent implements OnInit {
     var ans = confirm("Do you want to delete this course : " + ID);
     if (ans) {
       this.CoursesService.delete(ID).subscribe(data => {
+        this.chkCourseId = data;
+        if(this.chkCourseId>0){
+          alert('Course cannot be deleted as it is already in use.')
+        }
+       // console.log(data);
         this.getCourses(this.user.InstituteId, this.user.BranchId);
       }, error => console.error(error))
     }
