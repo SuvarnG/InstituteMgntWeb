@@ -82,7 +82,7 @@
 <div class="form-group">
   <div class="row">
       <div class="col-md-6">
-          <label for="CourseName">Course Name</label>
+          <label for="CourseName">Course</label>
                     <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                       (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
                       <option [value]="null" disabled hidden> Select Course </option>
@@ -91,11 +91,11 @@
                       </option>
                     </select>
                     <div *ngIf="submitted && fc.CourseName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.CourseName.errors.required">CourseName is required</div>
+                      <div *ngIf="fc.CourseName.errors.required">Course is required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                      <label for="CourseName">Student Name</label>
+                      <label for="CourseName">Student</label>
                     <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName"  [ngClass]="{'is-invalid': submitted && fc.StudentName.errors}">
                       <option [value]="null" disabled hidden>Select Student </option>
                       <option *ngFor="let student of students" [value]="student.StudentId">
@@ -104,7 +104,7 @@
                     </select>
                     <div *ngIf="students?.length == 0"><h6 style="color:#f86c6b">No student is listed under this course.</h6></div>
                     <div *ngIf="submitted && fc.StudentName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.StudentName.errors.required">StudentName is required</div>
+                      <div *ngIf="fc.StudentName.errors.required">Student is required</div>
                     </div>
                   </div>
                 
@@ -116,22 +116,22 @@
         <div class="col-md-6">
             <label for="CourseName">Leave Type</label>
                     <select name="LeaveName" [value]="null" class="form-control" formControlName="LeaveName" [ngClass]="{'is-invalid': submitted && fc.LeaveName.errors}">
-                      <option [value]="null" disabled hidden> Select Leave </option>
+                      <option [value]="null" disabled hidden> Select Leave Type</option>
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>
                     </select>
                     <div *ngIf="submitted && fc.LeaveName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.LeaveName.errors.required">LeaveName is required</div>
+                      <div *ngIf="fc.LeaveName.errors.required">Leave Type is required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
                       <label for="CourseName">Follow up Date</label>
                     <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
-                      class="form-control" placeholder="Need Follow-up Date"
+                      class="form-control" placeholder="Enter Follow-up Date"
                       [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
                     <div *ngIf="submitted && fc.NeedFollowupDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.NeedFollowupDate.errors.required">Days is required</div>
+                      <div *ngIf="fc.NeedFollowupDate.errors.required">Follow up Date is required</div>
                     </div>
                   </div>
                 </div>
@@ -144,19 +144,19 @@
                     <div class="col-md-6"> 
                         <label for="CourseName">From Date</label>
                     <input type="text" name="FromDate" [(ngModel)]="FromDate" formControlName="FromDate"
-                      onfocus="(this.type='date')" class="form-control" placeholder="From Date"
+                      onfocus="(this.type='date')" class="form-control" placeholder="Enter From Date"
                       [ngClass]="{ 'is-invalid': submitted && fc.FromDate.errors }" />
                     <div *ngIf="submitted && fc.FromDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.FromDate.errors.required"> Date is required</div>
+                      <div *ngIf="fc.FromDate.errors.required">From Date is required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
                       <label for="CourseName">To Date</label>
                     <input type="text" name="ToDate" [(ngModel)]="ToDate" formControlName="ToDate"
                       onfocus="(this.type='date')" (change)="calculateTotaldays(ToDate,FromDate)" class="form-control"
-                      placeholder="To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
+                      placeholder="Enter To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
                     <div *ngIf="submitted && fc.ToDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.ToDate.errors.required">Date is required</div>
+                      <div *ngIf="fc.ToDate.errors.required">To Date is required</div>
                     </div>
                   </div>
                 </div>
@@ -188,7 +188,7 @@
                     <textarea class="form-control rounded-0" rows="1" placeholder="Comment"
                       formControlName="Comment"></textarea>
                     <div *ngIf="submitted && fc.Comment.errors" class="invalid-feedback">
-                      <div *ngIf="fc.Comment.errors.required">Date is required</div>
+                      <div *ngIf="fc.Comment.errors.required">Comment is required</div>
                     </div>
                   </div>
                 </div>
@@ -220,12 +220,12 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="CourseName">Course Name</label>
+                        <label for="CourseName">Course</label>
                     <input type="text" formControlName="CourseName" class="form-control" placeholder="Course Name"
                       [ngClass]="{'is-invalid': submitted && fu.CourseName.errors}" disabled />
                   </div>
                   <div class="col-md-6">
-                      <label for="StudentName">Student Name</label>
+                      <label for="StudentName">Student</label>
                     <input type="text" formControlName="StudentName" class="form-control" placeholder="Student Name"
                       [ngClass]="{'is-invalid': submitted && fu.StudentName.errors}" disabled />
                   </div>
@@ -235,23 +235,23 @@
               <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="LeaveName">Leave Name</label>
+                        <label for="LeaveName">Leave Type</label>
                     <select name="LeaveName"  class="form-control" formControlName="LeaveName">
                       <option *ngFor="let l of leaves" [value]="l.LeaveId">
                         {{l.LeaveType}}
                       </option>
                     </select>
                     <div *ngIf="submitted && fu.LeaveName.errors" class="invalid-feedback">
-                      <div *ngIf="fu.LeaveName.errors.required">Days is required</div>
+                      <div *ngIf="fu.LeaveName.errors.required">Leave Type is required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                      <label for="NeedFollowupDate">Need FollowupDate</label>
+                      <label for="NeedFollowupDate">Followup Date</label>
                     <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
                       class="form-control" placeholder="NeedFollowupDate"
                       [ngClass]="{'is-invalid': submitted && fu.NeedFollowupDate.errors}" />
                     <div *ngIf="submitted && fu.NeedFollowupDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.NeedFollowupDate.errors.required">Days is required</div>
+                      <div *ngIf="fu.NeedFollowupDate.errors.required">Followup Date is required</div>
                     </div>
                   </div>
                 </div>
@@ -263,21 +263,21 @@
              <div class="form-group">
                 <div class="row">
                     <div class="col-md-6">
-                        <label for="NeedFollowupDate">Need FollowupDate</label>
+                        <label for="NeedFollowupDate">From Date</label>
                     <input type="text" id="FromDate" name="FromDate" formControlName="FromDate"
                       onfocus="(this.type='date')" class="form-control"
                       [ngClass]="{ 'is-invalid': submitted && fu.FromDate.errors }" />
                     <div *ngIf="submitted && fu.FromDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.FromDate.errors.required"> Date is required</div>
+                      <div *ngIf="fu.FromDate.errors.required"> From Date is required</div>
                     </div>
                   </div>
                   <div class="col-md-6">
-                      <label for="NeedFollowupDate">Need FollowupDate</label>
+                      <label for="NeedFollowupDate">To Date</label>
                     <input type="text" name="ToDate" id="ToDate" formControlName="ToDate" onfocus="(this.type='date')"
                       (change)="calculateTotaldays(ToDate.value,FromDate.value)" class="form-control"
                       [ngClass]="{'is-invalid': submitted && fu.ToDate.errors}" />
                     <div *ngIf="submitted && fu.ToDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.ToDate.errors.required">Date is required</div>
+                      <div *ngIf="fu.ToDate.errors.required">To Date is required</div>
                     </div>
                   </div>
                 </div>
@@ -310,7 +310,7 @@
                     <textarea class="form-control rounded-0" rows="1" placeholder="Comment" formControlName="Comment"
                       [ngClass]="{'is-invalid': submitted && fu.Comment.errors}"></textarea>
                     <div *ngIf="submitted && fu.Comment.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Comment.errors.required">Date is required</div>
+                      <div *ngIf="fu.Comment.errors.required">Comment is required</div>
                     </div>
                   </div>
                 </div>

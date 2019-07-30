@@ -36,7 +36,7 @@ export class LeavelistService {
     return this.http.post<void>(this.DeleteUrl + "/" + id,null, this.getAuthHeader())
   }
 
-  CreateLeave(leaveName: string) {
+  CreateLeave(leaveName:string) {
     return this.http.post<void>(this.CreateUrl + "/" + leaveName,null, this.getAuthHeader())
   }
 

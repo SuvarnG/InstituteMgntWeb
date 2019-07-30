@@ -57,11 +57,11 @@ export class ExpensesComponent implements OnInit {
   ngOnInit() {
 
      this.dtOptions = {
-       //retrieve: true,
-       pagingType: 'full_numbers',
-       pageLength: 10,
-       paging:true,
-       searching:false
+      retrieve: true,
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      paging:true,
+      searching:false
 
      };
     this.expenseForm = this.fb.group({
@@ -85,11 +85,11 @@ export class ExpensesComponent implements OnInit {
       PaidByName:[]
     })
     this.getAllExpenseTransction(this.user.BranchId);
-    this.expenseMasterService.getAllExpenses().subscribe(res=>
-      {
-        this.expenseMaster=res
-      });
-    this.getStaffList();
+    // this.expenseMasterService.getAllExpenses().subscribe(res=>
+    //   {
+    //     this.expenseMaster=res
+    //   });
+   // this.getStaffList();
   }
   ngAfterViewInit(): void {this.dtTrigger.next();}
 

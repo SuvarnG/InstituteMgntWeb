@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { leave } from '@angular/core/src/profile/wtf_impl';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Leaves, UpdateLeaves } from '../Model/leaves';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, NgControl } from '@angular/forms';
 import { idLocale } from 'ngx-bootstrap';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
@@ -90,6 +90,7 @@ export class LeavesListComponent implements OnInit {
   };
 
   CreateNewLeave(template: TemplateRef<any>) {
+    this.registerCreateLeave.reset();
     this.modalRef = this.modalService.show(template);
   };
 
@@ -107,16 +108,22 @@ export class LeavesListComponent implements OnInit {
     if (this.registerUpdateLeave.invalid) {
       return;
     }
-    //alert('Success!! \n\n' + JSON.stringify(this.registerUpdateLeave.value))
   }
 
-  CreateLeave(leaveName: string) {
+  onSubmitCreate(Leaves) {
     this.submitted = true;
     //stop here if form is invalid
     if (this.registerCreateLeave.invalid) {
       return;
     }
+    for(var i=0;i<Leaves.length;i++)
+{
+  if(this.registerCreateLeave.controls.LeaveName.value==Leaves[i].LeaveType){
+    alert("Duplicate Leave Type Not Allowed.");
+  }
+}
 
+    let leaveName=this.registerCreateLeave.controls.LeaveName.value
     this.LeavelistService.CreateLeave(leaveName).subscribe(data => { this.GetAllLeaves(), 
       this.rerender();          
       this.modalRef.hide() })

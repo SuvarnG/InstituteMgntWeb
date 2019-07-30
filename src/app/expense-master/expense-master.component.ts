@@ -34,9 +34,10 @@ filter:any;
 
   ngOnInit() {
     this.dtOptions = {
-       paging: false,
+      retrieve: true,
       pagingType: 'full_numbers',
       pageLength: 10,
+      paging:true,
       searching:false
 
     };
@@ -82,13 +83,19 @@ showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
     backdrop: 'static'
   });
 }
-onSubmitCreateExpense()
+onSubmitCreateExpense(expenses)
 {
+  debugger;
   this.submitted=true;
   if(this.createExpenseForm.invalid){
     return;
   }
-
+for(var i=0;i<=expenses.length;i++)
+{
+  if(this.createExpenseForm.controls.expense.value==expenses[i].Expenses){
+    alert("Duplicate Expense Type Not Allowed.");
+  }
+}
   let body={
     Expenses:this.createExpenseForm.controls.expense.value
   }
