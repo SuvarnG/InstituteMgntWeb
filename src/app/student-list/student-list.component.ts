@@ -202,7 +202,9 @@ export class StudentListComponent implements OnInit {
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
   }
-
+  ShowFeesTransactionTemplate(StudentFees: TemplateRef<any>){
+    this.modalRef = this.modalService.show(StudentFees, { class: 'modal-xl' })
+  }
   showUpload() {
     this.showSelected = true;
   }

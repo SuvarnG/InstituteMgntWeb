@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-sm-6 ">
                                   
-                                    <a routerLink="/FeesTransaction"  data-toggle="tooltip" data-placement="bottom"
+                                    <a routerLink="StudentList" (click)="ShowFeesTransactionTemplate(StudentFees)"  data-toggle="tooltip" data-placement="bottom"
                     title="Fees Payment">Pay Now</a>
                                 </div>
                               </div>
@@ -673,5 +673,17 @@
     </div>
   </ng-template>
 
-  
+  <ng-template #StudentFees>
+      <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+          <div class="modal-header">
+              <h5 class="modal-title pull-left ">Student Fees Details</h5>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div> 
+            <div class="modal-body">
+          <app-fees-transaction></app-fees-transaction>
+            </div>
+      </div>
+  </ng-template>
 
