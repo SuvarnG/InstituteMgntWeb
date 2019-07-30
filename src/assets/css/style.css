@@ -63,13 +63,16 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-family: "Trebuchet MS", "Helvetica", sans-serif !important;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
   color: #23282c;
   text-align: left;
-  background-color: #e4e5e6;
+  letter-spacing: 1.5px !important;
+  /* background-color: #e4e5e6; */
+  /* background-image: linear-gradient( to bottom, #fcbc81, #ad76ac); */
 }
 
 [tabindex="-1"]:focus {
@@ -12261,7 +12264,8 @@ canvas {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%232f353a' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
-.app-header .navbar-toggler-icon {
+
+.app-header .navbar-toggler-icon  {
   height: 23px;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%2373818f' stroke-width='2.25' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
