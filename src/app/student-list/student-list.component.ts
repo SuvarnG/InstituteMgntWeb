@@ -200,7 +200,7 @@ export class StudentListComponent implements OnInit {
           
         })
 
-    this.modalRef = this.modalService.show(studentDetails, { class: 'modal-md' })
+    this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
   }
 
   showUpload() {
