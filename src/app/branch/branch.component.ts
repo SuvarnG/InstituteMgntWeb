@@ -23,6 +23,7 @@ export class BranchComponent implements OnInit {
   branch: Branch[];
   editBranchForm: FormGroup;
   branchID: number;
+  chkBranchId:any;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   filter:any;
@@ -41,7 +42,7 @@ export class BranchComponent implements OnInit {
       retrieve: false,
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:false,
+      paging:true,
       searching:false
     };
     this.createBrachForm = this.formBuilder.group({
@@ -153,11 +154,22 @@ export class BranchComponent implements OnInit {
   get g(){ return this.editBranchForm.controls}
 
   delete(id: number, branchName: any) {
+    debugger;
     var ans = confirm("Do you want to delete this Branch: " + branchName);
     if (ans) {
       this.branchService.deleteBranch(id).subscribe(data => {
+        this.chkBranchId=data;
+        if(this.chkBranchId>0){
+          alert('Sorry, Unable to delete this branch as it has active users.')
+        }
         this.getBranchList();
       }, error => console.error(error))
     }
+  }
+
+
+  onCancel(){
+    this.submitted=false;
+    this.modalRef.hide();
   }
 }

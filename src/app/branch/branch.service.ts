@@ -38,7 +38,7 @@ export class BranchService {
     return this.http.post<Branch>(environment.APIBASEURL + 'Branch/UpdateBranch', branch, this.getAuthHeader())
   }
 
-  deleteBranch(id): Observable<Branch> {
-    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/DeleteBranch/' + id, this.getAuthHeader())
+  deleteBranch(id){
+    return this.http.post(environment.APIBASEURL + 'Branch/DeleteBranch/' + id, null, this.getAuthHeader())
   }
 }
