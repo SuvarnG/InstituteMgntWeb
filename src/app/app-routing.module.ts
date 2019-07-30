@@ -23,6 +23,7 @@ import { ExpenseReportComponent } from './expense-report/expense-report.componen
 import { FeesCollectionReportComponent } from './fees-collection-report/fees-collection-report.component';
 import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
 import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
+import { InstituteComponent } from './institute/institute.component';
 
 
 const routes: Routes = [
@@ -127,6 +128,10 @@ const routes: Routes = [
   {
     path: 'StudentAdmissionsReport',
     component: StudentAdmissionsReportComponent
+  },
+  {
+    path: 'Institute',
+    component: InstituteComponent
   }
 ];
 

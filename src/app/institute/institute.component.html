@@ -1,0 +1,206 @@
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/Dashboard">
+        Home</a></li>
+    <li class="breadcrumb-item">Institutes</li>
+
+    <!-- Breadcrumb Menu-->
+    <li class="breadcrumb-menu d-md-down-none">
+      <div class="btn-group" role="group" aria-label="Button group">
+
+        <button class="btn btn-primary" type="button">
+          <i class="fa fa-search text-white"></i></button>
+
+        <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+        &nbsp;&nbsp;
+        <a class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip"
+          data-placement="bottom" title="Add Institute" (click)="openCreateInstituteModal(newInstituteTemplate)">
+          Add
+        </a>
+      </div>
+    </li>
+  </ol>
+
+  <div class="container-fluid">
+      <div id="ui-view">
+        <div class="card border-0 shadow rounded-0">
+          <div class="card-body">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+              <thead>
+                <tr>
+                  <th class="pl-2">Institute Name</th>
+                  <th class="pl-2">Owner</th>
+                  <th class="pl-2">Contact Number</th>
+                  <th class="pl-2">Email</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of Institutes | filter:filter">
+                  <td>{{i.InstituteName}}</td>
+                  <td>{{i.Owner}}</td>
+                  <td>{{i.Contact}}</td>
+                  <td>{{i.Email}}</td>
+                  <td>
+                    <a class="card-header-action btn-minimize" (click)="openEditInstituteModal(editInstituteTemplate,i)"
+                      title="Edit Information">
+                      <i class="cui-pencil"></i>
+                    </a>
+                    &nbsp;
+                    <a class="card-header-action btn-minimize" (click)="deleteInstitute(i.Id,i.InstituteName)"
+                    title="Delete Information">
+                    <i class="cui-trash"></i>
+                  </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- New Institute template -->
+<ng-template #newInstituteTemplate>
+    <form [formGroup]="createInstituteForm" (ngSubmit)="createInstitute()">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Add Institute</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="container-fluid">
+          <div class="form-group">
+              <label for="InstituteName">Institute Name</label>
+              <input type="text" class="form-control" formControlName="InstituteName" placeholder="Institute Name"
+                      [ngClass]="{ 'is-invalid': submitted && f.InstituteName.errors }">
+                      <div *ngIf="submitted && f.InstituteName.errors" class="invalid-feedback">
+                          <div *ngIf="f.InstituteName.errors.required">Please Enter Institute Name</div>
+                        </div>
+              </div>
+  
+              <div class="form-group">
+                  <label for="Address">Institute Address</label>
+                  <input type="text" class="form-control" formControlName="Address" placeholder="Institute Address"
+                      [ngClass]="{ 'is-invalid': submitted &&
+                        f.Address.errors }">
+                        <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+                            <div *ngIf="f.Address.errors.required">Please Enter Institute Address</div>
+                          </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="OwnerName">Institute Owner</label>
+                      <input type="text" class="form-control" formControlName="OwnerName" placeholder="Owner Name"
+                          [ngClass]="{ 'is-invalid': submitted &&
+                            f.OwnerName.errors }">
+                            <div *ngIf="submitted && f.OwnerName.errors" class="invalid-feedback">
+                                <div *ngIf="f.OwnerName.errors.required">Please Enter Owner Name</div>
+                              </div>
+                      </div>
+  
+                  <div class="form-group">
+                      <label for="ContactNo">Contact Number</label>
+                      <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                      [ngClass]="{ 'is-invalid': submitted &&
+                    f.ContactNo.errors }">
+                    <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                        <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+                      </div>
+                      </div>
+
+                      <div class="form-group">
+                          <label for="BankName">Email Id</label>
+                          <input type="text" class="form-control" formControlName="EmailId" placeholder="Contact Number"
+                          [ngClass]="{ 'is-invalid': submitted &&
+                        f.EmailId.errors }">
+                        <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
+                            <div *ngIf="f.EmailId.errors.required">Please Enter Email Id.</div>
+                          </div>
+                          </div>
+  
+        
+      </div>
+  
+      <div class="modal-footer">
+        <button class="btn btn-square btn-primary" type="submit">Submit</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+      </div>
+    </form>
+  </ng-template>
+
+
+
+      <!-- Edit Institute template -->
+<ng-template #editInstituteTemplate>
+  <form [formGroup]="editInstituteForm" (ngSubmit)="editInstitute()">
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Edit Institute</h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class="container-fluid">
+        <div class="form-group">
+            <label for="InstituteName">Institute Name</label>
+            <input type="text" class="form-control" formControlName="InstituteName" placeholder="Institute Name"
+                    [ngClass]="{ 'is-invalid': submitted && fu.InstituteName.errors }">
+                    <div *ngIf="submitted && fu.InstituteName.errors" class="invalid-feedback">
+                        <div *ngIf="fu.InstituteName.errors.required">Please Enter Institute Name</div>
+                      </div>
+            </div>
+
+            <div class="form-group">
+                <label for="Address">Institute Address</label>
+                <input type="text" class="form-control" formControlName="Address" placeholder="Institute Address"
+                    [ngClass]="{ 'is-invalid': submitted &&
+                      fu.Address.errors }">
+                      <div *ngIf="submitted && fu.Address.errors" class="invalid-feedback">
+                          <div *ngIf="fu.Address.errors.required">Please Enter Institute Address</div>
+                        </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="OwnerName">Institute Owner</label>
+                    <input type="text" class="form-control" formControlName="OwnerName" placeholder="Owner Name"
+                        [ngClass]="{ 'is-invalid': submitted &&
+                          fu.OwnerName.errors }">
+                          <div *ngIf="submitted && fu.OwnerName.errors" class="invalid-feedback">
+                              <div *ngIf="fu.OwnerName.errors.required">Please Enter Owner Name</div>
+                            </div>
+                    </div>
+
+                <div class="form-group">
+                    <label for="ContactNo">Contact Number</label>
+                    <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                    [ngClass]="{ 'is-invalid': submitted &&
+                  fu.ContactNo.errors }">
+                  <div *ngIf="submitted && fu.ContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="fu.ContactNo.errors.required">Please Enter contact number</div>
+                    </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="BankName">Email Id</label>
+                        <input type="text" class="form-control" formControlName="EmailId" placeholder="Contact Number"
+                        [ngClass]="{ 'is-invalid': submitted &&
+                      fu.EmailId.errors }">
+                      <div *ngIf="submitted && fu.EmailId.errors" class="invalid-feedback">
+                          <div *ngIf="fu.EmailId.errors.required">Please Enter Email Id.</div>
+                        </div>
+                        </div>
+
+      
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-square btn-primary" type="submit">Submit</button>
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+    </div>
+    </div>
+  </form>
+</ng-template>
