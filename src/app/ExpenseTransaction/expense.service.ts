@@ -7,8 +7,6 @@ import { Observable, of } from 'rxjs';
 import { User } from '../Model/User';
 import { StaffMaster } from '../Model/StaffMaster';
 import { Utils } from '../Utils';
-// import { from, Observable } from 'rxjs';
-
 
 
 @Injectable({
@@ -55,14 +53,16 @@ export class ExpenseService {
       }));
   }
 
-  expensesChartList(BranchId:number) {
-    
-    return this.http.post<ExpenseChart[]>( environment.APIBASEURL + 'Expenses/GetExpensesData_Chart'+'/'+BranchId,null, this.getAuthHeader());
+  monthwiseExpensesChartList(BranchId:number) {
+    return this.http.post<ExpenseChart[]>( environment.APIBASEURL + 'Chart/GetMonthwiseExpensesData_Chart'+'/'+BranchId,null, this.getAuthHeader());
   }
 
+  currentMonthExpensesChartList(BranchId:number) {
+    return this.http.post<ExpenseChart[]>( environment.APIBASEURL + 'Chart/GetCurrentMonthExpense'+'/'+BranchId,null, this.getAuthHeader());
+  }
   getIncomeAndExpenseData(BranchId:number){
     
-    return this.http.post<IncomeExpense[]>(environment.APIBASEURL + 'Expenses/GetIncomeAndExpenseData'+'/'+BranchId,null, this.getAuthHeader())
+    return this.http.post<IncomeExpense[]>(environment.APIBASEURL + 'Chart/GetIncomeAndExpenseData'+'/'+BranchId,null, this.getAuthHeader())
   }
 
   deleteExpense(id): Observable<Expenses> {

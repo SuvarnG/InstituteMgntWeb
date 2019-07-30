@@ -145,8 +145,7 @@ export class InstituteComponent implements OnInit {
   }
 
 
-  editInstitute(){
-    debugger;   
+  editInstitute(){ 
     this.submitted=true;
     if(this.editInstituteForm.invalid){
       return;
@@ -172,7 +171,6 @@ export class InstituteComponent implements OnInit {
 
 
   deleteInstitute(id:number,InstituteName:string){
-    debugger;
       if(confirm('Do you want to delete: ' + InstituteName)){
         this.instituteService.deleteInstitute(id).subscribe(data=>{
           this.chkInstitute=data;

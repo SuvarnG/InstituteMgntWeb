@@ -102,6 +102,9 @@ export interface FeesTransaction{
     IsActive:boolean;
     BranchId:number;
     InstituteId:number;
+    Month:string;
+    Income:number;
+    Course:string;
 }
 
 export interface FeesTransactions{

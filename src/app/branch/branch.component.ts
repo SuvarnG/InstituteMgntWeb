@@ -154,7 +154,6 @@ export class BranchComponent implements OnInit {
   get g(){ return this.editBranchForm.controls}
 
   delete(id: number, branchName: any) {
-    debugger;
     var ans = confirm("Do you want to delete this Branch: " + branchName);
     if (ans) {
       this.branchService.deleteBranch(id).subscribe(data => {

@@ -1,133 +1,113 @@
-   <!--Breadcrumb-->
-      <ol class="breadcrumb">
-          <li class="breadcrumb-item">Home</li>
-          <!-- Breadcrumb Menu-->
-          <li class="breadcrumb-menu d-md-down-none">
-            <div class="btn-group" role="group" aria-label="Button group">
-
-                <div class="input-group">
-                    <span class="input-group-prepend">
-                      <!-- <button class="btn btn-primary" type="button">
-                        <i class="fa fa-search"></i></button> -->
-                    </span>
-                    <!-- <input class="form-control" id="input1-group2" type="text" name="input1-group2" placeholder="Search"> -->
-                  </div>
-
-            </div>
-          </li>
-        </ol>
-
-
-
-        <div class="container-fluid">
-            <div class="animated fadeIn">
-              <div class="card-columns cols-2">
-                <div class="card">
-                  
-                  <div class="card-body">
-                      <div class="chart-container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"></div></div>    
-                          <canvas id="canvas3" style="display: block; height: 288px; width: 578px;" width="722" height="360" class="chartjs-render-monitor">{{ chart }}</canvas>    
-                        </div>
-                  </div>
-                </div>
-                <div class="card">
-               
-                  <div class="card-body">
-                      <div class="chart-container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"></div></div>    
-                          <canvas id="canvas1"width="722" height="360" class="chartjs-render-monitor" style="display: block; height: 288px; width: 578px;"></canvas>    
-                        </div>
-                  </div>
-                </div>
-                <div class="card">
-               
-                  <div class="card-body">
-                      <div class="chart-container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"></div></div>    
-                          <canvas id="canvas2" width="722" height="360" class="chartjs-render-monitor" style="display: block; height: 288px; width: 578px;"></canvas>    
-                        </div> 
-                  </div>
-                </div>
-                <div class="card">
-             
-                  <div class="card-body">
-                      <div class="chart-container"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"></div></div>    
-                          <canvas id="canvas" width="722" height="360" class="chartjs-render-monitor" style="display: block; height: 288px; width: 578px;"></canvas>    
-                        </div>   
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <app-authorised-top-nav></app-authorised-top-nav>
-<div class="row">
-
-  <div class="col-md-2">
-    <app-authorised-side-nav></app-authorised-side-nav>
-  </div>
-
-  <div class="col-md-10">
-
-    <div class="row">
-      <div class="col-md-8 chart-container" style="position: relative; height:40vh; width:70vw">
-        <canvas id="canvas"></canvas>
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Home</li>
+  <li class="breadcrumb-menu d-md-down-none">
+    <div class="btn-group" role="group" aria-label="Button group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+        </span>
       </div>
+    </div>
+  </li>
+  <li class="breadcrumb-menu d-md-down-none">
+    <div class="btn-group" role="group" aria-label="Button group">
 
-
-      <div class="shadow col-md-4 mt-3">
-        <div class="pt-4">
-          <h4>Notifications</h4>
-          <hr>
-          <ul>
-            <li>
-              Atul's fees due for this....
-            </li>
-            <hr>
-            <li>
-              It's Shilpa's Birthday Today....
-            </li>
-            <hr>
-            <li>
-              New Course Announcement....
-            </li>
-            <hr>
-          </ul>
+      <button class="btn btn-primary text-white" type="button" (click)="showGraph(ShowGraphTemplate)">Show
+        Graph</button>
+    </div>
+  </li>
+</ol>
+<div class="container-fluid">
+  <div class="animated fadeIn">
+    <div class="card-columns cols-2">
+      <div class="card">
+        <div class="card-header">Monthly Expenses</div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="chartjs-size-monitor">
+              <div class="chartjs-size-monitor-expand">
+                <div class=""></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"></div>
+            </div>
+            <canvas id="canvas3" style="display: block; height: 288px; width: 578px;" width="722" height="360"
+              class="chartjs-render-monitor">{{ chart }}</canvas>
+          </div>
         </div>
       </div>
-
-
+      <div class="card">
+        <div class="card-header">Monthly Income</div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="chartjs-size-monitor">
+              <div class="chartjs-size-monitor-expand">
+                <div class=""></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"></div>
+            </div>
+            <canvas id="canvas1" width="722" height="360" class="chartjs-render-monitor"
+              style="display: block; height: 288px; width: 578px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">{{month_Name | date:'MMMM'}} Expenses</div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="chartjs-size-monitor">
+              <div class="chartjs-size-monitor-expand">
+                <div class=""></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"></div>
+            </div>
+            <canvas id="canvas2" width="722" height="360" class="chartjs-render-monitor"
+              style="display: block; height: 288px; width: 578px;"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header">{{month_Name | date:'MMMM'}} Collection CourseWise</div>
+        <div class="card-body">
+          <div class="chart-container">
+            <div class="chartjs-size-monitor">
+              <div class="chartjs-size-monitor-expand">
+                <div class=""></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink"></div>
+            </div>
+            <canvas id="canvas" width="722" height="360" class="chartjs-render-monitor"
+              style="display: block; height: 288px; width: 578px;"></canvas>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div> -->
+</div>
+
+<ng-template #ShowGraphTemplate>
+  <div class="modal-header">
+    <h5 class="modal-title pull-left">Overall View</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="card">
+      <div class="card-body">
+        <div class="chart-container">
+          <div class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand">
+              <div class=""></div>
+            </div>
+            <div class="chartjs-size-monitor-shrink"></div>
+          </div>
+          <canvas id="canvasmodal" width="722" height="360" class="chartjs-render-monitor"
+            style="display: block; height: 288px; width: 578px;"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+    </div>
+  </div>
+</ng-template>

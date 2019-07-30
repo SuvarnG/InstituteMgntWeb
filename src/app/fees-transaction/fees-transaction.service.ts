@@ -55,4 +55,11 @@ export class FeesTransactionService {
   {
     return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,this.getAuthHeader())//.subscribe()
   }
+
+  getMonthwiseIncome(id:number){
+    return this.http.post(environment.APIBASEURL+'Chart/GetMonthWiseIncome'+'/'+id,null,this.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
+  }
+  getCurrentMonthCoursewiseIncome(id:number){
+    return this.http.post(environment.APIBASEURL+'Chart/GetCurrentMonthCoursewiseIncome'+'/'+id,null,this.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
+  }
 }

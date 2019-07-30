@@ -42,4 +42,6 @@ export interface ExpenseReportList{
 export interface IncomeExpense{
     Income:number;
     Expense:number;
+    TotalStudents:number;
+    Month:string;
 }
