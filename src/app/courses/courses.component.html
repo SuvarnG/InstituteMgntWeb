@@ -43,9 +43,9 @@
                   <td>{{c.ShortName}}</td>
                   <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
                   </td>
-                  <td>{{c.Fees | number}}</td>
-                  <td>{{c.Duration}}</td>
-                  <td>{{c.Percentage}}
+                  <td class="text-center">{{c.Fees | number}}</td>
+                  <td class="text-center">{{c.Duration}}</td>
+                  <td class="text-center">{{c.Percentage}}
                   <td>
                     <div class="icon-sm " (click)="Edit(editTemplate,c)" data-toggle="tooltip" data-placement="bottom"
                       title="Edit Course">
