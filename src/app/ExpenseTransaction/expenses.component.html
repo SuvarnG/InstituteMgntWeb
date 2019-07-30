@@ -31,6 +31,7 @@
             <th class="pl-2">Date</th>
             <th class="pl-2">Paid By</th>
             <th class="pl-2">Amount Paid (Rs)</th>
+            <th class="pl-2">Remark</th>
             <th class="pl-2">Action</th>  
           </tr>        
         </thead>
@@ -40,9 +41,10 @@
             <td>{{e.Date | date:'mediumDate'}}</td>
             <td>{{e.PaidByName}}</td>
             <td>{{e.Paid | number}}</td>
+            <td>{{e.Remark}}</td>
             <td>
             <a class="card-header-action btn-minimize" (click)="edit(editExpense,e)" title="Edit Information">
-                <i class="cui-pencil"></i>
+                <i class="cui-pencil pencil"></i>
               </a>
               &nbsp;&nbsp;
               <a class="card-header-action btn-minimize" (click)="delete(e.ExpenseType,e.Id)" title="Delete Expense">
