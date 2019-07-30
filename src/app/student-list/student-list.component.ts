@@ -66,6 +66,7 @@ export class StudentListComponent implements OnInit {
       ZipCode: ['', Validators.required],
       IsDocumentSubmitted: [],
       Photo:[],
+      
       //Document:[]
     })
   }
@@ -195,7 +196,8 @@ export class StudentListComponent implements OnInit {
           EmergencyNo: s.EmergencyNo,
           Email: s.EmailId,
           IsDocumentSubmitted: s.IsDocumentSubmitted,
-          Document:s.Document
+          Document:s.Document,
+          
         })
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-md' })

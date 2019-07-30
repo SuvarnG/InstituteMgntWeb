@@ -233,7 +233,7 @@
                     <div class="media-body">
                         <label  for="UploadPhoto">Upload Photo </label>
                       <input  type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo" >
-                      <input type="hidden" name="fileHidden" formControlName="Photo" />
+                      <!-- <input type="hidden" name="fileHidden" formControlName="Photo" /> -->
                     </div>
                   </div>
                 </div>
@@ -279,7 +279,7 @@
                               <select class="form-control" formControlName="CourseType" [value]="null"
                           [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseType.errors }"
                           (change)="selectUser($event);getCourseNameFromCourseType()">
-                          <option [value]="null" disabled hidden>Course Type</option>
+                          <option [value]="null">Course Type</option>
                           <option *ngFor="let course of courseTypeList" [value]="course.CourseTypeId">
                             {{course.CourseTypeName}}
                           </option>
