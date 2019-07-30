@@ -9,7 +9,7 @@
           <i class="nav-icon icon-home"></i> Dashboard </a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLink="colors.html">
+        <a class="nav-link" routerLink="/Institute">
           <i class="nav-icon icon-drop"></i> Institute</a>
       </li>
       <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='SuperAdmin'">
@@ -30,7 +30,7 @@
               <i class="nav-icon fa fa-user-circle"></i> Student</a>
           </li>
           <li routerLinkActive="active current" class="nav-item"
-            *ngIf="currentRole==='Admin'|| currentRole==='Teacher'">
+            *ngIf="currentRole==='Admin'">
             <a class="nav-link" routerLink="/ExpenseMaster">
               <i class="nav-icon fa fa-dollar"></i> Expenses</a>
           </li>
@@ -38,7 +38,7 @@
             <a class="nav-link" routerLink="/Courses">
               <i class="nav-icon fa fa-graduation-cap"></i> Courses</a>
           </li>
-          <li routerLinkActive="active current" class="nav-item">
+          <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
             <a class="nav-link" routerLink="/Branch">
               <i class="nav-icon fa fa-map-marker"></i> Branch</a>
           </li>
@@ -46,7 +46,7 @@
             <a class="nav-link" routerLink="/coursetype">
               <i class="nav-icon icon-book-open"></i> Course Type</a>
           </li>
-          <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Teacher'">
+          <li routerLinkActive="active current" class="nav-item" *ngIf="currentRole==='Admin'">
             <a class="nav-link" routerLink="/LeaveList">
               <i class="nav-icon fa fa-check"></i> Leaves</a>
           </li>
