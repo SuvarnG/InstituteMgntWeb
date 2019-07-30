@@ -71,7 +71,8 @@ import { StudentAdmissionsReportComponent } from './student-admissions-report/st
 import { ExportAsModule } from 'ngx-export-as';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Chart } from 'chart.js';
-import { InstituteComponent } from './institute/institute.component'; 
+import { InstituteComponent } from './institute/institute.component';
+import { InstituteAdminComponent } from './institute-admin/institute-admin.component'; 
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
@@ -108,6 +109,7 @@ const appRoutes: Routes = [
     EnquiryReportComponent,
     StudentAdmissionsReportComponent,
     InstituteComponent,
+    InstituteAdminComponent,
     
   ],
   imports: [

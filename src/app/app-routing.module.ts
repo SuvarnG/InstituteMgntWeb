@@ -24,6 +24,7 @@ import { FeesCollectionReportComponent } from './fees-collection-report/fees-col
 import { EnquiryReportComponent } from './enquiry-report/enquiry-report.component';
 import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
 import { InstituteComponent } from './institute/institute.component';
+import { InstituteAdminComponent } from './institute-admin/institute-admin.component';
 
 
 const routes: Routes = [
@@ -132,6 +133,10 @@ const routes: Routes = [
   {
     path: 'Institute',
     component: InstituteComponent
+  },
+  {
+    path: 'InstituteAdmin',
+    component: InstituteAdminComponent
   }
 ];
 

@@ -34,9 +34,9 @@ export class InstituteComponent implements OnInit {
   ngOnInit() {
 
     this.dtOptions = {
-      //retrieve: false,
+      retrieve: true,
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 8,
       paging:true,
       searching:false,
       processing: true
@@ -83,8 +83,8 @@ export class InstituteComponent implements OnInit {
   getAllInstitutes(){
     this.instituteService.getAllInstitutes().subscribe(data=>{
       this.Institutes = data;
-      this.dtTrigger.next();
-      //this.rerender();
+      //this.dtTrigger.next();
+      this.rerender();
     })
   }
 
