@@ -63,15 +63,15 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* font-family: "Trebuchet MS", "Helvetica", sans-serif !important; */
-  font-family: 'Lato', sans-serif;
+  /* font-family: 'Lato', sans-serif; */
   font-size: 0.875rem;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.2;
   color: #23282c;
   text-align: left;
-  letter-spacing: 1.5px !important;
+  letter-spacing: 0.5px !important;
   /* background-color: #e4e5e6; */
   /* background-image: linear-gradient( to bottom, #fcbc81, #ad76ac); */
 }
