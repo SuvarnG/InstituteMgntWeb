@@ -262,7 +262,7 @@ this.TotalStudents=[];
 
 
     this.modalRef = this.modalService.show(template, {
-      class: 'modal-md',
+      class: 'modal-xl',
       animated: true,
       backdrop: 'static'
     });

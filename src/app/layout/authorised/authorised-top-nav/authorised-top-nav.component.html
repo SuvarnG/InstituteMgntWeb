@@ -34,28 +34,21 @@
             <div class="dropdown-header text-center">
                 <strong>Notifications</strong>
             </div>
-            <ul class="nav" *ngFor="let StudList of StudentList">
-                   <!-- <li >
-                     <span class="dropdown-item">Name:{{StudList.FirstName +' '+StudList.LastName }}</span>
-                    <span class="dropdown-item">PendingFees:{{StudList.PendingFees | number}}</span>
-                     <span class="dropdown-item">DueDate:{{StudList.RemainingDays+' Days'}}</span>
-                    </li> -->
-           
-
-            <li class="nav-item nav-dropdown dropdown-item">
-                    <a class="nav-link nav-dropdown-toggle" href="#">
-                            {{StudList.FirstName +' '+StudList.LastName }}</a>
-                    <ul class="nav-dropdown-items">
-                      <li class="nav-item">
-                            PendingFees:{{StudList.PendingFees | number}}
-                      </li>
-                      <li class="nav-item">
-                            DueDate:{{StudList.RemainingDays+' Days'}}
-                      </li>
+            <div  class="dropdown-item"  *ngFor="let StudList of StudentList">
+                    <a  data-toggle="tooltip" title="{{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should be completed within {{StudList.RemainingDays+' Days'}}">
+                    <i class="fa fa-exclamation trash"></i>Pending Fees    
+                <span  style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;" >{{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should be completed within {{StudList.RemainingDays+' Days'}}</span>
+            </a>
+            </div>
+            <!-- <ul *ngFor="let StudList of StudentList">       
+            <li class="dropdown-item">
+                            {{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}}
+                    <ul>
+                      <li>PendingFees:{{StudList.PendingFees | number}}</li>
+                      <li>DueDate:{{StudList.RemainingDays+' Days'}}</li>
                     </ul>
                   </li>
-
-                </ul>
+                </ul> -->
         </div>
       </li>
 

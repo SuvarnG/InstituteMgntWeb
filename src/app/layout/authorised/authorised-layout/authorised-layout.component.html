@@ -11,7 +11,7 @@
   <li class="breadcrumb-menu d-md-down-none">
     <div class="btn-group" role="group" aria-label="Button group">
 
-      <button class="btn btn-primary text-white" type="button" (click)="showGraph(ShowGraphTemplate)">Show
+      <button class="btn btn-primary rounded-0 pull-right text-white" type="button" (click)="showGraph(ShowGraphTemplate)">
         Graph</button>
     </div>
   </li>
@@ -85,7 +85,7 @@
 
 <ng-template #ShowGraphTemplate>
   <div class="modal-header">
-    <h5 class="modal-title pull-left">Overall View</h5>
+    <h5 class="modal-title pull-left">Monthwise Income,Expense and New Admission Report</h5>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -106,8 +106,8 @@
         </div>
       </div>
     </div>
-    <div class="modal-footer">
+    <!-- <div class="modal-footer">
       <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
-    </div>
+    </div> -->
   </div>
 </ng-template>
