@@ -43,9 +43,9 @@
       left: 0;
       text-align: left;
       font-size: 0;
-       animation: 30s slidy infinite; 
+       animation: 50s slidy infinite; 
       /*animation-delay: 3s; */
-      animation-duration: 10s; 
+      animation-duration: 12s; 
      
     }
 
