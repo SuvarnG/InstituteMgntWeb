@@ -85,7 +85,6 @@ showCreateExpenseTemplate(CreateExpenseTemplate: TemplateRef<any>){
 }
 onSubmitCreateExpense(expenses)
 {
-  debugger;
   this.submitted=true;
   if(this.createExpenseForm.invalid){
     return;

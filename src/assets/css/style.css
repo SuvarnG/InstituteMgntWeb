@@ -12821,7 +12821,7 @@ canvas {
 
 .sidebar .nav-link.active {
   color: #fff;
-  background: #3a4248;
+  background: #20a8d8;
 }
 
 .sidebar .nav-link.active .nav-icon {
@@ -13018,7 +13018,7 @@ canvas {
 }
 
 .sidebar .nav-dropdown.open {
-  background: rgba(0, 0, 0, 0.2);
+  background:#53585d;
 }
 
 .sidebar .nav-dropdown.open > .nav-dropdown-items {

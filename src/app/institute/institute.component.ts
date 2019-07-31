@@ -23,6 +23,8 @@ export class InstituteComponent implements OnInit {
   modalRef: BsModalRef;
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
+  p:any;
+  filter:any;
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;

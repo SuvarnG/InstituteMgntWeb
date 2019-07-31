@@ -19,16 +19,16 @@ export class AuthorisedLayoutComponent implements OnInit {
   ExpensesInMonth = [];
   MonthwiseExpenseAmt = [];
   CurrentMonthExpenses = [];
-  CurrentMonthExpenseAmt = []
+  CurrentMonthExpenseAmt = [];
   IncomeInMonths = [];
   TotalIncome = [];
   modalRef: BsModalRef;
-  chart = [];
-  TotalStudents = [];
-  Income = [];
-  Expenses = [];
-  chart1 = [];
-  Month = [];
+  chart:any = [];
+  TotalStudents:any = [];
+  Income:any = [];
+  Expenses:any = [];
+  chart1:any = [];
+  Month:any = [];
   month_Name: any;
 
   constructor(private expenseService: ExpenseService,
@@ -46,10 +46,8 @@ export class AuthorisedLayoutComponent implements OnInit {
       this
       this.chart = new Chart('canvas', {
         type: 'pie',
-        innerRadius: 90,
         data: {
           labels: this.CurrentMonthCourses,
-          innerRadius: 90,
           datasets: [
             {
               data: this.CurrentMonthIncome,
@@ -96,10 +94,9 @@ export class AuthorisedLayoutComponent implements OnInit {
       this
       this.chart = new Chart('canvas2', {
         type: 'pie',
-        innerRadius: 90,
+
         data: {
           labels: this.CurrentMonthExpenses,
-          innerRadius: 90,
           datasets: [
             {
               data: this.CurrentMonthExpenseAmt,
@@ -212,6 +209,13 @@ export class AuthorisedLayoutComponent implements OnInit {
       });
     });
 
+   
+  }
+
+  showGraph(template: TemplateRef<any>) {
+this.Month=[];
+this.Income=[];
+this.TotalStudents=[];
     this.expenseService.getIncomeAndExpenseData(this.user.BranchId).subscribe((result: IncomeExpense[]) => {
       result.forEach(x => {
         this.Month.push(x.Month);
@@ -223,27 +227,22 @@ export class AuthorisedLayoutComponent implements OnInit {
       this.chart1 = new Chart('canvasmodal', {
         type: 'bar',
         data: {
-          labels: this.Month,
-          datasets: [
-            {
-              data: [this.TotalStudents],
-              borderColor: '#3cba9f',
-              backgroundColor: [
-                "#3cb371",
-                "#0000FF",
-                "#9966FF",
-                "#4C4CFF",
-                "#00FFFF",
-                "#f990a7",
-                "#aad2ed",
-                "#FF00FF",
-                "Blue",
-                "Red",
-                "Blue"
-              ],
-              fill: true
-            }
-          ]
+          datasets: [{
+            label: 'Expenses',
+            data: this.Expenses,
+            backgroundColor:"#3cb371"
+        }, {
+            label: 'Income',
+            data: this.Income,
+            backgroundColor:"#0000FF"
+        },
+        {
+          label: 'TotalStudents',
+          data: this.TotalStudents,
+          backgroundColor: "#9966FF"
+      }
+      ],
+        labels: this.Month
         },
         options: {
           legend: {
@@ -260,11 +259,10 @@ export class AuthorisedLayoutComponent implements OnInit {
         }
       });
     });
-  }
 
-  showGraph(template: TemplateRef<any>) {
+
     this.modalRef = this.modalService.show(template, {
-      class: 'modal-xl',
+      class: 'modal-md',
       animated: true,
       backdrop: 'static'
     });

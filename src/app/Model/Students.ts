@@ -205,3 +205,13 @@ export interface StudentReport{
     Address:string;
     Gender:string;
 }
+
+export interface StudentPendingFeesList{
+    RemainingDays:number;
+    FirstName:string; 
+   LastName:string; 
+    Course:string; 
+   TotalFees:number;
+    PendingFees:number;
+    Paid:number;
+}

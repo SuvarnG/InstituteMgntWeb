@@ -15,6 +15,9 @@ export class InstituteAdminComponent implements OnInit {
   createInstituteAdminForm:FormGroup;
   modalRef:BsModalRef;
   submitted= false;
+  filter:any;
+  p:any;
+  students:any;
 
   constructor(private instituteAdminService:InstituteAdminService,
               private modalService: BsModalService,

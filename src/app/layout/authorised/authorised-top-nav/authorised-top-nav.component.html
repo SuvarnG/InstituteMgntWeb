@@ -25,12 +25,39 @@
       </li>
   </ul> -->
     <ul class="nav navbar-nav ml-auto">
-        <!-- <li class="nav-item d-md-down-none">
-          <a class="nav-link" href="#" title="Notifications">
-              <i class="icon-bell"></i>
-              <span class="badge badge-pill badge-danger">5</span>
+        <li class="nav-item dropdown">
+          <a class="nav-link" data-toggle="dropdown" (click)="getAllStudentsPendingFeesDetails()" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Notifications">
+              <i class="icon-bell text-white"></i>
+              <span class="badge badge-pill badge-danger" *ngIf="StudentList">{{StudentList.length}}</span>
           </a>
-      </li> -->
+          <div class="dropdown-menu dropdown-menu-right">
+            <div class="dropdown-header text-center">
+                <strong>Notifications</strong>
+            </div>
+            <ul class="nav" *ngFor="let StudList of StudentList">
+                   <!-- <li >
+                     <span class="dropdown-item">Name:{{StudList.FirstName +' '+StudList.LastName }}</span>
+                    <span class="dropdown-item">PendingFees:{{StudList.PendingFees | number}}</span>
+                     <span class="dropdown-item">DueDate:{{StudList.RemainingDays+' Days'}}</span>
+                    </li> -->
+           
+
+            <li class="nav-item nav-dropdown dropdown-item">
+                    <a class="nav-link nav-dropdown-toggle" href="#">
+                            {{StudList.FirstName +' '+StudList.LastName }}</a>
+                    <ul class="nav-dropdown-items">
+                      <li class="nav-item">
+                            PendingFees:{{StudList.PendingFees | number}}
+                      </li>
+                      <li class="nav-item">
+                            DueDate:{{StudList.RemainingDays+' Days'}}
+                      </li>
+                    </ul>
+                  </li>
+
+                </ul>
+        </div>
+      </li>
 
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
