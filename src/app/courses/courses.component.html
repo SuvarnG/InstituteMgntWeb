@@ -2,10 +2,14 @@
  
     <!-- Breadcrumb-->
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a routerLink="/Dashboard">Home</a></li>
-      <li class="breadcrumb-item">Courses</li>
-
-      <li class="breadcrumb-menu d-md-down-none">
+        <div class="flex-1 d-inline-flex">
+      <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
+      <li class="breadcrumb-item align-self-center">Courses</li>
+</div>
+<div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Course Information</li>  
+  </div>
+      <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
         <div class="btn-group" role="group" aria-label="Button group">
 
           <button class="btn btn-primary" type="button">
