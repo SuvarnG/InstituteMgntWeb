@@ -13,11 +13,13 @@
       <li class="breadcrumb-menu d-md-down-none  flex-1 justify-content-end text-right">
         <div class="btn-group" role="group" aria-label="Button group">
           
-            <button class="btn btn-primary btn-square" type="button">
+            <div class="input-group">
+                <span class="input-group-prepend">
+                <button class="btn btn-primary btn-square" type="button">
                 <i class="fa fa-search text-white"></i></button>
-
-            <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
-            &nbsp;&nbsp;
+                </span>
+                <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
+                </div>&nbsp;&nbsp;
             <button class="btn btn-sm btn-primary btn-square text-white" data-toggle="tooltip" data-placement="bottom"
             title="Add New Expense" (click)="addNewExpense(addExpense)">Add</button>
           
