@@ -27,4 +27,5 @@ export interface InstituteAdmins{
     UpdatedBy:number;
     IsActive:boolean;
     Photo:string;
+    InstituteName:string;
 }

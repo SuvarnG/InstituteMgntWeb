@@ -29,13 +29,13 @@
       <div class="card">
           <div class="card-header h5">{{a.FirstName | titlecase}} {{a.LastName | titlecase}}
             <div class="card-header-actions">
-              <a class="card-header-action btn-setting" (click)="openStudentDetailsPopup(StudentDetails, s)" title="Student Details">
+              <a class="card-header-action btn-setting" (click)="openAdminDetailsPopup(instituteAdminDetailsTemplate, a)" title="Student Details">
                 <i class="cui-info info"></i>
               </a>
-              <a class="card-header-action btn-minimize" (click)="openEditStudentPopup(editStudent, s)" title="Edit Information">
+              <a class="card-header-action btn-minimize" (click)="editInstituteAdminModal(editInstituteAdminTemplate, a)" title="Edit Information">
                 <i class="cui-pencil pencil"></i>
               </a>
-              <a class="card-header-action btn-close" (click)="deleteStudent(s.StudentId)" title="Delete Student">
+              <a class="card-header-action btn-close" (click)="deleteInstituteAdmin(a.Id, a.FirstName, a.LastName)" title="Delete Student">
                 <i class="cui-trash trash"></i>
               </a>
             </div>
@@ -48,12 +48,12 @@
                   </div>
                   <div class="col-sm-9">
 
-                    <!-- <div class="row ">
+                    <div class="row ">
                       <div class="col-sm-12 ">
-                        <p class="card-title"><i class="icon-book-open" data-toggle="tooltip" data-placement="bottom"
-                          title="Course" ></i> {{a.Course}}</p>
+                        <p class="card-title"><i class="fa fa-institution" data-toggle="tooltip" data-placement="bottom"
+                          title="Course" ></i> {{a.InstituteName}}</p>
                       </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                       <div class="col-sm-12  ">
                         <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
@@ -66,12 +66,6 @@
                             title="Email" ></i> {{a.Email}}</p>
                         </div>
                       </div>
-                      <!-- <div class="row">
-                          <div class="col-sm-12  ">
-                            <p class="card-title"><i class="font-md fa fa-money" data-toggle="tooltip" data-placement="bottom"
-                              title="Pending Fees" ></i> {{s.PendingFees}}</p>
-                          </div>
-                        </div> -->
                   </div>
                 </div>
             </div>
@@ -81,9 +75,9 @@
 </div>
 </div>
 
-<p *ngIf="students && students.length==0">No records found.</p>
+<p *ngIf="instituteAdmins?.length==0">No records found.</p>
 
-<ul class="pagination" *ngIf="students && students.length>6">
+<ul class="pagination" *ngIf="instituteAdmins?.length > 6">
 <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </ul>
 
@@ -109,7 +103,7 @@
             <h5>Personal Details</h5>
           </div>
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="FirstName">First Name</label>
               <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
                 [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
@@ -117,15 +111,19 @@
                 <div *ngIf="f.FirstName.errors.required">First Name is required</div>
               </div>
             </div>
-            <div class="col-md-4">
+
+
+            <!-- <div class="col-md-4">
                 <label for="MiddleName">Middle Name</label>
               <input class="form-control" formControlName="MiddleName" type="text" placeholder="Middle Name"
                 [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
               <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
                 <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
               </div>
-            </div>
-            <div class="col-md-4">
+            </div> -->
+
+
+            <div class="col-md-6">
                 <label for="LastName">Last Name</label>
               <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
                 [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
@@ -133,6 +131,7 @@
                 <div *ngIf="f.LastName.errors.required">Last Name is required</div>
               </div>
             </div>
+
           </div>
         </div>
 
@@ -142,20 +141,32 @@
               <label for="Gender">Gender</label>
               <div class="row">
                 <div class="col-md-12">
-                    <div class="form-check form-check-inline mr-1">
+                    <div class="form-check form-check-inline">
                         <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} " [checked]>
                         <label class="form-check-label" for="radio1"> &nbsp; Male</label>
                       </div>
                   
-                  <div class="form-check form-check-inline mr-1">
+                  <div class="form-check form-check-inline">
                       <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
                       [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
                       <label class="form-check-label" for="radio2"> &nbsp; Female</label>
                     </div>
                 </div>
+                <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                    <div *ngIf="f.Gender.errors.required">Gender is required</div>
+                  </div>
               </div>
             </div>
+
+            <div class="col-md-8">
+              <label for="Address">Address</label>
+            <input class="form-control" formControlName="Address" type="text" placeholder="Address"
+              [ngClass]="{'is-invalid': submitted && f.Address.errors} ">
+            <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
+              <div *ngIf="f.Address.errors.required">Address is required</div>
+            </div>
+          </div>
 
           </div>
         </div>
@@ -169,9 +180,9 @@
             <h5>Contact Information</h5>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="ContactNo">Contact Number</label>
-              <input type="text" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
+              <input type="number" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
               <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
                 <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
@@ -179,7 +190,7 @@
             </div>
 
 
-            <div class="col-md-6">
+            <div class="col-md-4">
               <label for="Email">Email</label>
               <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
                 [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
@@ -187,7 +198,47 @@
                 <div *ngIf="f.Email.errors.required">Email is required</div>
               </div>
             </div>
+
+            <div class="col-md-4">
+                <label for="CourseType">Institute Name</label>
+                <select class="form-control" formControlName="InstituteId" [value]="null"
+                  [ngClass]="{ 'is-invalid': submitted && f.InstituteId.errors }"
+                  (change)="selectUser($event)">
+                    <option [value]="null" disabled hidden>Select Institute</option>
+                    <option *ngFor="let institute of institutesList" [value]="institute.Id">
+                      {{institute.InstituteName}}
+                    </option>
+                </select>
+                <div *ngIf="submitted && f.InstituteId.errors" class="invalid-feedback">
+                <div *ngIf="f.InstituteId.errors.required">Institute Name is required</div>
+                </div>
+              </div>
+
           </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+          <div class="form-row">
+            <div class="col-md-6">
+                <label for="Password">Create Password</label>
+                <input type="password" id="Password" formControlName="Password" placeholder="Enter Password"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }">
+              <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+                <div *ngIf="f.Password.errors.required">Password is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="VerifyPassword">Verify Password</label>
+                <input type="password" id="VerifyPassword" formControlName="VerifyPassword" placeholder="Verify Password"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VerifyPassword.errors }">
+              <div *ngIf="submitted && f.VerifyPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.VerifyPassword.errors.required">Password verification is required</div>
+              </div>
+        </div>
+        </div>
         </div>
 
         <hr>
@@ -201,9 +252,233 @@
         </div>
 
       </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-square btn-primary" type="submit">Submit</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+
       </div> 
-
-
-
   </form>
 </ng-template>
+
+
+
+
+
+    <!-- Edit Institute Admin template -->
+    <ng-template #editInstituteAdminTemplate>
+        <form [formGroup]="editInstituteAdminForm" (ngSubmit)="editInstituteAdmin()">
+          <div class="modal-header">
+            <h5 class="modal-title pull-left">Edit Institute Admin</h5>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+      
+      
+           
+           <div class="modal-body">
+                <div class="container-fluid">
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Personal Details</h5>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                      <label for="FirstName">First Name</label>
+                    <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
+                      [ngClass]="{'is-invalid': submitted && fu.FirstName.errors} ">
+                    <div *ngIf="submitted && fu.FirstName.errors" class="invalid-feedback">
+                      <div *ngIf="fu.FirstName.errors.required">First Name is required</div>
+                    </div>
+                  </div>
+
+
+                  <div class="col-md-6">
+                      <label for="LastName">Last Name</label>
+                    <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
+                      [ngClass]="{'is-invalid': submitted && fu.LastName.errors} ">
+                    <div *ngIf="submitted && fu.LastName.errors" class="invalid-feedback">
+                      <div *ngIf="fu.LastName.errors.required">Last Name is required</div>
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+      
+               <div class="form-group">
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="Gender">Gender</label>
+                    <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-check form-check-inline">
+                              <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
+                          [ngClass]="{'is-invalid': submitted && fu.Gender.errors} ">
+                              <label class="form-check-label" for="radio1"> &nbsp; Male</label>
+                            </div>
+                        
+                        <div class="form-check form-check-inline">
+                            <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
+                            [ngClass]="{'is-invalid': submitted && fu.Gender.errors} ">
+                            <label class="form-check-label" for="radio2"> &nbsp; Female</label>
+                          </div>
+                      </div>
+                      <div *ngIf="submitted && fu.Gender.errors" class="invalid-feedback">
+                          <div *ngIf="fu.Gender.errors.required">Gender is required</div>
+                        </div>
+                    </div>
+                  </div>
+      
+                  <div class="col-md-8">
+                    <label for="Address">Address</label>
+                  <input class="form-control" formControlName="Address" type="text" placeholder="Address"
+                    [ngClass]="{'is-invalid': submitted && fu.Address.errors} ">
+                  <div *ngIf="submitted && fu.Address.errors" class="invalid-feedback">
+                    <div *ngIf="fu.Address.errors.required">Address is required</div>
+                  </div>
+                </div>
+      
+                </div>
+              </div>
+      
+              <hr>
+      
+              
+      
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Contact Information</h5>
+                </div>
+                <div class="row">
+                  <div class="col-md-4">
+                    <label for="ContactNo">Contact Number</label>
+                    <input type="number" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
+                      class="form-control" [ngClass]="{ 'is-invalid': submitted && fu.ContactNo.errors }">
+                    <div *ngIf="submitted && fu.ContactNo.errors" class="invalid-feedback">
+                      <div *ngIf="fu.ContactNo.errors.required">Contact Number is required</div>
+                    </div>
+                  </div>
+      
+      
+                  <div class="col-md-4">
+                    <label for="Email">Email</label>
+                    <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
+                      [ngClass]="{'is-invalid': submitted && fu.Email.errors} ">
+                    <div *ngIf="submitted && fu.Email.errors" class="invalid-feedback">
+                      <div *ngIf="fu.Email.errors.required">Email is required</div>
+                    </div>
+                  </div>
+      
+                  <div class="col-md-4">
+                      <label for="CourseType">Institute Name</label>
+                      <select class="form-control" formControlName="InstituteId" disabled>
+                          <option *ngFor="let institute of institutesList" [value]="institute.Id">
+                            {{institute.InstituteName}}
+                          </option>
+                      </select>
+                    </div>
+      
+                </div>
+              </div>
+      
+              <hr>
+      
+              <div class="form-group">
+                <h5>Upload Image</h5>
+                <img [src]="thumbnailUrl" width="100" height="100">
+                &nbsp;
+                <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
+                <input type="hidden" name="fileHidden" formControlName="Photo" />
+              </div>
+      
+            </div>
+      
+            <div class="modal-footer">
+              <button class="btn btn-square btn-primary" type="submit">Submit</button>
+              <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+      
+            </div> 
+        </form>
+      </ng-template>
+
+
+
+          <!--  Admin Details template -->
+<ng-template #instituteAdminDetailsTemplate>
+    <form [formGroup]="detailsInstituteAdminForm">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Institute Admin Details</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+  
+  
+       
+       <div class="modal-body">
+            <div class="container-fluid">
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Personal Details</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                  <label for="Name">Admin Name: </label>
+                  {{g.FirstName.value}} {{g.LastName.value}}
+              </div>
+
+              <div class="col-md-6">
+                  <label for="FirstName">Gender: </label>
+                   {{g.Gender.value}}
+              </div> 
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                  <label for="Address">Address: </label>
+                  {{g.Address.value}}
+              </div>  
+              </div> 
+          </div>
+  
+                   
+          <hr>        
+  
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Contact Information</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="ContactNo">Contact: </label>
+                {{g.ContactNo.value}}
+              </div>
+  
+  
+              <div class="col-md-6">
+                <label for="Email">Email: </label>
+                {{g.Email.value}}
+              </div>
+            </div>
+
+              <div class="row">
+              <div class="col-md-12">
+                  <label for="CourseType">Institute Name: </label>
+                 {{g.InstituteName.value}}
+                </div>
+              </div>
+            </div>
+
+  
+        </div>
+  
+        <div class="modal-footer">
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+  
+        </div> 
+    </form>
+  </ng-template>

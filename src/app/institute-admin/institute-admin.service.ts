@@ -9,6 +9,9 @@ import {InstituteAdmins} from '../Model/Institutes'
 })
 export class InstituteAdminService {
 
+
+  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
+
   constructor(private httpClient:HttpClient) { }
 
   getAuthHeader(){
@@ -37,5 +40,12 @@ export class InstituteAdminService {
     return this.httpClient.post(environment.APIBASEURL + 'Institute/InactivateInstituteAdmin' +'/' + id, null, this.getAuthHeader());
   }
 
+  postPhoto(formData)
+  {
+    return this.httpClient.post<any>(this.uploadUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
   
 }
