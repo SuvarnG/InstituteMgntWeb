@@ -2,11 +2,15 @@
       <!-- Breadcrumb-->
       
       <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a routerLink="/Dashboard" >Home</a></li>
-         <li class="breadcrumb-item">Role</li>
-         
+          <div class="flex-1 d-inline-flex">
+         <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard" >Home</a></li>
+         <li class="breadcrumb-item align-self-center">Role</li>
+         </div>
+         <div class="d-none d-md-block d-lg-none d-xl-block flex-1">
+            <li class="h5 pt-2">Manage Role Information</li>    
+          </div>
          <!-- Breadcrumb Menu-->
-         <li class="breadcrumb-menu d-md-down-none">
+         <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
            <div class="btn-group" role="group" aria-label="Button group">
              
                 
@@ -16,7 +20,7 @@
                        <button class="btn btn-primary btn-square" type="button">
                        <i class="fa fa-search text-white"></i></button>
                        </span>
-                       <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> 
+                       <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
                        </div>
    
                 
