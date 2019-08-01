@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   name:'dev',
-  Host:'http://localhost:50076/',
-  APIBASEURL:'http://localhost:50076/api/'
+  Host:'http://45.35.4.250/AdityaAcademyAPI/',
+   APIBASEURL:'http://45.35.4.250/AdityaAcademyAPI/api/'
 };
 
 /*
