@@ -24,7 +24,8 @@ export class InstituteAdminComponent implements OnInit {
   submitted= false;
   institutesList:Institutes[];
   thumbnailUrl:any='../../assets/images/MProfile.jpg';
-
+p:any;
+filter:any;
   constructor(private instituteAdminService:InstituteAdminService,
               private modalService: BsModalService,
               private formBuilder:FormBuilder,
