@@ -30,6 +30,7 @@ export class StudentslistService {
 
  
   getAllStudents(InstituteId: number, BranchId: number) {
+    debugger;
     return this.http.get<Students[]>(this.Url + '/' + InstituteId + '/' + BranchId, this.getAuthHeader()).pipe(map(data => data as Students[]))
   }
 

@@ -25,6 +25,7 @@ import { EnquiryReportComponent } from './enquiry-report/enquiry-report.componen
 import { StudentAdmissionsReportComponent } from './student-admissions-report/student-admissions-report.component';
 import { InstituteComponent } from './institute/institute.component';
 import { InstituteAdminComponent } from './institute-admin/institute-admin.component';
+import { BranchManagerComponent } from './branch-manager/branch-manager.component';
 
 
 const routes: Routes = [
@@ -137,6 +138,10 @@ const routes: Routes = [
   {
     path: 'InstituteAdmin',
     component: InstituteAdminComponent
+  },
+  {
+    path: 'BranchManager',
+    component: BranchManagerComponent
   }
 ];
 

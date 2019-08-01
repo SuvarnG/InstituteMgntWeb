@@ -62,7 +62,14 @@
               <i class="nav-icon icon-user"></i> Staff</a>
           </li>
         </ul>
+        <ul class="nav-dropdown-items">
+            <li  class="nav-item" *ngIf="currentRole==='Admin'">
+              <a class="nav-link" routerLinkActive="active current" routerLink="/BranchManager">
+                <i class="nav-icon icon-user"></i> Branch Manager</a>
+            </li>
+          </ul>
       </li>
+
       <li  class="nav-item" *ngIf="currentRole==='Teacher'">
         <a class="nav-link" routerLinkActive="active current" routerLink="/Enquiry">
           <i class="nav-icon fa fa-desktop"></i> Enquiry</a>
