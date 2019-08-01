@@ -1,25 +1,32 @@
 <!-- Breadcrumb-->
 <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a routerLink="/Dashboard">
-        Home</a></li>
-    <li class="breadcrumb-item">Branch Manager</li>
-  
-    <!-- Breadcrumb Menu-->
-    <li class="breadcrumb-menu d-md-down-none">
-      <div class="btn-group" role="group" aria-label="Button group">
-  
-        <button class="btn btn-primary" type="button">
+  <div class="flex-1 d-inline-flex">
+<li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">
+    Home</a></li>
+<li class="breadcrumb-item align-self-center">Branch Manager</li>
+</div>
+<div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+  <li class="h5 pt-2">Manage Branch Manager</li>
+ 
+</div>
+<!-- Breadcrumb Menu-->
+<li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+  <div class="btn-group" role="group" aria-label="Button group">
+
+      <div class="input-group">
+          <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
           <i class="fa fa-search text-white"></i></button>
-  
-        <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
-        &nbsp;&nbsp;
-        <a class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip"
-          data-placement="bottom" title="Add Branch Manager" (click)="openCreateBranchManagerModal(newBranchManagerTemplate)">
-          Add
-        </a>
-      </div>
-    </li>
-  </ol>
+          </span>
+          <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
+          </div>
+      &nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white" (click)="openCreateBranchManagerModal(newBranchManagerTemplate)" data-toggle="tooltip" data-placement="bottom"
+      title="Add Branch Manager" type="button">Add</button>
+  </div>
+</li>
+</ol>
+
 
 
   <div class="row my-4 px-3 pb-3">
