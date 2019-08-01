@@ -36,12 +36,11 @@ filter:any;
     this.createInstituteAdminForm = this.formBuilder.group({
 
       FirstName:['',Validators.required],
-      MiddleName:['', Validators.required],
       LastName:['',Validators.required],
       Gender:['Male',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['',Validators.required],
-      Email:['',Validators.required],
+      ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
+      Email:['',[Validators.required,Validators.email]],
       Password:['',Validators.required],
       VerifyPassword:['',Validators.required],
       Photo:[],
@@ -51,12 +50,11 @@ filter:any;
 
     this.editInstituteAdminForm = this.formBuilder.group({
       FirstName:['',Validators.required],
-      //MiddleName:['', Validators.required],
       LastName:['',Validators.required],
       Gender:['',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['',Validators.required],
-      Email:['',Validators.required],
+      ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
+      Email:['',[Validators.required,Validators.email]],
       Photo:[],
       InstituteId:['',Validators.required]
     })
@@ -123,8 +121,9 @@ filter:any;
     let body = {
      // Id:0,
       InstituteId:this.createInstituteAdminForm.controls.InstituteId.value,
+      BranchId:0,
       FirstName:this.createInstituteAdminForm.controls.FirstName.value,
-      MiddleName:this.createInstituteAdminForm.controls.MiddleName.value,
+      //MiddleName:this.createInstituteAdminForm.controls.MiddleName.value,
       LastName:this.createInstituteAdminForm.controls.LastName.value,
       Gender:this.createInstituteAdminForm.controls.Gender.value,
       Address:this.createInstituteAdminForm.controls.Address.value,

@@ -48,8 +48,8 @@ export class InstituteComponent implements OnInit {
       InstituteName:['', Validators.required],
       OwnerName:['',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['', Validators.required],
-      EmailId:['', Validators.required]
+      ContactNo:['', [Validators.required,Validators.minLength,Validators.maxLength]],
+      EmailId:['', [Validators.required,Validators.email]]
 
     })
 
@@ -57,8 +57,8 @@ export class InstituteComponent implements OnInit {
       InstituteName:['', Validators.required],
       OwnerName:['',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['', Validators.required],
-      EmailId:['', Validators.required]
+      ContactNo:['', [Validators.required,Validators.minLength,Validators.maxLength]],
+      EmailId:['', [Validators.required,Validators.email]]
     })
     
     this.getAllInstitutes();

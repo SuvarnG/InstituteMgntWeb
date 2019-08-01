@@ -115,10 +115,12 @@
                   <div class="form-group">
                       <label for="ContactNo">Contact Number</label>
                       <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                      pattern="^[7-9][0-9]{9}$"
                       [ngClass]="{ 'is-invalid': submitted &&
                     f.ContactNo.errors }">
                     <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
                         <div *ngIf="f.ContactNo.errors.required">Please Enter contact number</div>
+                        <div *ngIf="f.ContactNo.errors.pattern">Please Enter valid contact number</div>
                       </div>
                       </div>
 
@@ -129,6 +131,7 @@
                         f.EmailId.errors }">
                         <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
                             <div *ngIf="f.EmailId.errors.required">Please Enter Email Id.</div>
+                            <div *ngIf="f.EmailId.errors.email">Email must be a valid email address</div>
                           </div>
                           </div>
   
@@ -188,11 +191,12 @@
 
                 <div class="form-group">
                     <label for="ContactNo">Contact Number</label>
-                    <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
-                    [ngClass]="{ 'is-invalid': submitted &&
+                    <input type="text" minlength="10" maxlength="12" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                    pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted &&
                   fu.ContactNo.errors }">
                   <div *ngIf="submitted && fu.ContactNo.errors" class="invalid-feedback">
                       <div *ngIf="fu.ContactNo.errors.required">Please Enter contact number</div>
+                      <div *ngIf="fu.ContactNo.errors.pattern">Please Enter valid contact number</div>
                     </div>
                     </div>
 
@@ -203,6 +207,7 @@
                       fu.EmailId.errors }">
                       <div *ngIf="submitted && fu.EmailId.errors" class="invalid-feedback">
                           <div *ngIf="fu.EmailId.errors.required">Please Enter Email Id.</div>
+                          <div *ngIf="fu.EmailId.errors.email">Email must be a valid email address</div>
                         </div>
                         </div>
 

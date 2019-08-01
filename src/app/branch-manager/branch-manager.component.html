@@ -173,10 +173,11 @@
             <div class="row">
               <div class="col-md-6">
                 <label for="ContactNo">Contact Number</label>
-                <input type="number" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
-                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
+                <input type="text" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
+                  class="form-control"  pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
                 <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
                   <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
+                  <div *ngIf="f.ContactNo.errors.pattern">Contact Number is not valid</div>
                 </div>
               </div>
   
@@ -187,23 +188,10 @@
                   [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
                 <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
                   <div *ngIf="f.Email.errors.required">Email is required</div>
+                  <div *ngIf="f.Email.errors.email">Email is not valid.</div>
                 </div>
               </div>
   
-              <!-- <div class="col-md-4">
-                  <label for="CourseType">Institute Name</label>
-                  <select class="form-control" formControlName="InstituteId" [value]="null"
-                    [ngClass]="{ 'is-invalid': submitted && f.InstituteId.errors }"
-                    (change)="selectUser($event)">
-                      <option [value]="null" disabled hidden>Select Institute</option>
-                      <option *ngFor="let institute of institutesList" [value]="institute.Id">
-                        {{institute.InstituteName}}
-                      </option>
-                  </select>
-                  <div *ngIf="submitted && f.InstituteId.errors" class="invalid-feedback">
-                  <div *ngIf="f.InstituteId.errors.required">Institute Name is required</div>
-                  </div>
-                </div> -->
   
             </div>
           </div>
@@ -216,20 +204,6 @@
                 </div>
 
                 <div class="form-row">
-                    <!-- <div class="col-md-6">
-                        <label for="InstituteId">Institute Name</label>
-                        <select class="form-control" formControlName="InstituteId" [value]="null"
-                          [ngClass]="{ 'is-invalid': submitted && f.InstituteId.errors }"
-                          (change)="selectUser($event)">
-                            <option [value]="null" disabled hidden>Select Institute</option>
-                            <option *ngFor="let institute of institutesList" [value]="institute.Id">
-                              {{institute.InstituteName}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f.InstituteId.errors" class="invalid-feedback">
-                        <div *ngIf="f.InstituteId.errors.required">Institute Name is required</div>
-                        </div>
-                    </div> -->
         
                     <div class="col-md-6">
                         <label for="InstituteId">Branch Name</label>
@@ -383,10 +357,11 @@
           <div class="row">
             <div class="col-md-6">
               <label for="ContactNo">Contact Number</label>
-              <input type="number" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
-                class="form-control" [ngClass]="{ 'is-invalid': submitted && fu.ContactNo.errors }">
+              <input type="number" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
+                class="form-control"  pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted && fu.ContactNo.errors }">
               <div *ngIf="submitted && fu.ContactNo.errors" class="invalid-feedback">
                 <div *ngIf="fu.ContactNo.errors.required">Contact Number is required</div>
+                <div *ngIf="fu.ContactNo.errors.pattern">Contact Number is not valid</div>
               </div>
             </div>
 
@@ -397,6 +372,7 @@
                 [ngClass]="{'is-invalid': submitted && fu.Email.errors} ">
               <div *ngIf="submitted && fu.Email.errors" class="invalid-feedback">
                 <div *ngIf="fu.Email.errors.required">Email is required</div>
+                <div *ngIf="fu.Email.errors.email">Email is not valid</div>
               </div>
             </div>
 

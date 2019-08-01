@@ -39,8 +39,8 @@ export class BranchManagerComponent implements OnInit {
       LastName:['',Validators.required],
       Gender:['Male',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['',Validators.required],
-      Email:['',Validators.required],
+      ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
+      Email:['',[Validators.required,Validators.required]],
       Password:['',Validators.required],
       VerifyPassword:['',Validators.required],
       Photo:[],
@@ -53,8 +53,8 @@ export class BranchManagerComponent implements OnInit {
       LastName:['',Validators.required],
       Gender:['',Validators.required],
       Address:['', Validators.required],
-      ContactNo:['',Validators.required],
-      Email:['',Validators.required],
+      ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
+      Email:['',[Validators.required,Validators.required]],
       Photo:[],
       BranchId:[]
     })
