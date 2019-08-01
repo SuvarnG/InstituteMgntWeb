@@ -25,6 +25,8 @@ export class BranchManagerComponent implements OnInit {
   institutesList:Institutes[];
   thumbnailUrl:any='../../assets/images/MProfile.jpg';
   branchList:Branch[];
+  filter:any;
+  p:any;
 
   constructor(private branchManagerService:BranchManagerService,
               private formBuilder:FormBuilder,
