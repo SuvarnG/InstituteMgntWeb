@@ -119,15 +119,6 @@
             </div>
 
 
-            <!-- <div class="col-md-4">
-                <label for="MiddleName">Middle Name</label>
-              <input class="form-control" formControlName="MiddleName" type="text" placeholder="Middle Name"
-                [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
-              <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
-                <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
-              </div>
-            </div> -->
-
 
             <div class="col-md-6">
                 <label for="LastName">Last Name</label>
@@ -217,6 +208,9 @@
                 </select>
                 <div *ngIf="submitted && f.InstituteId.errors" class="invalid-feedback">
                 <div *ngIf="f.InstituteId.errors.required">Institute Name is required</div>
+                </div>
+                <div *ngIf="institutesList?.length==0"><h6 style="color:#f86c6b">No Institute is listed.
+                <a routerLink="/Institute" (click)="this.modalRef.hide()">Please Click here to create a new Institute.</a></h6>
                 </div>
               </div>
 
