@@ -10,6 +10,8 @@ export interface Students{
     RemainingFees:number;
     Discount:number;
     Remark:string;
+    Fees:number;
+    TotalFees:number;
     CourseCompletedDate:Date;
 
     FirstName:string;

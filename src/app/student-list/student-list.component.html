@@ -1,88 +1,91 @@
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+  <li class="breadcrumb-item pt-2"><a routerLink="/Dashboard">Home</a></li>
+  <li class="breadcrumb-item pt-2">Student</li>
+  <div class="d-none d-md-block d-lg-none d-xl-block">
+    <li class="h5 ml-5 pl-5 pt-2">Manage Student Addmission</li>
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none">
+    <div class="btn-group" role="group" aria-label="Button group">
 
-       <!-- Breadcrumb-->
-  <ol class="breadcrumb">
-      <li class="breadcrumb-item pt-2"><a routerLink="/Dashboard">Home</a></li>
-      <li class="breadcrumb-item pt-2">Student</li>
-      <div class="d-none d-md-block d-lg-none d-xl-block">
-      <li class="h5 ml-5 pl-5 pt-2">Manage Student Addmission</li>
+      <button class="btn btn-primary" type="button">
+        <i class="fa fa-search text-white"></i></button>
+
+      <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
+      &nbsp;&nbsp;
+      <a routerLink="/CreateStudent"
+        class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white"
+        data-toggle="tooltip" data-placement="bottom" title="Add Staff"> Add
+      </a>
     </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-            <button class="btn btn-primary" type="button">
-                <i class="fa fa-search text-white"></i></button>
+  </li>
+</ol>
 
-            <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter">
-            &nbsp;&nbsp;
-            <a routerLink="/CreateStudent" class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip" data-placement="bottom"
-            title="Add Staff" > Add     
+<div class="row my-4 px-3 pb-3">
+  <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4"
+    *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
+
+    <div class="card">
+      <div class="card-header h5">{{s.FullName | titlecase}}
+        <div class="card-header-actions">
+          <a class="card-header-action btn-setting" (click)="openStudentDetailsPopup(StudentDetails, s)"
+            title="Student Details">
+            <i class="cui-info info"></i>
           </a>
-        </div>
-      </li>
-    </ol>
+          <a class="card-header-action btn-minimize" (click)="openEditStudentPopup(editStudent, s)"
+            title="Edit Information">
+            <i class="cui-pencil pencil"></i>
+          </a>
+          <a class="card-header-action btn-close" (click)="deleteStudent(s.StudentId)" title="Delete Student">
+            <i class="cui-trash trash"></i>
+          </a>
 
-    <div class="row my-4 px-3 pb-3">
-        <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4" *ngFor="let s of students | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
-
-            <div class="card">
-                <div class="card-header h5">{{s.FullName | titlecase}}
-                  <div class="card-header-actions">
-                    <a class="card-header-action btn-setting" (click)="openStudentDetailsPopup(StudentDetails, s)" title="Student Details">
-                      <i class="cui-info info"></i>
-                    </a>
-                    <a class="card-header-action btn-minimize" (click)="openEditStudentPopup(editStudent, s)" title="Edit Information">
-                      <i class="cui-pencil pencil"></i>
-                    </a>
-                    <a class="card-header-action btn-close" (click)="deleteStudent(s.StudentId)" title="Delete Student">
-                      <i class="cui-trash trash"></i>
-                    </a>
-
-                    <!-- <a routerLink="/FeesTransaction"  data-toggle="tooltip" data-placement="bottom"
+          <!-- <a routerLink="/FeesTransaction"  data-toggle="tooltip" data-placement="bottom"
                     title="Fees Payment" >
                     <i class="fa fa-money text-dark"></i>      
           </a> -->
-                  </div>
-                </div>
-                <div class="collapse show" id="collapseExample">
-                  <div class="card-body">
-                      <div class="row">
-                      <div class="col-sm-3">
-                          <img src="{{s.Photo}}" class="img-circle" width="80" height="80">
-                        </div>
-                        <div class="col-sm-9">
+        </div>
+      </div>
+      <div class="collapse show" id="collapseExample">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="{{s.Photo}}" class="img-circle" width="80" height="80">
+            </div>
+            <div class="col-sm-9">
 
-                          <div class="row ">
-                            <div class="col-sm-12 ">
-                              <p class="card-title"><i class="icon-book-open" data-toggle="tooltip" data-placement="bottom"
-                                title="Course" ></i> {{s.Course}}</p>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col-sm-12  ">
-                              <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
-                                title="ContactNo" ></i> {{s.ContactNo}}</p>
-                            </div>
-                          </div>
-                          <div class="row">
-                              <div class="col-sm-12  ">
-                                <p class="card-title"><i class="font-md cui-envelope-closed" data-toggle="tooltip" data-placement="bottom"
-                                  title="Email" ></i> {{s.EmailId}}</p>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-5 ">
-                                  <p class="card-title"><i class="font-md fa fa-money" data-toggle="tooltip" data-placement="bottom"
-                                    title="Pending Fees" ></i> {{s.PendingFees}}</p>
-                                   
-                                </div>
-                                <div class="col-sm-6 ">
-                                  
-                                    <a routerLink="StudentList" (click)="ShowFeesTransactionTemplate(StudentFees)"  data-toggle="tooltip" data-placement="bottom"
-                    title="Fees Payment">Pay Now</a>
-                                </div>
-                              </div>
-                               <!-- <div class="row justify-content-end">
+              <div class="row ">
+                <div class="col-sm-12 ">
+                  <p class="card-title"><i class="icon-book-open" data-toggle="tooltip" data-placement="bottom"
+                      title="Course"></i> {{s.Course}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12  ">
+                  <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
+                      title="ContactNo"></i> {{s.ContactNo}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12  ">
+                  <p class="card-title"><i class="font-md cui-envelope-closed" data-toggle="tooltip"
+                      data-placement="bottom" title="Email"></i> {{s.EmailId}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-5 ">
+                  <p class="card-title"><i class="font-md fa fa-money" data-toggle="tooltip" data-placement="bottom"
+                      title="Pending Fees"></i> {{s.PendingFees}}</p>
+
+                </div>
+                <div class="col-sm-6 ">
+
+                  <a routerLink="/StudentList" (click)="ShowFeesTransactionTemplate(StudentFees,s); getFeesTransactionDetails(s.StudentId)" data-toggle="tooltip"
+                    data-placement="bottom" title="Fees Payment">Pay Now</a>
+                </div>
+              </div>
+              <!-- <div class="row justify-content-end">
                                 <div class="col-sm-12  text-right">
                                   <a routerLink="/FeesTransaction"  data-toggle="tooltip" data-placement="bottom"
                     title="Fees Payment">paying Fees
@@ -90,14 +93,14 @@
           </a>
                                 </div>
                               </div>  -->
-                              
-                        </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
 
-        <!-- <div class="card shadow  pb-0 bg-white rounded-0" style="width: 22rem;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="card shadow  pb-0 bg-white rounded-0" style="width: 22rem;">
           <div class="card-body  pb-0">
             <div class="row border-bottom">
               <div class="col-sm-3">
@@ -186,14 +189,14 @@
         </div> -->
 
 
-      </div>
-    </div>
+  </div>
+</div>
 
 <p *ngIf="students && students.length==0">No records found.</p>
 
-    <ul class="pagination" *ngIf="students && students.length>6">
-      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </ul>
+<ul class="pagination" *ngIf="students && students.length>6">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</ul>
 
 <ng-template #editStudent role="modal-dialog modal-xl">
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
@@ -205,287 +208,289 @@
         </button>
       </div>
       <div class="modal-body">
-          <div class="container-fluid">
-        <div class="form-group">
-          <div class="form-row">
-            <h5>Personal Details</h5>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
+        <div class="container-fluid">
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Personal Details</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
                 <label for="FirstName">First Name</label>
-              <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
-                [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
-              <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-                <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
+                  [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
+                <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
+              <div class="col-md-4">
                 <label for="MiddleName">Middle Name</label>
-              <input class="form-control" formControlName="MiddleName" type="text" placeholder="Middle Name"
-                [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
-              <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
-                <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
+                <input class="form-control" formControlName="MiddleName" type="text" placeholder="Middle Name"
+                  [ngClass]="{'is-invalid': submitted && f.MiddleName.errors} ">
+                <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
+                  <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
+                </div>
               </div>
-            </div>
-            <div class="col-md-4">
+              <div class="col-md-4">
                 <label for="LastName">Last Name</label>
-              <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
-                [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
-              <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
-                <div *ngIf="f.LastName.errors.required">Last Name is required</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-         <div class="form-group">
-          <div class="row">
-            <div class="col-md-4">
-              <label for="Gender">Gender</label>
-              <div class="row">
-                <div class="col-md-12">
-                    <div class="form-check form-check-inline mr-1">
-                        <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
-                    [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
-                        <label class="form-check-label" for="radio1">Male</label>
-                      </div>
-                  
-                  <div class="form-check form-check-inline mr-1">
-                      <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
-                      [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
-                      <label class="form-check-label" for="radio2">Female</label>
-                    </div>
+                <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
+                  [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
+                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.LastName.errors.required">Last Name is required</div>
                 </div>
               </div>
             </div>
-            <div class="col-md-4">
-              <label for="DateOfBirth">Date of Birth</label>
-              <input type="date" id="DOB" class="form-control" formControlName="DOB"
-                [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
-              <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
-                <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
-              </div>
-            </div>
+          </div>
 
-            <div class="col-md-4">
-              <label for="BloodGroup">Blood Group</label>
-              <select id="BloodGroup" class="form-control" formControlName="BloodGroup"
-                [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
-                <option>A+</option>
-                <option>B+</option>
-                <option>AB+</option>
-                <option>O+</option>
-                <option>A-</option>
-                <option>B-</option>
-                <option>O-</option>
-                <option>AB-</option>
-              </select>
-              <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
-                <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-4">
+                <label for="Gender">Gender</label>
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-check form-check-inline mr-1">
+                      <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
+                        [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                      <label class="form-check-label" for="radio1">Male</label>
+                    </div>
+
+                    <div class="form-check form-check-inline mr-1">
+                      <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
+                        [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                      <label class="form-check-label" for="radio2">Female</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <label for="DateOfBirth">Date of Birth</label>
+                <input type="date" id="DOB" class="form-control" formControlName="DOB"
+                  [ngClass]="{'is-invalid': submitted && f.DOB.errors} ">
+                <div *ngIf="submitted && f.DOB.errors" class="invalid-feedback">
+                  <div *ngIf="f.DOB.errors.required">CoDateOfBirthntact No is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="BloodGroup">Blood Group</label>
+                <select id="BloodGroup" class="form-control" formControlName="BloodGroup"
+                  [ngClass]="{'is-invalid': submitted && f.BloodGroup.errors} ">
+                  <option>A+</option>
+                  <option>B+</option>
+                  <option>AB+</option>
+                  <option>O+</option>
+                  <option>A-</option>
+                  <option>B-</option>
+                  <option>O-</option>
+                  <option>AB-</option>
+                </select>
+                <div *ngIf="submitted && f.BloodGroup.errors" class="invalid-feedback">
+                  <div *ngIf="f.BloodGroup.errors.required">BloodGroup No is required</div>
+                </div>
               </div>
             </div>
           </div>
+
+          <hr>
+
+
+
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Contact Information</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="ContactNo">Contact Number</label>
+                <input type="text" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo"
+                  placeholder="Contact Number" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
+                <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                  <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="EmergencyNo">Emergency No</label>
+                <input type="text" minlength="0" maxlength="10" id="EmergencyNo" formControlName="EmergencyNo"
+                  placeholder="Emergency Contact No" class="form-control"
+                  [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
+                <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
+                  <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" formControlName="Email"
+                  [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
+                <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                  <div *ngIf="f.Email.errors.required">Email is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+
+
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Current Address</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="Address1">Address</label>
+                <input type="text" class="form-control" id="Address1" formControlName="Address1"
+                  [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
+                <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
+                  <div *ngIf="f.Address1.errors.required">Address is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 mt-3">
+                <label for="State">State</label>
+                <select id="State" class="form-control" formControlName="State"
+                  [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
+                  <option>Maharashtra</option>
+                </select>
+                <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
+                  <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mt-3">
+                <label for="City">City</label>
+                <input type="text" class="form-control" id="City" formControlName="City"
+                  [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
+                <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
+                  <div *ngIf="f.City.errors.required"> Please provide a valid city.</div>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-4 mt-3">
+                <label for="ZipCode">Zip Code</label>
+                <input type="number" class="form-control" id="ZipCode" formControlName="ZipCode"
+                  [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
+                <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
+                  <div *ngIf="f.ZipCode.errors.required"> Zip Code is required.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <hr>
+
+
+
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Permanent Address</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="PAddress1">Address</label>
+                <input type="text" class="form-control" id="PAddress1" formControlName="PAddress1"
+                  [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} ">
+                <div *ngIf="submitted && f.PAddress1.errors" class="invalid-feedback">
+                  <div *ngIf="f.PAddress1.errors.required">Address is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4 mt-3">
+                <label for="PState">State</label>
+                <select id="PState" class="form-control" formControlName="PState"
+                  [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
+                  <option selected>Select State</option>
+                  <option>Maharashtra</option>
+                </select>
+                <div *ngIf="submitted && f.PState.errors" class="invalid-feedback">
+                  <div *ngIf="f.PState.errors.required">State is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mt-3">
+                <label for="PCity">City</label>
+                <input type="text" class="form-control" id="PCity" formControlName="PCity"
+                  [ngClass]="{'is-invalid': submitted && f.PCity.errors} ">
+                <div *ngIf="submitted && f.PCity.errors" class="invalid-feedback">
+                  <div *ngIf="f.PCity.errors.required">City is required</div>
+                </div>
+              </div>
+
+              <div class="col-md-4 mt-3">
+                <label for="PSTDCode">Zip Code</label>
+                <input type="number" class="form-control" id="PSTDCode" formControlName="PSTDCode"
+                  [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} ">
+                <div *ngIf="submitted && f.PSTDCode.errors" class="invalid-feedback">
+                  <div *ngIf="f.PSTDCode.errors.required">PinCode is required</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <hr>
+
+
+          <div class="form-group">
+            <div class="form-row">
+              <h5>Course Details</h5>
+            </div>
+            <div class="row">
+              <div class="col-md-4">
+                <label for="CourseType">Course Type</label>
+                <select id="CourseType" class="form-control" formControlName="CourseType" name="CourseType"
+                  (change)="selectCourseType($event)" [value]="f.CourseType.value">
+                  <option *ngFor="let courseType of  CourseTypeList" [value]="courseType.CourseTypeId">
+                    {{courseType.CourseTypeName}}
+                  </option>
+                </select>
+                <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
+                  <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="Course">Course Name</label>
+                <select id="Course" class="form-control" formControlName="Course" name="Course"
+                  [value]="f.Course.value">
+                  <option *ngFor="let courselist of courseNameList" [value]="courselist.CourseId">
+                    {{courselist.CourseName}}</option>
+                </select>
+                <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
+                  <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+          <hr>
+
+          <div class="form-group">
+            <h5>New Image Upload</h5>
+            <img [src]="thumbnailUrl" width="100" height="100">
+            &nbsp;
+            <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
+            <input type="hidden" name="fileHidden" formControlName="Photo" />
+          </div>
+
         </div>
-
-        <hr>
-
-        
-
-        <div class="form-group">
-          <div class="form-row">
-            <h5>Contact Information</h5>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="ContactNo">Contact Number</label>
-              <input type="text" minlength="0" maxlength="10" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
-                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
-              <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="EmergencyNo">Emergency No</label>
-              <input type="text" minlength="0" maxlength="10" id="EmergencyNo" formControlName="EmergencyNo" placeholder="Emergency Contact No"
-                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.EmergencyNo.errors }">
-              <div *ngIf="submitted && f.EmergencyNo.errors" class="invalid-feedback">
-                <div *ngIf="f.EmergencyNo.errors.required">Emergency Contact No is required</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="Email">Email</label>
-              <input type="email" class="form-control" id="Email" formControlName="Email"
-                [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
-              <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
-                <div *ngIf="f.Email.errors.required">Email is required</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <hr>
-
-       
-
-        <div class="form-group">
-          <div class="form-row">
-            <h5>Current Address</h5>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="Address1">Address</label>
-              <input type="text" class="form-control" id="Address1" formControlName="Address1"
-                [ngClass]="{ 'is-invalid': submitted && f.Address1.errors }">
-              <div *ngIf="submitted && f.Address1.errors" class="invalid-feedback">
-                <div *ngIf="f.Address1.errors.required">Address is required</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4 mt-3">
-              <label for="State">State</label>
-              <select id="State" class="form-control" formControlName="State"
-                [ngClass]="{ 'is-invalid': submitted && f.State.errors }">
-                <option>Maharashtra</option>
-              </select>
-              <div *ngIf="submitted && f.State.errors" class="invalid-feedback">
-                <div *ngIf="f.State.errors.required"> Please provide a valid state.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-3">
-              <label for="City">City</label>
-              <input type="text" class="form-control" id="City" formControlName="City"
-                [ngClass]="{ 'is-invalid': submitted && f.City.errors }">
-              <div *ngIf="submitted && f.City.errors" class="invalid-feedback">
-                <div *ngIf="f.City.errors.required"> Please provide a valid city.</div>
-              </div>
-            </div>
-
-             
-
-            <div class="col-md-4 mt-3">
-              <label for="ZipCode">Zip Code</label>
-              <input type="number" class="form-control" id="ZipCode" formControlName="ZipCode"
-                [ngClass]="{ 'is-invalid': submitted && f.ZipCode.errors }">
-              <div *ngIf="submitted && f.ZipCode.errors" class="invalid-feedback">
-                <div *ngIf="f.ZipCode.errors.required"> Zip Code is required.</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <hr>
-
-         
-
-        <div class="form-group">
-          <div class="form-row">
-            <h5>Permanent Address</h5>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="PAddress1">Address</label>
-              <input type="text" class="form-control" id="PAddress1" formControlName="PAddress1"
-                [ngClass]="{'is-invalid': submitted && f.PAddress1.errors} ">
-              <div *ngIf="submitted && f.PAddress1.errors" class="invalid-feedback">
-                <div *ngIf="f.PAddress1.errors.required">Address is required</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-md-4 mt-3">
-              <label for="PState">State</label>
-              <select id="PState" class="form-control" formControlName="PState"
-                [ngClass]="{'is-invalid': submitted && f.PState.errors} ">
-                <option selected>Select State</option>
-                <option>Maharashtra</option>
-              </select>
-              <div *ngIf="submitted && f.PState.errors" class="invalid-feedback">
-                <div *ngIf="f.PState.errors.required">State is required</div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-3">
-              <label for="PCity">City</label>
-              <input type="text" class="form-control" id="PCity" formControlName="PCity"
-                [ngClass]="{'is-invalid': submitted && f.PCity.errors} ">
-              <div *ngIf="submitted && f.PCity.errors" class="invalid-feedback">
-                <div *ngIf="f.PCity.errors.required">City is required</div>
-              </div>
-            </div>
-
-            <div class="col-md-4 mt-3">
-              <label for="PSTDCode">Zip Code</label>
-              <input type="number" class="form-control" id="PSTDCode" formControlName="PSTDCode"
-                [ngClass]="{'is-invalid': submitted && f.PSTDCode.errors} ">
-              <div *ngIf="submitted && f.PSTDCode.errors" class="invalid-feedback">
-                <div *ngIf="f.PSTDCode.errors.required">PinCode is required</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-        <hr>
-
-
-        <div class="form-group">
-          <div class="form-row">
-            <h5>Course Details</h5>
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <label for="CourseType">Course Type</label>
-              <select id="CourseType" class="form-control" formControlName="CourseType" name="CourseType"
-                (change)="selectCourseType($event)" [value]="f.CourseType.value">
-                <option *ngFor="let courseType of  CourseTypeList" [value]="courseType.CourseTypeId">
-                  {{courseType.CourseTypeName}}
-                </option>
-              </select>
-              <div *ngIf="submitted && f.CourseType.errors" class="invalid-feedback">
-                <div *ngIf="f.CourseType.errors.required"> Please provide a valid CourseType.</div>
-              </div>
-            </div>
-
-            <div class="col-md-4">
-              <label for="Course">Course Name</label>
-              <select id="Course" class="form-control" formControlName="Course" name="Course" [value]="f.Course.value">
-                <option *ngFor="let courselist of courseNameList" [value]="courselist.CourseId">
-                  {{courselist.CourseName}}</option>
-              </select>
-              <div *ngIf="submitted && f.Course.errors" class="invalid-feedback">
-                <div *ngIf="f.Course.errors.required"> Please provide a valid Course.</div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-
-        <hr>
-
-        <div class="form-group">
-          <h5>New Image Upload</h5>
-          <img [src]="thumbnailUrl" width="100" height="100">
-          &nbsp;
-          <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
-          <input type="hidden" name="fileHidden" formControlName="Photo" />
-        </div>
-
-      </div>
       </div>
 
       <div class="modal-footer">
         <button class="btn btn-primary btn-square ml-2" type="submit">Update</button>
-        <button class="btn btn-danger btn-square ml-2" type="button"
-          (click)="modalRef.hide()">Cancle</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancle</button>
       </div>
     </form>
   </div>
@@ -497,150 +502,150 @@
 
 
 <ng-template #StudentDetails role="modal-dialog modal-xl">
-    <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-      <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()">
-        <div class="modal-header">
-          <h5 class="modal-title pull-left ">Student Details</h5>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body h-460" id="A">
-            <div class="container-fluid">
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="registerUpdateStudent" (ngSubmit)="onSubmitEditStudent()">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left ">Student Details</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body h-460" id="A">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Personal Details</h5>
+                </div>
+
                 <div class="row">
-                    <div class="col-md-6">
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Personal Details</h5>
-            </div>
+                  <div class="col-md-6">
+                    <label for="StudentName">Name:</label>
+                    {{f.FirstName.value}} {{f.MiddleName.value}} {{f.LastName.value}}
+                  </div>
+                  <div class="col-md-6">
+                    <label for="Gender">Gender:</label>
+                    {{f.Gender.value}}
+                  </div>
+                </div>
 
-            <div class="row">
-              <div class="col-md-6">
-            <label for="StudentName">Name:</label>
-            {{f.FirstName.value}} {{f.MiddleName.value}} {{f.LastName.value}}
-          </div>
-          <div class="col-md-6">
-              <label for="Gender">Gender:</label>
-              {{f.Gender.value}}
-          </div>
-          </div>
-          
-  
-          
-            <div class="row">
-              <div class="col-md-6">
-                <label for="DateOfBirth">Date of Birth:</label>
-                {{f.DOB.value}}
-              </div>
-  
-              <div class="col-md-6">
-                <label for="BloodGroup">Blood Group:</label>
-                {{f.BloodGroup.value}}
-              </div>
-            </div>
-          </div>
-        
-  
-          <hr>
-  
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Contact Information</h5>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label for="ContactNo">Contact Number:</label>
-                  {{f.ContactNo.value}}
-              </div>
-  
-              <div class="col-md-6">
-                <label for="EmergencyNo">Emergency No:</label>
-                  {{f.EmergencyNo.value}}
-              </div>
-            </div>
 
-            <div class="row">
-              <div class="col-md-6">
-                <label for="Email">Email :</label>
-                {{f.Email.value}}
-              </div>
-            </div>
-            </div>
-         
-  
-          <hr>
-   
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Current Address</h5>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label for="Address1">Address:</label>
-                  {{f.Address1.value}}
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="DateOfBirth">Date of Birth:</label>
+                    {{f.DOB.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="BloodGroup">Blood Group:</label>
+                    {{f.BloodGroup.value}}
+                  </div>
+                </div>
               </div>
 
-              <div class="col-md-6">
-                  <label for="City">City:</label>
+
+              <hr>
+
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Contact Information</h5>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="ContactNo">Contact Number:</label>
+                    {{f.ContactNo.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="EmergencyNo">Emergency No:</label>
+                    {{f.EmergencyNo.value}}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="Email">Email :</label>
+                    {{f.Email.value}}
+                  </div>
+                </div>
+              </div>
+
+
+              <hr>
+
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Current Address</h5>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="Address1">Address:</label>
+                    {{f.Address1.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="City">City:</label>
                     {{f.City.value}}
+                  </div>
                 </div>
-            </div>
-  
-            <div class="row">
-              <div class="col-md-6">
-                <label for="State">State:</label>
-                  {{f.State.value}}
-              </div>           
-  
-              <div class="col-md-6">
-                <label for="ZipCode">Zip Code:</label>
-                {{f.ZipCode.value}}
-              </div>
-  
-            </div>
-          </div>
-  
-          <hr>
-  
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Permanent Address</h5>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label for="PAddress1">Address:</label>
-                {{f.PAddress1.value}}
+
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="State">State:</label>
+                    {{f.State.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="ZipCode">Zip Code:</label>
+                    {{f.ZipCode.value}}
+                  </div>
+
+                </div>
               </div>
 
-              <div class="col-md-6">
-                  <label for="PCity">City:</label>
+              <hr>
+
+              <div class="form-group">
+                <div class="form-row">
+                  <h5>Permanent Address</h5>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="PAddress1">Address:</label>
+                    {{f.PAddress1.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="PCity">City:</label>
                     {{f.PCity.value}}
+                  </div>
+
                 </div>
 
-            </div>
-  
-            <div class="row">
-              <div class="col-md-6">
-                <label for="PState">State:</label>
-                  {{f.PState.value}}
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="PState">State:</label>
+                    {{f.PState.value}}
+                  </div>
+
+                  <div class="col-md-6">
+                    <label for="PSTDCode">Zip Code:</label>
+                    {{f.PSTDCode.value}}
+                  </div>
+
+                </div>
               </div>
-    
-              <div class="col-md-6">
-                <label for="PSTDCode">Zip Code:</label>
-                {{f.PSTDCode.value}}
-              </div>
-  
+
+
+              <hr>
+
+
+
             </div>
-          </div>
-  
-  
-          <hr>
-  
-  
-          
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
+            <div class="col-md-6">
+              <div class="form-group">
                 <div class="form-row">
                   <h5>Course Details</h5>
                 </div>
@@ -649,41 +654,159 @@
                     <label for="CourseType">Course Type :</label>
                     {{f.CourseType.value}}
                   </div>
-      
+
                   <div class="col-md-6">
                     <label for="Course">Course Name :</label>
-                      {{f.Course.value}}
+                    {{f.Course.value}}
                   </div>
-      
+
                 </div>
               </div>
 
+            </div>
           </div>
-      </div>
-         
+
 
           <div class="modal-footer">
-              <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Close</button>
-          </div>
+            <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Close</button>
           </div>
         </div>
-
-      </form>
-    </div>
-  </ng-template>
-
-  <ng-template #StudentFees>
-      <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-          <div class="modal-header">
-              <h5 class="modal-title pull-left ">Student Fees Details</h5>
-              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div> 
-            <div class="modal-body">
-          <app-fees-transaction></app-fees-transaction>
-            </div>
       </div>
-  </ng-template>
 
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #StudentFees>
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+     
+    <div class="modal-header">
+      <h5 class="modal-title pull-left ">Student Fees Details</h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div> 
+    <div class="modal-body">
+        <div class="modal-body">
+            <div class="container-fluid">
+                
+              <div class="row">
+                <div class="col-md-5 col-sm-12 col-xs-12">
+                  <!-- <div class="form-group"> -->
+                      <div class="row">
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!-- <label for="StudentName">Student Name : </label> -->
+                           <h5 > {{payStudent.FullName | titlecase}}</h5>
+                          </div>
+                        </div>
+                          <div class="row">
+                          <div class="col-md-12 col-sm-12 col-xs-12">
+                              <!-- <label for="CourseName">Course Name : </label> -->
+                             <h6 class="text-muted"> {{payStudent.Course}}</h6>
+                            </div>
+                          
+                        </div>
+
+                    <!-- </div> -->
+
+
+                    
+                        <div class="row mt-3">
+                            <div class="col-md-4 col-sm-6 col-xs-6">
+                              <label for="TotalFees">Total Fees : </label>
+                             
+                            </div>
+                            <div class="col-md-5 col-sm-6 col-xs-6">
+                                
+                               {{payStudent.TotalFees}}
+                              </div>
+                        </div>
+                       
+                  
+                      <div class="row">
+                          <div class="col-md-4 col-sm-3 col-xs-3">
+                            <label for="RemaningFees">Remaning Fees:</label>
+                           
+                          </div>
+                          <div class="col-md-5 col-sm-3 col-xs-3">
+                             
+                              {{payStudent.PendingFees}}
+                            </div>
+                          
+                        </div>
+                        <form [formGroup]="StudentFeesForm" (ngSubmit)="onSubmitStudentFees()">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <label for="PaidFees flex-1 align-self-center">Paying </label>              
+                                  </div>
+
+
+                                  <div class="col-md-5  col-sm-6 col-xs-6">
+                                     
+                                     
+                                      <input type="text" formControlName="FeesAmount" class="form-control flex-1" id="FeesAmount" formControlName="FeesAmount"
+                        data-toggle="tooltip" data-placement="bottom" title="Paying Amount?" placeholder="Enter Amount"
+                        [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
+                      <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
+                        <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
+                      </div>  
+                      
+                                    </div>
+                            </div>         
+                            
+                             
+
+                          
+                        </form>
+                        <div class="row pt-3">
+                            <div class="col-md-9 border-top">
+                                <button class="btn mt-2 btn-square btn-primary pull-right"  type="submit">Submit</button>
+                            </div>
+                          </div>
+
+
+                        
+                    </div>
+                    <div class="col-md-7">
+                        
+                          
+                              <table class="table table-bordered">
+                                  <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
+                                  <thead>
+                                    <tr>
+                                      <th>Installment Date</th>
+                                      <th>Paid Amount</th>
+                                      <th>Fees Received By</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let fees of feesTransaction">
+              
+                                      <td>{{fees.DateOfPayment | date}}</td>
+                                      <td>{{fees.FeesPaid}}</td>
+                                      <td>{{fees.FeesTakenBy}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+
+                          
+                            
+                            </div>
+                    </div>
+                    
+                    </div>
+                    </div>
+
+                    
+
+    </div>
+   
+
+    <div class="modal-footer">
+        
+        <button class="btn btn-danger btn-square ml-2" type="button"
+        (click)="modalRef.hide()">Cancel</button>
+      </div>
+
+  </div>
+</ng-template>

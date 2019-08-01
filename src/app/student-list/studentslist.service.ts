@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Students, UpdateStudent, StudentPendingFeesList } from '../Model/Students';
+import { Students, UpdateStudent, StudentPendingFeesList,FeesTransactions } from '../Model/Students';
 import { Utils } from '../Utils';
 import { map } from "rxjs/operators";
 
@@ -51,5 +51,10 @@ export class StudentslistService {
 
   getAllStudentsPendingFeesDetails(BranchId: number) {
     return this.http.post<StudentPendingFeesList[]>(environment.APIBASEURL + 'Chart/GetNotificationData' +'/' + BranchId,null, this.getAuthHeader()).pipe(map(data => data as StudentPendingFeesList[]))
+  }
+  getFeesTransactionDetails(id:number)
+  {
+    debugger;
+    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,this.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
   }
 }

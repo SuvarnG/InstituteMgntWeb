@@ -1,4 +1,4 @@
-import { CourseType, Courses } from '../Model/Students';
+import { CourseType, Courses, FeesTransactions } from '../Model/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StudentslistService } from './studentslist.service';
@@ -17,19 +17,23 @@ import { CoursetypeService } from './../coursetype/coursetype.service';
   styleUrls: ['./student-list.component.css']
 })
 export class StudentListComponent implements OnInit {
+
   modalRef: BsModalRef
+  payStudent: Students[];
+  feesTransaction: FeesTransactions[];
   [x: string]: any;
   returnUrl: string;
   studentID: number;
   submitted: boolean;
   registerUpdateStudent: FormGroup;
+  StudentFeesForm:FormGroup;
   ModalOptions: ModalOptions;
   showSelected: boolean;
   students: Students[];
   CourseTypeList: CourseType[];
   courseNameList: Courses[];
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
-  urlDocument:any;
+  urlDocument: any;
 
   constructor(private modalService: BsModalService,
     private router: Router,
@@ -43,7 +47,9 @@ export class StudentListComponent implements OnInit {
     this.returnUrl = '/create-student';
     this.getAllStudents(this.user.InstituteId, this.user.BranchId);
 
-
+this.StudentFeesForm=this.formBuilder.group({
+  FeesAmount:['', Validators.required]
+})
     this.registerUpdateStudent = this.formBuilder.group({
       Gender: ['', Validators.required],
       FirstName: ['', Validators.required],
@@ -65,17 +71,19 @@ export class StudentListComponent implements OnInit {
       Email: ['', Validators.required],
       ZipCode: ['', Validators.required],
       IsDocumentSubmitted: [],
-      Photo:[],
-      
+      Photo: [],
+
       //Document:[]
     })
   }
 
   getAllStudents(InstituteId: number, BranchId: number) {
+    debugger;
     InstituteId: this.user.InstituteId;
     BranchId: this.user.BranchId;
     this.StudentslistService.getAllStudents(InstituteId, BranchId).subscribe(res => {
       this.students = res
+      console.log("Students Data:"+this.students);
     });
   }
 
@@ -94,31 +102,31 @@ export class StudentListComponent implements OnInit {
       this.CourseTypeList = res
     });
     this.studentID = s.StudentId,
-    this.thumbnailUrl=s.Photo
-      this.registerUpdateStudent.patchValue({
-        StudentId: s.StudentId,
-        Gender: s.Gender,
-        FirstName: s.FirstName,
-        MiddleName: s.MiddleName,
-        LastName: s.LastName,
-        Address1: s.Address1,
-        City: s.City,
-        State: s.State,
-        ZipCode: s.STDCode,
-        DOB: formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
-        PAddress1: s.PAddress1,
-        CourseType: s.CourseTypeId,
-        Course: s.CourseId,
-        PCity: s.PCity,
-        PState: s.PState,
-        PSTDCode: s.PSTDCode,
-        BloodGroup: s.BloodGroup,
-        Photo: s.Photo,
-        ContactNo: s.ContactNo,
-        EmergencyNo: s.EmergencyNo,
-        Email: s.EmailId,
-        IsDocumentSubmitted: s.IsDocumentSubmitted
-      })
+      this.thumbnailUrl = s.Photo
+    this.registerUpdateStudent.patchValue({
+      StudentId: s.StudentId,
+      Gender: s.Gender,
+      FirstName: s.FirstName,
+      MiddleName: s.MiddleName,
+      LastName: s.LastName,
+      Address1: s.Address1,
+      City: s.City,
+      State: s.State,
+      ZipCode: s.STDCode,
+      DOB: formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
+      PAddress1: s.PAddress1,
+      CourseType: s.CourseTypeId,
+      Course: s.CourseId,
+      PCity: s.PCity,
+      PState: s.PState,
+      PSTDCode: s.PSTDCode,
+      BloodGroup: s.BloodGroup,
+      Photo: s.Photo,
+      ContactNo: s.ContactNo,
+      EmergencyNo: s.EmergencyNo,
+      Email: s.EmailId,
+      IsDocumentSubmitted: s.IsDocumentSubmitted
+    })
 
     this.createNewStudentService.getCourseNameFromCourseType(s.CourseTypeId).subscribe(res => {
       this.courseNameList = res
@@ -137,8 +145,8 @@ export class StudentListComponent implements OnInit {
     if (this.registerUpdateStudent.invalid) {
       return
     }
-    
-    this.submitted=false;
+
+    this.submitted = false;
     let body = {
       StudentId: this.studentID,
       Gender: this.registerUpdateStudent.controls.Gender.value,
@@ -163,15 +171,15 @@ export class StudentListComponent implements OnInit {
       CourseType: this.registerUpdateStudent.controls.CourseType.value,
       Photo: this.thumbnailUrl
     }
-    
-      this.StudentslistService.editStudent(body).subscribe(data => { this.getAllStudents(this.user.InstituteId, this.user.BranchId), this.modalRef.hide() })
-    
+
+    this.StudentslistService.editStudent(body).subscribe(data => { this.getAllStudents(this.user.InstituteId, this.user.BranchId), this.modalRef.hide() })
+
 
   }
 
   openStudentDetailsPopup(studentDetails: TemplateRef<any>, s) {
     this.studentID = s.StudentId,
-    this.urlDocument=s.Document,
+      this.urlDocument = s.Document,
       this.registerUpdateStudent.patchValue(
         {
           StudentId: s.StudentId,
@@ -196,14 +204,18 @@ export class StudentListComponent implements OnInit {
           EmergencyNo: s.EmergencyNo,
           Email: s.EmailId,
           IsDocumentSubmitted: s.IsDocumentSubmitted,
-          Document:s.Document,
-          
+          Document: s.Document,
+
         })
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
   }
-  ShowFeesTransactionTemplate(StudentFees: TemplateRef<any>){
+  ShowFeesTransactionTemplate(StudentFees: TemplateRef<any>, _payStudent) {
+    debugger;
+    this.getFeesTransactionDetails(_payStudent.StudentId);
     this.modalRef = this.modalService.show(StudentFees, { class: 'modal-xl' })
+    this.payStudent = _payStudent;
+    console.log(this.payStudent);
   }
   showUpload() {
     this.showSelected = true;
@@ -237,6 +249,13 @@ export class StudentListComponent implements OnInit {
       }
     );
 
+  }
+
+  getFeesTransactionDetails(studentID:number) {
+    debugger;
+    this.StudentslistService.getFeesTransactionDetails(studentID).subscribe(res => {
+      this.feesTransaction = res
+    })
   }
 
 }
