@@ -60,8 +60,14 @@ export class LoginComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         console.log('User after login:' + JSON.stringify(data));
-        if (data && data.access_token){
+        if (data && data.access_token && (data.roles=="Admin" || data.roles=="BranchManager")){
           this.router.navigate([this.returnUrl]);
+        }
+        else if(data && data.access_token && (data.roles=="Teacher")){
+          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/StudentList']);
+        }
+        else if(data && data.access_token && (data.roles=="SuperAdmin")){
+          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/Institute']);
         }
       },
         error => {

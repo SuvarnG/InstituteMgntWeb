@@ -4,7 +4,7 @@
     <ul class="nav">
 
       <li  class="nav-item"
-        *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='SuperAdmin' || currentRole==='BranchManager'">
+        *ngIf="currentRole==='Admin' || currentRole==='BranchManager'">
         <a class="nav-link" routerLinkActive="active current" routerLink="/Dashboard">
           <i class="nav-icon icon-home"></i> Dashboard </a>
       </li>
@@ -16,44 +16,71 @@
         <a class="nav-link" routerLinkActive="active current" routerLink="/InstituteAdmin">
           <i class="nav-icon icon-user"></i> Institute Admin</a>
       </li>
-      <li class="nav-item nav-dropdown" *ngIf="currentRole==='Teacher'|| currentRole==='Admin' || currentRole==='BranchManager'">
+
+      <li  class="nav-item" *ngIf="currentRole==='SuperAdmin'">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/role">
+          <i class="nav-icon fa fa-user-plus"></i> Role
+        </a>
+      </li>
+
+      <li  class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/Branch">
+          <i class="nav-icon fa fa-map-marker"></i> Branch</a>
+      </li>
+
+        <li  class="nav-item" *ngIf="currentRole==='Admin'">
+          <a class="nav-link" routerLinkActive="active current" routerLink="/BranchManager">
+            <i class="nav-icon icon-user"></i> Branch Manager</a>
+        </li>
+
+      <li  class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/Bank">
+          <i class="nav-icon fa fa-id-card"></i> Bank Account</a>
+      </li>
+
+      <li class="nav-item" *ngIf="currentRole==='Admin'">
+        <a class="nav-link"  routerLinkActive="active current" routerLink="/reports">
+          <i class="nav-icon fa fa-file"></i>Reports
+        </a>
+      </li>
+
+      <li class="nav-item nav-dropdown" *ngIf="currentRole==='Teacher' || currentRole==='BranchManager'">
         <a class="nav-link nav-dropdown-toggle" href="">
           <i class="nav-icon fa fa-info"></i> Manage Masters</a>
         <ul class="nav-dropdown-items">
-          <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/Bank">
-              <i class="nav-icon fa fa-id-card"></i> Bank Account</a>
-          </li>
+         
           <li  class="nav-item"
             *ngIf="currentRole==='Teacher'|| currentRole==='BranchManager'">
             <a class="nav-link" routerLinkActive="active current" routerLink="/StudentList">
               <i class="nav-icon fa fa-user-circle"></i> Student</a>
           </li>
+
           <li  class="nav-item"
             *ngIf="currentRole==='BranchManager'">
             <a class="nav-link" routerLinkActive="active current" routerLink="/ExpenseMaster">
               <i class="nav-icon fa fa-dollar"></i> Expense Type</a>
           </li>
-          <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/Courses">
-              <i class="nav-icon fa fa-graduation-cap"></i> Courses</a>
-          </li>
-          <li  class="nav-item" *ngIf="currentRole==='Admin'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/Branch">
-              <i class="nav-icon fa fa-map-marker"></i> Branch</a>
-          </li>
+
           <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
             <a class="nav-link" routerLinkActive="active current" routerLink="/coursetype">
               <i class="nav-icon icon-book-open"></i> Course Type</a>
           </li>
+
           <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/LeaveList">
-              <i class="nav-icon fa fa-check"></i> Leaves</a>
+            <a class="nav-link" routerLinkActive="active current" routerLink="/Courses">
+              <i class="nav-icon fa fa-graduation-cap"></i> Courses</a>
           </li>
+        
+       
+          <li  class="nav-item" *ngIf="currentRole==='Teacher'">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/LeaveList">
+              <i class="nav-icon fa fa-check"></i> Leave Type</a>
+          </li>
+
         </ul>
       </li>
 
-      <li class="nav-item nav-dropdown" *ngIf="currentRole==='Admin' || currentRole==='BranchManager'">
+      <li class="nav-item nav-dropdown" *ngIf="currentRole==='BranchManager'">
         <a class="nav-link nav-dropdown-toggle" href="#">
           <i class="nav-icon icon-people"></i> Manage Users</a>
         <ul class="nav-dropdown-items">
@@ -61,13 +88,7 @@
             <a class="nav-link" routerLinkActive="active current" routerLink="/StaffList">
               <i class="nav-icon icon-user"></i> Staff</a>
           </li>
-        </ul>
-        <ul class="nav-dropdown-items">
-            <li  class="nav-item" *ngIf="currentRole==='Admin'">
-              <a class="nav-link" routerLinkActive="active current" routerLink="/BranchManager">
-                <i class="nav-icon icon-user"></i> Branch Manager</a>
-            </li>
-          </ul>
+        </ul>  
       </li>
 
       <li  class="nav-item" *ngIf="currentRole==='Teacher'">
@@ -81,29 +102,13 @@
       </li>
       <li  class="nav-item" *ngIf="currentRole==='Teacher'">
         <a class="nav-link" routerLinkActive="active current" routerLink="/Leave">
-          <i class="nav-icon icon-calculator"></i> Apply Leave
+          <i class="nav-icon icon-calculator"></i> Student Leave
         </a>
       </li>
-      <li  class="nav-item" *ngIf="currentRole==='Teacher'|| currentRole==='BranchManager'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/FeesTransaction">
-          <i class="nav-icon icon-calculator"></i> Fees Payment
-        </a>
-      </li>
-
-      <li  class="nav-item" *ngIf="currentRole==='BranchManager'|| currentRole==='Teacher'">
+      
+      <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
         <a class="nav-link" routerLinkActive="active current" routerLink="/Expenses">
           <i class="nav-icon icon-note"></i> Daily Expenses</a>
-      </li>
-
-      <li class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link"  routerLinkActive="active current" routerLink="/reports">
-          <i class="nav-icon fa fa-file"></i>Reports
-        </a>
-      </li>
-      <li  class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/role">
-          <i class="nav-icon fa fa-user-plus"></i> Role
-        </a>
       </li>
 
     </ul>
