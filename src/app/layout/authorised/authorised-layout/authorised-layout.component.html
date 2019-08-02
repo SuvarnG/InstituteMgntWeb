@@ -16,7 +16,29 @@
     </div>
   </li>
 </ol>
+
+
+
+
+
+
 <div class="container-fluid">
+
+    <div class="row" *ngIf="currentRole==='Admin'">
+      <div class="col-md-4">
+        <label for="InstituteId">Branch Name</label>
+        <select class="form-control" formControlName="BranchId" [value]="null" (change)="selectBranch($event)">
+            <!-- <option [value]="null" disabled hidden>Select Branch</option> -->
+            <option *ngFor="let branch of branchList" [value]="branch.BranchId">
+              {{branch.BranchName}}
+            </option>
+        </select>
+        <div *ngIf="branchList?.length==0"><h6 style="color:#f86c6b">No Branch is listed under your Institute.
+        <a routerLink="/Branch">Please Click here to create a new Branch</a></h6>
+      </div>
+    </div>
+    </div>
+
   <div class="animated fadeIn">
     <div class="card-columns cols-2">
       <div class="card">
@@ -45,7 +67,7 @@
               <div class="chartjs-size-monitor-shrink"></div>
             </div>
             <canvas id="canvas1" width="722" height="360" class="chartjs-render-monitor"
-              style="display: block; height: 288px; width: 578px;"></canvas>
+              style="display: block; height: 288px; width: 578px;"> {{chart2}}</canvas>
           </div>
         </div>
       </div>
@@ -60,7 +82,7 @@
               <div class="chartjs-size-monitor-shrink"></div>
             </div>
             <canvas id="canvas2" width="722" height="360" class="chartjs-render-monitor"
-              style="display: block; height: 288px; width: 578px;"></canvas>
+              style="display: block; height: 288px; width: 578px;">{{chart3}}</canvas>
           </div>
         </div>
       </div>
@@ -75,7 +97,7 @@
               <div class="chartjs-size-monitor-shrink"></div>
             </div>
             <canvas id="canvas" width="722" height="360" class="chartjs-render-monitor"
-              style="display: block; height: 288px; width: 578px;"></canvas>
+              style="display: block; height: 288px; width: 578px;">{{chart4}}</canvas>
           </div>
         </div>
       </div>
