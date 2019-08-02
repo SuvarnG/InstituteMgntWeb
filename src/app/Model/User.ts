@@ -17,7 +17,7 @@ export interface User {
     LastName: string,
     Email: string,
     Password: string,
-    // Contact: number,
+    Contact: number,
     RoleId: Number,
     Role: string,
     CreatedDate: Date,
@@ -28,6 +28,7 @@ export interface User {
     access_token: string,
     Photo:string,
     BranchId:number,
-    InstituteId:number
+    InstituteId:number,
+    Address:string
 }
 

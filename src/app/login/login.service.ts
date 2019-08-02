@@ -3,6 +3,10 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Auth } from '../Model/Auth';
+import { Login } from '../loginAuth';
+import { User } from '../Model/User';
+import { Utils } from '../Utils';
+import { Observable } from 'rxjs';
 
  const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +23,16 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
+  getAuthHeader(){
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${Utils.GetAccessToken()}`
+      })      
+    };
+    
+    return httpOptions
+  }
   login(username: string, password: string) {
      const body= new HttpParams()
      .set('grant_type', 'password')
@@ -42,6 +56,12 @@ export class LoginService {
     }));
   }
 
+  getUserDetails(id:number){
+    return this.http.get<User>(environment.APIBASEURL + 'Login/GetUserDetails/'+ id+'/', this.getAuthHeader()).pipe(map(data => data as User))
+  }
 
+  updateUser(user){
+    return this.http.post<User>(environment.APIBASEURL + 'Login/UpdateUser', user, this.getAuthHeader()).pipe();
+  }
 
 }
