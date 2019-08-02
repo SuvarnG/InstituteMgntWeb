@@ -84,7 +84,7 @@ export class LeavesListComponent implements OnInit {
   }
 
   deleteLeaveType(id: number,name:string) {
-    var ans = confirm("Do you want to delete expense od type: " + name);
+    var ans = confirm("Do you want to delete leave of type: " + name);
     if (ans) {
       this.LeavelistService.deleteLeaveType(id).subscribe(data =>
         this.getAllLeaves()
