@@ -1,337 +1,330 @@
- <!-- Breadcrumb-->
-  <ol class="breadcrumb">
-      <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item active align-self-center"><a routerLink="/Dashboard">
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item active align-self-center"><a routerLink="/Dashboard">
         Home</a></li>
-      <li class="breadcrumb-item align-self-center">Apply Leave</li>
-      </div>
-      <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-          <li class="h5 pt-2">Manage Leave Information</li>
-         
-        </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none  flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-            <div class="input-group">
-                <span class="input-group-prepend">
-                <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search text-white"></i></button>
-                </span>
-                <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-                </div>&nbsp;&nbsp;
-                <button class="btn btn-sm btn-primary btn-square text-white" (click)="OpenCreateModal(CreateTemplate)" data-toggle="tooltip" data-placement="bottom"
-            title="Add Leave" type="button">Add</button>
-            <!-- <a routerLink="/Leave" class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip" data-placement="bottom"
-            title="Add Leave"  (click)="OpenCreateModal(CreateTemplate)" >      
-           Add
-          </a> -->
-        </div>
-      </li>
-    </ol>
-  
-    <!-- leave transaction table -->
-    <div class="container-fluid h-460">
-        <div id="ui-view">
-            <div class="card border-0 shadow rounded-0">
-                <div class="card-body">
-          <!-- <table class="table table-bordered"> -->
-          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
-            <thead>
-              <tr>
-                <th class="pl-2" scope="col">Course</th>
-                <th  class="pl-2" scope="col">Student Name</th>
-                <th  class="pl-2" scope="col">Leave Type </th>
-                <th  class="pl-2" scope="col">Reason</th>
-                <th  class="pl-2"  class="pl-2" scope="col">Follow-up Date</th>
-                <th  class="pl-2" scope="col">From Date</th>
-                <th  class="pl-2" scope="col">To Date</th>
-                <th  class="pl-2" scope="col">Total Days</th>
-                <th  class="pl-2" scope="col">Action</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let item of leaveTran | filter:filter">
+    <li class="breadcrumb-item align-self-center">Apply Leave</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Leave Information</li>
+  </div>
 
-                <td> {{item.FullName}}</td>
-                <td>{{item.FirstName}}</td>
-                <td>{{item.Leave}}</td>
-                <td>{{item.Reason}}</td>
-                <td>{{item.NeedFollowupDate | date }}</td>
-                <td>{{item.FromDate | date }}</td>
-                <td>{{item.ToDate| date}}</td>
-                <td>{{item.TotalDays}}</td>
-                <td>
-                    <a class="card-header-action btn-minimize" (click)="updateCreateModal(EditTemplate,item)" title="Edit Information">
-                        <i class="cui-pencil pencil"></i>
-                      </a>
-                </td> 
-              </tr>
-            </tbody>
-          </table>
-          </div>
-          </div>
-        </div>
-        </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none  flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
 
-
-  <!-- Create leave modal -->
-  <ng-template #CreateTemplate>
-    <div class="modal-header">
-      <h5 class="modal-title pull-left">Apply For Leave</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
+      </div>&nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white" (click)="openCreateModal(CreateTemplate)"
+        data-toggle="tooltip" data-placement="bottom" title="Add Leave" type="button">Add</button>
     </div>
-    <div class="modal-body">
-      <div class="container-fluid">
-      <form [formGroup]="CreateLeaveFormGroup" (ngSubmit)="createNewLeave()">
-            <h5>Student Details </h5>
-<div class="form-group">
-  <div class="row">
-      <div class="col-md-6">
-          <label for="CourseName">Course</label>
-                    <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
-                      (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
-                      <option [value]="null" disabled hidden> Select Course </option>
-                      <option *ngFor="let Course of Courses" [value]="Course.CourseId">
-                        {{Course.FullName}}
-                      </option>
-                    </select>
-                    <div *ngIf="submitted && fc.CourseName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.CourseName.errors.required">Course is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="CourseName">Student</label>
-                    <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName"  [ngClass]="{'is-invalid': submitted && fc.StudentName.errors}">
-                      <option [value]="null" disabled hidden>Select Student </option>
-                      <option *ngFor="let student of students" [value]="student.StudentId">
-                        {{student.FullName}}
-                      </option>
-                    </select>
-                    <div *ngIf="students?.length == 0"><h6 style="color:#f86c6b">No student is listed under this course.</h6></div>
-                    <div *ngIf="submitted && fc.StudentName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.StudentName.errors.required">Student is required</div>
-                    </div>
-                  </div>
-                
-                </div>
+  </li>
+</ol>
+
+<!-- leave transaction table -->
+<div class="container-fluid h-460">
+  <div id="ui-view">
+    <div class="card border-0 shadow rounded-0">
+      <div class="card-body">
+        <!-- <table class="table table-bordered"> -->
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+          <thead>
+            <tr>
+              <th class="pl-2" scope="col">Course</th>
+              <th class="pl-2" scope="col">Student Name</th>
+              <th class="pl-2" scope="col">Leave Type </th>
+              <th class="pl-2" scope="col">Reason</th>
+              <th class="pl-2" class="pl-2" scope="col">Follow-up Date</th>
+              <th class="pl-2" scope="col">From Date</th>
+              <th class="pl-2" scope="col">To Date</th>
+              <th class="pl-2" scope="col">Total Days</th>
+              <th class="pl-2" scope="col">Action</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of leaveTran | filter:filter">
+              <td> {{item.FullName}}</td>
+              <td>{{item.FirstName}}</td>
+              <td>{{item.Leave}}</td>
+              <td>{{item.Reason}}</td>
+              <td>{{item.NeedFollowupDate | date }}</td>
+              <td>{{item.FromDate | date }}</td>
+              <td>{{item.ToDate| date}}</td>
+              <td>{{item.TotalDays}}</td>
+              <td>
+                <a class="card-header-action btn-minimize" (click)="updateCreateModal(EditTemplate,item)"
+                  title="Edit Information">
+                  <i class="cui-pencil pencil"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="form-group">
-    <div class="row">
-        <div class="col-md-6">
-            <label for="CourseName">Leave Type</label>
-                    <select name="LeaveName" [value]="null" class="form-control" formControlName="LeaveName" [ngClass]="{'is-invalid': submitted && fc.LeaveName.errors}">
-                      <option [value]="null" disabled hidden> Select Leave Type</option>
-                      <option *ngFor="let l of leaves" [value]="l.LeaveId">
-                        {{l.LeaveType}}
-                      </option>
-                    </select>
-                    <div *ngIf="submitted && fc.LeaveName.errors" class="invalid-feedback">
-                      <div *ngIf="fc.LeaveName.errors.required">Leave Type is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="CourseName">Follow up Date</label>
-                    <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
-                      class="form-control" placeholder="Enter Follow-up Date"
-                      [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
-                    <div *ngIf="submitted && fc.NeedFollowupDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.NeedFollowupDate.errors.required">Follow up Date is required</div>
-                    </div>
-                  </div>
-                </div>
-                </div>
-                <hr>
-        <!-- second Row start -->
-            <h5>Leave Date</h5>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6"> 
-                        <label for="CourseName">From Date</label>
-                    <input type="text" name="FromDate" [(ngModel)]="FromDate" formControlName="FromDate"
-                      onfocus="(this.type='date')" class="form-control" placeholder="Enter From Date"
-                      [ngClass]="{ 'is-invalid': submitted && fc.FromDate.errors }" />
-                    <div *ngIf="submitted && fc.FromDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.FromDate.errors.required">From Date is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="CourseName">To Date</label>
-                    <input type="text" name="ToDate" [(ngModel)]="ToDate" formControlName="ToDate"
-                      onfocus="(this.type='date')" (change)="calculateTotaldays(ToDate,FromDate)" class="form-control"
-                      placeholder="Enter To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
-                    <div *ngIf="submitted && fc.ToDate.errors" class="invalid-feedback">
-                      <div *ngIf="fc.ToDate.errors.required">To Date is required</div>
-                    </div>
-                  </div>
-                </div>
+
+<!-- Create leave modal -->
+<ng-template #CreateTemplate>
+  <div class="modal-header">
+    <h5 class="modal-title pull-left">Apply For Leave</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form [formGroup]="CreateLeaveFormGroup" (ngSubmit)="createNewLeave()">
+        <h5>Student Details </h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">Course</label>
+              <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
+                (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
+                <option [value]="null" disabled hidden> Select Course </option>
+                <option *ngFor="let Course of Courses" [value]="Course.CourseId">
+                  {{Course.FullName}}
+                </option>
+              </select>
+              <div *ngIf="submitted && fc.CourseName.errors" class="invalid-feedback">
+                <div *ngIf="fc.CourseName.errors.required">Course is required</div>
               </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="CourseName">Total Days</label>
-                    <input type="text" class="form-control" placeholder="Total Days" id="TotalDays" name="TotalDays"
-                      formControlName="TotalDays">
-                      </div>
-                      </div>
-                  </div>
-                  <hr>
-        <!-- Thired Row start -->
-            <h5> Leave Reason</h5>
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="CourseName">Reason</label>
-                    <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
-                      [ngClass]="{'is-invalid': submitted && fc.Reason.errors}" formControlName="Reason"></textarea>
-                    <div *ngIf="submitted && fc.Reason.errors" class="invalid-feedback">
-                      <div *ngIf="fc.Reason.errors.required">Reason is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="CourseName">Comment</label>
-                    <textarea class="form-control rounded-0" rows="1" placeholder="Comment"
-                      formControlName="Comment"></textarea>
-                    <div *ngIf="submitted && fc.Comment.errors" class="invalid-feedback">
-                      <div *ngIf="fc.Comment.errors.required">Comment is required</div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="CourseName">Student</label>
+              <select name="StudentName" class="form-control" [value]="null" formControlName="StudentName"
+                [ngClass]="{'is-invalid': submitted && fc.StudentName.errors}">
+                <option [value]="null" disabled hidden>Select Student </option>
+                <option *ngFor="let student of students" [value]="student.StudentId">
+                  {{student.FullName}}
+                </option>
+              </select>
+              <div *ngIf="students?.length == 0">
+                <h6 style="color:#f86c6b">No student is listed under this course.</h6>
               </div>
-        <!-- Thired Row start -->
+              <div *ngIf="submitted && fc.StudentName.errors" class="invalid-feedback">
+                <div *ngIf="fc.StudentName.errors.required">Student is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">Leave Type</label>
+              <select name="LeaveName" [value]="null" class="form-control" formControlName="LeaveName"
+                [ngClass]="{'is-invalid': submitted && fc.LeaveName.errors}">
+                <option [value]="null" disabled hidden> Select Leave Type</option>
+                <option *ngFor="let l of leaves" [value]="l.LeaveId">
+                  {{l.LeaveType}}
+                </option>
+              </select>
+              <div *ngIf="submitted && fc.LeaveName.errors" class="invalid-feedback">
+                <div *ngIf="fc.LeaveName.errors.required">Leave Type is required</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="CourseName">Follow up Date</label>
+              <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')" class="form-control"
+                placeholder="Enter Follow-up Date"
+                [ngClass]="{'is-invalid': submitted && fc.NeedFollowupDate.errors}" />
+              <div *ngIf="submitted && fc.NeedFollowupDate.errors" class="invalid-feedback">
+                <div *ngIf="fc.NeedFollowupDate.errors.required">Follow up Date is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <h5>Leave Date</h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">From Date</label>
+              <input type="text" name="FromDate" [(ngModel)]="FromDate" formControlName="FromDate"
+                onfocus="(this.type='date')" class="form-control" placeholder="Enter From Date"
+                [ngClass]="{ 'is-invalid': submitted && fc.FromDate.errors }" />
+              <div *ngIf="submitted && fc.FromDate.errors" class="invalid-feedback">
+                <div *ngIf="fc.FromDate.errors.required">From Date is required</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="CourseName">To Date</label>
+              <input type="text" name="ToDate" [(ngModel)]="ToDate" formControlName="ToDate"
+                onfocus="(this.type='date')" (change)="calculateTotaldays(ToDate,FromDate)" class="form-control"
+                placeholder="Enter To Date" [ngClass]="{'is-invalid': submitted && fc.ToDate.errors}" />
+              <div *ngIf="submitted && fc.ToDate.errors" class="invalid-feedback">
+                <div *ngIf="fc.ToDate.errors.required">To Date is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">Total Days</label>
+              <input type="text" class="form-control" placeholder="Total Days" id="TotalDays" name="TotalDays"
+                formControlName="TotalDays">
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <h5> Leave Reason</h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">Reason</label>
+              <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
+                [ngClass]="{'is-invalid': submitted && fc.Reason.errors}" formControlName="Reason"></textarea>
+              <div *ngIf="submitted && fc.Reason.errors" class="invalid-feedback">
+                <div *ngIf="fc.Reason.errors.required">Reason is required</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="CourseName">Comment</label>
+              <textarea class="form-control rounded-0" rows="1" placeholder="Comment"
+                formControlName="Comment"></textarea>
+              <div *ngIf="submitted && fc.Comment.errors" class="invalid-feedback">
+                <div *ngIf="fc.Comment.errors.required">Comment is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="modal-footer">
           <button class="btn btn-square btn-primary" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
-    </div>
-  </ng-template>
+  </div>
+</ng-template>
 
-  <!-- Edit leave modal -->
-  <ng-template #EditTemplate>
-    <div class="modal-header">
-      <h5 class="modal-title pull-left">Update Leave</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="container-fluid">
+<!-- Edit leave modal -->
+<ng-template #EditTemplate>
+  <div class="modal-header">
+    <h5 class="modal-title pull-left">Update Leave</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
       <form [formGroup]="UpdateLeaveFormGroup" (ngSubmit)="updateLeave()">
-            <h5>Student Details </h5>
+        <h5>Student Details </h5>
 
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="CourseName">Course</label>
-                    <input type="text" formControlName="CourseName" class="form-control" placeholder="Course Name"
-                      [ngClass]="{'is-invalid': submitted && fu.CourseName.errors}" disabled />
-                  </div>
-                  <div class="col-md-6">
-                      <label for="StudentName">Student</label>
-                    <input type="text" formControlName="StudentName" class="form-control" placeholder="Student Name"
-                      [ngClass]="{'is-invalid': submitted && fu.StudentName.errors}" disabled />
-                  </div>
-                </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="CourseName">Course</label>
+              <input type="text" formControlName="CourseName" class="form-control" placeholder="Course Name"
+                [ngClass]="{'is-invalid': submitted && fu.CourseName.errors}" disabled />
+            </div>
+            <div class="col-md-6">
+              <label for="StudentName">Student</label>
+              <input type="text" formControlName="StudentName" class="form-control" placeholder="Student Name"
+                [ngClass]="{'is-invalid': submitted && fu.StudentName.errors}" disabled />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="LeaveName">Leave Type</label>
+              <select name="LeaveName" class="form-control" formControlName="LeaveName">
+                <option *ngFor="let l of leaves" [value]="l.LeaveId">
+                  {{l.LeaveType}}
+                </option>
+              </select>
+              <div *ngIf="submitted && fu.LeaveName.errors" class="invalid-feedback">
+                <div *ngIf="fu.LeaveName.errors.required">Leave Type is required</div>
               </div>
-
-              <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="LeaveName">Leave Type</label>
-                    <select name="LeaveName"  class="form-control" formControlName="LeaveName">
-                      <option *ngFor="let l of leaves" [value]="l.LeaveId">
-                        {{l.LeaveType}}
-                      </option>
-                    </select>
-                    <div *ngIf="submitted && fu.LeaveName.errors" class="invalid-feedback">
-                      <div *ngIf="fu.LeaveName.errors.required">Leave Type is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="NeedFollowupDate">Followup Date</label>
-                    <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')"
-                      class="form-control" placeholder="NeedFollowupDate"
-                      [ngClass]="{'is-invalid': submitted && fu.NeedFollowupDate.errors}" />
-                    <div *ngIf="submitted && fu.NeedFollowupDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.NeedFollowupDate.errors.required">Followup Date is required</div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="NeedFollowupDate">Followup Date</label>
+              <input type="text" formControlName="NeedFollowupDate" onfocus="(this.type='date')" class="form-control"
+                placeholder="NeedFollowupDate" [ngClass]="{'is-invalid': submitted && fu.NeedFollowupDate.errors}" />
+              <div *ngIf="submitted && fu.NeedFollowupDate.errors" class="invalid-feedback">
+                <div *ngIf="fu.NeedFollowupDate.errors.required">Followup Date is required</div>
               </div>
-<hr>
-        <!-- second Row start -->
-            <h5>Leave Date </h5>
+            </div>
+          </div>
+        </div>
+        <hr>
 
-             <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="NeedFollowupDate">From Date</label>
-                    <input type="text" id="FromDate" name="FromDate" formControlName="FromDate"
-                      onfocus="(this.type='date')" class="form-control"
-                      [ngClass]="{ 'is-invalid': submitted && fu.FromDate.errors }" />
-                    <div *ngIf="submitted && fu.FromDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.FromDate.errors.required"> From Date is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="NeedFollowupDate">To Date</label>
-                    <input type="text" name="ToDate" id="ToDate" formControlName="ToDate" onfocus="(this.type='date')"
-                      (change)="calculateTotaldays(ToDate.value,FromDate.value)" class="form-control"
-                      [ngClass]="{'is-invalid': submitted && fu.ToDate.errors}" />
-                    <div *ngIf="submitted && fu.ToDate.errors" class="invalid-feedback">
-                      <div *ngIf="fu.ToDate.errors.required">To Date is required</div>
-                    </div>
-                  </div>
-                </div>
+        <h5>Leave Date </h5>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="NeedFollowupDate">From Date</label>
+              <input type="text" id="FromDate" name="FromDate" formControlName="FromDate" onfocus="(this.type='date')"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && fu.FromDate.errors }" />
+              <div *ngIf="submitted && fu.FromDate.errors" class="invalid-feedback">
+                <div *ngIf="fu.FromDate.errors.required"> From Date is required</div>
               </div>
-
-                <div class="form-group">
-                      <label for="TotalDays">TotalDays</label>
-                      <div class="row">
-                          <div class="col-md-6">
-                    <input type="text" class="form-control" placeholder="TotalDays" formControlName="TotalDays">
-                  </div>
-                  </div>
-                  </div>
-                  <hr>
-        <!-- Thired Row start -->
-            <h5> Leave Reason </h5>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <label for="Reason">Reason</label>
-                    <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
-                      [ngClass]="{'is-invalid': submitted && fu.Reason.errors}" formControlName="Reason"></textarea>
-                    <div *ngIf="submitted && fu.Reason.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Reason.errors.required">Reason is required</div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                      <label for="Comment">Comment</label>
-                    <textarea class="form-control rounded-0" rows="1" placeholder="Comment" formControlName="Comment"
-                      [ngClass]="{'is-invalid': submitted && fu.Comment.errors}"></textarea>
-                    <div *ngIf="submitted && fu.Comment.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Comment.errors.required">Comment is required</div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+            <div class="col-md-6">
+              <label for="NeedFollowupDate">To Date</label>
+              <input type="text" name="ToDate" id="ToDate" formControlName="ToDate" onfocus="(this.type='date')"
+                (change)="calculateTotaldays(ToDate.value,FromDate.value)" class="form-control"
+                [ngClass]="{'is-invalid': submitted && fu.ToDate.errors}" />
+              <div *ngIf="submitted && fu.ToDate.errors" class="invalid-feedback">
+                <div *ngIf="fu.ToDate.errors.required">To Date is required</div>
               </div>
-        <!-- Thired Row start -->
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="TotalDays">TotalDays</label>
+          <div class="row">
+            <div class="col-md-6">
+              <input type="text" class="form-control" placeholder="TotalDays" formControlName="TotalDays">
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <h5> Leave Reason </h5>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <label for="Reason">Reason</label>
+              <textarea class="form-control rounded-0" rows="1" placeholder="Reason"
+                [ngClass]="{'is-invalid': submitted && fu.Reason.errors}" formControlName="Reason"></textarea>
+              <div *ngIf="submitted && fu.Reason.errors" class="invalid-feedback">
+                <div *ngIf="fu.Reason.errors.required">Reason is required</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="Comment">Comment</label>
+              <textarea class="form-control rounded-0" rows="1" placeholder="Comment" formControlName="Comment"
+                [ngClass]="{'is-invalid': submitted && fu.Comment.errors}"></textarea>
+              <div *ngIf="submitted && fu.Comment.errors" class="invalid-feedback">
+                <div *ngIf="fu.Comment.errors.required">Comment is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="modal-footer">
           <button class="btn btn-square btn-primary" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
-    </div>
-  </ng-template>
+  </div>
+</ng-template>

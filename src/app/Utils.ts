@@ -1,6 +1,7 @@
 import { User } from './Model/User';
 import { Injectable } from '@angular/core';
 import { Auth } from './Model/Auth';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -34,5 +35,14 @@ export class Utils {
         let user = this.GetCurrentUser();
         return user ? user.roles : null;
     }
-
+    
+    public static getAuthHeader(){
+        const httpOptions = {
+          headers: new HttpHeaders({
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${Utils.GetAccessToken()}`
+          })      
+        };
+        return httpOptions
+      }
 }

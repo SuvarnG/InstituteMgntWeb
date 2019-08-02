@@ -34,13 +34,13 @@ export class ExpensesComponent implements OnInit {
   editExpenseForm: FormGroup;
   public listUser: User[];
   public expenses: Expenses[];
-  listExpenseType:ExpenseMaster[];
+  listExpenseType: ExpenseMaster[];
   public staffMasters: StaffMaster[];
   selectedUserValue: Number;
   submitted = false;
-  expenseMaster:ExpenseMaster[];
-  filter:any;
-  p:any;
+  expenseMaster: ExpenseMaster[];
+  filter: any;
+  p: any;
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -49,29 +49,30 @@ export class ExpensesComponent implements OnInit {
     private modalService: BsModalService,
     private router: Router,
     private ExpenseService: ExpenseService,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private fb: FormBuilder,
-    private staffListService:StaffListService,
-    private expenseMasterService:ExpenseMasterService) { }
+    private staffListService: StaffListService,
+    private expenseMasterService: ExpenseMasterService) { }
 
   ngOnInit() {
 
-     this.dtOptions = {
+    this.dtOptions = {
       retrieve: true,
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:true,
-      searching:false
+      paging: true,
+      searching: false
 
-     };
+    };
+
     this.expenseForm = this.fb.group({
       ExpenseType: ['', [Validators.required]],
       AmountPaid: ['', [Validators.required]],
       Date: [],
       PaidByWhom: [],
       Remark: ['', [Validators.required]],
-      ExpenseId:[],
-      PaidByName:[]
+      ExpenseId: [],
+      PaidByName: []
     })
 
     this.editExpenseForm = this.fb.group({
@@ -80,18 +81,14 @@ export class ExpensesComponent implements OnInit {
       Date: [],
       PaidByWhom: [],
       Remark: ['', [Validators.required]],
-      ExpenseId:[],
-      Id:[],
-      PaidByName:[]
+      ExpenseId: [],
+      Id: [],
+      PaidByName: []
     })
     this.getAllExpenseTransction(this.user.BranchId);
-    // this.expenseMasterService.getAllExpenses().subscribe(res=>
-    //   {
-    //     this.expenseMaster=res
-    //   });
-   // this.getStaffList();
   }
-  ngAfterViewInit(): void {this.dtTrigger.next();}
+
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
@@ -99,28 +96,26 @@ export class ExpensesComponent implements OnInit {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
+      dtInstance.destroy();
+      this.dtTrigger.next();
     });
-}
+  }
 
-  public user=Utils.GetCurrentUser();
-  
-  getAllExpenseTransction(BranchId:number) {
-    BranchId=this.user.BranchId;
-    this.ExpenseService.expensesList(BranchId).subscribe(res =>
-      { this.expenses = res;
-    //this.dtTrigger.next();
-    this.rerender();
-  });
-}
+  public user = Utils.GetCurrentUser();
+
+  getAllExpenseTransction(BranchId: number) {
+    BranchId = this.user.BranchId;
+    this.ExpenseService.expensesList(BranchId).subscribe(res => {
+    this.expenses = res;
+      this.rerender();
+    });
+  }
 
   addNewExpense(addExpense: TemplateRef<any>) {
     this.expenseForm.reset();
-    this.expenseMasterService.getAllExpenses().subscribe(res=>
-      {
-        this.expenseMaster=res
-      });;
+    this.expenseMasterService.getAllExpenses().subscribe(res => {
+      this.expenseMaster = res
+    });;
     this.modalRef = this.modalService.show(addExpense, {
       animated: true,
       backdrop: 'static',
@@ -128,7 +123,7 @@ export class ExpensesComponent implements OnInit {
     });
   }
 
-  delete(expensetype:string,expenseID:number) {
+  delete(expensetype: string, expenseID: number) {
     var ans = confirm("Do you want to delete expense od type: " + expensetype);
     if (ans) {
       this.ExpenseService.deleteExpense(expenseID).subscribe(data => {
@@ -147,11 +142,11 @@ export class ExpensesComponent implements OnInit {
       let body = {
         ExpenseType: this.expenseForm.controls.ExpenseType.value,
         Paid: this.expenseForm.controls.AmountPaid.value,
-       PaidByWhom: this.user.userId,
-       PaidByName:this.expenseForm.controls.PaidByName.value,
+        PaidByWhom: this.user.userId,
+        PaidByName: this.expenseForm.controls.PaidByName.value,
         Date: new Date(),
         Remark: this.expenseForm.controls.Remark.value,
-        BranchId:this.user.BranchId
+        BranchId: this.user.BranchId
       }
       this.ExpenseService.saveExpense(body)
         .subscribe((data) => {
@@ -162,12 +157,12 @@ export class ExpensesComponent implements OnInit {
     }
   }
 
-  getExpenseList(){
-    this.expenseMasterService.getAllExpenses().subscribe(data=>{this.listExpenseType=data})
+  getExpenseList() {
+    this.expenseMasterService.getAllExpenses().subscribe(data => { this.listExpenseType = data })
   }
 
   edit(editExpense: TemplateRef<any>, e) {
-   this.modalRef = this.modalService.show(editExpense, {
+    this.modalRef = this.modalService.show(editExpense, {
       animated: true,
       backdrop: 'static',
       class: 'modal-md'
@@ -181,10 +176,10 @@ export class ExpensesComponent implements OnInit {
       Date: new Date(e.Date).toDateString(),
       Remark: e.Remark,
       Id: e.Id,
-      ExpenseId:e.ExpenseId,
-      PaidByName:e.PaidByName
-    })  
-    
+      ExpenseId: e.ExpenseId,
+      PaidByName: e.PaidByName
+    })
+
   }
 
   onSubmitEdit() {
@@ -198,13 +193,13 @@ export class ExpensesComponent implements OnInit {
         ExpenseType: this.editExpenseForm.controls.ExpenseType.value,
         Paid: this.editExpenseForm.controls.AmountPaid.value,
         PaidByWhom: this.user.userId,
-        PaidByName:this.editExpenseForm.controls.PaidByName.value,
+        PaidByName: this.editExpenseForm.controls.PaidByName.value,
         Date: new Date(),
         Remark: this.editExpenseForm.controls.Remark.value,
         Id: this.editExpenseForm.controls.Id.value,
-       BranchId:this.user.BranchId
+        BranchId: this.user.BranchId
       }
-       this.ExpenseService.updateExpense(body)
+      this.ExpenseService.updateExpense(body)
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
@@ -224,7 +219,7 @@ export class ExpensesComponent implements OnInit {
     this.selectedUserValue = event.target.value;
   }
 
-  getStaffList() {
-    this.staffListService.getAllStaff(this.user.InstituteId,this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
-  }
+  // getStaffList() {
+  //   this.staffListService.getAllStaff(this.user.InstituteId,this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
+  // }
 }

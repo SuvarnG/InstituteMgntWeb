@@ -174,7 +174,6 @@ export class BranchManagerComponent implements OnInit {
 
 
   editNewBranchManager(){
-    debugger;
     this.submitted=true;
     if(this.editNewBranchManagerForm.invalid){
       return 
@@ -202,7 +201,6 @@ export class BranchManagerComponent implements OnInit {
 
 
   openManagerDetailsPopup(ManagerDetailsTemplate:TemplateRef<any>,b){
-    debugger;
     let body ={
       FirstName:b.FirstName,
       LastName:b.LastName,

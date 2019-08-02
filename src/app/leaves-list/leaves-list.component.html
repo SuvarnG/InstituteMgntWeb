@@ -1,64 +1,66 @@
-     <!-- Breadcrumb-->
-  <ol class="breadcrumb">
-      <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item active align-self-center"><a routerLink="/Dashboard">
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item active align-self-center"><a routerLink="/Dashboard">
         Home</a></li>
-      <li class="breadcrumb-item align-self-center">Leave Type</li>
+    <li class="breadcrumb-item align-self-center">Leave Type</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1 ">
+    <li class="h5 pt-2">Manage Leave Type</li>
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
+
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
       </div>
-      <div class="d-none d-md-block d-lg-block d-xl-block flex-1 ">
-          <li class="h5 pt-2">Manage Leave Type</li>   
-        </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-            <div class="input-group">
-                <span class="input-group-prepend">
-                <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search text-white"></i></button>
-                </span>
-                <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-                </div>
+      &nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white" (click)="createNewLeave(template)"
+        data-toggle="tooltip" data-placement="bottom" title="Add Leave" type="button">Add</button>
+    </div>
+  </li>
+</ol>
+
+<!--List Leave Type-->
+<div class="container-fluid">
+  <div id="ui-view">
+    <div class="card border-0 shadow rounded-0">
+      <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+          <thead>
+            <tr>
+              <th class="pl-2" scope="col">Leave Type</th>
+              <th class="pl-2" scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let l of Leaves | filter:filter">
+              <td>{{l.LeaveType}}</td>
+              <td>
+                <a class="card-header-action btn-minimize" (click)="updateNewLeave(template2,l.LeaveType)"
+                  title="Edit Information">
+                  <i class="cui-pencil pencil"></i>
+                </a>
                 &nbsp;&nbsp;
-                <button class="btn btn-sm btn-primary btn-square text-white" (click)="CreateNewLeave(template)" data-toggle="tooltip" data-placement="bottom"
-                title="Add Leave" type="button">Add</button>
-        </div>
-      </li>
-    </ol>  
-      
-    <div class="container-fluid">
-        <div id="ui-view">
-            <div class="card border-0 shadow rounded-0">
-                <div class="card-body">
-      <!-- <table class="table table-bordered"> -->
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
-        <thead>
-          <tr>
-            <th class="pl-2" scope="col">Leave Type</th>
-            <th class="pl-2" scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let l of Leaves | filter:filter">
-            <td>{{l.LeaveType}}</td>
-            <td>
-                <a class="card-header-action btn-minimize" (click)="UpdateNewLeave(template2,l.LeaveType)" title="Edit Information">
-                    <i class="cui-pencil pencil"></i>
-                  </a>
-                  &nbsp;&nbsp;
-                  <a class="card-header-action btn-minimize" (click)="DeleteLeaveType(l.LeaveId,l.LeaveType)" title="Delete Leave Type">
-                      <i class="cui-trash trash"></i>
-                    </a>
-            </td> 
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      </div>
+                <a class="card-header-action btn-minimize" (click)="deleteLeaveType(l.LeaveId,l.LeaveType)"
+                  title="Delete Leave Type">
+                  <i class="cui-trash trash"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
 
-
+<!--Add Leave Type-->
 <ng-template #template>
   <div class="modal-header">
     <h5 class="font-weight-medium mb-1 mt-1">Add Leave Type</h5>
@@ -67,27 +69,26 @@
     </button>
   </div>
   <div class="modal-body">
-      <div class="container-fluid">
-  <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate(Leaves)">
-    <div class="form-group">
-           <label for="LeaveName">Leave Type</label>
-            <input type="text" class="form-control" formControlName="LeaveName" placeholder="Enter Leave Type"
-              [ngClass]="{ 'is-invalid': submitted && n.LeaveName.errors }" #leaveName>
-            <div *ngIf="submitted && n.LeaveName.errors" class="invalid-feedback">
-              <div *ngIf="n.LeaveName.errors.required">Leave Name Required</div>
-            </div>
+    <div class="container-fluid">
+      <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate(Leaves)">
+        <div class="form-group">
+          <label for="LeaveName">Leave Type</label>
+          <input type="text" class="form-control" formControlName="LeaveName" placeholder="Enter Leave Type"
+            [ngClass]="{ 'is-invalid': submitted && n.LeaveName.errors }" #leaveName>
+          <div *ngIf="submitted && n.LeaveName.errors" class="invalid-feedback">
+            <div *ngIf="n.LeaveName.errors.required">Leave Name Required</div>
           </div>
-    <div class="modal-footer">
-      <button class="btn btn-square btn-primary" type="submit" >Submit</button>
-      <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Cancle</button>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-square btn-primary" type="submit">Submit</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancle</button>
+        </div>
+      </form>
     </div>
-  </form>
-  </div>
   </div>
 </ng-template>
 
-
+<!--Edit Leave Type-->
 <ng-template #template2>
   <div class="modal-header">
     <h5 class="font-weight-medium mb-1 mt-1">Update Leave Type</h5>
@@ -96,23 +97,21 @@
     </button>
   </div>
   <div class="modal-body">
-      <div class="container-fluid">
-  <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()">
-    <div class="form-group">
-                <label>Leave Type</label>
-                <input type="text" class="form-control" formControlName="LeaveType" 
-                  [ngClass]="{ 'is-invalid': submitted && m.LeaveType.errors }">
-                <div *ngIf="submitted && m.LeaveType.errors" class="invalid-feedback">
-                  <div *ngIf="m.LeaveType.errors.required">Leave Name required</div>
-                </div>
-            </div>
-    <div class="modal-footer">
-      <button class="btn btn-square btn-primary" (click)="UpdateLeave(template2)"
-        type="submit">Update</button>
-      <button class="btn btn-danger btn-square ml-2" type="button"
-        (click)="modalRef.hide()">Cancle</button>
+    <div class="container-fluid">
+      <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()">
+        <div class="form-group">
+          <label>Leave Type</label>
+          <input type="text" class="form-control" formControlName="LeaveType"
+            [ngClass]="{ 'is-invalid': submitted && m.LeaveType.errors }">
+          <div *ngIf="submitted && m.LeaveType.errors" class="invalid-feedback">
+            <div *ngIf="m.LeaveType.errors.required">Leave Name required</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-square btn-primary" (click)="updateLeave(template2)" type="submit">Update</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancle</button>
+        </div>
+      </form>
     </div>
-  </form>
-  </div>
   </div>
 </ng-template>

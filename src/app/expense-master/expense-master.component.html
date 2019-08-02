@@ -1,123 +1,119 @@
 <!-- Breadcrumb-->
-  <ol class="breadcrumb">
-      <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard" >Home</a></li>
-      <li class="breadcrumb-item align-self-center">Expense Types</li>
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
+    <li class="breadcrumb-item align-self-center">Expense Types</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Expense Type</li>
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
       </div>
-      <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-          <li class="h5 pt-2">Manage Expense Type</li>        
-        </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-            <!-- <button class="btn btn-primary" type="button">
-                <i class="fa fa-search"></i></button> -->
-                <div class="input-group">
-                    <span class="input-group-prepend">
-                    <button class="btn btn-primary btn-square" type="button">
-                    <i class="fa fa-search text-white"></i></button>
-                    </span>
-                    <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
-                    </div>
-
-            <!-- <input type="text" placeholder="Search" class="form-control" [(ngModel)]="filter"> -->
-            &nbsp;&nbsp;
-            <button class="btn btn-sm btn-primary btn-square text-white" (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom"
-            title="Add New Expense" type="button">Add</button>
-        </div>
-      </li>
-    </ol>    
-    <div class="  h-460" id="A">
-        <div class="container-fluid">
-            <div id="ui-view">
-                <div class="card border-0 shadow rounded-0">
-                    <div class="card-body">
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
-        <thead>
-          <tr>
-            <th >Expense Type</th>
-            <th >Action</th>            
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let expense of expenses | filter:filter">
-            <td>{{expense.Expenses}}</td>
-            <td>  
-                <a class="card-header-action btn-minimize" (click)="editExpense(EditExpenseTemplate,expense)" title="Edit Information">
+      &nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white"
+        (click)="showCreateExpenseTemplate(CreateExpenseTemplate)" data-toggle="tooltip" data-placement="bottom"
+        title="Add New Expense" type="button">Add</button>
+    </div>
+  </li>
+</ol>
+<div class="  h-460" id="A">
+  <div class="container-fluid">
+    <div id="ui-view">
+      <div class="card border-0 shadow rounded-0">
+        <div class="card-body">
+          <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+            <thead>
+              <tr>
+                <th>Expense Type</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let expense of expenseType | filter:filter">
+                <td>{{expense.Expenses}}</td>
+                <td>
+                  <a class="card-header-action btn-minimize" (click)="editExpense(EditExpenseTemplate,expense)"
+                    title="Edit Information">
                     <i class="cui-pencil pencil"></i>
-                  </a>                       
-             &nbsp;&nbsp;
-              <a class="card-header-action btn-minimize" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)" title="Delete Expense Type">
-                  <i class="cui-trash trash"></i>
-                </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
-
-
-  <ng-template #CreateExpenseTemplate>
-    <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-      <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense(expenses)">
-        <div class="modal-header">
-          <h5 class="modal-title pull-left">Add Expense</h5>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                  </a>
+                  &nbsp;&nbsp;
+                  <a class="card-header-action btn-minimize" (click)="deleteExpense(expense.Expenses,expense.ExpenseId)"
+                    title="Delete Expense Type">
+                    <i class="cui-trash trash"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="expense">Expense Type</label>
-                <input type="text" id="expense" class="form-control" formControlName="expense" placeholder="Enter Expense Type"
-                [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
-                <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
-                    <div *ngIf="f.expense.errors.required">Expense Type is required</div>
-                  </div>
-                </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary btn-square" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+
+
+<ng-template #CreateExpenseTemplate>
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense(expenses)">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Add Expense</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="expense">Expense Type</label>
+          <input type="text" id="expense" class="form-control" formControlName="expense"
+            placeholder="Enter Expense Type" [ngClass]="{ 'is-invalid': submitted && f.expense.errors }">
+          <div *ngIf="submitted && f.expense.errors" class="invalid-feedback">
+            <div *ngIf="f.expense.errors.required">Expense Type is required</div>
+          </div>
         </div>
 
-      </form>
-    </div>
-  </ng-template>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-square" type="submit">Submit</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+      </div>
 
-  <ng-template #EditExpenseTemplate>
-    <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-      <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEditExpense()">
-        <div class="modal-header">
-          <h5 class="modal-title pull-left">Update Expense</h5>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <div class="form-group">
-                <label for="expense">Expense Type</label>
-                <input type="text" id="expense" class="form-control " formControlName="expense"
-                [ngClass]="{ 'is-invalid': submitted && g.expense.errors }">
-                <div *ngIf="submitted && g.expense.errors" class="invalid-feedback">
-                    <div *ngIf="g.expense.errors.required">Expense Type is required</div>
-                  </div>
-                </div>
-        </div>
+    </form>
+  </div>
+</ng-template>
 
-        <div class="modal-footer">
-          <button class="btn btn-primary btn-square" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+<ng-template #EditExpenseTemplate>
+  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+    <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEditExpense()">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Update Expense</h5>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="expense">Expense Type</label>
+          <input type="text" id="expense" class="form-control " formControlName="expense"
+            [ngClass]="{ 'is-invalid': submitted && g.expense.errors }">
+          <div *ngIf="submitted && g.expense.errors" class="invalid-feedback">
+            <div *ngIf="g.expense.errors.required">Expense Type is required</div>
+          </div>
         </div>
-      </form>
-    </div>
-  </ng-template>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-primary btn-square" type="submit">Update</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

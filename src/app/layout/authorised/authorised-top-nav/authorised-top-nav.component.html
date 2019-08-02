@@ -3,54 +3,39 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="d-none d-lg-block d-xl-block d-md-none">
-    <a class="navbar-brand " href="#">
-        <img class="navbar-brand-full" src="assets/images/kalon-transparent.png"width="auto" height="30px"
-            alt="Kalon IMS">
-        <!-- <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"> -->
-    </a>
-</div>
+        <a class="navbar-brand " href="#">
+            <img class="navbar-brand-full" src="assets/images/kalon-transparent.png" width="auto" height="30px"
+                alt="Kalon IMS">
+            <!-- <img class="navbar-brand-minimized" src="img/brand/sygnet.svg" width="30" height="30" alt="CoreUI Logo"> -->
+        </a>
+    </div>
     <button class="navbar-toggler sidebar-toggler d-md-down-none" type="button" data-toggle="sidebar-lg-show">
         <span class="navbar-toggler-icon"></span>
     </button>
     <h5 class="pt-2 font-weight-medium">Aditya Academy</h5>
-    <!-- <ul class="nav navbar-nav d-md-down-none">
-      <li class="nav-item px-3">
-          <a class="nav-link" href="#">Dashboard</a>
-      </li>
-      <li class="nav-item px-3">
-          <a class="nav-link" href="#">Users</a>
-      </li>
-      <li class="nav-item px-3">
-          <a class="nav-link" href="#">Settings</a>
-      </li>
-  </ul> -->
+
     <ul class="nav navbar-nav ml-auto">
         <li class="nav-item dropdown" *ngIf="user?.roles=='Teacher' || user?.roles=='Branch Manager'">
-          <a class="nav-link" data-toggle="dropdown" (click)="getAllStudentsPendingFeesDetails()" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Notifications">
-              <i class="icon-bell text-white"></i>
-              <span class="badge badge-pill badge-danger" *ngIf="StudentList">{{StudentList.length}}</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <div class="dropdown-header text-center">
-                <strong>Notifications</strong>
-            </div>
-            <div  class="dropdown-item"  *ngFor="let StudList of StudentList">
-                    <a  data-toggle="tooltip" title="{{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should be completed within {{StudList.RemainingDays+' Days'}}">
-                    <i class="fa fa-exclamation trash"></i>Pending Fees    
-                <span  style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;" >{{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should be completed within {{StudList.RemainingDays+' Days'}}</span>
+            <a class="nav-link" data-toggle="dropdown" (click)="getAllStudentsPendingFeesDetails()" href="#"
+                role="button" aria-haspopup="true" aria-expanded="false" title="Notifications">
+                <i class="icon-bell text-white"></i>
+                <span class="badge badge-pill badge-danger" *ngIf="StudentList">{{StudentList.length}}</span>
             </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <div class="dropdown-header text-center">
+                    <strong>Notifications</strong>
+                </div>
+                <div class="dropdown-item" *ngFor="let StudList of StudentList">
+                    <a data-toggle="tooltip"
+                        title="{{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should be completed within {{StudList.RemainingDays+' Days'}}">
+                        <span
+                            style="display:block;text-overflow: ellipsis;width: 200px;overflow: hidden; white-space: nowrap;">{{StudList.FirstName | titlecase}}
+                            {{StudList.LastName | titlecase}} has pending fees {{StudList.PendingFees | number}} should
+                            be completed within {{StudList.RemainingDays+' Days'}}</span>
+                    </a>
+                </div>
             </div>
-            <!-- <ul *ngFor="let StudList of StudentList">       
-            <li class="dropdown-item">
-                            {{StudList.FirstName | titlecase}} {{StudList.LastName | titlecase}}
-                    <ul>
-                      <li>PendingFees:{{StudList.PendingFees | number}}</li>
-                      <li>DueDate:{{StudList.RemainingDays+' Days'}}</li>
-                    </ul>
-                  </li>
-                </ul> -->
-        </div>
-      </li>
+        </li>
 
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -74,74 +59,74 @@
 </header>
 
 <ng-template #UpdateProfileTemplate>
-    <div data-keyboard="false" data-backdrop="static" aria-hidden="true">   
+    <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
         <div class="modal-header">
-          <h5 class="modal-title pull-left">Profile</h5>
-          <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-            <span aria-hidden="true">&times;</span>
-          </button>
+            <h5 class="modal-title pull-left">Profile</h5>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmitUpdateProfile()">
-              <div class="form-group">
-                  <div class="media">
-                      <img class="img-circle mr-3"
-                      [src]="thumbnailUrl"
-                        width="50px" height="50px">
-  
-                      <div class="media-body">
-                        <input  type="file"  class="form-control" formControlName="Photo" (change)="onImageSelected($event);onUploadPhoto()" id="Photo" >
-                      </div>
-                    </div>
-                  </div>
+            <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmitUpdateProfile()">
+                <div class="form-group">
+                    <div class="media">
+                        <img class="img-circle mr-3" [src]="thumbnailUrl" width="50px" height="50px">
 
-            <div class="row">
-            <div class="form-group col-sm-6">
-                <label for="FirstName">FirstName</label>
-                <input type="text" id="FirstName" class="form-control" formControlName="FirstName" >
+                        <div class="media-body">
+                            <input type="file" class="form-control" formControlName="Photo"
+                                (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="form-group col-sm-6">
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="FirstName">FirstName</label>
+                        <input type="text" id="FirstName" class="form-control" formControlName="FirstName">
+                    </div>
+
+                    <div class="form-group col-sm-6">
                         <label for="LastName">LastName</label>
                         <input type="text" id="LastName" class="form-control" formControlName="LastName">
-                        </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-sm-6">
-                                <label for="Role">Role</label>
-                                <input type="text" id="Role" class="form-control" formControlName="Role">
-                                </div>
-                        <div class="form-group col-sm-6">
-                                <label for="Email">Email</label>
-                                <input type="text" id="Email" class="form-control" formControlName="Email">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-sm-6">
-                                        <label for="Contact">Contact</label>
-                                        <input type="text" id="Contact" class="form-control" formControlName="Contact" >
-                                        </div>
-                                <div class="form-group col-sm-6">
-                                                <label for="Address">Address</label>
-                                                <input type="text" id="Address" class="form-control" formControlName="Address">
-                                                </div>
-                                            </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="Role">Role</label>
+                        <input type="text" id="Role" class="form-control" formControlName="Role">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="Email">Email</label>
+                        <input type="text" id="Email" class="form-control" formControlName="Email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="Contact">Contact</label>
+                        <input type="text" id="Contact" class="form-control" formControlName="Contact">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="Address">Address</label>
+                        <input type="text" id="Address" class="form-control" formControlName="Address">
+                    </div>
+                </div>
 
-                                         
-                    <div class="form-group">
-                        <input type="checkbox" formControlName="UpdatePassword">Update Password
-                        <div  *ngIf="f.UpdatePassword.value">
-                        <input type="text" id="Password" class="form-control" formControlName="Password" placeholder="Enter new Password here">
-                        </div>
+
+                <div class="form-group">
+                    <input type="checkbox" formControlName="UpdatePassword">Update Password
+                    <div *ngIf="f.UpdatePassword.value">
+                        <input type="text" id="Password" class="form-control" formControlName="Password"
+                            placeholder="Enter new Password here">
                     </div>
-      
-        <div class="modal-footer">
-          <button class="btn btn-primary btn-square" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-square" type="submit">Update</button>
+                    <button class="btn btn-danger btn-square ml-2" type="button"
+                        (click)="modalRef.hide()">Cancel</button>
+                </div>
+            </form>
         </div>
-      </form>
+
     </div>
-     
-    </div>
-  </ng-template>
+</ng-template>

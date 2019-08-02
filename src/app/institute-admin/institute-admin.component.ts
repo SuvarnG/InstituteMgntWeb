@@ -104,8 +104,6 @@ filter:any;
 
   createInstituteAdmin(){
 
-    debugger;
-
     this.submitted=true;
     if(this.createInstituteAdminForm.invalid){
       return
@@ -175,8 +173,6 @@ filter:any;
 
 
   editInstituteAdmin(){
-
-    debugger;
 
     this.submitted=true;
     if(this.editInstituteAdminForm.invalid){

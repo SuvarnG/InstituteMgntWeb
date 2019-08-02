@@ -15,6 +15,7 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './leaves-list.component.html',
   styleUrls: ['./leaves-list.component.css']
 })
+
 export class LeavesListComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -29,8 +30,12 @@ export class LeavesListComponent implements OnInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
-  constructor(private LeavelistService: LeavelistService, private formBuilder: FormBuilder,
-    private router: Router, private route: ActivatedRoute, private modalService: BsModalService) { }
+  constructor(
+    private LeavelistService: LeavelistService,
+    private formBuilder: FormBuilder,
+    private router: Router, 
+    private route: ActivatedRoute, 
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -40,12 +45,11 @@ export class LeavesListComponent implements OnInit {
       searching:false
     };
 
-    this.GetAllLeaves();
+    this.getAllLeaves();
 
     this.registerUpdateLeave = this.formBuilder.group({
       LeaveId: ['', Validators.required],
       LeaveType: ['', Validators.required]
-
     },
     );
 
@@ -72,29 +76,28 @@ export class LeavesListComponent implements OnInit {
 
   get n() { return this.registerCreateLeave.controls }
 
-  GetAllLeaves() {
-    this.LeavelistService.GetAllLeaves().subscribe(res => {
+  getAllLeaves() {
+    this.LeavelistService.getAllLeaves().subscribe(res => {
     this.Leaves = res
     this.rerender();
-      //this.dtTrigger.next();
     });
   }
 
-  DeleteLeaveType(id: number,name:string) {
+  deleteLeaveType(id: number,name:string) {
     var ans = confirm("Do you want to delete expense od type: " + name);
     if (ans) {
-      this.LeavelistService.DeleteLeaveType(id).subscribe(data =>
-        this.GetAllLeaves()
+      this.LeavelistService.deleteLeaveType(id).subscribe(data =>
+        this.getAllLeaves()
       )
     }   
   };
 
-  CreateNewLeave(template: TemplateRef<any>) {
+  createNewLeave(template: TemplateRef<any>) {
     this.registerCreateLeave.reset();
     this.modalRef = this.modalService.show(template);
   };
 
-  UpdateNewLeave(template: TemplateRef<any>, LeaveType) {
+  updateNewLeave(template: TemplateRef<any>, LeaveType) {
     let body = {
       LeaveType: LeaveType
     }
@@ -124,12 +127,12 @@ export class LeavesListComponent implements OnInit {
 }
 
     let leaveName=this.registerCreateLeave.controls.LeaveName.value
-    this.LeavelistService.CreateLeave(leaveName).subscribe(data => { this.GetAllLeaves(), 
+    this.LeavelistService.createLeave(leaveName).subscribe(data => { this.getAllLeaves(), 
       this.rerender();          
       this.modalRef.hide() })
   }
 
-  UpdateLeave(leaves: Leaves) {
+  updateLeave(leaves: Leaves) {
     
     this.submitted = true;
     //stop here if form is invalida
@@ -142,7 +145,7 @@ export class LeavesListComponent implements OnInit {
       LeaveType: this.registerUpdateLeave.controls.LeaveType.value
     }
 
-    this.LeavelistService.UpdateLeave(body).subscribe(data => { this.GetAllLeaves(), 
+    this.LeavelistService.updateLeave(body).subscribe(data => { this.getAllLeaves(), 
             this.rerender();  
             this.modalRef.hide() })
   }

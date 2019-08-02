@@ -8,8 +8,6 @@ import { Students, CourseType } from '../Model/Students'
 import { Observable } from 'rxjs';
 import { Utils } from '../Utils';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -17,38 +15,26 @@ export class LeaveService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
-  }
-
   getLeave() {
-    return this.http.get<LeaveTransaction[]>(environment.APIBASEURL + 'Leave/GetAll', this.getAuthHeader()
+    return this.http.get<LeaveTransaction[]>(environment.APIBASEURL + 'Leave/GetAllLeaves', Utils.getAuthHeader()
     ).pipe(map(data => {
       return data as LeaveTransaction[];
     }));
   }
-
-  
+ 
   createLeave(leave) {
-    return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, this.getAuthHeader());
+    return this.http.post<LeaveTransaction>(environment.APIBASEURL + 'Leave/CreateLeave', leave, Utils.getAuthHeader());
   }
 
   getStudentName(id) {
-    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id, this.getAuthHeader()
+    return this.http.get<Students[]>(environment.APIBASEURL + 'Student/GetStudentsByCourse/' + id, Utils.getAuthHeader()
     ).pipe
       (map(data => {
         return data as Students[]
       }));
   }
 
-
   editLeave(leave) {
-    return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeaveTransaction', leave, this.getAuthHeader());
+    return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeave', leave, Utils.getAuthHeader());
   }
 }

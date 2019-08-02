@@ -1,184 +1,174 @@
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
+    <li class="breadcrumb-item align-self-center">Expenses</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Expenses</li>
 
-        <!-- Breadcrumb-->
-   <ol class="breadcrumb">
-      <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
-      <li class="breadcrumb-item align-self-center">Expenses</li>
-      </div>
-      <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-          <li class="h5 pt-2">Manage Expenses</li>
-         
-        </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none  flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-            <div class="input-group">
-                <span class="input-group-prepend">
-                <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search text-white"></i></button>
-                </span>
-                <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-                </div>&nbsp;&nbsp;
-            <button class="btn btn-sm btn-primary btn-square text-white" data-toggle="tooltip" data-placement="bottom"
-            title="Add New Expense" (click)="addNewExpense(addExpense)">Add</button>
-          
-        </div>
-      </li>
-    </ol> 
- 
-    <div class="container-fluid">  
-        <div id="ui-view">
-            <div class="card border-0 shadow rounded-0">
-              <div class="card-body">  
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-        <thead>
-          <tr>
-            <th class="pl-2">Expense Type</th>
-            <th class="pl-2">Date</th>
-            <th class="pl-2">Paid By</th>
-            <th class="pl-2">Amount Paid (Rs)</th>
-            <th class="pl-2">Remark</th>
-            <th class="pl-2">Action</th>  
-          </tr>        
-        </thead>
-        <tbody>
-          <tr *ngFor="let e of expenses | filter:filter">
-            <td>{{e.ExpenseType}}</td>
-            <td>{{e.Date | date:'mediumDate'}}</td>
-            <td>{{e.PaidByName}}</td>
-            <td>{{e.Paid | number}}</td>
-            <td>{{e.Remark}}</td>
-            <td>
-            <a class="card-header-action btn-minimize" (click)="edit(editExpense,e)" title="Edit Information">
-                <i class="cui-pencil pencil"></i>
-              </a>
-              &nbsp;&nbsp;
-              <a class="card-header-action btn-minimize" (click)="delete(e.ExpenseType,e.Id)" title="Delete Expense">
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none  flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
+
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
+      </div>&nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white" data-toggle="tooltip" data-placement="bottom"
+        title="Add New Expense" (click)="addNewExpense(addExpense)">Add</button>
+
+    </div>
+  </li>
+</ol>
+
+<!-- List Expenses -->
+<div class="container-fluid">
+  <div id="ui-view">
+    <div class="card border-0 shadow rounded-0">
+      <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+          <thead>
+            <tr>
+              <th class="pl-2">Expense Type</th>
+              <th class="pl-2">Date</th>
+              <th class="pl-2">Paid By</th>
+              <th class="pl-2">Amount Paid (Rs)</th>
+              <th class="pl-2">Remark</th>
+              <th class="pl-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let e of expenses | filter:filter">
+              <td>{{e.ExpenseType}}</td>
+              <td>{{e.Date | date:'mediumDate'}}</td>
+              <td>{{e.PaidByName}}</td>
+              <td>{{e.Paid | number}}</td>
+              <td>{{e.Remark}}</td>
+              <td>
+                <a class="card-header-action btn-minimize" (click)="edit(editExpense,e)" title="Edit Information">
+                  <i class="cui-pencil pencil"></i>
+                </a>
+                &nbsp;&nbsp;
+                <a class="card-header-action btn-minimize" (click)="delete(e.ExpenseType,e.Id)" title="Delete Expense">
                   <i class="cui-trash trash"></i>
                 </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
 
-
-  <ng-template #editExpense>
-
-    <div class="modal-header">
-      <h5 class=" h5 modal-title pull-left">Update Expense</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="container-fluid">
+<!-- Edit Expense -->
+<ng-template #editExpense>
+  <div class="modal-header">
+    <h5 class=" h5 modal-title pull-left">Update Expense</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
       <form [formGroup]="editExpenseForm" (ngSubmit)="onSubmitEdit()">
-        
-          <div class="form-group">
-              <label for="Expense Type">Expense Type</label>
-              <select id="ExpenseType" class="form-control" formControlName="ExpenseType"
-              [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
-             <!-- <option value="null" disabled hidden>Select Expense Type</option> -->
-             <option *ngFor="let expense of listExpenseType" [value]="expense.ExpenseId">
-               {{expense.Expenses}}
-             </option>
-           </select>
-           <div *ngIf="submitted && form.ExpenseType.errors" class="invalid-feedback">
-              <div *ngIf="form.ExpenseType.errors.required">Expense Type is required</div>
-            </div>
-              </div>
 
-              <div class="form-group">
-                  <label for="AmountPaid">Amount Paid</label>
-                  <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
-                  placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
-                  <div *ngIf="submitted && form.AmountPaid.errors" class="invalid-feedback">
-                      <div *ngIf="form.AmountPaid.errors.required">Amount Paid is required</div>
-                    </div>
-                  </div>
+        <div class="form-group">
+          <label for="Expense Type">Expense Type</label>
+          <select id="ExpenseType" class="form-control" formControlName="ExpenseType"
+            [ngClass]="{'is-invalid': submitted && form.ExpenseType.errors} ">
+            <option *ngFor="let expense of listExpenseType" [value]="expense.ExpenseId">
+              {{expense.Expenses}}
+            </option>
+          </select>
+          <div *ngIf="submitted && form.ExpenseType.errors" class="invalid-feedback">
+            <div *ngIf="form.ExpenseType.errors.required">Expense Type is required</div>
+          </div>
+        </div>
 
-                  <div class="form-group">
-                      <label for="Remark">Remark</label>
-                      <input class="form-control" id="Remark" formControlName="Remark"
-                  [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
-                  <div *ngIf="submitted && form.Remark.errors" class="invalid-feedback">
-                      <div *ngIf="form.Remark.errors.required">Remark is required</div>
-                    </div>
-                      </div>
-                      <hr>
-       
-        <!-- second Row start -->
+        <div class="form-group">
+          <label for="AmountPaid">Amount Paid</label>
+          <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid"
+            [ngClass]="{'is-invalid': submitted && form.AmountPaid.errors} ">
+          <div *ngIf="submitted && form.AmountPaid.errors" class="invalid-feedback">
+            <div *ngIf="form.AmountPaid.errors.required">Amount Paid is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="Remark">Remark</label>
+          <input class="form-control" id="Remark" formControlName="Remark"
+            [ngClass]="{'is-invalid': submitted && form.Remark.errors} ">
+          <div *ngIf="submitted && form.Remark.errors" class="invalid-feedback">
+            <div *ngIf="form.Remark.errors.required">Remark is required</div>
+          </div>
+        </div>
+        <hr>
 
         <div class="form-row justify-content-end text-right">
           <button class="btn btn-square btn-primary" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="modalRef.hide()">Cancel</button>
-      </div>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+        </div>
       </form>
-      </div>
     </div>
-  </ng-template>
+  </div>
+</ng-template>
 
-  <!-- Add Expense -->
 
-
-  <ng-template #addExpense>
-    <div class="modal-header">
-      <h5 class=" h5 modal-title pull-left">Add Expense</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="container-fluid">
+<!-- Add Expense -->
+<ng-template #addExpense>
+  <div class="modal-header">
+    <h5 class=" h5 modal-title pull-left">Add Expense</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
       <form [formGroup]="expenseForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-              <label for="ExpenseType">Expense Type</label>
-              <select name="ExpenseType" id="ExpenseType" [value]="null" class="form-control"
-              formControlName="ExpenseType" [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
-              <option value="null" disabled hidden>Select Expense Type</option>
-              <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
-                {{expense.Expenses}}
-              </option>
-            </select>
-            <div *ngIf="submitted && f.ExpenseType.errors" class="invalid-feedback">
-                <div *ngIf="f.ExpenseType.errors.required">Expense Type is required</div>
-              </div>
-              </div>
-
-              <div class="form-group">
-                  <label for="AmountPaid">Amount Paid</label>
-                  <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid"
-                      placeholder="Amount Paid" [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
-                      <div *ngIf="submitted && f.AmountPaid.errors" class="invalid-feedback">
-                          <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
-                        </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="Remark">Remark</label>
-                      <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
-                  [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
-                  <div *ngIf="submitted && f.Remark.errors" class="invalid-feedback">
-                      <div *ngIf="f.Remark.errors.required">Remark is required</div>
-                    </div>
-                      </div>
-                    <hr>
-      
-        <!-- second Row start -->
-
-        <div class="form-row justify-content-end text-right">
-              <button class="btn btn-square btn-primary" type="submit">Submit</button>
-              <button class="btn btn-danger btn-square ml-2" type="button"
-                (click)="modalRef.hide()">Cancel</button>     
+        <div class="form-group">
+          <label for="ExpenseType">Expense Type</label>
+          <select name="ExpenseType" id="ExpenseType" [value]="null" class="form-control" formControlName="ExpenseType"
+            [ngClass]="{'is-invalid': submitted && f.ExpenseType.errors} ">
+            <option value="null" disabled hidden>Select Expense Type</option>
+            <option *ngFor="let expense of expenseMaster" [value]="expense.ExpenseId">
+              {{expense.Expenses}}
+            </option>
+          </select>
+          <div *ngIf="submitted && f.ExpenseType.errors" class="invalid-feedback">
+            <div *ngIf="f.ExpenseType.errors.required">Expense Type is required</div>
+          </div>
         </div>
 
+        <div class="form-group">
+          <label for="AmountPaid">Amount Paid</label>
+          <input type="text" class="form-control" id="AmountPaid" formControlName="AmountPaid" placeholder="Amount Paid"
+            [ngClass]="{'is-invalid': submitted && f.AmountPaid.errors} ">
+          <div *ngIf="submitted && f.AmountPaid.errors" class="invalid-feedback">
+            <div *ngIf="f.AmountPaid.errors.required">Amount is required</div>
+          </div>
+        </div>
 
+        <div class="form-group">
+          <label for="Remark">Remark</label>
+          <input type="text" class="form-control" id="Remark" formControlName="Remark" placeholder="Remark"
+            [ngClass]="{'is-invalid': submitted && f.Remark .errors} ">
+          <div *ngIf="submitted && f.Remark.errors" class="invalid-feedback">
+            <div *ngIf="f.Remark.errors.required">Remark is required</div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="form-row justify-content-end text-right">
+          <button class="btn btn-square btn-primary" type="submit">Submit</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+        </div>
       </form>
-      </div>
     </div>
-  </ng-template>
+  </div>
+</ng-template>

@@ -25,7 +25,6 @@ export class BranchManagerService {
   }
 
   getAllBranchManagers(InstituteId:number){
-    debugger;
     return this.httpClient.get<BranchManager[]>(environment.APIBASEURL + 'Branch/GetAllBranchManagers'+'/'+InstituteId, this.getAuthHeader());
 
   }

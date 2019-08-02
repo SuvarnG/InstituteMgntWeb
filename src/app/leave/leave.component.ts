@@ -28,33 +28,34 @@ export class LeaveComponent implements OnInit {
   submitted = false;
   modalRef: any;
   leaveTran: LeaveTransaction[];
-  Courses: Course[];
+  courses: Course[];
   students: Students[];
   leaves: LeaveType[];
   CreateLeaveFormGroup: FormGroup;
   UpdateLeaveFormGroup: FormGroup;
-  Days: number;
-  StudentId: number;
+  days: number;
+  studentId: number;
   CourseId: number;
-  LeaveTransactionId: number;
-  filter:any;
+  leaveTransactionId: number;
+  filter: any;
 
   @ViewChild(DataTableDirective)
-    dtElement: DataTableDirective;
+  dtElement: DataTableDirective;
 
   constructor(private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private LeaveService: LeaveService,
     private coursesService: CoursesService,
-    private leavelistService:LeavelistService) { }
+    private leavelistService: LeavelistService) { }
 
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
       paging: false,
-      searching:false
+      searching: false
     };
+
     this.CreateLeaveFormGroup = this.formBuilder.group({
       CourseName: ['', Validators.required],
       Reason: ['', Validators.required],
@@ -85,7 +86,7 @@ export class LeaveComponent implements OnInit {
   }
 
 
-  ngAfterViewInit(): void {this.dtTrigger.next();}
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
@@ -93,8 +94,8 @@ export class LeaveComponent implements OnInit {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
+      dtInstance.destroy();
+      this.dtTrigger.next();
     });
   }
 
@@ -107,9 +108,7 @@ export class LeaveComponent implements OnInit {
     this.LeaveService.getLeave().subscribe(res => {
       this.leaveTran = res
       this.rerender()
-      //this.dtTrigger.next()
     });
-    console.log(JSON.stringify(this.leaveTran));
   }
 
   createNewLeave() {
@@ -136,7 +135,6 @@ export class LeaveComponent implements OnInit {
       this.modalRef.hide()
       this.getLeaveList();
       this.rerender();
-      console.log(JSON.stringify(res));
     });
 
   }
@@ -145,41 +143,36 @@ export class LeaveComponent implements OnInit {
 
   getCourseName() {
     this.coursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
-      this.Courses = res;
-      console.log(JSON.stringify(this.Courses));
+      this.courses = res;
     });
   }
 
   getStudentName(event) {
     this.LeaveService.getStudentName(event.target.value).subscribe(res => {
       this.students = res;
-      console.log(JSON.stringify(this.students));
     })
   }
 
   getLeaveTypeList() {
-    this.leavelistService.GetAllLeaves().subscribe(res => {
+    this.leavelistService.getAllLeaves().subscribe(res => {
       this.leaves = res;
-      console.log(JSON.stringify(this.leaves));
     });
   }
 
-
-  OpenCreateModal(createTemplate: TemplateRef<any>) {
+  openCreateModal(createTemplate: TemplateRef<any>) {
     this.modalRef = this.modalService.show(createTemplate, {
       backdrop: 'static',
       class: 'modal-xl'
     });
-
   }
 
-  // <!-- Edit leave modal -->
+  // Edit leave modal 
   updateCreateModal(EditTemplate: TemplateRef<any>, editItem) {
     this.getCourseName();
     this.getStudentName;
-    this.StudentId = editItem.StudentId;
+    this.studentId = editItem.StudentId;
     this.CourseId = editItem.CourseId;
-    this.LeaveTransactionId = editItem.Id;
+    this.leaveTransactionId = editItem.Id;
     this.UpdateLeaveFormGroup.patchValue({
       CourseName: editItem.FullName,
       LeaveId: editItem.Id,
@@ -206,7 +199,7 @@ export class LeaveComponent implements OnInit {
       return
     }
     let req = {
-      Id: this.LeaveTransactionId,
+      Id: this.leaveTransactionId,
       LeaveType: this.UpdateLeaveFormGroup.controls.LeaveName.value,
       FromDate: this.UpdateLeaveFormGroup.controls.FromDate.value,
       ToDate: this.UpdateLeaveFormGroup.controls.ToDate.value,
@@ -214,21 +207,21 @@ export class LeaveComponent implements OnInit {
       NeedFollowupDate: this.UpdateLeaveFormGroup.controls.NeedFollowupDate.value,
       Comment: this.UpdateLeaveFormGroup.controls.Reason.value,
       FullName: null,
-      StudentId: this.StudentId,
+      StudentId: this.studentId,
       CourseId: this.CourseId,
       TotalDays: this.UpdateLeaveFormGroup.controls.TotalDays.value
     }
-    
-      this.LeaveService.editLeave(req).subscribe(data => { 
-        this.getLeaveList(),
+    this.LeaveService.editLeave(req).subscribe(data => {
+      this.getLeaveList(),
         this.rerender();
-        this.modalRef.hide() })
-    
+      this.modalRef.hide()
+    })
+
   }
 
   calculateTotaldays(d1, d2) {
     var diff = Date.parse(d1) - Date.parse(d2);
-    this.Days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    this.CreateLeaveFormGroup.controls.TotalDays.setValue(this.Days);
+    this.days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    this.CreateLeaveFormGroup.controls.TotalDays.setValue(this.days);
   }
 }

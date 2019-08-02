@@ -4,44 +4,31 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Leaves, UpdateLeaves } from '../Model/leaves'
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class LeavelistService {
 
-  private Url = environment.APIBASEURL + 'Leave/GetAllLeaves';
+  private Url = environment.APIBASEURL + 'Leave/GetAllLeaveType';
   private DeleteUrl = environment.APIBASEURL + 'Leave/DeleteLeaveType';
-  private CreateUrl = environment.APIBASEURL + 'Leave/CreateNewLeave';
-  private UpdateUrl = environment.APIBASEURL + 'Leave/UpdateLeave';
+  private CreateUrl = environment.APIBASEURL + 'Leave/CreateNewLeaveType';
+  private UpdateUrl = environment.APIBASEURL + 'Leave/UpdateLeaveType';
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
+  getAllLeaves() {
+    return this.http.get<Leaves[]>(this.Url, Utils.getAuthHeader())
   }
 
-  GetAllLeaves() {
-    return this.http.get<Leaves[]>(this.Url, this.getAuthHeader())
+  deleteLeaveType(id: number) {
+    return this.http.post<void>(this.DeleteUrl + "/" + id, null, Utils.getAuthHeader())
   }
 
-  DeleteLeaveType(id: number) {
-    return this.http.post<void>(this.DeleteUrl + "/" + id,null, this.getAuthHeader())
+  createLeave(leaveName: string) {
+    return this.http.post<void>(this.CreateUrl + "/" + leaveName, null, Utils.getAuthHeader())
   }
 
-  CreateLeave(leaveName:string) {
-    return this.http.post<void>(this.CreateUrl + "/" + leaveName,null, this.getAuthHeader())
-  }
-
-  UpdateLeave(leaves: Leaves) {
-    
-    return this.http.post<void>(this.UpdateUrl, leaves, this.getAuthHeader())
+  updateLeave(leaves: Leaves) {
+    return this.http.post<void>(this.UpdateUrl, leaves, Utils.getAuthHeader())
   }
 }
