@@ -34,6 +34,7 @@ export class StudentListComponent implements OnInit {
   courseNameList: Courses[];
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
   urlDocument: any;
+  studentDetails: Students;
 
   constructor(private modalService: BsModalService,
     private router: Router,
@@ -178,36 +179,38 @@ export class StudentListComponent implements OnInit {
 
   }
 
-  openStudentDetailsPopup(studentDetails: TemplateRef<any>, s) {
-    this.studentID = s.StudentId,
-      this.urlDocument = s.Document,
-      this.registerUpdateStudent.patchValue(
-        {
-          StudentId: s.StudentId,
-          Gender: s.Gender,
-          FirstName: s.FirstName,
-          MiddleName: s.MiddleName,
-          LastName: s.LastName,
-          Address1: s.Address1,
-          CourseType: s.CourseType,
-          Course: s.Course,
-          City: s.City,
-          State: s.State,
-          ZipCode: s.STDCode,
-          DOB: formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
-          PAddress1: s.PAddress1,
-          PCity: s.PCity,
-          PState: s.PState,
-          PSTDCode: s.PSTDCode,
-          BloodGroup: s.BloodGroup,
-          Photo: s.Photo,
-          ContactNo: s.ContactNo,
-          EmergencyNo: s.EmergencyNo,
-          Email: s.EmailId,
-          IsDocumentSubmitted: s.IsDocumentSubmitted,
-          Document: s.Document,
+  openStudentDetailsPopup(studentDetails: TemplateRef<any>, selectedStudent) {
+    this.studentID = selectedStudent.StudentId;
+    debugger;
+      this.urlDocument = selectedStudent.Document;
+      this.studentDetails = selectedStudent;
+    // this.registerUpdateStudent.patchValue(
+    //   {
+    //     StudentId: s.StudentId,
+    //     Gender: s.Gender,
+    //     FirstName: s.FirstName,
+    //     MiddleName: s.MiddleName,
+    //     LastName: s.LastName,
+    //     Address1: s.Address1,
+    //     CourseType: s.CourseType,
+    //     Course: s.Course,
+    //     City: s.City,
+    //     State: s.State,
+    //     ZipCode: s.STDCode,
+    //     DOB: formatDate(s.DOB, 'yyyy-MM-dd', 'en'),
+    //     PAddress1: s.PAddress1,
+    //     PCity: s.PCity,
+    //     PState: s.PState,
+    //     PSTDCode: s.PSTDCode,
+    //     BloodGroup: s.BloodGroup,
+    //     Photo: s.Photo,
+    //     ContactNo: s.ContactNo,
+    //     EmergencyNo: s.EmergencyNo,
+    //     Email: s.EmailId,
+    //     IsDocumentSubmitted: s.IsDocumentSubmitted,
+    //     Document: s.Document,
 
-        })
+    //   })
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
   }
