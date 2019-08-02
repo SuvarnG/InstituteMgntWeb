@@ -57,4 +57,8 @@ export class StudentslistService {
     debugger;
     return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,this.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
   }
+  onSubmitStudentFees(feesTransactions)
+  {
+    return this.http.post<FeesTransactions[]>(environment.APIBASEURL+'Bank/SaveFeesTransaction',feesTransactions,this.getAuthHeader())
+  }
 }

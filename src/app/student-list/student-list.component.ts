@@ -19,14 +19,14 @@ import { CoursetypeService } from './../coursetype/coursetype.service';
 export class StudentListComponent implements OnInit {
 
   modalRef: BsModalRef
-  payStudent: Students[];
+  payStudent: Students;
   feesTransaction: FeesTransactions[];
   [x: string]: any;
   returnUrl: string;
   studentID: number;
   submitted: boolean;
   registerUpdateStudent: FormGroup;
-  StudentFeesForm:FormGroup;
+  StudentFeesForm: FormGroup;
   ModalOptions: ModalOptions;
   showSelected: boolean;
   students: Students[];
@@ -47,9 +47,10 @@ export class StudentListComponent implements OnInit {
     this.returnUrl = '/create-student';
     this.getAllStudents(this.user.InstituteId, this.user.BranchId);
 
-this.StudentFeesForm=this.formBuilder.group({
-  FeesAmount:['', Validators.required]
-})
+    this.StudentFeesForm = this.formBuilder.group({
+      FeesAmount: ['', Validators.required],
+
+    })
     this.registerUpdateStudent = this.formBuilder.group({
       Gender: ['', Validators.required],
       FirstName: ['', Validators.required],
@@ -83,7 +84,7 @@ this.StudentFeesForm=this.formBuilder.group({
     BranchId: this.user.BranchId;
     this.StudentslistService.getAllStudents(InstituteId, BranchId).subscribe(res => {
       this.students = res
-      console.log("Students Data:"+this.students);
+      console.log("Students Data:" + this.students);
     });
   }
 
@@ -210,10 +211,18 @@ this.StudentFeesForm=this.formBuilder.group({
 
     this.modalRef = this.modalService.show(studentDetails, { class: 'modal-xl' })
   }
-  ShowFeesTransactionTemplate(StudentFees: TemplateRef<any>, _payStudent) {
+  ShowFeesTransactionTemplate(StudentFees: TemplateRef<any>, _payStudent: Students) {
     debugger;
-    this.getFeesTransactionDetails(_payStudent.StudentId);
+    this.StudentFeesForm.reset();
+    // this.getFeesTransactionDetails(_payStudent.StudentId);
+    this.StudentslistService.getFeesTransactionDetails(_payStudent.StudentId).subscribe(res => {
+      this.feesTransaction = res;
+      let totalPaid = 0;
+      this.feesTransaction.forEach(x => totalPaid += x.FeesPaid);
+      _payStudent.RemainingFees = _payStudent.TotalFees - totalPaid;
+    })
     this.modalRef = this.modalService.show(StudentFees, { class: 'modal-xl' })
+
     this.payStudent = _payStudent;
     console.log(this.payStudent);
   }
@@ -230,6 +239,7 @@ this.StudentFeesForm=this.formBuilder.group({
   }
 
   get f() { return this.registerUpdateStudent.controls }
+  get fc() { return this.StudentFeesForm.controls }
 
   onImageSelected(event: any) {
     if (event.target.files.length) {
@@ -251,11 +261,22 @@ this.StudentFeesForm=this.formBuilder.group({
 
   }
 
-  getFeesTransactionDetails(studentID:number) {
+
+  onSubmitStudentFees(student) {
     debugger;
-    this.StudentslistService.getFeesTransactionDetails(studentID).subscribe(res => {
-      this.feesTransaction = res
-    })
+    let body = {
+      StudentId: student.StudentId,
+      CourseId: student.CourseId,
+      DateOfPayment: new Date(),
+      FeesPaid: this.StudentFeesForm.controls.FeesAmount.value,
+      FeesTakenBy: this.user.userId
+    }
+    this.StudentslistService.onSubmitStudentFees(body).subscribe(data => this.payStudent)
+    // this.StudentslistService.onSubmitStudentFees(this.studentID).subscribe(res=>{
+    //   this.feesTransaction=res
+    // })
   }
+
+
 
 }

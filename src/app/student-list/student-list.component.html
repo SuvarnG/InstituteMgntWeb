@@ -76,12 +76,12 @@
               <div class="row">
                 <div class="col-sm-5 ">
                   <p class="card-title"><i class="font-md fa fa-money" data-toggle="tooltip" data-placement="bottom"
-                      title="Pending Fees"></i> {{s.PendingFees}}</p>
+                      title="Pending Fees"></i> {{s.RemainingFees}}</p>
 
                 </div>
                 <div class="col-sm-6 ">
 
-                  <a routerLink="/StudentList" (click)="ShowFeesTransactionTemplate(StudentFees,s); getFeesTransactionDetails(s.StudentId)" data-toggle="tooltip"
+                  <a routerLink="/StudentList" (click)="ShowFeesTransactionTemplate(StudentFees,s);" data-toggle="tooltip"
                     data-placement="bottom" title="Fees Payment">Pay Now</a>
                 </div>
               </div>
@@ -651,19 +651,28 @@
                 </div>
                 <div class="row">
                   <div class="col-md-6">
-                    <label for="CourseType">Course Type :</label>
-                    {{f.CourseType.value}}
+                    
+                   <h6 class="text-muted"> {{f.Course.value}}  ({{f.CourseType.value}})</h6>
                   </div>
 
-                  <div class="col-md-6">
+                  <!-- <div class="col-md-6">
                     <label for="Course">Course Name :</label>
-                    {{f.Course.value}}
-                  </div>
-
+                    {{f.CourseType.value}}
+                  </div> -->
+                 
                 </div>
+                 <!-- <div class="row">
+                    <div class="col-md-6 mb-2">
+                        <label for="Course"></label>
+                        
+                      </div>
+                    </div>  -->
               </div>
 
             </div>
+
+
+            
           </div>
 
 
@@ -713,7 +722,7 @@
                     
                         <div class="row mt-3">
                             <div class="col-md-4 col-sm-6 col-xs-6">
-                              <label for="TotalFees">Total Fees : </label>
+                              <label for="TotalFees">Total Fees </label>
                              
                             </div>
                             <div class="col-md-5 col-sm-6 col-xs-6">
@@ -725,16 +734,16 @@
                   
                       <div class="row">
                           <div class="col-md-4 col-sm-3 col-xs-3">
-                            <label for="RemaningFees">Remaning Fees:</label>
+                            <label for="RemaningFees">Remaning Fees </label>
                            
                           </div>
                           <div class="col-md-5 col-sm-3 col-xs-3">
                              
-                              {{payStudent.PendingFees}}
+                              {{payStudent.RemainingFees}}
                             </div>
                           
                         </div>
-                        <form [formGroup]="StudentFeesForm" (ngSubmit)="onSubmitStudentFees()">
+                        <form [formGroup]="StudentFeesForm">
                             <div class="row">
                                 <div class="col-md-4 col-sm-6 col-xs-6">
                                     <label for="PaidFees flex-1 align-self-center">Paying </label>              
@@ -746,9 +755,9 @@
                                      
                                       <input type="text" formControlName="FeesAmount" class="form-control flex-1" id="FeesAmount" formControlName="FeesAmount"
                         data-toggle="tooltip" data-placement="bottom" title="Paying Amount?" placeholder="Enter Amount"
-                        [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
-                      <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
-                        <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
+                        [ngClass]="{ 'is-invalid': submitFeesTransaction && fc.FeesAmount.errors }">
+                      <div *ngIf="submitFeesTransaction && fc.FeesAmount.errors" class="invalid-feedback">
+                        <div *ngIf="fc.FeesAmount.errors.required">Fees Amount is required</div>
                       </div>  
                       
                                     </div>
@@ -760,7 +769,7 @@
                         </form>
                         <div class="row pt-3">
                             <div class="col-md-9 border-top">
-                                <button class="btn mt-2 btn-square btn-primary pull-right"  type="submit">Submit</button>
+                                <button class="btn mt-2 btn-square btn-primary pull-right"  type="submit" (click)="onSubmitStudentFees(payStudent)">Submit</button>
                             </div>
                           </div>
 
