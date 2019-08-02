@@ -8,6 +8,7 @@ import { Chart } from 'chart.js';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Branch } from 'src/app/Model/Branch';
 import { BranchService } from 'src/app/branch/branch.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-authorised-layout',
@@ -39,6 +40,8 @@ export class AuthorisedLayoutComponent implements OnInit {
   branchSelection:number;
   currentRole:string;
   branchId:number;
+  firstBranchId:number;
+
 
   constructor(private expenseService: ExpenseService,
     private feesTransactionService: FeesTransactionService,
@@ -50,9 +53,12 @@ export class AuthorisedLayoutComponent implements OnInit {
 
     this.getBranchList();
     this.getUserRole();
+    
 
     if(this.currentRole=='Admin'){
-      this.branchId=this.branchSelection
+
+      console.log(this.firstBranchId)
+      this.branchId=this.firstBranchId
     }
     else{
       this.branchId=this.user.BranchId;
@@ -63,6 +69,8 @@ export class AuthorisedLayoutComponent implements OnInit {
     }
    
   }
+
+  
 
 
 
@@ -288,7 +296,9 @@ export class AuthorisedLayoutComponent implements OnInit {
 
   getBranchList(){
     this.branchService.getBranches(this.user.InstituteId).subscribe(data=>{
-        this.branchList=data
+        this.branchList=data;
+        this.firstBranchId= Number(this.branchList[0]['BranchId']);
+        console.log(this.firstBranchId);
     })
   }
 

@@ -27,9 +27,9 @@
     <div class="row" *ngIf="currentRole==='Admin'">
       <div class="col-md-4">
         <label for="InstituteId">Branch Name</label>
-        <select class="form-control" formControlName="BranchId" [value]="null" (change)="selectBranch($event)">
+        <select class="form-control" formControlName="BranchId" (change)="selectBranch($event)">
             <!-- <option [value]="null" disabled hidden>Select Branch</option> -->
-            <option *ngFor="let branch of branchList" [value]="branch.BranchId">
+            <option *ngFor="let branch of branchList; let i = index"  [value]="branch.BranchId" selected="{{branchList[0]['BranchId']}}">
               {{branch.BranchName}}
             </option>
         </select>
