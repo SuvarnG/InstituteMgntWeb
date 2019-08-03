@@ -12,7 +12,6 @@ export interface Students{
     Remark:string;
     Fees:number;
     TotalFees:number;
-    
     CourseCompletedDate:Date;
 
     FirstName:string;

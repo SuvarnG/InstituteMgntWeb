@@ -24,10 +24,10 @@
 
 <div class="container-fluid">
 
-    <div class="row" *ngIf="currentRole==='Admin'">
-      <div class="col-md-4">
-        <label for="InstituteId">Branch Name</label>
-        <select class="form-control" formControlName="BranchId" (change)="selectBranch($event)">
+    <div class="row mb-2 " *ngIf="currentRole==='Admin'">
+      <div class="col-md-4 d-inline-flex">
+        <label for="InstituteId" class="flex-1 align-self-center">Branch Name</label>
+        <select class="form-control flex-1" formControlName="BranchId" (change)="selectBranch($event)">
             <!-- <option [value]="null" disabled hidden>Select Branch</option> -->
             <option *ngFor="let branch of branchList; let i = index"  [value]="branch.BranchId" selected="{{branchList[0]['BranchId']}}">
               {{branch.BranchName}}
@@ -37,12 +37,16 @@
         <a routerLink="/Branch">Please Click here to create a new Branch</a></h6>
       </div>
     </div>
+    <div class="col-md-4">
+       
+       
+    </div>
     </div>
 
   <div class="animated fadeIn">
     <div class="card-columns cols-2">
-      <div class="card">
-        <div class="card-header">Monthly Expenses</div>
+      <div class="card shadow border-0 rounded-0">
+        <div class="card-header bg-light">Monthly Expenses</div>
         <div class="card-body">
           <div class="chart-container">
             <div class="chartjs-size-monitor">
@@ -56,8 +60,8 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header">Monthly Income</div>
+      <div class="card shadow border-0 rounded-0">
+        <div class="card-header bg-light">Monthly Income</div>
         <div class="card-body">
           <div class="chart-container">
             <div class="chartjs-size-monitor">
@@ -71,8 +75,8 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header">{{month_Name | date:'MMMM'}} Expenses</div>
+      <div class="card shadow border-0 rounded-0">
+        <div class="card-header bg-light">{{month_Name | date:'MMMM'}} Expenses</div>
         <div class="card-body">
           <div class="chart-container">
             <div class="chartjs-size-monitor">
@@ -86,8 +90,8 @@
           </div>
         </div>
       </div>
-      <div class="card">
-        <div class="card-header">{{month_Name | date:'MMMM'}} Collection CourseWise</div>
+      <div class="card shadow border-0 rounded-0">
+        <div class="card-header bg-light">{{month_Name | date:'MMMM'}} Collection CourseWise</div>
         <div class="card-body">
           <div class="chart-container">
             <div class="chartjs-size-monitor">

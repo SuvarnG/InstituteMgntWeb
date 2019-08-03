@@ -36,8 +36,8 @@
         *ngFor="let t of staffMaster | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
 
 
-        <div class="card">
-          <div class="card-header h5">{{t.FirstName+' '+t.LastName | titlecase}}
+        <div class="card shadow border-0 rounded-0 ">
+          <div class="card-header bg-light h5">{{t.FirstName+' '+t.LastName | titlecase}}
             <div class="card-header-actions">
               <a class="card-header-action btn-setting" (click)="getStaffDetails(showStaff,t)" title="Staff Details">
                 <i class="cui-info info"></i>

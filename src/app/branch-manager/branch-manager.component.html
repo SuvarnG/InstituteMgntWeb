@@ -32,8 +32,8 @@
   <div class="row my-4 px-3 pb-3">
       <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4" *ngFor="let b of branchManagerList | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
     
-          <div class="card">
-              <div class="card-header h5">{{b.FirstName | titlecase}} {{b.LastName | titlecase}}
+          <div class="card shadow border-0 rounded-0">
+              <div class="card-header h5 bg-light">{{b.FirstName | titlecase}} {{b.LastName | titlecase}}
                 <div class="card-header-actions">
                   <a class="card-header-action btn-setting" (click)="openManagerDetailsPopup(ManagerDetailsTemplate, b)" title="Manager Details">
                     <i class="cui-info info"></i>
