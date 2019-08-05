@@ -27,9 +27,9 @@
     <div class="row mb-2 " *ngIf="currentRole==='Admin'">
       <div class="col-md-4 d-inline-flex">
         <label for="InstituteId" class="flex-1 align-self-center">Branch Name</label>
-        <select class="form-control flex-1" (change)="selectBranch($event)">
+        <select class="form-control flex-1" (change)="selectBranch($event)" ng-init="ctrl.branchList=ctrl.branch[0]">
             <!-- <option [value]="null" disabled hidden>Select Branch</option> -->
-            <option *ngFor="let branch of branchList; let i = index"  [value]="branch.BranchId" selected="{{branchList[0]['BranchId']}}">
+            <option *ngFor="let branch of branchList; let i = index"  [value]="branch.BranchId" >
               {{branch.BranchName}}
             </option>
         </select>
