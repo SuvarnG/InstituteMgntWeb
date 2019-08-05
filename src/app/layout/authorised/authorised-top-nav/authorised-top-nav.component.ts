@@ -32,22 +32,28 @@ export class AuthorisedTopNavComponent implements OnInit {
     private loginService: LoginService) { }
 
   ngOnInit() {
-    this.getAllStudentsPendingFeesDetails();
+
+    if(this.user.roles=='Teacher' || this.user.roles=='BranchManager'){
+      this.getAllStudentsPendingFeesDetails();
+    }
+   
 
     this.updateProfileForm = this.formBuilder.group({
-      FirstName: [],
-      LastName: [],
-      Email: [],
+      FirstName: ['',Validators.required],
+      LastName: ['',Validators.required],
+      Email: ['',Validators.required],
       Photo: [],
       UpdatePassword: [],
-      Password: [],
-      Contact: [],
-      Address: [],
-      Role: [],
+      Password: ['',Validators.required],
+      Contact: ['',Validators.required],
+      Address: ['',Validators.required]
     })
     this.getUserDetails(Number(this.user.userId));
   }
+
+
   get f() { return this.updateProfileForm.controls; }
+
   Logout() {
     localStorage.removeItem('CurrentUser');
     this.router.navigate(['/Login']);
@@ -67,8 +73,7 @@ export class AuthorisedTopNavComponent implements OnInit {
       LastName: this.User.LastName,
       Contact: this.User.Contact,
       Address: this.User.Address,
-      Role: user.roles,
-      Email: this.User.Email,
+      Email: this.User.Email
     })
     this.modalRef = this.modalService.show(template, {
       animated: true,
@@ -110,7 +115,6 @@ export class AuthorisedTopNavComponent implements OnInit {
       Photo: this.thumbnailUrl,
       Email: this.updateProfileForm.controls.Email.value,
       Password: this.updateProfileForm.controls.Password.value,
-      RoleId: this.User.RoleId,
       Id: this.User.Id
     }
     this.loginService.updateUser(body).subscribe(data => {
