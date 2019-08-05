@@ -85,7 +85,7 @@
           <div class="container-fluid">
           <div class="form-group">
               <label for="InstituteName">Institute Name</label>
-              <input type="text" class="form-control" formControlName="InstituteName" placeholder="Institute Name"
+              <input type="text" class="form-control" formControlName="InstituteName" placeholder="Enter Institute Name"
                       [ngClass]="{ 'is-invalid': submitted && f.InstituteName.errors }">
                       <div *ngIf="submitted && f.InstituteName.errors" class="invalid-feedback">
                           <div *ngIf="f.InstituteName.errors.required">Please Enter Institute Name</div>
@@ -94,7 +94,7 @@
   
               <div class="form-group">
                   <label for="Address">Institute Address</label>
-                  <input type="text" class="form-control" formControlName="Address" placeholder="Institute Address"
+                  <input type="text" class="form-control" formControlName="Address" placeholder="Enter Institute Address"
                       [ngClass]="{ 'is-invalid': submitted &&
                         f.Address.errors }">
                         <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
@@ -104,7 +104,7 @@
 
                   <div class="form-group">
                       <label for="OwnerName">Institute Owner</label>
-                      <input type="text" class="form-control" formControlName="OwnerName" placeholder="Owner Name"
+                      <input type="text" class="form-control" formControlName="OwnerName" placeholder="Enter Owner Name"
                           [ngClass]="{ 'is-invalid': submitted &&
                             f.OwnerName.errors }">
                             <div *ngIf="submitted && f.OwnerName.errors" class="invalid-feedback">
@@ -114,7 +114,7 @@
   
                   <div class="form-group">
                       <label for="ContactNo">Contact Number</label>
-                      <input type="text" class="form-control" formControlName="ContactNo" placeholder="Contact Number"
+                      <input type="text" class="form-control" formControlName="ContactNo" placeholder="Enter Contact Number"
                       pattern="^[7-9][0-9]{9}$"
                       [ngClass]="{ 'is-invalid': submitted &&
                     f.ContactNo.errors }">
@@ -126,7 +126,7 @@
 
                       <div class="form-group">
                           <label for="BankName">Email Id</label>
-                          <input type="text" class="form-control" formControlName="EmailId" placeholder="Contact Number"
+                          <input type="text" class="form-control" formControlName="EmailId" placeholder="Enter Email Id"
                           [ngClass]="{ 'is-invalid': submitted &&
                         f.EmailId.errors }">
                         <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
@@ -153,7 +153,7 @@
 <ng-template #editInstituteTemplate>
   <form [formGroup]="editInstituteForm" (ngSubmit)="editInstitute()">
     <div class="modal-header">
-      <h5 class="modal-title pull-left">Edit Institute</h5>
+      <h5 class="modal-title pull-left"> Update Institute</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -215,7 +215,7 @@
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-square btn-primary" type="submit">Submit</button>
+      <button class="btn btn-square btn-primary" type="submit">Update</button>
       <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
     </div>
     </div>

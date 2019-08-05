@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.LoginService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {
-        console.log('User after login:' + JSON.stringify(data));
+        //console.log('User after login:' + JSON.stringify(data));
         if (data && data.access_token && (data.roles=="Admin" || data.roles=="BranchManager")){
           this.router.navigate([this.returnUrl]);
         }

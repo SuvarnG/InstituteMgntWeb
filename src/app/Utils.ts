@@ -24,7 +24,7 @@ export class Utils {
     public static GetAccessToken(): string {
         //console.log(`Token:${this.GetCurrentUser().access_token}`);
         let user = this.GetCurrentUser();
-        console.log("Access Token:",user ? user.access_token : null);
+        //console.log("Access Token:",user ? user.access_token : null);
         return user ? user.access_token : null;
     }
 
