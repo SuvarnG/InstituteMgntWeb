@@ -24,6 +24,8 @@ export class AuthorisedTopNavComponent implements OnInit {
   public thumbnailUrl: any;
   User: User;
   RoleId: number;
+  submitted=false;
+
   constructor(private router: Router,
     private studentslistService: StudentslistService,
     private modalService: BsModalService,
@@ -41,10 +43,10 @@ export class AuthorisedTopNavComponent implements OnInit {
     this.updateProfileForm = this.formBuilder.group({
       FirstName: ['',Validators.required],
       LastName: ['',Validators.required],
-      Email: ['',Validators.required],
+      Email: ['',[Validators.required,Validators.email]],
       Photo: [],
       UpdatePassword: [],
-      Password: ['',Validators.required],
+      Password: [],
       Contact: ['',Validators.required],
       Address: ['',Validators.required]
     })
@@ -107,18 +109,45 @@ export class AuthorisedTopNavComponent implements OnInit {
   }
 
   onSubmitUpdateProfile() {
-    let body = {
-      FirstName: this.updateProfileForm.controls.FirstName.value,
-      LastName: this.updateProfileForm.controls.LastName.value,
-      Contact: this.updateProfileForm.controls.Contact.value,
-      Address: this.updateProfileForm.controls.Address.value,
-      Photo: this.thumbnailUrl,
-      Email: this.updateProfileForm.controls.Email.value,
-      Password: this.updateProfileForm.controls.Password.value,
-      Id: this.User.Id
+
+    this.submitted=true;
+    if(this.updateProfileForm.invalid){
+      return;
     }
-    this.loginService.updateUser(body).subscribe(data => {
-      this.modalRef.hide();
-    });
+
+    if(this.updateProfileForm.controls.Password.value){
+      let body = {
+        FirstName: this.updateProfileForm.controls.FirstName.value,
+        LastName: this.updateProfileForm.controls.LastName.value,
+        Contact: this.updateProfileForm.controls.Contact.value,
+        Address: this.updateProfileForm.controls.Address.value,
+        Photo: this.thumbnailUrl,
+        Email: this.updateProfileForm.controls.Email.value,
+        Password: this.updateProfileForm.controls.Password.value,
+        Id: this.User.Id
+      }
+
+      this.loginService.updateUser(body).subscribe(data => {
+        this.modalRef.hide();
+      });
+    }
+    else{
+      let body = {
+        FirstName: this.updateProfileForm.controls.FirstName.value,
+        LastName: this.updateProfileForm.controls.LastName.value,
+        Contact: this.updateProfileForm.controls.Contact.value,
+        Address: this.updateProfileForm.controls.Address.value,
+        Photo: this.thumbnailUrl,
+        Email: this.updateProfileForm.controls.Email.value,
+        Password: this.User.Password,
+        Id: this.User.Id
+      }
+
+      this.loginService.updateUser(body).subscribe(data => {
+        this.modalRef.hide();
+      });
+    }
+
+
   }
 }
