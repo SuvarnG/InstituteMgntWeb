@@ -26,10 +26,10 @@ export class AuthorisedLayoutComponent implements OnInit {
   IncomeInMonths = [];
   TotalIncome = [];
   modalRef: BsModalRef;
-  chart:any = [];
-  chart2:any = [];
-  chart3:any = [];
-  chart4:any = [];
+  chart:any;
+  chart2:any;
+  chart3:any;
+  chart4:any;
   TotalStudents:any = [];
   Income:any = [];
   Expenses:any = [];
@@ -50,11 +50,10 @@ export class AuthorisedLayoutComponent implements OnInit {
 
   ngOnInit() {
 
-
+    
     this.getBranchList();
     this.getUserRole();
     
-
     if(this.currentRole=='Admin'){
 
       console.log(this.firstBranchId)
@@ -80,9 +79,9 @@ export class AuthorisedLayoutComponent implements OnInit {
     this.TotalIncome=[];
     //this.chart2=[];
 
-    // if(typeof this.chart2 !== "undefined") {
-		// 	this.chart2.destroy();
-		// }
+     if(this.chart2) {
+		 	this.chart2.destroy();
+		 }
 
   this.feesTransactionService.getMonthwiseIncome(this.branchId).subscribe((result: FeesTransaction[]) => {
     result.forEach(x => {
@@ -128,9 +127,9 @@ export class AuthorisedLayoutComponent implements OnInit {
     this.MonthwiseExpenseAmt=[];
     //this.chart=[];
 
-    // if(typeof this.chart !== "undefined") {
-		// 	this.chart.destroy();
-		// }
+     if(this.chart) {
+		 	this.chart.destroy();
+		 }
 
   this.expenseService.monthwiseExpensesChartList(this.branchId).subscribe((result: ExpenseChart[]) => {
     result.forEach(x => {
@@ -176,9 +175,9 @@ export class AuthorisedLayoutComponent implements OnInit {
     this.CurrentMonthExpenseAmt=[];
     //this.chart3=[];
 
-    // if(typeof this.chart3 !== "undefined") {
-		// 	this.chart3.destroy();
-		// }
+     if(this.chart3) {
+		 	this.chart3.destroy();
+		 }
 
   this.expenseService.currentMonthExpensesChartList(this.branchId).subscribe((result: ExpenseChart[]) => {
     result.forEach(x => {
@@ -239,9 +238,9 @@ export class AuthorisedLayoutComponent implements OnInit {
     this.CurrentMonthIncome=[];
     //this.chart4=[];
 
-    // if(typeof this.chart4 !== "undefined") {
-		// 	this.chart4.destroy();
-		// }
+     if(this.chart4) {
+		 	this.chart4.destroy();
+		 }
 
   this.month_Name = new Date();
   this.feesTransactionService.getCurrentMonthCoursewiseIncome(this.branchId).subscribe((result: FeesTransaction[]) => {
@@ -304,7 +303,6 @@ export class AuthorisedLayoutComponent implements OnInit {
 
 
   selectBranch(event:any){
-    debugger;
     this.branchSelection=event.target.value;
     if(this.currentRole=='Admin'){
       this.branchId=this.branchSelection
