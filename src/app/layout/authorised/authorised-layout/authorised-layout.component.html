@@ -25,7 +25,7 @@
 <div class="container-fluid">
 
     <div class="row mb-2 " *ngIf="currentRole==='Admin'">
-      <div class="col-md-4 d-inline-flex">
+      <div class="col-md-4 d-inline">
         <label for="InstituteId" class="flex-1 align-self-center">Branch Name</label>
         <select class="form-control flex-1" (change)="selectBranch($event)" ng-init="ctrl.branchList=ctrl.branch[0]">
             <!-- <option [value]="null" disabled hidden>Select Branch</option> -->

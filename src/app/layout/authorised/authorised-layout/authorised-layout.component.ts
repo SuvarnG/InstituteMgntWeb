@@ -56,22 +56,18 @@ export class AuthorisedLayoutComponent implements OnInit {
     
     if(this.currentRole=='Admin'){
 
-      // this.branchService.getBranches(this.user.InstituteId).pipe(map(data=>{
-      //   this.branchList = data;
-      //   this.firstBranchId = Number(this.branchList[0]['BranchId']) 
-      
-
-      // }))
-
       this.branchService.getBranches(this.user.InstituteId).toPromise().then(data=>{
         this.branchList = data;
-        this.firstBranchId = Number(this.branchList[0]['BranchId']) ;
-        console.log(this.firstBranchId);
-        this.branchId=this.firstBranchId;
-        this.getMonthwiseIncome();
-        this.getCurrentMonthCoursewiseIncome();
-        this.currentMonthExpensesChartList();
-        this.monthwiseExpensesChartList();
+        
+        if(this.branchList[0]['BranchId']){
+          this.firstBranchId = Number(this.branchList[0]['BranchId']) ;
+          this.branchId=this.firstBranchId;
+          this.getMonthwiseIncome();
+          this.getCurrentMonthCoursewiseIncome();
+          this.currentMonthExpensesChartList();
+          this.monthwiseExpensesChartList();
+        }
+       
       })      
       
     }
@@ -312,7 +308,7 @@ export class AuthorisedLayoutComponent implements OnInit {
   getBranchList(){
     this.branchService.getBranches(this.user.InstituteId).subscribe(data=>{
         this.branchList=data;
-        this.firstBranchId= Number(this.branchList[0]['BranchId']);
+        //this.firstBranchId= Number(this.branchList[0]['BranchId']);
     })
   }
 
