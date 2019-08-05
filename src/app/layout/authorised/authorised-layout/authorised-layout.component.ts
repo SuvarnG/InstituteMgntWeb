@@ -56,8 +56,24 @@ export class AuthorisedLayoutComponent implements OnInit {
     
     if(this.currentRole=='Admin'){
 
-      console.log(this.firstBranchId)
-      this.branchId=this.firstBranchId
+      // this.branchService.getBranches(this.user.InstituteId).pipe(map(data=>{
+      //   this.branchList = data;
+      //   this.firstBranchId = Number(this.branchList[0]['BranchId']) 
+      
+
+      // }))
+
+      this.branchService.getBranches(this.user.InstituteId).toPromise().then(data=>{
+        this.branchList = data;
+        this.firstBranchId = Number(this.branchList[0]['BranchId']) ;
+        console.log(this.firstBranchId);
+        this.branchId=this.firstBranchId;
+        this.getMonthwiseIncome();
+        this.getCurrentMonthCoursewiseIncome();
+        this.currentMonthExpensesChartList();
+        this.monthwiseExpensesChartList();
+      })      
+      
     }
     else{
       this.branchId=this.user.BranchId;
@@ -297,7 +313,6 @@ export class AuthorisedLayoutComponent implements OnInit {
     this.branchService.getBranches(this.user.InstituteId).subscribe(data=>{
         this.branchList=data;
         this.firstBranchId= Number(this.branchList[0]['BranchId']);
-        console.log(this.firstBranchId);
     })
   }
 
@@ -321,7 +336,6 @@ export class AuthorisedLayoutComponent implements OnInit {
 
   getUserRole() {
     this.currentRole = Utils.GetUserRole();
-    console.log(JSON.stringify(this.currentRole));
   }
 
 

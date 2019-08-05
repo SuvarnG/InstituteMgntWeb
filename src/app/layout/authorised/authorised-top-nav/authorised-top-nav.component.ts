@@ -25,6 +25,7 @@ export class AuthorisedTopNavComponent implements OnInit {
   User: User;
   RoleId: number;
   submitted=false;
+  currentRole:string;
 
   constructor(private router: Router,
     private studentslistService: StudentslistService,
@@ -35,7 +36,7 @@ export class AuthorisedTopNavComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.user.roles=='Teacher' || this.user.roles=='BranchManager'){
+    if(this.currentRole=='Teacher' || this.currentRole=='BranchManager'){
       this.getAllStudentsPendingFeesDetails();
     }
    
@@ -50,7 +51,7 @@ export class AuthorisedTopNavComponent implements OnInit {
       Contact: ['',Validators.required],
       Address: ['',Validators.required]
     })
-    this.getUserDetails(Number(this.user.userId));
+    //this.getUserDetails(Number(this.user.userId));
   }
 
 
@@ -67,7 +68,12 @@ export class AuthorisedTopNavComponent implements OnInit {
   }
   public user = Utils.GetCurrentUser();
 
+  getUserRole() {
+    this.currentRole = Utils.GetUserRole();
+  }
+
   openUpdateProfileTemplate(template: TemplateRef<any>, user) {
+    this.getUserDetails(Number(this.user.userId));
     this.RoleId = user.RoleId;
     this.thumbnailUrl = user.Photo;
     this.updateProfileForm.patchValue({
