@@ -51,14 +51,14 @@ export class AuthorisedLayoutComponent implements OnInit {
   ngOnInit() {
 
     
-    this.getBranchList();
+    //this.getBranchList();
     this.getUserRole();
     
     if(this.currentRole=='Admin'){
 
       this.branchService.getBranches(this.user.InstituteId).toPromise().then(data=>{
         this.branchList = data;
-        
+
         if(this.branchList[0]['BranchId']){
           this.firstBranchId = Number(this.branchList[0]['BranchId']) ;
           this.branchId=this.firstBranchId;
@@ -72,6 +72,7 @@ export class AuthorisedLayoutComponent implements OnInit {
       
     }
     else{
+      this.getBranchList();
       this.branchId=this.user.BranchId;
       this.getMonthwiseIncome();
       this.getCurrentMonthCoursewiseIncome();
