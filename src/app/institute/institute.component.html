@@ -128,11 +128,12 @@
                           <label for="BankName">Email Id</label>
                           <input type="text" class="form-control" formControlName="EmailId" placeholder="Enter Email Id"
                           [ngClass]="{ 'is-invalid': submitted &&
-                        f.EmailId.errors }">
+                        f.EmailId.errors }" (blur)="validatingExistingUserEmail(f.EmailId.value)">
                         <div *ngIf="submitted && f.EmailId.errors" class="invalid-feedback">
                             <div *ngIf="f.EmailId.errors.required">Please Enter Email Id.</div>
                             <div *ngIf="f.EmailId.errors.email">Email must be a valid email address</div>
                           </div>
+                          <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
                           </div>
   
         
@@ -204,11 +205,12 @@
                         <label for="BankName">Email Id</label>
                         <input type="text" class="form-control" formControlName="EmailId" placeholder="Contact Number"
                         [ngClass]="{ 'is-invalid': submitted &&
-                      fu.EmailId.errors }">
+                      fu.EmailId.errors }" (blur)="validatingExistingUserEmail(fu.EmailId.value)">
                       <div *ngIf="submitted && fu.EmailId.errors" class="invalid-feedback">
                           <div *ngIf="fu.EmailId.errors.required">Please Enter Email Id.</div>
                           <div *ngIf="fu.EmailId.errors.email">Email must be a valid email address</div>
                         </div>
+                        <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
                         </div>
 
       

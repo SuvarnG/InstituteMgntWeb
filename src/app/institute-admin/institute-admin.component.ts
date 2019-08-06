@@ -23,9 +23,11 @@ export class InstituteAdminComponent implements OnInit {
   modalRef:BsModalRef;
   submitted= false;
   institutesList:Institutes[];
+  chkEmailId:any;
   thumbnailUrl:any='../../assets/images/MProfile.jpg';
-p:any;
-filter:any;
+  p:any;
+  filter:any;
+
   constructor(private instituteAdminService:InstituteAdminService,
               private modalService: BsModalService,
               private formBuilder:FormBuilder,
@@ -105,7 +107,7 @@ filter:any;
   createInstituteAdmin(){
 
     this.submitted=true;
-    if(this.createInstituteAdminForm.invalid){
+    if(this.createInstituteAdminForm.invalid || this.chkEmailId>0){
       return
     }
 
@@ -175,7 +177,7 @@ filter:any;
   editInstituteAdmin(){
 
     this.submitted=true;
-    if(this.editInstituteAdminForm.invalid){
+    if(this.editInstituteAdminForm.invalid || this.chkEmailId>0){
       return 
     }
 
@@ -259,10 +261,19 @@ filter:any;
   }
 
 
+  validatingExistingUserEmail(EmailId:string){
+      debugger;
+      return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
+        this.chkEmailId=data;
+      })
+  }
+
+
 
   onCancel(){
     this.modalRef.hide();
     this.submitted=false;
+    this.chkEmailId=0;
   }
 
 }

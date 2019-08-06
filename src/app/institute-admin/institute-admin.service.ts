@@ -47,5 +47,10 @@ export class InstituteAdminService {
       observe: 'events'
     })
   }
+
+  validatingExistingUserEmail(EmailId:string){
+    debugger;
+    return this.httpClient.post(environment.APIBASEURL+'Institute/ValidatingExistingUserEmail'+ '/'+ EmailId +'/',null, this.getAuthHeader());
+  }
   
 }

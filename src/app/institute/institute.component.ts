@@ -6,6 +6,7 @@ import { Utils } from '../Utils';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
+import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 
 @Component({
   selector: 'app-institute',
@@ -25,13 +26,15 @@ export class InstituteComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   p:any;
   filter:any;
+  chkEmailId:any
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
   constructor(private instituteService:InstituteService,
               private formBuilder:FormBuilder,
-              private modalService: BsModalService) { }
+              private modalService: BsModalService,
+              private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
 
@@ -103,7 +106,7 @@ export class InstituteComponent implements OnInit {
 
   createInstitute(){
     this.submitted=true;
-    if(this.createInstituteForm.invalid){
+    if(this.createInstituteForm.invalid || this.chkEmailId>0){
       return;
     }
     this.submitted=false;
@@ -149,7 +152,7 @@ export class InstituteComponent implements OnInit {
 
   editInstitute(){ 
     this.submitted=true;
-    if(this.editInstituteForm.invalid){
+    if(this.editInstituteForm.invalid || this.chkEmailId>0){
       return;
     }
     this.submitted=false;
@@ -186,10 +189,19 @@ export class InstituteComponent implements OnInit {
   }
 
 
+  validatingExistingUserEmail(EmailId:string){
+    debugger;
+    return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
+      this.chkEmailId=data;
+    })
+}
+
+
 
   onCancel(){
     this.submitted=false;
     this.modalRef.hide();
+    this.chkEmailId=0;
   }
 
 }
