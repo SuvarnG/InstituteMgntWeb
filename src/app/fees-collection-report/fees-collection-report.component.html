@@ -23,7 +23,7 @@
 
                         <div class="col-lg-2">
                                 <label for="Branch" >Branch</label>
-                            <select class="form-control" [value]="null" formControlName="branchId">
+                            <select class="form-control" [value]="null" formControlName="branchId" (change)=selectBranch(f.branchId.value)>
                                 <option value="null" disabled hidden>Select Branch</option>
                                 <option *ngFor="let b of branchList" [value]="b.BranchId">{{b.BranchName}}</option>
                             </select>

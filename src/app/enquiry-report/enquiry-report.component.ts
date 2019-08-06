@@ -32,7 +32,7 @@ p:any;
 
   ngOnInit() {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res});
-    this.coursesService.courseList(this.user.InstituteId,this.user.BranchId).subscribe(res=>{this.courseList=res});
+   
 
     this.registerEnquiryReport=this.formBuilder.group({
       BranchName:[],
@@ -62,7 +62,8 @@ p:any;
       BranchId:this.registerEnquiryReport.controls.BranchName.value,
       CourseId:this.registerEnquiryReport.controls.CourseName.value,
       FromDate:this.registerEnquiryReport.controls.FromDate.value,
-      ToDate:this.registerEnquiryReport.controls.ToDate.value
+      ToDate:this.registerEnquiryReport.controls.ToDate.value,
+      InstituteId:this.user.InstituteId
     }
 
     return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
@@ -89,7 +90,8 @@ p:any;
       BranchId:this.registerEnquiryReport.controls.BranchName.value,
       CourseId:this.registerEnquiryReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
@@ -106,7 +108,8 @@ p:any;
       BranchId:this.registerEnquiryReport.controls.BranchName.value,
       CourseId:this.registerEnquiryReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
@@ -123,7 +126,8 @@ p:any;
       BranchId:this.registerEnquiryReport.controls.BranchName.value,
       CourseId:this.registerEnquiryReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
@@ -131,6 +135,10 @@ p:any;
     });
 
   }
+  }
+
+  selectBranch(id:number){
+    this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res});
   }
 
   exportAsXLSX():void {

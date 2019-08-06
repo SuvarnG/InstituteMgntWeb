@@ -175,6 +175,7 @@ export interface FeesReportInput{
     CourseId:number;
     FromDate:Date;
     ToDate:Date;
+    InstituteId:number;
 }
 
 export interface FeesReport{
@@ -193,6 +194,7 @@ export interface StudentReportInput{
     CourseId:number;
     FromDate:Date;
     ToDate:Date;
+    InstituteId:number;
 }
 
 export interface StudentReport{

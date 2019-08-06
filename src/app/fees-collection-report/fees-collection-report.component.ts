@@ -30,7 +30,7 @@ p:any;
 
   ngOnInit() {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res})
-    this.coursesService.courseList(this.user.InstituteId,this.user.BranchId).subscribe(res=>{this.courseList=res})
+    
 
     this.registerFeesCollectionReport=this.formBuilder.group({
       branchId:[],
@@ -45,7 +45,14 @@ p:any;
 
   public user= Utils.GetCurrentUser();
 
+  selectBranch(id:number){
+      debugger;
+      this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res})
+  }
+
+
   pullFeesCollectionReport() {
+    debugger;
     if (this.periodSelection == "SelectDateRange") {
       this.submitted = true;
       if (this.registerFeesCollectionReport.invalid) {
@@ -56,7 +63,8 @@ p:any;
         BranchId: this.registerFeesCollectionReport.controls.branchId.value,
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: this.registerFeesCollectionReport.controls.FromDate.value,
-        ToDate: this.registerFeesCollectionReport.controls.ToDate.value
+        ToDate: this.registerFeesCollectionReport.controls.ToDate.value,
+        InstituteId:this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -77,7 +85,8 @@ p:any;
         BranchId: this.registerFeesCollectionReport.controls.branchId.value,
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
-        ToDate: todaysDate
+        ToDate: todaysDate,
+        InstituteId:this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -92,7 +101,8 @@ p:any;
         BranchId: this.registerFeesCollectionReport.controls.branchId.value,
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
-        ToDate: todaysDate
+        ToDate: todaysDate,
+        InstituteId:this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -107,7 +117,8 @@ p:any;
         BranchId: this.registerFeesCollectionReport.controls.branchId.value,
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
-        ToDate: todaysDate
+        ToDate: todaysDate,
+        InstituteId:this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res

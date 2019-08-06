@@ -32,6 +32,7 @@ export interface EnquiryReportInput{
     CourseId:number;
     FromDate:Date;
     ToDate:Date;
+    InstituteId:number;
 }
 
 export interface EnquiryReport{

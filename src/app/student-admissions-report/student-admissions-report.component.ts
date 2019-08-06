@@ -30,7 +30,6 @@ p:any;
 
   ngOnInit() {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res});
-    this.coursesService.courseList(this.user.InstituteId,this.user.BranchId).subscribe(res=>{this.courseList=res});
 
     this.registerStudentAdmissionReport=this.formBuilder.group({
       BranchName:[],
@@ -58,7 +57,8 @@ p:any;
       BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
       CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
       FromDate:this.registerStudentAdmissionReport.controls.FromDate.value,
-      ToDate:this.registerStudentAdmissionReport.controls.ToDate.value
+      ToDate:this.registerStudentAdmissionReport.controls.ToDate.value,
+      InstituteId:this.user.InstituteId
     }
 
     return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
@@ -79,7 +79,8 @@ p:any;
       BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
       CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
@@ -94,7 +95,8 @@ p:any;
       BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
       CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
@@ -109,7 +111,8 @@ p:any;
       BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
       CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
       FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
-      ToDate:todaysDate
+      ToDate:todaysDate,
+      InstituteId:this.user.InstituteId
     }
 
     return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
@@ -117,6 +120,10 @@ p:any;
     });
   }
 
+  }
+
+  selectBranch(id:number){
+    this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res});
   }
 
   exportAsXLSX():void {

@@ -29,6 +29,7 @@ export interface ExpenseReport{
     ExpenseTypeId:number;
     FromDate:Date;
     ToDate:Date;
+    InstituteId:number;
 }
 
 export interface ExpenseReportList{

@@ -66,7 +66,8 @@ p:any;
         BranchId:this.registerExpensesReport.controls.BranchName.value,
         ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
         ToDate:todaysDate,
-        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),        
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)), 
+        InstituteId:this.user.InstituteId       
        }
          this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
          this.expenseReportList=res});
@@ -79,7 +80,8 @@ p:any;
         BranchId:this.registerExpensesReport.controls.BranchName.value,
         ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
         ToDate:todaysDate,
-        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),        
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),  
+        InstituteId:this.user.InstituteId      
        }
          this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
          this.expenseReportList=res});
@@ -92,7 +94,8 @@ p:any;
         BranchId:this.registerExpensesReport.controls.BranchName.value,
         ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
         ToDate:todaysDate,
-        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),        
+        FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)), 
+        InstituteId:this.user.InstituteId      
        }
          this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
          this.expenseReportList=res});
@@ -109,7 +112,8 @@ p:any;
         BranchId:this.registerExpensesReport.controls.BranchName.value,
         ExpenseTypeId:this.registerExpensesReport.controls.Expense.value,
         ToDate:this.registerExpensesReport.controls.ToDate.value,
-        FromDate:this.registerExpensesReport.controls.FromDate.value,        
+        FromDate:this.registerExpensesReport.controls.FromDate.value,   
+        InstituteId:this.user.InstituteId     
        }
          this.expenseReportService.pullExpenseReport(body).subscribe(res=>{
          this.expenseReportList=res});
