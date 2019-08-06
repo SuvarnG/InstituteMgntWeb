@@ -1,10 +1,11 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef,OnDestroy, Injectable, Inject, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
 import { FormsModule, Validators, FormBuilder } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { Resetpassword } from '../Model/User';
+import { DOCUMENT } from '@angular/platform-browser';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { Resetpassword } from '../Model/User';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit,OnDestroy {
   returnUrl: string;
   errorMessage: any;
   submitted: boolean=false;
@@ -22,14 +23,17 @@ export class LoginComponent implements OnInit {
   reset:Resetpassword[]
   forgotPasswordForm: any;
 
-  constructor(private router: Router,
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private renderer: Renderer2,
+    private router: Router,
     private LoginService: LoginService,
     private route: ActivatedRoute,
     private modalService: BsModalService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-
+    this.renderer.addClass(this.document.body, 'bodyBackgroud');
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -44,6 +48,13 @@ export class LoginComponent implements OnInit {
     }
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Dashboard';
+  }
+
+  ngOnDestroy() 
+{
+   
+ this.renderer.removeClass(this.document.body, 'bodyBackgroud');
+
   }
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }

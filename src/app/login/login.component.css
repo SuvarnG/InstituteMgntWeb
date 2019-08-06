@@ -33,6 +33,7 @@
     100% { left: -400%; }
     }
     
+
     body { margin: 0; } 
     div#slider { overflow: hidden; }
     div#slider figure img { width: 20%; float: left; }
@@ -46,7 +47,6 @@
        animation: 50s slidy infinite; 
       /*animation-delay: 3s; */
       animation-duration: 12s; 
-     
     }
 
     .card {
@@ -91,3 +91,23 @@
   font-weight: bold !important;
   font-style: bold !important;
      }
+
+     .bg-img{
+         background-image:url("~/assets/images/login-bg1.png");
+         background-size: cover; 
+     }
+
+     .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: transparent !important;
+        background-clip: border-box;
+        border-radius: 0.25rem;
+    }
+
+    .container{
+        vertical-align: middle !important;
+    }

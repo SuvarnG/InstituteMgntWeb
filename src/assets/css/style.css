@@ -75,6 +75,10 @@ body {
   /* background-color: #e4e5e6; */
   /* background-image: linear-gradient( to bottom, #fcbc81, #ad76ac); */
 }
+/* .bodyBackgroud{
+  background-image:url("/assets/images/bg-main_01.png");
+         background-size: cover;  
+} */
 
 [tabindex="-1"]:focus {
   outline: 0 !important;
