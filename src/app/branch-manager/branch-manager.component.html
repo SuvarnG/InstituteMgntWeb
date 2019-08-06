@@ -192,11 +192,12 @@
               <div class="col-md-6">
                 <label for="Email">Email</label>
                 <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
-                  [ngClass]="{'is-invalid': submitted && f.Email.errors} ">
+                  [ngClass]="{'is-invalid': submitted && f.Email.errors} " (blur)="validatingExistingUserEmail(f.Email.value)">
                 <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
                   <div *ngIf="f.Email.errors.required">Email is required</div>
                   <div *ngIf="f.Email.errors.email">Email is not valid.</div>
                 </div>
+                <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
               </div>
   
   
@@ -376,11 +377,12 @@
             <div class="col-md-6">
               <label for="Email">Email</label>
               <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
-                [ngClass]="{'is-invalid': submitted && fu.Email.errors} ">
+                [ngClass]="{'is-invalid': submitted && fu.Email.errors} " (blur)="validatingExistingUserEmail(fu.Email.value)">
               <div *ngIf="submitted && fu.Email.errors" class="invalid-feedback">
                 <div *ngIf="fu.Email.errors.required">Email is required</div>
                 <div *ngIf="fu.Email.errors.email">Email is not valid</div>
               </div>
+              <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
             </div>
 
           </div>

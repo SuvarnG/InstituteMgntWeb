@@ -9,6 +9,7 @@ import { TeacherCoursesService } from './teacher-courses.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Roles } from '../Model/Students';
 import { Utils } from '../Utils';
+import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 
 
 @Component({
@@ -38,6 +39,7 @@ IsFixedPayment:boolean;
 Salary:CourseFees[];
 PreviousExperience:number=0;
 public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
+chkEmailId:any;
 
   constructor(private modalService: BsModalService,
     private formBuilder: FormBuilder,
@@ -46,7 +48,8 @@ public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
     private teacherCoursesService: TeacherCoursesService,
     public _DomSanitizationService: DomSanitizer,
     private coursetypeService: CoursetypeService,
-    private createNewStudentService: CreateNewStudentService) { }
+    private createNewStudentService: CreateNewStudentService,
+    private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
     this.registerStaffForm = this.formBuilder.group({
@@ -337,4 +340,12 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
   calculateWorkExperience(DOJ:Date,DOL:Date){
     this.PreviousExperience=Number(new Date(DOL).getFullYear())  - Number(new Date(DOJ).getFullYear()) ;
   }
+
+  validatingExistingUserEmail(EmailId:string){
+    debugger;
+    return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
+      this.chkEmailId=data;
+    })
+}
+
 }

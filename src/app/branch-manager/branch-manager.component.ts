@@ -7,6 +7,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { InstituteService } from '../institute/institute.service';
 import { Institutes } from '../Model/Institutes';
 import { BranchService } from '../branch/branch.service';
+import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 
 @Component({
   selector: 'app-branch-manager',
@@ -27,12 +28,14 @@ export class BranchManagerComponent implements OnInit {
   branchList:Branch[];
   filter:any;
   p:any;
+  chkEmailId:any
 
   constructor(private branchManagerService:BranchManagerService,
               private formBuilder:FormBuilder,
               private modalService:BsModalService,
               private instituteService:InstituteService,
-              private branchService: BranchService) { }
+              private branchService: BranchService,
+              private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
 
@@ -42,7 +45,7 @@ export class BranchManagerComponent implements OnInit {
       Gender:['Male',Validators.required],
       Address:['', Validators.required],
       ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
-      Email:['',[Validators.required,Validators.required]],
+      Email:['',[Validators.required,Validators.email]],
       Password:['',Validators.required],
       VerifyPassword:['',Validators.required],
       Photo:[],
@@ -56,7 +59,7 @@ export class BranchManagerComponent implements OnInit {
       Gender:['',Validators.required],
       Address:['', Validators.required],
       ContactNo:['',[Validators.required,Validators.minLength,Validators.maxLength]],
-      Email:['',[Validators.required,Validators.required]],
+      Email:['',[Validators.required,Validators.email]],
       Photo:[],
       BranchId:[]
     })
@@ -114,7 +117,7 @@ export class BranchManagerComponent implements OnInit {
   createNewBranchManager(){
 
     this.submitted= true;
-    if(this.createNewBranchManagerForm.invalid){
+    if(this.createNewBranchManagerForm.invalid || this.chkEmailId>0){
       return;
     }
 
@@ -175,7 +178,7 @@ export class BranchManagerComponent implements OnInit {
 
   editNewBranchManager(){
     this.submitted=true;
-    if(this.editNewBranchManagerForm.invalid){
+    if(this.editNewBranchManagerForm.invalid || this.chkEmailId>0){
       return 
     }
 
@@ -258,9 +261,18 @@ export class BranchManagerComponent implements OnInit {
   }
 
 
+  validatingExistingUserEmail(EmailId:string){
+    debugger;
+    return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
+      this.chkEmailId=data;
+    })
+}
+
+
   onCancel(){
     this.modalRef.hide();
     this.submitted=false;
+    this.chkEmailId=0;
   }
 
 }

@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 import { Utils } from '../Utils';
 import { Courses } from '../Model/Students';
 import { formatDate } from '@angular/common';
+import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 
 @Component({
   selector: 'app-staff-list',
@@ -34,6 +35,7 @@ export class StaffListComponent implements OnInit {
   courseTypeList: CourseType[];
   courseNameList: Courses[];
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
+  chkEmailId:any
 
   constructor(private datePipe: DatePipe,
     private staffListService: StaffListService,
@@ -42,7 +44,8 @@ export class StaffListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private createNewStudentService: CreateNewStudentService,
-    private coursetypeService: CoursetypeService) { }
+    private coursetypeService: CoursetypeService,
+    private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
     this.returnUrl = '/teacher-courses';
@@ -297,4 +300,13 @@ export class StaffListComponent implements OnInit {
     );
 
   }
+
+
+  validatingExistingUserEmail(EmailId:string){
+    debugger;
+    return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
+      this.chkEmailId=data;
+    })
+}
+
 }
