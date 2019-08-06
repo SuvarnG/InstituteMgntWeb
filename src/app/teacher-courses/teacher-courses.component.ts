@@ -104,7 +104,7 @@ chkEmailId:any;
 
   onSubmit(template: TemplateRef<any>) {
     // stop here if form is invalid
-    if (this.registerStaffForm.invalid == true) {
+    if (this.registerStaffForm.invalid == true || this.chkEmailId>0) {
       this.submitted = true;
       return;
     }
@@ -346,6 +346,12 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })
+}
+
+
+onCancel(){
+  this.chkEmailId=0;
+  this.submitted=false;
 }
 
 }

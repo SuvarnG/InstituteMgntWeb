@@ -127,8 +127,9 @@ export class StaffListComponent implements OnInit {
   }
 
   onSubmitEditStaff() {
-    if (this.staffForm.invalid == true) {
-      this.submitted = true;
+    this.submitted = true;
+    if (this.staffForm.invalid == true || this.chkEmailId>0) {
+      
       return;
     }
     else {
@@ -307,6 +308,12 @@ export class StaffListComponent implements OnInit {
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })
+}
+
+onCancel(){
+  this.chkEmailId=0;
+  this.submitted=false;
+  this.modalRef.hide();
 }
 
 }
