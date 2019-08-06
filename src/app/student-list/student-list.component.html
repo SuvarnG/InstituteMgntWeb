@@ -663,7 +663,7 @@
                                <h6 class="text-muted"> {{studentDetails.Course}}  ({{studentDetails.CourseType}})</h6>
                               </div>
                             </div>
-                            <div class="row mt-3">
+                            <!-- <div class="row mt-3">
                                 <div class="col-md-4 col-sm-6 col-xs-6">
                                   <label for="TotalFees" class="h6">Total Fees </label>
                                  
@@ -672,9 +672,9 @@
                                     
                                    {{studentDetails.TotalFees}}
                                   </div>
-                            </div>
+                            </div> -->
   
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-md-4 col-sm-3 col-xs-3">
                                   <label for="RemaningFees" class="h6">Remaning Fees </label>
                                  
@@ -684,8 +684,27 @@
                                     {{studentDetails.RemainingFees}}
                                   </div>
                                 
-                              </div>
+                              </div> -->
   
+
+                              <table class="table table-bordered mt-3">
+                                  <thead>
+                                      <tr>
+                                        <th>Installment Date</th>
+                                        <th>Paid Amount</th>
+                                        
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let fees of feesTransaction">
+                  
+                                          <td>{{fees.DateOfPayment | date}}</td>
+                                          <td>{{fees.FeesPaid}}</td>
+                                          
+                                        </tr>
+                                      </tbody>
+                                    
+                                </table>
   
                           </div>
                         </div>

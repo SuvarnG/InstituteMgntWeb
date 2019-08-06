@@ -85,7 +85,7 @@ export class StudentListComponent implements OnInit {
     BranchId: this.user.BranchId;
     this.StudentslistService.getAllStudents(InstituteId, BranchId).subscribe(res => {
       this.students = res
-      console.log("Students Data:" + this.students);
+      //console.log("Students Data:" + this.students);
     });
   }
 
@@ -184,6 +184,10 @@ export class StudentListComponent implements OnInit {
     debugger;
       this.urlDocument = selectedStudent.Document;
       this.studentDetails = selectedStudent;
+      this.StudentslistService.getFeesTransactionDetails(this.studentID).subscribe(res=>{
+        this.feesTransaction = res;
+      })
+      
     // this.registerUpdateStudent.patchValue(
     //   {
     //     StudentId: s.StudentId,
