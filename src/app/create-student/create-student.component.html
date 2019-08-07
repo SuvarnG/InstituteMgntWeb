@@ -279,7 +279,7 @@
                               <select class="form-control" formControlName="CourseType" [value]="null"
                           [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseType.errors }"
                           (change)="selectUser($event);getCourseNameFromCourseType()">
-                          <option [value]="null">Course Type</option>
+                          <option [value]="null" disabled>Course Type</option>
                           <option *ngFor="let course of courseTypeList" [value]="course.CourseTypeId">
                             {{course.CourseTypeName}}
                           </option>
@@ -295,7 +295,7 @@
                               <select class="form-control" formControlName="CourseName" [value]="null"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseName.errors }"
                         (change)="selectFees($event);getCourseFeesFromCourseName()">
-                        <option [value]="null">Course Name</option>
+                        <option [value]="null" disabled hidden>Course Name</option>
                         <option *ngFor="let course of courses" [value]="course.CourseId">
                           {{course.CourseName}}</option>
 
@@ -312,7 +312,7 @@
                               <select class="form-control" formControlName="CourseFees" [value]="null"
                         [ngClass]="{ 'is-invalid': submitStudentFees && g.CourseFees.errors }"
                         (change)="selectCourseFees($event)">
-                        <option [value]="null">Course Fees</option>
+                        <option [value]="null" disabled hidden>Course Fees</option>
                         <option *ngFor="let course of courseFees" [value]="course.Fees">
                           {{course.Fees}}
                         </option>
