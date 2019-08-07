@@ -86,15 +86,18 @@ export class ExpenseMasterComponent implements OnInit {
   }
 
   onSubmitCreateExpense(expenses) {
+    debugger;
     this.submitted = true;
     if (this.createExpenseForm.invalid) {
       return;
     }
-    for (var i = 0; i <= expenses.length; i++) {
+    for (var i = 0; i <expenses.length; i++) {
       if (this.createExpenseForm.controls.expense.value == expenses[i].Expenses) {
         alert("Duplicate Expense Type Not Allowed.");
+        return;
       }
     }
+    debugger;
     let body = {
       Expenses: this.createExpenseForm.controls.expense.value
     }

@@ -95,11 +95,23 @@ rerender(): void {
   //   this.submitted = false;
   // }
 
-  createCourseName(CreateCourseName: string) {
+  createCourseName(CreateCourseName: string,courseTypeName=[]) {
+    debugger;
     this.submitted = true;
     if (this.createregisterForm.invalid) {
       return;
     }
+
+    for(let i=0;i<courseTypeName.length;i++){
+      if(CreateCourseName.toLowerCase()==courseTypeName[i]['CourseTypeName'].toLowerCase()){
+        alert('Sorry, This coursetype is already in the list')
+        return
+
+      }
+    }
+
+
+
     this.submitted = false;
 
     this.CoursetypeService.createCourseType(CreateCourseName).subscribe(data => {
@@ -118,11 +130,19 @@ rerender(): void {
     });
   }
 
-  updateCourseType() {
+  updateCourseType(courseTypeName=[]) {
     this.submitted=true;  
     //stop here if form is invalid
     if(this.editregisterForm.invalid){
       return;
+    }
+
+    for(let i=0;i<courseTypeName.length;i++){
+      if(this.editregisterForm.controls.CourseTypeName.value.toLowerCase()==courseTypeName[i]['CourseTypeName'].toLowerCase()){
+        alert('Sorry, This coursetype is already in the list')
+        return
+
+      }
     }
 
     this.submitted=false;

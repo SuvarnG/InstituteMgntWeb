@@ -63,7 +63,7 @@
 
 <ng-template #CreateExpenseTemplate>
   <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-    <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense(expenses)">
+    <form [formGroup]="createExpenseForm" (ngSubmit)="onSubmitCreateExpense(expenseType)">
       <div class="modal-header">
         <h5 class="modal-title pull-left">Add Expense</h5>
         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">

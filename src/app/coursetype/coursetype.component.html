@@ -61,7 +61,7 @@
 
 
 <ng-template #addtemplate>
-  <form [formGroup]="createregisterForm" (ngSubmit)="createCourseName(CourseTypeName.value)">
+  <form [formGroup]="createregisterForm" (ngSubmit)="createCourseName(CourseTypeName.value,courseType)">
     <div class="modal-header">
       <h5 class="modal-title pull-left"> Add Course Type</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
@@ -90,7 +90,7 @@
 
 
 <ng-template #editTemplate>
-  <form [formGroup]="editregisterForm" (ngSubmit)="updateCourseType()">
+  <form [formGroup]="editregisterForm" (ngSubmit)="updateCourseType(courseType)">
     <div class="modal-header">
       <h5 class="modal-title pull-left">Update Course Type</h5>
       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
