@@ -5,6 +5,8 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthorizedSideNavService } from './authorized-side-nav.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
+import { LoginService } from 'src/app/login/login.service';
 
 @Component({
   selector: 'app-authorised-side-nav',
@@ -16,9 +18,11 @@ export class AuthorisedSideNavComponent implements OnInit {
   public newThumbnailUrl: any = '../../assets/images/MProfile.jpg';
   public currentRole: string;
   isCollapsed = false;
+  isLoggedIn$: Observable<boolean>;
+
   constructor(public sideNavService: AuthorisedSideNavService, private modalService: BsModalService,
     private formBuilder: FormBuilder, public AuthorizedSideNavService: AuthorizedSideNavService,
-    public _DomSanitizer: DomSanitizer) { }
+    public _DomSanitizer: DomSanitizer, private loginService: LoginService) { }
 
 
   userImageUploadForm: FormGroup
@@ -26,7 +30,7 @@ export class AuthorisedSideNavComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.isLoggedIn$ = this.loginService.isLoggedIn;
     this.checkStaff();
     this.userImageUploadForm = this.formBuilder.group({
       Photo: [],

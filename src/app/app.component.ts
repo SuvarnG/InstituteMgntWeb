@@ -1,27 +1,22 @@
-import { Component } from '@angular/core';
-import { Router, NavigationStart, ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { LoginService } from './login/login.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  public isLoginPage: boolean = false;
-
-  constructor(router: Router, private route: ActivatedRoute) {
-    
-    router.events.forEach((event) => {
-      if (event instanceof NavigationStart) {
-        if (event.url.toLowerCase() == "/login" || event.url.toLowerCase() == "/") {
-          this.isLoginPage = true;
-          console.log('page:', this.isLoginPage);
-        }
-        else{
-          this.isLoginPage=false;
-        }
-      }
-    });
+export class AppComponent implements OnInit{
+  isLoggedIn$:Observable<boolean>;
+  chkLoggedIn:boolean;
+  constructor(private loginService: LoginService) {
+  
+  }
+  ngOnInit(){
+    debugger;
+  this.isLoggedIn$ = this.loginService.isLoggedIn;
+  this.chkLoggedIn=this.isLoggedIn$.source._isScalar;
   }
 
 }

@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -161,7 +162,8 @@ const appRoutes: Routes = [
       BranchService,
       BanktransactionService,
       AuthorizedSideNavService,
-      {provide: LocationStrategy, useClass: HashLocationStrategy}
+      {provide: LocationStrategy, useClass: HashLocationStrategy},
+      AuthGuard
     ],
 
   bootstrap: [AppComponent]

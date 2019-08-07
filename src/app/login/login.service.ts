@@ -6,7 +6,8 @@ import { Auth } from '../Model/Auth';
 import { Login } from '../loginAuth';
 import { User } from '../Model/User';
 import { Utils } from '../Utils';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 
  const httpOptions = {
   headers: new HttpHeaders({
@@ -21,7 +22,14 @@ export class LoginService {
   private Url = environment.Host + 'token';
   isAuthenticated: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  private loggedIn:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+
+  get isLoggedIn() {
+    debugger;
+    return this.loggedIn.asObservable();
+  }
 
   getAuthHeader(){
     const httpOptions = {
@@ -34,6 +42,7 @@ export class LoginService {
     return httpOptions
   }
   login(username: string, password: string) {
+    debugger;
      const body= new HttpParams()
      .set('grant_type', 'password')
      .set('username',username)
@@ -41,6 +50,7 @@ export class LoginService {
     return this.http.post<Auth>(this.Url, body
     ).pipe(map(auth => {
       if (auth && auth.access_token) {
+        this.loggedIn.next(true);
         // store user details and jwt token in session storage to keep user logged in between page refreshes
         localStorage.setItem('CurrentUser', JSON.stringify(auth));
         }
@@ -64,4 +74,8 @@ export class LoginService {
     return this.http.post<User>(environment.APIBASEURL + 'Login/UpdateUser', user, this.getAuthHeader()).pipe();
   }
 
+  logout() {
+    this.loggedIn.next(false);
+    this.router.navigate(['/Login']);
+  }
 }

@@ -8,6 +8,7 @@ import { Utils } from 'src/app/Utils';
 import { StudentPendingFeesList } from 'src/app/Model/Students';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { User } from 'src/app/Model/User';
+import { Observable } from 'rxjs';
 
 
 
@@ -26,6 +27,8 @@ export class AuthorisedTopNavComponent implements OnInit {
   RoleId: number;
   submitted=false;
   currentRole:string;
+  isLoggedIn$: Observable<boolean>;
+
 
   constructor(private router: Router,
     private studentslistService: StudentslistService,
@@ -36,10 +39,11 @@ export class AuthorisedTopNavComponent implements OnInit {
 
   ngOnInit() {
 
+    this.isLoggedIn$ = this.loginService.isLoggedIn;
+
     if(this.currentRole=='Teacher' || this.currentRole=='BranchManager'){
       this.getAllStudentsPendingFeesDetails();
     }
-   
 
     this.updateProfileForm = this.formBuilder.group({
       FirstName: ['',Validators.required],
@@ -51,6 +55,7 @@ export class AuthorisedTopNavComponent implements OnInit {
       Contact: ['',Validators.required],
       Address: ['',Validators.required]
     })
+
     //this.getUserDetails(Number(this.user.userId));
   }
 
@@ -59,7 +64,7 @@ export class AuthorisedTopNavComponent implements OnInit {
 
   Logout() {
     localStorage.removeItem('CurrentUser');
-    this.router.navigate(['/Login']);
+    this.loginService.logout();
   }
   getAllStudentsPendingFeesDetails() {
     this.studentslistService.getAllStudentsPendingFeesDetails(this.user.BranchId).subscribe(res => {

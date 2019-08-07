@@ -26,7 +26,7 @@ import { StudentAdmissionsReportComponent } from './student-admissions-report/st
 import { InstituteComponent } from './institute/institute.component';
 import { InstituteAdminComponent } from './institute-admin/institute-admin.component';
 import { BranchManagerComponent } from './branch-manager/branch-manager.component';
-
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -42,106 +42,132 @@ const routes: Routes = [
   {
     path: 'Leave',
     component: LeaveComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Dashboard',
     component: AuthorisedLayoutComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Enquiry',
-    component: EnquiryComponent
+    component: EnquiryComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Leave',
-    component: LeaveComponent
+    component: LeaveComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'LeaveList',
-    component: LeavesListComponent
+    component: LeavesListComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'StudentList',
-    component: StudentListComponent
+    component: StudentListComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'CreateStudent',
-    component: CreateStudentComponent
+    component: CreateStudentComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Courses',
-    component: CoursesComponent
+    component: CoursesComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'StaffList',
-    component: StaffListComponent
+    component: StaffListComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Expenses',
-    component: ExpensesComponent
+    component: ExpensesComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'TeacherCourses',
-    component: TeacherCoursesComponent
+    component: TeacherCoursesComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'ExpenseMaster',
-    component: ExpenseMasterComponent
+    component: ExpenseMasterComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'FeesTransaction',
-    component: FeesTransactionComponent
+    component: FeesTransactionComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Branch',
-    component: BranchComponent
+    component: BranchComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'role',
-    component: RoleComponent
+    component: RoleComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'BankTransaction',
-    component: BanktransactionComponent
+    component: BanktransactionComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Bank',
-    component: BankComponent
+    component: BankComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'coursetype',
-    component: CoursetypeComponent
+    component: CoursetypeComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'reports',
-    component: ReportsComponent
+    component: ReportsComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'ExpenseReport',
-    component: ExpenseReportComponent
+    component: ExpenseReportComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'FeesCollectionReport',
-    component: FeesCollectionReportComponent
+    component: FeesCollectionReportComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'EnquiryReport',
-    component: EnquiryReportComponent
+    component: EnquiryReportComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'StudentAdmissionsReport',
-    component: StudentAdmissionsReportComponent
+    component: StudentAdmissionsReportComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'Institute',
-    component: InstituteComponent
+    component: InstituteComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'InstituteAdmin',
-    component: InstituteAdminComponent
+    component: InstituteAdminComponent,
+    canActivate:[AuthGuard]
   },
   {
     path: 'BranchManager',
-    component: BranchManagerComponent
+    component: BranchManagerComponent,
+    canActivate:[AuthGuard]
   }
 ];
 
