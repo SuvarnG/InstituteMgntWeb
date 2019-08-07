@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef,OnDestroy, Injectable, Inject, Renderer2 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LoginService } from './login.service';
-import { FormsModule, Validators, FormBuilder } from '@angular/forms';
+import { FormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { Resetpassword } from '../Model/User';
+import { Resetpassword, ResponseData } from '../Model/User';
 import { DOCUMENT } from '@angular/platform-browser';
 
 
@@ -20,8 +20,13 @@ export class LoginComponent implements OnInit,OnDestroy {
   loginForm: any;
   ForgotPasswordForm: any;
   modalRef: BsModalRef;
+  modalRef2: BsModalRef;
+  // modalRef2: BsModalRef;
   reset:Resetpassword[]
   forgotPasswordForm: any;
+  createNewPasswordForm:FormGroup;
+  mailSuccess:ResponseData[];
+  successResponse=false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -40,7 +45,13 @@ export class LoginComponent implements OnInit,OnDestroy {
     });
 
     this.forgotPasswordForm = this.formBuilder.group({
-      Email:['',Validators.required]
+      Email:['',Validators.required],
+      verifyCode:['',Validators.required]
+    })
+
+    this.createNewPasswordForm = this.formBuilder.group({
+      newPassword:['',Validators.required],
+      verifyNewPassword:['',Validators.required]
     })
 
     if(localStorage.length>0){
@@ -59,6 +70,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
   get n() {return this.forgotPasswordForm.controls;}
+  get np() {return this.createNewPasswordForm.controls}
 
 
   LoginUser() {
@@ -97,10 +109,86 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
 ResetPassword(){
+    this.submitted=true;
+      if(!this.n.Email.value){
+        return
+      }
+
       this.LoginService.resetPassword(this.n.Email.value).subscribe(res => {
-      this.modalRef.hide();
-      console.log(JSON.stringify(res));
+      this.mailSuccess=res;
+      this.successResponse = this.mailSuccess['Response'];
+      if(this.mailSuccess['Response']==true){
+        alert('Verification code has been sent to your mail Id');
+      }
+      else{
+        alert('Something went wrong...please confirm your mail Id')
+      }
     });
+  }
+
+
+  submitVerifyCode(createNewPassowrdtemplate:TemplateRef<any>){
+    if(this.mailSuccess['VerificationCode']==this.forgotPasswordForm.controls.verifyCode.value){
+      alert('You can change password.');
+      this.modalRef.hide();
+      this.successResponse=false;
+      this.modalRef2=this.modalService.show(createNewPassowrdtemplate,{
+        animated: true,
+        backdrop: 'static'
+      })
+
+    } 
+    else{
+      alert('Sorry, Code is wrong.')
+    }
+  }
+
+  onSubmitNewPassword(){
+    debugger;
+    this.submitted=true;
+    if(this.createNewPasswordForm.invalid){
+      return
+    }
+
+    if(this.createNewPasswordForm.controls.newPassword.value != this.createNewPasswordForm.controls.verifyNewPassword.value){
+      alert('Sorry, passwords did not match.')
+      this.submitted=false;
+      return
+    }
+
+    this.submitted=false;
+
+    let body={
+      Email:this.mailSuccess['EmailId'],
+      Password:this.createNewPasswordForm.controls.newPassword.value
+    }
+
+    this.LoginService.updateUserPassword(body).subscribe(data=>{
+      if(data==1){
+        alert('You have successfully updated your password.')
+        this.createNewPasswordForm.reset();
+        this.modalRef2.hide();
+      }
+      else{
+        alert('Something went wrong...Please try again')
+        this.createNewPasswordForm.reset();
+        this.modalRef2.hide();
+      }
+      
+    })
+
+  }
+
+
+  onCancel(){
+    this.forgotPasswordForm.reset();
+    this.modalRef.hide();
+    this.successResponse=false;
+  }
+
+  onCancelPasswordForm(){
+    this.createNewPasswordForm.reset();
+    this.modalRef2.hide();
   }
 
 }

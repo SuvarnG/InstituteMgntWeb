@@ -32,3 +32,10 @@ export interface User {
     Address:string
 }
 
+
+export interface ResponseData{
+    VerificationCode:number;
+    Response:boolean;
+    EmailId:string;
+}
+

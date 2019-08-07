@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Auth } from '../Model/Auth';
 import { Login } from '../loginAuth';
-import { User } from '../Model/User';
+import { User, ResponseData } from '../Model/User';
 import { Utils } from '../Utils';
 import { Observable } from 'rxjs';
 
@@ -49,11 +49,8 @@ export class LoginService {
   }
 
   resetPassword(email:string){
-    return this.http.get<boolean>(environment.APIBASEURL + 'Login/ResetPasswordRequest/'+ email+'/', httpOptions
-    ).pipe
-    (map(data=>{
-      return data as boolean;
-    }));
+    return this.http.get<ResponseData[]>(environment.APIBASEURL + 'Login/ResetPasswordRequest/'+ email+'/', httpOptions
+    )
   }
 
   getUserDetails(id:number){
@@ -62,6 +59,10 @@ export class LoginService {
 
   updateUser(user){
     return this.http.post<User>(environment.APIBASEURL + 'Login/UpdateUser', user, this.getAuthHeader()).pipe();
+  }
+
+  updateUserPassword(body){
+    return this.http.post(environment.APIBASEURL + 'Login/UpdateUserPassword',body,this.getAuthHeader());
   }
 
 }
