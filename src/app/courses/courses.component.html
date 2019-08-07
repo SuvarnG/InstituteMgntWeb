@@ -93,7 +93,7 @@
   </div>
   <div class="modal-body">
     <div class="container-fluid">
-      <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+      <form [formGroup]="createForm" (ngSubmit)="onSubmit(course)">
         <div class="form-group">
           <label for="BankName">Course Type</label>
           <select name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"
@@ -193,7 +193,7 @@
   </div>
   <div class="modal-body">
     <div class="container-fluid">
-      <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update()">
+      <form [formGroup]="UpdateFormGroup" (ngSubmit)="Update(course)">
         <div class="form-group">
           <label for="BankName">Course Type</label>
           <input type="text" name="CourseTypeId" id="CourseTypeId" class="form-control" formControlName="CourseTypeId"

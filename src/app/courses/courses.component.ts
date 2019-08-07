@@ -145,7 +145,8 @@ export class CoursesComponent implements OnInit {
   get f() { return this.createForm.controls; }
   get fu() { return this.UpdateFormGroup.controls; }
 
-  onSubmit() {
+  onSubmit(courseName=[]) {
+    debugger;
     this.submitted = true;
 
     // stop here if form is invalid
@@ -153,7 +154,15 @@ export class CoursesComponent implements OnInit {
     
       return;
     }
-    else {
+
+    for(let i=0;i<courseName.length;i++){
+        if(this.createForm.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()){
+          alert('Sorry, this course name already exists')
+          return
+        }
+    }
+
+    
       this.submitted = false;
       let body = {
         CourseId: this.createForm.controls.CourseId.value,
@@ -176,7 +185,7 @@ export class CoursesComponent implements OnInit {
         });
         
       })
-    }
+    
   }
 
   Edit(editTemplate: TemplateRef<any>, course) {
@@ -200,12 +209,21 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  Update() {
+  Update(courseName=[]) {
+    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.UpdateFormGroup.invalid) {
       return;
     }
+
+    for(let i=0;i<courseName.length;i++){
+      if(this.UpdateFormGroup.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()){
+        alert('Sorry, this course name already exists')
+        return
+      }
+
+  }
 
     this.submitted = false;
     let body = {
