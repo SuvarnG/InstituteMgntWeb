@@ -133,6 +133,7 @@ ResetPassword(){
       alert('You can change password.');
       this.modalRef.hide();
       this.successResponse=false;
+      this.forgotPasswordForm.reset();
       this.modalRef2=this.modalService.show(createNewPassowrdtemplate,{
         animated: true,
         backdrop: 'static'
