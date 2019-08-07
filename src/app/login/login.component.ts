@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   returnUrl: string;
   errorMessage: any;
   submitted: boolean=false;
+  submitted1:boolean=false;
   loginForm: any;
   ForgotPasswordForm: any;
   modalRef: BsModalRef;
@@ -109,7 +110,7 @@ export class LoginComponent implements OnInit,OnDestroy {
   }
 
 ResetPassword(){
-    this.submitted=true;
+    //this.submitted=true;
       if(!this.n.Email.value){
         return
       }
@@ -145,18 +146,18 @@ ResetPassword(){
 
   onSubmitNewPassword(){
     debugger;
-    this.submitted=true;
+    this.submitted1=true;
     if(this.createNewPasswordForm.invalid){
       return
     }
 
     if(this.createNewPasswordForm.controls.newPassword.value != this.createNewPasswordForm.controls.verifyNewPassword.value){
       alert('Sorry, passwords did not match.')
-      this.submitted=false;
+      this.submitted1=false;
       return
     }
 
-    this.submitted=false;
+    this.submitted1=false;
 
     let body={
       Email:this.mailSuccess['EmailId'],
@@ -189,6 +190,7 @@ ResetPassword(){
   onCancelPasswordForm(){
     this.createNewPasswordForm.reset();
     this.modalRef2.hide();
+    this.submitted1=false;
   }
 
 }

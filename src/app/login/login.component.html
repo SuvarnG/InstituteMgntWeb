@@ -225,8 +225,8 @@
                 <div class="form-group">
                     <label>Enter New Password</label>
                     <input type="text" class="form-control" formControlName="newPassword" placeholder="Enter Password"
-                      size="30" [ngClass]="{ 'is-invalid': submitted && np.newPassword.errors }" >
-                     <div *ngIf="submitted && np.newPassword.errors" class="invalid-feedback">
+                      size="30" [ngClass]="{ 'is-invalid': submitted1 && np.newPassword.errors }" >
+                     <div *ngIf="submitted1 && np.newPassword.errors" class="invalid-feedback">
                         <div *ngIf="np.newPassword.errors.required">Password is required</div>
                      </div> 
 
@@ -235,8 +235,8 @@
                 <div class="form-group">
                     <label>Verify New Password</label>
                     <input type="text" class="form-control" formControlName="verifyNewPassword" placeholder="Verify Password"
-                      size="30" [ngClass]="{ 'is-invalid': submitted && np.verifyNewPassword.errors }" >
-                     <div *ngIf="submitted && np.verifyNewPassword.errors" class="invalid-feedback">
+                      size="30" [ngClass]="{ 'is-invalid': submitted1 && np.verifyNewPassword.errors }" >
+                     <div *ngIf="submitted1 && np.verifyNewPassword.errors" class="invalid-feedback">
                         <div *ngIf="np.verifyNewPassword.errors.required">Password verification is required</div>
                      </div> 
 
