@@ -35,6 +35,7 @@ export class StudentListComponent implements OnInit {
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
   urlDocument: any;
   studentDetails: Students;
+  getPendingFees:number;
 
   constructor(private modalService: BsModalService,
     private router: Router,
@@ -226,7 +227,8 @@ export class StudentListComponent implements OnInit {
       this.feesTransaction = res;
       let totalPaid = 0;
       this.feesTransaction.forEach(x => totalPaid += x.FeesPaid);
-      _payStudent.RemainingFees = _payStudent.TotalFees - totalPaid;
+      _payStudent.PendingFees = _payStudent.TotalFees - totalPaid;
+      this.getPendingFees=_payStudent.TotalFees - totalPaid;
     })
     this.modalRef = this.modalService.show(StudentFees, { class: 'modal-xl' })
 
@@ -276,9 +278,14 @@ export class StudentListComponent implements OnInit {
       CourseId: student.CourseId,
       DateOfPayment: new Date(),
       FeesPaid: this.StudentFeesForm.controls.FeesAmount.value,
-      FeesTakenBy: this.user.userId
+      FeesTakenBy: this.user.userId,
+      PendingFees:this.getPendingFees-this.StudentFeesForm.controls.FeesAmount.value
     }
-    this.StudentslistService.onSubmitStudentFees(body).subscribe(data => this.payStudent)
+    this.StudentslistService.onSubmitStudentFees(body).subscribe(data =>{
+       this.payStudent;
+       if(data!=null)
+       this.getAllStudents(this.user.InstituteId,this.user.BranchId);
+    })
     // this.StudentslistService.onSubmitStudentFees(this.studentID).subscribe(res=>{
     //   this.feesTransaction=res
     // })

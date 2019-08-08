@@ -7,7 +7,7 @@ export interface Students{
     Duration:number;
     CourseCompleted:boolean;
     FeesPaid:number;
-    RemainingFees:number;
+    PendingFees:number;
     Discount:number;
     Remark:string;
     Fees:number;
