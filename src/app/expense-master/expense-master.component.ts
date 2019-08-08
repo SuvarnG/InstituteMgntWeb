@@ -23,6 +23,7 @@ export class ExpenseMasterComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   filter: any;
+  chkExpenseType:any;
 
 
   @ViewChild(DataTableDirective)
@@ -110,10 +111,25 @@ export class ExpenseMasterComponent implements OnInit {
 
   }
 
-  deleteExpense(expenseName: any, id: number) {
-    var ans = confirm("Do you want to delete the expense: " + expenseName);
-    if (ans) {
+  // deleteExpense(expenseName: any, id: number) {
+  //   var ans = confirm("Do you want to delete the expense: " + expenseName);
+  //   if (ans) {
+  //     this.expenseMasterService.deleteExpense(id).subscribe(data => {
+  //       this.getAllExpense();
+  //     }, error => console.error(error))
+  //   }
+  // }
+
+
+   deleteExpense(expenseName: any, id: number) {
+    if(confirm("Do you want to delete the expense: " + expenseName))
+    {
       this.expenseMasterService.deleteExpense(id).subscribe(data => {
+        this.chkExpenseType=data;
+        if(this.chkExpenseType>0){
+          alert('Sorry, You can not delete this expense as it has active expense records')
+          return;
+        }
         this.getAllExpense();
       }, error => console.error(error))
     }
