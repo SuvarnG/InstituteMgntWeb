@@ -4,7 +4,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { RoleService } from './role.service';
-import { Roles } from '../Model/Roles';
+import { Roles } from '../shared/Model/Roles';
 import { Observable } from 'rxjs';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';

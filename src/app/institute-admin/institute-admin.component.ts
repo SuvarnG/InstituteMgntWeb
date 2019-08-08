@@ -1,11 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { InstituteAdminService } from './institute-admin.service';
-import {InstituteAdmins} from '../Model/Institutes'
+import {InstituteAdmins} from '../shared/Model/Institutes'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
 import { InstituteService } from '../institute/institute.service';
-import {Institutes} from '../Model/Institutes'
+import {Institutes} from '../shared/Model/Institutes'
 import { IfStmt } from '@angular/compiler';
 
 @Component({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Utils } from '../Utils';
-import {FeesReport} from '../Model/Students'
+import {FeesReport} from '../shared/Model/Students'
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 

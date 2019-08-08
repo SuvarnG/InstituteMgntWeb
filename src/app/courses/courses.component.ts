@@ -3,7 +3,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CoursesService } from './courses.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { CourseType, Course } from '../Model/CourseType';
+import { CourseType, Course } from '../shared/Model/CourseType';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
 import { DataTableDirective } from 'angular-datatables';

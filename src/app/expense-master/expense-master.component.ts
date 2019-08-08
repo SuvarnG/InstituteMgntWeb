@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ExpenseMasterService } from './expense-master.service';
-import { ExpenseMaster } from '../Model/Expenses';
+import { ExpenseMaster } from '../shared/Model/Expenses';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';

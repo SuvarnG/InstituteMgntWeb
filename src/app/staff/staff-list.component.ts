@@ -1,15 +1,15 @@
-import { CourseType, Course } from './../Model/CourseType';
+import { CourseType, Course } from '../shared/Model/CourseType';
 import { CoursetypeService } from './../coursetype/coursetype.service';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StaffListService } from './staff-list.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StaffMaster } from '../Model/StaffMaster';
+import { StaffMaster } from '../shared/Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { Utils } from '../Utils';
-import { Courses } from '../Model/Students';
+import { Courses } from '../shared/Model/Students';
 import { formatDate } from '@angular/common';
 import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 

@@ -1,6 +1,6 @@
-import { User } from './Model/User';
+import { User } from './shared/Model/User';
 import { Injectable } from '@angular/core';
-import { Auth } from './Model/Auth';
+import { Auth } from './shared/Model/Auth';
 import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({

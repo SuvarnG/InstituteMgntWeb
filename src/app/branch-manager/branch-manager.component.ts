@@ -1,11 +1,11 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BranchManagerService } from './branch-manager.service';
 import { Utils } from '../Utils';
-import {BranchManager, Branch} from '../Model/Branch'
+import {BranchManager, Branch} from '../shared/Model/Branch'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { InstituteService } from '../institute/institute.service';
-import { Institutes } from '../Model/Institutes';
+import { Institutes } from '../shared/Model/Institutes';
 import { BranchService } from '../branch/branch.service';
 import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 

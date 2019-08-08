@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ExpenseMasterService } from '../expense-master/expense-master.service';
-import {ExpenseMaster,ExpenseReport,ExpenseReportList} from '../Model/Expenses'
+import {ExpenseMaster,ExpenseReport,ExpenseReportList} from '../shared/Model/Expenses'
 import { FormsModule,ReactiveFormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { BranchService } from '../branch/branch.service';
-import {Branch} from '../Model/Branch'
+import {Branch} from '../shared/Model/Branch'
 import { Utils } from '../Utils';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';

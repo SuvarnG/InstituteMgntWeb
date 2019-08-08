@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { EnquiryReportService } from './enquiry-report.service';
 import { BranchService } from '../branch/branch.service';
 import { Utils } from '../Utils';
-import {Branch} from '../Model/Branch'
-import {EnquiryReportInput,EnquiryReport} from '../Model/EnquiryList'
+import {Branch} from '../shared/Model/Branch'
+import {EnquiryReportInput,EnquiryReport} from '../shared/Model/EnquiryList'
 import { CoursesService } from '../courses/courses.service';
-import {Course} from '../model/CourseType'
+import {Course} from '../shared/Model/CourseType'
 import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 

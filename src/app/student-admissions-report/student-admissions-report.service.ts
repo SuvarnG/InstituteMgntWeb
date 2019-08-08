@@ -3,7 +3,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { environment } from 'src/environments/environment';
-import { StudentReport } from '../Model/Students';
+import { StudentReport } from '../shared/Model/Students';
 import { Utils } from '../Utils';
 
 

@@ -4,7 +4,7 @@ import { LoginService } from './login.service';
 import { FormsModule, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { Resetpassword, ResponseData } from '../Model/User';
+import { Resetpassword, ResponseData } from '../shared/Model/User';
 import { DOCUMENT } from '@angular/platform-browser';
 
 

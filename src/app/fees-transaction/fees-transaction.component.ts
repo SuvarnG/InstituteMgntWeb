@@ -1,9 +1,9 @@
-import { Course } from './../Model/CourseType';
-import { Utils } from './../Utils';
+import { Course } from '../shared/Model/CourseType';
+import { Utils } from '../Utils';
 import { CoursesService } from './../courses/courses.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FeesTransactionService } from './fees-transaction.service';
-import { Students, CreateStudent, FeesTransactions, FeesTransaction, User, CourseType, Courses, Users, Roles, RecentStudent, CourseFees } from '../Model/Students';
+import { Students, CreateStudent, FeesTransactions, FeesTransaction, User, CourseType, Courses, Users, Roles, RecentStudent, CourseFees } from '../shared/Model/Students';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalModule, BsModalRef, BsModalService } from 'ngx-bootstrap';

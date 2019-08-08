@@ -1,12 +1,12 @@
-import { FeesTransaction } from './../../../Model/Students';
+import { FeesTransaction } from '../../../shared/Model/Students';
 import { FeesTransactionService } from './../../../fees-transaction/fees-transaction.service';
-import { Expenses, ExpenseChart, IncomeExpense } from './../../../Model/Expenses';
-import { Utils } from './../../../Utils';
+import { Expenses, ExpenseChart, IncomeExpense } from '../../../shared/Model/Expenses';
+import { Utils } from '../../../Utils';
 import { ExpenseService } from './../../../ExpenseTransaction/expense.service';
 import { Component, OnInit, NgModule, TemplateRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { Branch } from 'src/app/Model/Branch';
+import { Branch } from 'src/app/shared/Model/Branch';
 import { BranchService } from 'src/app/branch/branch.service';
 import { map } from 'rxjs/operators';
 

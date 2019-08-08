@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Branch } from '../Model/Branch';
+import { Branch } from '../shared/Model/Branch';
 import { BranchService } from './branch.service';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';

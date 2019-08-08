@@ -5,9 +5,9 @@ import { StudentslistService } from './../../../student-list/studentslist.servic
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Utils } from 'src/app/Utils';
-import { StudentPendingFeesList } from 'src/app/Model/Students';
+import { StudentPendingFeesList } from 'src/app/shared/Model/Students';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { User } from 'src/app/Model/User';
+import { User } from 'src/app/shared/Model/User';
 import { Observable } from 'rxjs';
 
 

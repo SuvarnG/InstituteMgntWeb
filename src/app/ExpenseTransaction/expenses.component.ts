@@ -1,4 +1,4 @@
-import { ExpenseMaster } from './../Model/Expenses';
+import { ExpenseMaster } from '../shared/Model/Expenses';
 import { ExpenseMasterService } from './../expense-master/expense-master.service';
 import { StaffListService } from './../staff/staff-list.service';
 import { Component, OnInit, TemplateRef, Pipe, ViewChild } from '@angular/core';
@@ -6,9 +6,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ExpenseService } from './expense.service';
 import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Expenses } from '../Model/Expenses';
-import { User } from '../Model/User';
-import { StaffMaster } from '../Model/StaffMaster';
+import { Expenses } from '../shared/Model/Expenses';
+import { User } from '../shared/Model/User';
+import { StaffMaster } from '../shared/Model/StaffMaster';
 import { Subject } from 'rxjs';
 import { Utils } from '../Utils';
 import { DataTableDirective } from 'angular-datatables';

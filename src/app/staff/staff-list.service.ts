@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { StaffMaster, TeacherCourse } from 'src/app/Model/StaffMaster';
+import { StaffMaster, TeacherCourse } from 'src/app/shared/Model/StaffMaster';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-import { CourseType, Courses } from '../Model/Students';
+import { CourseType, Courses } from '../shared/Model/Students';
 import { Utils } from '../Utils';
 
 

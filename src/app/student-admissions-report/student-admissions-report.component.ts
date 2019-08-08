@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BranchService } from '../branch/branch.service';
 import { Utils } from '../Utils';
-import { Branch } from '../Model/Branch';
+import { Branch } from '../shared/Model/Branch';
 import { CoursesService } from '../courses/courses.service';
-import { Course } from '../Model/CourseType';
+import { Course } from '../shared/Model/CourseType';
 import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
-import {StudentReportInput,StudentReport} from '../Model/Students'
+import {StudentReportInput,StudentReport} from '../shared/Model/Students'
 import { StudentAdmissionsReportService } from './student-admissions-report.service';
 
 @Component({

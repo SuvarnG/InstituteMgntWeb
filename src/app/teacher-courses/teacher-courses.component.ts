@@ -1,4 +1,4 @@
-import { Courses, CourseType, CourseFees } from '../Model/Students';
+import { Courses, CourseType, CourseFees } from '../shared/Model/Students';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { CoursetypeService } from './../coursetype/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherCoursesService } from './teacher-courses.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Roles } from '../Model/Students';
+import { Roles } from '../shared/Model/Students';
 import { Utils } from '../Utils';
 import { InstituteAdminService } from '../institute-admin/institute-admin.service';
 

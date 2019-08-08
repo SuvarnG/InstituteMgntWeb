@@ -1,8 +1,8 @@
-import { Utils } from './../Utils';
+import { Utils } from '../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../Model/Students';
+import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from '../shared/Model/Students';
 import { map } from 'rxjs/operators';
 import { debug } from 'util';
 

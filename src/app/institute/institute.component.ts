@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { InstituteService } from './institute.service';
-import {Institutes} from '../Model/Institutes'
+import {Institutes} from '../shared/Model/Institutes'
 import { FormsModule,FormGroup,FormBuilder, Validators } from '@angular/forms';
 import { Utils } from '../Utils';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
