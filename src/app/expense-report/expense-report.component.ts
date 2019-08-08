@@ -4,7 +4,7 @@ import {ExpenseMaster,ExpenseReport,ExpenseReportList} from '../shared/Model/Exp
 import { FormsModule,ReactiveFormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { BranchService } from '../branch/branch.service';
 import {Branch} from '../shared/Model/Branch'
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import * as jsPDF from 'jspdf';
 import * as html2canvas from 'html2canvas';
 import { ExpenseReportService } from './expense-report.service';

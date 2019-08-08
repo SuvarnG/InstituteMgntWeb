@@ -17,10 +17,10 @@
       "es2018",
       "dom"
     ],
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "shared/*":[
-        "app/shared/*"
+        "src/app/shared/*"
       ]
     }
   }

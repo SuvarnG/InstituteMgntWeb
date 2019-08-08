@@ -5,7 +5,7 @@ import { EnquiryList, CourseTypeMaster, CourseNameMaster } from '../shared/Model
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { createEnquiry } from '../shared/Model/createEnquiry';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 
 

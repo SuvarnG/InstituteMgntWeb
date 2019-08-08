@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StaffMaster } from '../shared/Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { Courses } from '../shared/Model/Students';
 import { formatDate } from '@angular/common';
 import { InstituteAdminService } from '../institute-admin/institute-admin.service';

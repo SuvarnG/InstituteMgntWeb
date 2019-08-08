@@ -1,4 +1,4 @@
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { Component, OnInit, TemplateRef, Input,OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { BankService } from './bank.service';

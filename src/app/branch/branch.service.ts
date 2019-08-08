@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Branch } from '../shared/Model/Branch';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 import { Observable } from 'rxjs';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 
 

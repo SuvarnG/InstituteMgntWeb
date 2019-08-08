@@ -6,7 +6,7 @@ import { BsModalService, BsModalRef, ModalContainerComponent, ModalOptions } fro
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { Students, UpdateStudent } from '../shared/Model/Students'
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { CreateNewStudentService } from './../create-student/create-new-student.service';
 import { CoursetypeService } from './../coursetype/coursetype.service';
 

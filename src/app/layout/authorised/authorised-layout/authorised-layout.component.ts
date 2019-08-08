@@ -6,8 +6,8 @@ import { ExpenseService } from './../../../ExpenseTransaction/expense.service';
 import { Component, OnInit, NgModule, TemplateRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
-import { Branch } from 'src/app/shared/Model/Branch';
-import { BranchService } from 'src/app/branch/branch.service';
+import { Branch } from './../../../shared/Model/Branch';
+import { BranchService } from './../../../branch/branch.service';
 import { map } from 'rxjs/operators';
 
 @Component({

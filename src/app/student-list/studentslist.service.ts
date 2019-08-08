@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 import { Students, UpdateStudent, StudentPendingFeesList,FeesTransactions } from '../shared/Model/Students';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { map } from "rxjs/operators";
 
 

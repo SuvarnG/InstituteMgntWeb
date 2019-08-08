@@ -1,8 +1,8 @@
+import { environment } from './../../../../environments/environment';
 import { Utils } from '../../../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
-import { User } from 'src/app/shared/model/User';
+import { User } from './../../../shared/model/User';
 import { Router } from '@angular/router';
 
 

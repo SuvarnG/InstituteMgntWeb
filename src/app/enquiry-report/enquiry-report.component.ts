@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EnquiryReportService } from './enquiry-report.service';
 import { BranchService } from '../branch/branch.service';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import {Branch} from '../shared/Model/Branch'
 import {EnquiryReportInput,EnquiryReport} from '../shared/Model/EnquiryList'
 import { CoursesService } from '../courses/courses.service';

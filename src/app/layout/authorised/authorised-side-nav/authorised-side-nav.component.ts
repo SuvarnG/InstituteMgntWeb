@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthorizedSideNavService } from './authorized-side-nav.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { LoginService } from 'src/app/login/login.service';
+import { LoginService } from './../../../login/login.service';
 
 @Component({
   selector: 'app-authorised-side-nav',

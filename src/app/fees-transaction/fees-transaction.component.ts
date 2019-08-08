@@ -1,5 +1,5 @@
 import { Course } from '../shared/Model/CourseType';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { CoursesService } from './../courses/courses.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { FeesTransactionService } from './fees-transaction.service';

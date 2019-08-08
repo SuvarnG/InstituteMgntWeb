@@ -2,9 +2,9 @@ import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from, Observable, } from 'rxjs';
 import { map } from "rxjs/operators";
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 import { Students,CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees,ThumbnailUrl } from '../shared/Model/Students';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 
 

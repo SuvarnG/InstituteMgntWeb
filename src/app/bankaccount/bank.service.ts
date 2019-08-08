@@ -3,7 +3,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Bank } from '../shared/Model/Bank'
 import { map, tap, catchError } from 'rxjs/operators'; import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 
 @Injectable({

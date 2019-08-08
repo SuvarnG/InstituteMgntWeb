@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BranchService } from '../branch/branch.service';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 import { Branch } from '../shared/Model/Branch';
 import { CoursesService } from '../courses/courses.service';
 import { Course } from '../shared/Model/CourseType';

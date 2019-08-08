@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Utils } from '../Utils';
-//import { environment } from 'src/environments/environment';
+import { Utils } from './../Utils';
 import { BranchManager } from '../shared/Model/Branch';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 
 @Injectable({
   providedIn: 'root'

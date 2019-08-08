@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { environment } from './../../environments/environment';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { ExpenseMaster } from '../shared/Model/Expenses';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 @Injectable({
   providedIn: 'root'

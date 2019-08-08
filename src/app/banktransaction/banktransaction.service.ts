@@ -7,7 +7,7 @@ import { StaffMaster } from '../shared/Model/StaffMaster';
 import { Observable } from 'rxjs';
 import { BankNames } from '../shared/Model/BankNames';
 import { Accountnumbers } from '../shared/Model/AccountNumber';
-import { Utils } from '../Utils';
+import { Utils } from './../Utils';
 
 
 
