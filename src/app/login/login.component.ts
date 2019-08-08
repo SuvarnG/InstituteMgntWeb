@@ -43,8 +43,9 @@ export class LoginComponent implements OnInit,OnDestroy {
       Email:['',Validators.required]
     })
 
-    if(localStorage.length>0){
-      this.router.navigate(['/Dashboard']);
+    if(localStorage.getItem("CurrentUser")){
+      console.log('Already Logged in')
+      this.router.navigate(['/Dashboard'],{relativeTo: this.route});
     }
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Dashboard';

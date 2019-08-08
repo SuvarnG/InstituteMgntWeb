@@ -1,4 +1,4 @@
-import { AuthGuard } from './auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -74,7 +74,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Chart } from 'chart.js';
 import { InstituteComponent } from './institute/institute.component';
 import { InstituteAdminComponent } from './institute-admin/institute-admin.component';
-import { BranchManagerComponent } from './branch-manager/branch-manager.component'; 
+import { BranchManagerComponent } from './branch-manager/branch-manager.component';
+import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component'; 
 
 const appRoutes: Routes = [
   { path: 'TeacherCourses', component: TeacherCoursesComponent }];
@@ -113,6 +115,8 @@ const appRoutes: Routes = [
     InstituteComponent,
     InstituteAdminComponent,
     BranchManagerComponent,
+    HomeLayoutComponent,
+    LoginLayoutComponent,
     
   ],
   imports: [
