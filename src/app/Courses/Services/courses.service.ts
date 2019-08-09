@@ -6,8 +6,6 @@ import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { Utils } from '../../Core/Utils';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -19,39 +17,26 @@ export class CoursesService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
-  }
-
-
   //For displaying all entries
   courseList(InstituteId: number, BranchId: number) {
-    return this.http.get<Course[]>(this.Url + '/' + InstituteId + '/' + BranchId, this.getAuthHeader());
+    return this.http.get<Course[]>(this.Url + '/' + InstituteId + '/' + BranchId, Utils.getAuthHeader());
   }
 
-  delete(CourseId){
-    return this.http.post(this.deleteUrl + CourseId, null, this.getAuthHeader())
-    // .pipe(
-    //   tap(_ => console.log(`deleted Course id=${CourseId}`))
-    // );
+  delete(CourseId) {
+    return this.http.post(this.deleteUrl + CourseId, null, Utils.getAuthHeader())
+
   }
 
   createCourse(course: Course) {
-    return this.http.post<Course>(this.CreateUrl, course, this.getAuthHeader()).pipe(map(course => { return course }))
+    return this.http.post<Course>(this.CreateUrl, course, Utils.getAuthHeader()).pipe(map(course => { return course }))
   }
 
   getShortName(CourseTypeId) {
-    return this.http.get(environment.APIBASEURL + 'Course/GetCourseMaster/' + CourseTypeId, this.getAuthHeader()).pipe(map(data => data as Course[]))
+    return this.http.get(environment.APIBASEURL + 'Course/GetCourseMaster/' + CourseTypeId, Utils.getAuthHeader()).pipe(map(data => data as Course[]))
   }
 
   edit(course): Observable<Course> {
-    return this.http.post<Course>(this.UpdateUrl, course, this.getAuthHeader()).pipe(
+    return this.http.post<Course>(this.UpdateUrl, course, Utils.getAuthHeader()).pipe(
       tap((course: Course) => console.log('Update CourseId=${course.CourseId}'))
     );
   }

@@ -1,84 +1,80 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- 
-    <!-- Breadcrumb-->
-    <ol class="breadcrumb">
-        <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
-      <li class="breadcrumb-item align-self-center">Courses</li>
-</div>
-<div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-    <li class="h5 pt-2">Manage Course Information</li>  
+
+<!-- Breadcrumb-->
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item align-self-center"><a routerLink="/Dashboard">Home</a></li>
+    <li class="breadcrumb-item align-self-center">Courses</li>
   </div>
-      <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Course Information</li>
+  </div>
+  <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
 
-            <div class="input-group">
-                <span class="input-group-prepend">
-                <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search text-white"></i></button>
-                </span>
-                <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-                </div>&nbsp;&nbsp;
-          <!-- <button class="btn btn-primary btn-square" type="button">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
             <i class="fa fa-search text-white"></i></button>
- 
-          <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
-          &nbsp;&nbsp; -->
-          <button class="btn btn-sm btn-primary btn-square text-white f-20" data-toggle="tooltip" data-placement="bottom"
-          title="Add New Course" (click)="AddCourses(Addtemplate)" type="button">Add</button>
-        </div>
-      </li>
-    </ol>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
+      </div>&nbsp;&nbsp;
+
+      <button class="btn btn-sm btn-primary btn-square text-white f-20" data-toggle="tooltip" data-placement="bottom"
+        title="Add New Course" (click)="AddCourses(Addtemplate)" type="button">Add</button>
+    </div>
+  </li>
+</ol>
 
 
-    <div id="A" class="container-fluid  h-460">
-      <div id="ui-view">
-        <div class="card border-0 shadow rounded-0">
-          <div class="card-body">
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
-              <thead>
-                <tr>
-                  <th class="pl-2">Course Type</th>
-                  <th class="pl-2">Course</th>
-                  <th class="pl-2">Percentage</th>
-                  <th class="pl-2">Fees (Rs)</th>
-                  <th class="pl-2">Duration (In Days)</th>
+<div id="A" class="container-fluid  h-460">
+  <div id="ui-view">
+    <div class="card border-0 shadow rounded-0">
+      <div class="card-body">
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+          <thead>
+            <tr>
+              <th class="pl-2">Course Type</th>
+              <th class="pl-2">Course</th>
+              <th class="pl-2">Percentage</th>
+              <th class="pl-2">Fees (Rs)</th>
+              <th class="pl-2">Duration (In Days)</th>
 
-                  <th class="pl-2">Percentage</th>
-                  <th class="pl-2">Action</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let c of course | filter:filter">
-                  <td>{{c.CourseTypeName}}</td>
-                  <td>{{c.ShortName}}</td>
-                  <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
-                  </td>
-                  <td class="text-center">{{c.Fees | number}}</td>
-                  <td class="text-center">{{c.Duration}}</td>
-                  <td class="text-center">{{c.Percentage}}
-                  <td>
-                    <div class="icon-sm " (click)="Edit(editTemplate,c)" data-toggle="tooltip" data-placement="bottom"
-                      title="Edit Course">
-                      <a class="card-header-action btn-minimize" title="Edit Information">
-                        <i class="cui-pencil pencil"></i>
-                      </a>
-                    </div>
-                    &nbsp;
-                    <div class="icon-sm " (click)="Delete(c.CourseId)" data-toggle="tooltip" data-placement="bottom"
-                    title="Delete Course">
-                    <a class="card-header-action btn-minimize" title="Delete Information">
-                      <i class="cui-trash trash"></i>
-                    </a>
-                  </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+              <th class="pl-2">Percentage</th>
+              <th class="pl-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of course | filter:filter">
+              <td>{{c.CourseTypeName}}</td>
+              <td>{{c.ShortName}}</td>
+              <td><i class="material-icons">{{c.IsPercentage ? "check_circle":"cancel"}}</i>
+              </td>
+              <td class="text-center">{{c.Fees | number}}</td>
+              <td class="text-center">{{c.Duration}}</td>
+              <td class="text-center">{{c.Percentage}}
+              <td class="d-inline-flex">
+                <div class="icon-sm " (click)="Edit(editTemplate,c)" data-toggle="tooltip" data-placement="bottom"
+                  title="Edit Course">
+                  <a class="card-header-action btn-minimize" title="Edit Information">
+                    <i class="cui-pencil pencil"></i>
+                  </a>
+                </div>
+                &nbsp;
+                <div class="icon-sm " (click)="Delete(c.CourseId)" data-toggle="tooltip" data-placement="bottom"
+                  title="Delete Course">
+                  <a class="card-header-action btn-minimize" title="Delete Information">
+                    <i class="cui-trash trash"></i>
+                  </a>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
+</div>
 
 
 
@@ -106,7 +102,10 @@
           <div *ngIf="submitted && f.CourseTypeId.errors" class="invalid-feedback">
             <div *ngIf="f.CourseTypeId.errors.required">Please Enter Course Type Name.</div>
           </div>
-          <div *ngIf="coursetype?.length == 0"><h6 style="color:#f86c6b">Course Type is not available. <a routerLink="/coursetype" (click)="onCancelAdd()">Click here to create a course type.</a></h6></div>
+          <div *ngIf="coursetype?.length == 0">
+            <h6 style="color:#f86c6b">Course Type is not available. <a routerLink="/coursetype"
+                (click)="onCancelAdd()">Click here to create a course type.</a></h6>
+          </div>
         </div>
 
         <div class="form-group">
@@ -201,8 +200,8 @@
         </div>
         <div class="form-group">
           <label for="BankName">Course Name</label>
-          <input type="text" name="ShortName" class="form-control" formControlName="ShortName" id="ShortName" 
-          [ngClass]="{ 'is-invalid': submitted && fu.ShortName.errors }">
+          <input type="text" name="ShortName" class="form-control" formControlName="ShortName" id="ShortName"
+            [ngClass]="{ 'is-invalid': submitted && fu.ShortName.errors }">
           <div *ngIf="submitted && fu.ShortName.errors" class="invalid-feedback">
             <div *ngIf="fu.ShortName.errors.required">Please enter Course Short Name</div>
           </div>
@@ -210,10 +209,10 @@
         <div class="form-group">
           <label for="BankName">Course Full Name</label>
           <input type="text" id="FullName" name="FullName" class="form-control" formControlName="FullName"
-          [ngClass]="{ 'is-invalid': submitted && fu.FullName.errors }">
+            [ngClass]="{ 'is-invalid': submitted && fu.FullName.errors }">
           <div *ngIf="submitted && fu.FullName.errors" class="invalid-feedback">
-              <div *ngIf="fu.FullName.errors.required">Please enter Course Short Name</div>
-            </div>
+            <div *ngIf="fu.FullName.errors.required">Please enter Course Short Name</div>
+          </div>
         </div>
 
 
@@ -230,7 +229,7 @@
           </div>
         </div>
 
-<div class="form-row">
+        <div class="form-row">
           <div class="form-group col-md-12" *ngIf="fu.IsPercentage.value">
 
             <input type="text" class="form-control" formControlName="Percentage" [ngClass]="{ 'is-invalid': submitted &&
@@ -239,8 +238,8 @@
               <div *ngIf="fu.Percentage.errors.required"> Please enter percentage</div>
             </div>
           </div>
-          </div>
-        
+        </div>
+
         <div class="form-group">
           <label for="BankName">Duration</label>
           <input type="text" class="form-control" formControlName="Duration" [ngClass]="{ 'is-invalid': submitted &&

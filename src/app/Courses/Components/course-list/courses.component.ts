@@ -16,6 +16,16 @@ import { DataTableDirective } from 'angular-datatables';
 })
 
 export class CoursesComponent implements OnInit {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(
+    private modalService: BsModalService,
+    private CoursesService: CoursesService,
+    private formBuilder: FormBuilder,
+    private coursetypeService: CoursetypeService) { }
+
   modalRef: BsModalRef;
   createForm: FormGroup;
   UpdateFormGroup: FormGroup;
@@ -32,27 +42,16 @@ export class CoursesComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject();
   CourseTypeId: number;
   CourseId: number;
-  chkCourseId:any;
-  filter:any;
-
-
-  @ViewChild(DataTableDirective)
-    dtElement: DataTableDirective;
-
-
-  constructor(
-    private modalService: BsModalService,
-    private CoursesService: CoursesService,
-    private formBuilder: FormBuilder,
-    private coursetypeService: CoursetypeService) { }
+  chkCourseId: any;
+  filter: any;
 
   ngOnInit() {
     this.dtOptions = {
       retrieve: true,
       pagingType: 'full_numbers',
       pageLength: 6,
-      paging:true,
-      searching:false
+      paging: true,
+      searching: false
     };
     this.createForm = this.formBuilder.group({
       CourseId: [],
@@ -62,7 +61,7 @@ export class CoursesComponent implements OnInit {
       IsPercentage: [],
       Fees: ['', Validators.required],
       Duration: ['', Validators.required],
-      Percentage: ['',Validators.maxLength],
+      Percentage: ['', Validators.maxLength],
 
     })
     this.getCourses(this.user.InstituteId, this.user.BranchId);
@@ -81,7 +80,7 @@ export class CoursesComponent implements OnInit {
   }
 
 
-  ngAfterViewInit(): void {this.dtTrigger.next();}
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
@@ -89,10 +88,10 @@ export class CoursesComponent implements OnInit {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
+      dtInstance.destroy();
+      this.dtTrigger.next();
     });
-}
+  }
 
   public user = Utils.GetCurrentUser();
 
@@ -124,10 +123,10 @@ export class CoursesComponent implements OnInit {
     if (ans) {
       this.CoursesService.delete(ID).subscribe(data => {
         this.chkCourseId = data;
-        if(this.chkCourseId>0){
+        if (this.chkCourseId > 0) {
           alert('Course cannot be deleted as it is already in use.')
         }
-       // console.log(data);
+        // console.log(data);
         this.getCourses(this.user.InstituteId, this.user.BranchId);
       }, error => console.error(error))
     }
@@ -145,47 +144,47 @@ export class CoursesComponent implements OnInit {
   get f() { return this.createForm.controls; }
   get fu() { return this.UpdateFormGroup.controls; }
 
-  onSubmit(courseName=[]) {
-    debugger;
+  onSubmit(courseName = []) {
+
     this.submitted = true;
 
     // stop here if form is invalid
     if (this.createForm.invalid) {
-    
+
       return;
     }
 
-    for(let i=0;i<courseName.length;i++){
-        if(this.createForm.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()){
-          alert('Sorry, this course name already exists')
-          return
-        }
+    for (let i = 0; i < courseName.length; i++) {
+      if (this.createForm.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()) {
+        alert('Sorry, this course name already exists')
+        return
+      }
     }
 
-    
-      this.submitted = false;
-      let body = {
-        CourseId: this.createForm.controls.CourseId.value,
-        CourseTypeId: this.createForm.controls.CourseTypeId.value,
-        ShortName: this.createForm.controls.ShortName.value,
-        FullName: this.createForm.controls.FullName.value,
-        IsPercentage: this.createForm.controls.IsPercentage.value,
-        Fees: this.createForm.controls.Fees.value,
-        Duration: this.createForm.controls.Duration.value,
-        Percentage: this.createForm.controls.Percentage.value,
-        BranchId: this.user.BranchId,
-        InstituteId: this.user.InstituteId
 
-      };
-      this.CoursesService.createCourse(body).subscribe((data) => {
-        this.modalRef.hide();
-        this.CoursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
-          this.course = res;
-          this.rerender();
-        });
-        
-      })
-    
+    this.submitted = false;
+    let body = {
+      CourseId: this.createForm.controls.CourseId.value,
+      CourseTypeId: this.createForm.controls.CourseTypeId.value,
+      ShortName: this.createForm.controls.ShortName.value,
+      FullName: this.createForm.controls.FullName.value,
+      IsPercentage: this.createForm.controls.IsPercentage.value,
+      Fees: this.createForm.controls.Fees.value,
+      Duration: this.createForm.controls.Duration.value,
+      Percentage: this.createForm.controls.Percentage.value,
+      BranchId: this.user.BranchId,
+      InstituteId: this.user.InstituteId
+
+    };
+    this.CoursesService.createCourse(body).subscribe((data) => {
+      this.modalRef.hide();
+      this.CoursesService.courseList(this.user.InstituteId, this.user.BranchId).subscribe(res => {
+        this.course = res;
+        this.rerender();
+      });
+
+    })
+
   }
 
   Edit(editTemplate: TemplateRef<any>, course) {
@@ -209,7 +208,7 @@ export class CoursesComponent implements OnInit {
     });
   }
 
-  Update(courseName=[]) {
+  Update(courseName = []) {
     debugger;
     this.submitted = true;
     // stop here if form is invalid
@@ -217,13 +216,13 @@ export class CoursesComponent implements OnInit {
       return;
     }
 
-    for(let i=0;i<courseName.length;i++){
-      if(this.UpdateFormGroup.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()){
+    for (let i = 0; i < courseName.length; i++) {
+      if (this.UpdateFormGroup.controls.ShortName.value.toLowerCase() == courseName[i]['ShortName'].toLowerCase()) {
         alert('Sorry, this course name already exists')
         return
       }
 
-  }
+    }
 
     this.submitted = false;
     let body = {
@@ -244,7 +243,7 @@ export class CoursesComponent implements OnInit {
         this.rerender();
       });
     }, error => console.error(error))
-   
+
   }
 
   calculateIsPercentage() {
@@ -253,8 +252,8 @@ export class CoursesComponent implements OnInit {
   }
 
 
-  onCancelAdd(){
+  onCancelAdd() {
     this.modalRef.hide();
-    this.submitted=false;
+    this.submitted = false;
   }
 }
