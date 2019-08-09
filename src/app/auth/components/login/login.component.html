@@ -1,219 +1,135 @@
-
-  <div class="container shadow px-3 my-2 bg-img align-self-center" >
+<div class="container shadow px-3 my-2 bg-img align-self-center">
   <div class="row  pt-3">
     <div class="col-md-2 logo">
-        <img src="assets/images/kalon-logo-png.png" width="auto" height="40" > 
-        
-        <!-- <span class="h2 pl-3 font-weight-bold">Kalon IMS</span> -->
-      <!-- <img src="assets/images/logo-dem0_03.png" width="auto" height="40" > -->
-      
+      <img src="assets/images/kalon-logo-png.png" width="auto" height="40">
     </div>
 
     <div class="col-md-10">
-       <h5 class="align-self-center pt-2 mt-1 text-muted"><small><i>We tame your Paperwork needs</i></small></h5>
-       </div>
-  
-    <div class="col-md-5 text-right pt-2 pb-1 d-none">
-        <img src="assets/images/realizertechnologies_logojpg.jpg" width="auto" height="65">
-      <!-- <img src="assets/images/logo-sm.png.png" class="logo"> -->
+      <h5 class="align-self-center pt-2 mt-1 text-muted"><small><i>We tame your Paperwork needs</i></small></h5>
+    </div>
 
-          </div>
+    <div class="col-md-5 text-right pt-2 pb-1 d-none">
+      <img src="assets/images/realizertechnologies_logojpg.jpg" width="auto" height="65">
+    </div>
   </div>
   <!-- <hr> -->
-    <div class="row justify-content-center mt-3">
-      <div class="col-md-4 pb-2" >  
-          <!-- <div id="slider">
-              <figure>
-            <img src="assets\images\virtues.png"  alt> 
-              <img src="assets\images\collation.png"  alt>
-              <img src="assets\images\records.png"  alt>
-              <img src="assets\images\reconcilation.png"  alt> 
-              <img src="assets\images\graph.png"  alt> 
-              </figure>
-              </div>            -->
+  <div class="row justify-content-center mt-3">
+    <div class="col-md-4 pb-2">
 
-              <form [formGroup]="loginForm" (ngSubmit)="LoginUser()"> 
-                  <div class="card-group ">
-                  <div class="card  shadow  p-4 border-0">
-                  <div class="card-body">
-                  <h2>Login</h2>
-                  <p class="text-muted">Sign In to your account</p>
-                  <div class="input-group mb-3">
-                  <div class="input-group-prepend">
+      <form [formGroup]="loginForm" (ngSubmit)="LoginUser()">
+        <div class="card-group ">
+          <div class="card  shadow  p-4 border-0">
+            <div class="card-body">
+              <h2>Login</h2>
+              <p class="text-muted">Sign In to your account</p>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
                   <span class="input-group-text">
-                  <i class="icon-user"></i>
+                    <i class="icon-user"></i>
                   </span>
-                  </div>
-                  <input type="text" formControlName="username" class="form-control" placeholder="Username"
-                      [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-                       <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                          <div *ngIf="f.username.errors.required"> Username is required</div>
-                       </div>                         
-                  </div>
-                  <div class="input-group mb-4">
-                  <div class="input-group-prepend">
+                </div>
+                <input type="text" formControlName="username" class="form-control" placeholder="Username"
+                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required"> Username is required</div>
+                </div>
+              </div>
+              <div class="input-group mb-4">
+                <div class="input-group-prepend">
                   <span class="input-group-text">
-                  <i class="icon-lock"></i>
+                    <i class="icon-lock"></i>
                   </span>
-                  </div>
-                  <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                </div>
+                <input type="password" formControlName="password" class="form-control" placeholder="Password"
                   [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                   <div *ngIf="f.password.errors.required">Password is required</div>
                 </div>
-                  </div>
-                  <p class="text-danger success font-weight-normal"  align="left">
-                    {{errorMessage}}
-                  </p>
-                  <div class="row mb-3">
-                  <div class="col-6">
-                  <button  type="submit" class="btn btn-primary btn-square px-4">Login</button>
-                  </div>
-                  <div class="col-6 text-right">
+              </div>
+              <p class="text-danger success font-weight-normal" align="left">
+                {{errorMessage}}
+              </p>
+              <div class="row mb-3">
+                <div class="col-6">
+                  <button type="submit" class="btn btn-primary btn-square px-4">Login</button>
+                </div>
+                <div class="col-6 text-right">
                   <button type="button" class="btn btn-link px-0 " (click)="showForgotPasswordTemplate(template)">Forgot
                     Password?</button>
-                  </div>
-                  </div>
-                  <div class="row justify-content-end text-right text-muted">
-                      <!-- <div class="col-12 pt-5">
-                          Powered by
-                      </div> -->
-                      <div class="col-12 pt-5">
-                          <span class="h6"> - powered by </span> &nbsp;
-                     
-                          <!-- <img src="assets/images/realizertechnologies_logojpg.jpg" height="53" width="auto"> -->
-                          <img src="assets/images/logo-initial.jpg" height="35" width="auto" data-toggle="tooltip" data-placement="bottom"
-                          title="Realizer Technologies">
-                      </div>
-                    </div>
-                    <div class="row justify-content-center text-center">
-                   
-                  </div>
-                  </div>
-                  </div>
-                  </div></form>
-      </div>  
-     
-      <div class="col-lg-7 col-md-4">
-          <!-- <form [formGroup]="loginForm" (ngSubmit)="LoginUser()"> 
-        <div class="card-group ">
-        <div class="card  shadow  p-4 border-0">
-        <div class="card-body">
-        <h2>Login</h2>
-        <p class="text-muted">Sign In to your account</p>
-        <div class="input-group mb-3">
-        <div class="input-group-prepend">
-        <span class="input-group-text">
-        <i class="icon-user"></i>
-        </span>
-        </div>
-        <input type="text" formControlName="username" class="form-control" placeholder="Username"
-            [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-             <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                <div *ngIf="f.username.errors.required"> Username is required</div>
-             </div>                         
-        </div>
-        <div class="input-group mb-4">
-        <div class="input-group-prepend">
-        <span class="input-group-text">
-        <i class="icon-lock"></i>
-        </span>
-        </div>
-        <input type="password" formControlName="password" class="form-control" placeholder="Password"
-        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-      <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-        <div *ngIf="f.password.errors.required">Password is required</div>
-      </div>
-        </div>
-        <p class="text-danger success font-weight-normal"  align="left">
-          {{errorMessage}}
-        </p>
-        <div class="row mb-3">
-        <div class="col-6">
-        <button  type="submit" class="btn btn-primary btn-square px-4">Login</button>
-        </div>
-        <div class="col-6 text-right">
-        <button type="button" class="btn btn-link px-0 " (click)="showForgotPasswordTemplate(template)">Forgot
-          Password?</button>
-        </div>
-        </div>
-        <div class="row justify-content-end text-right text-muted">
-             <div class="col-12 pt-5">
-                Powered by
-            </div> -->
-            <!-- <div class="col-12 pt-5">
-                <span class="h6"> - powered by </span> &nbsp; -->
-           
-                <!-- <img src="assets/images/realizertechnologies_logojpg.jpg" height="53" width="auto"> -->
-                <!-- <img src="assets/images/logo-initial.jpg" height="35" width="auto" data-toggle="tooltip" data-placement="bottom"
-                title="Realizer Technologies">
+                </div>
+              </div>
+              <div class="row justify-content-end text-right text-muted">
+                <div class="col-12 pt-5">
+                  <span class="h6"> - powered by </span> &nbsp;
+                  <img src="assets/images/logo-initial.jpg" height="35" width="auto" data-toggle="tooltip"
+                    data-placement="bottom" title="Realizer Technologies">
+                </div>
+              </div>
+              <div class="row justify-content-center text-center">
+
+              </div>
             </div>
           </div>
-          <div class="row justify-content-center text-center">
-         
         </div>
-        </div>
-        </div>
-        </div></form> --> 
-        </div>
-                <!-- Create Forgotpassword modal -->
-                 <ng-template #template>
-                  <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-                    <form [formGroup]="forgotPasswordForm" >
-                      <div class="modal-header">
-                        <h6 class="modal-title pull-left">Forgot Password?</h6>
-                        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-
-                              <div class="form-group">
-                                  <label>Confirm Email</label>
-                                  <input type="email" class="form-control" formControlName="Email" placeholder="Enter Email Address"
-                                    size="30" [ngClass]="{ 'is-invalid': pwformSubmitted && n.Email.errors }" >
-                                   <div *ngIf="pwformSubmitted && n.Email.errors" class="invalid-feedback">
-                                      <div *ngIf="n.Email.errors.required">Email is required</div>
-                                   </div> 
-
-                              </div>
-
-
-                              <div class="form-group" *ngIf="successResponse">
-                                  <label>Verify Code</label>
-                                  <input type="text" class="form-control" formControlName="verifyCode" placeholder="Enter Code here"
-                                    size="30" [ngClass]="{ 'is-invalid': pwformSubmitted && n.verifyCode.errors }" >
-                                   <div *ngIf="pwformSubmitted && n.verifyCode.errors" class="invalid-feedback">
-                                      <div *ngIf="n.verifyCode.errors.required">Code is required</div>
-                                   </div> 
-
-                              </div>
-
-
-                      </div>
-                      <div class="modal-footer">
-                        <div class="form-group" *ngIf="!successResponse">
-                          <button class="btn btn-primary btn-square px-4" type="submit" (click)="ResetPassword()">Reset</button>
-                        </div>
-                        <div class="form-group" *ngIf="successResponse">
-                            <button class="btn btn-primary btn-square px-4" type="submit" (click)="submitVerifyCode(createNewPassowrdtemplate)">Submit Code</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                
-                </ng-template> 
-         <!-- </div>                   -->
+      </form>
     </div>
-<!-- --------------------------------------------------- -->
+
+    <div class="col-lg-7 col-md-4">
+    </div>
 
 
 
+    <!-- Create Forgotpassword modal -->
+    <ng-template #template>
+      <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
+        <form [formGroup]="forgotPasswordForm">
+          <div class="modal-header">
+            <h6 class="modal-title pull-left">Forgot Password?</h6>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <div class="form-group">
+              <label>Confirm Email</label>
+              <input type="email" class="form-control" formControlName="Email" placeholder="Enter Email Address"
+                size="30" [ngClass]="{ 'is-invalid': pwformSubmitted && n.Email.errors }">
+              <div *ngIf="pwformSubmitted && n.Email.errors" class="invalid-feedback">
+                <div *ngIf="n.Email.errors.required">Email is required</div>
+              </div>
+            </div>
+
+            <div class="form-group" *ngIf="successResponse">
+              <label>Verify Code</label>
+              <input type="text" class="form-control" formControlName="verifyCode" placeholder="Enter Code here"
+                size="30" [ngClass]="{ 'is-invalid': pwformSubmitted && n.verifyCode.errors }">
+              <div *ngIf="pwformSubmitted && n.verifyCode.errors" class="invalid-feedback">
+                <div *ngIf="n.verifyCode.errors.required">Code is required</div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+            <div class="form-group" *ngIf="!successResponse">
+              <button class="btn btn-primary btn-square px-4" type="submit" (click)="ResetPassword()">Reset</button>
+            </div>
+            <div class="form-group" *ngIf="successResponse">
+              <button class="btn btn-primary btn-square px-4" type="submit"
+                (click)="submitVerifyCode(createNewPassowrdtemplate)">Submit Code</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </ng-template>
+  </div>
+  <!-- --------------------------------------------------- -->
 
 
-<ng-template #createNewPassowrdtemplate>
+  <ng-template #createNewPassowrdtemplate>
     <div data-keyboard="false" data-backdrop="static" aria-hidden="true">
-      <form [formGroup]="createNewPasswordForm" >
+      <form [formGroup]="createNewPasswordForm">
         <div class="modal-header">
           <h6 class="modal-title pull-left">Create New Password</h6>
           <button type="button" class="close pull-right" aria-label="Close" (click)="onCancelPasswordForm()">
@@ -222,54 +138,45 @@
         </div>
         <div class="modal-body">
 
-                <div class="form-group">
-                    <label>Enter New Password</label>
-                    <input type="password" class="form-control" formControlName="newPassword" placeholder="Enter Password"
-                      size="30" [ngClass]="{ 'is-invalid': submitted1 && np.newPassword.errors }" >
-                     <div *ngIf="submitted1 && np.newPassword.errors" class="invalid-feedback">
-                        <div *ngIf="np.newPassword.errors.required">Password is required</div>
-                     </div> 
+          <div class="form-group">
+            <label>Enter New Password</label>
+            <input type="password" class="form-control" formControlName="newPassword" placeholder="Enter Password"
+              size="30" [ngClass]="{ 'is-invalid': submitted1 && np.newPassword.errors }">
+            <div *ngIf="submitted1 && np.newPassword.errors" class="invalid-feedback">
+              <div *ngIf="np.newPassword.errors.required">Password is required</div>
+            </div>
+          </div>
 
-                </div>
-
-                <div class="form-group">
-                    <label>Verify New Password</label>
-                    <input type="password" class="form-control" formControlName="verifyNewPassword" placeholder="Verify Password"
-                      size="30" [ngClass]="{ 'is-invalid': submitted1 && np.verifyNewPassword.errors }" >
-                     <div *ngIf="submitted1 && np.verifyNewPassword.errors" class="invalid-feedback">
-                        <div *ngIf="np.verifyNewPassword.errors.required">Password verification is required</div>
-                     </div> 
-
-                </div>
-
-
-
+          <div class="form-group">
+            <label>Verify New Password</label>
+            <input type="password" class="form-control" formControlName="verifyNewPassword"
+              placeholder="Verify Password" size="30"
+              [ngClass]="{ 'is-invalid': submitted1 && np.verifyNewPassword.errors }">
+            <div *ngIf="submitted1 && np.verifyNewPassword.errors" class="invalid-feedback">
+              <div *ngIf="np.verifyNewPassword.errors.required">Password verification is required</div>
+            </div>
+          </div>
 
         </div>
         <div class="modal-footer">
           <div class="form-group">
-            <button class="btn btn-primary btn-square px-4" type="submit" (click)="onSubmitNewPassword()">Update</button>
+            <button class="btn btn-primary btn-square px-4" type="submit"
+              (click)="onSubmitNewPassword()">Update</button>
           </div>
         </div>
       </form>
     </div>
-  
+
   </ng-template>
 
 
-
-
-
-
-<!-- -------------------------------------------- -->
-    <div class="row justify-content-center text-left px-0">
-<div class="col-md-12 pb-2 font-weight-bold"><hr>
-<footer><span>Kalon IMS </span>
-  <span>&copy; 2019 <a href="http://www.realizertech.com" target="_blank">Realizer Technologies.</a></span></footer>
-</div>
+  <!-- -------------------------------------------- -->
+  <div class="row justify-content-center text-left px-0">
+    <div class="col-md-12 pb-2 font-weight-bold">
+      <hr>
+      <footer><span>Kalon IMS </span>
+        <span>&copy; 2019 <a href="http://www.realizertech.com" target="_blank">Realizer Technologies.</a></span>
+      </footer>
     </div>
- </div>
-
-
-    <!-- <app-footer></app-footer> -->
-    
+  </div>
+</div>
