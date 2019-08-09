@@ -4,12 +4,12 @@ import { HttpClient, HttpParams, HttpHeaders  } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Students,CreateStudent,FeesTransactions, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees } from 'shared/Model/Students';
 import { map } from 'rxjs/operators';
-import { debug } from 'util';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FeesTransactionService {
   public listCourseType: CourseType[];
   public listCourses:Courses[];
@@ -21,45 +21,32 @@ export class FeesTransactionService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
-  }
-
   getStudentListFromCourseName(id)
   {
-    return this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id,this.getAuthHeader()).pipe(map(data => data as Students[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetStudentsByCourse'+'/'+id,Utils.getAuthHeader()).pipe(map(data => data as Students[]))
   }
 
   getTotalFeesForStudentCourse(id:number)
   { 
-    return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,this.getAuthHeader()).pipe(map(data => data as CourseFees[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetTotalFeesForStudentCourse'+'/'+id,Utils.getAuthHeader()).pipe(map(data => data as CourseFees[]))
   }
 
   getFeesTransactionDetails(id:number)
   {
-    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,this.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
-  }
-
-  getUsersListForFeesTaken()
-  {
-    return this.http.get(environment.APIBASEURL+'Student/GetUsersListForFeesTaken',this.getAuthHeader()).pipe(map(data => data as Users[]))
+    return this.http.get(environment.APIBASEURL+'Student/GetAllFeesTransaction'+'/'+id,Utils.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
   }
 
   createStudentCourse(feesTransactions:FeesTransactions)
   {
-    return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,this.getAuthHeader())//.subscribe()
+    return this.http.post<FeesTransactions>(this.FeesTransactionUrl,feesTransactions,Utils.getAuthHeader())//.subscribe()
   }
 
   getMonthwiseIncome(id:number){
-    return this.http.post(environment.APIBASEURL+'Chart/GetMonthWiseIncome'+'/'+id,null,this.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
+    return this.http.post(environment.APIBASEURL+'Chart/GetMonthWiseIncome'+'/'+id,null,Utils.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
   }
+
   getCurrentMonthCoursewiseIncome(id:number){
-    return this.http.post(environment.APIBASEURL+'Chart/GetCurrentMonthCoursewiseIncome'+'/'+id,null,this.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
+    return this.http.post(environment.APIBASEURL+'Chart/GetCurrentMonthCoursewiseIncome'+'/'+id,null,Utils.getAuthHeader()).pipe(map(data => data as FeesTransaction[]))
   }
+
 }

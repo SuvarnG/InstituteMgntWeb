@@ -1,171 +1,120 @@
+<form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
+  <!-- Breadcrumb-->
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active"><a routerLink="/Dashboard">
+        Home</a></li>
+    <li class="breadcrumb-item">Fees Payment</li>
+  </ol>
 
-    <form [formGroup]="registerFeesTransaction" (ngSubmit)="createStudentCourse()">
-        <!-- Breadcrumb-->
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active"><a routerLink="/Dashboard">
-              Home</a></li>
-            <li class="breadcrumb-item">Fees Payment</li>
-          </ol> 
-      
-     
-          <div class="container-fluid">  
-              <div id="ui-view">
-                  <div class="card border-0 shadow rounded-0">
-                    <div class="card-body">  
-        <div class="col-md-12 mt-2">
-            
-          <div class="form-row mb-3">
-              
-            <div class="form-group col-md-3 ">
+
+  <div class="container-fluid">
+    <div id="ui-view">
+      <div class="card border-0 shadow rounded-0">
+        <div class="card-body">
+          <div class="col-md-12 mt-2">
+            <div class="form-row mb-3">
+              <div class="form-group col-md-3 ">
                 <label for="Amount">Course Type</label>
-              <select class="form-control" [value]="'default'" formControlName="CourseName" data-toggle="tooltip"
-                data-placement="bottom" title="CourseType"
-                [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
-                (change)="selectFees($event);getStudentListFromCourseName()">
-                <option [value]="'default'" disabled hidden> Course Type</option>
-                <option *ngFor="let course of courseList" [value]="course.CourseId">
-                  {{course.FullName}}</option>
-
-              </select>
-              <div *ngIf="submitFeesTransaction && g.CourseName.errors" class="invalid-feedback">
-                <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
+                <select class="form-control" [value]="'default'" formControlName="CourseName" data-toggle="tooltip"
+                  data-placement="bottom" title="CourseType"
+                  [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseName.errors }"
+                  (change)="selectFees($event);getStudentListFromCourseName()">
+                  <option [value]="'default'" disabled hidden> Course Type</option>
+                  <option *ngFor="let course of courseList" [value]="course.CourseId">
+                    {{course.FullName}}</option>
+                </select>
+                <div *ngIf="submitFeesTransaction && g.CourseName.errors" class="invalid-feedback">
+                  <div *ngIf="g.CourseName.errors.required">Course Name is required</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group col-md-3 px-3">
+              <div class="form-group col-md-3 px-3">
                 <label for="Amount">Student Name</label>
-              <select class="form-control" [value]=null formControlName="StudentID" data-toggle="tooltip"
-                data-placement="bottom" title="Student Name"
-                [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
-                (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
-                <option value=null disabled hidden>Student Name</option>
-                <option *ngFor="let student of studentList" [value]=" student.StudentId">
-                  {{student.FullName}}
-                </option>
-              </select>
-              <div *ngIf="submitFeesTransaction && g.StudentID.errors" class="invalid-feedback">
-                <div *ngIf="g.StudentID.errors.required">Student Name Required</div>
+                <select class="form-control" [value]=null formControlName="StudentID" data-toggle="tooltip"
+                  data-placement="bottom" title="Student Name"
+                  [ngClass]="{ 'is-invalid': submitFeesTransaction && g.StudentID.errors }"
+                  (change)="selectStudent($event);getTotalFeesForStudentCourse();getFeesTransactionDetails();">
+                  <option value=null disabled hidden>Student Name</option>
+                  <option *ngFor="let student of studentList" [value]=" student.StudentId">
+                    {{student.FullName}}
+                  </option>
+                </select>
+                <div *ngIf="submitFeesTransaction && g.StudentID.errors" class="invalid-feedback">
+                  <div *ngIf="g.StudentID.errors.required">Student Name Required</div>
+                </div>
               </div>
             </div>
 
 
-          </div>
-
-
-          <div class="form-row mb-3">
-            <div class="form-group col-md-3 px-3">
+            <div class="form-row mb-3">
+              <div class="form-group col-md-3 px-3">
                 <label for="Amount">Fees</label>
-              <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip"
-                data-placement="bottom" title="Course Fees"
-                [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }"
-                (change)="selectStudent($event);calculateRemainingFees()">
-                <option [value]="null" disabled hidden>Select Fees </option>
-                <option *ngFor="let course of courseFees" [value]="course.TotalFees">
-                  {{course.TotalFees}}
-                </option>
-              </select>
-              <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
-                <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
+                <select class="form-control" [value]="null" formControlName="CourseFees" data-toggle="tooltip"
+                  data-placement="bottom" title="Course Fees"
+                  [ngClass]="{ 'is-invalid': submitFeesTransaction && g.CourseFees.errors }"
+                  (change)="selectStudent($event);calculateRemainingFees()">
+                  <option [value]="null" disabled hidden>Select Fees </option>
+                  <option *ngFor="let course of courseFees" [value]="course.TotalFees">
+                    {{course.TotalFees}}
+                  </option>
+                </select>
+                <div *ngIf="submitFeesTransaction && g.CourseFees.errors" class="invalid-feedback">
+                  <div *ngIf="g.CourseFees.errors.required">Course Fees Required</div>
+                </div>
               </div>
-            </div>
-
-            <div class="form-group col-md-3 px-3">
+              <div class="form-group col-md-3 px-3">
                 <label for="Amount">Remaining Fees</label>
-              <input type="text" class="form-control" formControlName="RemainingFees" disabled
-                placeholder="Remaining Fees" title="Remaining Fees">
+                <input type="text" class="form-control" formControlName="RemainingFees" disabled
+                  placeholder="Remaining Fees" title="Remaining Fees">
+              </div>
 
-            </div>
-
-            <div class="form-group col-md-3 px-3">
+              <div class="form-group col-md-3 px-3">
                 <label for="Amount">Paying Amount</label>
-              <input type="text" class="form-control" id="FeesAmount" formControlName="FeesAmount"
-                data-toggle="tooltip" data-placement="bottom" title="Paying Amount?" placeholder="Paying Amount?"
-                [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
-              <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
-                <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
+                <input type="text" class="form-control" id="FeesAmount" formControlName="FeesAmount"
+                  data-toggle="tooltip" data-placement="bottom" title="Paying Amount?" placeholder="Paying Amount?"
+                  [ngClass]="{ 'is-invalid': submitFeesTransaction && g.FeesAmount.errors }">
+                <div *ngIf="submitFeesTransaction && g.FeesAmount.errors" class="invalid-feedback">
+                  <div *ngIf="g.FeesAmount.errors.required">Fees Amount is required</div>
+                </div>
               </div>
+
             </div>
-
-
           </div>
-        </div>
 
-        <div class="form-row pull-right">
-          <button class="btn btn-square btn-primary" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button"
-            (click)="clearFeesTransaction()">Cancel</button>
-        </div>
+          <div class="form-row pull-right">
+            <button class="btn btn-square btn-primary" type="submit">Submit</button>
+            <button class="btn btn-danger btn-square ml-2" type="button"
+              (click)="clearFeesTransaction()">Cancel</button>
+          </div>
 
 
-        <div class="row justify-content-center text-left  mt-5" *ngIf="showFeesTable">
+          <div class="row justify-content-center text-left  mt-5" *ngIf="showFeesTable">
             <div class="col-md-12 mt-2" id="ui-view">
-                <div class="card border-0  rounded-0">
-                  <div class="card-body">  
-            <table class="table table-bordered">
-              <!-- <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover"> -->
-              <thead>
-                <tr>
-                  <th>Installment Date</th>
-                  <th>Paid Amount</th>
-                  <th>Fees Received By</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let fees of feesTransaction">
-  
-                  <td>{{fees.DateOfPayment | date}}</td>
-                  <td>{{fees.FeesPaid}}</td>
-                  <td>{{fees.FeesTakenBy}}</td>
-                </tr>
-              </tbody>
-            </table>
-  </div>
-  </div>
-          </div>
-        </div>
-  
-        </div>
-        </div>
-        </div>
-          </div>
-        
-     
-
-
-      
-
-
-    </form>
-
-
-
-
-<!-- <ng-template #feesTransactionHistory  >
-
-    <div class="modal-header" >
-
-      <h1>bujbj</h1>
-        <h4 class="modal-title pull-left">Installment Date</h4>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-  <div class="modal-body" *ngFor="let fees of FeesTransactionService.listFeesTransactions">
-      <tr>
-          <td colspan="1"><label for="InstallmentDate">Previous Installment Date</label>
-            <div class="form-group" >
-              <input type="text" [value]="fees.DateOfPayment" disabled>
-            </div>
-          </td>
-        </tr>
-
-        <tr>
-            <td colspan="1"><label for="InstallmentDate">Amount Paid(Rs)</label>
-              <div class="form-group" >  
-                <input type="text" [value]="fees.FeesPaid" disabled>
+              <div class="card border-0  rounded-0">
+                <div class="card-body">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>Installment Date</th>
+                        <th>Paid Amount</th>
+                        <th>Fees Received By</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fees of feesTransaction">
+                        <td>{{fees.DateOfPayment | date}}</td>
+                        <td>{{fees.FeesPaid}}</td>
+                        <td>{{fees.FeesTakenBy}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
-            </td>
-          </tr>
+            </div>
+          </div>
 
+        </div>
+      </div>
+    </div>
   </div>
-</ng-template> -->
+
+</form>
