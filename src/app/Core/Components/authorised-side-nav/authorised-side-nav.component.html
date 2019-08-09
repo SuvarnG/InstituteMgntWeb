@@ -73,7 +73,7 @@
         
        
           <li  class="nav-item" *ngIf="currentRole==='Teacher'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/LeaveList">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/leavelist">
               <i class="nav-icon fa fa-check"></i> Leave Type</a>
           </li>
 
@@ -85,14 +85,14 @@
           <i class="nav-icon icon-people"></i> Manage Users</a>
         <ul class="nav-dropdown-items">
           <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/StaffList">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/stafflist">
               <i class="nav-icon icon-user"></i> Staff</a>
           </li>
         </ul>  
       </li>
 
       <li  class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/Enquiry">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/enquiry">
           <i class="nav-icon fa fa-desktop"></i> Enquiry</a>
       </li>
       <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
@@ -101,7 +101,7 @@
         </a>
       </li>
       <li  class="nav-item" *ngIf="currentRole==='Teacher'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/Leave">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/leave">
           <i class="nav-icon icon-calculator"></i> Student Leave
         </a>
       </li>

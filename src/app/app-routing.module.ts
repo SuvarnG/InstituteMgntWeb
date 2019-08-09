@@ -4,27 +4,17 @@ import { StudentListComponent } from './Student/Components/student-list/student-
 import { CreateStudentComponent } from './student/components/create-student/create-student.component';
 import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
-import { LeaveComponent } from './staff/components/leave/leave.component';
-import { EnquiryComponent } from './staff/components/enquiry/enquiry.component';
-import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
 import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { RoleComponent } from './role/role.component';
-import { ReportsComponent } from './Reports/Components/report-list/reports.component';
-import { ExpenseReportComponent } from './Reports/Components/expense-report/expense-report.component';
-import { FeesCollectionReportComponent } from './Reports/Components/fees-collection-report/fees-collection-report.component';
-import { EnquiryReportComponent } from './Reports/Components/enquiry-report/enquiry-report.component';
-import { StudentAdmissionsReportComponent } from './Reports/Components/student-admissions-report/student-admissions-report.component';
 import { InstituteComponent } from './superAdmin/components/institute/institute.component';
 import { InstituteAdminComponent } from './superAdmin/components/institute-admin/institute-admin.component';
 import { BranchManagerComponent } from './instituteAdmin/components/branch-manager/branch-manager.component';
 import { AuthGuard } from './auth/components/guards/auth.guard';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
-import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
-import { LeavesListComponent } from './staff/components/leaves-list/leaves-list.component';
 
 const routes: Routes = [
   {
@@ -33,28 +23,8 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'Leave',
-        component: LeaveComponent,
-        canActivate: [AuthGuard]
-      },
-      {
         path: 'Dashboard',
         component: AuthorisedLayoutComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'Enquiry',
-        component: EnquiryComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'Leave',
-        component: LeaveComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'LeaveList',
-        component: LeavesListComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -68,18 +38,8 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'StaffList',
-        component: StaffListComponent,
-        canActivate: [AuthGuard]
-      },
-      {
         path: 'Expenses',
         component: ExpensesComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'CreateStaff',
-        component: CreateStaffComponent,
         canActivate: [AuthGuard]
       },
       {
@@ -100,31 +60,6 @@ const routes: Routes = [
       {
         path: 'role',
         component: RoleComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'reports',
-        component: ReportsComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'ExpenseReport',
-        component: ExpenseReportComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'FeesCollectionReport',
-        component: FeesCollectionReportComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'EnquiryReport',
-        component: EnquiryReportComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'StudentAdmissionsReport',
-        component: StudentAdmissionsReportComponent,
         canActivate: [AuthGuard]
       },
       {
