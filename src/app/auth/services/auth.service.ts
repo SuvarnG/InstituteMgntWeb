@@ -3,10 +3,9 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Auth } from 'shared/Model/Auth';
-import { Login } from 'shared/loginAuth';
 import { User, ResponseData } from 'shared/Model/User';
 import { Utils } from '../../Core/Utils';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 
 const httpOptions = {
@@ -32,6 +31,7 @@ export class AuthService {
   isAuthenticated(): boolean {
     return localStorage.getItem("CurrentUser") ? true : false;
   }
+
   getAuthHeader() {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -39,9 +39,9 @@ export class AuthService {
         'Authorization': `Bearer ${Utils.GetAccessToken()}`
       })
     };
-
     return httpOptions
   }
+
   login(username: string, password: string) {
     debugger;
     const body = new HttpParams()
@@ -67,7 +67,6 @@ export class AuthService {
       }));
   }
 
-
   getUserDetails(id: number) {
     return this.http.get<User>(environment.APIBASEURL + 'Login/GetUserDetails/' + id + '/', this.getAuthHeader()).pipe(map(data => data as User))
   }
@@ -80,6 +79,7 @@ export class AuthService {
     this.loggedIn.next(false);
     this.router.navigate(['/Login']);
   }
+
   updateUserPassword(body) {
     return this.http.post(environment.APIBASEURL + 'Login/UpdateUserPassword', body, this.getAuthHeader());
   }
