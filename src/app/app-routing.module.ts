@@ -10,8 +10,8 @@ import { CoursesComponent } from './Courses/Components/course-list/courses.compo
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
 import { TeacherCoursesComponent } from './Staff/Components/teacher-courses/teacher-courses.component';
-import { ExpensesComponent } from './Expenses/Components/expense-transaction/expenses.component';
-import { ExpenseMasterComponent } from './Expenses/Components/expense-type/expense-master.component';
+import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
+import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { BranchComponent } from './branch/branch.component';
 import { RoleComponent } from './role/role.component';
