@@ -126,7 +126,7 @@ export class CoursesComponent implements OnInit {
         if (this.chkCourseId > 0) {
           alert('Course cannot be deleted as it is already in use.')
         }
-        // console.log(data);
+        
         this.getCourses(this.user.InstituteId, this.user.BranchId);
       }, error => console.error(error))
     }

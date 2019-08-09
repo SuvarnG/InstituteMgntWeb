@@ -70,7 +70,7 @@
   </div>
   <div class="modal-body">
     <div class="container-fluid">
-      <form [formGroup]="registerCreateLeave" (ngSubmit)="onSubmitCreate(Leaves)">
+      <form [formGroup]="CreateLeave" (ngSubmit)="onSubmitCreateLeave(Leaves)">
         <div class="form-group">
           <label for="LeaveName">Leave Type</label>
           <input type="text" class="form-control" formControlName="LeaveName" placeholder="Enter Leave Type"
@@ -98,7 +98,7 @@
   </div>
   <div class="modal-body">
     <div class="container-fluid">
-      <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdate()">
+      <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdateLeave()">
         <div class="form-group">
           <label>Leave Type</label>
           <input type="text" class="form-control" formControlName="LeaveType"

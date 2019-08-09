@@ -23,6 +23,16 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(private formBuilder: FormBuilder,
+    private modalService: BsModalService,
+    private LeaveService: LeaveService,
+    private coursesService: CoursesService,
+    private leavelistService: LeavelistService) { }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   submitted = false;
@@ -38,15 +48,6 @@ export class LeaveComponent implements OnInit {
   CourseId: number;
   leaveTransactionId: number;
   filter: any;
-
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-
-  constructor(private formBuilder: FormBuilder,
-    private modalService: BsModalService,
-    private LeaveService: LeaveService,
-    private coursesService: CoursesService,
-    private leavelistService: LeavelistService) { }
 
   ngOnInit() {
     this.dtOptions = {

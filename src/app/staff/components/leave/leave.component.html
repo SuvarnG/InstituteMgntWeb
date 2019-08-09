@@ -91,7 +91,7 @@
               <select name="CourseName" class="form-control" [value]="null" formControlName="CourseName"
                 (change)="getStudentName($event)" [ngClass]="{'is-invalid': submitted && fc.CourseName.errors} ">
                 <option [value]="null" disabled hidden> Select Course </option>
-                <option *ngFor="let Course of Courses" [value]="Course.CourseId">
+                <option *ngFor="let Course of courses" [value]="Course.CourseId">
                   {{Course.FullName}}
                 </option>
               </select>

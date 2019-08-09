@@ -17,15 +17,7 @@ import { DataTableDirective } from 'angular-datatables';
 })
 
 export class LeavesListComponent implements OnInit {
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  modalRef: BsModalRef;
-  submitted = false;
-  registerUpdateLeave: FormGroup;
-  registerCreateLeave: FormGroup;
-  public Leaves = [];
-  public UpdateLeaves = [];
-  filter:any;
+
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -37,6 +29,19 @@ export class LeavesListComponent implements OnInit {
     private route: ActivatedRoute, 
     private modalService: BsModalService) { }
 
+
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  modalRef: BsModalRef;
+  submitted = false;
+  registerUpdateLeave: FormGroup;
+  CreateLeave: FormGroup;
+  public Leaves = [];
+  public UpdateLeaves = [];
+  filter:any;
+
+
+  
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
@@ -53,7 +58,7 @@ export class LeavesListComponent implements OnInit {
     },
     );
 
-    this.registerCreateLeave = this.formBuilder.group({
+    this.CreateLeave = this.formBuilder.group({
       LeaveName: ['', Validators.required]
     },
     );
@@ -74,7 +79,7 @@ export class LeavesListComponent implements OnInit {
 
   get m() { return this.registerUpdateLeave.controls }
 
-  get n() { return this.registerCreateLeave.controls }
+  get n() { return this.CreateLeave.controls }
 
   getAllLeaves() {
     this.LeavelistService.getAllLeaves().subscribe(res => {
@@ -93,7 +98,7 @@ export class LeavesListComponent implements OnInit {
   };
 
   createNewLeave(template: TemplateRef<any>) {
-    this.registerCreateLeave.reset();
+    this.CreateLeave.reset();
     this.modalRef = this.modalService.show(template);
   };
 
@@ -105,7 +110,7 @@ export class LeavesListComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   };
 
-  onSubmitUpdate() {
+  onSubmitUpdateLeave() {
     this.submitted = true;
     //stop here if form is invalid
     if (this.registerUpdateLeave.invalid) {
@@ -113,27 +118,26 @@ export class LeavesListComponent implements OnInit {
     }
   }
 
-  onSubmitCreate(Leaves) {
+  onSubmitCreateLeave(Leaves) {
     this.submitted = true;
     //stop here if form is invalid
-    if (this.registerCreateLeave.invalid) {
+    if (this.CreateLeave.invalid) {
       return;
     }
     for(var i=0;i<Leaves.length;i++)
 {
-  if(this.registerCreateLeave.controls.LeaveName.value==Leaves[i].LeaveType){
+  if(this.CreateLeave.controls.LeaveName.value==Leaves[i].LeaveType){
     alert("Duplicate Leave Type Not Allowed.");
   }
 }
 
-    let leaveName=this.registerCreateLeave.controls.LeaveName.value
+    let leaveName=this.CreateLeave.controls.LeaveName.value
     this.LeavelistService.createLeave(leaveName).subscribe(data => { this.getAllLeaves(), 
       this.rerender();          
       this.modalRef.hide() })
   }
 
   updateLeave(leaves: Leaves) {
-    
     this.submitted = true;
     //stop here if form is invalida
     if (this.registerUpdateLeave.invalid) {
