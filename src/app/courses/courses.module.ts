@@ -1,9 +1,9 @@
+import { CoursetypeService } from './services/coursetype.service';
+import { CoursesService } from './services/courses.service';
+import { CoursetypeComponent } from './components/coursetype/coursetype.component';
+import { CoursesComponent } from './components/course-list/courses.component';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BanktransactionService } from './services/banktransaction.service';
-import { BankService } from './services/bank.service';
-import { BanktransactionComponent } from './components/banktransaction/banktransaction.component';
-import { BankComponent } from './components/bankaccount/bank.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthGuard } from '../auth/components/guards/auth.guard';
@@ -15,17 +15,17 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
 
 @NgModule({
   declarations: [
-    BankComponent,
-    BanktransactionComponent
+    CoursesComponent,
+    CoursetypeComponent
   ],
   imports: [
-    BrowserModule,
+    DataTablesModule ,
     CommonModule,
-    FormsModule,
-    NgxPaginationModule,
-    Ng2SearchPipeModule,
     ReactiveFormsModule,
-    DataTablesModule,
+    BrowserModule,
+    Ng2SearchPipeModule,
+    NgxPaginationModule ,
+    FormsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -33,22 +33,22 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
         canActivate: [AuthGuard],
         children: [
           {
-        path: 'banktransaction',
-        component: BanktransactionComponent,
+        path: 'courses',
+        component: CoursesComponent,
         canActivate: [AuthGuard]
-          },
-          {
-        path: 'bank',
-        component: BankComponent,
-        canActivate: [AuthGuard]
-          }
-        ]
       },
+      {
+        path: 'coursetype',
+        component: CoursetypeComponent,
+        canActivate: [AuthGuard]
+      }
+  ]
+}
     ])
   ],
   providers:[
-    BankService,
-    BanktransactionService
+    CoursesService,
+    CoursetypeService
   ]
 })
-export class BankModule { }
+export class CoursesModule { }

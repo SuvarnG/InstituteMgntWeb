@@ -5,16 +5,13 @@ import { CreateStudentComponent } from './student/components/create-student/crea
 import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { LeaveComponent } from './staff/components/leave/leave.component';
-import { CoursesComponent } from './Courses/Components/course-list/courses.component';
 import { EnquiryComponent } from './staff/components/enquiry/enquiry.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
-import { CreateStaffService } from './staff/services/create-staff.service';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
 import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { RoleComponent } from './role/role.component';
-import { CoursetypeComponent } from './Courses/Components/coursetype/coursetype.component';
 import { ReportsComponent } from './Reports/Components/report-list/reports.component';
 import { ExpenseReportComponent } from './Reports/Components/expense-report/expense-report.component';
 import { FeesCollectionReportComponent } from './Reports/Components/fees-collection-report/fees-collection-report.component';
@@ -71,11 +68,6 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'Courses',
-        component: CoursesComponent,
-        canActivate: [AuthGuard]
-      },
-      {
         path: 'StaffList',
         component: StaffListComponent,
         canActivate: [AuthGuard]
@@ -108,12 +100,6 @@ const routes: Routes = [
       {
         path: 'role',
         component: RoleComponent,
-        canActivate: [AuthGuard]
-      },
-      
-      {
-        path: 'coursetype',
-        component: CoursetypeComponent,
         canActivate: [AuthGuard]
       },
       {

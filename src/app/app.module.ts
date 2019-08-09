@@ -24,7 +24,6 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { LeaveComponent } from './staff/components/leave/leave.component';
 import { FooterComponent } from './Core/Components/footer/footer.component';
-import { CoursesComponent } from './Courses/Components/course-list/courses.component';
 import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
@@ -47,7 +46,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
-import { CoursetypeComponent } from './Courses/Components/coursetype/coursetype.component';
 import { ExpenseTransactionModule } from './Expenses/Components/expensetransaction/expense-transaction.module';
 import { BranchModule } from './instituteAdmin/components/branch/branch.module';
 import { CreateStudentModule } from './student/components/create-student/create-student.module';
@@ -71,6 +69,7 @@ import { InstituteAdminComponent } from './superAdmin/components/institute-admin
 import { BranchManagerComponent } from './instituteAdmin/components/branch-manager/branch-manager.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component'; 
+import { CoursesModule } from './courses/courses.module';
 
 const appRoutes: Routes = [
   { }];
@@ -89,7 +88,6 @@ const appRoutes: Routes = [
     EnquiryComponent,
     LeaveComponent,
     FooterComponent,
-    CoursesComponent,
     CreateStaffComponent,
     StaffListComponent,
     ExpensesComponent,
@@ -97,7 +95,6 @@ const appRoutes: Routes = [
     ExpenseMasterComponent,
     FeesTransactionComponent,
     BranchComponent,
-    CoursetypeComponent,
     ReportsComponent,
     ExpenseReportComponent,
     FeesCollectionReportComponent,
@@ -110,6 +107,7 @@ const appRoutes: Routes = [
     LoginLayoutComponent,
   ],
   imports: [
+    CoursesModule,
     BankModule,
     BrowserModule,
     AppRoutingModule,
