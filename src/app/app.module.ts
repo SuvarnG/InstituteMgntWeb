@@ -1,3 +1,4 @@
+import { StudentModule } from './student/student.module';
 import { SuperAdminModule } from './superAdmin/super-admin.module';
 import { InstituteAdminModule } from './instituteAdmin/components/institute-admin.module';
 import { ExpensesModule } from './expenses/expenses.module';
@@ -16,10 +17,6 @@ import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard
 import { AuthorisedSideNavComponent } from './Core/Components/authorised-side-nav/authorised-side-nav.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { StudentListComponent } from './Student/Components/student-list/student-list.component';
-import { CreateStudentComponent } from './student/components/create-student/create-student.component';
-import { StudentslistService } from './Student/Services/studentslist.service';
-import { CreateNewStudentService } from './student/services/create-new-student.service';
 import { AuthService } from './auth/services/auth.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
@@ -28,8 +25,6 @@ import { RoleComponent } from './role/role.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
 import { DatePipe } from '@angular/common';
-import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
-import { FeesTransactionService } from './Student/Services/fees-transaction.service';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -57,15 +52,13 @@ import { CoursesModule } from './courses/courses.module';
     AuthorisedSideNavTogglerComponent,
     AuthorisedLayoutComponent,
     AuthorisedSideNavComponent,
-    StudentListComponent,
-    CreateStudentComponent,
     FooterComponent,
     RoleComponent,
-    FeesTransactionComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
   ],
   imports: [
+    StudentModule,
     SuperAdminModule,
     InstituteAdminModule,
     ExpensesModule,
@@ -99,11 +92,8 @@ import { CoursesModule } from './courses/courses.module';
   ],
   providers:
     [
-      StudentslistService,
-      CreateNewStudentService,
       AuthService,
       RoleService,
-      FeesTransactionService,
       DatePipe,
       AuthorizedSideNavService,
       {provide: LocationStrategy, useClass: HashLocationStrategy},
