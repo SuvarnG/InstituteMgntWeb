@@ -13,17 +13,15 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StudentListComponent } from './Student/Components/student-list/student-list.component';
 import { CreateStudentComponent } from './student/components/create-student/create-student.component';
 import { StudentslistService } from './Student/Services/studentslist.service';
-import { LeavesListComponent } from './leaves-list/leaves-list.component';
-import { LeavelistService } from './leaves-list/leavelist.service';
+import { LeavesListComponent } from './staff/components/leaves-list/leaves-list.component';
 import { CreateNewStudentService } from './student/services/create-new-student.service';
 import { AuthService } from './auth/services/auth.service';
-import { EnquiryComponent } from './enquiry/enquiry.component';
-import { EnquiryService } from './enquiry/enquiry.service';
-import { LeaveService } from './leave/leave.service';
+import { EnquiryComponent } from './staff/components/enquiry/enquiry.component';
+import { EnquiryService } from './staff/services/enquiry.service';
+import { LeaveService } from './staff/services/leave.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
-import { LeaveComponent } from './leave/leave.component';
-import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { LeaveComponent } from './staff/components/leave/leave.component';
 import { FooterComponent } from './Core/Components/footer/footer.component';
 import { CoursesComponent } from './Courses/Components/course-list/courses.component';
 import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
@@ -33,11 +31,11 @@ import { ExpenseService } from './Expenses/Services/expense.service';
 import { StaffListService } from './Staff/Services/staff-list.service';
 import { CreateStaffService } from './Staff/Services/create-staff.service';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bankaccount/bank.component';
-import { BanktransactionComponent } from './banktransaction/banktransaction.component';
+import { BankComponent } from './bank/components/bankaccount/bank.component';
+import { BanktransactionComponent } from './bank/components/banktransaction/banktransaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
-import { BankService } from './bankaccount/bank.service';
+import { BankService } from './bank/services/bank.service';
 import { DatePipe } from '@angular/common';
 import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { ExpenseMasterService } from './Expenses/Services/expense-master.service';
@@ -46,7 +44,7 @@ import { FeesTransactionService } from './Student/Services/fees-transaction.serv
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { Routes } from '@angular/router';
 import { BranchService } from './instituteAdmin/services/branch.service';
-import { BanktransactionService } from './banktransaction/banktransaction.service';
+import { BanktransactionService } from './bank/services/banktransaction.service';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -93,7 +91,6 @@ const appRoutes: Routes = [
     LeavesListComponent,
     EnquiryComponent,
     LeaveComponent,
-    NavigationBarComponent,
     FooterComponent,
     CoursesComponent,
     CreateStaffComponent,
@@ -148,7 +145,6 @@ const appRoutes: Routes = [
   providers:
     [
       StudentslistService,
-      LeavelistService,
       CreateNewStudentService,
       AuthService,
       EnquiryService,

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Bank } from '../shared/Model/Bank'
-import { map, tap, catchError } from 'rxjs/operators'; import { environment } from '../../environments/environment';
+import { Bank } from 'shared/Model/Bank'
+import { map, tap, catchError } from 'rxjs/operators'; import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Utils } from '../Core/Utils';
+import { Utils } from '../../Core/Utils';
 
 
 @Injectable({

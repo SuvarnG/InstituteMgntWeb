@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { BankTransaction } from '../shared/Model/BankTransaction';
+import { BankTransaction } from 'shared/Model/BankTransaction';
 import { map, tap } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
-import { StaffMaster } from '../shared/Model/StaffMaster';
+import { environment } from '../../../environments/environment';
+import { StaffMaster } from 'shared/Model/StaffMaster';
 import { Observable } from 'rxjs';
-import { BankNames } from '../shared/Model/BankNames';
-import { Accountnumbers } from '../shared/Model/AccountNumber';
-import { Utils } from '../Core/Utils';
+import { BankNames } from 'shared/Model/BankNames';
+import { Accountnumbers } from 'shared/Model/AccountNumber';
+import { Utils } from '../../Core/Utils';
 
 
 

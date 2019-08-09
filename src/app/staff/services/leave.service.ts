@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
-import { Leaves } from '../shared/Model/leaves';
-import { LeaveTransaction, LeaveType } from '../shared/Model/LeaveTran';
-import { Students, CourseType } from '../shared/Model/Students'
+import { Leaves } from 'shared/Model/leaves';
+import { LeaveTransaction, LeaveType } from 'shared/Model/LeaveTran';
+import { Students, CourseType } from 'shared/Model/Students'
 import { Observable } from 'rxjs';
-import { Utils } from '../Core/Utils';
+import { Utils } from '../../Core/Utils';
 
 @Injectable({
   providedIn: 'root'

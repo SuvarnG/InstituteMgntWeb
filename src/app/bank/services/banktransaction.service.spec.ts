@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BanktransactionService } from './banktransaction.service';
+import { BanktransactionService } from '../services/banktransaction.service';
 
 describe('BanktransactionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));

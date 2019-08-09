@@ -1,8 +1,8 @@
-import { Utils } from '../Core/Utils';
+import { Utils } from '../../Core/Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-import { Leaves, UpdateLeaves } from '../shared/Model/leaves'
+import { environment } from '../../../environments/environment';
+import { Leaves, UpdateLeaves } from 'shared/Model/leaves'
 
 @Injectable({
   providedIn: 'root'

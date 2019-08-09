@@ -1,18 +1,18 @@
-import { Courses } from '../shared/Model/Students';
+import { Courses } from 'shared/Model/Students';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { EnquiryService } from './enquiry.service';
-import { EnquiryList, CourseNameMaster, CourseTypeMaster } from '../shared/Model/EnquiryList';
-import { createEnquiry } from '../shared/Model/createEnquiry';
+import { EnquiryService } from '../../services/enquiry.service';
+import { EnquiryList, CourseNameMaster, CourseTypeMaster } from 'shared/Model/EnquiryList';
+import { createEnquiry } from 'shared/Model/createEnquiry';
 import { validateConfig } from '@angular/router/src/config';
 import { Subject } from 'rxjs';
-import { CoursetypeService } from '../Courses/Services/coursetype.service';
-import { CourseType } from '../shared/Model/Students';
-import { CreateNewStudentService } from '../student/services/create-new-student.service';
+import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
+import { CourseType } from 'shared/Model/Students';
+import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 import { formatDate } from '@angular/common';
-import { Utils } from '../Core/Utils';
+import { Utils } from '../../../Core/Utils';
 
 @Component({
   selector: 'app-enquiry',

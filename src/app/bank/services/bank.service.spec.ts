@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LeaveService } from './leave.service';
+import { BankService } from '../services/bank.service';
 
-describe('LeaveService', () => {
+describe('BankService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: LeaveService = TestBed.get(LeaveService);
+    const service: BankService = TestBed.get(BankService);
     expect(service).toBeTruthy();
   });
 });

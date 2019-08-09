@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StudentListComponent } from './Student/Components/student-list/student-list.component';
 import { CreateStudentComponent } from './student/components/create-student/create-student.component';
-import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
-import { LeaveComponent } from './leave/leave.component';
+import { LeaveComponent } from './staff/components/leave/leave.component';
 import { CoursesComponent } from './Courses/Components/course-list/courses.component';
-import { EnquiryComponent } from './enquiry/enquiry.component';
+import { EnquiryComponent } from './staff/components/enquiry/enquiry.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
 import { CreateStaffService } from './staff/services/create-staff.service';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
@@ -15,8 +14,8 @@ import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expens
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bankaccount/bank.component';
-import { BanktransactionComponent } from './banktransaction/banktransaction.component';
+import { BankComponent } from './bank/components/bankaccount/bank.component';
+import { BanktransactionComponent } from './bank/components/banktransaction/banktransaction.component';
 import { CoursetypeComponent } from './Courses/Components/coursetype/coursetype.component';
 import { ReportsComponent } from './Reports/Components/report-list/reports.component';
 import { ExpenseReportComponent } from './Reports/Components/expense-report/expense-report.component';
@@ -30,6 +29,7 @@ import { AuthGuard } from './auth/components/guards/auth.guard';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
+import { LeavesListComponent } from './staff/components/leaves-list/leaves-list.component';
 
 const routes: Routes = [
   {
