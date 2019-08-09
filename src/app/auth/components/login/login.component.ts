@@ -79,14 +79,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.LoginService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(data => {
-        if (data && data.access_token && (data.roles == "Admin" || data.roles == "BranchManager")) {
+        if (data && data.access_token && (data.roles == "Admin" || data.roles == "branchmanager")) {
           this.router.navigate([this.returnUrl]);
         }
         else if (data && data.access_token && (data.roles == "Teacher")) {
-          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/StudentList']);
+          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/studentList']);
         }
         else if (data && data.access_token && (data.roles == "SuperAdmin")) {
-          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/Institute']);
+          this.router.navigate([this.route.snapshot.queryParams['returnUrl'] || '/institute']);
         }
       },
         error => {

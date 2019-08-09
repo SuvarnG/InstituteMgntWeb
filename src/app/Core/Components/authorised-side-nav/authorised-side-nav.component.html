@@ -9,11 +9,11 @@
           <i class="nav-icon icon-home"></i> Dashboard </a>
       </li>
       <li  class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/Institute">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/institute">
           <i class="nav-icon fa fa-institution"></i> Institute</a>
       </li>
       <li  class="nav-item" *ngIf="currentRole==='SuperAdmin'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/InstituteAdmin">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/instituteadmin">
           <i class="nav-icon icon-user"></i> Institute Admin</a>
       </li>
 
@@ -24,12 +24,12 @@
       </li>
 
       <li  class="nav-item" *ngIf="currentRole==='Admin'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/Branch">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/branch">
           <i class="nav-icon fa fa-map-marker"></i> Branch</a>
       </li>
 
         <li  class="nav-item" *ngIf="currentRole==='Admin'">
-          <a class="nav-link" routerLinkActive="active current" routerLink="/BranchManager">
+          <a class="nav-link" routerLinkActive="active current" routerLink="/branchmanager">
             <i class="nav-icon icon-user"></i> Branch Manager</a>
         </li>
 
@@ -57,7 +57,7 @@
 
           <li  class="nav-item"
             *ngIf="currentRole==='BranchManager'">
-            <a class="nav-link" routerLinkActive="active current" routerLink="/ExpenseMaster">
+            <a class="nav-link" routerLinkActive="active current" routerLink="/expensetype">
               <i class="nav-icon fa fa-dollar"></i> Expense Type</a>
           </li>
 
@@ -107,7 +107,7 @@
       </li>
       
       <li  class="nav-item" *ngIf="currentRole==='BranchManager'">
-        <a class="nav-link" routerLinkActive="active current" routerLink="/Expenses">
+        <a class="nav-link" routerLinkActive="active current" routerLink="/expenses">
           <i class="nav-icon icon-note"></i> Daily Expenses</a>
       </li>
 

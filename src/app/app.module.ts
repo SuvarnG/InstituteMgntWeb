@@ -1,3 +1,6 @@
+import { SuperAdminModule } from './superAdmin/super-admin.module';
+import { InstituteAdminModule } from './instituteAdmin/components/institute-admin.module';
+import { ExpensesModule } from './expenses/expenses.module';
 import { ReportsModule } from './reports/reports.module';
 import { StaffModule } from './staff/staff.module';
 import { BankModule } from './bank/bank.module';
@@ -21,18 +24,12 @@ import { AuthService } from './auth/services/auth.service';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule, BsDropdownModule, CollapseModule } from 'ngx-bootstrap';
 import { FooterComponent } from './Core/Components/footer/footer.component';
-import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
-import { ExpenseService } from './Expenses/Services/expense.service';
 import { RoleComponent } from './role/role.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
 import { DatePipe } from '@angular/common';
-import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
-import { ExpenseMasterService } from './Expenses/Services/expense-master.service';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { FeesTransactionService } from './Student/Services/fees-transaction.service';
-import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
-import { BranchService } from './instituteAdmin/services/branch.service';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -47,9 +44,6 @@ import { SidenavLayoutModule } from './layout/authorised/sidenav-layout/sidenav-
 import { StudentListModule } from './Student/Components/student-list/student-list.module';
 import { AuthorizedSideNavService } from './Core/Components/authorised-side-nav/authorized-side-nav.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { InstituteComponent } from './superAdmin/components/institute/institute.component';
-import { InstituteAdminComponent } from './superAdmin/components/institute-admin/institute-admin.component';
-import { BranchManagerComponent } from './instituteAdmin/components/branch-manager/branch-manager.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component'; 
 import { CoursesModule } from './courses/courses.module';
@@ -66,18 +60,15 @@ import { CoursesModule } from './courses/courses.module';
     StudentListComponent,
     CreateStudentComponent,
     FooterComponent,
-    ExpensesComponent,
     RoleComponent,
-    ExpenseMasterComponent,
     FeesTransactionComponent,
-    BranchComponent,
-    InstituteComponent,
-    InstituteAdminComponent,
-    BranchManagerComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
   ],
   imports: [
+    SuperAdminModule,
+    InstituteAdminModule,
+    ExpensesModule,
     ReportsModule,
     StaffModule,
     CoursesModule,
@@ -111,12 +102,9 @@ import { CoursesModule } from './courses/courses.module';
       StudentslistService,
       CreateNewStudentService,
       AuthService,
-      ExpenseService,
       RoleService,
-      ExpenseMasterService,
       FeesTransactionService,
       DatePipe,
-      BranchService,
       AuthorizedSideNavService,
       {provide: LocationStrategy, useClass: HashLocationStrategy},
       AuthGuard
