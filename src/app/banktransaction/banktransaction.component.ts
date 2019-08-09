@@ -1,7 +1,7 @@
 import { StaffListService } from '../Staff/Services/staff-list.service';
 import { Bank } from '../shared/Model/Bank';
 import { BankService } from './../bankaccount/bank.service';
-import { Utils } from './../Utils';
+import { Utils } from '../Core/Utils';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { Component, OnInit, TemplateRef, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';

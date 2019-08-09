@@ -4,7 +4,7 @@ import * as FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 import { environment } from '../../../environments/environment';
 import { StudentReport } from 'shared/Model/Students';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';

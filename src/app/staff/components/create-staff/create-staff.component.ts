@@ -8,7 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CreateStaffService } from '../../../staff/services/create-staff.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Roles } from 'shared/Model/Students';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
 
 

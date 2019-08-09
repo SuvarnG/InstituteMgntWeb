@@ -3,7 +3,7 @@ import { InstituteAdminService } from '../../services/institute-admin.service';
 import {InstituteAdmins} from 'shared/Model/Institutes'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import { InstituteService } from '../institute/institute.service';
 import {Institutes} from 'shared/Model/Institutes'
 import { IfStmt } from '@angular/compiler';

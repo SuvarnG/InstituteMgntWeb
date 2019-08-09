@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { map } from "rxjs/operators";
 import { environment } from '../../../environments/environment';
 import { CreateStudent, FeesTransaction,User,CourseType, Courses,Users,Roles,RecentStudent, CourseFees,ThumbnailUrl } from 'shared/Model/Students';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 
 

@@ -1,7 +1,7 @@
 import { FeesTransaction } from 'shared/Model/Students';
 import { FeesTransactionService } from '../../../Student/Services/fees-transaction.service';
 import { Expenses, ExpenseChart, IncomeExpense } from 'shared/Model/Expenses';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../Utils';
 import { ExpenseService } from '../../../Expenses/Services/expense.service';
 import { Component, OnInit, NgModule, TemplateRef } from '@angular/core';
 import { Chart } from 'chart.js';

@@ -12,7 +12,7 @@ import { CourseType } from '../shared/Model/Students';
 import { CreateNewStudentService } from '../student/services/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 import { formatDate } from '@angular/common';
-import { Utils } from './../Utils';
+import { Utils } from '../Core/Utils';
 
 @Component({
   selector: 'app-enquiry',

@@ -5,7 +5,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { CourseType, Course } from 'shared/Model/CourseType';
 import { Subject } from 'rxjs';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import { DataTableDirective } from 'angular-datatables';
 
 

@@ -4,7 +4,7 @@ import { Branch } from 'shared/Model/Branch';
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 
 

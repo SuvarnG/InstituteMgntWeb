@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BranchManagerService } from '../../services/branch-manager.service';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import {BranchManager, Branch} from 'shared/Model/Branch'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';

@@ -6,7 +6,7 @@ import { StaffMaster, TeacherCourse } from 'shared/Model/StaffMaster';
 import { tap, catchError, map } from 'rxjs/operators';
 import { Courses, CourseType, Roles } from 'shared/Model/Students';
 import { User } from 'shared/Model/User';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 
 

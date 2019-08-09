@@ -1,4 +1,4 @@
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';

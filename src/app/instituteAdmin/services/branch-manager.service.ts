@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 import { BranchManager } from 'shared/Model/Branch';
 import { environment } from '../../../environments/environment';
 

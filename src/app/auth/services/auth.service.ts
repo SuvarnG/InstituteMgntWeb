@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Auth } from 'shared/Model/Auth';
 import { Login } from 'shared/loginAuth';
 import { User, ResponseData } from 'shared/Model/User';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Router } from '@angular/router';
 

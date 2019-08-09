@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 import { environment } from '../../../environments/environment';
 import {InstituteAdmins} from 'shared/Model/Institutes'
 

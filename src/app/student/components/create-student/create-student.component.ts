@@ -12,7 +12,7 @@ import { formGroupNameProvider } from '@angular/forms/src/directives/reactive_di
 import { routerNgProbeToken } from '@angular/router/src/router_module';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 
 
 @Component({

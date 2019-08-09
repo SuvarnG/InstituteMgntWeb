@@ -1,6 +1,6 @@
 import { FeesTransactionService } from './../../../Student/Services/fees-transaction.service';
 import { Course } from 'shared/Model/CourseType';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Students, CreateStudent, FeesTransactions, FeesTransaction, User, CourseType, Courses, Users, Roles, RecentStudent, CourseFees } from 'shared/Model/Students';

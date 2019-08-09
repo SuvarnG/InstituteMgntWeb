@@ -11,7 +11,7 @@ import { validateConfig } from '@angular/router/src/config';
 import { UpdateLeaves, Leaves } from '../shared/Model/leaves';
 import { CourseType, Students } from '../shared/Model/Students';
 import { Subject } from 'rxjs';
-import { Utils } from './../Utils';
+import { Utils } from '../Core/Utils';
 import { formatDate } from '@angular/common';
 import { DataTableDirective } from 'angular-datatables';
 

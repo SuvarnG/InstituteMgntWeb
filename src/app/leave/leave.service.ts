@@ -6,7 +6,7 @@ import { Leaves } from '../shared/Model/leaves';
 import { LeaveTransaction, LeaveType } from '../shared/Model/LeaveTran';
 import { Students, CourseType } from '../shared/Model/Students'
 import { Observable } from 'rxjs';
-import { Utils } from './../Utils';
+import { Utils } from '../Core/Utils';
 
 @Injectable({
   providedIn: 'root'

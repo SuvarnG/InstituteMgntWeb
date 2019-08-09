@@ -5,7 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Branch } from 'shared/Model/Branch';
 import { BranchService } from '../../services/branch.service';
 import { Subject } from 'rxjs';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../../Core/Utils';
 import { DataTableDirective } from 'angular-datatables';
 
 

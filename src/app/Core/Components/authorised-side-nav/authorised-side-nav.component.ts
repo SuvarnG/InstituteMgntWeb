@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorisedSideNavService } from '../../services/authorised-side-nav.service';
-import { Utils } from '../../../Utils';
+import { Utils } from '../../Utils';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AuthorizedSideNavService } from './authorized-side-nav.service';

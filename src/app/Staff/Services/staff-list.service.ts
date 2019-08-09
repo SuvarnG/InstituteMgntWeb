@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { map, tap, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CourseType, Courses } from 'shared/Model/Students';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 
 

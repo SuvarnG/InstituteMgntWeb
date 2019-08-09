@@ -4,7 +4,7 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Course, CourseType } from 'shared/Model/CourseType';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
-import { Utils } from '../../Utils';
+import { Utils } from '../../Core/Utils';
 
 
 
