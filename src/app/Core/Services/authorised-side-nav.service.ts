@@ -9,5 +9,5 @@ export class AuthorisedSideNavService {
   constructor() { }
   toggleSideNav(): void {
     this.hideSideNav = !this.hideSideNav;
- }
+  }
 }

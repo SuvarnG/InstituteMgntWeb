@@ -15,19 +15,16 @@ import { AuthService } from '../../../auth/services/auth.service';
 })
 export class AuthorisedSideNavComponent implements OnInit {
 
-  public newThumbnailUrl: any = '../../assets/images/MProfile.jpg';
-  public currentRole: string;
-  isCollapsed = false;
-  isLoggedIn$: Observable<boolean>;
-
   constructor(public sideNavService: AuthorisedSideNavService, private modalService: BsModalService,
     private formBuilder: FormBuilder, public AuthorizedSideNavService: AuthorizedSideNavService,
     public _DomSanitizer: DomSanitizer, private loginService: AuthService) { }
 
-
+  public newThumbnailUrl: any = '../../assets/images/MProfile.jpg';
+  public currentRole: string;
+  isCollapsed = false;
+  isLoggedIn$: Observable<boolean>;
   userImageUploadForm: FormGroup
   modalRef: BsModalRef
-
 
   ngOnInit() {
     this.isLoggedIn$ = this.loginService.isLoggedIn;
@@ -39,20 +36,14 @@ export class AuthorisedSideNavComponent implements OnInit {
   }
 
   public user = Utils.GetCurrentUser();
-  //public photo=this.user.Photo;
   checkStaff() {
     this.currentRole = Utils.GetUserRole();
     console.log(JSON.stringify(this.currentRole));
   }
 
-  //   get users(): any {
-  //     return sessionStorage.getItem('CurrentUser');
-  // }
-
   changeUserImage(template: any) {
     if (confirm('Do you want to change Your Image?')) {
       this.modalRef = this.modalService.show(template);
-
     }
   }
 
@@ -63,7 +54,6 @@ export class AuthorisedSideNavComponent implements OnInit {
     }
   }
 
-
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.userImageUploadForm.get('Photo').value)//this.registerForm.get('Documents').value);
@@ -71,12 +61,9 @@ export class AuthorisedSideNavComponent implements OnInit {
       res => {
         if (res['type'] == 4) {
           this.newThumbnailUrl = 'Http://' + res['body']['Message'];
-
         }
-
       }
     )
-
   }
 
   submitUserImage() {
@@ -86,18 +73,14 @@ export class AuthorisedSideNavComponent implements OnInit {
     let body = {
       Photo: this.newThumbnailUrl,
       Id: this.user.userId
-
     }
-
     this.AuthorizedSideNavService.submitUserImage(body).subscribe(data => {
     });
     this.user.Photo = this.newThumbnailUrl
     this.modalRef.hide();
-    //sessionStorage.setItem('Photo',this.AuthorizedSideNavService.thumbnailUrl)
   }
 
-
   onShown() {
-    this.isCollapsed=false;
+    this.isCollapsed = false;
   }
 }

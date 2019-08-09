@@ -12,9 +12,8 @@ export class FooterComponent implements OnInit {
   constructor(private loginService: AuthService) { }
   public currentYear;
   isLoggedIn$: Observable<boolean>;
-  
-  ngOnInit() {
 
+  ngOnInit() {
     this.isLoggedIn$ = this.loginService.isLoggedIn;
     this.currentYear = new Date().getFullYear();
   }
