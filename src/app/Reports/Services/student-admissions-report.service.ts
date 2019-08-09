@@ -16,16 +16,6 @@ export class StudentAdmissionsReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAuthHeader() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })
-    };
-    return httpOptions
-  }
-
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
@@ -34,7 +24,7 @@ export class StudentAdmissionsReportService {
   }
 
   pullStudentAdmissionReport(body) {
-    return this.httpClient.post<StudentReport[]>(environment.APIBASEURL + 'Student/GetStudentAdmissionReport', body, this.getAuthHeader());
+    return this.httpClient.post<StudentReport[]>(environment.APIBASEURL + 'Student/GetStudentAdmissionReport', body, Utils.getAuthHeader());
   }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {

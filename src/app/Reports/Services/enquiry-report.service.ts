@@ -1,6 +1,6 @@
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Utils } from '../../Core/Utils';
 import { EnquiryReport } from 'shared/Model/EnquiryList'
 import * as FileSaver from 'file-saver';
@@ -16,18 +16,8 @@ export class EnquiryReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAuthHeader() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })
-    };
-    return httpOptions
-  }
-
   pullEnquiryReport(body) {
-    return this.httpClient.post<EnquiryReport[]>(environment.APIBASEURL + 'Enquiry/GetEnquiryReport', body, this.getAuthHeader());
+    return this.httpClient.post<EnquiryReport[]>(environment.APIBASEURL + 'Enquiry/GetEnquiryReport', body, Utils.getAuthHeader());
   }
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {
@@ -42,6 +32,6 @@ export class EnquiryReportService {
   }
 
   createEnquiryPDF(body) {
-    return this.httpClient.post(environment.APIBASEURL + 'Enquiry/EnquiryPdf', body, this.getAuthHeader());
+    return this.httpClient.post(environment.APIBASEURL + 'Enquiry/EnquiryPdf', body, Utils.getAuthHeader());
   }
 }

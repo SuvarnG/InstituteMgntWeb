@@ -1,6 +1,6 @@
 import { Utils } from '../../Core/Utils';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { FeesReport } from 'shared/Model/Students'
 import * as FileSaver from 'file-saver';
@@ -16,16 +16,6 @@ export class FeesCollectionReportService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAuthHeader() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })
-    };
-    return httpOptions
-  }
-
   public exportAsExcelFile(json: any[], excelFileName: string): void {
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(json);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
@@ -34,7 +24,7 @@ export class FeesCollectionReportService {
   }
 
   pullFeesCollectionReport(body) {
-    return this.httpClient.post<FeesReport[]>(environment.APIBASEURL + 'Student/GetFeesCollectionReport', body, this.getAuthHeader());
+    return this.httpClient.post<FeesReport[]>(environment.APIBASEURL + 'Student/GetFeesCollectionReport', body, Utils.getAuthHeader());
   }
 
   private saveAsExcelFile(buffer: any, fileName: string): void {
