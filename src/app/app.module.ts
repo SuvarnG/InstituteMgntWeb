@@ -1,3 +1,4 @@
+import { BankModule } from './bank/bank.module';
 import { AuthGuard } from './auth/components/guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -31,11 +32,8 @@ import { ExpenseService } from './Expenses/Services/expense.service';
 import { StaffListService } from './Staff/Services/staff-list.service';
 import { CreateStaffService } from './Staff/Services/create-staff.service';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bank/components/bankaccount/bank.component';
-import { BanktransactionComponent } from './bank/components/banktransaction/banktransaction.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RoleService } from './role/role.service';
-import { BankService } from './bank/services/bank.service';
 import { DatePipe } from '@angular/common';
 import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { ExpenseMasterService } from './Expenses/Services/expense-master.service';
@@ -44,7 +42,6 @@ import { FeesTransactionService } from './Student/Services/fees-transaction.serv
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { Routes } from '@angular/router';
 import { BranchService } from './instituteAdmin/services/branch.service';
-import { BanktransactionService } from './bank/services/banktransaction.service';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
@@ -97,8 +94,6 @@ const appRoutes: Routes = [
     StaffListComponent,
     ExpensesComponent,
     RoleComponent,
-    BankComponent,
-    BanktransactionComponent,
     ExpenseMasterComponent,
     FeesTransactionComponent,
     BranchComponent,
@@ -113,9 +108,9 @@ const appRoutes: Routes = [
     BranchManagerComponent,
     HomeLayoutComponent,
     LoginLayoutComponent,
-    
   ],
   imports: [
+    BankModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -153,12 +148,10 @@ const appRoutes: Routes = [
       ExpenseService,
       CreateStaffService,
       RoleService,
-      BankService,
       ExpenseMasterService,
       FeesTransactionService,
       DatePipe,
       BranchService,
-      BanktransactionService,
       AuthorizedSideNavService,
       {provide: LocationStrategy, useClass: HashLocationStrategy},
       AuthGuard

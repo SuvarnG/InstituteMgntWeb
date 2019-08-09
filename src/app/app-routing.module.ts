@@ -14,8 +14,6 @@ import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expens
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { RoleComponent } from './role/role.component';
-import { BankComponent } from './bank/components/bankaccount/bank.component';
-import { BanktransactionComponent } from './bank/components/banktransaction/banktransaction.component';
 import { CoursetypeComponent } from './Courses/Components/coursetype/coursetype.component';
 import { ReportsComponent } from './Reports/Components/report-list/reports.component';
 import { ExpenseReportComponent } from './Reports/Components/expense-report/expense-report.component';
@@ -112,16 +110,7 @@ const routes: Routes = [
         component: RoleComponent,
         canActivate: [AuthGuard]
       },
-      {
-        path: 'BankTransaction',
-        component: BanktransactionComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'Bank',
-        component: BankComponent,
-        canActivate: [AuthGuard]
-      },
+      
       {
         path: 'coursetype',
         component: CoursetypeComponent,
