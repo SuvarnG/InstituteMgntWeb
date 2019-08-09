@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './auth/components/login/login.component';
 import { TopNavComponent } from './Core/Components/top-nav/top-nav.component';
-import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
 import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { SideNavComponent } from './Core/Components/side-nav/side-nav.component';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -49,7 +48,6 @@ import { CoursesModule } from './courses/courses.module';
     AppComponent,
     LoginComponent,
     TopNavComponent,
-    AuthorisedSideNavTogglerComponent,
     AuthorisedLayoutComponent,
     SideNavComponent,
     FooterComponent,
