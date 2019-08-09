@@ -77,6 +77,6 @@ export class ExpenseService {
         catchError(this.handleError<Expenses>('updateExpense'))
       );
   }
-  
+
 
 }

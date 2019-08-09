@@ -13,18 +13,6 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./expense-master.component.css']
 })
 export class ExpenseMasterComponent implements OnInit {
-  expenseType: ExpenseMaster[];
-  modalRef: BsModalRef;
-  createExpenseForm: FormGroup;
-  editExpenseForm: FormGroup;
-  errorMessage: string;
-  expensId: Number;
-  submitted = false;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  filter: any;
-  chkExpenseType:any;
-
 
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
@@ -32,6 +20,18 @@ export class ExpenseMasterComponent implements OnInit {
   constructor(private fb: FormBuilder,
     private expenseMasterService: ExpenseMasterService,
     private modalService: BsModalService) { }
+
+    expenseType: ExpenseMaster[];
+    modalRef: BsModalRef;
+    createExpenseForm: FormGroup;
+    editExpenseForm: FormGroup;
+    errorMessage: string;
+    expensId: Number;
+    submitted = false;
+    dtOptions: DataTables.Settings = {};
+    dtTrigger: Subject<any> = new Subject();
+    filter: any;
+    chkExpenseType:any;
 
   ngOnInit() {
     this.dtOptions = {

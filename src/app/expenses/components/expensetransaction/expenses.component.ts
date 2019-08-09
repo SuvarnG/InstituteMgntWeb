@@ -23,6 +23,19 @@ import { DataTableDirective } from 'angular-datatables';
   name: 'dateFormat'
 })
 export class ExpensesComponent implements OnInit {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(
+    private modalService: BsModalService,
+    private router: Router,
+    private ExpenseService: ExpenseService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private staffListService: StaffListService,
+    private expenseMasterService: ExpenseMasterService) { }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   expenseForm: FormGroup;
@@ -41,18 +54,6 @@ export class ExpensesComponent implements OnInit {
   expenseMaster: ExpenseMaster[];
   filter: any;
   p: any;
-
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-
-  constructor(
-    private modalService: BsModalService,
-    private router: Router,
-    private ExpenseService: ExpenseService,
-    private route: ActivatedRoute,
-    private fb: FormBuilder,
-    private staffListService: StaffListService,
-    private expenseMasterService: ExpenseMasterService) { }
 
   ngOnInit() {
 
@@ -106,7 +107,7 @@ export class ExpensesComponent implements OnInit {
   getAllExpenseTransction(BranchId: number) {
     BranchId = this.user.BranchId;
     this.ExpenseService.expensesList(BranchId).subscribe(res => {
-    this.expenses = res;
+      this.expenses = res;
       this.rerender();
     });
   }
