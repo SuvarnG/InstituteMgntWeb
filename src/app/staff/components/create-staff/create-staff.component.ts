@@ -280,7 +280,7 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
       this.teacherCoursesService.addStaffInUsers(body)
         .subscribe((data) => {
           this.modalRef.hide()
-          this.router.navigate(['/StaffList']);
+          this.router.navigate(['/stafflist']);
         }, error => this.errorMessage = error)
     }
   }

@@ -172,7 +172,7 @@ export class StaffListComponent implements OnInit {
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllStaff(this.user.InstituteId, this.user.BranchId);
-          this.router.navigate(['/StaffList']);
+          this.router.navigate(['/stafflist']);
         }, error => this.errorMessage = error)
     }
   }
