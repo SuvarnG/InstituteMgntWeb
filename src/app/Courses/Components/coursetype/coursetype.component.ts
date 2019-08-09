@@ -11,98 +11,89 @@ import { DataTableDirective } from 'angular-datatables';
   templateUrl: './coursetype.component.html',
   styleUrls: ['./coursetype.component.css']
 })
-export class CoursetypeComponent  {
+export class CoursetypeComponent {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(private CoursetypeService: CoursetypeService,
+    private modalService: BsModalService,
+    private formBuilder: FormBuilder) { }
+
   modalRef: BsModalRef;
-  createregisterForm: FormGroup;
-  editregisterForm:FormGroup;
+  createCourseType: FormGroup;
+  editCourseForm: FormGroup;
   submitted = false;
   returnUrl: string;
-  public ID:number;
+  public ID: number;
   public courseType: CourseType[];
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  filter:any;
-
-
-  @ViewChild(DataTableDirective)
-    dtElement: DataTableDirective;
-
-  constructor(private CoursetypeService: CoursetypeService,
-    private modalService: BsModalService, 
-    private formBuilder: FormBuilder) { }
+  filter: any;
 
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10,
-      paging:false,
-      searching:false
+      paging: false,
+      searching: false
     };
     this.getCourseType();
 
-    this.createregisterForm = this.formBuilder.group({
-      CourseTypeName:['',Validators.required]
-});
-  this.editregisterForm = this.formBuilder.group({
-     CourseTypeId:['',Validators.required],
-     CourseTypeName:['',Validators.required]
-  });
+    this.createCourseType = this.formBuilder.group({
+      CourseTypeName: ['', Validators.required]
+    });
+    this.editCourseForm = this.formBuilder.group({
+      CourseTypeId: ['', Validators.required],
+      CourseTypeName: ['', Validators.required]
+    });
 
-}
+  }
 
-ngAfterViewInit(): void {this.dtTrigger.next();}
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
 
-ngOnDestroy(): void {
-  this.dtTrigger.unsubscribe();
-}
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
 
-rerender(): void {
-  this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
       dtInstance.destroy();
       this.dtTrigger.next();
-  });
-}
+    });
+  }
 
-  get f() { return this.createregisterForm.controls; }
-  get fu() { return this.editregisterForm.controls; }
+  get f() { return this.createCourseType.controls; }
+  get fu() { return this.editCourseForm.controls; }
 
-  getCourseType(){
-    this.CoursetypeService.courseTypeList().subscribe(res=> {
-      this.courseType=res;
+  getCourseType() {
+    this.CoursetypeService.courseTypeList().subscribe(res => {
+      this.courseType = res;
       this.rerender();
-      //this.dtTrigger.next();
+
     });
   }
 
   //Create CourseType
   createNewCourse(addtemplate: TemplateRef<any>) {
-    this.createregisterForm.reset();
+    this.createCourseType.reset();
     this.modalRef = this.modalService.show(addtemplate, {
       animated: true,
       backdrop: 'static'
     });
-    
+
   };
 
-  // onSubmit() {
 
-  //   this.submitted = true;
 
-  //   // stop here if form is invalid
-  //   if (this.createregisterForm.invalid) {
-  //     return;
-  //   }
-  //   this.submitted = false;
-  // }
-
-  createCourseName(CreateCourseName: string,courseTypeName=[]) {
+  createCourseName(CreateCourseName: string, courseTypeName = []) {
     this.submitted = true;
-    if (this.createregisterForm.invalid) {
+    if (this.createCourseType.invalid) {
       return;
     }
 
-    for(let i=0;i<courseTypeName.length;i++){
-      if(CreateCourseName.toLowerCase()==courseTypeName[i]['CourseTypeName'].toLowerCase()){
+    for (let i = 0; i < courseTypeName.length; i++) {
+      if (CreateCourseName.toLowerCase() == courseTypeName[i]['CourseTypeName'].toLowerCase()) {
         alert('Sorry, This coursetype is already in the list')
         return
 
@@ -121,44 +112,43 @@ rerender(): void {
   }
 
 
-  editCourseType(editTemplate: TemplateRef<any>,coursetype){
-    this.editregisterForm.patchValue(coursetype);
-    this.modalRef = this.modalService.show(editTemplate,{
+  editCourseType(editTemplate: TemplateRef<any>, coursetype) {
+    this.editCourseForm.patchValue(coursetype);
+    this.modalRef = this.modalService.show(editTemplate, {
       animated: true,
       backdrop: 'static'
     });
   }
 
-  updateCourseType(courseTypeName=[]) {
-    this.submitted=true;  
+  updateCourseType(courseTypeName = []) {
+    this.submitted = true;
     //stop here if form is invalid
-    if(this.editregisterForm.invalid){
+    if (this.editCourseForm.invalid) {
       return;
     }
 
-    for(let i=0;i<courseTypeName.length;i++){
-      if(this.editregisterForm.controls.CourseTypeName.value.toLowerCase()==courseTypeName[i]['CourseTypeName'].toLowerCase()){
+    for (let i = 0; i < courseTypeName.length; i++) {
+      if (this.editCourseForm.controls.CourseTypeName.value.toLowerCase() == courseTypeName[i]['CourseTypeName'].toLowerCase()) {
         alert('Sorry, This coursetype is already in the list')
         return
 
       }
     }
 
-    this.submitted=false;
-    let body={
-      CourseTypeName:this.editregisterForm.controls.CourseTypeName.value,
-      CourseTypeId:this.editregisterForm.controls.CourseTypeId.value,
+    this.submitted = false;
+    let body = {
+      CourseTypeName: this.editCourseForm.controls.CourseTypeName.value,
+      CourseTypeId: this.editCourseForm.controls.CourseTypeId.value,
     }
     this.CoursetypeService.editCourseType(body).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
-     }, error => console.error(error))
+    }, error => console.error(error))
   }
 
-  clearForm()
-  {
-    this.createregisterForm.reset()
+  clearForm() {
+    this.createCourseType.reset()
   }
 
-  
+
 }
