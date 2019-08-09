@@ -87,8 +87,7 @@ export class ExpenseMasterComponent implements OnInit {
   }
 
   onSubmitCreateExpense(expenses) {
-    debugger;
-    this.submitted = true;
+   this.submitted = true;
     if (this.createExpenseForm.invalid) {
       return;
     }
@@ -98,7 +97,6 @@ export class ExpenseMasterComponent implements OnInit {
         return;
       }
     }
-    debugger;
     let body = {
       Expenses: this.createExpenseForm.controls.expense.value
     }
@@ -108,18 +106,7 @@ export class ExpenseMasterComponent implements OnInit {
         this.getAllExpense();
         this.rerender();
       }, error => this.errorMessage = error)
-
-  }
-
-  // deleteExpense(expenseName: any, id: number) {
-  //   var ans = confirm("Do you want to delete the expense: " + expenseName);
-  //   if (ans) {
-  //     this.expenseMasterService.deleteExpense(id).subscribe(data => {
-  //       this.getAllExpense();
-  //     }, error => console.error(error))
-  //   }
-  // }
-
+ }
 
    deleteExpense(expenseName: any, id: number) {
     if(confirm("Do you want to delete the expense: " + expenseName))
@@ -150,7 +137,6 @@ export class ExpenseMasterComponent implements OnInit {
   onSubmitEditExpense() {
     this.submitted = true;
     if (this.editExpenseForm.invalid) {
-      //this.submitted=false;
       return;
     }
     let body = {
