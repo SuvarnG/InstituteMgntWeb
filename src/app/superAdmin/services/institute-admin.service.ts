@@ -2,55 +2,43 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Utils } from '../../Core/Utils';
 import { environment } from '../../../environments/environment';
-import {InstituteAdmins} from 'shared/Model/Institutes'
+import { InstituteAdmins } from 'shared/Model/Institutes'
 
 @Injectable({
   providedIn: 'root'
 })
 export class InstituteAdminService {
 
+  private uploadUrl = environment.APIBASEURL + 'Upload/PostUserImage'
 
-  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private httpClient:HttpClient) { }
-
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
+  getAllInstituteAdmins() {
+    return this.httpClient.get<InstituteAdmins[]>(environment.APIBASEURL + 'Institute/GetAllInstitutesAdmin', Utils.getAuthHeader())
   }
 
-  getAllInstituteAdmins(){   
-    return this.httpClient.get<InstituteAdmins[]>(environment.APIBASEURL+'Institute/GetAllInstitutesAdmin',this.getAuthHeader())
+  createInstituteAdmin(body) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/CreateInstituteAdmin', body, Utils.getAuthHeader());
   }
 
-  createInstituteAdmin(body){
-    return this.httpClient.post(environment.APIBASEURL + 'Institute/CreateInstituteAdmin', body, this.getAuthHeader());
+  updateInstituteAdmin(body) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/UpdateInstitutesAdmin', body, Utils.getAuthHeader());
   }
 
-  updateInstituteAdmin(body){
-    return this.httpClient.post(environment.APIBASEURL + 'Institute/UpdateInstitutesAdmin', body, this.getAuthHeader());
+  deleteInstituteAdmin(id: number) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/InactivateInstituteAdmin' + '/' + id, null, Utils.getAuthHeader());
   }
 
-  deleteInstituteAdmin(id:number){
-    return this.httpClient.post(environment.APIBASEURL + 'Institute/InactivateInstituteAdmin' +'/' + id, null, this.getAuthHeader());
-  }
-
-  postPhoto(formData)
-  {
+  postPhoto(formData) {
     return this.httpClient.post<any>(this.uploadUrl, formData, {
       reportProgress: true,
       observe: 'events'
     })
   }
 
-  validatingExistingUserEmail(EmailId:string){
+  validatingExistingUserEmail(EmailId: string) {
     debugger;
-    return this.httpClient.post(environment.APIBASEURL+'Institute/ValidatingExistingUserEmail'+ '/'+ EmailId +'/',null, this.getAuthHeader());
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/ValidatingExistingUserEmail' + '/' + EmailId + '/', null, Utils.getAuthHeader());
   }
-  
+
 }
