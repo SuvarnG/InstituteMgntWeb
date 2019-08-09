@@ -1,8 +1,8 @@
 import { FeesTransaction } from '../../../shared/Model/Students';
-import { FeesTransactionService } from './../../../fees-transaction/fees-transaction.service';
+import { FeesTransactionService } from '../../../Student/Services/fees-transaction.service';
 import { Expenses, ExpenseChart, IncomeExpense } from '../../../shared/Model/Expenses';
 import { Utils } from '../../../Utils';
-import { ExpenseService } from './../../../ExpenseTransaction/expense.service';
+import { ExpenseService } from '../../../Expenses/Services/expense.service';
 import { Component, OnInit, NgModule, TemplateRef } from '@angular/core';
 import { Chart } from 'chart.js';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';

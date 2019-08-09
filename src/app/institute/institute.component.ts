@@ -6,7 +6,7 @@ import { Utils } from './../Utils';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { DataTableDirective } from 'angular-datatables';
 import { Subject } from 'rxjs';
-import { InstituteAdminService } from '../institute-admin/institute-admin.service';
+import { InstituteAdminService } from '../Admin/Services/institute-admin.service';
 
 @Component({
   selector: 'app-institute',
@@ -190,7 +190,6 @@ export class InstituteComponent implements OnInit {
 
 
   validatingExistingUserEmail(EmailId:string){
-    debugger;
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })

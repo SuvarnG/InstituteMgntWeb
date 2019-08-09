@@ -1,4 +1,4 @@
-import { StaffListService } from './../staff/staff-list.service';
+import { StaffListService } from '../Staff/Services/staff-list.service';
 import { Bank } from '../shared/Model/Bank';
 import { BankService } from './../bankaccount/bank.service';
 import { Utils } from './../Utils';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthorisedSideNavService } from '../services/authorised-side-nav.service';
+import { AuthorisedSideNavService } from '../../../Core/services/authorised-side-nav.service';
 
 @Component({
   selector: 'app-authorised-side-nav-toggler',

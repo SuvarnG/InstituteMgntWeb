@@ -14,7 +14,6 @@ export class AppComponent implements OnInit{
   
   }
   ngOnInit(){
-    debugger;
   this.isLoggedIn$ = this.loginService.isLoggedIn;
   this.chkLoggedIn=this.isLoggedIn$.source._isScalar;
   }

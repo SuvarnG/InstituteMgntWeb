@@ -26,7 +26,6 @@ export class LoginService {
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
-    debugger;
     return this.loggedIn.asObservable();
   }
 

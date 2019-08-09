@@ -2,7 +2,7 @@ import { LeavelistService } from './../leaves-list/leavelist.service';
 import { debug } from 'util';
 import { LeaveType, LeaveTransaction } from '../shared/Model/LeaveTran';
 import { Course } from '../shared/Model/CourseType';
-import { CoursesService } from './../courses/courses.service';
+import { CoursesService } from '../Courses/Services/courses.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';

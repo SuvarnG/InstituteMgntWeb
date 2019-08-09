@@ -1,5 +1,5 @@
 import { CourseFees, Users } from '../shared/Model/Students';
-import { CoursetypeService } from './../coursetype/coursetype.service';
+import { CoursetypeService } from '../Courses/Services/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
