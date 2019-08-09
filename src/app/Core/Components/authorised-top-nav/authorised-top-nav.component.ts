@@ -1,6 +1,6 @@
 import { Utils } from '../../../Utils';
-import { LoginService } from '../../../login/login.service';
-import { TeacherCoursesService } from '../../../Staff/Services/teacher-courses.service';
+import { AuthService } from '../../../auth/services/auth.service';
+import { CreateStaffService } from '../../../staff/services/create-staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentslistService } from '../../../Student/Services/studentslist.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -34,8 +34,8 @@ export class AuthorisedTopNavComponent implements OnInit {
     private studentslistService: StudentslistService,
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
-    private teacherCoursesService: TeacherCoursesService,
-    private loginService: LoginService) { }
+    private teacherCoursesService: CreateStaffService,
+    private loginService: AuthService) { }
 
   ngOnInit() {
 

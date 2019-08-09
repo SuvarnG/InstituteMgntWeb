@@ -1,22 +1,22 @@
-import { AuthGuard } from './guards/auth.guard';
+import { AuthGuard } from './auth/components/guards/auth.guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './auth/components/login/login.component';
 import { AuthorisedTopNavComponent } from './Core/Components/authorised-top-nav/authorised-top-nav.component';
 import { AuthorisedSideNavTogglerComponent } from './layout/authorised/authorised-side-nav-toggler/authorised-side-nav-toggler.component';
-import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
+import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { AuthorisedSideNavComponent } from './Core/Components/authorised-side-nav/authorised-side-nav.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { StudentListComponent } from './Student/Components/student-list/student-list.component';
-import { CreateStudentComponent } from './create-student/create-student.component';
+import { CreateStudentComponent } from './student/components/create-student/create-student.component';
 import { StudentslistService } from './Student/Services/studentslist.service';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
 import { LeavelistService } from './leaves-list/leavelist.service';
-import { CreateNewStudentService } from './create-student/create-new-student.service';
-import { LoginService } from './login/login.service';
+import { CreateNewStudentService } from './student/services/create-new-student.service';
+import { AuthService } from './auth/services/auth.service';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { EnquiryService } from './enquiry/enquiry.service';
 import { LeaveService } from './leave/leave.service';
@@ -26,12 +26,12 @@ import { LeaveComponent } from './leave/leave.component';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { FooterComponent } from './Core/Components/footer/footer.component';
 import { CoursesComponent } from './Courses/Components/course-list/courses.component';
-import { TeacherCoursesComponent } from './Staff/Components/teacher-courses/teacher-courses.component';
+import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
 import { ExpenseService } from './Expenses/Services/expense.service';
 import { StaffListService } from './Staff/Services/staff-list.service';
-import { TeacherCoursesService } from './Staff/Services/teacher-courses.service';
+import { CreateStaffService } from './Staff/Services/create-staff.service';
 import { RoleComponent } from './role/role.component';
 import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
@@ -43,9 +43,9 @@ import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expens
 import { ExpenseMasterService } from './Expenses/Services/expense-master.service';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
 import { FeesTransactionService } from './Student/Services/fees-transaction.service';
-import { BranchComponent } from './branch/branch.component';
+import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { Routes } from '@angular/router';
-import { BranchService } from './branch/branch.service';
+import { BranchService } from './instituteAdmin/services/branch.service';
 import { BanktransactionService } from './banktransaction/banktransaction.service';
 import { DataTablesModule } from 'angular-datatables';
 import { HttpClientModule } from '@angular/common/http';
@@ -54,8 +54,8 @@ import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { CoursetypeComponent } from './Courses/Components/coursetype/coursetype.component';
 import { ExpenseTransactionModule } from './Expenses/Components/expensetransaction/expense-transaction.module';
-import { BranchModule } from './branch/branch.module';
-import { CreateStudentModule } from './create-student/create-student.module';
+import { BranchModule } from './instituteAdmin/components/branch/branch.module';
+import { CreateStudentModule } from './student/components/create-student/create-student.module';
 import { ExpenseMasterModule } from './Expenses/Components/expensetype/expense-master.module';
 import { FeesTransactionModule } from './Student/Components/fees-transaction/fees-transaction/fees-transaction.module';
 import { SidenavLayoutModule } from './layout/authorised/sidenav-layout/sidenav-layout.module';
@@ -71,14 +71,14 @@ import { StudentAdmissionsReportComponent } from './Reports/Components/student-a
 import { ExportAsModule } from 'ngx-export-as';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { Chart } from 'chart.js';
-import { InstituteComponent } from './institute/institute.component';
-import { InstituteAdminComponent } from './Admin/Components/institute-admin/institute-admin.component';
-import { BranchManagerComponent } from './Admin/Components/branch-manager/branch-manager.component';
+import { InstituteComponent } from './superAdmin/components/institute/institute.component';
+import { InstituteAdminComponent } from './superAdmin/components/institute-admin/institute-admin.component';
+import { BranchManagerComponent } from './instituteAdmin/components/branch-manager/branch-manager.component';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component'; 
 
 const appRoutes: Routes = [
-  { path: 'TeacherCourses', component: TeacherCoursesComponent }];
+  { }];
 
 @NgModule({
   declarations: [
@@ -96,7 +96,7 @@ const appRoutes: Routes = [
     NavigationBarComponent,
     FooterComponent,
     CoursesComponent,
-    TeacherCoursesComponent,
+    CreateStaffComponent,
     StaffListComponent,
     ExpensesComponent,
     RoleComponent,
@@ -150,12 +150,12 @@ const appRoutes: Routes = [
       StudentslistService,
       LeavelistService,
       CreateNewStudentService,
-      LoginService,
+      AuthService,
       EnquiryService,
       LeaveService,
       StaffListService,
       ExpenseService,
-      TeacherCoursesService,
+      CreateStaffService,
       RoleService,
       BankService,
       ExpenseMasterService,

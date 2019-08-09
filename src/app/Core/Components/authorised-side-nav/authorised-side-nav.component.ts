@@ -6,7 +6,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AuthorizedSideNavService } from './authorized-side-nav.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { LoginService } from '../../../login/login.service';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
   selector: 'app-authorised-side-nav',
@@ -22,7 +22,7 @@ export class AuthorisedSideNavComponent implements OnInit {
 
   constructor(public sideNavService: AuthorisedSideNavService, private modalService: BsModalService,
     private formBuilder: FormBuilder, public AuthorizedSideNavService: AuthorizedSideNavService,
-    public _DomSanitizer: DomSanitizer, private loginService: LoginService) { }
+    public _DomSanitizer: DomSanitizer, private loginService: AuthService) { }
 
 
   userImageUploadForm: FormGroup

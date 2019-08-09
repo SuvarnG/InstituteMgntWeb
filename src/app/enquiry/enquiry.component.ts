@@ -9,7 +9,7 @@ import { validateConfig } from '@angular/router/src/config';
 import { Subject } from 'rxjs';
 import { CoursetypeService } from '../Courses/Services/coursetype.service';
 import { CourseType } from '../shared/Model/Students';
-import { CreateNewStudentService } from '../create-student/create-new-student.service';
+import { CreateNewStudentService } from '../student/services/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 import { formatDate } from '@angular/common';
 import { Utils } from './../Utils';

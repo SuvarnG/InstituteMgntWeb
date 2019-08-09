@@ -1,6 +1,6 @@
 import { CourseType, Course } from 'shared/Model/CourseType';
 import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
-import { CreateNewStudentService } from '../../../create-student/create-new-student.service';
+import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StaffListService } from '../../Services/staff-list.service';
@@ -11,7 +11,7 @@ import { DatePipe } from '@angular/common';
 import { Utils } from '../../../Utils';
 import { Courses } from 'shared/Model/Students';
 import { formatDate } from '@angular/common';
-import { InstituteAdminService } from '../../../Admin/Services/institute-admin.service';
+import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
 
 @Component({
   selector: 'app-staff-list',

@@ -1,4 +1,4 @@
-import { CreateNewStudentService } from './../../../create-student/create-new-student.service';
+import { CreateNewStudentService } from '../../services/create-new-student.service';
 import { CourseType, Courses, FeesTransactions } from 'shared/Model/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';

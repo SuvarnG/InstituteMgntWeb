@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BranchService } from '../../../branch/branch.service';
+import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Utils } from '../../../Utils';
 import { Branch } from 'shared/Model/Branch';
 import { CoursesService } from '../../../Courses/Services/courses.service';

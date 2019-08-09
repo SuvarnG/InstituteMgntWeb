@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StudentListComponent } from './Student/Components/student-list/student-list.component';
-import { CreateStudentComponent } from './create-student/create-student.component';
+import { CreateStudentComponent } from './student/components/create-student/create-student.component';
 import { LeavesListComponent } from './leaves-list/leaves-list.component';
-import { AuthorisedLayoutComponent } from './layout/authorised/authorised-layout/authorised-layout.component';
-import { LoginComponent } from './login/login.component';
+import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
+import { LoginComponent } from './auth/components/login/login.component';
 import { LeaveComponent } from './leave/leave.component';
 import { CoursesComponent } from './Courses/Components/course-list/courses.component';
 import { EnquiryComponent } from './enquiry/enquiry.component';
 import { StaffListComponent } from './Staff/Components/staff-list/staff-list.component';
-import { TeacherCoursesComponent } from './Staff/Components/teacher-courses/teacher-courses.component';
+import { CreateStaffService } from './staff/services/create-staff.service';
 import { ExpensesComponent } from './Expenses/Components/expensetransaction/expenses.component';
 import { ExpenseMasterComponent } from './Expenses/Components/expensetype/expense-master.component';
 import { FeesTransactionComponent } from './Student/Components/fees-transaction/fees-transaction.component';
-import { BranchComponent } from './branch/branch.component';
+import { BranchComponent } from './instituteAdmin/components/branch/branch.component';
 import { RoleComponent } from './role/role.component';
 import { BankComponent } from './bankaccount/bank.component';
 import { BanktransactionComponent } from './banktransaction/banktransaction.component';
@@ -23,12 +23,13 @@ import { ExpenseReportComponent } from './Reports/Components/expense-report/expe
 import { FeesCollectionReportComponent } from './Reports/Components/fees-collection-report/fees-collection-report.component';
 import { EnquiryReportComponent } from './Reports/Components/enquiry-report/enquiry-report.component';
 import { StudentAdmissionsReportComponent } from './Reports/Components/student-admissions-report/student-admissions-report.component';
-import { InstituteComponent } from './institute/institute.component';
-import { InstituteAdminComponent } from './Admin/Components/institute-admin/institute-admin.component';
-import { BranchManagerComponent } from './Admin/Components/branch-manager/branch-manager.component';
-import { AuthGuard } from './guards/auth.guard';
+import { InstituteComponent } from './superAdmin/components/institute/institute.component';
+import { InstituteAdminComponent } from './superAdmin/components/institute-admin/institute-admin.component';
+import { BranchManagerComponent } from './instituteAdmin/components/branch-manager/branch-manager.component';
+import { AuthGuard } from './auth/components/guards/auth.guard';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
+import { CreateStaffComponent } from './staff/components/create-staff/create-staff.component';
 
 const routes: Routes = [
   {
@@ -87,8 +88,8 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'TeacherCourses',
-        component: TeacherCoursesComponent,
+        path: 'CreateStaff',
+        component: CreateStaffComponent,
         canActivate: [AuthGuard]
       },
       {

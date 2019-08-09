@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ExpenseMasterService } from '../../../Expenses/Services/expense-master.service';
 import { ExpenseMaster, ExpenseReport, ExpenseReportList } from 'shared/Model/Expenses'
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { BranchService } from '../../../branch/branch.service';
+import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Branch } from 'shared/Model/Branch'
 import { Utils } from '../../../Utils';
 import * as jsPDF from 'jspdf';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Utils } from '../../../Utils';
 import { Course } from 'shared/Model/CourseType'
-import { BranchService } from '../../../branch/branch.service';
+import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Branch } from 'shared/Model/Branch';
 import { FeesCollectionReportService } from '../../Services/fees-collection-report.service';
 import { FeesReportInput, FeesReport } from 'shared/Model/Students'
