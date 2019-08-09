@@ -1,3 +1,4 @@
+import { FeesTransactionComponent } from './components/fees-transaction/fees-transaction.component';
 import { StudentslistService } from './services/studentslist.service';
 import { CreateNewStudentService } from './services/create-new-student.service';
 import { StudentListComponent } from './components/student-list/student-list.component';
@@ -16,7 +17,8 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
 @NgModule({
   declarations: [
     CreateStudentComponent,
-    StudentListComponent
+    StudentListComponent,
+    FeesTransactionComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,9 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
   providers:[
     CreateNewStudentService,
     StudentslistService
+  ],
+  exports:[
+    FeesTransactionComponent
   ]
 })
 export class StudentModule { }

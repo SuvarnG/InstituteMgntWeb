@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthorisedLayoutComponent } from './Core/Components/dashboard/dashboard.component';
 import { LoginComponent } from './auth/components/login/login.component';
-import { RoleComponent } from './role/role.component';
+import { RoleComponent } from './superAdmin/components/role/role.component';
 import { AuthGuard } from './auth/components/guards/auth.guard';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'Dashboard',
+        path: 'dashboard',
         component: AuthorisedLayoutComponent,
         canActivate: [AuthGuard]
       },

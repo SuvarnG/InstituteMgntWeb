@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from '../../services/auth.service';
+import { SideNavService } from './side-nav.service';
 
-describe('LoginService', () => {
+describe('SideNavService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
+    const service: SideNavService = TestBed.get(SideNavService);
     expect(service).toBeTruthy();
   });
 });

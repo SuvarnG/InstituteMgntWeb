@@ -3,20 +3,20 @@ import { AuthorisedSideNavService } from '../../services/authorised-side-nav.ser
 import { Utils } from '../../Utils';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { AuthorizedSideNavService } from './authorized-side-nav.service';
+import { SideNavService } from '../../services/side-nav.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../auth/services/auth.service';
 
 @Component({
-  selector: 'app-authorised-side-nav',
-  templateUrl: './authorised-side-nav.component.html',
-  styleUrls: ['./authorised-side-nav.component.css']
+  selector: 'app-side-nav',
+  templateUrl: './side-nav.component.html',
+  styleUrls: ['./side-nav.component.css']
 })
-export class AuthorisedSideNavComponent implements OnInit {
+export class SideNavComponent implements OnInit {
 
   constructor(public sideNavService: AuthorisedSideNavService, private modalService: BsModalService,
-    private formBuilder: FormBuilder, public AuthorizedSideNavService: AuthorizedSideNavService,
+    private formBuilder: FormBuilder, public SideNavService: SideNavService,
     public _DomSanitizer: DomSanitizer, private loginService: AuthService) { }
 
   public newThumbnailUrl: any = '../../assets/images/MProfile.jpg';
@@ -57,7 +57,7 @@ export class AuthorisedSideNavComponent implements OnInit {
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.userImageUploadForm.get('Photo').value)//this.registerForm.get('Documents').value);
-    this.AuthorizedSideNavService.postPhoto(formData).subscribe(
+    this.SideNavService.postPhoto(formData).subscribe(
       res => {
         if (res['type'] == 4) {
           this.newThumbnailUrl = 'Http://' + res['body']['Message'];
@@ -74,7 +74,7 @@ export class AuthorisedSideNavComponent implements OnInit {
       Photo: this.newThumbnailUrl,
       Id: this.user.userId
     }
-    this.AuthorizedSideNavService.submitUserImage(body).subscribe(data => {
+    this.SideNavService.submitUserImage(body).subscribe(data => {
     });
     this.user.Photo = this.newThumbnailUrl
     this.modalRef.hide();

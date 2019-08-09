@@ -56,10 +56,10 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if (localStorage.getItem("CurrentUser")) {
       console.log('Already Logged in')
-      this.router.navigate(['/Dashboard'], { relativeTo: this.route });
+      this.router.navigate(['/dashboard'], { relativeTo: this.route });
     }
 
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/Dashboard';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/dashboard';
   }
 
   ngOnDestroy() {

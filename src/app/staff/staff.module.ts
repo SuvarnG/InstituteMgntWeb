@@ -25,7 +25,7 @@ import { LeavesListComponent } from './components/leaves-list/leaves-list.compon
   EnquiryComponent,
   LeaveComponent,
   LeavesListComponent,
-  StaffListComponent  
+  StaffListComponent 
   ],
   imports: [
     BrowserModule,
@@ -81,6 +81,9 @@ EnquiryService,
 LeaveService,
 LeavelistService,
 StaffListService
+  ],
+  exports:[
+    StaffListComponent
   ]
 })
 export class StaffModule { }

@@ -110,7 +110,7 @@ export class FeesTransactionComponent implements OnInit {
       PendingFees: Number(this.registerFeesTransaction.controls.RemainingFees.value) - Number(this.registerFeesTransaction.controls.FeesAmount.value)
     }
     this.FeesTransactionService.createStudentCourse(body).subscribe(data => {
-      this.router.navigateByUrl('/FeesTransaction');
+     // this.router.navigateByUrl('/FeesTransaction');
       this.FeesTransactionService.getFeesTransactionDetails(this.studentId).subscribe(res => {
         this.feesTransaction = res
       })

@@ -12,12 +12,12 @@ import { Observable } from 'rxjs';
 
 
 @Component({
-  selector: 'app-authorised-top-nav',
-  templateUrl: './authorised-top-nav.component.html',
-  styleUrls: ['./authorised-top-nav.component.css']
+  selector: 'app-top-nav',
+  templateUrl: './top-nav.component.html',
+  styleUrls: ['./top-nav.component.css']
 })
 
-export class AuthorisedTopNavComponent implements OnInit {
+export class TopNavComponent implements OnInit {
 
   constructor(private router: Router,
     private studentslistService: StudentslistService,

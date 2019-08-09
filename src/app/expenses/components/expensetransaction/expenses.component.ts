@@ -5,7 +5,7 @@ import { Component, OnInit, TemplateRef, Pipe, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ExpenseService } from '../../Services/expense.service';
-import { NgForm, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Expenses } from 'shared/Model/Expenses';
 import { User } from 'shared/Model/User';
 import { StaffMaster } from 'shared/Model/StaffMaster';
@@ -29,11 +29,8 @@ export class ExpensesComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private router: Router,
     private ExpenseService: ExpenseService,
-    private route: ActivatedRoute,
     private fb: FormBuilder,
-    private staffListService: StaffListService,
     private expenseMasterService: ExpenseMasterService) { }
 
   dtOptions: DataTables.Settings = {};
@@ -127,7 +124,7 @@ export class ExpensesComponent implements OnInit {
   delete(expensetype: string, expenseID: number) {
     var ans = confirm("Do you want to delete expense od type: " + expensetype);
     if (ans) {
-      this.ExpenseService.deleteExpense(expenseID).subscribe(data => {
+      this.ExpenseService.deleteExpense(expenseID).subscribe(() => {
         this.getAllExpenseTransction(this.user.BranchId);
       }, error => console.error(error))
     }
@@ -150,7 +147,7 @@ export class ExpensesComponent implements OnInit {
         BranchId: this.user.BranchId
       }
       this.ExpenseService.saveExpense(body)
-        .subscribe((data) => {
+        .subscribe(() => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
           this.rerender();
@@ -201,7 +198,7 @@ export class ExpensesComponent implements OnInit {
         BranchId: this.user.BranchId
       }
       this.ExpenseService.updateExpense(body)
-        .subscribe((data) => {
+        .subscribe(() => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
           this.rerender();

@@ -1,5 +1,5 @@
-import { environment } from '../../../../environments/environment';
-import { Utils } from '../../Utils';
+import { environment } from '../../../environments/environment';
+import { Utils } from '../Utils';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { User } from 'shared/model/User';
@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class AuthorizedSideNavService {
+export class SideNavService {
 
   private uploadUrl = environment.APIBASEURL + 'Upload/PostUserImage';
   private imageUploadUrl = environment.APIBASEURL + 'Login/UploadUserImage';
