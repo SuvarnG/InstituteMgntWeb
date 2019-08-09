@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { EnquiryReportService } from '../../Services/enquiry-report.service';
 import { BranchService } from '../../../branch/branch.service';
 import { Utils } from '../../../Utils';
-import {Branch} from 'shared/Model/Branch'
-import {EnquiryReportInput,EnquiryReport} from 'shared/Model/EnquiryList'
+import { Branch } from 'shared/Model/Branch'
+import { EnquiryReportInput, EnquiryReport } from 'shared/Model/EnquiryList'
 import { CoursesService } from '../../../Courses/Services/courses.service';
-import {Course} from 'shared/Model/CourseType'
-import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { Course } from 'shared/Model/CourseType'
+import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
 
 @Component({
@@ -15,145 +15,143 @@ import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
   styleUrls: ['./enquiry-report.component.css']
 })
 export class EnquiryReportComponent implements OnInit {
-p:any;
-  branchList:Branch[];
-  courseList:Course[];
-  enquiryReportList:EnquiryReport[];
-  registerEnquiryReport:FormGroup;
-  submitted=false;
-  periodSelection:string;
-  dateRange=false;
 
-  constructor(private branchService:BranchService,
-              private coursesService:CoursesService,
-              private formBuilder:FormBuilder,
-              private enquiryReportService:EnquiryReportService,
-              private exportAsService:ExportAsService) { }
+  constructor(private branchService: BranchService,
+    private coursesService: CoursesService,
+    private formBuilder: FormBuilder,
+    private enquiryReportService: EnquiryReportService,
+    private exportAsService: ExportAsService) { }
+
+
+  branchList: Branch[];
+  courseList: Course[];
+  enquiryReportList: EnquiryReport[];
+  registerEnquiryReport: FormGroup;
+  submitted = false;
+  periodSelection: string;
+  dateRange = false;
+  p: any;
 
   ngOnInit() {
-    this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res});
-   
+    this.branchService.getBranches(this.user.InstituteId).subscribe(res => { this.branchList = res });
 
-    this.registerEnquiryReport=this.formBuilder.group({
-      BranchName:[],
-      CourseName:[],
-      FromDate:['',Validators.required],
-      ToDate:['',Validators.required],
-      period:['',Validators.required]
+    this.registerEnquiryReport = this.formBuilder.group({
+      BranchName: [],
+      CourseName: [],
+      FromDate: ['', Validators.required],
+      ToDate: ['', Validators.required],
+      period: ['', Validators.required]
     })
   }
 
   public user = Utils.GetCurrentUser();
 
-  get f() {return this.registerEnquiryReport.controls}
+  get f() { return this.registerEnquiryReport.controls }
 
-  pullEnquiryReport(){
+  pullEnquiryReport() {
 
-    
+    if (this.periodSelection == "SelectDateRange") {
 
-    if(this.periodSelection=="SelectDateRange"){
+      this.submitted = true;
+      if (this.registerEnquiryReport.invalid) {
+        return;
+      }
+      this.submitted = false;
+      let body: EnquiryReportInput = {
+        BranchId: this.registerEnquiryReport.controls.BranchName.value,
+        CourseId: this.registerEnquiryReport.controls.CourseName.value,
+        FromDate: this.registerEnquiryReport.controls.FromDate.value,
+        ToDate: this.registerEnquiryReport.controls.ToDate.value,
+        InstituteId: this.user.InstituteId
+      }
 
-    this.submitted=true;
-    if(this.registerEnquiryReport.invalid){
+      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+        this.enquiryReportList = res
+      });
+    }
+
+    this.submitted = true;
+    if (this.registerEnquiryReport.controls.period.invalid) {
       return;
     }
-    this.submitted=false;
-    let body:EnquiryReportInput={
-      BranchId:this.registerEnquiryReport.controls.BranchName.value,
-      CourseId:this.registerEnquiryReport.controls.CourseName.value,
-      FromDate:this.registerEnquiryReport.controls.FromDate.value,
-      ToDate:this.registerEnquiryReport.controls.ToDate.value,
-      InstituteId:this.user.InstituteId
+    this.submitted = false;
+
+    if (this.registerEnquiryReport.controls.period.invalid) {
+      return;
+    }
+    this.submitted = false;
+
+    if (this.periodSelection == "OneMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+
+      let body: EnquiryReportInput = {
+        BranchId: this.registerEnquiryReport.controls.BranchName.value,
+        CourseId: this.registerEnquiryReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
+
+      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+        this.enquiryReportList = res
+      });
+
     }
 
-    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
-      this.enquiryReportList=res
-    });
-  }
+    if (this.periodSelection == "ThreeMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
 
-  this.submitted=true;
-  if(this.registerEnquiryReport.controls.period.invalid){
-    return;
-  }
-  this.submitted=false;
+      let body: EnquiryReportInput = {
+        BranchId: this.registerEnquiryReport.controls.BranchName.value,
+        CourseId: this.registerEnquiryReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
 
-  if(this.registerEnquiryReport.controls.period.invalid){
-    return;
-  }
-  this.submitted=false;
+      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+        this.enquiryReportList = res
+      });
 
-  if(this.periodSelection=="OneMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
-
-    let body:EnquiryReportInput={
-      BranchId:this.registerEnquiryReport.controls.BranchName.value,
-      CourseId:this.registerEnquiryReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
     }
 
-    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
-      this.enquiryReportList=res
-    });
+    if (this.periodSelection == "SixMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
 
-  }
+      let body: EnquiryReportInput = {
+        BranchId: this.registerEnquiryReport.controls.BranchName.value,
+        CourseId: this.registerEnquiryReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
 
-  if(this.periodSelection=="ThreeMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
+      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+        this.enquiryReportList = res
+      });
 
-    let body:EnquiryReportInput={
-      BranchId:this.registerEnquiryReport.controls.BranchName.value,
-      CourseId:this.registerEnquiryReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
     }
-
-    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
-      this.enquiryReportList=res
-    });
-
   }
 
-  if(this.periodSelection=="SixMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
-
-    let body:EnquiryReportInput={
-      BranchId:this.registerEnquiryReport.controls.BranchName.value,
-      CourseId:this.registerEnquiryReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
-    }
-
-    return this.enquiryReportService.pullEnquiryReport(body).subscribe(res=>{
-      this.enquiryReportList=res
-    });
-
-  }
+  selectBranch(id: number) {
+    this.coursesService.courseList(this.user.InstituteId, id).subscribe(res => { this.courseList = res });
   }
 
-  selectBranch(id:number){
-    this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res});
-  }
-
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.enquiryReportService.exportAsExcelFile(this.enquiryReportList, 'Enquiry');
- }
+  }
 
- selectPeriod(event:any){
-  this.periodSelection=event.target.value
-  if(this.periodSelection=="SelectDateRange"){
-    this.dateRange=true;
+  selectPeriod(event: any) {
+    this.periodSelection = event.target.value
+    if (this.periodSelection == "SelectDateRange") {
+      this.dateRange = true;
+    }
+    else {
+      this.dateRange = false;
+    }
   }
-  else{
-    this.dateRange=false;
-  }
-  
-}
 
 }

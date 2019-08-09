@@ -1,55 +1,55 @@
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Utils } from '../../../Utils';
-import {Course} from 'shared/Model/CourseType'
+import { Course } from 'shared/Model/CourseType'
 import { BranchService } from '../../../branch/branch.service';
-import {Branch} from 'shared/Model/Branch';
+import { Branch } from 'shared/Model/Branch';
 import { FeesCollectionReportService } from '../../Services/fees-collection-report.service';
-import {FeesReportInput,FeesReport} from 'shared/Model/Students'
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FeesReportInput, FeesReport } from 'shared/Model/Students'
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-fees-collection-report',
   templateUrl: './fees-collection-report.component.html',
   styleUrls: ['./fees-collection-report.component.css']
 })
-export class FeesCollectionReportComponent implements OnInit {
-p:any;
-  courseList:Course[];
-  branchList:Branch[];
-  registerFeesCollectionReport:FormGroup;
-  feesReportList:FeesReport[];
-  submitted=false;
-  periodSelection:string;
-  dateRange=false;
 
-  constructor(private coursesService:CoursesService,
-              private branchService:BranchService,
-              private feesCollectionReportService:FeesCollectionReportService,
-              private formBuilder:FormBuilder) { }
+export class FeesCollectionReportComponent implements OnInit {
+
+  constructor(private coursesService: CoursesService,
+    private branchService: BranchService,
+    private feesCollectionReportService: FeesCollectionReportService,
+    private formBuilder: FormBuilder) { }
+
+
+  p: any;
+  courseList: Course[];
+  branchList: Branch[];
+  registerFeesCollectionReport: FormGroup;
+  feesReportList: FeesReport[];
+  submitted = false;
+  periodSelection: string;
+  dateRange = false;
 
   ngOnInit() {
-    this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res})
-    
-
-    this.registerFeesCollectionReport=this.formBuilder.group({
-      branchId:[],
-      courseId:[],
-      FromDate:['',Validators.required],
-      ToDate:['',Validators.required],
-      period:['',Validators.required]
+    this.branchService.getBranches(this.user.InstituteId).subscribe(res => { this.branchList = res })
+    this.registerFeesCollectionReport = this.formBuilder.group({
+      branchId: [],
+      courseId: [],
+      FromDate: ['', Validators.required],
+      ToDate: ['', Validators.required],
+      period: ['', Validators.required]
     })
   }
 
-  get f() {return this.registerFeesCollectionReport.controls};
+  public user = Utils.GetCurrentUser();
 
-  public user= Utils.GetCurrentUser();
+  get f() { return this.registerFeesCollectionReport.controls };
 
-  selectBranch(id:number){
-      debugger;
-      this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res})
+  selectBranch(id: number) {
+    debugger;
+    this.coursesService.courseList(this.user.InstituteId, id).subscribe(res => { this.courseList = res })
   }
-
 
   pullFeesCollectionReport() {
     debugger;
@@ -64,7 +64,7 @@ p:any;
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: this.registerFeesCollectionReport.controls.FromDate.value,
         ToDate: this.registerFeesCollectionReport.controls.ToDate.value,
-        InstituteId:this.user.InstituteId
+        InstituteId: this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -72,10 +72,10 @@ p:any;
     }
 
     this.submitted = true;
-      if (this.registerFeesCollectionReport.controls.period.invalid) {
-        return;
-      }
-      this.submitted = false;
+    if (this.registerFeesCollectionReport.controls.period.invalid) {
+      return;
+    }
+    this.submitted = false;
 
     if (this.periodSelection == "OneMonth") {
       var todaysDate = new Date();
@@ -86,7 +86,7 @@ p:any;
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
         ToDate: todaysDate,
-        InstituteId:this.user.InstituteId
+        InstituteId: this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -102,7 +102,7 @@ p:any;
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
         ToDate: todaysDate,
-        InstituteId:this.user.InstituteId
+        InstituteId: this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -118,7 +118,7 @@ p:any;
         CourseId: this.registerFeesCollectionReport.controls.courseId.value,
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
         ToDate: todaysDate,
-        InstituteId:this.user.InstituteId
+        InstituteId: this.user.InstituteId
       }
       this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
@@ -127,21 +127,18 @@ p:any;
 
   }
 
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.feesCollectionReportService.exportAsExcelFile(this.feesReportList, 'Fees Collection');
- }
-
- selectPeriod(event:any){
-  this.periodSelection=event.target.value
-  if(this.periodSelection=="SelectDateRange"){
-    this.dateRange=true;
   }
-  else{
-    this.dateRange=false;
+
+  selectPeriod(event: any) {
+    this.periodSelection = event.target.value
+    if (this.periodSelection == "SelectDateRange") {
+      this.dateRange = true;
+    }
+    else {
+      this.dateRange = false;
+    }
   }
-  
-}
-
-
 
 }

@@ -4,8 +4,8 @@ import { Utils } from '../../../Utils';
 import { Branch } from 'shared/Model/Branch';
 import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Course } from 'shared/Model/CourseType';
-import { FormsModule,FormBuilder,FormGroup, Validators } from '@angular/forms';
-import {StudentReportInput,StudentReport} from 'shared/Model/Students'
+import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { StudentReportInput, StudentReport } from 'shared/Model/Students'
 import { StudentAdmissionsReportService } from '../../Services/student-admissions-report.service';
 
 @Component({
@@ -15,129 +15,124 @@ import { StudentAdmissionsReportService } from '../../Services/student-admission
 })
 export class StudentAdmissionsReportComponent implements OnInit {
 
-  branchList:Branch[];
-  courseList:Course[];
-  submitted=false;
-  registerStudentAdmissionReport:FormGroup;
-  studentAdmissionReportList:StudentReport[];
-  periodSelection:string;
-  dateRange=false;
-p:any;
-  constructor(private branchService:BranchService,
-              private coursesService:CoursesService,
-              private formBuilder:FormBuilder,
-              private studentAdmissionsReportService:StudentAdmissionsReportService) { }
+  constructor(private branchService: BranchService,
+    private coursesService: CoursesService,
+    private formBuilder: FormBuilder,
+    private studentAdmissionsReportService: StudentAdmissionsReportService) { }
+
+
+  branchList: Branch[];
+  courseList: Course[];
+  submitted = false;
+  registerStudentAdmissionReport: FormGroup;
+  studentAdmissionReportList: StudentReport[];
+  periodSelection: string;
+  dateRange = false;
+  p: any;
 
   ngOnInit() {
-    this.branchService.getBranches(this.user.InstituteId).subscribe(res=>{this.branchList=res});
+    this.branchService.getBranches(this.user.InstituteId).subscribe(res => { this.branchList = res });
 
-    this.registerStudentAdmissionReport=this.formBuilder.group({
-      BranchName:[],
-      CourseName:[],
-      FromDate:['',Validators.required],
-      ToDate:['',Validators.required],
-      period:['',Validators.required]
+    this.registerStudentAdmissionReport = this.formBuilder.group({
+      BranchName: [],
+      CourseName: [],
+      FromDate: ['', Validators.required],
+      ToDate: ['', Validators.required],
+      period: ['', Validators.required]
     })
   }
 
   public user = Utils.GetCurrentUser();
 
-  get f() {return this.registerStudentAdmissionReport.controls}
+  get f() { return this.registerStudentAdmissionReport.controls }
 
-  pullStudentAdmissionReport(){
+  pullStudentAdmissionReport() {
 
-    if(this.periodSelection=="SelectDateRange"){
-    this.submitted=true;
-    if(this.registerStudentAdmissionReport.invalid){      
+    if (this.periodSelection == "SelectDateRange") {
+      this.submitted = true;
+      if (this.registerStudentAdmissionReport.invalid) {
+        return;
+      }
+      this.submitted = false;
+      let body: StudentReportInput = {
+        BranchId: this.registerStudentAdmissionReport.controls.BranchName.value,
+        CourseId: this.registerStudentAdmissionReport.controls.CourseName.value,
+        FromDate: this.registerStudentAdmissionReport.controls.FromDate.value,
+        ToDate: this.registerStudentAdmissionReport.controls.ToDate.value,
+        InstituteId: this.user.InstituteId
+      }
+      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+        this.studentAdmissionReportList = res
+      });
+    }
+
+    this.submitted = true;
+    if (this.registerStudentAdmissionReport.controls.period.invalid) {
       return;
     }
-    this.submitted=false;
-
-    let body:StudentReportInput={
-      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
-      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
-      FromDate:this.registerStudentAdmissionReport.controls.FromDate.value,
-      ToDate:this.registerStudentAdmissionReport.controls.ToDate.value,
-      InstituteId:this.user.InstituteId
+    this.submitted = false;
+    if (this.periodSelection == "OneMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+      let body: StudentReportInput = {
+        BranchId: this.registerStudentAdmissionReport.controls.BranchName.value,
+        CourseId: this.registerStudentAdmissionReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
+      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+        this.studentAdmissionReportList = res
+      });
     }
 
-    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
-      this.studentAdmissionReportList=res
-    });
-  }
-
-  this.submitted=true;
-  if(this.registerStudentAdmissionReport.controls.period.invalid){      
-    return;
-  }
-  this.submitted=false;
-
-  if(this.periodSelection=="OneMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
-    let body:StudentReportInput={
-      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
-      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-30)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
+    if (this.periodSelection == "ThreeMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+      let body: StudentReportInput = {
+        BranchId: this.registerStudentAdmissionReport.controls.BranchName.value,
+        CourseId: this.registerStudentAdmissionReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
+      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+        this.studentAdmissionReportList = res
+      });
     }
 
-    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
-      this.studentAdmissionReportList=res
-    });
-  }
-
-  if(this.periodSelection=="ThreeMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
-    let body:StudentReportInput={
-      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
-      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-91)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
+    if (this.periodSelection == "SixMonth") {
+      var todaysDate = new Date();
+      var lastMonthDate = new Date();
+      let body: StudentReportInput = {
+        BranchId: this.registerStudentAdmissionReport.controls.BranchName.value,
+        CourseId: this.registerStudentAdmissionReport.controls.CourseName.value,
+        FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
+        ToDate: todaysDate,
+        InstituteId: this.user.InstituteId
+      }
+      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+        this.studentAdmissionReportList = res
+      });
     }
-
-    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
-      this.studentAdmissionReportList=res
-    });
   }
 
-  if(this.periodSelection=="SixMonth"){
-    var todaysDate=new Date();
-    var lastMonthDate=new Date();
-    let body:StudentReportInput={
-      BranchId:this.registerStudentAdmissionReport.controls.BranchName.value,
-      CourseId:this.registerStudentAdmissionReport.controls.CourseName.value,
-      FromDate:new Date(lastMonthDate.setDate(lastMonthDate.getDay()-182)),
-      ToDate:todaysDate,
-      InstituteId:this.user.InstituteId
-    }
-
-    return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res=>{
-      this.studentAdmissionReportList=res
-    });
+  selectBranch(id: number) {
+    this.coursesService.courseList(this.user.InstituteId, id).subscribe(res => { this.courseList = res });
   }
 
-  }
-
-  selectBranch(id:number){
-    this.coursesService.courseList(this.user.InstituteId,id).subscribe(res=>{this.courseList=res});
-  }
-
-  exportAsXLSX():void {
+  exportAsXLSX(): void {
     this.studentAdmissionsReportService.exportAsExcelFile(this.studentAdmissionReportList, 'Student_Admission');
- }
+  }
 
- selectPeriod(event:any){
-  this.periodSelection=event.target.value
-  if(this.periodSelection=="SelectDateRange"){
-    this.dateRange=true;
+  selectPeriod(event: any) {
+    this.periodSelection = event.target.value
+    if (this.periodSelection == "SelectDateRange") {
+      this.dateRange = true;
+    }
+    else {
+      this.dateRange = false;
+    }
   }
-  else{
-    this.dateRange=false;
-  }
-  
-}
+
 }
