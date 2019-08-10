@@ -1,8 +1,7 @@
-import { CreateNewStudentService } from '../../services/create-new-student.service';
+import { StudentslistService } from '../../services/students.service';
 import { CourseType, Courses, FeesTransactions } from 'shared/Model/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { StudentslistService } from '../../Services/studentslist.service';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
@@ -23,7 +22,7 @@ export class StudentListComponent implements OnInit {
     private StudentslistService: StudentslistService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private createNewStudentService: CreateNewStudentService,
+    private studentsListService: StudentslistService,
     private coursesService: CoursesService) { }
 
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
@@ -133,7 +132,7 @@ export class StudentListComponent implements OnInit {
       IsDocumentSubmitted: s.IsDocumentSubmitted
     })
 
-    this.createNewStudentService.getCourseNameFromCourseType(s.CourseTypeId).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(s.CourseTypeId).subscribe(res => {
       this.courseNameList = res
     });
 
@@ -141,7 +140,7 @@ export class StudentListComponent implements OnInit {
   }
 
   selectCourseType(event) {
-    this.createNewStudentService.getCourseNameFromCourseType(event.target.value).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(event.target.value).subscribe(res => {
       this.courseNameList = res
     });
   }

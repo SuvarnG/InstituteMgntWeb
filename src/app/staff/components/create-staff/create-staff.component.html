@@ -52,44 +52,6 @@
                           </div>
                         </div>
                 </div>
-<!-- 
-              <div class="form-row">               
-                <div class="form-group col-md-3 px-3">
-                  <select id="Gender" formControlName="Gender" [value]="null" class="form-control text-muted" placeholder="Name" [ngClass]="{ 'is-invalid': submitted && f.Gender.errors }">
-                    <option [value]="null" disabled>Gender</option>
-                    <option value="Male">MR.</option>
-                    <option value="Female">Mrs.</option>
-                    <option value="Female">Miss</option>
-                  </select>
-                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
-                    <div *ngIf="f.Gender.errors.required">Gender is required</div>
-                  </div>
-                </div>
-                <div class="form-group col-md-3 px-3">
-                  <input type="text" class="form-control" placeholder="First Name" formControlName="FirstName"
-                    [ngClass]="{ 'is-invalid': submitted && f.FirstName.errors }">
-                  <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.FirstName.errors.required">First Name is required</div>
-                  </div>
-                </div>
-
-                <div class="form-group col-md-3 px-3">
-                  <input type="text" class="form-control" placeholder="Middle Name" formControlName="MiddleName"
-                    [ngClass]="{ 'is-invalid': submitted && f.MiddleName.errors }">
-                  <div *ngIf="submitted && f.MiddleName.errors" class="invalid-feedback">
-                    <div *ngIf="f.MiddleName.errors.required">Middle Name is required</div>
-                  </div>
-                </div>
-                <div class="form-group col-md-3 px-3">
-                  <input type="text" class="form-control" placeholder="Last Name" formControlName="LastName"
-                    [ngClass]="{ 'is-invalid': submitted && f.LastName.errors }">
-                  <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.LastName.errors.required">Last Name is required</div>
-                  </div>
-                </div>
-              </div> -->
-
- 
               <div class="form-row">
                 <div class="form-group col-sm-3">
                   <label class="col-md-6 control-label">Date of Birth</label>
@@ -291,7 +253,6 @@
                   </div>
                 </div>
 
-
                 <hr>
                 <h5> Previous Work Details </h5>
                 <div class="form-group">
@@ -332,10 +293,6 @@
   </div>
   </div>
 
-
-
-
-
  <ng-template #courseTemplate>
   <form [formGroup]="courseForm" (ngSubmit)="onAddCourses(staffLoginTemplate)">
     <div class="modal-header">
@@ -346,9 +303,7 @@
     </div>
     <div class="modal-body">
         <div class="row">
-            <div class="col-md-12 ">
-              <!-- <h4 class=" font-weight-medium  py-4 px-3">Course Type </h4> -->
-  
+            <div class="col-md-12 ">  
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-row">
@@ -389,7 +344,6 @@
                               <ng-template #thenBlock>
                                  <div *ngFor="let s of Salary"> 
                                    <input  type="text" id="Salary" class="form-control" formControlName="Salary" placeholder="Salary" [ngClass]="{ 'is-invalid': submitted && cf.Salary.errors }">
-                                     <!-- <label id="Salary" class="form-control" formControlName="Salary">{{s.Fees}}</label> -->
                                  </div>
                               </ng-template>
                              
@@ -410,8 +364,6 @@
           </div>
     </div>
     <div class="modal-footer">
-      <!-- <button type="submit" id="submitCourse" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
       <button class="btn btn-primary btn-square ml-2" id="submitCourse" type="submit">Submit</button>
           <button class="btn btn-danger btn-square ml-2" type="button" data-dismiss="modal"
             (click)="modalRef.hide()">Cancel</button>
@@ -472,8 +424,6 @@
           <button class="btn btn-primary btn-square ml-2" id="submitLogin" type="submit">Submit</button>
           <button class="btn btn-danger btn-square ml-2" type="button"
             (click)="modalRef.hide()">Cancel</button>
-        <!-- <button type="button" type="submit" id="submitLogin" class="btn btn-primary">Save</button>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="modalRef.hide()">Close</button> -->
       </div>
     </form>
   </div>

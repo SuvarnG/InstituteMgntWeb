@@ -1,6 +1,5 @@
 import { FeesTransactionComponent } from './components/fees-transaction/fees-transaction.component';
-import { StudentslistService } from './services/studentslist.service';
-import { CreateNewStudentService } from './services/create-new-student.service';
+import { StudentslistService } from './services/students.service';
 import { StudentListComponent } from './components/student-list/student-list.component';
 import { CreateStudentComponent } from './components/create-student/create-student.component';
 import { RouterModule } from '@angular/router';
@@ -49,7 +48,6 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
     ])
   ],
   providers:[
-    CreateNewStudentService,
     StudentslistService
   ],
   exports:[

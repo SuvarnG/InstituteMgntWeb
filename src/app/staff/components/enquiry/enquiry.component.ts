@@ -1,3 +1,4 @@
+import { StudentslistService } from '../../../student/services/students.service';
 import { Courses } from 'shared/Model/Students';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
@@ -7,7 +8,6 @@ import { EnquiryList, CourseNameMaster, CourseTypeMaster } from 'shared/Model/En
 import { createEnquiry } from 'shared/Model/createEnquiry';
 import { Subject } from 'rxjs';
 import { CourseType } from 'shared/Model/Students';
-import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 import { formatDate } from '@angular/common';
 import { Utils } from '../../../Core/Utils';
@@ -28,7 +28,7 @@ export class EnquiryComponent implements OnInit {
     private modalService: BsModalService,
     private enquiryService: EnquiryService,
     private coursesService:CoursesService,
-    private createNewStudentService:CreateNewStudentService) { }
+    private studentsListService:StudentslistService) { }
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -231,7 +231,7 @@ export class EnquiryComponent implements OnInit {
   }
 
   private GetCourseNameList(id: number) {
-    this.createNewStudentService.getCourseNameFromCourseType(id).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(id).subscribe(res => {
       this.listCourseName = res;
        });;
    

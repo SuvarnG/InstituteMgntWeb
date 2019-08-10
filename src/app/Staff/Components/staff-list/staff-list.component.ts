@@ -1,5 +1,5 @@
+import { StudentslistService } from '../../../student/services/students.service';
 import { CourseType, Course } from 'shared/Model/CourseType';
-import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { StaffListService } from '../../Services/staff-list.service';
@@ -43,7 +43,7 @@ export class StaffListComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute,
-    private createNewStudentService: CreateNewStudentService,
+    private studentsListService: StudentslistService,
     private coursesService: CoursesService,
     private instituteAdminService:InstituteAdminService) { }
 
@@ -217,7 +217,7 @@ export class StaffListComponent implements OnInit {
     this.coursesService.courseTypeList().subscribe(res => {
       this.courseTypeList = res
     });
-    this.createNewStudentService.getCourseNameFromCourseType(teacher.CourseTypeId).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(teacher.CourseTypeId).subscribe(res => {
       this.courseNameList = res
     });
   }
@@ -233,7 +233,7 @@ export class StaffListComponent implements OnInit {
 
   selectCourse(event) {
     this.selectedCourseTypeValue = event.target.value;
-    this.createNewStudentService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res => {
       this.courseNameList = res
     });
   }

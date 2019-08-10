@@ -1,5 +1,5 @@
+import { StudentslistService } from '../../../student/services/students.service';
 import { Courses, CourseType, CourseFees } from 'shared/Model/Students';
-import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
@@ -48,7 +48,7 @@ chkEmailId:any;
     private teacherCoursesService: CreateStaffService,
     public _DomSanitizationService: DomSanitizer,
     private coursesService: CoursesService,
-    private createNewStudentService: CreateNewStudentService,
+    private studentsListService: StudentslistService,
     private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
@@ -78,10 +78,7 @@ chkEmailId:any;
       IsCv: [],
       IsFixedPayment: [],
       Document: [],
-      BloodGroup: ['', Validators.required],
-      // coursesArray: this.formBuilder.array([
-      //   this.addNewRowForm()
-      // ])
+      BloodGroup: ['', Validators.required]
     });
 
     this.courseForm = this.formBuilder.group({
@@ -189,7 +186,7 @@ chkEmailId:any;
   }
   selectCourseType(event) {
     this.selectedCourseTypeValue = event.target.value;
-    this.createNewStudentService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(this.selectedCourseTypeValue).subscribe(res => {
       this.courseNameList = res
     });
   }
@@ -214,7 +211,7 @@ chkEmailId:any;
   }
 
   getSalaryFromCourseName(event){
-this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).subscribe(res=>{
+this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscribe(res=>{
   this.Salary=res
 })
   }
@@ -292,17 +289,6 @@ this.createNewStudentService.getCourseFeesFromCourseName(event.target.value).sub
       this.registerStaffForm.get('Photo').setValue(file);
     }
   }
-
-  // onUploadPhoto()
-  // {
-  //   const formData = new FormData();
-  //   formData.append('profile', this.registerStaffForm.get('Photo').value);
-  //   this.teacherCoursesService.uploadPhoto(formData).subscribe(res=>{
-  //         console.log(res);            
-  //   });
-  //   alert("Photo uploaded successfully");  
-  // }
-
 
   onUploadPhoto() {
     const formData = new FormData();

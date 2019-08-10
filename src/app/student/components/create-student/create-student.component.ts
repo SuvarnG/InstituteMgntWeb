@@ -1,9 +1,9 @@
+import { StudentslistService } from '../../services/students.service';
 import { CourseFees, Users } from 'shared/Model/Students';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms'
-import { CreateNewStudentService } from '../../services/create-new-student.service';
 import { CreateStudent, FeesTransaction, CourseType, Courses, RecentStudent } from 'shared/Model/Students';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -20,7 +20,7 @@ export class CreateStudentComponent implements OnInit {
 
   constructor(private modalService: BsModalService, 
     private formBuilder: FormBuilder,
-    public CreateNewStudentService: CreateNewStudentService,
+    private studentsListService:StudentslistService,
     private router: Router,
     public _DomSanitizationService: DomSanitizer,
     private coursesService: CoursesService) { }
@@ -47,6 +47,7 @@ export class CreateStudentComponent implements OnInit {
   courses: Courses[];
   courseTypeList: CourseType[];
   thumbnailDocUrl: any;
+  public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
 
 
   ngOnInit() {
@@ -127,6 +128,7 @@ export class CreateStudentComponent implements OnInit {
 
 
   createNewStudent(template: TemplateRef<any>) {
+    debugger;
     this.submitted = true;
     if (this.createNewStudentForm.invalid) {
       return
@@ -150,15 +152,11 @@ export class CreateStudentComponent implements OnInit {
       PCity: this.createNewStudentForm.controls.Pcity.value,
       PState: this.createNewStudentForm.controls.Pstate.value,
       PSTDCode: this.createNewStudentForm.controls.PzipCode.value,
-      Photo: this.CreateNewStudentService.thumbnailUrl,
+      Photo: this.thumbnailUrl,
       IsDocumentSubmitted: this.createNewStudentForm.controls.IsDocumentSubmitted.value,
       Document: this.thumbnailDocUrl,
     };
-    this.CreateNewStudentService.createNewStudent(body).subscribe(data =>{}
-      // do something, if upload success
-      // this.CreateNewStudentService.getRecentlyCreatedStudent().subscribe(res => {
-      //   this.getRecentStudent = res
-      // })
+    this.studentsListService.createNewStudent(body).subscribe(data =>{}
     );
 
     //Open Popup function
@@ -170,9 +168,6 @@ export class CreateStudentComponent implements OnInit {
     this.coursesService.courseTypeList().subscribe(res => {
       this.courseTypeList = res
     });
-    // this.CreateNewStudentService.getUsersListForFeesTaken().subscribe(res => {
-    //   this.users = res
-    // });
 
   }
 
@@ -215,15 +210,8 @@ export class CreateStudentComponent implements OnInit {
       IsActive: true
     };
     this.modalRef.hide();
-    this.CreateNewStudentService.createStudentCourse(body).subscribe(data => { this.router.navigateByUrl('/StudentList') });
+    this.studentsListService.createStudentCourse(body).subscribe(data => { this.router.navigateByUrl('/studentlist') });
   }
-
-
-  // getCourseNameFromCourseType(id:number){
-  //   this.CreateNewStudentService.getCourseNameFromCourseType(id).subscribe(data=>{
-  //     this.listCourses = data
-  //   })
-  // }
 
   handleFileInput(event: any) {
     if (event.target.files.length) {
@@ -247,7 +235,7 @@ export class CreateStudentComponent implements OnInit {
   onUploadFile() {
     const formData = new FormData();
     formData.append('File', this.createNewStudentForm.get('Document').value);
-    this.CreateNewStudentService.postFile(formData).subscribe(
+    this.studentsListService.postFile(formData).subscribe(
       res => {
         if (res['type'] == 4) {
           this.thumbnailDocUrl = 'Http://' + res['body']['Message'];
@@ -259,7 +247,13 @@ export class CreateStudentComponent implements OnInit {
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.createNewStudentForm.get('Photo').value)
-    this.CreateNewStudentService.postPhoto(formData)
+    this.studentsListService.postPhoto(formData).subscribe(
+      res => {
+        if (res['type'] == 4) {
+          this.thumbnailUrl = 'Http://' + res['body']['Message'];
+        }
+      }
+    );
   }
 
   selectCourseFees(event) {
@@ -275,13 +269,13 @@ export class CreateStudentComponent implements OnInit {
   }
 
   getCourseNameFromCourseType(courses: Courses) {
-    this.CreateNewStudentService.getCourseNameFromCourseType(this.selectedUserValue).subscribe(res => {
+    this.studentsListService.getCourseNameFromCourseType(this.selectedUserValue).subscribe(res => {
       this.courses = res
     })
   }
 
   getCourseFeesFromCourseName(courses: Courses) {
-    this.CreateNewStudentService.getCourseFeesFromCourseName(this.selectedFeesValue).subscribe(res => {
+    this.studentsListService.getCourseFeesFromCourseName(this.selectedFeesValue).subscribe(res => {
       this.courseFees = res
     })
   }

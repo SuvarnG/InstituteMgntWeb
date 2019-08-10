@@ -31,9 +31,6 @@ import { NgProgressModule } from '@ngx-progressbar/core';
 import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
 import { BranchModule } from './instituteAdmin/components/branch/branch.module';
-import { CreateStudentModule } from './student/components/create-student/create-student.module';
-import { FeesTransactionModule } from './Student/Components/fees-transaction/fees-transaction/fees-transaction.module';
-import { StudentListModule } from './Student/Components/student-list/student-list.module';
 import { SideNavService } from './Core/services/side-nav.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { HomeLayoutComponent } from './layouts/home-layout/home-layout.component';
@@ -78,9 +75,6 @@ import { CoursesModule } from './courses/courses.module';
     NgProgressModule.forRoot(),
     NgProgressRouterModule,
     BranchModule,
-    CreateStudentModule,
-    FeesTransactionModule,
-    StudentListModule,
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot()
   ],

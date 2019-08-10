@@ -2,7 +2,7 @@ import { Utils } from '../../Utils';
 import { AuthService } from '../../../auth/services/auth.service';
 import { CreateStaffService } from '../../../staff/services/create-staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { StudentslistService } from '../../../Student/Services/studentslist.service';
+import { StudentslistService } from '../../../student/services/students.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentPendingFeesList } from 'shared/Model/Students';
