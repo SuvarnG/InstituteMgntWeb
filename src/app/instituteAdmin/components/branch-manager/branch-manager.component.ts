@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BranchManagerService } from '../../services/branch-manager.service';
+//import { BranchManagerService } from '../../services/branch-manager.service';
 import { Utils } from '../../../Core/Utils';
 import {BranchManager, Branch} from 'shared/Model/Branch'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -15,8 +15,7 @@ import { InstituteAdminService } from '../../../superAdmin/services/institute-ad
 })
 export class BranchManagerComponent implements OnInit {
 
-  constructor(private branchManagerService:BranchManagerService,
-    private formBuilder:FormBuilder,
+  constructor(private formBuilder:FormBuilder,
     private modalService:BsModalService,
     private branchService: BranchService,
     private instituteAdminService:InstituteAdminService) { }
@@ -86,7 +85,7 @@ export class BranchManagerComponent implements OnInit {
   get g() {return this.detailsManagerForm.controls}
 
   getAllBranchManagers(){
-    this.branchManagerService.getAllBranchManagers(this.user.InstituteId).subscribe(data=>{
+    this.branchService.getAllBranchManagers(this.user.InstituteId).subscribe(data=>{
       this.branchManagerList = data
     })
   }
@@ -135,7 +134,7 @@ export class BranchManagerComponent implements OnInit {
     RoleId:18
     }
 
-    this.branchManagerService.createNewBranchManager(body).subscribe(data=>{
+    this.branchService.createNewBranchManager(body).subscribe(data=>{
       this.getAllBranchManagers();
       this.modalRef.hide();
     })
@@ -190,7 +189,7 @@ export class BranchManagerComponent implements OnInit {
 
     }
 
-    this.branchManagerService.editNewBranchManager(body).subscribe(data=>{
+    this.branchService.editNewBranchManager(body).subscribe(data=>{
       this.getAllBranchManagers();
       this.modalRef.hide();
     })
@@ -225,7 +224,7 @@ export class BranchManagerComponent implements OnInit {
 
   deleteBranchManager(id:number,firstName:string,lastName:string){
     if(confirm('Do you want to delete this Branch Manager? : ' + firstName + ' '+ lastName)){
-      this.branchManagerService.deleteBranchManager(id).subscribe(data=>{
+      this.branchService.deleteBranchManager(id).subscribe(data=>{
         this.getAllBranchManagers();
       })
     }
@@ -243,7 +242,7 @@ export class BranchManagerComponent implements OnInit {
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.createNewBranchManagerForm.get('Photo').value)//this.registerForm.get('Documents').value);
-    this.branchManagerService.postPhoto(formData).subscribe(
+    this.branchService.postPhoto(formData).subscribe(
       res=>{      
           if(res['type']==4){
            this.thumbnailUrl='Http://'+ res['body']['Message'];

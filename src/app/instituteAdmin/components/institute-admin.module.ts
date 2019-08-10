@@ -1,4 +1,3 @@
-import { BranchManagerService } from './../services/branch-manager.service';
 import { BranchService } from './../services/branch.service';
 import { BranchManagerComponent } from './branch-manager/branch-manager.component';
 import { BranchManager } from 'shared/Model/Branch';
@@ -48,8 +47,7 @@ import { HomeLayoutComponent } from '../../layouts/home-layout/home-layout.compo
     ])
   ],
   providers:[
-    BranchService,
-    BranchManagerService
+    BranchService
   ]
 })
 export class InstituteAdminModule { }

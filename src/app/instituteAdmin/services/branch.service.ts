@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Utils } from '../../Core/Utils';
+import { BranchManager } from 'shared/Model/Branch';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,8 @@ import { Utils } from '../../Core/Utils';
 export class BranchService {
 
   constructor(private http: HttpClient) { }
+
+  private uploadUrl=environment.APIBASEURL+'Upload/PostUserImage'
 
   getBranches(InstituteId: number) {
     return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll' + '/' + InstituteId, Utils.getAuthHeader())
@@ -29,4 +32,31 @@ export class BranchService {
   deleteBranch(id){
     return this.http.post(environment.APIBASEURL + 'Branch/DeleteBranch/' + id, null, Utils.getAuthHeader())
   }
+
+
+  getAllBranchManagers(InstituteId:number){
+    return this.http.get<BranchManager[]>(environment.APIBASEURL + 'Branch/GetAllBranchManagers'+'/'+InstituteId, Utils.getAuthHeader());
+
+  }
+
+  createNewBranchManager(body){
+    return this.http.post(environment.APIBASEURL + 'Branch/CreateBranchManager', body, Utils.getAuthHeader());
+  }
+
+  editNewBranchManager(body){
+    return this.http.post(environment.APIBASEURL+'Branch/EditBranchManager',body,Utils.getAuthHeader())
+  }
+
+  deleteBranchManager(id:number){
+    return this.http.post(environment.APIBASEURL + 'Branch/DeleteBranchManager' +'/'+id,null,Utils.getAuthHeader())
+  }
+
+  postPhoto(formData)
+  {
+    return this.http.post<any>(this.uploadUrl, formData, {
+      reportProgress: true,
+      observe: 'events'
+    })
+  }
+
 }
