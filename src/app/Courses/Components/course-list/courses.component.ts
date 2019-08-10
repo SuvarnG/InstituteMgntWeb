@@ -102,13 +102,12 @@ export class CoursesComponent implements OnInit {
 
   getCourseTypeList() {
     this.CoursesService.courseTypeList().subscribe(res => {
-      this.coursetype = res; console.log("test", this.coursetype)
-    });
+     });
   }
   getShortName(courseTypeId: number) {
     this.CoursesService.getShortName(courseTypeId).subscribe(res => {
-      this.courses = res; console.log("test", this.courses)
-    });
+      this.courses = res;
+     });
 
   }
 

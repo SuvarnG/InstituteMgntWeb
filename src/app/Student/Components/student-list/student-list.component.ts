@@ -226,8 +226,7 @@ export class StudentListComponent implements OnInit {
   }
 
   onSubmitStudentFees(student) {
-    debugger;
-    let body = {
+   let body = {
       StudentId: student.StudentId,
       CourseId: student.CourseId,
       DateOfPayment: new Date(),

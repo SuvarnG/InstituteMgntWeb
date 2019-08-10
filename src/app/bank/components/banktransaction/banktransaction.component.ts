@@ -111,13 +111,13 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   }
 
   getStaffList() {
-    this.staffListService.getAllStaff(this.user.InstituteId, this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
+    this.staffListService.getAllStaff(this.user.InstituteId, this.user.BranchId).subscribe(res => { this.staffMasters = res;});
   }
 
   getBankList() {
     this.bankService.getbankAccountsList(this.user.InstituteId).subscribe(res => {
       this.banknames = res;
-      console.log("test", this.banknames)
+     
     });
   }
 

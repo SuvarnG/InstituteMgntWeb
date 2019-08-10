@@ -21,7 +21,6 @@ export class StudentslistService {
   constructor(private http: HttpClient) { }
 
   getAllStudents(InstituteId: number, BranchId: number) {
-    debugger;
     return this.http.get<Students[]>( environment.APIBASEURL + 'Student/GetAllStudent'+ '/' + InstituteId + '/' + BranchId, Utils.getAuthHeader()).pipe(map(data => data as Students[]))
   }
 
@@ -45,7 +44,6 @@ export class StudentslistService {
   }
 
   getFeesTransactionDetails(id: number) {
-    debugger;
     return this.http.get(environment.APIBASEURL + 'Student/GetAllFeesTransaction' + '/' + id, Utils.getAuthHeader()).pipe(map(data => data as FeesTransactions[]))
   }
 
