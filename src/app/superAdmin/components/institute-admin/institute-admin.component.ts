@@ -4,7 +4,7 @@ import { InstituteAdmins } from 'shared/Model/Institutes'
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Utils } from '../../../Core/Utils';
-import { InstituteService } from '../institute/institute.service';
+//import { InstituteService } from '../institute/institute.service';
 import { Institutes } from 'shared/Model/Institutes'
 
 @Component({
@@ -16,8 +16,7 @@ export class InstituteAdminComponent implements OnInit {
 
   constructor(private instituteAdminService: InstituteAdminService,
     private modalService: BsModalService,
-    private formBuilder: FormBuilder,
-    private instituteService: InstituteService) { }
+    private formBuilder: FormBuilder) { }
 
 
   instituteAdmins: InstituteAdmins[];
@@ -92,7 +91,7 @@ export class InstituteAdminComponent implements OnInit {
   }
 
   openCreateInstituteAdminModal(newInstituteAdminTemplate: TemplateRef<any>) {
-    this.instituteService.getAllInstitutes().subscribe(data => {
+    this.instituteAdminService.getAllInstitutes().subscribe(data => {
       this.institutesList = data;
     })
     this.modalRef = this.modalService.show(newInstituteAdminTemplate, {
@@ -133,7 +132,7 @@ export class InstituteAdminComponent implements OnInit {
   }
 
   editInstituteAdminModal(editInstituteAdminTemplate: TemplateRef<any>, a) {
-    this.instituteService.getAllInstitutes().subscribe(data => {
+    this.instituteAdminService.getAllInstitutes().subscribe(data => {
       this.institutesList = data;
     })
     this.instituteAdminId = a.Id;

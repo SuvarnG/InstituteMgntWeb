@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { InstituteService } from './institute.service';
+//import { InstituteService } from './institute.service';
 import { Institutes } from 'shared/Model/Institutes'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Utils } from '../../../Core/Utils';
@@ -18,8 +18,7 @@ export class InstituteComponent implements OnInit {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
-  constructor(private instituteService: InstituteService,
-    private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private instituteAdminService: InstituteAdminService) { }
 
@@ -88,7 +87,7 @@ export class InstituteComponent implements OnInit {
   public user = Utils.GetCurrentUser();
 
   getAllInstitutes() {
-    this.instituteService.getAllInstitutes().subscribe(data => {
+    this.instituteAdminService.getAllInstitutes().subscribe(data => {
       this.Institutes = data;
       this.rerender();
     })
@@ -117,7 +116,7 @@ export class InstituteComponent implements OnInit {
       Email: this.createInstituteForm.controls.EmailId.value,
       CreatedBy: this.user.userId
     }
-    this.instituteService.createInstitute(body).subscribe(data => {
+    this.instituteAdminService.createInstitute(body).subscribe(data => {
       this.getAllInstitutes();
       this.rerender();
       this.modalRef.hide();
@@ -158,7 +157,7 @@ export class InstituteComponent implements OnInit {
       Email: this.editInstituteForm.controls.EmailId.value,
       UpdatedBy: this.user.userId
     }
-    this.instituteService.updateInstitute(body).subscribe(data => {
+    this.instituteAdminService.updateInstitute(body).subscribe(data => {
       this.getAllInstitutes();
       this.rerender();
       this.modalRef.hide()
@@ -167,7 +166,7 @@ export class InstituteComponent implements OnInit {
 
   deleteInstitute(id: number, InstituteName: string) {
     if (confirm('Do you want to delete: ' + InstituteName)) {
-      this.instituteService.deleteInstitute(id).subscribe(data => {
+      this.instituteAdminService.deleteInstitute(id).subscribe(data => {
         this.chkInstitute = data;
         if (this.chkInstitute > 0) {
           alert('Sorry, You cannot delete this institute as it has active admin users.')

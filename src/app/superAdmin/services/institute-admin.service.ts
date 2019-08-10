@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Utils } from '../../Core/Utils';
 import { environment } from '../../../environments/environment';
 import { InstituteAdmins } from 'shared/Model/Institutes'
+import { Institutes } from 'shared/Model/Institutes';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,22 @@ export class InstituteAdminService {
   private uploadUrl = environment.APIBASEURL + 'Upload/PostUserImage'
 
   constructor(private httpClient: HttpClient) { }
+
+  getAllInstitutes() {
+    return this.httpClient.get<Institutes[]>(environment.APIBASEURL + 'Institute/GetAllInstitutes', Utils.getAuthHeader());
+  }
+
+  createInstitute(body) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/CreateInstitute', body, Utils.getAuthHeader());
+  }
+
+  updateInstitute(body) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/UpdateInstitute', body, Utils.getAuthHeader());
+  }
+
+  deleteInstitute(id: number) {
+    return this.httpClient.post(environment.APIBASEURL + 'Institute/InactivateInstitute' + '/' + id, null, Utils.getAuthHeader());
+  }
 
   getAllInstituteAdmins() {
     return this.httpClient.get<InstituteAdmins[]>(environment.APIBASEURL + 'Institute/GetAllInstitutesAdmin', Utils.getAuthHeader())

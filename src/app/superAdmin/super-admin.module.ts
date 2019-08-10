@@ -1,4 +1,4 @@
-import { InstituteService } from './components/institute/institute.service';
+//import { InstituteService } from './components/institute/institute.service';
 import { InstituteAdminService } from './services/institute-admin.service';
 import { InstituteComponent } from './components/institute/institute.component';
 import { InstituteAdminComponent } from './components/institute-admin/institute-admin.component';
@@ -47,8 +47,7 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
     ])
   ],
   providers:[
-    InstituteAdminService,
-    InstituteService
+    InstituteAdminService
   ]
 })
 export class SuperAdminModule { }
