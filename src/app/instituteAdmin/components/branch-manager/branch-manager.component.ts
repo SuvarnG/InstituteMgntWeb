@@ -16,6 +16,13 @@ import { InstituteAdminService } from '../../../superAdmin/services/institute-ad
 })
 export class BranchManagerComponent implements OnInit {
 
+  constructor(private branchManagerService:BranchManagerService,
+    private formBuilder:FormBuilder,
+    private modalService:BsModalService,
+    private instituteService:InstituteService,
+    private branchService: BranchService,
+    private instituteAdminService:InstituteAdminService) { }
+
   branchManagerList : BranchManager[];
   createNewBranchManagerForm:FormGroup;
   editNewBranchManagerForm:FormGroup;
@@ -29,13 +36,6 @@ export class BranchManagerComponent implements OnInit {
   filter:any;
   p:any;
   chkEmailId:any
-
-  constructor(private branchManagerService:BranchManagerService,
-              private formBuilder:FormBuilder,
-              private modalService:BsModalService,
-              private instituteService:InstituteService,
-              private branchService: BranchService,
-              private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
 
@@ -75,10 +75,8 @@ export class BranchManagerComponent implements OnInit {
       BranchName:[]
     })
 
-
     this.getAllBranchManagers();
   
-
   }
 
   public user= Utils.GetCurrentUser();
@@ -106,13 +104,11 @@ export class BranchManagerComponent implements OnInit {
     })
   }
 
-
   getBranchList(){
     this.branchService.getBranches(this.user.InstituteId).subscribe(data=>{
         this.branchList=data
     })
   }
-
 
   createNewBranchManager(){
 
