@@ -15,6 +15,16 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./branch.component.css']
 })
 export class BranchComponent implements OnInit {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(
+    private modalService: BsModalService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private branchService: BranchService) { }
+
   modalRef: BsModalRef;
   createBrachForm: FormGroup;
   submitted = false;
@@ -27,15 +37,6 @@ export class BranchComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   filter:any;
-
-  @ViewChild(DataTableDirective)
-    dtElement: DataTableDirective;
-
-  constructor(
-    private modalService: BsModalService,
-    private formBuilder: FormBuilder,
-    private router: Router,
-    private branchService: BranchService) { }
 
   ngOnInit() {
     this.dtOptions = {
@@ -77,8 +78,7 @@ export class BranchComponent implements OnInit {
     this.branchService.getBranches(this.user.InstituteId).subscribe(res => {
       this.branch = res;
       this.rerender();
-      //this.dtTrigger.next();
-    });
+      });
   }
 
   openPopupForNew(NewBranchTemplate: TemplateRef<any>) {
@@ -165,7 +165,6 @@ export class BranchComponent implements OnInit {
       }, error => console.error(error))
     }
   }
-
 
   onCancel(){
     this.submitted=false;

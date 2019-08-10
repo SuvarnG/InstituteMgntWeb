@@ -1,283 +1,281 @@
 <!-- Breadcrumb-->
 <ol class="breadcrumb">
   <div class="flex-1 d-inline-flex">
-<li class="breadcrumb-item align-self-center"><a routerLink="/dashboard">
-    Home</a></li>
-<li class="breadcrumb-item align-self-center">Branch Manager</li>
-</div>
-<div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-  <li class="h5 pt-2">Manage Branch Manager</li>
- 
-</div>
-<!-- Breadcrumb Menu-->
-<li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
-  <div class="btn-group" role="group" aria-label="Button group">
+    <li class="breadcrumb-item align-self-center"><a routerLink="/dashboard">
+        Home</a></li>
+    <li class="breadcrumb-item align-self-center">Branch Manager</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Branch Manager</li>
+
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
 
       <div class="input-group">
-          <span class="input-group-prepend">
+        <span class="input-group-prepend">
           <button class="btn btn-primary btn-square" type="button">
-          <i class="fa fa-search text-white"></i></button>
-          </span>
-          <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-          </div>
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
+      </div>
       &nbsp;&nbsp;
-      <button class="btn btn-sm btn-primary btn-square text-white" (click)="openCreateBranchManagerModal(newBranchManagerTemplate)" data-toggle="tooltip" data-placement="bottom"
-      title="Add Branch Manager" type="button">Add</button>
-  </div>
-</li>
+      <button class="btn btn-sm btn-primary btn-square text-white"
+        (click)="openCreateBranchManagerModal(newBranchManagerTemplate)" data-toggle="tooltip" data-placement="bottom"
+        title="Add Branch Manager" type="button">Add</button>
+    </div>
+  </li>
 </ol>
 
+<div class="row my-4 px-3 pb-3">
+  <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4"
+    *ngFor="let b of branchManagerList | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
 
-
-  <div class="row my-4 px-3 pb-3">
-      <div class="col-sm-4 col-md-4 col-xl-4 col-lg-4" *ngFor="let b of branchManagerList | filter:filter | paginate: { itemsPerPage: 6, currentPage: p }">
-    
-          <div class="card shadow border-0 rounded-0">
-              <div class="card-header h5 bg-light">{{b.FirstName | titlecase}} {{b.LastName | titlecase}}
-                <div class="card-header-actions">
-                  <a class="card-header-action btn-setting" (click)="openManagerDetailsPopup(ManagerDetailsTemplate, b)" title="Manager Details">
-                    <i class="cui-info info"></i>
-                  </a>
-                  <a class="card-header-action btn-minimize" (click)="editBranchManagerModal(EditBranchManagerTemplate, b)" title="Edit Information">
-                    <i class="cui-pencil pencil"></i>
-                  </a>
-                  <a class="card-header-action btn-close" (click)="deleteBranchManager(b.Id, b.FirstName, b.LastName)" title="Delete Manager">
-                    <i class="cui-trash trash"></i>
-                  </a>
-                </div>
-              </div>
-              <div class="collapse show" id="collapseExample">
-                <div class="card-body">
-                    <div class="row">
-                    <div class="col-sm-3">
-                        <img src="{{b.Photo}}" class="img-circle" width="80" height="80">
-                      </div>
-                      <div class="col-sm-9">
-    
-                        <div class="row ">
-                          <div class="col-sm-12 ">
-                            <p class="card-title"><i class="fa fa-institution" data-toggle="tooltip" data-placement="bottom"
-                              title="Course" ></i> {{b.BranchName}}</p>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12  ">
-                            <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
-                              title="ContactNo" ></i> {{b.Contact}}</p>
-                          </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12  ">
-                              <p class="card-title"><i class="font-md cui-envelope-closed" data-toggle="tooltip" data-placement="bottom"
-                                title="Email" ></i> {{b.Email}}</p>
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-    
-    </div>
-    </div>
-    
-    <p *ngIf="branchManagerList?.length==0">No records found.</p>
-    
-    <ul class="pagination">
-    <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </ul>
-
-
-
-
-
-
-       <!-- New Branch Manager template -->
-<ng-template #newBranchManagerTemplate>
-    <form [formGroup]="createNewBranchManagerForm" (ngSubmit)="createNewBranchManager()">
-      <div class="modal-header">
-        <h5 class="modal-title pull-left">Add Branch Manager</h5>
-        <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="card shadow border-0 rounded-0">
+      <div class="card-header h5 bg-light">{{b.FirstName | titlecase}} {{b.LastName | titlecase}}
+        <div class="card-header-actions">
+          <a class="card-header-action btn-setting" (click)="openManagerDetailsPopup(ManagerDetailsTemplate, b)"
+            title="Manager Details">
+            <i class="cui-info info"></i>
+          </a>
+          <a class="card-header-action btn-minimize" (click)="editBranchManagerModal(EditBranchManagerTemplate, b)"
+            title="Edit Information">
+            <i class="cui-pencil pencil"></i>
+          </a>
+          <a class="card-header-action btn-close" (click)="deleteBranchManager(b.Id, b.FirstName, b.LastName)"
+            title="Delete Manager">
+            <i class="cui-trash trash"></i>
+          </a>
+        </div>
       </div>
-  
-  
-       
-       <div class="modal-body">
-            <div class="container-fluid">
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Personal Details</h5>
+      <div class="collapse show" id="collapseExample">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="{{b.Photo}}" class="img-circle" width="80" height="80">
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                  <label for="FirstName">First Name</label>
-                <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
-                  [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
-                <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
-                  <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+            <div class="col-sm-9">
+
+              <div class="row ">
+                <div class="col-sm-12 ">
+                  <p class="card-title"><i class="fa fa-institution" data-toggle="tooltip" data-placement="bottom"
+                      title="Course"></i> {{b.BranchName}}</p>
                 </div>
               </div>
-  
-  
-              <div class="col-md-6">
-                  <label for="LastName">Last Name</label>
-                <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
-                  [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
-                <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
-                  <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+              <div class="row">
+                <div class="col-sm-12  ">
+                  <p class="card-title"><i class="font-md cui-phone" data-toggle="tooltip" data-placement="bottom"
+                      title="ContactNo"></i> {{b.Contact}}</p>
                 </div>
               </div>
-  
+              <div class="row">
+                <div class="col-sm-12  ">
+                  <p class="card-title"><i class="font-md cui-envelope-closed" data-toggle="tooltip"
+                      data-placement="bottom" title="Email"></i> {{b.Email}}</p>
+                </div>
+              </div>
             </div>
           </div>
-  
-           <div class="form-group">
-            <div class="row">
-              <div class="col-md-4">
-                <label for="Gender">Gender</label>
-                <div class="row">
-                  <div class="col-md-12">
-                      <div class="form-check form-check-inline">
-                          <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<p *ngIf="branchManagerList?.length==0">No records found.</p>
+
+<ul class="pagination">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</ul>
+
+<!-- New Branch Manager template -->
+<ng-template #newBranchManagerTemplate>
+  <form [formGroup]="createNewBranchManagerForm" (ngSubmit)="createNewBranchManager()">
+    <div class="modal-header">
+      <h5 class="modal-title pull-left">Add Branch Manager</h5>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="onCancel()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div class="form-group">
+          <div class="form-row">
+            <h5>Personal Details</h5>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="FirstName">First Name</label>
+              <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
+                [ngClass]="{'is-invalid': submitted && f.FirstName.errors} ">
+              <div *ngIf="submitted && f.FirstName.errors" class="invalid-feedback">
+                <div *ngIf="f.FirstName.errors.required">First Name is required</div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <label for="LastName">Last Name</label>
+              <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
+                [ngClass]="{'is-invalid': submitted && f.LastName.errors} ">
+              <div *ngIf="submitted && f.LastName.errors" class="invalid-feedback">
+                <div *ngIf="f.LastName.errors.required">Last Name is required</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-4">
+              <label for="Gender">Gender</label>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-check form-check-inline">
+                    <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
                       [ngClass]="{'is-invalid': submitted && f.Gender.errors} " [checked]>
-                          <label class="form-check-label" for="radio1"> &nbsp; Male</label>
-                        </div>
-                    
-                    <div class="form-check form-check-inline">
-                        <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
-                        [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
-                        <label class="form-check-label" for="radio2"> &nbsp; Female</label>
-                      </div>
+                    <label class="form-check-label" for="radio1"> &nbsp; Male</label>
                   </div>
-                  <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
-                      <div *ngIf="f.Gender.errors.required">Gender is required</div>
-                    </div>
+
+                  <div class="form-check form-check-inline">
+                    <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
+                      [ngClass]="{'is-invalid': submitted && f.Gender.errors} ">
+                    <label class="form-check-label" for="radio2"> &nbsp; Female</label>
+                  </div>
+                </div>
+                <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
+                  <div *ngIf="f.Gender.errors.required">Gender is required</div>
                 </div>
               </div>
-  
-              <div class="col-md-8">
-                <label for="Address">Address</label>
+            </div>
+
+            <div class="col-md-8">
+              <label for="Address">Address</label>
               <input class="form-control" formControlName="Address" type="text" placeholder="Address"
                 [ngClass]="{'is-invalid': submitted && f.Address.errors} ">
               <div *ngIf="submitted && f.Address.errors" class="invalid-feedback">
                 <div *ngIf="f.Address.errors.required">Address is required</div>
               </div>
             </div>
-  
-            </div>
-          </div>
-  
-          <hr>
-  
-          
-  
-          <div class="form-group">
-            <div class="form-row">
-              <h5>Contact Information</h5>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <label for="ContactNo">Contact Number</label>
-                <input type="text" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
-                  class="form-control"  pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
-                <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
-                  <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
-                  <div *ngIf="f.ContactNo.errors.pattern">Contact Number is not valid</div>
-                </div>
-              </div>
-  
-  
-              <div class="col-md-6">
-                <label for="Email">Email</label>
-                <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
-                  [ngClass]="{'is-invalid': submitted && f.Email.errors} " (blur)="validatingExistingUserEmail(f.Email.value)">
-                <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
-                  <div *ngIf="f.Email.errors.required">Email is required</div>
-                  <div *ngIf="f.Email.errors.email">Email is not valid.</div>
-                </div>
-                <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
-              </div>
-  
-  
-            </div>
-          </div>
-  
-          <hr>
-  
-          <div class="form-group">
-              <div class="form-row">
-                  <h5>Institute Details</h5>
-                </div>
 
-                <div class="form-row">
-        
-                    <div class="col-md-6">
-                        <label for="InstituteId">Branch Name</label>
-                        <select class="form-control" formControlName="BranchId" [value]="null"
-                          [ngClass]="{ 'is-invalid': submitted && f.BranchId.errors }">
-                            <option [value]="null" disabled hidden>Select Branch</option>
-                            <option *ngFor="let branch of branchList" [value]="branch.BranchId">
-                              {{branch.BranchName}}
-                            </option>
-                        </select>
-                        <div *ngIf="submitted && f.BranchId.errors" class="invalid-feedback">
-                        <div *ngIf="f.BranchId.errors.required">Branch Name is required</div>
-                        </div>
-                        <div *ngIf="branchList?.length==0"><h6 style="color:#f86c6b">No Branch is listed under this Institute.
-                        <a routerLink="/Branch" (click)="this.modalRef.hide()">Please Click here to create a new Branch</a></h6>
-                      </div>
-                </div>
-                </div>
-
-
-            <div class="form-row">
-              <div class="col-md-6">
-                  <label for="Password">Create Password</label>
-                  <input type="password" id="Password" formControlName="Password" placeholder="Enter Password"
-                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }">
-                <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
-                  <div *ngIf="f.Password.errors.required">Password is required</div>
-                </div>
-              </div>
-  
-              <div class="col-md-6">
-                  <label for="VerifyPassword">Verify Password</label>
-                  <input type="password" id="VerifyPassword" formControlName="VerifyPassword" placeholder="Verify Password"
-                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VerifyPassword.errors }">
-                <div *ngIf="submitted && f.VerifyPassword.errors" class="invalid-feedback">
-                  <div *ngIf="f.VerifyPassword.errors.required">Password verification is required</div>
-                </div>
           </div>
-          </div>
-          </div>
-  
-          <hr>
-  
-          <div class="form-group">
-            <h5>Upload Image</h5>
-            <img [src]="thumbnailUrl" width="100" height="100">
-            &nbsp;
-            <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
-            <input type="hidden" name="fileHidden" formControlName="Photo" />
-          </div>
-  
         </div>
-  
-        <div class="modal-footer">
-          <button class="btn btn-square btn-primary" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+        <hr>
+
+        <div class="form-group">
+          <div class="form-row">
+            <h5>Contact Information</h5>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <label for="ContactNo">Contact Number</label>
+              <input type="text" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo"
+                placeholder="Contact Number" class="form-control" pattern="^[7-9][0-9]{9}$"
+                [ngClass]="{ 'is-invalid': submitted && f.ContactNo.errors }">
+              <div *ngIf="submitted && f.ContactNo.errors" class="invalid-feedback">
+                <div *ngIf="f.ContactNo.errors.required">Contact Number is required</div>
+                <div *ngIf="f.ContactNo.errors.pattern">Contact Number is not valid</div>
+              </div>
+            </div>
+
+
+            <div class="col-md-6">
+              <label for="Email">Email</label>
+              <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
+                [ngClass]="{'is-invalid': submitted && f.Email.errors} "
+                (blur)="validatingExistingUserEmail(f.Email.value)">
+              <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                <div *ngIf="f.Email.errors.required">Email is required</div>
+                <div *ngIf="f.Email.errors.email">Email is not valid.</div>
+              </div>
+              <div *ngIf="chkEmailId > 0">
+                <h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6>
+              </div>
+            </div>
+
+          </div>
         </div>
-  
-        </div> 
-    </form>
-  </ng-template>
+
+        <hr>
+
+        <div class="form-group">
+          <div class="form-row">
+            <h5>Institute Details</h5>
+          </div>
+
+          <div class="form-row">
+
+            <div class="col-md-6">
+              <label for="InstituteId">Branch Name</label>
+              <select class="form-control" formControlName="BranchId" [value]="null"
+                [ngClass]="{ 'is-invalid': submitted && f.BranchId.errors }">
+                <option [value]="null" disabled hidden>Select Branch</option>
+                <option *ngFor="let branch of branchList" [value]="branch.BranchId">
+                  {{branch.BranchName}}
+                </option>
+              </select>
+              <div *ngIf="submitted && f.BranchId.errors" class="invalid-feedback">
+                <div *ngIf="f.BranchId.errors.required">Branch Name is required</div>
+              </div>
+              <div *ngIf="branchList?.length==0">
+                <h6 style="color:#f86c6b">No Branch is listed under this Institute.
+                  <a routerLink="/Branch" (click)="this.modalRef.hide()">Please Click here to create a new Branch</a>
+                </h6>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <label for="Password">Create Password</label>
+              <input type="password" id="Password" formControlName="Password" placeholder="Enter Password"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }">
+              <div *ngIf="submitted && f.Password.errors" class="invalid-feedback">
+                <div *ngIf="f.Password.errors.required">Password is required</div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="VerifyPassword">Verify Password</label>
+              <input type="password" id="VerifyPassword" formControlName="VerifyPassword" placeholder="Verify Password"
+                class="form-control" [ngClass]="{ 'is-invalid': submitted && f.VerifyPassword.errors }">
+              <div *ngIf="submitted && f.VerifyPassword.errors" class="invalid-feedback">
+                <div *ngIf="f.VerifyPassword.errors.required">Password verification is required</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="form-group">
+          <h5>Upload Image</h5>
+          <img [src]="thumbnailUrl" width="100" height="100">
+          &nbsp;
+          <input type="file" (change)="onImageSelected($event);onUploadPhoto()" id="Photo">
+          <input type="hidden" name="fileHidden" formControlName="Photo" />
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-square btn-primary" type="submit">Submit</button>
+        <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
+      </div>
+
+    </div>
+  </form>
+</ng-template>
 
 
 
 
-         <!-- Edit Branch Manager template -->
+<!-- Edit Branch Manager template -->
 <ng-template #EditBranchManagerTemplate>
   <form [formGroup]="editNewBranchManagerForm" (ngSubmit)="editNewBranchManager()">
     <div class="modal-header">
@@ -288,16 +286,16 @@
     </div>
 
 
-     
-     <div class="modal-body">
-          <div class="container-fluid">
+
+    <div class="modal-body">
+      <div class="container-fluid">
         <div class="form-group">
           <div class="form-row">
             <h5>Personal Details</h5>
           </div>
           <div class="row">
             <div class="col-md-6">
-                <label for="FirstName">First Name</label>
+              <label for="FirstName">First Name</label>
               <input type="text" class="form-control" formControlName="FirstName" placeholder="First Name"
                 [ngClass]="{'is-invalid': submitted && fu.FirstName.errors} ">
               <div *ngIf="submitted && fu.FirstName.errors" class="invalid-feedback">
@@ -307,7 +305,7 @@
 
 
             <div class="col-md-6">
-                <label for="LastName">Last Name</label>
+              <label for="LastName">Last Name</label>
               <input class="form-control" formControlName="LastName" type="text" placeholder="Last Name"
                 [ngClass]="{'is-invalid': submitted && fu.LastName.errors} ">
               <div *ngIf="submitted && fu.LastName.errors" class="invalid-feedback">
@@ -318,45 +316,45 @@
           </div>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <div class="row">
             <div class="col-md-4">
               <label for="Gender">Gender</label>
               <div class="row">
                 <div class="col-md-12">
-                    <div class="form-check form-check-inline">
-                        <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
-                    [ngClass]="{'is-invalid': submitted && fu.Gender.errors} " [checked]>
-                        <label class="form-check-label" for="radio1"> &nbsp; Male</label>
-                      </div>
-                  
                   <div class="form-check form-check-inline">
-                      <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
+                    <input type="radio" id="radio1" name="Gender" formControlName="Gender" value="Male"
+                      [ngClass]="{'is-invalid': submitted && fu.Gender.errors} " [checked]>
+                    <label class="form-check-label" for="radio1"> &nbsp; Male</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input type="radio" id="radio2" class="ml-3" name="Gender" formControlName="Gender" value="Female"
                       [ngClass]="{'is-invalid': submitted && fu.Gender.errors} ">
-                      <label class="form-check-label" for="radio2"> &nbsp; Female</label>
-                    </div>
+                    <label class="form-check-label" for="radio2"> &nbsp; Female</label>
+                  </div>
                 </div>
                 <div *ngIf="submitted && fu.Gender.errors" class="invalid-feedback">
-                    <div *ngIf="fu.Gender.errors.required">Gender is required</div>
-                  </div>
+                  <div *ngIf="fu.Gender.errors.required">Gender is required</div>
+                </div>
               </div>
             </div>
 
             <div class="col-md-8">
               <label for="Address">Address</label>
-            <input class="form-control" formControlName="Address" type="text" placeholder="Address"
-              [ngClass]="{'is-invalid': submitted && fu.Address.errors} ">
-            <div *ngIf="submitted && fu.Address.errors" class="invalid-feedback">
-              <div *ngIf="fu.Address.errors.required">Address is required</div>
+              <input class="form-control" formControlName="Address" type="text" placeholder="Address"
+                [ngClass]="{'is-invalid': submitted && fu.Address.errors} ">
+              <div *ngIf="submitted && fu.Address.errors" class="invalid-feedback">
+                <div *ngIf="fu.Address.errors.required">Address is required</div>
+              </div>
             </div>
-          </div>
 
           </div>
         </div>
 
         <hr>
 
-        
+
 
         <div class="form-group">
           <div class="form-row">
@@ -365,8 +363,9 @@
           <div class="row">
             <div class="col-md-6">
               <label for="ContactNo">Contact Number</label>
-              <input type="number" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo" placeholder="Contact Number"
-                class="form-control"  pattern="^[7-9][0-9]{9}$" [ngClass]="{ 'is-invalid': submitted && fu.ContactNo.errors }">
+              <input type="number" minLength="10" maxLength="12" id="ContactNo" formControlName="ContactNo"
+                placeholder="Contact Number" class="form-control" pattern="^[7-9][0-9]{9}$"
+                [ngClass]="{ 'is-invalid': submitted && fu.ContactNo.errors }">
               <div *ngIf="submitted && fu.ContactNo.errors" class="invalid-feedback">
                 <div *ngIf="fu.ContactNo.errors.required">Contact Number is required</div>
                 <div *ngIf="fu.ContactNo.errors.pattern">Contact Number is not valid</div>
@@ -377,12 +376,15 @@
             <div class="col-md-6">
               <label for="Email">Email</label>
               <input type="email" class="form-control" id="Email" formControlName="Email" placeholder="Email Id"
-                [ngClass]="{'is-invalid': submitted && fu.Email.errors} " (blur)="validatingExistingUserEmail(fu.Email.value)">
+                [ngClass]="{'is-invalid': submitted && fu.Email.errors} "
+                (blur)="validatingExistingUserEmail(fu.Email.value)">
               <div *ngIf="submitted && fu.Email.errors" class="invalid-feedback">
                 <div *ngIf="fu.Email.errors.required">Email is required</div>
                 <div *ngIf="fu.Email.errors.email">Email is not valid</div>
               </div>
-              <div *ngIf="chkEmailId > 0"><h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6></div>
+              <div *ngIf="chkEmailId > 0">
+                <h6 style="color:#f86c6b">Please enter another Email as this is already registered.</h6>
+              </div>
             </div>
 
           </div>
@@ -391,22 +393,22 @@
         <hr>
 
         <div class="form-group">
-            <div class="form-row">
-                <h5>Institute Details</h5>
-              </div>
+          <div class="form-row">
+            <h5>Institute Details</h5>
+          </div>
 
-              <div class="form-row">
-      
-                  <div class="col-md-6">
-                      <label for="BranchId">Branch Name</label>
-                      <select class="form-control" formControlName="BranchId" [value]="null"
-                        [ngClass]="{ 'is-invalid': submitted && fu.BranchId.errors }" disabled>
-                          <option *ngFor="let branch of branchList" [value]="branch.BranchId">
-                            {{branch.BranchName}}
-                          </option>
-                      </select>
-              </div>
-              </div>
+          <div class="form-row">
+
+            <div class="col-md-6">
+              <label for="BranchId">Branch Name</label>
+              <select class="form-control" formControlName="BranchId" [value]="null"
+                [ngClass]="{ 'is-invalid': submitted && fu.BranchId.errors }" disabled>
+                <option *ngFor="let branch of branchList" [value]="branch.BranchId">
+                  {{branch.BranchName}}
+                </option>
+              </select>
+            </div>
+          </div>
 
         </div>
 
@@ -427,13 +429,13 @@
         <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
       </div>
 
-      </div> 
+    </div>
   </form>
 </ng-template>
 
 
- <!--  Manager Details template -->
- <ng-template #ManagerDetailsTemplate>
+<!--  Manager Details template -->
+<ng-template #ManagerDetailsTemplate>
   <form [formGroup]="detailsManagerForm">
     <div class="modal-header">
       <h5 class="modal-title pull-left">Branch Manager Details</h5>
@@ -443,35 +445,35 @@
     </div>
 
 
-     
-     <div class="modal-body">
-          <div class="container-fluid">
+
+    <div class="modal-body">
+      <div class="container-fluid">
         <div class="form-group">
           <div class="form-row">
             <h5>Personal Details</h5>
           </div>
           <div class="row">
             <div class="col-md-6">
-                <label for="Name">Manager Name: </label>
-                {{g.FirstName.value}} {{g.LastName.value}}
+              <label for="Name">Manager Name: </label>
+              {{g.FirstName.value}} {{g.LastName.value}}
             </div>
 
             <div class="col-md-6">
-                <label for="FirstName">Gender: </label>
-                 {{g.Gender.value}}
-            </div> 
+              <label for="FirstName">Gender: </label>
+              {{g.Gender.value}}
+            </div>
           </div>
 
           <div class="row">
-              <div class="col-md-12">
-                <label for="Address">Address: </label>
-                {{g.Address.value}}
-            </div>  
-            </div> 
+            <div class="col-md-12">
+              <label for="Address">Address: </label>
+              {{g.Address.value}}
+            </div>
+          </div>
         </div>
 
-                 
-        <hr>        
+
+        <hr>
 
         <div class="form-group">
           <div class="form-row">
@@ -490,13 +492,13 @@
             </div>
           </div>
 
-            <div class="row">
+          <div class="row">
             <div class="col-md-12">
-                <label for="CourseType">Branch Name: </label>
-               {{g.BranchName.value}}
-              </div>
+              <label for="CourseType">Branch Name: </label>
+              {{g.BranchName.value}}
             </div>
           </div>
+        </div>
 
 
       </div>
@@ -505,8 +507,6 @@
         <button class="btn btn-danger btn-square ml-2" type="button" (click)="onCancel()">Cancel</button>
       </div>
 
-      </div> 
+    </div>
   </form>
 </ng-template>
-
-

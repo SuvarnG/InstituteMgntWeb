@@ -6,8 +6,6 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Utils } from '../../Core/Utils';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -15,30 +13,20 @@ export class BranchService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
-  }
-
   getBranches(InstituteId: number) {
-    return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll' + '/' + InstituteId, this.getAuthHeader())
+    return this.http.get<Branch[]>(environment.APIBASEURL + 'Branch/GetAll' + '/' + InstituteId, Utils.getAuthHeader())
       ;
   }
 
   createNewBranch(branch): Observable<Branch> {
-    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/CreateBranch', branch, this.getAuthHeader())
+    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/CreateBranch', branch, Utils.getAuthHeader())
   }
 
   editBranch(branch): Observable<Branch> {
-    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/UpdateBranch', branch, this.getAuthHeader())
+    return this.http.post<Branch>(environment.APIBASEURL + 'Branch/UpdateBranch', branch, Utils.getAuthHeader())
   }
 
   deleteBranch(id){
-    return this.http.post(environment.APIBASEURL + 'Branch/DeleteBranch/' + id, null, this.getAuthHeader())
+    return this.http.post(environment.APIBASEURL + 'Branch/DeleteBranch/' + id, null, Utils.getAuthHeader())
   }
 }
