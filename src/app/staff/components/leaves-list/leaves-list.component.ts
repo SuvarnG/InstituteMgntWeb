@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { LeavelistService } from '../../services/leavelist.service';
+//import { LeavelistService } from '../../services/leavelist.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { leave } from '@angular/core/src/profile/wtf_impl';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators, NgControl } from '@angular/forms';
 import { idLocale } from 'ngx-bootstrap';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { LeaveService } from '../../services/leave.service';
 
 
 @Component({
@@ -23,7 +24,7 @@ export class LeavesListComponent implements OnInit {
   dtElement: DataTableDirective;
 
   constructor(
-    private LeavelistService: LeavelistService,
+    private leaveService:LeaveService,
     private formBuilder: FormBuilder,
     private router: Router, 
     private route: ActivatedRoute, 
@@ -82,7 +83,7 @@ export class LeavesListComponent implements OnInit {
   get n() { return this.CreateLeave.controls }
 
   getAllLeaves() {
-    this.LeavelistService.getAllLeaves().subscribe(res => {
+    this.leaveService.getAllLeavesType().subscribe(res => {
     this.Leaves = res
     this.rerender();
     });
@@ -91,7 +92,7 @@ export class LeavesListComponent implements OnInit {
   deleteLeaveType(id: number,name:string) {
     var ans = confirm("Do you want to delete leave of type: " + name);
     if (ans) {
-      this.LeavelistService.deleteLeaveType(id).subscribe(data =>
+      this.leaveService.deleteLeaveType(id).subscribe(data =>
         this.getAllLeaves()
       )
     }   
@@ -132,7 +133,7 @@ export class LeavesListComponent implements OnInit {
 }
 
     let leaveName=this.CreateLeave.controls.LeaveName.value
-    this.LeavelistService.createLeave(leaveName).subscribe(data => { this.getAllLeaves(), 
+    this.leaveService.createLeave(leaveName).subscribe(data => { this.getAllLeaves(), 
       this.rerender();          
       this.modalRef.hide() })
   }
@@ -149,7 +150,7 @@ export class LeavesListComponent implements OnInit {
       LeaveType: this.registerUpdateLeave.controls.LeaveType.value
     }
 
-    this.LeavelistService.updateLeave(body).subscribe(data => { this.getAllLeaves(), 
+    this.leaveService.updateLeaveType(body).subscribe(data => { this.getAllLeaves(), 
             this.rerender();  
             this.modalRef.hide() })
   }

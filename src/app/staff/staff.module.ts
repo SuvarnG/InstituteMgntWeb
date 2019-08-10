@@ -2,7 +2,6 @@ import { StaffListService } from './services/staff-list.service';
 import { LeaveService } from './services/leave.service';
 import { EnquiryService } from './services/enquiry.service';
 import { CreateStaffService } from './services/create-staff.service';
-import { LeavelistService } from './services/leavelist.service';
 import { LeaveComponent } from './components/leave/leave.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { CreateStaffComponent } from './components/create-staff/create-staff.component';
@@ -79,7 +78,6 @@ import { LeavesListComponent } from './components/leaves-list/leaves-list.compon
 CreateStaffService,
 EnquiryService,
 LeaveService,
-LeavelistService,
 StaffListService
   ],
   exports:[

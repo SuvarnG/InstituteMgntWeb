@@ -2,11 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
-import { Leaves } from 'shared/Model/leaves';
 import { LeaveTransaction, LeaveType } from 'shared/Model/LeaveTran';
 import { Students, CourseType } from 'shared/Model/Students'
-import { Observable } from 'rxjs';
 import { Utils } from '../../Core/Utils';
+import { Leaves, UpdateLeaves } from 'shared/Model/leaves'
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,11 @@ import { Utils } from '../../Core/Utils';
 export class LeaveService {
 
   constructor(private http: HttpClient) { }
+
+  private Url = environment.APIBASEURL + 'Leave/GetAllLeaveType';
+  private DeleteUrl = environment.APIBASEURL + 'Leave/DeleteLeaveType';
+  private CreateUrl = environment.APIBASEURL + 'Leave/CreateNewLeaveType';
+  private UpdateUrl = environment.APIBASEURL + 'Leave/UpdateLeaveType';
 
   getLeave() {
     return this.http.get<LeaveTransaction[]>(environment.APIBASEURL + 'Leave/GetAllLeaves', Utils.getAuthHeader()
@@ -37,4 +41,22 @@ export class LeaveService {
   editLeave(leave) {
     return this.http.post(environment.APIBASEURL + 'Leave/UpdateLeave', leave, Utils.getAuthHeader());
   }
+
+  getAllLeavesType() {
+    return this.http.get<Leaves[]>(this.Url, Utils.getAuthHeader())
+  }
+
+  deleteLeaveType(id: number) {
+    return this.http.post<void>(this.DeleteUrl + "/" + id, null, Utils.getAuthHeader())
+  }
+
+  createLeaveType(leaveName: string) {
+    return this.http.post<void>(this.CreateUrl + "/" + leaveName, null, Utils.getAuthHeader())
+  }
+
+  updateLeaveType(leaves: Leaves) {
+    debugger;
+    return this.http.post<void>(this.UpdateUrl, leaves, Utils.getAuthHeader())
+  }
+
 }

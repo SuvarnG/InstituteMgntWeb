@@ -1,4 +1,4 @@
-import { LeavelistService } from '../../../staff/services/leavelist.service';
+//import { LeavelistService } from '../../../staff/services/leavelist.service';
 import { debug } from 'util';
 import { LeaveType, LeaveTransaction } from 'shared/Model/LeaveTran';
 import { Course } from 'shared/Model/CourseType';
@@ -30,8 +30,7 @@ export class LeaveComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private LeaveService: LeaveService,
-    private coursesService: CoursesService,
-    private leavelistService: LeavelistService) { }
+    private coursesService: CoursesService) { }
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -155,7 +154,7 @@ export class LeaveComponent implements OnInit {
   }
 
   getLeaveTypeList() {
-    this.leavelistService.getAllLeaves().subscribe(res => {
+    this.LeaveService.getAllLeavesType().subscribe(res => {
       this.leaves = res;
     });
   }
