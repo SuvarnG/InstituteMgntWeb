@@ -7,8 +7,6 @@ import { Observable } from 'rxjs';
 import { createEnquiry } from 'shared/Model/createEnquiry';
 import { Utils } from '../../Core/Utils';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,27 +16,17 @@ export class EnquiryService {
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
-  }
-
   getEnquiry(id:number) {
-    return this.http.get<EnquiryList[]>(this.Url + '/' + id, this.getAuthHeader()
+    return this.http.get<EnquiryList[]>(this.Url + '/' + id, Utils.getAuthHeader()
     ).pipe(map(data => data as EnquiryList[]));
   }
 
   createEnquiry(Enquiry: createEnquiry) {
-    return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry', Enquiry, this.getAuthHeader());
+    return this.http.post<createEnquiry>(environment.APIBASEURL + 'Enquiry/CreateEnquiry', Enquiry, Utils.getAuthHeader());
   }
 
   EnquiryUpdate(enquiries: createEnquiry) {
-    return this.http.post(environment.APIBASEURL + 'Enquiry/UpdateEnquiry', enquiries, this.getAuthHeader());
+    return this.http.post(environment.APIBASEURL + 'Enquiry/UpdateEnquiry', enquiries, Utils.getAuthHeader());
   }
 }
 

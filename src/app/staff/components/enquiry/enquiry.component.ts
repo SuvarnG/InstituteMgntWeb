@@ -21,14 +21,23 @@ import { Utils } from '../../../Core/Utils';
 })
 
 export class EnquiryComponent implements OnInit {
+ @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private modalService: BsModalService,
+    private enquiryService: EnquiryService,
+    private coursetypeService:CoursetypeService,
+    private createNewStudentService:CreateNewStudentService) { }
+
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
   EnquiryForm: FormGroup;
-  UpdateEnquiryFormGroup: FormGroup;
+  UpdateEnquiryForm: FormGroup;
   submitted = false;
   myDateValue: Date;
   modalRef: any;
-  //enquiryService: any;
   public enquiries: EnquiryList[];
   route: any;
   CourseTypeId: Number;
@@ -40,16 +49,6 @@ export class EnquiryComponent implements OnInit {
   maxDate: Date;
   courseType: CourseType[];
   filter:any;
-
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private modalService: BsModalService,
-    private enquiryService: EnquiryService,
-    private coursetypeService:CoursetypeService,
-    private createNewStudentService:CreateNewStudentService) { }
 
   ngOnInit() {
 
@@ -72,13 +71,12 @@ export class EnquiryComponent implements OnInit {
       City: ['', Validators.required],
       DateOfEnquiry: [new Date().toDateString(), Validators.required],
       IsFollowupNeeded: [],
-      //CourseName:['',Validators.required],
       NeedFollowupDate: [],
       Remark: ['', Validators.required],
       CourseTypeId: ['', Validators.required],
     });
 
-    this.UpdateEnquiryFormGroup = this.formBuilder.group({
+    this.UpdateEnquiryForm = this.formBuilder.group({
       ID: [],
       CourseId: ['', Validators.required],
       FirstName: ['', Validators.required],
@@ -117,7 +115,7 @@ export class EnquiryComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.EnquiryForm.controls; }
-  get fu() { return this.UpdateEnquiryFormGroup.controls; }
+  get fu() { return this.UpdateEnquiryForm.controls; }
 
   public OpenEnquiryModel(CreateEnquiryModal: TemplateRef<any>) {
     this.EnquiryForm.reset();
@@ -134,8 +132,7 @@ export class EnquiryComponent implements OnInit {
     this.enquiryService.getEnquiry(this.user.BranchId).subscribe(res => {
       this.enquiries = res;
       this.rerender();
-      //this.dtTrigger.next();
-    });
+      });
   }
 
   CreateNewEnquiry() {
@@ -187,7 +184,7 @@ export class EnquiryComponent implements OnInit {
 
     this.GetCourseTypeList();
     this.GetCourseNameList(editItem.CourseTypeId);
-    this.UpdateEnquiryFormGroup.patchValue({
+    this.UpdateEnquiryForm.patchValue({
       ID: editItem.ID,
       FirstName: editItem.FirstName,
       MiddleName: editItem.MiddleName,
@@ -195,7 +192,6 @@ export class EnquiryComponent implements OnInit {
       Address: editItem.Address,
       City: editItem.City,
       DateOfEnquiry: formatDate(editItem.DateOfEnquiry,'yyyy-MM-dd', 'en'),
-      //DateOfEnquiry: new Date(editItem.DateOfEnquiry).toDateString(),
       NeedFollowupDate: formatDate(editItem.NeedFollowupDate,'yyyy-MM-dd', 'en'),
       Remark: editItem.Remark,
       CourseId: editItem.CourseId,
@@ -205,7 +201,7 @@ export class EnquiryComponent implements OnInit {
 
   UpdateEnquiry() {
     this.submitted = true;
-    if (this.UpdateEnquiryFormGroup.invalid || this.listCourseName.length==0) {
+    if (this.UpdateEnquiryForm.invalid || this.listCourseName.length==0) {
       return
     }
     this.submitted = false;
@@ -232,22 +228,15 @@ export class EnquiryComponent implements OnInit {
   private GetCourseTypeList() {
     this.coursetypeService.courseTypeList().subscribe(res => {
       this.courseType = res;
-      console.log(JSON.stringify(this.courseType));
-    });
+      });
   }
 
   private GetCourseNameList(id: number) {
     this.createNewStudentService.getCourseNameFromCourseType(id).subscribe(res => {
       this.listCourseName = res;
-      console.log("test", this.listCourseName)
-    });;
-     // .subscribe(res => {
-    //   this.listCourseName = res;
-    //   console.log(JSON.stringify(this.listCourseName))
-    // });
-
+       });;
+   
   }
-
 
   onCancel(){
     this.modalRef.hide();
