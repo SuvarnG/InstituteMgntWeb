@@ -1,5 +1,4 @@
 import { CourseFees, Users } from 'shared/Model/Students';
-import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,6 +8,7 @@ import { CreateStudent, FeesTransaction, CourseType, Courses, RecentStudent } fr
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Utils } from '../../../Core/Utils';
+import { CoursesService } from 'src/app/Courses/Services/courses.service';
 
 
 @Component({
@@ -18,11 +18,12 @@ import { Utils } from '../../../Core/Utils';
 })
 export class CreateStudentComponent implements OnInit {
 
-  constructor(private modalService: BsModalService, private formBuilder: FormBuilder,
+  constructor(private modalService: BsModalService, 
+    private formBuilder: FormBuilder,
     public CreateNewStudentService: CreateNewStudentService,
     private router: Router,
     public _DomSanitizationService: DomSanitizer,
-    private coursetypeService: CoursetypeService) { }
+    private coursesService: CoursesService) { }
 
 
   modalRef: BsModalRef;
@@ -166,7 +167,7 @@ export class CreateStudentComponent implements OnInit {
       backdrop: 'static',
       class: 'modal-xl'
     });
-    this.coursetypeService.courseTypeList().subscribe(res => {
+    this.coursesService.courseTypeList().subscribe(res => {
       this.courseTypeList = res
     });
     // this.CreateNewStudentService.getUsersListForFeesTaken().subscribe(res => {

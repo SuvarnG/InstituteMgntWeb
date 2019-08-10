@@ -1,4 +1,3 @@
-import { CoursetypeService } from '../../Services/coursetype.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { CoursesService } from '../../Services/courses.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -23,8 +22,7 @@ export class CoursesComponent implements OnInit {
   constructor(
     private modalService: BsModalService,
     private CoursesService: CoursesService,
-    private formBuilder: FormBuilder,
-    private coursetypeService: CoursetypeService) { }
+    private formBuilder: FormBuilder) { }
 
   modalRef: BsModalRef;
   createForm: FormGroup;
@@ -103,7 +101,7 @@ export class CoursesComponent implements OnInit {
   }
 
   getCourseTypeList() {
-    this.coursetypeService.courseTypeList().subscribe(res => {
+    this.CoursesService.courseTypeList().subscribe(res => {
       this.coursetype = res; console.log("test", this.coursetype)
     });
   }

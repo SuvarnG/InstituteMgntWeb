@@ -1,4 +1,3 @@
-import { CoursetypeService } from './services/coursetype.service';
 import { CoursesService } from './services/courses.service';
 import { CoursetypeComponent } from './components/coursetype/coursetype.component';
 import { CoursesComponent } from './components/course-list/courses.component';
@@ -47,8 +46,7 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
     ])
   ],
   providers:[
-    CoursesService,
-    CoursetypeService
+    CoursesService
   ]
 })
 export class CoursesModule { }

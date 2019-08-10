@@ -1,5 +1,5 @@
 import { CourseType } from './../../../shared/Model/Students';
-import { CoursetypeService } from './../../../Courses/Services/coursetype.service';
+import { CoursesService } from './../../../Courses/Services/courses.service';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -16,7 +16,7 @@ export class CoursetypeComponent {
   @ViewChild(DataTableDirective)
   dtElement: DataTableDirective;
 
-  constructor(private CoursetypeService: CoursetypeService,
+  constructor(private coursesService : CoursesService ,
     private modalService: BsModalService,
     private formBuilder: FormBuilder) { }
 
@@ -67,7 +67,7 @@ export class CoursetypeComponent {
   get fu() { return this.editCourseForm.controls; }
 
   getCourseType() {
-    this.CoursetypeService.courseTypeList().subscribe(res => {
+    this.coursesService.courseTypeList().subscribe(res => {
       this.courseType = res;
       this.rerender();
 
@@ -104,7 +104,7 @@ export class CoursetypeComponent {
 
     this.submitted = false;
 
-    this.CoursetypeService.createCourseType(CreateCourseName).subscribe(data => {
+    this.coursesService.createCourseType(CreateCourseName).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
       this.rerender();
@@ -140,7 +140,7 @@ export class CoursetypeComponent {
       CourseTypeName: this.editCourseForm.controls.CourseTypeName.value,
       CourseTypeId: this.editCourseForm.controls.CourseTypeId.value,
     }
-    this.CoursetypeService.editCourseType(body).subscribe(data => {
+    this.coursesService.editCourseType(body).subscribe(data => {
       this.modalRef.hide();
       this.getCourseType();
     }, error => console.error(error))

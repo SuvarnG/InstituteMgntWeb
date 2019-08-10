@@ -1,6 +1,5 @@
 import { Courses, CourseType, CourseFees } from 'shared/Model/Students';
 import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
-import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
@@ -10,6 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Roles } from 'shared/Model/Students';
 import { Utils } from '../../../Core/Utils';
 import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
+import { CoursesService } from 'src/app/Courses/Services/courses.service';
 
 
 @Component({
@@ -47,7 +47,7 @@ chkEmailId:any;
     private router: Router,
     private teacherCoursesService: CreateStaffService,
     public _DomSanitizationService: DomSanitizer,
-    private coursetypeService: CoursetypeService,
+    private coursesService: CoursesService,
     private createNewStudentService: CreateNewStudentService,
     private instituteAdminService:InstituteAdminService) { }
 
@@ -109,7 +109,7 @@ chkEmailId:any;
       return;
     }
     else {     
-         this.coursetypeService.courseTypeList().subscribe(res => {
+         this.coursesService.courseTypeList().subscribe(res => {
            this.CourseTypeList = res
          });
         this.modalRef = this.modalService.show(template, {class: 'modal-xl'},);
@@ -155,7 +155,7 @@ chkEmailId:any;
   }
   openModal(template: TemplateRef<any>) {
     if (this.registerStaffForm.controls.IsFixedPayment.value == true) {
-      this.coursetypeService.courseTypeList();
+      this.coursesService.courseTypeList();
       this.modalRef = this.modalService.show(template);
     }
   }

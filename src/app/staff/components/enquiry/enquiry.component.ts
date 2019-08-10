@@ -5,14 +5,13 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { EnquiryService } from '../../services/enquiry.service';
 import { EnquiryList, CourseNameMaster, CourseTypeMaster } from 'shared/Model/EnquiryList';
 import { createEnquiry } from 'shared/Model/createEnquiry';
-import { validateConfig } from '@angular/router/src/config';
 import { Subject } from 'rxjs';
-import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
 import { CourseType } from 'shared/Model/Students';
 import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { DataTableDirective } from 'angular-datatables';
 import { formatDate } from '@angular/common';
 import { Utils } from '../../../Core/Utils';
+import { CoursesService } from 'src/app/Courses/Services/courses.service';
 
 @Component({
   selector: 'app-enquiry',
@@ -28,7 +27,7 @@ export class EnquiryComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: BsModalService,
     private enquiryService: EnquiryService,
-    private coursetypeService:CoursetypeService,
+    private coursesService:CoursesService,
     private createNewStudentService:CreateNewStudentService) { }
 
   dtOptions: DataTables.Settings = {};
@@ -226,7 +225,7 @@ export class EnquiryComponent implements OnInit {
 
 
   private GetCourseTypeList() {
-    this.coursetypeService.courseTypeList().subscribe(res => {
+    this.coursesService.courseTypeList().subscribe(res => {
       this.courseType = res;
       });
   }

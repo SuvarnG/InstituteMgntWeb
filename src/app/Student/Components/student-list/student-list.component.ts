@@ -8,7 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
 import { Students } from 'shared/Model/Students'
 import { Utils } from '../../../Core/Utils';
-import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
+import { CoursesService } from 'src/app/Courses/Services/courses.service';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class StudentListComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private createNewStudentService: CreateNewStudentService,
-    private coursetypeService: CoursetypeService) { }
+    private coursesService: CoursesService) { }
 
   public thumbnailUrl: any = '../../assets/images/MProfile.jpg';
   modalRef: BsModalRef
@@ -103,7 +103,7 @@ export class StudentListComponent implements OnInit {
   }
 
   openEditStudentPopup(editStudent: TemplateRef<any>, s) {
-    this.coursetypeService.courseTypeList().subscribe(res => {
+    this.coursesService.courseTypeList().subscribe(res => {
       this.CourseTypeList = res
     });
     this.studentID = s.StudentId,

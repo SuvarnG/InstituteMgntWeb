@@ -1,5 +1,4 @@
 import { CourseType, Course } from 'shared/Model/CourseType';
-import { CoursetypeService } from '../../../Courses/Services/coursetype.service';
 import { CreateNewStudentService } from '../../../student/services/create-new-student.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
@@ -12,6 +11,7 @@ import { Utils } from '../../../Core/Utils';
 import { Courses } from 'shared/Model/Students';
 import { formatDate } from '@angular/common';
 import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
+import { CoursesService } from 'src/app/Courses/Services/courses.service';
 
 @Component({
   selector: 'app-staff-list',
@@ -44,7 +44,7 @@ export class StaffListComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private createNewStudentService: CreateNewStudentService,
-    private coursetypeService: CoursetypeService,
+    private coursesService: CoursesService,
     private instituteAdminService:InstituteAdminService) { }
 
   ngOnInit() {
@@ -214,7 +214,7 @@ export class StaffListComponent implements OnInit {
       backdrop: 'static',
       class: 'modal-xl'
     });
-    this.coursetypeService.courseTypeList().subscribe(res => {
+    this.coursesService.courseTypeList().subscribe(res => {
       this.courseTypeList = res
     });
     this.createNewStudentService.getCourseNameFromCourseType(teacher.CourseTypeId).subscribe(res => {

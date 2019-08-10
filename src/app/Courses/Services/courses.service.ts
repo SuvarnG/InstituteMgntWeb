@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Course, CourseType } from 'shared/Model/CourseType';
+import { HttpClient } from '@angular/common/http';
+import { Course, CourseType} from 'shared/Model/CourseType';
 import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { Utils } from '../../Core/Utils';
@@ -37,7 +37,26 @@ export class CoursesService {
 
   edit(course): Observable<Course> {
     return this.http.post<Course>(this.UpdateUrl, course, Utils.getAuthHeader()).pipe(
-      tap((course: Course) => console.log('Update CourseId=${course.CourseId}'))
+      tap(() => console.log('Update CourseId=${course.CourseId}'))
     );
   }
+  courseTypeList() {
+    return this.http.get<CourseType[]>(environment.APIBASEURL + 'Course/GetAllCourseType', Utils.getAuthHeader());
+      
+  }
+  createCourseType(CourseTypeName:string){
+    let body:CourseType={
+      CourseTypeId:0,
+      CourseTypeName:CourseTypeName
+    }
+   return this.http.post<void>(environment.APIBASEURL + 'Course/CreateCourseType',body,Utils.getAuthHeader())
+  }
+
+  editCourseType(coursetype):Observable<CourseType>{
+   
+    return this.http.post<CourseType>(environment.APIBASEURL + 'Course/UpdateCourseType',coursetype, Utils.getAuthHeader()).pipe(
+      tap((coursetype:CourseType)=>console.log('Update CourseTypeId=${coursetype.CourseTypeId}'))
+    
+  );
+}
 }
