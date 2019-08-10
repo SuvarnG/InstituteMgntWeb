@@ -62,7 +62,7 @@ export class ExpenseService {
     throw new Error("Method not implemented.");
   }
 
-  saveExpense(expense): Observable<Expenses> {
+  createExpense(expense): Observable<Expenses> {
     return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/CreateExpense_Tran', expense, Utils.getAuthHeader())
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
@@ -70,13 +70,35 @@ export class ExpenseService {
       );
   }
 
-  updateExpense(expense): Observable<Expenses> {
+  editExpense(expense): Observable<Expenses> {
     return this.http.post<Expenses>(environment.APIBASEURL + 'Expenses/UpdateExpense_Tran', expense, Utils.getAuthHeader())
       .pipe(
         tap((expense: Expenses) => console.log(`added expenseid=${expense.ExpenseId}`)),
         catchError(this.handleError<Expenses>('updateExpense'))
       );
   }
+  getAllExpenseType() {
+    return this.http.get<ExpenseMaster[]>(environment.APIBASEURL + 'Expenses/GetAllExpenseType', Utils.getAuthHeader()).pipe(map(data => data as ExpenseMaster[]))
+  }
 
+  createExpenseType(expense) {
+    return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/CreateExpenseType', expense, Utils.getAuthHeader())
+      .pipe(
+        tap((expense: ExpenseMaster) => console.log(`added expenseid=${expense.ExpenseId}`)),
+        catchError(this.handleError<ExpenseMaster>('expense'))
+      );
+  }
+
+  deleteExpenseType(id: number) {
+    return this.http.post(environment.APIBASEURL + 'Expenses/DeleteExpenseType/' + id, null, Utils.getAuthHeader())
+  }
+
+  editExpenseType(expense): Observable<ExpenseMaster> {
+    return this.http.post<ExpenseMaster>(environment.APIBASEURL + 'Expenses/UpdateExpenseType', expense, Utils.getAuthHeader())
+      .pipe(
+        tap((expense: ExpenseMaster) => console.log(`added expenseid=${expense.ExpenseId}`)),
+        catchError(this.handleError<ExpenseMaster>('updateExpense'))
+      );
+  }
 
 }

@@ -1,5 +1,4 @@
 import { ExpenseService } from './services/expense.service';
-import { ExpenseMasterService } from './services/expense-master.service';
 import { ExpensesComponent } from './components/expensetransaction/expenses.component';
 import { ExpenseMasterComponent } from './components/expensetype/expense-master.component';
 import { RouterModule } from '@angular/router';
@@ -47,7 +46,6 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
     ])
   ],
   providers:[
-    ExpenseMasterService,
     ExpenseService
   ]
 })

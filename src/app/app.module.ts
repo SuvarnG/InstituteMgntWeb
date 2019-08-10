@@ -30,10 +30,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { RouterModule } from '@angular/router'
 import { NgProgressRouterModule } from '@ngx-progressbar/router';
-import { ExpenseTransactionModule } from './Expenses/Components/expensetransaction/expense-transaction.module';
 import { BranchModule } from './instituteAdmin/components/branch/branch.module';
 import { CreateStudentModule } from './student/components/create-student/create-student.module';
-import { ExpenseMasterModule } from './Expenses/Components/expensetype/expense-master.module';
 import { FeesTransactionModule } from './Student/Components/fees-transaction/fees-transaction/fees-transaction.module';
 import { StudentListModule } from './Student/Components/student-list/student-list.module';
 import { SideNavService } from './Core/services/side-nav.service';
@@ -79,10 +77,8 @@ import { CoursesModule } from './courses/courses.module';
     RouterModule,
     NgProgressModule.forRoot(),
     NgProgressRouterModule,
-    ExpenseTransactionModule,
     BranchModule,
     CreateStudentModule,
-    ExpenseMasterModule,
     FeesTransactionModule,
     StudentListModule,
     BsDropdownModule.forRoot(),

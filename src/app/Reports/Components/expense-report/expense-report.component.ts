@@ -1,5 +1,5 @@
+import { ExpenseService } from './../../../expenses/services/expense.service';
 import { Component, OnInit } from '@angular/core';
-import { ExpenseMasterService } from '../../../Expenses/Services/expense-master.service';
 import { ExpenseMaster, ExpenseReport, ExpenseReportList } from 'shared/Model/Expenses'
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BranchService } from '../../../instituteAdmin/services/branch.service';
@@ -15,8 +15,9 @@ import { ExpenseReportService } from '../../Services/expense-report.service';
 })
 export class ExpenseReportComponent implements OnInit {
 
-  constructor(private expenseReportService: ExpenseReportService,
-    private expenseMasterService: ExpenseMasterService,
+  constructor(
+    private expenseService:ExpenseService,
+    private expenseReportService: ExpenseReportService,
     private formBuilder: FormBuilder,
     private branchService: BranchService) { }
 
@@ -30,7 +31,7 @@ export class ExpenseReportComponent implements OnInit {
   p: any;
 
   ngOnInit() {
-    this.expenseMasterService.getAllExpenses().subscribe(res => this.expenseList = res);
+    this.expenseService.getAllExpenseType().subscribe(res => this.expenseList = res);
     this.branchService.getBranches(this.user.InstituteId).subscribe(res => { this.branchList = res });
 
     this.registerExpensesReport = this.formBuilder.group({

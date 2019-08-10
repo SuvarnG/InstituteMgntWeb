@@ -1,10 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { ExpenseMasterService } from '../../Services/expense-master.service';
 import { ExpenseMaster } from 'shared/Model/Expenses';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
+import { ExpenseService } from '../../services/expense.service';
 
 
 @Component({
@@ -18,20 +18,20 @@ export class ExpenseMasterComponent implements OnInit {
   dtElement: DataTableDirective;
 
   constructor(private fb: FormBuilder,
-    private expenseMasterService: ExpenseMasterService,
+    private expenseService: ExpenseService,
     private modalService: BsModalService) { }
 
-    expenseType: ExpenseMaster[];
-    modalRef: BsModalRef;
-    createExpenseForm: FormGroup;
-    editExpenseForm: FormGroup;
-    errorMessage: string;
-    expensId: Number;
-    submitted = false;
-    dtOptions: DataTables.Settings = {};
-    dtTrigger: Subject<any> = new Subject();
-    filter: any;
-    chkExpenseType:any;
+  expenseType: ExpenseMaster[];
+  modalRef: BsModalRef;
+  createExpenseForm: FormGroup;
+  editExpenseForm: FormGroup;
+  errorMessage: string;
+  expensId: Number;
+  submitted = false;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  filter: any;
+  chkExpenseType: any;
 
   ngOnInit() {
     this.dtOptions = {
@@ -71,7 +71,7 @@ export class ExpenseMasterComponent implements OnInit {
   get g() { return this.editExpenseForm.controls }
 
   getAllExpense() {
-    this.expenseMasterService.getAllExpenses().subscribe(res => {
+    this.expenseService.getAllExpenseType().subscribe(res => {
       this.expenseType = res;
       this.rerender();
     });
@@ -87,11 +87,11 @@ export class ExpenseMasterComponent implements OnInit {
   }
 
   onSubmitCreateExpense(expenses) {
-   this.submitted = true;
+    this.submitted = true;
     if (this.createExpenseForm.invalid) {
       return;
     }
-    for (var i = 0; i <expenses.length; i++) {
+    for (var i = 0; i < expenses.length; i++) {
       if (this.createExpenseForm.controls.expense.value == expenses[i].Expenses) {
         alert("Duplicate Expense Type Not Allowed.");
         return;
@@ -100,20 +100,19 @@ export class ExpenseMasterComponent implements OnInit {
     let body = {
       Expenses: this.createExpenseForm.controls.expense.value
     }
-    this.expenseMasterService.createNewExpense(body)
+    this.expenseService.createExpenseType(body)
       .subscribe((data) => {
         this.modalRef.hide();
         this.getAllExpense();
         this.rerender();
       }, error => this.errorMessage = error)
- }
+  }
 
-   deleteExpense(expenseName: any, id: number) {
-    if(confirm("Do you want to delete the expense: " + expenseName))
-    {
-      this.expenseMasterService.deleteExpense(id).subscribe(data => {
-        this.chkExpenseType=data;
-        if(this.chkExpenseType>0){
+  deleteExpense(expenseName: any, id: number) {
+    if (confirm("Do you want to delete the expense: " + expenseName)) {
+      this.expenseService.deleteExpenseType(id).subscribe(data => {
+        this.chkExpenseType = data;
+        if (this.chkExpenseType > 0) {
           alert('Sorry, You can not delete this expense as it has active expense records')
           return;
         }
@@ -143,7 +142,7 @@ export class ExpenseMasterComponent implements OnInit {
       Expenses: this.editExpenseForm.controls.expense.value,
       ExpenseId: this.expensId
     }
-    this.expenseMasterService.editExpense(body)
+    this.expenseService.editExpenseType(body)
       .subscribe((data) => {
         this.modalRef.hide();
         this.getAllExpense();

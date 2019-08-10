@@ -1,8 +1,5 @@
 import { ExpenseMaster } from 'shared/Model/Expenses';
-import { ExpenseMasterService } from '../../Services/expense-master.service';
-import { StaffListService } from '../../../Staff/Services/staff-list.service';
 import { Component, OnInit, TemplateRef, Pipe, ViewChild } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { ExpenseService } from '../../Services/expense.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -29,9 +26,9 @@ export class ExpensesComponent implements OnInit {
 
   constructor(
     private modalService: BsModalService,
-    private ExpenseService: ExpenseService,
-    private fb: FormBuilder,
-    private expenseMasterService: ExpenseMasterService) { }
+    private expenseService: ExpenseService,
+    private fb: FormBuilder
+  ) { }
 
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
@@ -103,7 +100,7 @@ export class ExpensesComponent implements OnInit {
 
   getAllExpenseTransction(BranchId: number) {
     BranchId = this.user.BranchId;
-    this.ExpenseService.expensesList(BranchId).subscribe(res => {
+    this.expenseService.expensesList(BranchId).subscribe(res => {
       this.expenses = res;
       this.rerender();
     });
@@ -111,7 +108,7 @@ export class ExpensesComponent implements OnInit {
 
   addNewExpense(addExpense: TemplateRef<any>) {
     this.expenseForm.reset();
-    this.expenseMasterService.getAllExpenses().subscribe(res => {
+    this.expenseService.getAllExpenseType().subscribe(res => {
       this.expenseMaster = res
     });;
     this.modalRef = this.modalService.show(addExpense, {
@@ -124,7 +121,7 @@ export class ExpensesComponent implements OnInit {
   delete(expensetype: string, expenseID: number) {
     var ans = confirm("Do you want to delete expense od type: " + expensetype);
     if (ans) {
-      this.ExpenseService.deleteExpense(expenseID).subscribe(() => {
+      this.expenseService.deleteExpense(expenseID).subscribe(() => {
         this.getAllExpenseTransction(this.user.BranchId);
       }, error => console.error(error))
     }
@@ -146,7 +143,7 @@ export class ExpensesComponent implements OnInit {
         Remark: this.expenseForm.controls.Remark.value,
         BranchId: this.user.BranchId
       }
-      this.ExpenseService.saveExpense(body)
+      this.expenseService.createExpense(body)
         .subscribe(() => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
@@ -156,7 +153,7 @@ export class ExpensesComponent implements OnInit {
   }
 
   getExpenseList() {
-    this.expenseMasterService.getAllExpenses().subscribe(data => { this.listExpenseType = data })
+    this.expenseService.getAllExpenseType().subscribe(data => { this.listExpenseType = data })
   }
 
   edit(editExpense: TemplateRef<any>, e) {
@@ -197,7 +194,7 @@ export class ExpensesComponent implements OnInit {
         Id: this.editExpenseForm.controls.Id.value,
         BranchId: this.user.BranchId
       }
-      this.ExpenseService.updateExpense(body)
+      this.expenseService.editExpense(body)
         .subscribe(() => {
           this.modalRef.hide();
           this.getAllExpenseTransction(this.user.BranchId);
@@ -217,7 +214,4 @@ export class ExpensesComponent implements OnInit {
     this.selectedUserValue = event.target.value;
   }
 
-  // getStaffList() {
-  //   this.staffListService.getAllStaff(this.user.InstituteId,this.user.BranchId).subscribe(res => { this.staffMasters = res; console.log("test", this.staffMasters) });
-  // }
 }
