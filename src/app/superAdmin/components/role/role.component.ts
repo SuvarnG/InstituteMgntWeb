@@ -16,43 +16,37 @@ import { DataTableDirective } from 'angular-datatables';
 })
 
 export class RoleComponent {
-  modalRef: BsModalRef;
-  returnUrl: string;
-  registerForm: FormGroup;
-  submitted = false;
-  public roles: Roles[];
-  public ID:number;
-  dtOptions: DataTables.Settings = {};
-  dtTrigger: Subject<any> = new Subject();
-  filter:any;
 
   @ViewChild(DataTableDirective)
-    dtElement: DataTableDirective;
-
+  dtElement: DataTableDirective;
 
   constructor(private modalService: BsModalService, private formBuilder: FormBuilder, private router: Router,
     private RoleService: RoleService,
     private route: ActivatedRoute) { }
 
+  modalRef: BsModalRef;
+  returnUrl: string;
+  createRoleForm: FormGroup;
+  submitted = false;
+  public roles: Roles[];
+  public ID: number;
+  dtOptions: DataTables.Settings = {};
+  dtTrigger: Subject<any> = new Subject();
+  filter: any;
 
   ngOnInit() {
     this.dtOptions = {
-      retrieve:true,
-      paging:false,
+      retrieve: true,
+      paging: false,
       pagingType: 'full_numbers',
       pageLength: 10,
-      searching:false
+      searching: false
     };
-    this.registerForm = this.formBuilder.group({
-      role: ['', Validators.required]
-
-    });
-
+    
     this.getRoles();
   }
-  
 
-  ngAfterViewInit(): void {this.dtTrigger.next();}
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
 
   ngOnDestroy(): void {
     this.dtTrigger.unsubscribe();
@@ -60,93 +54,20 @@ export class RoleComponent {
 
   rerender(): void {
     this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-        dtInstance.destroy();
-        this.dtTrigger.next();
+      dtInstance.destroy();
+      this.dtTrigger.next();
     });
-}
+  }
   // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.registerForm.invalid) {
-      return;
-    }
-    this.submitted = false;
-  }
-
-
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {
-      animated: true,
-      backdrop: 'static'
-    });
-  }
+  get f() { return this.createRoleForm.controls; }
 
   getRoles() {
-    this.RoleService.roleList().subscribe(res =>{
+    this.RoleService.roleList().subscribe(res => {
       this.roles = res;
       this.rerender();
-     // this.dtTrigger.next();
-    //console.log(JSON.stringify(this.roles));
-  });
-
-  }
-
-  Delete(roleID:number,roleName:any) {
-    var ans = confirm("Do you want to delete this Role: " + roleName);
-    if (ans) {
-      this.RoleService.deleteRole(roleID).subscribe(data => {
-        this.getRoles();
-      }, error => console.error(error))
-    }
-  }
-
-
-
-  CreateRole(RoleName: string) {
-
-    this.submitted=true;
-    if(this.registerForm.invalid){
-      return;
-    }
-    this.submitted=false;
-
-    this.RoleService.CreateRole(RoleName).subscribe(data => {
-      this.modalRef.hide();
-      this.getRoles();
-      this.rerender();
-    }, error => console.error(error))
-  }
-
-  EditRole(editTemplate: TemplateRef<any>,role){
-this.ID=role.roleID;
-    let body={
-      role:role.RoleName
-    }
-    this.registerForm.patchValue(body);
-    this.modalRef = this.modalService.show(editTemplate, {
-      animated: true,
-      backdrop: 'static'
+      
     });
-  }
-  UpdateRole() {
-    let body={
-      RoleName:this.registerForm.controls.role.value,
-      roleId:this.ID
-    }
-    this.RoleService.EditRole(body).subscribe(data => {
-      this.modalRef.hide();
-      this.getRoles();
-      this.rerender();
-     }, error => console.error(error))
-  }
-  clearForm()
-  {
-    this.registerForm.reset()
+
   }
 
 }

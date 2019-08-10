@@ -1,7 +1,5 @@
-
-      <!-- Breadcrumb-->
-      
-      <ol class="breadcrumb">
+<!-- Breadcrumb-->
+    <ol class="breadcrumb">
           <div class="flex-1 d-inline-flex">
          <li class="breadcrumb-item align-self-center"><a routerLink="/institute" >Home</a></li>
          <li class="breadcrumb-item align-self-center">Role</li>
@@ -13,8 +11,6 @@
          <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
            <div class="btn-group" role="group" aria-label="Button group">
              
-                
-                 
                    <div class="input-group">
                        <span class="input-group-prepend">
                        <button class="btn btn-primary btn-square" type="button">
@@ -23,27 +19,21 @@
                        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
                        </div>
    
-                
                &nbsp;&nbsp;
-               <!-- <button class="btn btn-sm btn-primary text-white" (click)="openModal(template)" type="button">Add</button> -->
-               
+            
            </div>
          </li>
-   
-       </ol>
+    </ol>
    
    <div class="container-fluid">
      <div id="ui-view">
        <div class="card border-0 shadow rounded-0">
          <div class="card-body">
-         <!-- <table class="table table-bordered"> -->
-            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
+         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover tbl">
            <thead>
              <tr>
-               
-               <th class="pl-2">Role Name</th>  
-               
-  
+                <th class="pl-2">Role Name</th>  
+              
              </tr>
            </thead>
            <tbody>
@@ -52,42 +42,7 @@
                 </tr>
            </tbody>
          </table>
-           
          </div>
        </div>
      </div>
    </div>
-   
-     
- 
-
-<ng-template #template>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="modal-header">
-      <h5 class="modal-title pull-left">Role</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()" >
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="form-group">
-            <label for="Role">Role</label>
-            <input type="text" class="form-control" formControlName="role"
-                  [ngClass]="{ 'is-invalid': submitted && f.role.errors }" #RoleName  >
-                  <div *ngIf="submitted && f.role.errors" class="invalid-feedback">
-                      <div *ngIf="f.role.errors.required">Role Name is Required </div>
-                    </div>
-            </div>
-        
-    </div>
-    <div class="modal-footer">
-        <button class="btn btn-primary btn-square" type="submit" (click)="CreateRole(RoleName.value)">Submit</button>
-        <button class="btn btn-danger btn-square ml-2" type="button"
-          (click)="modalRef.hide()">Close</button>
-      </div>
-  </form>
-</ng-template>
-
-
-
-
