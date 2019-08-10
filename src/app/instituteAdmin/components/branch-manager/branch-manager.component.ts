@@ -4,7 +4,6 @@ import { Utils } from '../../../Core/Utils';
 import {BranchManager, Branch} from 'shared/Model/Branch'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
-import { InstituteService } from '../../../superAdmin/components/institute/institute.service';
 import { Institutes } from 'shared/Model/Institutes';
 import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
@@ -19,7 +18,6 @@ export class BranchManagerComponent implements OnInit {
   constructor(private branchManagerService:BranchManagerService,
     private formBuilder:FormBuilder,
     private modalService:BsModalService,
-    private instituteService:InstituteService,
     private branchService: BranchService,
     private instituteAdminService:InstituteAdminService) { }
 
