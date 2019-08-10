@@ -1,6 +1,5 @@
 import { Utils } from '../../Utils';
 import { AuthService } from '../../../auth/services/auth.service';
-import { CreateStaffService } from '../../../staff/services/create-staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentslistService } from '../../../student/services/students.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -9,6 +8,7 @@ import { StudentPendingFeesList } from 'shared/Model/Students';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { User } from 'shared/Model/User';
 import { Observable } from 'rxjs';
+import { StaffService } from 'src/app/staff/services/staff.service';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class TopNavComponent implements OnInit {
     private studentslistService: StudentslistService,
     private modalService: BsModalService,
     private formBuilder: FormBuilder,
-    private teacherCoursesService: CreateStaffService,
+    private staffService: StaffService,
     private loginService: AuthService) { }
 
   _cookieService: any;
@@ -105,7 +105,7 @@ export class TopNavComponent implements OnInit {
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.updateProfileForm.get('Photo').value);
-    this.teacherCoursesService.postPhoto(formData).subscribe(
+    this.staffService.postPhoto(formData).subscribe(
       res => {
         if (res['type'] == 4) {
           this.thumbnailUrl = 'Http://' + res['body']['Message'];

@@ -1,4 +1,4 @@
-import { StaffListService } from '../../../Staff/Services/staff-list.service';
+import { StaffService } from '../../../Staff/Services/staff.service';
 import { Bank } from 'shared/Model/Bank';
 import { BankService } from '../../services/bank.service';
 import { Utils } from '../../../Core/Utils';
@@ -30,7 +30,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private bankService: BankService,
-    private staffListService: StaffListService) { }
+    private staffService: StaffService) { }
 
   modalRef: BsModalRef;
   CreateFormGroup: FormGroup;
@@ -111,7 +111,7 @@ export class BanktransactionComponent implements OnDestroy, OnInit {
   }
 
   getStaffList() {
-    this.staffListService.getAllStaff(this.user.InstituteId, this.user.BranchId).subscribe(res => { this.staffMasters = res;});
+    this.staffService.getAllStaff(this.user.InstituteId, this.user.BranchId).subscribe(res => { this.staffMasters = res;});
   }
 
   getBankList() {

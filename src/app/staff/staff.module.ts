@@ -1,7 +1,6 @@
-import { StaffListService } from './services/staff-list.service';
+import { StaffService } from './services/staff.service';
 import { LeaveService } from './services/leave.service';
 import { EnquiryService } from './services/enquiry.service';
-import { CreateStaffService } from './services/create-staff.service';
 import { LeaveComponent } from './components/leave/leave.component';
 import { EnquiryComponent } from './components/enquiry/enquiry.component';
 import { CreateStaffComponent } from './components/create-staff/create-staff.component';
@@ -75,10 +74,9 @@ import { LeavesListComponent } from './components/leaves-list/leaves-list.compon
     ])
   ],
   providers:[
-CreateStaffService,
 EnquiryService,
 LeaveService,
-StaffListService
+StaffService
   ],
   exports:[
     StaffListComponent

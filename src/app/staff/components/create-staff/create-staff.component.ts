@@ -4,12 +4,12 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CreateStaffService } from '../../../staff/services/create-staff.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Roles } from 'shared/Model/Students';
 import { Utils } from '../../../Core/Utils';
 import { InstituteAdminService } from '../../../superAdmin/services/institute-admin.service';
 import { CoursesService } from 'src/app/Courses/Services/courses.service';
+import { StaffService } from '../../services/staff.service';
 
 
 @Component({
@@ -45,7 +45,7 @@ chkEmailId:any;
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private teacherCoursesService: CreateStaffService,
+    private staffService: StaffService,
     public _DomSanitizationService: DomSanitizer,
     private coursesService: CoursesService,
     private studentsListService: StudentslistService,
@@ -60,7 +60,7 @@ chkEmailId:any;
       DateOfJoining: ['', Validators.required],
       ContactNo: ['', Validators.required, Validators.pattern],
       Email: ['', Validators.required],
-     // PreviousExperience: ['', Validators.required],
+      PreviousExperience: ['', Validators.required],
       DateOfLeaving: ['', Validators.required],
       DOB: ['', Validators.required],
       Photo: [''],
@@ -87,10 +87,6 @@ chkEmailId:any;
       Salary:['', Validators.required]
     });
     this.staffLoginForm = this.formBuilder.group({
-      //FirstName: ['', Validators.required],
-     // LastName: ['', Validators.required],
-      //Email: ['', Validators.required],
-      //Role: ['', Validators.required],
       Password: ['', Validators.required],
       VerifyPassword: ['', Validators.required]
     });
@@ -99,7 +95,7 @@ chkEmailId:any;
   get cf() { return this.courseForm.controls; }
   get login() { return this.staffLoginForm.controls; }
 
-  onSubmit(template: TemplateRef<any>) {
+  onSubmitCreateStaff(template: TemplateRef<any>) {
     // stop here if form is invalid
     if (this.registerStaffForm.invalid == true || this.chkEmailId>0) {
       this.submitted = true;
@@ -122,8 +118,8 @@ chkEmailId:any;
         BloodGroup: this.registerStaffForm.controls.BloodGroup.value,
         ContactNo: this.registerStaffForm.controls.ContactNo.value,
         Email: this.registerStaffForm.controls.Email.value,
-        PreviousExperience: this.PreviousExperience,
-        //PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
+        //PreviousExperience: this.PreviousExperience,
+        PreviousExperience: this.registerStaffForm.controls.PreviousExperience.value,
         DateOfLeaving: this.registerStaffForm.controls.DateOfLeaving.value,
         DOB: this.registerStaffForm.controls.DOB.value,
         Photo: this.thumbnailUrl,
@@ -143,7 +139,7 @@ chkEmailId:any;
         InstituteId: this.user.InstituteId,
         CreatedBy:this.user.userId
       }
-      this.teacherCoursesService.saveStaff(body)
+      this.staffService.saveStaff(body)
         .subscribe((data) => {
         }, error => this.errorMessage = error)
 
@@ -229,7 +225,7 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
       CourseId: this.selectedCourseNameValue,
       Salary:this.courseForm.controls.Salary.value
     }
-    this.teacherCoursesService.addTeacherCourses(body)
+    this.staffService.addTeacherCourses(body)
       .subscribe((data) => {
         this.modalRef.hide();
         let body = {
@@ -238,7 +234,7 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
           Email: this.newEmail,
         }
         this.staffLoginForm.patchValue(body);
-        this.teacherCoursesService.getRoleList().subscribe(res => {
+        this.staffService.getRoleList().subscribe(res => {
           this.roles = res
         });
         this.modalRef = this.modalService.show(staffLoginTemplate);
@@ -274,7 +270,7 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
         BranchId: this.user.BranchId,
         InstituteId: this.user.InstituteId
       }
-      this.teacherCoursesService.addStaffInUsers(body)
+      this.staffService.addStaffInUsers(body)
         .subscribe((data) => {
           this.modalRef.hide()
           this.router.navigate(['/stafflist']);
@@ -293,7 +289,7 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.registerStaffForm.get('Photo').value);
-    this.teacherCoursesService.postPhoto(formData).subscribe(
+    this.staffService.postPhoto(formData).subscribe(
       res => {
         if (res['type'] == 4) {
           this.thumbnailUrl = 'Http://' + res['body']['Message'];
@@ -319,7 +315,7 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
   onUploadFile() {
     const formData = new FormData();
     formData.append('File', this.registerStaffForm.get('Document').value);
-    this.teacherCoursesService.uploadFile(formData).subscribe(res => {
+    this.staffService.uploadFile(formData).subscribe(res => {
     });
   }
 

@@ -2,7 +2,7 @@ import { StudentslistService } from '../../../student/services/students.service'
 import { CourseType, Course } from 'shared/Model/CourseType';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { StaffListService } from '../../Services/staff-list.service';
+import { StaffService } from '../../services/staff.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StaffMaster } from 'shared/Model/StaffMaster';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -38,7 +38,7 @@ export class StaffListComponent implements OnInit {
   chkEmailId:any
 
   constructor(private datePipe: DatePipe,
-    private staffListService: StaffListService,
+    private staffService: StaffService,
     private modalService: BsModalService,
     private fb: FormBuilder,
     private router: Router,
@@ -114,7 +114,7 @@ export class StaffListComponent implements OnInit {
   getAllStaff(InstituteId: number, BranchId: number) {
     InstituteId = this.user.InstituteId;
     BranchId = this.user.BranchId;
-    this.staffListService.getAllStaff(InstituteId, BranchId).subscribe(res => {
+    this.staffService.getAllStaff(InstituteId, BranchId).subscribe(res => {
       this.staffMaster = res;
     });
   }
@@ -168,7 +168,7 @@ export class StaffListComponent implements OnInit {
         InstituteId: this.user.InstituteId,
         UpdatedBy:this.user.userId
       }
-      this.staffListService.updateStaff(body)
+      this.staffService.updateStaff(body)
         .subscribe((data) => {
           this.modalRef.hide();
           this.getAllStaff(this.user.InstituteId, this.user.BranchId);
@@ -225,7 +225,7 @@ export class StaffListComponent implements OnInit {
   delete(staffID, firstName, lastName) {
     var ans = confirm("Do you want to delete this staff: " + firstName + ' ' + lastName);
     if (ans) {
-      this.staffListService.deleteStaff(staffID).subscribe(data => {
+      this.staffService.deleteStaff(staffID).subscribe(data => {
         this.getAllStaff(this.user.InstituteId, this.user.BranchId);
       }, error => console.error(error))
     }
@@ -274,7 +274,7 @@ export class StaffListComponent implements OnInit {
       DOJ: formatDate(teacher.DateOfJoining, 'yyyy-MM-dd', 'en')
     }
     this.showStaffDetailsForm.patchValue(body);
-    this.staffListService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
+    this.staffService.getStaffDetails(this.teacherId).subscribe(res => this.staffInfo = res);
     this.modalRef = this.modalService.show(showStaff, {
       class: 'modal-md',
       animated: true,
@@ -292,7 +292,7 @@ export class StaffListComponent implements OnInit {
   onUploadPhoto() {
     const formData = new FormData();
     formData.append('profile', this.staffForm.get('Photo').value);
-    this.staffListService.postPhoto(formData).subscribe(
+    this.staffService.postPhoto(formData).subscribe(
       res => {
         if (res['type'] == 4) {
           this.thumbnailUrl = 'Http://' + res['body']['Message'];

@@ -23,10 +23,6 @@
                 &nbsp;&nbsp;
                 <button routerLink="/createstaff" class="btn btn-sm btn-primary btn-square text-white" data-toggle="tooltip" data-placement="bottom"
                 title="Add Staff" type="button">Add</button>
-          <!-- <a 
-            class="btn btn-primary font-weight-medium px-3 py-2  rounded-0 f-20 ml-1 pull-right text-white" data-toggle="tooltip"
-            data-placement="bottom" title="Add Staff"> Add
-          </a> -->
         </div>
       </li>
     </ol>
@@ -142,13 +138,10 @@
                         <input class="form-check-input" id="radio1" formControlName="Gender" type="radio" value="Male" name="Gender">
                         <label class="form-check-label" for="radio1">Male</label>
                       </div>
-                  <!-- <input type="radio" name="Gender" formControlName="Gender" value="Male" id="radio1">Male -->
                   <div class="form-check form-check-inline mr-1">
                       <input class="form-check-input" id="radio2" formControlName="Gender"type="radio" value="Female" name="Gender">
                       <label class="form-check-label" for="radio2">Female</label>
                     </div>
-                  <!-- <input type="radio" name="Gender" formControlName="Gender" value="Female" id="radio2">Female -->
-
                   <div *ngIf="submitted && f.Gender.errors" class="invalid-feedback">
                     <div *ngIf="f.Gender.errors.required">Gender is required</div>
                   </div>
@@ -374,9 +367,6 @@
             <button class="btn btn-square  btn-primary" type="submit">Update</button>
             <button class="btn btn-danger btn-square ml-2" type="button"
           (click)="onCancel()">Cancel</button>
-         <!-- <button class="btn btn-info btn-lg py-1 pr-3 rounded-0 f-20  " type="submit">Update</button>
-          <button class="btn btn-dark text-light btn-lg py-1 pl-3 rounded-0 f-20 ml-4 mr-0" type="button"
-            (click)="modalRef.hide()">Cancel</button> -->
         </div>
       </div>
     </div>
