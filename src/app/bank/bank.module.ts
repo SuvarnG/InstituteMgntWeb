@@ -1,6 +1,5 @@
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BanktransactionService } from './services/banktransaction.service';
 import { BankService } from './services/bank.service';
 import { BanktransactionComponent } from './components/banktransaction/banktransaction.component';
 import { BankComponent } from './components/bankaccount/bank.component';
@@ -48,7 +47,6 @@ import { HomeLayoutComponent } from '../layouts/home-layout/home-layout.componen
   ],
   providers:[
     BankService,
-    BanktransactionService
   ]
 })
 export class BankModule { }

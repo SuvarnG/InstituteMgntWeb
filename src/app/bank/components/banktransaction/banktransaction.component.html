@@ -1,95 +1,84 @@
-   <!-- Breadcrumb-->
-   
-   <ol class="breadcrumb">
-      <div class="flex-1 d-inline-flex">
-      <li class="breadcrumb-item align-self-center"><a routerLink="/dashboard" >Home</a></li>
-      <li class="breadcrumb-item align-self-center">Bank Transaction</li>
-      </div>
-      <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
-          <li class="h5 pt-2">Manage Bank Transaction</li>        
-        </div>
-      <!-- Breadcrumb Menu-->
-      <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
-        <div class="btn-group" role="group" aria-label="Button group">
-          
-             <!-- <button class="btn btn-primary btn-square" type="button">
-                <i class="fa fa-search"></i></button>  -->
-              
-                <div class="input-group">
-                    <span class="input-group-prepend">
-                    <button class="btn btn-primary btn-square" type="button">
-                    <i class="fa fa-search text-white"></i></button>
-                    </span>
-                    <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter"> 
-                    </div>          
-            &nbsp;&nbsp;
-            <button class="btn btn-sm btn-primary btn-square text-white" (click)="addBank(Addtemplate)" type="button">Add</button>          
-        </div>
-      </li>
-    </ol>
+<!-- Breadcrumb-->
 
-       <!-- <div class=" shadow m-3 bg-white h-460 p-3" id="A"> -->
+<ol class="breadcrumb">
+  <div class="flex-1 d-inline-flex">
+    <li class="breadcrumb-item align-self-center"><a routerLink="/dashboard">Home</a></li>
+    <li class="breadcrumb-item align-self-center">Bank Transaction</li>
+  </div>
+  <div class="d-none d-md-block d-lg-block d-xl-block flex-1">
+    <li class="h5 pt-2">Manage Bank Transaction</li>
+  </div>
+  <!-- Breadcrumb Menu-->
+  <li class="breadcrumb-menu d-md-down-none flex-1 justify-content-end text-right">
+    <div class="btn-group" role="group" aria-label="Button group">
+      <div class="input-group">
+        <span class="input-group-prepend">
+          <button class="btn btn-primary btn-square" type="button">
+            <i class="fa fa-search text-white"></i></button>
+        </span>
+        <input type="text" placeholder="Search" class="form-control rounded-0" [(ngModel)]="filter">
+      </div>
+      &nbsp;&nbsp;
+      <button class="btn btn-sm btn-primary btn-square text-white" (click)="addBank(Addtemplate)"
+        type="button">Add</button>
+    </div>
+  </li>
+</ol>
+
 <div class="container-fluid">
   <div id="ui-view">
     <div class="card border-0 shadow rounded-0">
       <div class="card-body">
-      <!-- <table class="table table-bordered"> -->
-      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="tbl row-border hover">
-        <thead>
-          <tr>
-            <!-- <th>No.</th> -->
-            <th class="pl-2">Bank Name</th>
-            <th class="pl-2">Account Number</th>
-            <th class="pl-2">Transaction Type</th>
-            <th class="pl-2">Amount</th>
-            <th class="pl-2">Transaction By</th>
-            <th class="pl-2">Transaction Date</th>
-            <th class="pl-2">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let bt of banktransactions | filter:filter">
-            <!-- <td>{{bt.ID}}</td> -->
-            <!-- <td>{{i+1}}</td> -->
-            <td>{{bt.BankName}}</td>
-            <td>{{bt.AccountNo}}</td>
-            <td>{{bt.TransactionType}}</td>
-            <td class="text-center">{{bt.Amount | number}}</td>
-            <td>{{bt.TransactionBy}}</td>
-            <td>{{bt.Date | date:'mediumDate'}}</td>
-
-            <td>
-                <a class="card-header-action btn-minimize" (click)="edit(editTemplate,bt)"  title="Edit Information">
-                    <i class="cui-pencil pencil"></i>
-                  </a>               
-            </td>
-          </tr>
-        </tbody>
-      </table>        
+        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="tbl row-border hover">
+          <thead>
+            <tr>
+              <th class="pl-2">Bank Name</th>
+              <th class="pl-2">Account Number</th>
+              <th class="pl-2">Transaction Type</th>
+              <th class="pl-2">Amount</th>
+              <th class="pl-2">Transaction By</th>
+              <th class="pl-2">Transaction Date</th>
+              <th class="pl-2">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bt of banktransactions | filter:filter">
+              <td>{{bt.BankName}}</td>
+              <td>{{bt.AccountNo}}</td>
+              <td>{{bt.TransactionType}}</td>
+              <td class="text-center">{{bt.Amount | number}}</td>
+              <td>{{bt.TransactionBy}}</td>
+              <td>{{bt.Date | date:'mediumDate'}}</td>
+              <td>
+                <a class="card-header-action btn-minimize" (click)="openEditModal(editTemplate,bt)" title="Edit Information">
+                  <i class="cui-pencil pencil"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Create banktransaction modal -->
 
+<ng-template #Addtemplate>
+  <div class="modal-header">
+    <h5 class=" h5 modal-title pull-left px-3">Bank Transaction</h5>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form [formGroup]="CreateFormGroup" (ngSubmit)="createBankTransaction()">
 
-  <!-- Create banktransaction modal -->
-
-  <ng-template #Addtemplate>
-    <div class="modal-header">
-      <h5 class=" h5 modal-title pull-left px-3">Bank Transaction</h5>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class="container-fluid">
-      <form [formGroup]="CreateFormGroup" (ngSubmit)="onSubmit()">
-         
-              <div class="form-group">
-              <label for="BankName">Bank Name</label>
-              <select name="BankName" id="BankName" [value]="null"  class="form-control border-bottom text-muted" (change)="getAccountNumber($event)"
-            formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
+        <div class="form-group">
+          <label for="BankName">Bank Name</label>
+          <select name="BankName" id="BankName" [value]="null" class="form-control border-bottom text-muted"
+            (change)="getAccountNumber($event)" formControlName="BankName" [ngClass]="{ 'is-invalid': submitted &&
           f.BankName.errors }">
             <option [value]="null" disabled selected>Bank Name</option>
             <option *ngFor="let bank of banknames" [value]="bank.BankName">
@@ -97,191 +86,112 @@
             </option>
           </select>
           <div *ngIf="submitted && f.BankName.errors" class="invalid-feedback">
-              <div *ngIf="f.BankName.errors.required">Please Enter Name</div>
-            </div>
-              </div>
-              <div class="form-group">
-              <label for="AccountNo">Account Number</label>
-              <select name="AccountNo" id="AccountNo" [value]="null" class="form-control border-bottom text-muted" formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
+            <div *ngIf="f.BankName.errors.required">Please Enter Name</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="AccountNo">Account Number</label>
+          <select name="AccountNo" id="AccountNo" [value]="null" class="form-control border-bottom text-muted"
+            formControlName="AccountNo" [ngClass]="{ 'is-invalid': submitted &&
         f.AccountNo.errors }">
-        <option [value]="null" disabled selected>Account Number</option>
+            <option [value]="null" disabled selected>Account Number</option>
             <option *ngFor="let accno of listaccno" [value]="accno.AccountNo">
               {{accno.AccountNo}}
             </option>
           </select>
           <div *ngIf="submitted && f.AccountNo.errors" class="invalid-feedback">
-              <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
-            </div>
-              </div>
-              <div class="form-group">
-              <label for="Amount">Amount</label>
-              <input type="text" class="form-control border-bottom" formControlName="Amount" placeholder="Amount" [ngClass]="{ 'is-invalid': submitted &&
+            <div *ngIf="f.AccountNo.errors.required">Please Enter Account Number</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Amount">Amount</label>
+          <input type="text" class="form-control border-bottom" formControlName="Amount" placeholder="Amount" [ngClass]="{ 'is-invalid': submitted &&
             f.Amount.errors }">
-            <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
-                <div *ngIf="f.Amount.errors.required">Please Enter Amount</div>
-              </div>
-              </div>
-              
-              <div class="form-group row">
-                  <label class="col-md-4 col-form-label">Transaction Type:</label>
-                  <div class="col-md-12 col-form-label">
-                  <div class="form-check form-check-inline mr-1">
-                      <input type="radio" class="ml-1" name="TransactionType" formControlName="TransactionType" value="Withdraw">
-                  <label class="form-check-label ml-1" for="inline-radio1">Withdraw</label>
-                  </div>
-                  <div class="form-check form-check-inline mr-1">
-                      <input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType" value="Deposite">
-                  <label class="form-check-label ml-1" for="inline-radio2">Deposite</label>
-                  </div>
-                  
-                  </div>
-                  </div>
-              
-              
-		<div class="modal-footer">
-        <button class="btn btn-primary btn-square" type="submit">Submit</button>
-        <button class="btn btn-danger btn-square ml-2" type="button"
-          (click)="modalRef.hide()">Cancel</button>
-      </div>
+          <div *ngIf="submitted && f.Amount.errors" class="invalid-feedback">
+            <div *ngIf="f.Amount.errors.required">Please Enter Amount</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label">Transaction Type:</label>
+          <div class="col-md-12 col-form-label">
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio" class="ml-1" name="TransactionType" formControlName="TransactionType"
+                value="Withdraw">
+              <label class="form-check-label ml-1" for="inline-radio1">Withdraw</label>
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType"
+                value="Deposite">
+              <label class="form-check-label ml-1" for="inline-radio2">Deposite</label>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-square" type="submit">Submit</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
+        </div>
 
       </form>
     </div>
-    </div>
-  </ng-template>
+  </div>
+</ng-template>
 
-  
+<!-- Edit banktransaction modal -->
 
-  <!-- Edit banktransaction modal -->
-
-  
-
- <ng-template #editTemplate>
-    <div class="modal-header">
+<ng-template #editTemplate>
+  <div class="modal-header">
     <h5 class=" h5 modal-title pull-left px-3">Update Bank Transaction</h5>
     <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-    <span aria-hidden="true">&times;</span>
+      <span aria-hidden="true">&times;</span>
     </button>
-    </div>
-    <div class="modal-body">
-        <div class="container-fluid">
-        <form [formGroup]="UpdateFormGroup" (ngSubmit)="update()">
-           
-                <div class="form-group">
-                <label for="BankName">Bank Name</label>
-                <input type="text" class="form-control border-0 text-muted" formControlName="BankName" name="BankName" disabled>
-                </div>
-                <div class="form-group">
-                <label for="AccountNo">Account Number</label>
-                <input type="text" class="form-control text-muted" formControlName="AccountNo" name="AccountNo" disabled>
-                </div>
-                <div class="form-group">
-                <label for="Amount">Amount</label>
-                <input type="text" class="form-control  text-muted" formControlName="Amount" [ngClass]="{ 'is-invalid': submitted &&
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <form [formGroup]="UpdateFormGroup" (ngSubmit)="updateBankTransaction()">
+
+        <div class="form-group">
+          <label for="BankName">Bank Name</label>
+          <input type="text" class="form-control border-0 text-muted" formControlName="BankName" name="BankName"
+            disabled>
+        </div>
+        <div class="form-group">
+          <label for="AccountNo">Account Number</label>
+          <input type="text" class="form-control text-muted" formControlName="AccountNo" name="AccountNo" disabled>
+        </div>
+        <div class="form-group">
+          <label for="Amount">Amount</label>
+          <input type="text" class="form-control  text-muted" formControlName="Amount" [ngClass]="{ 'is-invalid': submitted &&
                   fu.Amount.errors }">
-                  <div *ngIf="submitted && fu.Amount.errors" class="invalid-feedback">
-                      <div *ngIf="fu.Amount.errors.required">Please Enter Amount</div>
-                      </div>
-                </div>
-                
-                <div class="form-group row">
-                    <label class="col-md-4 col-form-label">Transaction Type:</label>
-                    <div class="col-md-12 col-form-label">
-                    <div class="form-check form-check-inline mr-1">
-                        <input type="radio" class="ml-1" name="TransactionType" formControlName="TransactionType" value="Withdraw">
-                    <label class="form-check-label ml-1" for="inline-radio1">Withdraw</label>
-                    </div>
-                    <div class="form-check form-check-inline mr-1">
-                        <input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType" value="Deposite">
-                    <label class="form-check-label ml-1" for="inline-radio2">Deposite</label>
-                    </div>
-                    
-                    </div>
-                    </div>   
-                
-                
-                
-    <div class="modal-footer">
-    <button class="btn btn-primary btn-square" type="submit">Update</button>
-    <button class="btn btn-danger btn-square ml-2" type="button"
-    (click)="modalRef.hide()">Cancel</button>
-    </div>
-    </form>
-    </div>
-    </div>
-    </ng-template>
-
-  <!-- <ng-template #editTemplate>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">Bank Transaction</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <form [formGroup]="UpdateFormGroup" (ngSubmit)="update()">
-
-        
-
-        <div class="form-group">
-          <label for="BankName">Bank Name : </label>
-          <input type="text" class="form-control" formControlName="BankName" name="BankName" disabled>
-        </div>
-
-        <div class="form-group">
-          <label for="AccountNo">Account Number : </label>
-          <input type="text" class="form-control" formControlName="AccountNo" name="AccountNo" disabled>
-        </div>
-
-        <div class="radio">
-          <label class="control-label-col-sm-2">Transaction Type : </label><br>
-          <label><input type="radio" name="TransactionType" formControlName="TransactionType" value="Withdraw"
-              checked>Withdraw</label>
-        </div>
-        <div class="radio">
-          <label><input type="radio" name="TransactionType" formControlName="TransactionType"
-              value="Deposite">Deposite</label>
-        </div>
-
-        <div class="form-group">
-          <label for="Amount" class="control-label-col-sm-2">Amount : </label>
-          <input type="text" class="form-control" formControlName="Amount" [ngClass]="{ 'is-invalid': submitted &&
-        fu.Amount.errors }">
           <div *ngIf="submitted && fu.Amount.errors" class="invalid-feedback">
             <div *ngIf="fu.Amount.errors.required">Please Enter Amount</div>
           </div>
         </div>
-       
-        <div class="form-group">
-          <label for="TransactionBy">Transaction By</label>
-          <select name="TransactionBy" id="TransactionBy" class="form-control" formControlName="TransactionBy"
-            [value]="fu.TransactionById.value" [ngClass]="{ 'is-invalid': submitted &&
-        fu.TransactionBy.errors }"   (change)="selectTransactionBy($event)">
-            <option [value]="null" disabled selected>Select Name</option>
-            <option *ngFor="let staff of staffMasters" [value]="staff.StaffId">
-              <span>{{staff.FirstName+' '}}</span> <span>{{ staff.MiddleName}}</span>
-              <span>{{' '+ staff.LastName}}</span>
-            </option>
-          </select>
 
-          <div *ngIf="submitted && fu.TransactionBy.errors" class="invalid-feedback">
-            <div *ngIf="fu.TransactionBy.errors.required">Please Enter Name</div>
+        <div class="form-group row">
+          <label class="col-md-4 col-form-label">Transaction Type:</label>
+          <div class="col-md-12 col-form-label">
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio" class="ml-1" name="TransactionType" formControlName="TransactionType"
+                value="Withdraw">
+              <label class="form-check-label ml-1" for="inline-radio1">Withdraw</label>
+            </div>
+            <div class="form-check form-check-inline mr-1">
+              <input type="radio" class="ml-3" name="TransactionType" formControlName="TransactionType"
+                value="Deposite">
+              <label class="form-check-label ml-1" for="inline-radio2">Deposite</label>
+            </div>
+
           </div>
         </div>
 
-        <div class="form-group">
-          <label for="Date" class="control-label-col-sm-2">TransactionDate : </label>
-          <input class="form-control" formControlName="Date" [ngClass]="{ 'is-invalid': submitted &&
-        fu.Date.errors }">
-          <div *ngIf="submitted && fu.Date.errors" class="invalid-feedback">
-            <div *ngIf="fu.Date.errors.required">Please Enter Date</div>
-          </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary btn-square" type="submit">Update</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
-        
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">submit</button>
-          <button type="button" class="btn btn-primary" style="margin-left: 5px" (click)="modalRef.hide()">Cancel</button>
-        </div>
-      
       </form>
     </div>
-  </ng-template> -->
+  </div>
+</ng-template>

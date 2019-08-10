@@ -1,17 +1,12 @@
 import { Utils } from '../../../Core/Utils';
-import { Component, OnInit, TemplateRef, Input,OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input, OnDestroy, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { BankService } from '../../services/bank.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Bank } from 'shared/Model/Bank';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { MustMatch } from './must-match.validator'
-import { debounceTime } from 'rxjs/operators';
-import { Type, Xliff } from '@angular/compiler';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
-
-
 
 @Component({
   selector: 'app-bank',
@@ -19,6 +14,16 @@ import { DataTableDirective } from 'angular-datatables';
   styleUrls: ['./bank.component.css']
 })
 export class BankComponent implements OnDestroy, OnInit {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  constructor(private modalService: BsModalService,
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private BankService: BankService,
+    private route: ActivatedRoute) { }
+
   modalRef: BsModalRef;
   registerForm: FormGroup;
   editForm: FormGroup;
@@ -27,42 +32,32 @@ export class BankComponent implements OnDestroy, OnInit {
   @Input() name: string;
   public ID: number;
   public banks = [];
-  bankId:number
+  bankId: number
   dtOptions: DataTables.Settings = {};
   dtTrigger: Subject<any> = new Subject();
-  filter:any;
+  filter: any;
 
-  @ViewChild(DataTableDirective)
-  dtElement: DataTableDirective;
-
-  constructor(private modalService: BsModalService, 
-    private formBuilder: FormBuilder, 
-    private router: Router,
-    private BankService: BankService,
-    private route: ActivatedRoute) { }
+  ngAfterViewInit(): void { this.dtTrigger.next(); }
   
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
 
-    ngAfterViewInit(): void {this.dtTrigger.next();}
-
-    ngOnDestroy(): void {
-      this.dtTrigger.unsubscribe();
-    }
-  
-    rerender(): void {
-      this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
-          dtInstance.destroy();
-          this.dtTrigger.next();
-      });
-    }
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      dtInstance.destroy();
+      this.dtTrigger.next();
+    });
+  }
 
   ngOnInit() {
-      this.dtOptions = {
-        retrieve: true,
-        paging:true,
-        pagingType: 'full_numbers',
-        pageLength: 4,
-        searching:false
-      };
+    this.dtOptions = {
+      retrieve: true,
+      paging: true,
+      pagingType: 'full_numbers',
+      pageLength: 4,
+      searching: false
+    };
 
     this.registerForm = this.formBuilder.group({
       ID: [],
@@ -76,30 +71,25 @@ export class BankComponent implements OnDestroy, OnInit {
       });
 
 
-      this.editForm=this.formBuilder.group({
+    this.editForm = this.formBuilder.group({
+      BankName: [],
+      AccountNo: [],
+      ReAccountNo: [],
+      AccountType: [],
+      IFSC_Code: []
+    })
 
-        BankName:[],
-        AccountNo:[],
-        ReAccountNo:[],
-        AccountType:[],
-        IFSC_Code:[]
-
-      })
-
-    this.getBanks(this.user.InstituteId);
+    this.getbankAccountsList(this.user.InstituteId);
   }
 
-  // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
 
-  get g() {return this.editForm.controls}
+  get g() { return this.editForm.controls }
 
-  public user=Utils.GetCurrentUser();
+  public user = Utils.GetCurrentUser();
 
-  onSubmit() {
+  createBankAccount() {
     this.submitted = true;
-
-    // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
@@ -110,15 +100,13 @@ export class BankComponent implements OnDestroy, OnInit {
         AccountNo: this.registerForm.controls.AccountNo.value,
         AccountType: this.registerForm.controls.AccountType.value,
         IFSC_Code: this.registerForm.controls.IFSC_Code.value,
-        InstituteId:this.user.InstituteId
-
+        InstituteId: this.user.InstituteId
       };
-      this.BankService.bank(body).subscribe((data) => {
+      this.BankService.createBankAccount(body).subscribe((data) => {
         this.modalRef.hide();
-        this.getBanks(this.user.InstituteId);
+        this.getbankAccountsList(this.user.InstituteId);
         this.rerender();
         this.submitted = false;
-
       })
     }
   }
@@ -130,35 +118,32 @@ export class BankComponent implements OnDestroy, OnInit {
       backdrop: 'static',
       class: 'modal-md',
     });
-
-
   }
 
-  getBanks(InstituteId:number) {
-    InstituteId=this.user.InstituteId;
-    this.BankService.bankList(InstituteId).subscribe(res => {
-    this.banks = res;
-    this.rerender();
-      //this.dtTrigger.next();
+  getbankAccountsList(InstituteId: number) {
+    InstituteId = this.user.InstituteId;
+    this.BankService.getbankAccountsList(InstituteId).subscribe(res => {
+      this.banks = res;
+      this.rerender();
     });
   }
 
-  delete(ID,BankName) {
+  inactivateBankAccount(ID, BankName) {
     var ans = confirm("Do you want to delete this Bank : " + BankName);
     if (ans) {
-      this.BankService.delete(ID).subscribe(data => {
-        this.getBanks(this.user.InstituteId);
+      this.BankService.inactivateBankAccount(ID).subscribe(data => {
+        this.getbankAccountsList(this.user.InstituteId);
         this.rerender();
       }, error => console.error(error))
     }
   }
 
   editAccNo(editTemplate: TemplateRef<any>, bank) {
-    this.bankId=bank.ID
+    this.bankId = bank.ID
     let selectedBank = {
       ID: bank.ID,
       BankName: bank.BankName,
-      AccountNo:bank.AccountNo,
+      AccountNo: bank.AccountNo,
       AccountType: bank.AccountType,
       IFSC_Code: bank.IFSC_Code,
     }
@@ -173,10 +158,7 @@ export class BankComponent implements OnDestroy, OnInit {
   }
 
   updateAccNo() {
-
     this.submitted = true;
-
-    // stop here if form is invalid
     if (this.editForm.invalid) {
       return;
     }
@@ -188,17 +170,17 @@ export class BankComponent implements OnDestroy, OnInit {
       BankName: this.editForm.controls.BankName.value,
       AccountType: this.editForm.controls.AccountType.value,
       IFSC_Code: this.editForm.controls.IFSC_Code.value,
-      InstituteId:this.user.InstituteId
+      InstituteId: this.user.InstituteId
     }
-    this.BankService.editAccNo(body).subscribe(data => {
+    this.BankService.updateBankAccount(body).subscribe(data => {
       this.modalRef.hide();
-      this.getBanks(this.user.InstituteId);
+      this.getbankAccountsList(this.user.InstituteId);
       this.rerender();
     }, error => console.error(error))
   }
+
   clearForm() {
     this.registerForm.reset()
-      
   }
 }
 

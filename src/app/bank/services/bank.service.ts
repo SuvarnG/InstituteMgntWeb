@@ -1,59 +1,69 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Bank } from 'shared/Model/Bank'
-import { map, tap, catchError } from 'rxjs/operators'; import { environment } from '../../../environments/environment';
+import { map, tap } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Utils } from '../../Core/Utils';
+import { BankTransaction } from 'shared/Model/BankTransaction';
+import { StaffMaster } from 'shared/Model/StaffMaster';
+import { BankNames } from 'shared/Model/BankNames';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class BankService {
+
+  public listStaff: StaffMaster[];
+  public listaccno: BankTransaction[];
+  public bankname: BankNames[];
+
   private deleteUrl = environment.APIBASEURL + 'Bank/InactiveBank/';
   private CreateUrl = environment.APIBASEURL + 'Bank/CreateBankAccount';
   private UpdateUrl = environment.APIBASEURL + 'Bank/UpdateBankAccount';
 
   constructor(private http: HttpClient) { }
 
-  getAuthHeader(){
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Utils.GetAccessToken()}`
-      })      
-    };
-    return httpOptions
+  getbankAccountsList(InstituteId: number) {
+    return this.http.get(environment.APIBASEURL + 'Bank/GetAll' + '/' + InstituteId, Utils.getAuthHeader()).pipe(map(data => data as Bank[]))
   }
 
-
-  bankList(InstituteId:number) {
-    // return this.http.get<Bank[]>( environment.APIBASEURL + 'Bank/GetAll'+'/'+InstituteId, httpOptions)
-    //   .pipe(map(bank => {
-    //     return bank;
-    //   }));
-
-
-      return this.http.get(environment.APIBASEURL+ 'Bank/GetAll'+'/'+InstituteId,this.getAuthHeader()).pipe(map(data => data as Bank[]))
-  }
-
-  delete(ID): Observable<Bank> {
-
-    return this.http.post<Bank>(this.deleteUrl + ID,null, this.getAuthHeader()).pipe(
+  inactivateBankAccount(ID): Observable<Bank> {
+    return this.http.post<Bank>(this.deleteUrl + ID, null, Utils.getAuthHeader()).pipe(
       tap(_ => console.log(`deleted Bank id=${ID}`))
     );
   }
 
-  bank(bank: Bank) {
-    return this.http.post<Bank>(this.CreateUrl, bank, this.getAuthHeader()).pipe(map(bank => { return bank }))
+  createBankAccount(bank: Bank) {
+    return this.http.post<Bank>(this.CreateUrl, bank, Utils.getAuthHeader()).pipe(map(bank => { return bank }))
   }
 
-
-  editAccNo(bank): Observable<Bank> {
-
-    return this.http.post<Bank>(this.UpdateUrl, bank, this.getAuthHeader()).pipe(
+  updateBankAccount(bank): Observable<Bank> {
+    return this.http.post<Bank>(this.UpdateUrl, bank, Utils.getAuthHeader()).pipe(
       tap((bank: Bank) => console.log('Update BankAccountId=${bank.BankAccountId}'))
+    );
+  }
 
+  getBankTransactionList(BranchId: number) {
+    return this.http.get<BankTransaction[]>(environment.APIBASEURL + 'Bank/GetAllBankTrn' + '/' + BranchId, Utils.getAuthHeader())
+      .pipe(map(banktransaction => {
+        return banktransaction;
+      }));
+  }
+
+  getAccountNumber(BankName) {
+    return this.http.get(environment.APIBASEURL + 'Bank/GetAccoNo' + '/' + BankName, Utils.getAuthHeader()).pipe(map(data => data as BankTransaction[]))
+  }
+
+  createBankTransaction(banktransaction: BankTransaction) {
+    return this.http.post<BankTransaction>(environment.APIBASEURL + 'Bank/CreateBankTrn', banktransaction, Utils.getAuthHeader()).pipe(map(banktransaction => { return banktransaction }))
+  }
+
+  updateBankTransaction(banktransaction): Observable<BankTransaction> {
+    return this.http.post<BankTransaction>(environment.APIBASEURL + 'Bank/UpdateBankTrn', banktransaction, Utils.getAuthHeader()).pipe(
+      tap((banktransaction: BankTransaction) => console.log('Update Id=${banktransaction.ID}'))
     );
   }
 }
