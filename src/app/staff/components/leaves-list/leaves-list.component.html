@@ -42,7 +42,7 @@
             <tr *ngFor="let l of Leaves | filter:filter">
               <td>{{l.LeaveType}}</td>
               <td>
-                <a class="card-header-action btn-minimize" (click)="updateNewLeave(template2,l.LeaveType)"
+                <a class="card-header-action btn-minimize" (click)="updateNewLeave(template2,l.LeaveType,l.LeaveId)"
                   title="Edit Information">
                   <i class="cui-pencil pencil"></i>
                 </a>
@@ -81,7 +81,7 @@
         </div>
         <div class="modal-footer">
           <button class="btn btn-square btn-primary" type="submit">Submit</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancle</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>
@@ -98,7 +98,7 @@
   </div>
   <div class="modal-body">
     <div class="container-fluid">
-      <form [formGroup]="registerUpdateLeave" (ngSubmit)="onSubmitUpdateLeave()">
+      <form [formGroup]="registerUpdateLeave" (ngSubmit)="updateLeave()">
         <div class="form-group">
           <label>Leave Type</label>
           <input type="text" class="form-control" formControlName="LeaveType"
@@ -108,8 +108,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-square btn-primary" (click)="updateLeave(template2)" type="submit">Update</button>
-          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancle</button>
+          <button class="btn btn-square btn-primary" type="submit">Update</button>
+          <button class="btn btn-danger btn-square ml-2" type="button" (click)="modalRef.hide()">Cancel</button>
         </div>
       </form>
     </div>

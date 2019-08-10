@@ -40,6 +40,7 @@ export class LeavesListComponent implements OnInit {
   public Leaves = [];
   public UpdateLeaves = [];
   filter:any;
+  leaveId:number;
 
 
   
@@ -54,7 +55,7 @@ export class LeavesListComponent implements OnInit {
     this.getAllLeaves();
 
     this.registerUpdateLeave = this.formBuilder.group({
-      LeaveId: ['', Validators.required],
+     // LeaveId: ['', Validators.required],
       LeaveType: ['', Validators.required]
     },
     );
@@ -103,7 +104,8 @@ export class LeavesListComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   };
 
-  updateNewLeave(template: TemplateRef<any>, LeaveType) {
+  updateNewLeave(template: TemplateRef<any>, LeaveType, LeaveId) {
+    this.leaveId=LeaveId;
     let body = {
       LeaveType: LeaveType
     }
@@ -111,15 +113,16 @@ export class LeavesListComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   };
 
-  onSubmitUpdateLeave() {
-    this.submitted = true;
-    //stop here if form is invalid
-    if (this.registerUpdateLeave.invalid) {
-      return;
-    }
-  }
+  // onSubmitUpdateLeave() {
+  //   this.submitted = true;
+  //   //stop here if form is invalid
+  //   if (this.registerUpdateLeave.invalid) {
+  //     return;
+  //   }
+  // }
 
   onSubmitCreateLeave(Leaves) {
+    debugger;
     this.submitted = true;
     //stop here if form is invalid
     if (this.CreateLeave.invalid) {
@@ -133,12 +136,13 @@ export class LeavesListComponent implements OnInit {
 }
 
     let leaveName=this.CreateLeave.controls.LeaveName.value
-    this.leaveService.createLeave(leaveName).subscribe(data => { this.getAllLeaves(), 
+    this.leaveService.createLeaveType(leaveName).subscribe(data => { this.getAllLeaves(), 
       this.rerender();          
       this.modalRef.hide() })
   }
 
-  updateLeave(leaves: Leaves) {
+  updateLeave() {
+    debugger;
     this.submitted = true;
     //stop here if form is invalida
     if (this.registerUpdateLeave.invalid) {
@@ -146,7 +150,7 @@ export class LeavesListComponent implements OnInit {
     }
 
     let body: Leaves = {
-      LeaveId: this.registerUpdateLeave.controls.LeaveId.value,
+      LeaveId: this.leaveId,
       LeaveType: this.registerUpdateLeave.controls.LeaveType.value
     }
 
