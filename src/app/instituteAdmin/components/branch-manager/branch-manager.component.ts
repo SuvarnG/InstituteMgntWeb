@@ -1,5 +1,4 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-//import { BranchManagerService } from '../../services/branch-manager.service';
 import { Utils } from '../../../Core/Utils';
 import {BranchManager, Branch} from 'shared/Model/Branch'
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -255,7 +254,6 @@ export class BranchManagerComponent implements OnInit {
 
 
   validatingExistingUserEmail(EmailId:string){
-    debugger;
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })

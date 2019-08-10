@@ -43,7 +43,6 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    debugger;
     const body = new HttpParams()
       .set('grant_type', 'password')
       .set('username', username)

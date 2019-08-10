@@ -206,7 +206,6 @@ export class CoursesComponent implements OnInit {
   }
 
   Update(courseName = []) {
-    debugger;
     this.submitted = true;
     // stop here if form is invalid
     if (this.UpdateFormGroup.invalid) {

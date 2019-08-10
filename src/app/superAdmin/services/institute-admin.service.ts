@@ -54,7 +54,6 @@ export class InstituteAdminService {
   }
 
   validatingExistingUserEmail(EmailId: string) {
-    debugger;
     return this.httpClient.post(environment.APIBASEURL + 'Institute/ValidatingExistingUserEmail' + '/' + EmailId + '/', null, Utils.getAuthHeader());
   }
 

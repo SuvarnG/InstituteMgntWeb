@@ -324,7 +324,6 @@ this.studentsListService.getCourseFeesFromCourseName(event.target.value).subscri
   }
 
   validatingExistingUserEmail(EmailId:string){
-    debugger;
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })

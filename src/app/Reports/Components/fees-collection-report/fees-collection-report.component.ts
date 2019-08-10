@@ -47,12 +47,10 @@ export class FeesCollectionReportComponent implements OnInit {
   get f() { return this.registerFeesCollectionReport.controls };
 
   selectBranch(id: number) {
-    debugger;
     this.coursesService.courseList(this.user.InstituteId, id).subscribe(res => { this.courseList = res })
   }
 
   pullFeesCollectionReport() {
-    debugger;
     if (this.periodSelection == "SelectDateRange") {
       this.submitted = true;
       if (this.registerFeesCollectionReport.invalid) {

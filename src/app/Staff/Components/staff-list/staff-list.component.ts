@@ -304,7 +304,6 @@ export class StaffListComponent implements OnInit {
 
 
   validatingExistingUserEmail(EmailId:string){
-    debugger;
     return this.instituteAdminService.validatingExistingUserEmail(EmailId).subscribe(data=>{
       this.chkEmailId=data;
     })

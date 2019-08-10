@@ -128,7 +128,6 @@ export class CreateStudentComponent implements OnInit {
 
 
   createNewStudent(template: TemplateRef<any>) {
-    debugger;
     this.submitted = true;
     if (this.createNewStudentForm.invalid) {
       return

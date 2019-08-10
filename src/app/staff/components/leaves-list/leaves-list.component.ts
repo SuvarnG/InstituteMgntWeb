@@ -1,11 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-//import { LeavelistService } from '../../services/leavelist.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { leave } from '@angular/core/src/profile/wtf_impl';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Leaves, UpdateLeaves } from '../../../shared/Model/leaves';
 import { FormGroup, FormBuilder, Validators, NgControl } from '@angular/forms';
-import { idLocale } from 'ngx-bootstrap';
 import { Subject } from 'rxjs';
 import { DataTableDirective } from 'angular-datatables';
 import { LeaveService } from '../../services/leave.service';
@@ -113,16 +110,7 @@ export class LeavesListComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   };
 
-  // onSubmitUpdateLeave() {
-  //   this.submitted = true;
-  //   //stop here if form is invalid
-  //   if (this.registerUpdateLeave.invalid) {
-  //     return;
-  //   }
-  // }
-
   onSubmitCreateLeave(Leaves) {
-    debugger;
     this.submitted = true;
     //stop here if form is invalid
     if (this.CreateLeave.invalid) {
@@ -142,7 +130,6 @@ export class LeavesListComponent implements OnInit {
   }
 
   updateLeave() {
-    debugger;
     this.submitted = true;
     //stop here if form is invalida
     if (this.registerUpdateLeave.invalid) {

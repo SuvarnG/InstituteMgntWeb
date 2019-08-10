@@ -55,7 +55,6 @@ export class LeaveService {
   }
 
   updateLeaveType(leaves: Leaves) {
-    debugger;
     return this.http.post<void>(this.UpdateUrl, leaves, Utils.getAuthHeader())
   }
 

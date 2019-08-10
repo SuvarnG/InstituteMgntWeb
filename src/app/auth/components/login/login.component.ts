@@ -134,7 +134,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmitNewPassword() {
-    debugger;
     this.submitted1 = true;
     if (this.createNewPasswordForm.invalid) {
       return
