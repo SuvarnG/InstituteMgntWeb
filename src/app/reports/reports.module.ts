@@ -1,8 +1,4 @@
-import { FeesCollectionReportService } from './services/fees-collection-report.service';
-import { StudentAdmissionsReportService } from './services/student-admissions-report.service';
-import { EnquiryReportService } from './services/enquiry-report.service';
 import { ReportsService } from './services/reports.service';
-import { ExpenseReportService } from './services/expense-report.service';
 import { ExpenseReport } from './../shared/Model/Expenses';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -76,11 +72,7 @@ import { ExportAsModule } from 'ngx-export-as';
     ])
   ],
   providers:[
-    ExpenseReportService,
-    ReportsService,
-    EnquiryReportService,
-    StudentAdmissionsReportService,
-    FeesCollectionReportService
+    ReportsService
   ]
 })
 export class ReportsModule { }

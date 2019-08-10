@@ -6,7 +6,7 @@ import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Course } from 'shared/Model/CourseType';
 import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { StudentReportInput, StudentReport } from 'shared/Model/Students'
-import { StudentAdmissionsReportService } from '../../Services/student-admissions-report.service';
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-student-admissions-report',
@@ -18,7 +18,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
   constructor(private branchService: BranchService,
     private coursesService: CoursesService,
     private formBuilder: FormBuilder,
-    private studentAdmissionsReportService: StudentAdmissionsReportService) { }
+    private reportsService: ReportsService) { }
 
 
   branchList: Branch[];
@@ -61,7 +61,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
         ToDate: this.registerStudentAdmissionReport.controls.ToDate.value,
         InstituteId: this.user.InstituteId
       }
-      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+      return this.reportsService.pullStudentAdmissionReport(body).subscribe(res => {
         this.studentAdmissionReportList = res
       });
     }
@@ -81,7 +81,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+      return this.reportsService.pullStudentAdmissionReport(body).subscribe(res => {
         this.studentAdmissionReportList = res
       });
     }
@@ -96,7 +96,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+      return this.reportsService.pullStudentAdmissionReport(body).subscribe(res => {
         this.studentAdmissionReportList = res
       });
     }
@@ -111,7 +111,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      return this.studentAdmissionsReportService.pullStudentAdmissionReport(body).subscribe(res => {
+      return this.reportsService.pullStudentAdmissionReport(body).subscribe(res => {
         this.studentAdmissionReportList = res
       });
     }
@@ -122,7 +122,7 @@ export class StudentAdmissionsReportComponent implements OnInit {
   }
 
   exportAsXLSX(): void {
-    this.studentAdmissionsReportService.exportAsExcelFile(this.studentAdmissionReportList, 'Student_Admission');
+    this.reportsService.exportAsExcelFile(this.studentAdmissionReportList, 'Student_Admission');
   }
 
   selectPeriod(event: any) {

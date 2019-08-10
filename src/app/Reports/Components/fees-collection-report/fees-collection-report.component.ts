@@ -4,9 +4,9 @@ import { Utils } from '../../../Core/Utils';
 import { Course } from 'shared/Model/CourseType'
 import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Branch } from 'shared/Model/Branch';
-import { FeesCollectionReportService } from '../../Services/fees-collection-report.service';
 import { FeesReportInput, FeesReport } from 'shared/Model/Students'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-fees-collection-report',
@@ -18,7 +18,7 @@ export class FeesCollectionReportComponent implements OnInit {
 
   constructor(private coursesService: CoursesService,
     private branchService: BranchService,
-    private feesCollectionReportService: FeesCollectionReportService,
+    private reportsService: ReportsService,
     private formBuilder: FormBuilder) { }
 
 
@@ -66,7 +66,7 @@ export class FeesCollectionReportComponent implements OnInit {
         ToDate: this.registerFeesCollectionReport.controls.ToDate.value,
         InstituteId: this.user.InstituteId
       }
-      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+      this.reportsService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
       })
     }
@@ -88,7 +88,7 @@ export class FeesCollectionReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+      this.reportsService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
       })
     }
@@ -104,7 +104,7 @@ export class FeesCollectionReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+      this.reportsService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
       })
     }
@@ -120,7 +120,7 @@ export class FeesCollectionReportComponent implements OnInit {
         ToDate: todaysDate,
         InstituteId: this.user.InstituteId
       }
-      this.feesCollectionReportService.pullFeesCollectionReport(body).subscribe(res => {
+      this.reportsService.pullFeesCollectionReport(body).subscribe(res => {
         this.feesReportList = res
       })
     }
@@ -128,7 +128,7 @@ export class FeesCollectionReportComponent implements OnInit {
   }
 
   exportAsXLSX(): void {
-    this.feesCollectionReportService.exportAsExcelFile(this.feesReportList, 'Fees Collection');
+    this.reportsService.exportAsExcelFile(this.feesReportList, 'Fees Collection');
   }
 
   selectPeriod(event: any) {

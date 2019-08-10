@@ -1,12 +1,12 @@
 import { ExpenseService } from './../../../expenses/services/expense.service';
 import { Component, OnInit } from '@angular/core';
 import { ExpenseMaster, ExpenseReport, ExpenseReportList } from 'shared/Model/Expenses'
-import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Branch } from 'shared/Model/Branch'
 import { Utils } from '../../../Core/Utils';
 import * as jsPDF from 'jspdf';
-import { ExpenseReportService } from '../../Services/expense-report.service';
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-expense-report',
@@ -17,7 +17,7 @@ export class ExpenseReportComponent implements OnInit {
 
   constructor(
     private expenseService:ExpenseService,
-    private expenseReportService: ExpenseReportService,
+    private reportsService: ReportsService,
     private formBuilder: FormBuilder,
     private branchService: BranchService) { }
 
@@ -64,7 +64,7 @@ export class ExpenseReportComponent implements OnInit {
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 30)),
         InstituteId: this.user.InstituteId
       }
-      this.expenseReportService.pullExpenseReport(body).subscribe(res => {
+      this.reportsService.pullExpenseReport(body).subscribe(res => {
         this.expenseReportList = res
       });
     }
@@ -79,7 +79,7 @@ export class ExpenseReportComponent implements OnInit {
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 91)),
         InstituteId: this.user.InstituteId
       }
-      this.expenseReportService.pullExpenseReport(body).subscribe(res => {
+      this.reportsService.pullExpenseReport(body).subscribe(res => {
         this.expenseReportList = res
       });
     }
@@ -94,7 +94,7 @@ export class ExpenseReportComponent implements OnInit {
         FromDate: new Date(lastMonthDate.setDate(lastMonthDate.getDay() - 182)),
         InstituteId: this.user.InstituteId
       }
-      this.expenseReportService.pullExpenseReport(body).subscribe(res => {
+      this.reportsService.pullExpenseReport(body).subscribe(res => {
         this.expenseReportList = res
       });
     }
@@ -113,14 +113,14 @@ export class ExpenseReportComponent implements OnInit {
         FromDate: this.registerExpensesReport.controls.FromDate.value,
         InstituteId: this.user.InstituteId
       }
-      this.expenseReportService.pullExpenseReport(body).subscribe(res => {
+      this.reportsService.pullExpenseReport(body).subscribe(res => {
         this.expenseReportList = res
       });
     }
   }
 
   exportAsXLSX(): void {
-    this.expenseReportService.exportAsExcelFile(this.expenseReportList, 'Expense');
+    this.reportsService.exportAsExcelFile(this.expenseReportList, 'Expense');
   }
 
   downloadPdf() {

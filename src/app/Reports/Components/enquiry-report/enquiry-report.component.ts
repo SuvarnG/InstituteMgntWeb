@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EnquiryReportService } from '../../Services/enquiry-report.service';
 import { BranchService } from '../../../instituteAdmin/services/branch.service';
 import { Utils } from '../../../Core/Utils';
 import { Branch } from 'shared/Model/Branch'
@@ -8,6 +7,7 @@ import { CoursesService } from '../../../Courses/Services/courses.service';
 import { Course } from 'shared/Model/CourseType'
 import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ExportAsService, ExportAsConfig } from 'ngx-export-as';
+import { ReportsService } from '../../services/reports.service';
 
 @Component({
   selector: 'app-enquiry-report',
@@ -19,7 +19,7 @@ export class EnquiryReportComponent implements OnInit {
   constructor(private branchService: BranchService,
     private coursesService: CoursesService,
     private formBuilder: FormBuilder,
-    private enquiryReportService: EnquiryReportService,
+    private reportsService: ReportsService,
     private exportAsService: ExportAsService) { }
 
 
@@ -65,7 +65,7 @@ export class EnquiryReportComponent implements OnInit {
         InstituteId: this.user.InstituteId
       }
 
-      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+      return this.reportsService.pullEnquiryReport(body).subscribe(res => {
         this.enquiryReportList = res
       });
     }
@@ -93,7 +93,7 @@ export class EnquiryReportComponent implements OnInit {
         InstituteId: this.user.InstituteId
       }
 
-      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+      return this.reportsService.pullEnquiryReport(body).subscribe(res => {
         this.enquiryReportList = res
       });
 
@@ -111,7 +111,7 @@ export class EnquiryReportComponent implements OnInit {
         InstituteId: this.user.InstituteId
       }
 
-      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+      return this.reportsService.pullEnquiryReport(body).subscribe(res => {
         this.enquiryReportList = res
       });
 
@@ -129,7 +129,7 @@ export class EnquiryReportComponent implements OnInit {
         InstituteId: this.user.InstituteId
       }
 
-      return this.enquiryReportService.pullEnquiryReport(body).subscribe(res => {
+      return this.reportsService.pullEnquiryReport(body).subscribe(res => {
         this.enquiryReportList = res
       });
 
@@ -141,7 +141,7 @@ export class EnquiryReportComponent implements OnInit {
   }
 
   exportAsXLSX(): void {
-    this.enquiryReportService.exportAsExcelFile(this.enquiryReportList, 'Enquiry');
+    this.reportsService.exportAsExcelFile(this.enquiryReportList, 'Enquiry');
   }
 
   selectPeriod(event: any) {
